@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>img/cerebro.png</file>
+        <file>img/cerebro48.png</file>
+        <file>img/zastavka.png</file>
+        <file>img/folder.svg</file>
+        <file>img/edit-cut.svg</file>
+    </qresource>
+</RCC>
