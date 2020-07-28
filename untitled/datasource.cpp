@@ -34,7 +34,7 @@ void DataSource::init()
         fin4 >> X4_1 >> w;
         //X4_1=0;
         //w=0;*/
-        fin.open("/home/elf/Dropbox/Наблюдатель/injterfece/build-untitled-Desktop-Debug/datasource/isvh.txt",std::ios::in);
+        fin.open("../datasource/isvh.txt",std::ios::in);
         fin >> X1_1>> ua >> ub >>ia >> ib >> w;
         dataTimer->start();
     }

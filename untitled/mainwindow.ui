@@ -14,7 +14,7 @@
    <string>Cerebro</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../build-untitled-Desktop-Debug/resurce.qrc">
+   <iconset resource="resurce.qrc">
     <normaloff>:/new/prefix1/img/cerebro48.png</normaloff>:/new/prefix1/img/cerebro48.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -507,7 +507,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../build-untitled-Desktop-Debug/resurce.qrc"/>
+  <include location="resurce.qrc"/>
  </resources>
  <connections/>
 </ui>
