@@ -32,10 +32,16 @@ public slots:
 private slots:
     void on_pushButton_5_clicked();
 
-private:
+    void on_radioButton_2_toggled(bool checked);
+
+    void on_radioButton_toggled(bool checked);
+
+public:
     Ui::datas *ui;
+private:
     QSqlDatabase sdb;
-    QButtonGroup buttonGroup;
+    QString dataSourceFilename;
+
     void table();
     void zapis();
 };

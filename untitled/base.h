@@ -1,6 +1,7 @@
 #ifndef BASE_H
 #define BASE_H
 
+#include <QString>
 
 struct Base
 {
@@ -11,6 +12,7 @@ struct Base
     double kpd_nom;
     double muk;
     double n_0;
+    QString dataSourceFilename;
 };
 
 extern Base base;

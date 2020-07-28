@@ -44,10 +44,6 @@ private slots:
 
     void on_action_9_triggered();
 
-    void on_action_22_triggered(bool checked);
-
-    void on_action_23_triggered(bool checked);
-
 public:
     Ui::MainWindow *ui;
     about *rsc;

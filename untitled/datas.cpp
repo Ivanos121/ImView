@@ -34,7 +34,8 @@ datas::datas(QWidget *parent) :
     ui->lineEdit_8->setValidator(new QRegExpValidator(QRegExp("^[0-9]{1}.[0-9]{3}$")));
     ui->lineEdit_9->setValidator(new QIntValidator(1,1000));
 
-
+    ui->buttonGroup->setId(ui->radioButton,1);
+    ui->buttonGroup->setId(ui->radioButton_2,2);
 }
 
 datas::~datas()
@@ -137,23 +138,8 @@ void datas::on_pushButton_clicked()
             || ui->lineEdit_7->text().isEmpty() || ui->lineEdit_8->text().isEmpty() || ui->lineEdit_9->text().isEmpty())
         {
         QMessageBox::critical(this, "Ошибка!", "Заполните пустые поля");
+        return;
         }
-    else
-        {
-       /* int n=0;
-        buttonGroup.setId(ui->radioButton,1);
-        buttonGroup.setId(ui->radioButton_2,2);
-        n=buttonGroup.checkedId();
-        switch (n)
-        {
-        case 1:
-        QMessageBox::information(this, tr("Сообщение"), tr("Осциллограф!"));
-        break;
-
-        case 2:
-        QMessageBox::information(this, tr("Сообщение"), tr("Файл!"));
-        break;
-        }*/
 
         base.P_nom = ui->lineEdit_3->text().toDouble();
         base.n_nom = ui->lineEdit_4->text().toDouble();
@@ -162,19 +148,17 @@ void datas::on_pushButton_clicked()
         base.kpd_nom = ui->lineEdit_7->text().toDouble();
         base.muk = ui->lineEdit_8->text().toDouble();
         base.n_0 = ui->lineEdit_9->text().toDouble();
-        if(ui->radioButton->isChecked())
-        {QMessageBox::information(this, tr("Сообщение"), tr("Осциллограф!"));
-       // ui->pushButton_5->setEnabled(false);
-        }
-        else
+
+        if (ui->buttonGroup->checkedId() == 2)
         {
-          if(ui->radioButton_2->isChecked())
-          {QMessageBox::information(this, tr("Сообщение"), tr("Файл!"));
-           ui->pushButton_5->setEnabled(true);
-          }}
+            if (dataSourceFilename.isEmpty())
+            {
+                QMessageBox::critical(this, tr("Ошибка!"), tr("Файл не выбран!"));
+                return;
+            }
 
+            base.dataSourceFilename = dataSourceFilename;
         }
-
 }
 
 void datas::on_pushButton_2_clicked()
@@ -191,8 +175,31 @@ void datas::on_pushButton_2_clicked()
 
 void datas::on_pushButton_5_clicked()
 {
-    QString fileName = QFileDialog::getOpenFileName(this,
+    QSettings settings;
+    dataSourceFilename = QFileDialog::getOpenFileName(this,
                                 QString::fromUtf8("Открыть файл"),
-                                QDir::currentPath(),
+
+                                settings.value("dataSource/LastPath", "").toString(),
                                 "txt files (*.txt);;All files (*.*)");
+
+    if (!dataSourceFilename.isEmpty())
+    {
+        settings.setValue("dataSource/LastPath",  QFileInfo(dataSourceFilename).absoluteDir().absolutePath());
+    }
+}
+
+void datas::on_radioButton_2_toggled(bool checked)
+{
+    if (checked)
+    {
+       ui->pushButton_5->setEnabled(true);
+    }
+}
+
+void datas::on_radioButton_toggled(bool checked)
+{
+    if (checked)
+    {
+       ui->pushButton_5->setEnabled(false);
+    }
 }

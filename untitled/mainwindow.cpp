@@ -95,19 +95,3 @@ void MainWindow::on_action_9_triggered()
 {
  ui->widget_2->dataSource->stop();
 }
-
-void MainWindow::on_action_22_triggered(bool checked)
-{
-    if (checked)
-    {
-        ui->action_23->setChecked(false);
-    }
-}
-
-void MainWindow::on_action_23_triggered(bool checked)
-{
-    if (checked)
-    {
-        ui->action_22->setChecked(false);
-    }
-}

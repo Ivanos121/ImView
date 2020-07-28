@@ -8,6 +8,9 @@ int main(int argc, char *argv[])
     QApplication::setAttribute(Qt::AA_UseDesktopOpenGL);
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
 
+    QCoreApplication::setOrganizationName("Cerebro");
+    QCoreApplication::setApplicationName("Cerebro");
+
     qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
     QApplication a(argc, argv);
     MainWindow w;
