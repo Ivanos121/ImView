@@ -29,6 +29,8 @@ public:
     QElapsedTimer *time2;
 
     DataSource *dataSource;
+private slots:
+    void on_pushButton_clicked();
 };
 
 #endif // IDENTF_H

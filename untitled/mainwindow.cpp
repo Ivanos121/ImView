@@ -1,5 +1,5 @@
-#include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "mainwindow.h"
 #include <QStyle>
 #include <QDesktopWidget>
 #include <QClipboard>
@@ -7,6 +7,7 @@
 #include "base.h"
 #include "datas.h"
 #include "identf.h"
+#include "electromagn.h"
 
 Base base;
 
@@ -94,4 +95,19 @@ void MainWindow::on_action_5_triggered()
 void MainWindow::on_action_9_triggered()
 {
  ui->widget_2->dataSource->stop();
+}
+
+void MainWindow::on_action_20_triggered()
+{
+ ui->widget_3->raschet_el();
+}
+
+void MainWindow::on_action_21_triggered()
+{
+ ui->widget_3->stop();
+}
+
+void MainWindow::on_tabWidget_currentChanged(int)
+{
+
 }

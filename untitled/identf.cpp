@@ -25,7 +25,7 @@ identf::identf(QWidget *parent) :
 
     //dataTimer = new QTimer(this);
     time=new QElapsedTimer();
-    ui->widget->setMaximumSize(ui->widget->maximumWidth(), ui->widget->maximumHeight());;
+    ui->widget->setMaximumSize(ui->widget->maximumWidth(), ui->widget->maximumHeight());
     ui->widget->setOpenGl(true);
 
     ui->widget->legend->setVisible(true);
@@ -191,3 +191,13 @@ void identf::raschet_f()
     time->start();
 }
 
+
+void identf::on_pushButton_clicked()
+{
+    base.R1 = ui->lineEdit_12->text().toDouble();
+    base.R2 = ui->lineEdit_11->text().toDouble();
+    base.L1 = ui->lineEdit_10->text().toDouble();
+    base.L2 = ui->lineEdit_9->text().toDouble();
+    base.Lm = ui->lineEdit_8->text().toDouble();
+    printf("R1=%f R2=%f L1=%f L2=%f Lm=%f", base.R1, base.R2, base.L1, base.L2, base.Lm);
+ }

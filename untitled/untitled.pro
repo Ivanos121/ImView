@@ -2,7 +2,7 @@ QT       += core gui sql webkitwidgets webenginewidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
-CONFIG += c++11
+CONFIG += c++11 debug
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -18,27 +18,50 @@ DEFINES += QT_DEPRECATED_WARNINGS QCUSTOMPLOT_USE_OPENGL
 SOURCES += \
     about.cpp \
     base.cpp \
+    bvasthread.cpp \
+    bvas.cpp \
     datas.cpp \
     datasource.cpp \
+    datasource_el.cpp \
+    datasourcebvas.cpp \
+    datasourcebvasw.cpp \
+    device.cpp \
+    electromagn.cpp \
     identf.cpp \
     main.cpp \
     mainwindow.cpp \
     model.cpp \
+    model_el.cpp \
+    nabludatel.cpp \
+    nabludatel_part.cpp \
+    plot.cpp \
     qcustomplot.cpp
 
 HEADERS += \
     about.h \
     base.h \
+    bvasthread.h \
+    bvas.h \
     datas.h \
     datasource.h \
+    datasource_el.h \
+    datasourcebvas.h \
+    datasourcebvasw.h \
+    device.h \
+    electromagn.h \
     identf.h \
     mainwindow.h \
     model.h \
+    model_el.h \
+    nabludatel.h \
+    nabludatel_part.h \
+    plot.h \
     qcustomplot.h
 
 FORMS += \
     about.ui \
     datas.ui \
+    electromagn.ui \
     identf.ui \
     mainwindow.ui
 
@@ -46,6 +69,8 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+LIBS += -lusb-1.0
 
 RESOURCES += \
     resurce.qrc

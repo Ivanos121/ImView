@@ -22,7 +22,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -50,23 +50,7 @@
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <widget class="QCustomPlot" name="widget_4" native="true"/>
-        </item>
-        <item>
-         <widget class="QWidget" name="widget_5" native="true">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>425</width>
-            <height>0</height>
-           </size>
-          </property>
-         </widget>
+         <widget class="electromagn" name="widget_3" native="true"/>
         </item>
        </layout>
       </widget>
@@ -189,6 +173,9 @@
    <addaction name="separator"/>
    <addaction name="action_5"/>
    <addaction name="action_9"/>
+   <addaction name="separator"/>
+   <addaction name="action_20"/>
+   <addaction name="action_21"/>
    <addaction name="separator"/>
   </widget>
   <action name="actionExit">
@@ -449,23 +436,25 @@
    </property>
   </action>
   <action name="action_20">
+   <property name="icon">
+    <iconset theme="system-run">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="text">
     <string>Запуск</string>
    </property>
   </action>
   <action name="action_21">
+   <property name="icon">
+    <iconset theme="process-stop">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="text">
     <string>Останов</string>
    </property>
   </action>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>QCustomPlot</class>
-   <extends>QWidget</extends>
-   <header location="global">qcustomplot.h</header>
-   <container>1</container>
-  </customwidget>
   <customwidget>
    <class>datas</class>
    <extends>QWidget</extends>
@@ -476,6 +465,12 @@
    <class>identf</class>
    <extends>QWidget</extends>
    <header>identf.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>electromagn</class>
+   <extends>QWidget</extends>
+   <header>electromagn.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

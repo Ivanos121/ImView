@@ -44,6 +44,12 @@ private slots:
 
     void on_action_9_triggered();
 
+    void on_action_20_triggered();
+
+    void on_action_21_triggered();
+
+    void on_tabWidget_currentChanged(int);
+
 public:
     Ui::MainWindow *ui;
     about *rsc;

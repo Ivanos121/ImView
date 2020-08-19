@@ -1,9 +1,10 @@
+#include "ui_mainwindow.h"
 #include "datasource.h"
 #include "ui_datas.h"
-#include "ui_mainwindow.h"
 #include "mainwindow.h"
 #include "base.h"
 #include <fstream>
+#include <QMessageBox>
 
 std::ifstream fin,fin2, fin3, fin4,fin5;
 
@@ -35,8 +36,6 @@ void DataSource::init()
     {
         QMessageBox::information(nullptr,"Инфо","Осциллограф");
     }
-
-
 }
 
 void DataSource::read()
@@ -60,7 +59,6 @@ void DataSource::read()
     {
 
     }
-
 
     emit ready();
 }

@@ -24,6 +24,8 @@
 ****************************************************************************/
 
 #include "qcustomplot.h"
+#include <QPointer>
+
 
 
 /* including file 'src/vector2d.cpp', size 7340                              */
@@ -30210,5 +30212,20 @@ QPen QCPItemBracket::mainPen() const
     return mSelected ? mSelectedPen : mPen;
 }
 /* end of 'src/items/item-bracket.cpp' */
+
+void QCPAxisRect::zoomEvent(double scalex, double scaley, QPoint pos)
+{
+    if (mRangeZoomHorzAxis.first().data()) {
+        mRangeDragHorzAxis.first().data()->moveRange(mRangeZoomHorzAxis.first().data()->pixelToCoord(pos.x()) - mRangeZoomHorzAxis.first().data()->pixelToCoord(this->center().x()));
+        mRangeZoomHorzAxis.first().data()->scaleRange(scalex, mRangeZoomHorzAxis.first().data()->pixelToCoord(this->center().x()));
+    }
+
+    if (mRangeZoomVertAxis.first().data()) {
+        mRangeDragVertAxis.first().data()->moveRange(mRangeZoomVertAxis.first().data()->pixelToCoord(pos.y()) - mRangeZoomVertAxis.first().data()->pixelToCoord(this->center().y()));
+        mRangeZoomVertAxis.first().data()->scaleRange(scaley, mRangeZoomVertAxis.first().data()->pixelToCoord(this->center().y()));
+    }
+    mParentPlot->replot();
+}
+
 
 

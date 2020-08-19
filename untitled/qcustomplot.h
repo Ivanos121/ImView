@@ -68,6 +68,7 @@
 #include <qmath.h>
 #include <limits>
 #include <algorithm>
+
 #ifdef QCP_OPENGL_FBO
 #  include <QtGui/QOpenGLContext>
 #  include <QtGui/QOpenGLFramebufferObject>
@@ -4633,6 +4634,7 @@ public:
   void setRangeZoomAxes(QList<QCPAxis*> horizontal, QList<QCPAxis*> vertical);
   void setRangeZoomFactor(double horizontalFactor, double verticalFactor);
   void setRangeZoomFactor(double factor);
+  void zoomEvent(double scalex, double scaley, QPoint pos);
   
   // non-property methods:
   int axisCount(QCPAxis::AxisType type) const;
