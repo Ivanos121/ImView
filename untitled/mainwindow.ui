@@ -141,6 +141,7 @@
     </property>
     <addaction name="action_20"/>
     <addaction name="action_21"/>
+    <addaction name="action_22"/>
    </widget>
    <addaction name="menufile"/>
    <addaction name="menu_2"/>
@@ -176,6 +177,7 @@
    <addaction name="separator"/>
    <addaction name="action_20"/>
    <addaction name="action_21"/>
+   <addaction name="action_22"/>
    <addaction name="separator"/>
   </widget>
   <action name="actionExit">
@@ -451,6 +453,14 @@
    </property>
    <property name="text">
     <string>Останов</string>
+   </property>
+  </action>
+  <action name="action_22">
+   <property name="icon">
+    <iconset theme="preferences-desktop-theme&#9;"/>
+   </property>
+   <property name="text">
+    <string>Калибровка осциллографа</string>
    </property>
   </action>
  </widget>

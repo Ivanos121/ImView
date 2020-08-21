@@ -28,6 +28,7 @@ SOURCES += \
     device.cpp \
     electromagn.cpp \
     identf.cpp \
+    kalibr.cpp \
     main.cpp \
     mainwindow.cpp \
     model.cpp \
@@ -50,6 +51,7 @@ HEADERS += \
     device.h \
     electromagn.h \
     identf.h \
+    kalibr.h \
     mainwindow.h \
     model.h \
     model_el.h \
@@ -63,6 +65,7 @@ FORMS += \
     datas.ui \
     electromagn.ui \
     identf.ui \
+    kalibr.ui \
     mainwindow.ui
 
 # Default rules for deployment.

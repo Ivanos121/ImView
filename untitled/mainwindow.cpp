@@ -8,6 +8,7 @@
 #include "datas.h"
 #include "identf.h"
 #include "electromagn.h"
+#include "kalibr.h"
 
 Base base;
 
@@ -110,4 +111,17 @@ void MainWindow::on_action_21_triggered()
 void MainWindow::on_tabWidget_currentChanged(int)
 {
 
+}
+
+void MainWindow::on_action_22_triggered()
+{
+    QScreen *screen = QGuiApplication::primaryScreen();
+    kalibr=new Kalibr(this);
+    kalibr->show();
+    kalibr->setGeometry(
+    QStyle::alignedRect(
+    Qt::LeftToRight,
+    Qt::AlignCenter,
+    kalibr->size(),
+    screen->geometry()));
 }

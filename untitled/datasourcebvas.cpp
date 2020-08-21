@@ -9,13 +9,21 @@ DataSourceBVAS::DataSourceBVAS()
 
     connect(bvasThread, &BVASThread::dataReady, this, &DataSourceBVAS::read);
 
-    UaZeroLevel = 34833.125469;
+    /*UaZeroLevel = 34833.125469;
     UbZeroLevel = 2091.935000;
     UcZeroLevel = 2099.24;
 
     IaZeroLevel = 55297.912656;
     IbZeroLevel = 22534.149688;
-    IcZeroLevel = 22623.8;
+    IcZeroLevel = 22623.8;*/
+
+    UaZeroLevel = 0.0;
+    UbZeroLevel = 0.0;
+    UcZeroLevel = 0.0;
+
+    IaZeroLevel = 0.0;
+    IbZeroLevel = 0.0;
+    IcZeroLevel = 0.0;
 
     UaCalibrationCoeff = 1.0;
     UbCalibrationCoeff = 1.0;

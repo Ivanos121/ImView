@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "about.h"
+#include "kalibr.h"
 #include <QTimer>
 #include <QElapsedTimer>
 #include <QWebEngineView>
@@ -50,9 +51,12 @@ private slots:
 
     void on_tabWidget_currentChanged(int);
 
+    void on_action_22_triggered();
+
 public:
     Ui::MainWindow *ui;
     about *rsc;
+    Kalibr *kalibr;
 
     QWebEngineView * view;
 };

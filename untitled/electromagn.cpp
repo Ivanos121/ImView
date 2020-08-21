@@ -638,6 +638,24 @@ void electromagn::raschet_el()
     if(ui->radioButton->isChecked())
     {
         //БВАС без датчика скорости + наблюдатель скорости
+        QSettings settings;
+
+        dataSourceBVAS.IaZeroLevel = settings.value("calibration/IaZero", 0.0).toDouble();
+        dataSourceBVAS.IbZeroLevel = settings.value("calibration/IbZero", 0.0).toDouble();
+        dataSourceBVAS.IcZeroLevel = settings.value("calibration/IcZero", 0.0).toDouble();
+
+        dataSourceBVAS.UaZeroLevel = settings.value("calibration/UaZero", 0.0).toDouble();
+        dataSourceBVAS.UbZeroLevel = settings.value("calibration/UbZero", 0.0).toDouble();
+        dataSourceBVAS.UcZeroLevel = settings.value("calibration/UcZero", 0.0).toDouble();
+
+        dataSourceBVAS.IaCalibrationCoeff = settings.value("calibration/IaCoeff", 1.0).toDouble();
+        dataSourceBVAS.IbCalibrationCoeff = settings.value("calibration/IbCoeff", 1.0).toDouble();
+        dataSourceBVAS.IcCalibrationCoeff = settings.value("calibration/IcCoeff", 1.0).toDouble();
+
+        dataSourceBVAS.UaCalibrationCoeff = settings.value("calibration/UaCoeff", 1.0).toDouble();
+        dataSourceBVAS.UbCalibrationCoeff = settings.value("calibration/UbCoeff", 1.0).toDouble();
+        dataSourceBVAS.UcCalibrationCoeff = settings.value("calibration/UcCoeff", 1.0).toDouble();
+
         dataSourceBVAS.init();
         nabludatel.init(base.R1, base.R2, base.L1, base.L2, base.Lm);
         connect(&dataSourceBVAS, &DataSourceBVAS::ready, this, &electromagn::realtimeDataSlot);

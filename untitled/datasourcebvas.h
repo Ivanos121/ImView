@@ -29,22 +29,21 @@ public:
     double Ib[BUF_SIZE];
     double Ic[BUF_SIZE];
 
-private:
-  double UaZeroLevel;
-  double UbZeroLevel;
-  double UcZeroLevel;
+    double UaZeroLevel;
+    double UbZeroLevel;
+    double UcZeroLevel;
 
-  double IaZeroLevel;
-  double IbZeroLevel;
-  double IcZeroLevel;
+    double IaZeroLevel;
+    double IbZeroLevel;
+    double IcZeroLevel;
 
-  double UaCalibrationCoeff;
-  double UbCalibrationCoeff;
-  double UcCalibrationCoeff;
+    double UaCalibrationCoeff;
+    double UbCalibrationCoeff;
+    double UcCalibrationCoeff;
 
-  double IaCalibrationCoeff;
-  double IbCalibrationCoeff;
-  double IcCalibrationCoeff;
+    double IaCalibrationCoeff;
+    double IbCalibrationCoeff;
+    double IcCalibrationCoeff;
 
 public slots:
     void read();
