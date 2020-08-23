@@ -713,7 +713,31 @@ void electromagn::stop()
 
 void electromagn::on_pushButton_clicked()
 {
+    base.i_a=ui->tableWidget->item(0,1)->text().toDouble();
+    base.u_a=ui->tableWidget->item(1,1)->text().toDouble();
+    base.p_akt_a=ui->tableWidget->item(2,1)->text().toDouble();
+    base.p_react_a=ui->tableWidget->item(3,1)->text().toDouble();
+    base.p_poln_a=ui->tableWidget->item(4,1)->text().toDouble();
+    base.cosf_a=ui->tableWidget->item(5,1)->text().toDouble();
 
+    base.i_b=ui->tableWidget->item(6,1)->text().toDouble();
+    base.u_b=ui->tableWidget->item(7,1)->text().toDouble();
+    base.p_akt_b=ui->tableWidget->item(8,1)->text().toDouble();
+    base.p_react_b=ui->tableWidget->item(9,1)->text().toDouble();
+    base.p_poln_b=ui->tableWidget->item(10,1)->text().toDouble();
+    base.cosf_b=ui->tableWidget->item(11,1)->text().toDouble();
+
+    base.i_c=ui->tableWidget->item(12,1)->text().toDouble();
+    base.u_c=ui->tableWidget->item(13,1)->text().toDouble();
+    base.p_akt_c=ui->tableWidget->item(14,1)->text().toDouble();
+    base.p_react_c=ui->tableWidget->item(15,1)->text().toDouble();
+    base.p_poln_c=ui->tableWidget->item(16,1)->text().toDouble();
+    base.cosf_c=ui->tableWidget->item(17,1)->text().toDouble();
+
+    base.p_akt=ui->tableWidget->item(18,1)->text().toDouble();
+    base.p_react=ui->tableWidget->item(19,1)->text().toDouble();
+    base.p_poln=ui->tableWidget->item(20,1)->text().toDouble();
+    base.cosf=ui->tableWidget->item(21,1)->text().toDouble();
 }
 
 

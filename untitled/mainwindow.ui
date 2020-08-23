@@ -22,7 +22,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>2</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -63,6 +63,11 @@
        <attribute name="title">
         <string>Выходные данные</string>
        </attribute>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
+         <widget class="Itogs" name="widget_4" native="true"/>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
@@ -457,7 +462,8 @@
   </action>
   <action name="action_22">
    <property name="icon">
-    <iconset theme="preferences-desktop-theme&#9;"/>
+    <iconset theme="preferences-desktop-theme&#9;">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Калибровка осциллографа</string>
@@ -481,6 +487,12 @@
    <class>electromagn</class>
    <extends>QWidget</extends>
    <header>electromagn.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Itogs</class>
+   <extends>QWidget</extends>
+   <header>itogs.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

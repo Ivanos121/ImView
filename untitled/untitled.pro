@@ -28,6 +28,7 @@ SOURCES += \
     device.cpp \
     electromagn.cpp \
     identf.cpp \
+    itogs.cpp \
     kalibr.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -51,6 +52,7 @@ HEADERS += \
     device.h \
     electromagn.h \
     identf.h \
+    itogs.h \
     kalibr.h \
     mainwindow.h \
     model.h \
@@ -65,6 +67,7 @@ FORMS += \
     datas.ui \
     electromagn.ui \
     identf.ui \
+    itogs.ui \
     kalibr.ui \
     mainwindow.ui
 

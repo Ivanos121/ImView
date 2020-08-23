@@ -18,6 +18,31 @@ struct Base
     double L2;
     double Lm;
     QString dataSourceFilename;
+    QString name;
+    bool r1;
+    double i_a;
+    double u_a;
+    double p_akt_a;
+    double p_react_a;
+    double p_poln_a;
+    double cosf_a;
+    double i_b;
+    double u_b;
+    double p_akt_b;
+    double p_react_b;
+    double p_poln_b;
+    double cosf_b;
+    double i_c;
+    double u_c;
+    double p_akt_c;
+    double p_react_c;
+    double p_poln_c;
+    double cosf_c;
+    double p_akt;
+    double p_react;
+    double p_poln;
+    double cosf;
+
 };
 
 extern Base base;

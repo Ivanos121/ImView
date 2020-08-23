@@ -141,6 +141,7 @@ void datas::on_pushButton_clicked()
         return;
         }
 
+        base.name = ui->lineEdit_2->text();
         base.P_nom = ui->lineEdit_3->text().toDouble();
         base.n_nom = ui->lineEdit_4->text().toDouble();
         base.U_fnom = ui->lineEdit_5->text().toDouble();
@@ -193,6 +194,7 @@ void datas::on_radioButton_2_toggled(bool checked)
     if (checked)
     {
        ui->pushButton_5->setEnabled(true);
+       base.r1=true;
     }
 }
 
@@ -201,5 +203,6 @@ void datas::on_radioButton_toggled(bool checked)
     if (checked)
     {
        ui->pushButton_5->setEnabled(false);
+       base.r1=false;
     }
 }
