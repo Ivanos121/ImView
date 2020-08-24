@@ -36,14 +36,14 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="0">
+      <item row="3" column="0" alignment="Qt::AlignRight">
        <widget class="QLabel" name="label_12">
         <property name="text">
          <string>Индуктивность фазы статора, Гн =</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
+      <item row="1" column="0" alignment="Qt::AlignRight">
        <widget class="QLabel" name="label_10">
         <property name="text">
          <string>Активное сопротивление фазы статора, Ом =</string>
@@ -92,7 +92,7 @@
         </property>
        </widget>
       </item>
-      <item row="5" column="0">
+      <item row="5" column="0" alignment="Qt::AlignRight">
        <widget class="QLabel" name="label_14">
         <property name="text">
          <string>Индуктивность взаимоиндукции, Гн =</string>
@@ -109,7 +109,7 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="0">
+      <item row="4" column="0" alignment="Qt::AlignRight">
        <widget class="QLabel" name="label_13">
         <property name="text">
          <string>Индуктивность фазы ротора, Гн =</string>
@@ -126,7 +126,7 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="0">
+      <item row="2" column="0" alignment="Qt::AlignRight">
        <widget class="QLabel" name="label_11">
         <property name="text">
          <string>Активное сопротивление фазы ротора, Ом =</string>
@@ -208,7 +208,7 @@
       <bool>false</bool>
      </property>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="6" column="0">
+      <item row="6" column="0" alignment="Qt::AlignRight">
        <widget class="QLabel" name="label_5">
         <property name="text">
          <string>Номинальное напряжение фазы, В =</string>
@@ -254,7 +254,7 @@
         </property>
        </widget>
       </item>
-      <item row="10" column="0">
+      <item row="10" column="0" alignment="Qt::AlignRight">
        <widget class="QLabel" name="label_6">
         <property name="text">
          <string>Синхронная частота вращения, об/мин =</string>
@@ -319,14 +319,14 @@
         </property>
        </widget>
       </item>
-      <item row="8" column="0">
+      <item row="8" column="0" alignment="Qt::AlignRight">
        <widget class="QLabel" name="label_8">
         <property name="text">
          <string>Номинальный КПД =</string>
         </property>
        </widget>
       </item>
-      <item row="9" column="0">
+      <item row="9" column="0" alignment="Qt::AlignRight">
        <widget class="QLabel" name="label_9">
         <property name="text">
          <string>Кратность максимального момента =</string>
@@ -340,21 +340,21 @@
         </property>
        </widget>
       </item>
-      <item row="7" column="0">
+      <item row="7" column="0" alignment="Qt::AlignRight">
        <widget class="QLabel" name="label_7">
         <property name="text">
          <string>Номинальный коэффициент мощности =</string>
         </property>
        </widget>
       </item>
-      <item row="5" column="0">
+      <item row="5" column="0" alignment="Qt::AlignRight">
        <widget class="QLabel" name="label_4">
         <property name="text">
          <string>Номинальная частота вращения , рад/с =</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
+      <item row="1" column="0" alignment="Qt::AlignRight">
        <widget class="QLabel" name="label_3">
         <property name="text">
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Номинальная мощность двигателя, кВт =&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>

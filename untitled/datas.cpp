@@ -194,7 +194,6 @@ void datas::on_radioButton_2_toggled(bool checked)
     if (checked)
     {
        ui->pushButton_5->setEnabled(true);
-       base.r1=true;
     }
 }
 
@@ -203,6 +202,5 @@ void datas::on_radioButton_toggled(bool checked)
     if (checked)
     {
        ui->pushButton_5->setEnabled(false);
-       base.r1=false;
     }
 }

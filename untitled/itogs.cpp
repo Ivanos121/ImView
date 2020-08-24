@@ -7,8 +7,11 @@
 #include <QTextTable>
 #include <QPrintPreviewDialog>
 
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
+#include "ui_datas.h"
 
- int nn;
+int nn;
 
 Itogs::Itogs(QWidget *parent) :
     QWidget(parent),
@@ -132,13 +135,24 @@ void Itogs::on_pushButton_clicked()
     table->cellAt(6, 1).firstCursorPosition().insertText(QString::number((double)base.muk));
     table->cellAt(7, 1).firstCursorPosition().insertText(QString::number((double)base.n_0));
 
-    if(base.r1=true)
+    /*if(base.r1=true)
     {
         ui->textEdit->append("Алгоритм проведения испытаний: осциллограф");
     }
     if(base.r1=false)
     {
     ui->textEdit->append("Алгоритм проведения испытаний: внутренний источник данных");
+    }*/
+
+    MainWindow *mainWin = getMainWindow();
+    if (mainWin->ui->widget->ui->radioButton->isChecked())
+    {
+       ui->textEdit->append("Алгоритм проведения испытаний: осциллограф");
+    }
+
+    if (mainWin->ui->widget->ui->radioButton_2->isChecked())
+    {
+       ui->textEdit->append("Алгоритм проведения испытаний: внутренний источник данных");
     }
 
     cursor = ui->textEdit->textCursor();
@@ -303,10 +317,19 @@ void Itogs::on_pushButton_4_clicked()
     printPreview->setWindowTitle("Preview Dialog");
     Qt::WindowFlags flags(Qt::WindowTitleHint);
     printPreview->setWindowFlags(flags);
+    printPreview->showMaximized();
     printPreview->exec();
 }
 
 void Itogs::print(QPrinter *printer)
 {
     ui->textEdit->print(printer);
+}
+
+MainWindow* Itogs::getMainWindow()
+{
+    foreach (QWidget *w, qApp->topLevelWidgets())
+        if (MainWindow* mainWin = qobject_cast<MainWindow*>(w))
+            return mainWin;
+    return nullptr;
 }

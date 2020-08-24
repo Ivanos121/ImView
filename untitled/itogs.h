@@ -5,6 +5,8 @@
 #include "base.h"
 #include <QPrinter>
 
+class MainWindow;
+
 namespace Ui {
 class Itogs;
 }
@@ -28,6 +30,8 @@ private slots:
 
 private:
     Ui::Itogs *ui;    
+
+    MainWindow* getMainWindow();
 };
 
 #endif // ITOGS_H

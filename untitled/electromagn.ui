@@ -21,7 +21,7 @@
     <widget class="QWidget" name="widget_2" native="true">
      <property name="maximumSize">
       <size>
-       <width>450</width>
+       <width>500</width>
        <height>16777215</height>
       </size>
      </property>
@@ -78,61 +78,39 @@
           <height>150</height>
          </size>
         </property>
-        <widget class="QRadioButton" name="radioButton">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>50</y>
-           <width>451</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Осциллограф+наблюдатель скорости (без датчика скорости)</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_10">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>20</y>
-           <width>384</width>
-           <height>23</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Источник данных&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButton_2">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>80</y>
-           <width>421</width>
-           <height>23</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Осциллограф+наблюдатель момента (с датчиком скорости)</string>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButton_3">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>110</y>
-           <width>421</width>
-           <height>23</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>внутренний источник данных</string>
-         </property>
-        </widget>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_10">
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Источник данных&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QRadioButton" name="radioButton">
+           <property name="text">
+            <string>Осциллограф+наблюдатель скорости (без датчика скорости)</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QRadioButton" name="radioButton_2">
+           <property name="text">
+            <string>Осциллограф+наблюдатель момента (с датчиком скорости)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QRadioButton" name="radioButton_3">
+           <property name="text">
+            <string>внутренний источник данных</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
      </layout>
