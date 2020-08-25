@@ -33,8 +33,8 @@ public slots:
 
 private slots:
     void on_pushButton_clicked();
-    void cbIndexChanged();
-
+    void cbIndexChanged(int index);
+    void cb2IndexChanged(int index);
     //void on_tableWidget_2_cellChanged(int row, int column);
 
 private:
@@ -45,6 +45,7 @@ private:
     DataSourceBVAS dataSourceBVAS;
     DataSourceBVASw dataSourceBVASw;
     QComboBox* combo = new QComboBox();
+    QComboBox* combo2 = new QComboBox();
 };
 
 #endif // ELECTROMAGN_H

@@ -13,8 +13,8 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
       <number>1</number>
@@ -46,60 +46,48 @@
      </widget>
     </widget>
    </item>
-   <item row="0" column="1">
-    <widget class="QWidget" name="widget" native="true">
-     <property name="minimumSize">
-      <size>
-       <width>450</width>
-       <height>0</height>
-      </size>
-     </property>
+   <item>
+    <widget class="QTabWidget" name="tabWidget_2">
      <property name="maximumSize">
       <size>
-       <width>450</width>
+       <width>500</width>
        <height>16777215</height>
       </size>
      </property>
-     <layout class="QGridLayout" name="gridLayout_3">
-      <item row="0" column="0">
-       <widget class="QTabWidget" name="tabWidget_2">
-        <property name="currentIndex">
-         <number>1</number>
-        </property>
-        <widget class="QWidget" name="tab_4">
-         <attribute name="title">
-          <string>Настройки тепловентиляции в динамике</string>
-         </attribute>
-         <layout class="QGridLayout" name="gridLayout_5">
-          <item row="0" column="0">
-           <widget class="QTableWidget" name="tableWidget">
-            <property name="alternatingRowColors">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-         </layout>
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
+     <widget class="QWidget" name="tab_4">
+      <attribute name="title">
+       <string>Настройки тепловентиляции в динамике</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_5">
+       <item row="0" column="0">
+        <widget class="QTableWidget" name="tableWidget">
+         <property name="alternatingRowColors">
+          <bool>true</bool>
+         </property>
         </widget>
-        <widget class="QWidget" name="tab_5">
-         <attribute name="title">
-          <string>Настройки тепловентиляции в статике</string>
-         </attribute>
-         <layout class="QGridLayout" name="gridLayout_6">
-          <item row="0" column="0">
-           <widget class="QTableWidget" name="tableWidget_2">
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="alternatingRowColors">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-         </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_5">
+      <attribute name="title">
+       <string>Настройки тепловентиляции в статике</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_6">
+       <item row="0" column="0">
+        <widget class="QTableWidget" name="tableWidget_2">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="alternatingRowColors">
+          <bool>true</bool>
+         </property>
         </widget>
-       </widget>
-      </item>
-     </layout>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
   </layout>

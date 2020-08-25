@@ -9,7 +9,7 @@ model_el::model_el()
     connect(&timer, &QTimer::timeout, this, &model_el::timerTimeout);
 }
 
-void model_el::init_el(double _R1, double _R2, double _L1, double _L2, double _Lm)
+void model_el::init_el(double _R1, double _R2, double _L1, double _L2, double _Lm, int _S, double _tp, double _Tc, double _Mc)
 {
 
     double L1 = _L1;
@@ -17,6 +17,11 @@ void model_el::init_el(double _R1, double _R2, double _L1, double _L2, double _L
     double R2 = _R2;
     L2 = _L2;
     Lm = _Lm;
+
+    S = _S;
+    tp = _tp;
+    Tc = _Tc;
+    Mc_n = _Mc;
 
     sigma=L1-((Lm*Lm)/(L2));
     alpha=R2/L2;
@@ -42,8 +47,41 @@ void model_el::rasch()
 {
     double Ts=0.000032;
     t=t+Ts;
+    double tt=t;
 
-    //Mc =
+    if(S==0)
+    {
+        Mc = Mc_n;
+    }
+
+    if(S==1)
+    {
+        if(tt<tp)
+        {
+            Mc=Mc_n;
+        }
+        if(tt>tp)
+        {
+            Mc=0;
+        }
+    }
+
+    if(S==2)
+    {
+        while(tt>Tc)
+        {
+            tt-=Tc;
+        }
+            if(tt<tp)
+            {
+                Mc=Mc_n;
+            }
+            if(tt>tp)
+            {
+                Mc=0;
+            }
+
+    }
 
     Ua=311*sin(314*t);
     Ub=311*sin(314*t-M_PI/2);
