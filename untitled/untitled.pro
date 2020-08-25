@@ -37,7 +37,8 @@ SOURCES += \
     nabludatel.cpp \
     nabludatel_part.cpp \
     plot.cpp \
-    qcustomplot.cpp
+    qcustomplot.cpp \
+    teplovent.cpp
 
 HEADERS += \
     about.h \
@@ -60,7 +61,8 @@ HEADERS += \
     nabludatel.h \
     nabludatel_part.h \
     plot.h \
-    qcustomplot.h
+    qcustomplot.h \
+    teplovent.h
 
 FORMS += \
     about.ui \
@@ -69,7 +71,8 @@ FORMS += \
     identf.ui \
     itogs.ui \
     kalibr.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    teplovent.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

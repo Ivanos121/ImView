@@ -33,11 +33,25 @@
         </property>
         <widget class="QWidget" name="tab">
          <attribute name="title">
-          <string>Настройки</string>
+          <string>Настройки осциллографа</string>
          </attribute>
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
            <widget class="QTableWidget" name="tableWidget_2">
+            <property name="alternatingRowColors">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tab_3">
+         <attribute name="title">
+          <string>Настройки внутренней модели</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="0">
+           <widget class="QTableWidget" name="tableWidget_3">
             <property name="alternatingRowColors">
              <bool>true</bool>
             </property>
@@ -86,16 +100,6 @@
            </property>
           </widget>
          </item>
-         <item row="1" column="0">
-          <widget class="QRadioButton" name="radioButton">
-           <property name="text">
-            <string>Осциллограф+наблюдатель скорости (без датчика скорости)</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
          <item row="2" column="0">
           <widget class="QRadioButton" name="radioButton_2">
            <property name="text">
@@ -107,6 +111,16 @@
           <widget class="QRadioButton" name="radioButton_3">
            <property name="text">
             <string>внутренний источник данных</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QRadioButton" name="radioButton">
+           <property name="text">
+            <string>Осциллограф+наблюдатель скорости (без датчика скорости)</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
            </property>
           </widget>
          </item>

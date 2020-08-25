@@ -33,6 +33,7 @@ public slots:
 
 private slots:
     void on_pushButton_clicked();
+    void cbIndexChanged();
 
     //void on_tableWidget_2_cellChanged(int row, int column);
 
@@ -43,6 +44,7 @@ private:
     Nabludatel_part nabludatel_part;
     DataSourceBVAS dataSourceBVAS;
     DataSourceBVASw dataSourceBVASw;
+    QComboBox* combo = new QComboBox();
 };
 
 #endif // ELECTROMAGN_H

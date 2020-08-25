@@ -9,6 +9,7 @@
 #include "identf.h"
 #include "electromagn.h"
 #include "kalibr.h"
+#include "teplovent.h"
 
 Base base;
 

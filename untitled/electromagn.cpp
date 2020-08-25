@@ -5,6 +5,7 @@
 #include "nabludatel.h"
 #include "nabludatel_part.h"
 #include <QLinearGradient>
+#include <QMessageBox>
 
 model_el model_el;
 QPoint p1,p2;
@@ -183,9 +184,6 @@ electromagn::electromagn(QWidget *parent) :
     name << "Свойство" << "Значение";
     ui->tableWidget_2->setHorizontalHeaderLabels(name);
     ui->tableWidget_2->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    //  ui->tableWidget_2->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
-    //ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
-    //ui->tableWidget_2->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableWidget_2->setSelectionBehavior(QAbstractItemView :: SelectRows);
     ui->tableWidget_2->setSelectionMode(QAbstractItemView :: SingleSelection);
     ui->tableWidget_2->verticalHeader()->setVisible(false);
@@ -249,11 +247,46 @@ electromagn::electromagn(QWidget *parent) :
     p.setColor(QPalette::AlternateBase, QColor(222, 255, 222));
     ui->tableWidget_2->setPalette(p);
 
+    ui->tableWidget_3->setRowCount(24);
+    ui->tableWidget_3->setColumnCount(2);
+    QStringList name3;
+    name3 << "Свойство" << "Значение";
+    ui->tableWidget_3->setHorizontalHeaderLabels(name);
+    ui->tableWidget_3->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableWidget_3->setSelectionBehavior(QAbstractItemView :: SelectRows);
+    ui->tableWidget_3->setSelectionMode(QAbstractItemView :: SingleSelection);
+    ui->tableWidget_3->verticalHeader()->setVisible(false);
+
+
+    ui->tableWidget_3->setCellWidget(0,1,combo);
+    ui->tableWidget_3->setItem(0, 0, new QTableWidgetItem("Режим работы двигателя"));
+    ui->tableWidget_3->setItem(1, 0, new QTableWidgetItem("Продолжительность включения"));
+    ui->tableWidget_3->setItem(2, 0, new QTableWidgetItem("Время цикла, с"));
+    ui->tableWidget_3->setItem(3, 0, new QTableWidgetItem("Время паузы, с"));
+    combo->addItem("Режим S1");
+    combo->addItem("Режим S2");
+    combo->addItem("Режим S3");
+    combo->addItem("Режим S4");
+    combo->addItem("Режим S6");
+
+    connect(combo, SIGNAL(activated(int)), this, SLOT(cbIndexChanged()));
+
+
 }
+
 
 electromagn::~electromagn()
 {
     delete ui;
+}
+
+void electromagn::cbIndexChanged()
+{
+   int asd=combo->currentIndex();
+   ui->tableWidget_3->setItem(1, 1, new QTableWidgetItem(QString::number((int)asd)));
+   if (asd==2)
+   {QMessageBox::critical(0, "Critical", "Critical message text");
+}
 }
 
 void electromagn::realtimeDataSlot()
@@ -514,66 +547,7 @@ void electromagn::realtimeDataSlot()
     {
         ui->tableWidget->item(21, 1)->setText(QString("%1").arg(nabludatel.cos_f));
     }
-    /*ui->tableWidget->setItem(0, 1, new QTableWidgetItem(QString("%1").arg(nabludatel.i_dev_a)));
-    ui->tableWidget->setItem(1, 1, new QTableWidgetItem(QString("%1").arg(nabludatel.u_dev_a)));
-    ui->tableWidget->setItem(2, 1, new QTableWidgetItem(QString("%1").arg(nabludatel.p_akt_a)));
-    ui->tableWidget->setItem(3, 1, new QTableWidgetItem(QString("%1").arg(nabludatel.p_reakt_a)));
-    ui->tableWidget->setItem(4, 1, new QTableWidgetItem(QString("%1").arg(nabludatel.p_poln_a)));
-    ui->tableWidget->setItem(5, 1, new QTableWidgetItem(QString("%1").arg(nabludatel.cos_f_a)));
-    ui->tableWidget->setItem(6, 1, new QTableWidgetItem(QString("%1").arg(nabludatel.i_dev_b)));
-    ui->tableWidget->setItem(7, 1, new QTableWidgetItem(QString("%1").arg(nabludatel.u_dev_b)));
-    ui->tableWidget->setItem(8, 1, new QTableWidgetItem(QString("%1").arg(nabludatel.p_akt_b)));
-    ui->tableWidget->setItem(9, 1, new QTableWidgetItem(QString("%1").arg(nabludatel.p_reakt_b)));
-    ui->tableWidget->setItem(10, 1, new QTableWidgetItem(QString("%1").arg(nabludatel.p_poln_b)));
-    ui->tableWidget->setItem(11, 1, new QTableWidgetItem(QString("%1").arg(nabludatel.cos_f_b)));
-    ui->tableWidget->setItem(12, 1, new QTableWidgetItem(QString("%1").arg(nabludatel.cos_f_b)));
-    ui->tableWidget->setItem(13, 1, new QTableWidgetItem(QString("%1").arg(nabludatel.u_dev_c)));
-    ui->tableWidget->setItem(14, 1, new QTableWidgetItem(QString("%1").arg(nabludatel.p_akt_c)));
-    ui->tableWidget->setItem(15, 1, new QTableWidgetItem(QString("%1").arg(nabludatel.p_reakt_c)));
-    ui->tableWidget->setItem(16, 1, new QTableWidgetItem(QString("%1").arg(nabludatel.p_poln_c)));
-    ui->tableWidget->setItem(17, 1, new QTableWidgetItem(QString("%1").arg(nabludatel.cos_f_c)));
-    ui->tableWidget->setItem(18, 1, new QTableWidgetItem(QString("%1").arg(nabludatel.p_akt)));
-    ui->tableWidget->setItem(19, 1, new QTableWidgetItem(QString("%1").arg(nabludatel.p_reakt)));
-    ui->tableWidget->setItem(20, 1, new QTableWidgetItem(QString("%1").arg(nabludatel.p_poln)));
-    ui->tableWidget->setItem(21, 1, new QTableWidgetItem(QString("%1").arg(nabludatel.cos_f)));*/
-
-
-
-      /*  if(ui->tableWidget_2->model()->index(6,1).data(Qt::CheckStateRole)==Qt::Checked)
-    {
-        ui->widget->graph(6)->data()->clear();
-        ui->widget->graph(6)->addData(key, nabludatel.w);
-        ui->widget->graph(6)->rescaleAxes();
-        ui->widget->replot();
-    }
-
-    if(ui->tableWidget_2->model()->index(7,1).data(Qt::CheckStateRole)==Qt::Checked)
-    {
-        ui->widget->graph(7)->data()->clear();
-        ui->widget->graph(7)->addData(key, nabludatel.M);
-        ui->widget->graph(7)->rescaleAxes();
-        ui->widget->replot();
-    }
-
-
-        ui->widget->graph(2)->addData(key, nabludatel.Uc);
-        ui->widget->graph(3)->addData(key, nabludatel.Ia);
-        ui->widget->graph(4)->addData(key, nabludatel.Ib);
-        ui->widget->graph(5)->addData(key, nabludatel.Ic);
-        ui->widget->graph(6)->addData(key, nabludatel.w);
-        ui->widget->graph(7)->addData(key, nabludatel.M);
-
-        ui->widget->graph(0)->rescaleValueAxis();
-        ui->widget->graph(1)->rescaleValueAxis(true);
-        ui->widget->graph(2)->rescaleValueAxis(true);
-        ui->widget->graph(3)->rescaleValueAxis(true);
-        ui->widget->graph(4)->rescaleValueAxis(true);
-        ui->widget->graph(5)->rescaleValueAxis(true);
-        ui->widget->graph(6)->rescaleValueAxis(true);
-        ui->widget->graph(7)->rescaleValueAxis(true);
-        ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
-        ui->widget->replot(); */
-    }
+}
 
     if(ui->radioButton_2->isChecked())
     {
@@ -739,5 +713,7 @@ void electromagn::on_pushButton_clicked()
     base.p_poln=ui->tableWidget->item(20,1)->text().toDouble();
     base.cosf=ui->tableWidget->item(21,1)->text().toDouble();
 }
+
+
 
 
