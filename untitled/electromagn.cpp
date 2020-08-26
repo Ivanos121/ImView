@@ -694,7 +694,10 @@ void electromagn::realtimeDataSlot()
     if(ui->radioButton_3->isChecked())
     {
         double b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16;
-        model_el.rasch();
+        for (int i = 0; i < 1000; i++)
+        {
+            model_el.rasch();
+        }
 
         //Считывание значения времени цикла Тц
 
@@ -829,12 +832,14 @@ void electromagn::realtimeDataSlot()
             b16=ui->tableWidget_3->item(28,1)->text().toDouble();
         }
 
+        key = model_el.t;
+
         //вывод на qcustomPlot графика напряжения Ua после преобразования 2 в 3
 
         if(ui->tableWidget_3->model()->index(5,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
            // ui->widget->graph(0)->addData(key, b4+b1*(0.8165*model_el.Ua));
-            ui->widget->graph(0)->addData(key, b4+b1*(model_el.Ua));
+            ui->widget->graph(0)->addData(key, b4+b1*(model_el.u_dev_a));
             ui->widget->graph(0)->rescaleValueAxis();
         }
 
@@ -843,7 +848,7 @@ void electromagn::realtimeDataSlot()
         if(ui->tableWidget_3->model()->index(6,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
            // ui->widget->graph(1)->addData(key, b5+b2*(-0.4082*model_el.Ua+0.7071*model_el.Ub));
-            ui->widget->graph(1)->addData(key, b5+b2*(-0.5*model_el.Ua+0.866*model_el.Ub));
+            ui->widget->graph(1)->addData(key, b5+b2*(model_el.u_dev_b));
             ui->widget->graph(1)->rescaleValueAxis(true);
         }
 
@@ -851,7 +856,7 @@ void electromagn::realtimeDataSlot()
 
         if(ui->tableWidget_3->model()->index(7,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
-            ui->widget->graph(2)->addData(key, b6+b3*(-0.5*model_el.Ua-0.866*model_el.Ub));
+            ui->widget->graph(2)->addData(key, b6+b3*(model_el.u_dev_c));
             ui->widget->graph(2)->rescaleValueAxis(true);
         }
 
@@ -859,7 +864,7 @@ void electromagn::realtimeDataSlot()
 
         if(ui->tableWidget_3->model()->index(8,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
-            ui->widget->graph(3)->addData(key, b10+b7*(model_el.Ia));
+            ui->widget->graph(3)->addData(key, b10+b7*(model_el.i_dev_a));
             ui->widget->graph(3)->rescaleValueAxis(true);
         }
 
@@ -867,7 +872,7 @@ void electromagn::realtimeDataSlot()
 
         if(ui->tableWidget_3->model()->index(9,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
-            ui->widget->graph(4)->addData(key, b11+b8*(-0.5*model_el.Ia+0.866*model_el.Ib));
+            ui->widget->graph(4)->addData(key, b11+b8*(model_el.i_dev_b));
             ui->widget->graph(4)->rescaleValueAxis(true);
         }
 
@@ -875,7 +880,7 @@ void electromagn::realtimeDataSlot()
 
         if(ui->tableWidget_3->model()->index(10,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
-            ui->widget->graph(5)->addData(key, b12+b9*(-0.5*model_el.Ia-0.866*model_el.Ib));
+            ui->widget->graph(5)->addData(key, b12+b9*(model_el.i_dev_c));
             ui->widget->graph(5)->rescaleValueAxis(true);
        }
 
@@ -899,8 +904,116 @@ void electromagn::realtimeDataSlot()
 
         if(ui->tableWidget_3->model()->index(29,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
-            ui->widget->graph(8)->addData(key, model_el.Mc_n);
+            ui->widget->graph(8)->addData(key, model_el.Mc);
             ui->widget->graph(8)->rescaleValueAxis(true);
+        }
+
+        //Занесение итоговых данных в таблицу
+        if (ui->tableWidget->item(0, 1) != 0)
+        {
+            ui->tableWidget->item(0, 1)->setText(QString("%1").arg(model_el.i_dev_a));
+        }
+
+        if (ui->tableWidget->item(1, 1) != 0)
+        {
+            ui->tableWidget->item(1, 1)->setText(QString("%1").arg(model_el.u_dev_a));
+        }
+
+        if (ui->tableWidget->item(2, 1) != 0)
+        {
+            ui->tableWidget->item(2, 1)->setText(QString("%1").arg(model_el.p_akt_a));
+        }
+
+        if (ui->tableWidget->item(3, 1) != 0)
+        {
+            ui->tableWidget->item(3, 1)->setText(QString("%1").arg(model_el.p_reakt_a));
+        }
+
+        if (ui->tableWidget->item(4, 1) != 0)
+        {
+            ui->tableWidget->item(4, 1)->setText(QString("%1").arg(model_el.p_poln_a));
+        }
+
+        if (ui->tableWidget->item(5, 1) != 0)
+        {
+            ui->tableWidget->item(5, 1)->setText(QString("%1").arg(model_el.cos_f_a));
+        }
+
+        if (ui->tableWidget->item(6, 1) != 0)
+        {
+            ui->tableWidget->item(6, 1)->setText(QString("%1").arg(model_el.i_dev_b));
+        }
+
+        if (ui->tableWidget->item(7, 1) != 0)
+        {
+            ui->tableWidget->item(7, 1)->setText(QString("%1").arg(model_el.u_dev_b));
+        }
+        if (ui->tableWidget->item(8, 1) != 0)
+        {
+            ui->tableWidget->item(8, 1)->setText(QString("%1").arg(model_el.p_akt_b));
+        }
+
+        if (ui->tableWidget->item(9, 1) != 0)
+        {
+            ui->tableWidget->item(9, 1)->setText(QString("%1").arg(model_el.p_reakt_b));
+        }
+
+        if (ui->tableWidget->item(10, 1) != 0)
+        {
+            ui->tableWidget->item(10, 1)->setText(QString("%1").arg(model_el.p_poln_b));
+        }
+
+        if (ui->tableWidget->item(11, 1) != 0)
+        {
+            ui->tableWidget->item(11, 1)->setText(QString("%1").arg(model_el.cos_f_b));
+        }
+
+        if (ui->tableWidget->item(12, 1) != 0)
+        {
+            ui->tableWidget->item(12, 1)->setText(QString("%1").arg(model_el.i_dev_c));
+        }
+
+        if (ui->tableWidget->item(13, 1) != 0)
+        {
+            ui->tableWidget->item(13, 1)->setText(QString("%1").arg(model_el.u_dev_c));
+        }
+
+        if (ui->tableWidget->item(14, 1) != 0)
+        {
+            ui->tableWidget->item(14, 1)->setText(QString("%1").arg(model_el.p_akt_c));
+        }
+
+        if (ui->tableWidget->item(15, 1) != 0)
+        {
+            ui->tableWidget->item(15, 1)->setText(QString("%1").arg(model_el.p_reakt_c));
+        }
+
+        if (ui->tableWidget->item(16, 1) != 0)
+        {
+            ui->tableWidget->item(16, 1)->setText(QString("%1").arg(model_el.p_poln_c));
+        }
+
+        if (ui->tableWidget->item(17, 1) != 0)
+        {
+            ui->tableWidget->item(17, 1)->setText(QString("%1").arg(model_el.cos_f_c));
+        }
+
+        if (ui->tableWidget->item(18, 1) != 0)
+        {
+            ui->tableWidget->item(18, 1)->setText(QString("%1").arg(model_el.p_akt));
+        }
+
+        if (ui->tableWidget->item(19, 1) != 0)
+        {
+            ui->tableWidget->item(19, 1)->setText(QString("%1").arg(model_el.p_reakt));
+        }
+        if (ui->tableWidget->item(20, 1) != 0)
+        {
+            ui->tableWidget->item(20, 1)->setText(QString("%1").arg(model_el.p_poln));
+        }
+        if (ui->tableWidget->item(21, 1) != 0)
+        {
+            ui->tableWidget->item(21, 1)->setText(QString("%1").arg(model_el.cos_f));
         }
 
         ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
