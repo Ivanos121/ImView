@@ -60,6 +60,9 @@ electromagn::electromagn(QWidget *parent) :
     ui->widget->addGraph();
     ui->widget->graph(7)->setName("График момента на валу M");
     ui->widget->graph(7)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget->addGraph();
+    ui->widget->graph(8)->setName("График момента Mc");
+    ui->widget->graph(8)->setPen(QPen(QColor(102, 245, 7)));
 
 
     QSharedPointer<QCPAxisTickerTime> timeTicker(new QCPAxisTickerTime);
@@ -186,7 +189,7 @@ electromagn::electromagn(QWidget *parent) :
     ui->tableWidget_2->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableWidget_2->setSelectionBehavior(QAbstractItemView :: SelectRows);
     ui->tableWidget_2->setSelectionMode(QAbstractItemView :: SingleSelection);
-    ui->tableWidget_2->verticalHeader()->setVisible(false);
+    ui->tableWidget_2->verticalHeader()->setVisible(true);
     ui->tableWidget_2->setItem(0, 0, new QTableWidgetItem("Отображение графика №1"));
     ui->tableWidget_2->setItem(1, 0, new QTableWidgetItem("Отображение графика №2"));
     ui->tableWidget_2->setItem(2, 0, new QTableWidgetItem("Отображение графика №3"));
@@ -217,6 +220,8 @@ electromagn::electromagn(QWidget *parent) :
     item6->setCheckState(Qt::Checked);
     item6->setText("Ток фазы С");
     ui->tableWidget_2->setItem(5, 1, item6);
+
+
     ui->tableWidget_2->setItem(6, 0, new QTableWidgetItem("Амплитуда напряжения фазы А"));
     ui->tableWidget_2->setItem(6, 1, new QTableWidgetItem(QString("%1").arg(1)));
     ui->tableWidget_2->setItem(7, 0, new QTableWidgetItem("Амплитуда напряжения фазы В"));
@@ -242,11 +247,13 @@ electromagn::electromagn(QWidget *parent) :
     ui->tableWidget_2->setItem(17, 0, new QTableWidgetItem("Смещение тока фазы С"));
     ui->tableWidget_2->setItem(17, 1, new QTableWidgetItem(QString("%1").arg(0)));
 
+    //цветовая палитра таблицы tableWidget_2
     QPalette p=ui->tableWidget_2->palette();
     p.setColor(QPalette::Base, QColor(191, 255, 191));
     p.setColor(QPalette::AlternateBase, QColor(222, 255, 222));
     ui->tableWidget_2->setPalette(p);
 
+    //вставка таблицы Настройки внутренней модели таблицы tableWidget_3
     ui->tableWidget_3->setRowCount(30);
     ui->tableWidget_3->setColumnCount(2);
     QStringList name3;
@@ -255,101 +262,122 @@ electromagn::electromagn(QWidget *parent) :
     ui->tableWidget_3->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableWidget_3->setSelectionBehavior(QAbstractItemView :: SelectRows);
     ui->tableWidget_3->setSelectionMode(QAbstractItemView :: SingleSelection);
-    ui->tableWidget_3->verticalHeader()->setVisible(false);
+    ui->tableWidget_3->verticalHeader()->setVisible(true);
 
-
+    //вставка комбобокса Режим работы АД таблицы tableWidget_3
     ui->tableWidget_3->setCellWidget(0,1,combo);
     ui->tableWidget_3->setItem(0, 0, new QTableWidgetItem("Режим работы двигателя"));
-    ui->tableWidget_3->setItem(1, 0, new QTableWidgetItem("Продолжительность включения"));
-    ui->tableWidget_3->setItem(2, 0, new QTableWidgetItem("Время цикла, с"));
-    ui->tableWidget_3->setItem(3, 0, new QTableWidgetItem("Время работы, с"));
-    ui->tableWidget_3->setItem(4, 0, new QTableWidgetItem("Значение момента Мс, с"));
-    ui->tableWidget_3->setItem(5, 0, new QTableWidgetItem("Выбор системы электропривода"));
+    ui->tableWidget_3->setItem(1, 0, new QTableWidgetItem("Время цикла, с"));
+    ui->tableWidget_3->setItem(2, 0, new QTableWidgetItem("Время работы, с"));
+    ui->tableWidget_3->setItem(3, 0, new QTableWidgetItem("Значение момента Мс, Н*м"));
+    ui->tableWidget_3->setItem(4, 0, new QTableWidgetItem("Выбор системы электропривода"));
     combo->addItem("Режим S1");
     combo->addItem("Режим S2");
     combo->addItem("Режим S3");
     combo->addItem("Режим S4");
     combo->addItem("Режим S6");
+
     connect(combo, QOverload<int>::of(&QComboBox::activated), this, &electromagn::cbIndexChanged);
-    ui->tableWidget_3->setCellWidget(5,1,combo2);
+
+    //вставка комбобокса Выбор системы электропривода таблицы tableWidget_3
+    ui->tableWidget_3->setCellWidget(4,1,combo2);
     combo2->addItem("Прямой пуск");
     combo2->addItem("Система ТРН-АД");
     combo2->addItem("Система ПЧ-АД");
     connect(combo2, QOverload<int>::of(&QComboBox::activated), this, &electromagn::cb2IndexChanged);
-    ui->tableWidget_3->setItem(6, 0, new QTableWidgetItem("Отображение графика №1"));
-    ui->tableWidget_3->setItem(7, 0, new QTableWidgetItem("Отображение графика №2"));
-    ui->tableWidget_3->setItem(8, 0, new QTableWidgetItem("Отображение графика №3"));
-    ui->tableWidget_3->setItem(9, 0, new QTableWidgetItem("Отображение графика №4"));
-    ui->tableWidget_3->setItem(10, 0, new QTableWidgetItem("Отображение графика №5"));
-    ui->tableWidget_3->setItem(11, 0, new QTableWidgetItem("Отображение графика №6"));
-    ui->tableWidget_3->setItem(12, 0, new QTableWidgetItem("Отображение графика №7"));
-    ui->tableWidget_3->setItem(13, 0, new QTableWidgetItem("Отображение графика №8"));
+
+    //Заполнение полей левой части таблицы для пояснения чекбоксов таблицы tableWidget_3
+    ui->tableWidget_3->setItem(5, 0, new QTableWidgetItem("Отображение графика №1"));
+    ui->tableWidget_3->setItem(6, 0, new QTableWidgetItem("Отображение графика №2"));
+    ui->tableWidget_3->setItem(7, 0, new QTableWidgetItem("Отображение графика №3"));
+    ui->tableWidget_3->setItem(8, 0, new QTableWidgetItem("Отображение графика №4"));
+    ui->tableWidget_3->setItem(9, 0, new QTableWidgetItem("Отображение графика №5"));
+    ui->tableWidget_3->setItem(10, 0, new QTableWidgetItem("Отображение графика №6"));
+    ui->tableWidget_3->setItem(11, 0, new QTableWidgetItem("Отображение графика №7"));
+    ui->tableWidget_3->setItem(12, 0, new QTableWidgetItem("Отображение графика №8"));
+    ui->tableWidget_3->setItem(29, 0, new QTableWidgetItem("Отображение графика №9"));
+
+    //вставка чекбоксов таблицы tableWidget_3
     QTableWidgetItem *item11 = new QTableWidgetItem("Item11");
     item11->setCheckState(Qt::Checked);
     item11->setText("Напряжение фазы А");
-    ui->tableWidget_3->setItem(6, 1, item11);
+    ui->tableWidget_3->setItem(5, 1, item11);
+
     QTableWidgetItem *item12 = new QTableWidgetItem("Item12");
     item12->setCheckState(Qt::Checked);
     item12->setText("Напряжение фазы В");
-    ui->tableWidget_3->setItem(7, 1, item12);
+    ui->tableWidget_3->setItem(6, 1, item12);
+
     QTableWidgetItem *item13 = new QTableWidgetItem("Item13");
     item13->setCheckState(Qt::Checked);
     item13->setText("Напряжение фазы С");
-    ui->tableWidget_3->setItem(8, 1, item13);
+    ui->tableWidget_3->setItem(7, 1, item13);
+
     QTableWidgetItem *item14 = new QTableWidgetItem("Item14");
     item14->setCheckState(Qt::Checked);
     item14->setText("Ток фазы А");
-    ui->tableWidget_3->setItem(9, 1, item14);
+    ui->tableWidget_3->setItem(8, 1, item14);
+
     QTableWidgetItem *item15 = new QTableWidgetItem("Item15");
     item15->setCheckState(Qt::Checked);
     item15->setText("Ток фазы В");
-    ui->tableWidget_3->setItem(10, 1, item15);
+    ui->tableWidget_3->setItem(9, 1, item15);
+
     QTableWidgetItem *item16 = new QTableWidgetItem("Item16");
     item16->setCheckState(Qt::Checked);
     item16->setText("Ток фазы С");
-    ui->tableWidget_3->setItem(11, 1, item16);
+    ui->tableWidget_3->setItem(10, 1, item16);
+
     QTableWidgetItem *item17 = new QTableWidgetItem("Item17");
     item17->setCheckState(Qt::Checked);
     item17->setText("скорость вращения");
-    ui->tableWidget_3->setItem(12, 1, item17);
+    ui->tableWidget_3->setItem(11, 1, item17);
+
     QTableWidgetItem *item18 = new QTableWidgetItem("Item18");
     item18->setCheckState(Qt::Checked);
     item18->setText("Момент на валу");
-    ui->tableWidget_3->setItem(13, 1, item18);
+    ui->tableWidget_3->setItem(12, 1, item18);
 
-    ui->tableWidget_3->setItem(14, 0, new QTableWidgetItem("Амплитуда напряжения фазы А"));
+    QTableWidgetItem *item19 = new QTableWidgetItem("Item19");
+    item19->setCheckState(Qt::Checked);
+    item19->setText("Момент Mc");
+    ui->tableWidget_3->setItem(29, 1, item19);
+
+    //Программирование настроек сигналов таблицы tableWidget_3
+    ui->tableWidget_3->setItem(13, 0, new QTableWidgetItem("Амплитуда напряжения фазы А"));
+    ui->tableWidget_3->setItem(13, 1, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget_3->setItem(14, 0, new QTableWidgetItem("Амплитуда напряжения фазы В"));
     ui->tableWidget_3->setItem(14, 1, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget_3->setItem(15, 0, new QTableWidgetItem("Амплитуда напряжения фазы В"));
+    ui->tableWidget_3->setItem(15, 0, new QTableWidgetItem("Амплитуда напряжения фазы С"));
     ui->tableWidget_3->setItem(15, 1, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget_3->setItem(16, 0, new QTableWidgetItem("Амплитуда напряжения фазы С"));
-    ui->tableWidget_3->setItem(16, 1, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget_3->setItem(17, 0, new QTableWidgetItem("Смещение напряжения фазы А"));
+    ui->tableWidget_3->setItem(16, 0, new QTableWidgetItem("Смещение напряжения фазы А"));
+    ui->tableWidget_3->setItem(16, 1, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget_3->setItem(17, 0, new QTableWidgetItem("Смещение напряжения фазы В"));
     ui->tableWidget_3->setItem(17, 1, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget_3->setItem(18, 0, new QTableWidgetItem("Смещение напряжения фазы В"));
+    ui->tableWidget_3->setItem(18, 0, new QTableWidgetItem("Смещение напряжения фазы С"));
     ui->tableWidget_3->setItem(18, 1, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget_3->setItem(19, 0, new QTableWidgetItem("Смещение напряжения фазы С"));
-    ui->tableWidget_3->setItem(19, 1, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget_3->setItem(20, 0, new QTableWidgetItem("Амплитуда тока фазы А"));
+    ui->tableWidget_3->setItem(19, 0, new QTableWidgetItem("Амплитуда тока фазы А"));
+    ui->tableWidget_3->setItem(19, 1, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget_3->setItem(20, 0, new QTableWidgetItem("Амплитуда тока фазы В"));
     ui->tableWidget_3->setItem(20, 1, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget_3->setItem(21, 0, new QTableWidgetItem("Амплитуда тока фазы В"));
+    ui->tableWidget_3->setItem(21, 0, new QTableWidgetItem("Амплитуда тока фазы С"));
     ui->tableWidget_3->setItem(21, 1, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget_3->setItem(22, 0, new QTableWidgetItem("Амплитуда тока фазы С"));
-    ui->tableWidget_3->setItem(22, 1, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget_3->setItem(23, 0, new QTableWidgetItem("Смещение тока фазы А"));
+    ui->tableWidget_3->setItem(22, 0, new QTableWidgetItem("Смещение тока фазы А"));
+    ui->tableWidget_3->setItem(22, 1, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget_3->setItem(23, 0, new QTableWidgetItem("Смещение тока фазы В"));
     ui->tableWidget_3->setItem(23, 1, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget_3->setItem(24, 0, new QTableWidgetItem("Смещение тока фазы В"));
+    ui->tableWidget_3->setItem(24, 0, new QTableWidgetItem("Смещение тока фазы С"));
     ui->tableWidget_3->setItem(24, 1, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget_3->setItem(25, 0, new QTableWidgetItem("Смещение тока фазы С"));
-    ui->tableWidget_3->setItem(25, 1, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget_3->setItem(26, 0, new QTableWidgetItem("Амплитуда скорости вращения"));
+    ui->tableWidget_3->setItem(25, 0, new QTableWidgetItem("Амплитуда скорости вращения"));
+    ui->tableWidget_3->setItem(25, 1, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget_3->setItem(26, 0, new QTableWidgetItem("Амплитуда момента на валу"));
     ui->tableWidget_3->setItem(26, 1, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget_3->setItem(27, 0, new QTableWidgetItem("Амплитуда момента на валу"));
-    ui->tableWidget_3->setItem(27, 1, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget_3->setItem(28, 0, new QTableWidgetItem("Смещение скорости вращения"));
+    ui->tableWidget_3->setItem(27, 0, new QTableWidgetItem("Смещение скорости вращения"));
+    ui->tableWidget_3->setItem(27, 1, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget_3->setItem(28, 0, new QTableWidgetItem("Смещение момента на валу"));
     ui->tableWidget_3->setItem(28, 1, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget_3->setItem(29, 0, new QTableWidgetItem("Смещение момента на валу"));
-    ui->tableWidget_3->setItem(29, 1, new QTableWidgetItem(QString("%1").arg(0)));
 
+    //цветовая палитра таблицы tableWidget_3
     QPalette p2=ui->tableWidget_3->palette();
     p2.setColor(QPalette::Base, QColor(191, 255, 191));
     p2.setColor(QPalette::AlternateBase, QColor(222, 255, 222));
@@ -364,20 +392,16 @@ electromagn::~electromagn()
 
 void electromagn::cbIndexChanged(int index)
 {
-   ui->tableWidget_3->setItem(1, 1, new QTableWidgetItem(QString::number((int)index)));
-   if (index == 2)
-   {
-       QMessageBox::critical(0, "Critical", "Critical message text");
-   }
+   ui->tableWidget_3->setItem(30, 0, new QTableWidgetItem(QString::number((int)index)));
 }
 
 void electromagn::cb2IndexChanged(int index)
 {
-   ui->tableWidget_3->setItem(2, 1, new QTableWidgetItem(QString::number((int)index)));
-   if (index == 3)
-   {
-       QMessageBox::critical(0, "Critical", "Critical message text");
-   }
+ //  ui->tableWidget_3->setItem(2, 1, new QTableWidgetItem(QString::number((int)index)));
+ //  if (index == 3)
+ //  {
+  //     QMessageBox::critical(0, "Critical", "Critical message text");
+   //}
 }
 
 void electromagn::realtimeDataSlot()
@@ -672,186 +696,211 @@ void electromagn::realtimeDataSlot()
         double b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16;
         model_el.rasch();
 
+        //Считывание значения времени цикла Тц
+
+        if(ui->tableWidget_3->item(1,1)!=0)
+        {
+            model_el.Tc=ui->tableWidget_3->item(1,1)->text().toDouble();
+        }
+
+        //Считывание значения времени работы tp
+
+        if(ui->tableWidget_3->item(2,1)!=0)
+        {
+            model_el.tp=ui->tableWidget_3->item(2,1)->text().toDouble();
+        }
+
+        //Считывание значения времени работы Mc
+
+        if(ui->tableWidget_3->item(3,1)!=0)
+        {
+            model_el.Mc_n=ui->tableWidget_3->item(3,1)->text().toDouble();
+        }
+
         //Считывание коэффициента изменения амплитуды напряжения фазы А
 
-        if(ui->tableWidget_3->item(14,1)!=0)
+        if(ui->tableWidget_3->item(13,1)!=0)
         {
-            b1=ui->tableWidget_3->item(14,1)->text().toDouble();
+            b1=ui->tableWidget_3->item(13,1)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды напряжения фазы В
 
-        if(ui->tableWidget_3->item(15,1)!=0)
+        if(ui->tableWidget_3->item(14,1)!=0)
         {
-            b2=ui->tableWidget_3->item(15,1)->text().toDouble();
+            b2=ui->tableWidget_3->item(14,1)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды напряжения фазы С
 
-        if(ui->tableWidget_3->item(16,1)!=0)
+        if(ui->tableWidget_3->item(15,1)!=0)
         {
-            b3=ui->tableWidget_3->item(16,1)->text().toDouble();
+            b3=ui->tableWidget_3->item(15,1)->text().toDouble();
         }
 
         //Считывание коэффициента смещения напряжения фазы А
 
-        if(ui->tableWidget_3->item(17,1)!=0)
+        if(ui->tableWidget_3->item(16,1)!=0)
         {
-            b4=ui->tableWidget_3->item(17,1)->text().toDouble();
+            b4=ui->tableWidget_3->item(16,1)->text().toDouble();
         }
 
         //Считывание коэффициента смещения напряжения фазы В
 
-        if(ui->tableWidget_3->item(18,1)!=0)
+        if(ui->tableWidget_3->item(17,1)!=0)
         {
-            b5=ui->tableWidget_3->item(18,1)->text().toDouble();
+            b5=ui->tableWidget_3->item(17,1)->text().toDouble();
         }
 
         //Считывание коэффициента смещения напряжения фазы С
 
-        if(ui->tableWidget_3->item(19,1)!=0)
+        if(ui->tableWidget_3->item(18,1)!=0)
         {
-            b6=ui->tableWidget_3->item(19,1)->text().toDouble();
+            b6=ui->tableWidget_3->item(18,1)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды тока фазы А
 
-        if(ui->tableWidget_3->item(20,1)!=0)
+        if(ui->tableWidget_3->item(19,1)!=0)
         {
             b7=ui->tableWidget_3->item(20,1)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды тока фазы В
 
-        if(ui->tableWidget_3->item(21,1)!=0)
+        if(ui->tableWidget_3->item(20,1)!=0)
         {
-            b8=ui->tableWidget_3->item(21,1)->text().toDouble();
+            b8=ui->tableWidget_3->item(20,1)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды тока фазы С
 
-        if(ui->tableWidget_3->item(22,1)!=0)
+        if(ui->tableWidget_3->item(21,1)!=0)
         {
-            b9=ui->tableWidget_3->item(22,1)->text().toDouble();
+            b9=ui->tableWidget_3->item(21,1)->text().toDouble();
         }
 
         //Считывание коэффициента смещения тока фазы А
 
-        if(ui->tableWidget_3->item(23,1)!=0)
+        if(ui->tableWidget_3->item(22,1)!=0)
         {
-            b10=ui->tableWidget_3->item(23,1)->text().toDouble();
+            b10=ui->tableWidget_3->item(22,1)->text().toDouble();
         }
 
         //Считывание коэффициента смещения тока фазы В
 
-        if(ui->tableWidget_3->item(24,1)!=0)
+        if(ui->tableWidget_3->item(23,1)!=0)
         {
-            b11=ui->tableWidget_3->item(24,1)->text().toDouble();
+            b11=ui->tableWidget_3->item(23,1)->text().toDouble();
         }
 
         //Считывание коэффициента смещения тока фазы С
 
-        if(ui->tableWidget_3->item(25,1)!=0)
+        if(ui->tableWidget_3->item(24,1)!=0)
         {
-            b12=ui->tableWidget_3->item(25,1)->text().toDouble();
+            b12=ui->tableWidget_3->item(24,1)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды скорости вращения
 
-        if(ui->tableWidget_3->item(26,1)!=0)
+        if(ui->tableWidget_3->item(25,1)!=0)
         {
-            b13=ui->tableWidget_3->item(26,1)->text().toDouble();
+            b13=ui->tableWidget_3->item(25,1)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды момента на валу
 
-        if(ui->tableWidget_3->item(27,1)!=0)
+        if(ui->tableWidget_3->item(26,1)!=0)
         {
-            b14=ui->tableWidget_3->item(27,1)->text().toDouble();
+            b14=ui->tableWidget_3->item(26,1)->text().toDouble();
         }
 
         //Считывание коэффициента смещения скорости вращения
 
-        if(ui->tableWidget_3->item(28,1)!=0)
+        if(ui->tableWidget_3->item(27,1)!=0)
         {
-            b15=ui->tableWidget_3->item(28,1)->text().toDouble();
+            b15=ui->tableWidget_3->item(27,1)->text().toDouble();
         }
 
         //Считывание коэффициента смещения момента на валу
 
-        if(ui->tableWidget_3->item(29,1)!=0)
+        if(ui->tableWidget_3->item(28,1)!=0)
         {
-            b16=ui->tableWidget_3->item(29,1)->text().toDouble();
+            b16=ui->tableWidget_3->item(28,1)->text().toDouble();
         }
+
+        //вывод на qcustomPlot графика напряжения Ua после преобразования 2 в 3
+
+        if(ui->tableWidget_3->model()->index(5,1).data(Qt::CheckStateRole)==Qt::Checked)
+        {
+           // ui->widget->graph(0)->addData(key, b4+b1*(0.8165*model_el.Ua));
+            ui->widget->graph(0)->addData(key, b4+b1*(model_el.Ua));
+            ui->widget->graph(0)->rescaleValueAxis();
+        }
+
+        //вывод на qcustomPlot графика напряжения Ub после преобразования 2 в 3
 
         if(ui->tableWidget_3->model()->index(6,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
-            //ui->widget->graph(0)->data()->clear();
-            ui->widget->graph(0)->addData(key, b4+b1*model_el.Ua);
-            ui->widget->graph(0)->rescaleValueAxis();
-            //ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
-            //ui->widget->replot();
+           // ui->widget->graph(1)->addData(key, b5+b2*(-0.4082*model_el.Ua+0.7071*model_el.Ub));
+            ui->widget->graph(1)->addData(key, b5+b2*(-0.5*model_el.Ua+0.866*model_el.Ub));
+            ui->widget->graph(1)->rescaleValueAxis(true);
         }
+
+        //вывод на qcustomPlot графика напряжения Uc после преобразования 2 в 3
 
         if(ui->tableWidget_3->model()->index(7,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
-            //ui->widget->graph(1)->data()->clear();
-            ui->widget->graph(1)->addData(key, b5+b2*model_el.Ub);
-            ui->widget->graph(1)->rescaleValueAxis(true);
-            //ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
-            //ui->widget->replot();
+            ui->widget->graph(2)->addData(key, b6+b3*(-0.5*model_el.Ua-0.866*model_el.Ub));
+            ui->widget->graph(2)->rescaleValueAxis(true);
         }
+
+        //вывод на qcustomPlot графика напряжения Ia после преобразования 2 в 3
 
         if(ui->tableWidget_3->model()->index(8,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
-            //ui->widget->graph(2)->data()->clear();
-            ui->widget->graph(2)->addData(key, b6+b3*model_el.Ub);
-            ui->widget->graph(2)->rescaleValueAxis(true);
-            //ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
-            //ui->widget->replot();
+            ui->widget->graph(3)->addData(key, b10+b7*(model_el.Ia));
+            ui->widget->graph(3)->rescaleValueAxis(true);
         }
+
+        //вывод на qcustomPlot графика напряжения Ib после преобразования 2 в 3
 
         if(ui->tableWidget_3->model()->index(9,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
-            //ui->widget->graph(3)->data()->clear();
-            ui->widget->graph(3)->addData(key, b10+b7*model_el.Ia);
-            ui->widget->graph(3)->rescaleValueAxis(true);
-            //ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
-            //ui->widget->replot();
+            ui->widget->graph(4)->addData(key, b11+b8*(-0.5*model_el.Ia+0.866*model_el.Ib));
+            ui->widget->graph(4)->rescaleValueAxis(true);
         }
+
+        //вывод на qcustomPlot графика напряжения Ic после преобразования 2 в 3
 
         if(ui->tableWidget_3->model()->index(10,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
-            //ui->widget->graph(4)->data()->clear();
-            ui->widget->graph(4)->addData(key, b11+b8*model_el.Ib);
-            ui->widget->graph(4)->rescaleValueAxis(true);
-            //ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
-            //ui->widget->replot();
-        }
+            ui->widget->graph(5)->addData(key, b12+b9*(-0.5*model_el.Ia-0.866*model_el.Ib));
+            ui->widget->graph(5)->rescaleValueAxis(true);
+       }
+
+        //вывод на qcustomPlot графика скорости omega
 
         if(ui->tableWidget_3->model()->index(11,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
-            //ui->widget->graph(5)->data()->clear();
-            ui->widget->graph(5)->addData(key, b12+b9*model_el.Ib);
-            ui->widget->graph(5)->rescaleValueAxis(true);
-            //ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
-            //ui->widget->replot();
+            ui->widget->graph(6)->addData(key, b15+b13*model_el.omega);
+            ui->widget->graph(6)->rescaleValueAxis(true);
         }
+
+        //вывод на qcustomPlot момента на валу M
 
         if(ui->tableWidget_3->model()->index(12,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
-            //ui->widget->graph(5)->data()->clear();
-            ui->widget->graph(6)->addData(key, b15+b13*model_el.omega);
-            ui->widget->graph(6)->rescaleValueAxis(true);
-            //ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
-            //ui->widget->replot();
-        }
-
-        if(ui->tableWidget_3->model()->index(13,1).data(Qt::CheckStateRole)==Qt::Checked)
-        {
-            //ui->widget->graph(5)->data()->clear();
             ui->widget->graph(7)->addData(key, b16+b14*model_el.M);
             ui->widget->graph(7)->rescaleValueAxis(true);
+        }
+
+        //вывод на qcustomPlot момента Mс
+
+        if(ui->tableWidget_3->model()->index(29,1).data(Qt::CheckStateRole)==Qt::Checked)
+        {
+            ui->widget->graph(8)->addData(key, model_el.Mc_n);
+            ui->widget->graph(8)->rescaleValueAxis(true);
         }
 
         ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
