@@ -33,8 +33,6 @@ public slots:
 
 private slots:
     void on_pushButton_clicked();
-    void cbIndexChanged(int index);
-    void cb2IndexChanged(int index);
     //void on_tableWidget_2_cellChanged(int row, int column);
 
 private:

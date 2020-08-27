@@ -277,14 +277,11 @@ electromagn::electromagn(QWidget *parent) :
     combo->addItem("Режим S4");
     combo->addItem("Режим S6");
 
-    connect(combo, QOverload<int>::of(&QComboBox::activated), this, &electromagn::cbIndexChanged);
-
     //вставка комбобокса Выбор системы электропривода таблицы tableWidget_3
     ui->tableWidget_3->setCellWidget(4,1,combo2);
     combo2->addItem("Прямой пуск");
     combo2->addItem("Система ТРН-АД");
     combo2->addItem("Система ПЧ-АД");
-    connect(combo2, QOverload<int>::of(&QComboBox::activated), this, &electromagn::cb2IndexChanged);
 
     //Заполнение полей левой части таблицы для пояснения чекбоксов таблицы tableWidget_3
     ui->tableWidget_3->setItem(5, 0, new QTableWidgetItem("Отображение графика №1"));
@@ -405,33 +402,19 @@ electromagn::electromagn(QWidget *parent) :
     ui->tableWidget_4->setItem(7, 0, new QTableWidgetItem("Коэффициент полезного действия"));
     ui->tableWidget_4->setItem(8, 0, new QTableWidgetItem("Коэффициент мощности"));
 
-  /*  QColor c3=QColor(Qt::green).lighter(180);
-    for (int i=0; i<30; i++)
+  QColor c3=QColor(Qt::green).lighter(180);
+    for (int i=0; i<9; i++)
             for(int j=0;j<1;j++)
            {
                ui->tableWidget_4->item(i,j)->setBackground(c3);
            }
-    ui->tableWidget_4->item(0,0)->setBackground(c3);*/
+    ui->tableWidget_4->item(0,0)->setBackground(c3);
 }
 
 
 electromagn::~electromagn()
 {
     delete ui;
-}
-
-void electromagn::cbIndexChanged(int index)
-{
-   ui->tableWidget_3->setItem(30, 0, new QTableWidgetItem(QString::number((int)index)));
-}
-
-void electromagn::cb2IndexChanged(int index)
-{
- //  ui->tableWidget_3->setItem(2, 1, new QTableWidgetItem(QString::number((int)index)));
- //  if (index == 3)
- //  {
-  //     QMessageBox::critical(0, "Critical", "Critical message text");
-   //}
 }
 
 void electromagn::realtimeDataSlot()
