@@ -382,6 +382,36 @@ electromagn::electromagn(QWidget *parent) :
     p2.setColor(QPalette::Base, QColor(191, 255, 191));
     p2.setColor(QPalette::AlternateBase, QColor(222, 255, 222));
     ui->tableWidget_3->setPalette(p2);
+
+    //вставка таблицы Энергетические характеристики таблицы tableWidget_4
+    ui->tableWidget_4->setRowCount(30);
+    ui->tableWidget_4->setColumnCount(2);
+    QStringList name4;
+    name3 << "Свойство" << "Значение";
+    ui->tableWidget_4->setHorizontalHeaderLabels(name);
+    ui->tableWidget_4->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableWidget_4->setSelectionBehavior(QAbstractItemView :: SelectRows);
+    ui->tableWidget_4->setSelectionMode(QAbstractItemView :: SingleSelection);
+    ui->tableWidget_4->verticalHeader()->setVisible(true);
+
+    //Заполнение полей левой части таблицы для пояснения чекбоксов таблицы tableWidget_3
+    ui->tableWidget_4->setItem(0, 0, new QTableWidgetItem("Потребляемая двигателем мощность P1, Вт"));
+    ui->tableWidget_4->setItem(1, 0, new QTableWidgetItem("Потери в обмотке статора dPel1, Вт"));
+    ui->tableWidget_4->setItem(2, 0, new QTableWidgetItem("Потери в стали dPct, Вт"));
+    ui->tableWidget_4->setItem(3, 0, new QTableWidgetItem("Потери в обмотке ротора dPel2, Вт"));
+    ui->tableWidget_4->setItem(4, 0, new QTableWidgetItem("Добавочные потери dPdob, Вт"));
+    ui->tableWidget_4->setItem(5, 0, new QTableWidgetItem("Механические потери dPmech, Вт"));
+    ui->tableWidget_4->setItem(6, 0, new QTableWidgetItem("Механическая мощность на валу двигателя P2, Вт"));
+    ui->tableWidget_4->setItem(7, 0, new QTableWidgetItem("Коэффициент полезного действия"));
+    ui->tableWidget_4->setItem(8, 0, new QTableWidgetItem("Коэффициент мощности"));
+
+  /*  QColor c3=QColor(Qt::green).lighter(180);
+    for (int i=0; i<30; i++)
+            for(int j=0;j<1;j++)
+           {
+               ui->tableWidget_4->item(i,j)->setBackground(c3);
+           }
+    ui->tableWidget_4->item(0,0)->setBackground(c3);*/
 }
 
 
@@ -948,6 +978,7 @@ void electromagn::realtimeDataSlot()
         {
             ui->tableWidget->item(7, 1)->setText(QString("%1").arg(model_el.u_dev_b));
         }
+
         if (ui->tableWidget->item(8, 1) != 0)
         {
             ui->tableWidget->item(8, 1)->setText(QString("%1").arg(model_el.p_akt_b));
@@ -1007,13 +1038,24 @@ void electromagn::realtimeDataSlot()
         {
             ui->tableWidget->item(19, 1)->setText(QString("%1").arg(model_el.p_reakt));
         }
+
         if (ui->tableWidget->item(20, 1) != 0)
         {
             ui->tableWidget->item(20, 1)->setText(QString("%1").arg(model_el.p_poln));
         }
+
         if (ui->tableWidget->item(21, 1) != 0)
         {
             ui->tableWidget->item(21, 1)->setText(QString("%1").arg(model_el.cos_f));
+        }
+
+        if (ui->tableWidget->item(22, 1) != 0)
+        {
+            ui->tableWidget->item(22, 1)->setText(QString("%1").arg(model_el.omega));
+        }
+        if (ui->tableWidget->item(23, 1) != 0)
+        {
+            ui->tableWidget->item(23, 1)->setText(QString("%1").arg(model_el.Mc_n));
         }
 
         ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
