@@ -220,7 +220,17 @@ electromagn::electromagn(QWidget *parent) :
     item6->setCheckState(Qt::Checked);
     item6->setText("Ток фазы С");
     ui->tableWidget_2->setItem(5, 1, item6);
+    QTableWidgetItem *item7 = new QTableWidgetItem("Item7");
+    item7->setCheckState(Qt::Checked);
+    item7->setText("Частота вращения");
+    ui->tableWidget_2->setItem(18, 1, item7);
+    QTableWidgetItem *item8 = new QTableWidgetItem("Item8");
+    item8->setCheckState(Qt::Checked);
+    item8->setText("Момент");
+    ui->tableWidget_2->setItem(19, 1, item8);
 
+    ui->tableWidget_2->setItem(18, 0, new QTableWidgetItem("Отображение графика №7"));
+    ui->tableWidget_2->setItem(19, 0, new QTableWidgetItem("Отображение графика №8"));
 
     ui->tableWidget_2->setItem(6, 0, new QTableWidgetItem("Амплитуда напряжения фазы А"));
     ui->tableWidget_2->setItem(6, 1, new QTableWidgetItem(QString("%1").arg(1)));
@@ -567,6 +577,24 @@ void electromagn::realtimeDataSlot()
         //ui->widget->graph(5)->data()->clear();
         ui->widget->graph(5)->addData(key, a12+a9*nabludatel.i_dev_c);
         ui->widget->graph(5)->rescaleValueAxis(true);
+        //ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
+        //ui->widget->replot();
+    }
+
+    if(ui->tableWidget_2->model()->index(18,1).data(Qt::CheckStateRole)==Qt::Checked)
+    {
+        //ui->widget->graph(5)->data()->clear();
+        ui->widget->graph(6)->addData(key, nabludatel.w);
+        ui->widget->graph(6)->rescaleValueAxis(true);
+        //ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
+        //ui->widget->replot();
+    }
+
+    if(ui->tableWidget_2->model()->index(19,1).data(Qt::CheckStateRole)==Qt::Checked)
+    {
+        //ui->widget->graph(5)->data()->clear();
+        ui->widget->graph(7)->addData(key, nabludatel.M);
+        ui->widget->graph(7)->rescaleValueAxis(true);
         //ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
         //ui->widget->replot();
     }

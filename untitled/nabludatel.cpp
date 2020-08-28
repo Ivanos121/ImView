@@ -31,40 +31,38 @@ void Nabludatel::init(double _R1, double _R2, double _L1, double _L2, double _Lm
     M=0;
     Mc=0;
     kk=1;
+
+    pn=2;
+    kp=2;
+    ki=40000;
+    Kint=1.000082401231610;
+    Ts=0.000032;
+    Kint1=1;
+
+    w = 0;
+    ia = 0;
+    ib = 0;
+    psi1a=0;
+    psi1b=0;
+    psi2a = 0;
+    psi2b = 0;
+    M=0;
+    t = 0;
+    w_prev = 0.0;
+    ia_prev=0.0;
+    ib_prev=0.0;
+    iaizm_prev=0.0;
+    ibizm_prev=0.0;
+    uaizm_prev=0.0;
+    ubizm_prev=0.0;
+    psi1a_prev=0.0;
+    psi1b_prev=0.0;
+    psi2a_prev=0.0;
+    psi2b_prev=0.0;
 }
 
 void Nabludatel::rasch(DataSourceBVAS *dataSourceBVAS)
 {
-    /*Ua = 0.0;
-    Ub = 0.0;
-    Uc = 0.0;
-
-    Ia = 0.0;
-    Ib = 0.0;
-    Ic = 0.0;
-
-    for (int i = 0; i < BUF_SIZE; i++)
-    {
-      Ua += dataSourceBVAS->Ua[i];
-      Ub += dataSourceBVAS->Ub[i];
-      Uc += dataSourceBVAS->Uc[i];
-
-      Ia += dataSourceBVAS->Ia[i];
-      Ib += dataSourceBVAS->Ib[i];
-      Ic += dataSourceBVAS->Ic[i];
-    }
-
-    Ua /= BUF_SIZE;
-    Ub /= BUF_SIZE;
-    Uc /= BUF_SIZE;
-
-    Ia /= BUF_SIZE;
-    Ib /= BUF_SIZE;
-    Ic /= BUF_SIZE;
-
-    M = 10.0;
-    w = 20.0; */
-
     p_akt_a = 0.0;
     p_akt_b = 0.0;
     p_akt_c = 0.0;
@@ -88,18 +86,116 @@ void Nabludatel::rasch(DataSourceBVAS *dataSourceBVAS)
     cos_f_c=0.0;
     cos_f=0.0;
 
-    //Расчет массивов
-    for (int i=0; i<BUF_SIZE; i++)
+    double Ua_zero = 0.0;
+    double Ub_zero = 0.0;
+    double Uc_zero = 0.0;
+
+    double Ia_zero = 0.0;
+    double Ib_zero = 0.0;
+    double Ic_zero = 0.0;
+
+    for (int i = 0; i < BUF_SIZE; i++)
     {
+        Ua_zero += dataSourceBVAS->Ua[i];
+        Ub_zero += dataSourceBVAS->Ub[i];
+        Uc_zero += dataSourceBVAS->Uc[i];
+
+        Ia_zero += dataSourceBVAS->Ua[i];
+        Ib_zero += dataSourceBVAS->Ub[i];
+        Ic_zero += dataSourceBVAS->Uc[i];
+    }
+
+    Ua_zero /= BUF_SIZE;
+    Ub_zero /= BUF_SIZE;
+    Uc_zero /= BUF_SIZE;
+
+    Ia_zero /= BUF_SIZE;
+    Ib_zero /= BUF_SIZE;
+    Ic_zero /= BUF_SIZE;
+
+    for (int i = 0; i < BUF_SIZE; i++)
+    {
+    Ia = dataSourceBVAS->Ia[i];
+    Ib = dataSourceBVAS->Ib[i];
+    Ic = dataSourceBVAS->Ic[i];
+
+    Ua = dataSourceBVAS->Ua[i];
+    Ub = dataSourceBVAS->Ub[i];
+    Uc = dataSourceBVAS->Uc[i];
+
+    iaizm=sqrt(2.0/3.0)*(Ia-(Ib+Ic)/2.0);
+    ibizm=(1/sqrt(2.0)) * (Ib - Ic);
+    uaizm=sqrt(2.0/3.0)*(Ua-(Ub+Uc)/2.0);
+    ubizm=(1/sqrt(2.0)) * (Ub - Uc);
+
+
+    a3=-pn*beta*w_prev;
+    a6=pn*w_prev;
+    g2=(k-1)*pn*w_prev;
+    g4=-cc*(k-1)*pn*w_prev;
+
+    ma11 = -0.5*Kint*Ts*g1+0.5*Kint*Ts*a1-1;
+    ma12 = 0.5*Kint*Ts*g2;
+    ma13 = 0.5*Kint*Ts*a2;
+    ma14 = -0.5*Kint*Ts*a3;
+
+    ma21 = -0.5*Kint*Ts*g2;
+    ma22 = -0.5*Kint*Ts*g1+0.5*Kint*Ts*a1-1;
+    ma23 = 0.5*Kint*Ts*a3;
+    ma24 = 0.5*Kint*Ts*a2;
+
+    ma31 = 0.5*Kint*Ts*a4-0.5*Kint*Ts*g3;
+    ma32 = 0.5*Kint*Ts*g4;
+    ma33 = 0.5*Kint*Ts*a5-1;
+    ma34 = -0.5*Kint*Ts*a6;
+
+    ma41 = -0.5*Kint*Ts*g4;
+    ma42 = 0.5*Kint*Ts*a4-0.5*Kint*Ts*g3;
+    ma43 = 0.5*Kint*Ts*a6;
+    ma44 = 0.5*Kint*Ts*a5-1;
+
+    ba1 = -(Kint*Ts*b1*uaizm-Kint*Ts*g2*ibizm+Kint*Ts*g1*iaizm+Kint*Ts*b1*uaizm_prev-Kint*Ts*a3*psi2b_prev+Kint*Ts*a2*psi2a_prev-Kint*Ts*g2*ibizm_prev+Kint*Ts*g2*ib_prev+Kint*Ts*g1*iaizm+(-Kint*Ts*g1+Kint*Ts*a1+2)*ia_prev)/(2);
+    ba2 = -(Kint*Ts*b2*ubizm+Kint*Ts*g1*ibizm+Kint*Ts*g2*iaizm+Kint*Ts*b2*ubizm_prev+Kint*Ts*a2*psi2b_prev+Kint*Ts*a3*psi2a_prev+Kint*Ts*g1*ibizm_prev+(-Kint*Ts*g1+Kint*Ts*a1+2)*ib_prev+Kint*Ts*g2*iaizm-Kint*Ts*g2*ia_prev)/(2);
+    ba3 = (Kint*Ts*g4*ibizm-Kint*Ts*g3*iaizm+Kint*Ts*a6*psi2b_prev+(-Kint*Ts*a5-2)*psi2a_prev+Kint*Ts*g4*ibizm_prev-Kint*Ts*g4*ib_prev-Kint*Ts*g3*iaizm+(Kint*Ts*g3-Kint*Ts*a4)*ia_prev)/(2);
+    ba4 = -(Kint*Ts*g3*ibizm+Kint*Ts*g4*iaizm+(Kint*Ts*a5+2)*psi2b_prev+Kint*Ts*a6*psi2a_prev+Kint*Ts*g3*ibizm_prev+(Kint*Ts*a4-Kint*Ts*g3)*ib_prev+Kint*Ts*g4*iaizm-Kint*Ts*g4*ia_prev)/(2);
+
+    t=t+Ts;
+
+    ia = (((ba1*ma22-ba2*ma12)*ma33+(ba2*ma13-ba1*ma23)*ma32+ba3*ma12*ma23-ba3*ma13*ma22)*ma44+((ba2*ma12-ba1*ma22)*ma34+(ba1*ma24-ba2*ma14)*ma32-ba3*ma12*ma24+ba3*ma14*ma22)*ma43+((ba1*ma23-ba2*ma13)*ma34+(ba2*ma14-ba1*ma24)*ma33+ba3*ma13*ma24-ba3*ma14*ma23)*ma42+(ba4*ma13*ma22-ba4*ma12*ma23)*ma34+(ba4*ma12*ma24-ba4*ma14*ma22)*ma33+(ba4*ma14*ma23-ba4*ma13*ma24)*ma32)/(((ma11*ma22-ma12*ma21)*ma33+(ma13*ma21-ma11*ma23)*ma32+(ma12*ma23-ma13*ma22)*ma31)*ma44+((ma12*ma21-ma11*ma22)*ma34+(ma11*ma24-ma14*ma21)*ma32+(ma14*ma22-ma12*ma24)*ma31)*ma43+((ma11*ma23-ma13*ma21)*ma34+(ma14*ma21-ma11*ma24)*ma33+(ma13*ma24-ma14*ma23)*ma31)*ma42+((ma13*ma22-ma12*ma23)*ma34+(ma12*ma24-ma14*ma22)*ma33+(ma14*ma23-ma13*ma24)*ma32)*ma41);
+    ib = -(((ba1*ma21-ba2*ma11)*ma33+(ba2*ma13-ba1*ma23)*ma31+ba3*ma11*ma23-ba3*ma13*ma21)*ma44+((ba2*ma11-ba1*ma21)*ma34+(ba1*ma24-ba2*ma14)*ma31-ba3*ma11*ma24+ba3*ma14*ma21)*ma43+((ba1*ma23-ba2*ma13)*ma34+(ba2*ma14-ba1*ma24)*ma33+ba3*ma13*ma24-ba3*ma14*ma23)*ma41+(ba4*ma13*ma21-ba4*ma11*ma23)*ma34+(ba4*ma11*ma24-ba4*ma14*ma21)*ma33+(ba4*ma14*ma23-ba4*ma13*ma24)*ma31)/(((ma11*ma22-ma12*ma21)*ma33+(ma13*ma21-ma11*ma23)*ma32+(ma12*ma23-ma13*ma22)*ma31)*ma44+((ma12*ma21-ma11*ma22)*ma34+(ma11*ma24-ma14*ma21)*ma32+(ma14*ma22-ma12*ma24)*ma31)*ma43+((ma11*ma23-ma13*ma21)*ma34+(ma14*ma21-ma11*ma24)*ma33+(ma13*ma24-ma14*ma23)*ma31)*ma42+((ma13*ma22-ma12*ma23)*ma34+(ma12*ma24-ma14*ma22)*ma33+(ma14*ma23-ma13*ma24)*ma32)*ma41);
+    psi2a = (((ba1*ma21-ba2*ma11)*ma32+(ba2*ma12-ba1*ma22)*ma31+ba3*ma11*ma22-ba3*ma12*ma21)*ma44+((ba2*ma11-ba1*ma21)*ma34+(ba1*ma24-ba2*ma14)*ma31-ba3*ma11*ma24+ba3*ma14*ma21)*ma42+((ba1*ma22-ba2*ma12)*ma34+(ba2*ma14-ba1*ma24)*ma32+ba3*ma12*ma24-ba3*ma14*ma22)*ma41+(ba4*ma12*ma21-ba4*ma11*ma22)*ma34+(ba4*ma11*ma24-ba4*ma14*ma21)*ma32+(ba4*ma14*ma22-ba4*ma12*ma24)*ma31)/(((ma11*ma22-ma12*ma21)*ma33+(ma13*ma21-ma11*ma23)*ma32+(ma12*ma23-ma13*ma22)*ma31)*ma44+((ma12*ma21-ma11*ma22)*ma34+(ma11*ma24-ma14*ma21)*ma32+(ma14*ma22-ma12*ma24)*ma31)*ma43+((ma11*ma23-ma13*ma21)*ma34+(ma14*ma21-ma11*ma24)*ma33+(ma13*ma24-ma14*ma23)*ma31)*ma42+((ma13*ma22-ma12*ma23)*ma34+(ma12*ma24-ma14*ma22)*ma33+(ma14*ma23-ma13*ma24)*ma32)*ma41);
+    psi2b = -(((ba1*ma21-ba2*ma11)*ma32+(ba2*ma12-ba1*ma22)*ma31+ba3*ma11*ma22-ba3*ma12*ma21)*ma43+((ba2*ma11-ba1*ma21)*ma33+(ba1*ma23-ba2*ma13)*ma31-ba3*ma11*ma23+ba3*ma13*ma21)*ma42+((ba1*ma22-ba2*ma12)*ma33+(ba2*ma13-ba1*ma23)*ma32+ba3*ma12*ma23-ba3*ma13*ma22)*ma41+(ba4*ma12*ma21-ba4*ma11*ma22)*ma33+(ba4*ma11*ma23-ba4*ma13*ma21)*ma32+(ba4*ma13*ma22-ba4*ma12*ma23)*ma31)/(((ma11*ma22-ma12*ma21)*ma33+(ma13*ma21-ma11*ma23)*ma32+(ma12*ma23-ma13*ma22)*ma31)*ma44+((ma12*ma21-ma11*ma22)*ma34+(ma11*ma24-ma14*ma21)*ma32+(ma14*ma22-ma12*ma24)*ma31)*ma43+((ma11*ma23-ma13*ma21)*ma34+(ma14*ma21-ma11*ma24)*ma33+(ma13*ma24-ma14*ma23)*ma31)*ma42+((ma13*ma22-ma12*ma23)*ma34+(ma12*ma24-ma14*ma22)*ma33+(ma14*ma23-ma13*ma24)*ma32)*ma41);
+
+    w=w_prev-kp*ia*psi2b+kp*iaizm*psi2b+kp*ib*psi2a-kp*ibizm*psi2a+kp*ia_prev*psi2b_prev-kp*iaizm*psi2b_prev-kp*ib_prev*psi2a_prev+kp*ibizm_prev*psi2a_prev-.5000000000*Kint*Ts*ki*ia*psi2b+.5000000000*Kint*Ts*ki*iaizm*psi2b+.5000000000*Kint*Ts*ki*ib*psi2a-.5000000000*Kint*Ts*ki*ibizm*psi2a-0.5000000000*Kint*Ts*ki*ia_prev*psi2b_prev+.5000000000*Kint*Ts*ki*iaizm*psi2b_prev+.5000000000*Kint*Ts*ki*ib_prev*psi2a_prev-.5000000000*Kint*Ts*ki*ibizm_prev*psi2a_prev;
+
+    psi1a=(Kint1*Ts*uaizm-Kint1*R1*Ts*iaizm+Kint1*Ts*uaizm_prev+2*psi1a_prev-Kint1*R1*Ts*iaizm_prev)/2;
+    psi1b=(Kint1*Ts*ubizm-Kint1*R1*Ts*ibizm+Kint1*Ts*ubizm_prev+2*psi1b_prev-Kint1*R1*Ts*ibizm_prev)/2;
+    //M = (psi1b*iaizm-psi1a*ibizm)*(-3/2*pn);
+    M = psi1a;
+    w = psi1b;
+
+    w_prev = w;
+    ia_prev=ia;
+    ib_prev=ib;
+    iaizm_prev=iaizm;
+    ibizm_prev=ibizm;
+    uaizm_prev=uaizm;
+    ubizm_prev=ubizm;
+    psi1a_prev=psi1a;
+    psi1b_prev=psi1b;
+    psi2a_prev=psi2a;
+    psi2b_prev=psi2b;
+
         p_akt_a += dataSourceBVAS->Ua[i]*dataSourceBVAS->Ia[i];
-        p_akt_b += dataSourceBVAS->Ub[i]*dataSourceBVAS->Ib[i];;
-        p_akt_c += dataSourceBVAS->Uc[i]*dataSourceBVAS->Ic[i];;
+        p_akt_b += dataSourceBVAS->Ub[i]*dataSourceBVAS->Ib[i];
+        p_akt_c += dataSourceBVAS->Uc[i]*dataSourceBVAS->Ic[i];
         i_dev_a += pow(dataSourceBVAS->Ia[i],2);
         i_dev_b += pow(dataSourceBVAS->Ib[i],2);
         i_dev_c += pow(dataSourceBVAS->Ic[i],2);
         u_dev_a += pow(dataSourceBVAS->Ua[i],2);
         u_dev_b += pow(dataSourceBVAS->Ub[i],2);
         u_dev_c += pow(dataSourceBVAS->Uc[i],2);
+
     }
 
     //Расчет активных мощностей
