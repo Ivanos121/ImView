@@ -1,8 +1,8 @@
 #include "model_el.h"
+#include "model.h"
+#include "base.h"
 #include <fstream>
 #include <cmath>
-
-
 
 model_el::model_el()
 {
@@ -22,6 +22,7 @@ void model_el::init_el(double _R1, double _R2, double _L1, double _L2, double _L
     tp = _tp;
     Tc = _Tc;
     Mc_n = _Mc;
+
 
     sigma=L1-((Lm*Lm)/(L2));
     alpha=R2/L2;
@@ -134,6 +135,20 @@ void model_el::rasch()
     cos_f_b=p_akt_b/p_poln_b;
     cos_f_c=p_akt_c/p_poln_c;
     cos_f=p_akt/p_poln;
+
+    P1=p_poln_a*cos_f_a+p_poln_b*cos_f_b+p_poln_c*cos_f_c;
+    P2=omega*M;
+    dPel1=pow(i_dev_a,2)*R1;
+    dPdob=0.005*P1;
+    kpd=P2/P1;
+    w_0=2*3.14*base.n_0/60;
+    Pelm=w_0*M;
+    dPct=P1-Pelm-dPel1;
+    dPel2=((w_0-omega)/w_0)*Pelm;
+    dPmech=Pelm-dPdob-dPel2-P2;
+
+   // dPel1=pow(i_dev_a,2)*model2.R1+pow(i_dev_b,2)*model2.R1+pow(i_dev_c,2)*model2.R1;
+
 }
 
 void model_el::timerTimeout()

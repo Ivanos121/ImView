@@ -10,7 +10,7 @@ public:
     void init (double P_nom, double n_nom, double U_fnom,
                double cosf_nom, double kpd_nom, double muk, double n_0);
     void rasch(DataSource *dataSource);
-    double R2,L,Lm;
+    double R1,R2,L,Lm;
     const double Ts=0.0001;
 };
 

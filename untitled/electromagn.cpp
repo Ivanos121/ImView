@@ -376,8 +376,8 @@ electromagn::electromagn(QWidget *parent) :
 
     //цветовая палитра таблицы tableWidget_3
     QPalette p2=ui->tableWidget_3->palette();
-    p2.setColor(QPalette::Base, QColor(191, 255, 191));
-    p2.setColor(QPalette::AlternateBase, QColor(222, 255, 222));
+    p2.setColor(QPalette::Base, QColor(199, 255, 255));
+    p2.setColor(QPalette::AlternateBase, QColor(230, 255, 255));
     ui->tableWidget_3->setPalette(p2);
 
     //вставка таблицы Энергетические характеристики таблицы tableWidget_4
@@ -401,14 +401,20 @@ electromagn::electromagn(QWidget *parent) :
     ui->tableWidget_4->setItem(6, 0, new QTableWidgetItem("Механическая мощность на валу двигателя P2, Вт"));
     ui->tableWidget_4->setItem(7, 0, new QTableWidgetItem("Коэффициент полезного действия"));
     ui->tableWidget_4->setItem(8, 0, new QTableWidgetItem("Коэффициент мощности"));
+    ui->tableWidget_4->setItem(0, 1, new QTableWidgetItem());
+    ui->tableWidget_4->setItem(1, 1, new QTableWidgetItem());
+    ui->tableWidget_4->setItem(2, 1, new QTableWidgetItem());
+    ui->tableWidget_4->setItem(3, 1, new QTableWidgetItem());
+    ui->tableWidget_4->setItem(4, 1, new QTableWidgetItem());
+    ui->tableWidget_4->setItem(5, 1, new QTableWidgetItem());
+    ui->tableWidget_4->setItem(6, 1, new QTableWidgetItem());
+    ui->tableWidget_4->setItem(7, 1, new QTableWidgetItem());
+    ui->tableWidget_4->setItem(8, 1, new QTableWidgetItem());
 
-  QColor c3=QColor(Qt::green).lighter(180);
-    for (int i=0; i<9; i++)
-            for(int j=0;j<1;j++)
-           {
-               ui->tableWidget_4->item(i,j)->setBackground(c3);
-           }
-    ui->tableWidget_4->item(0,0)->setBackground(c3);
+    QPalette p3=ui->tableWidget_4->palette();
+    p3.setColor(QPalette::Base, QColor(255, 255, 191));
+    p3.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
+    ui->tableWidget_4->setPalette(p3);
 }
 
 
@@ -1038,11 +1044,59 @@ void electromagn::realtimeDataSlot()
         }
         if (ui->tableWidget->item(23, 1) != 0)
         {
-            ui->tableWidget->item(23, 1)->setText(QString("%1").arg(model_el.Mc_n));
+            ui->tableWidget->item(23, 1)->setText(QString("%1").arg(model_el.M));
         }
 
         ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
         ui->widget->replot();
+
+        if (ui->tableWidget_4->item(0, 1) != 0)
+        {
+            ui->tableWidget_4->item(0, 1)->setText(QString("%1").arg(model_el.P1));
+        }
+
+        if (ui->tableWidget_4->item(1, 1) != 0)
+        {
+            ui->tableWidget_4->item(1, 1)->setText(QString("%1").arg(model_el.dPel1));
+        }
+
+        if (ui->tableWidget_4->item(2, 1) != 0)
+        {
+            ui->tableWidget_4->item(2, 1)->setText(QString("%1").arg(model_el.dPct));
+        }
+
+        if (ui->tableWidget_4->item(3, 1) != 0)
+        {
+            ui->tableWidget_4->item(3, 1)->setText(QString("%1").arg(model_el.dPel2));
+        }
+
+        if (ui->tableWidget_4->item(4, 1) != 0)
+        {
+            ui->tableWidget_4->item(4, 1)->setText(QString("%1").arg(model_el.dPdob));
+        }
+
+        if (ui->tableWidget_4->item(5, 1) != 0)
+        {
+            ui->tableWidget_4->item(5, 1)->setText(QString("%1").arg(model_el.dPmech));
+        }
+
+        if (ui->tableWidget_4->item(6, 1) != 0)
+        {
+            ui->tableWidget_4->item(6, 1)->setText(QString("%1").arg(model_el.P2));
+        }
+
+        if (ui->tableWidget_4->item(7, 1) != 0)
+        {
+            ui->tableWidget_4->item(7, 1)->setText(QString("%1").arg(model_el.kpd));
+        }
+
+        if (ui->tableWidget_4->item(8, 1) != 0)
+        {
+            ui->tableWidget_4->item(8, 1)->setText(QString("%1").arg(model_el.cos_f));
+        }
+
+
+
 
      /*   count++;
 
@@ -1115,7 +1169,7 @@ void electromagn::raschet_el()
                          ui->tableWidget_3->model()->index(3,1).data().toDouble(),
                          ui->tableWidget_3->model()->index(2,1).data().toDouble(),
                          ui->tableWidget_3->model()->index(4,1).data().toDouble());
-        connect(&model_el, &model_el::ready, this, &electromagn::realtimeDataSlot);
+                         connect(&model_el, &model_el::ready, this, &electromagn::realtimeDataSlot);
 
     }
     ui->widget->graph(0)->data()->clear();
