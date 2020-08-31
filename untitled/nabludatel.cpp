@@ -124,10 +124,16 @@ void Nabludatel::rasch(DataSourceBVAS *dataSourceBVAS)
     Uc = dataSourceBVAS->Uc[i];
 
     iaizm=sqrt(2.0/3.0)*(Ia-(Ib+Ic)/2.0);
-    ibizm=(1/sqrt(2.0)) * (Ib - Ic);
-    uaizm=sqrt(2.0/3.0)*(Ua-(Ub+Uc)/2.0);
-    ubizm=(1/sqrt(2.0)) * (Ub - Uc);
+    iaizm = iaCorrector.apply(iaizm,Kint,1.0,0.3,Ts);
 
+    ibizm=(1/sqrt(2.0)) * (Ib - Ic);
+    ibizm = ibCorrector.apply(ibizm,Kint,1.0,0.3,Ts);
+
+    uaizm=sqrt(2.0/3.0)*(Ua-(Ub+Uc)/2.0);
+    uaizm = uaCorrector.apply(uaizm,Kint,1.0,0.3,Ts);
+
+    ubizm=(1/sqrt(2.0)) * (Ub - Uc);
+    ubizm = ubCorrector.apply(ubizm,Kint,1.0,0.3,Ts);
 
     a3=-pn*beta*w_prev;
     a6=pn*w_prev;
@@ -170,9 +176,9 @@ void Nabludatel::rasch(DataSourceBVAS *dataSourceBVAS)
 
     psi1a=(Kint1*Ts*uaizm-Kint1*R1*Ts*iaizm+Kint1*Ts*uaizm_prev+2*psi1a_prev-Kint1*R1*Ts*iaizm_prev)/2;
     psi1b=(Kint1*Ts*ubizm-Kint1*R1*Ts*ibizm+Kint1*Ts*ubizm_prev+2*psi1b_prev-Kint1*R1*Ts*ibizm_prev)/2;
-    //M = (psi1b*iaizm-psi1a*ibizm)*(-3/2*pn);
-    M = psi1a;
-    w = psi1b;
+    M = (psi1b*iaizm-psi1a*ibizm)*(-3/2*pn);
+    //M = psi1a;
+    //w = psi1b;
 
     w_prev = w;
     ia_prev=ia;
@@ -239,4 +245,16 @@ void Nabludatel::rasch(DataSourceBVAS *dataSourceBVAS)
     cos_f_b=p_akt_b/p_poln_b;
     cos_f_c=p_akt_c/p_poln_c;
     cos_f=p_akt/p_poln;
+}
+
+double ZeroCorrector::apply(double z, double K, double K1, double K2, double Ts)
+{
+    double z_int = 1.0/2.0*(2*z_int_prev + (z - y_prev)*K*Ts + (z_prev - y_prev)*K*Ts);
+    double u = (1.0/(2+K*Ts)) * (u_prev * (2-K1*K*Ts)+z_int*K*Ts+z_int_prev*K*Ts);
+    double y = 1.0/2.0*(2*y_prev + 2*u - 2*u_prev + u*K2*K*Ts + u_prev*K2*K*Ts);
+    u_prev = u;
+    y_prev = y;
+    z_prev = z;
+    z_int_prev = z_int;
+    return z - y;
 }

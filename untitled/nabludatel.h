@@ -3,6 +3,12 @@
 
 #include "datasourcebvas.h"
 
+class ZeroCorrector
+{
+public:
+    double u_prev=0, z_prev=0, z_int_prev=0, y_prev=0;
+    double apply(double z, double K, double K1, double K2, double Ts);
+};
 
 class Nabludatel
 {
@@ -20,6 +26,13 @@ public:
     void init(double _R1, double _R2, double _L1, double _L2, double _Lm);
     void rasch(DataSourceBVAS *dataSourceBVAS);
 
+    ZeroCorrector uaCorrector;
+    ZeroCorrector ubCorrector;
+    ZeroCorrector iaCorrector;
+    ZeroCorrector ibCorrector;
+
 };
+
+
 
 #endif // NABLUDATEL_H
