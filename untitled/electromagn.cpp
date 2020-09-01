@@ -593,7 +593,7 @@ void electromagn::realtimeDataSlot()
     if(ui->tableWidget_2->model()->index(19,1).data(Qt::CheckStateRole)==Qt::Checked)
     {
         //ui->widget->graph(5)->data()->clear();
-        ui->widget->graph(7)->addData(key, nabludatel.M);
+        ui->widget->graph(7)->addData(key, nabludatel.M_sr);
         ui->widget->graph(7)->rescaleValueAxis(true);
         //ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
         //ui->widget->replot();

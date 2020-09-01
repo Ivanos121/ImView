@@ -85,6 +85,7 @@ void Nabludatel::rasch(DataSourceBVAS *dataSourceBVAS)
     cos_f_b=0.0;
     cos_f_c=0.0;
     cos_f=0.0;
+    M_sr = 0;
 
     double Ua_zero = 0.0;
     double Ub_zero = 0.0;
@@ -176,9 +177,8 @@ void Nabludatel::rasch(DataSourceBVAS *dataSourceBVAS)
 
     psi1a=(Kint1*Ts*uaizm-Kint1*R1*Ts*iaizm+Kint1*Ts*uaizm_prev+2*psi1a_prev-Kint1*R1*Ts*iaizm_prev)/2;
     psi1b=(Kint1*Ts*ubizm-Kint1*R1*Ts*ibizm+Kint1*Ts*ubizm_prev+2*psi1b_prev-Kint1*R1*Ts*ibizm_prev)/2;
-    M = (psi1b*iaizm-psi1a*ibizm)*(-3/2*pn);
-    //M = psi1a;
-    //w = psi1b;
+    M = (psi1b*iaizm-psi1a*ibizm)*(3/2*pn);
+    M_sr += M;
 
     w_prev = w;
     ia_prev=ia;
@@ -203,6 +203,8 @@ void Nabludatel::rasch(DataSourceBVAS *dataSourceBVAS)
         u_dev_c += pow(dataSourceBVAS->Uc[i],2);
 
     }
+
+    M_sr /= BUF_SIZE;
 
     //Расчет активных мощностей
     p_akt_a /= BUF_SIZE;

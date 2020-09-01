@@ -113,6 +113,7 @@
      <string>&amp;Инструменты</string>
     </property>
     <addaction name="action_15"/>
+    <addaction name="action_23"/>
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
@@ -191,6 +192,7 @@
    <addaction name="action_21"/>
    <addaction name="action_22"/>
    <addaction name="separator"/>
+   <addaction name="action_23"/>
   </widget>
   <action name="actionExit">
    <property name="icon">
@@ -356,8 +358,8 @@
   </action>
   <action name="action_5">
    <property name="icon">
-    <iconset theme="media-playback-start">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset resource="resurce.qrc">
+     <normaloff>:/new/prefix1/Видео/media-playback-start_2.svg</normaloff>:/new/prefix1/Видео/media-playback-start_2.svg</iconset>
    </property>
    <property name="text">
     <string>Пуск</string>
@@ -365,8 +367,8 @@
   </action>
   <action name="action_9">
    <property name="icon">
-    <iconset theme="media-playback-stop">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset resource="resurce.qrc">
+     <normaloff>:/new/prefix1/Видео/media-playback-stop_2.svg</normaloff>:/new/prefix1/Видео/media-playback-stop_2.svg</iconset>
    </property>
    <property name="text">
     <string>Стоп</string>
@@ -379,8 +381,8 @@
   </action>
   <action name="action_15">
    <property name="icon">
-    <iconset theme="preferences-desktop-accessibility">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset resource="resurce.qrc">
+     <normaloff>:/new/prefix1/img/configure.svg</normaloff>:/new/prefix1/img/configure.svg</iconset>
    </property>
    <property name="text">
     <string>Настройки</string>
@@ -451,8 +453,8 @@
   </action>
   <action name="action_20">
    <property name="icon">
-    <iconset theme="system-run">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="media-playback-start" resource="resurce.qrc">
+     <normaloff>:/new/prefix1/Видео/media-playback-start_2.svg</normaloff>:/new/prefix1/Видео/media-playback-start_2.svg</iconset>
    </property>
    <property name="text">
     <string>Запуск</string>
@@ -460,7 +462,7 @@
   </action>
   <action name="action_21">
    <property name="icon">
-    <iconset theme="process-stop">
+    <iconset theme="media-playback-stop">
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
@@ -469,11 +471,16 @@
   </action>
   <action name="action_22">
    <property name="icon">
-    <iconset theme="preferences-desktop-theme&#9;">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="system-reboot" resource="resurce.qrc">
+     <normaloff>:/new/prefix1/img/configure.svg</normaloff>:/new/prefix1/img/configure.svg</iconset>
    </property>
    <property name="text">
     <string>Калибровка осциллографа</string>
+   </property>
+  </action>
+  <action name="action_23">
+   <property name="text">
+    <string>Создать папку</string>
    </property>
   </action>
  </widget>

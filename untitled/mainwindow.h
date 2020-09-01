@@ -53,6 +53,7 @@ private slots:
     void on_tabWidget_currentChanged(int);
 
     void on_action_22_triggered();
+    void on_action_23_triggered();
 
 public:
     Ui::MainWindow *ui;

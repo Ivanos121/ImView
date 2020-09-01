@@ -5,5 +5,9 @@
         <file>img/zastavka.png</file>
         <file>img/folder.svg</file>
         <file>img/edit-cut.svg</file>
+        <file>../../../Видео/media-playback-start_2.svg</file>
+        <file>../../../Видео/media-playback-start.svg</file>
+        <file>../../../Видео/media-playback-stop_2.svg</file>
+        <file>img/configure.svg</file>
     </qresource>
 </RCC>

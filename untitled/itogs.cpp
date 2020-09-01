@@ -11,6 +11,7 @@
 #include "ui_mainwindow.h"
 #include "ui_datas.h"
 
+
 int nn;
 
 Itogs::Itogs(QWidget *parent) :

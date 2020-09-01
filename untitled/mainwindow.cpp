@@ -6,6 +6,7 @@
 #include <QScreen>
 #include "base.h"
 #include "datas.h"
+#include "ui_datas.h"
 #include "identf.h"
 #include "electromagn.h"
 #include "kalibr.h"
@@ -47,7 +48,7 @@ void MainWindow::on_actionExit_triggered()
 
 void MainWindow::on_action_10_triggered()
 {
-
+ui->widget->ui->lineEdit_3->cut();
 }
 
 void MainWindow::on_actionhelp_triggered()
@@ -125,4 +126,9 @@ void MainWindow::on_action_22_triggered()
     Qt::AlignCenter,
     kalibr->size(),
     screen->geometry()));
+}
+
+void MainWindow::on_action_23_triggered()
+{
+QDir().mkdir("MyFolder");
 }
