@@ -9,11 +9,17 @@ Nabludatel::Nabludatel()
 
 void Nabludatel::init(double _R1, double _R2, double _L1, double _L2, double _Lm)
 {
+    R2p = _R2;
+    snom = 0.05;
+
     R1=_R1;
-    double R2 = _R2;
-    double L1 = _L1;
+    R2 = _R2;
+    R20 = _R2;
+    L1 = _L1;
     L2 = _L2;
     Lm = _Lm;
+    Lk0 = _L2 + _L1 - 2.0*Lm;
+    Lkp = (_L2 - Lm) / 1.0 + _L1 - Lm;
 
     sigma=L1-((Lm*Lm)/(L2));
     alpha=R2/L2;
@@ -189,7 +195,7 @@ void Nabludatel::rasch(DataSourceBVAS *dataSourceBVAS)
 
     psi1a=(Kint1*Ts*uaizm-Kint1*R1*Ts*iaizm+Kint1*Ts*uaizm_prev+2*psi1a_prev-Kint1*R1*Ts*iaizm_prev)/2;
     psi1b=(Kint1*Ts*ubizm-Kint1*R1*Ts*ibizm+Kint1*Ts*ubizm_prev+2*psi1b_prev-Kint1*R1*Ts*ibizm_prev)/2;
-    M = (psi1b*iaizm-psi1a*ibizm)*(3/2*pn);
+    M = (psi1b*iaizm-psi1a*ibizm)*(-3/2*pn);
     M_sr += M;
     w_sr += w;
 
@@ -219,6 +225,38 @@ void Nabludatel::rasch(DataSourceBVAS *dataSourceBVAS)
 
     M_sr /= BUF_SIZE;
     w_sr /= BUF_SIZE;
+
+    double deltaR2 = (R2p - R2)/(1-snom);
+    double w0 = -2.0*M_PI*50.0/pn;
+    double s = (w0 - w_sr)/w0;
+
+    if (s > 1)
+    {
+        R2 = R2p;
+        L2 = Lkp + Lm - (L1 - Lm);
+    }
+    else if (s < snom)
+    {
+        R2 = R20;
+        L2 = Lk0 + Lm - (L1 - Lm);
+    }
+    else
+    {
+        R2 = R20 + deltaR2*(s - snom);
+
+        double d = Lk0 / Lkp;
+        double k = (d-1.0)/(1.0 - snom);
+        double k1 = 1.0 - k*snom;
+        double Lk = Lk0 / (k1 + k*s);
+
+        L2 = Lm + Lk - (L1 - Lm);
+    }
+
+    printf("R2 = %g L2 = %g s=%g\n", R2, L2,s);
+
+    sigma=L1-((Lm*Lm)/(L2));
+    alpha=R2/L2;
+    beta=Lm/(sigma*L2);
 
     //Расчет активных мощностей
     p_akt_a /= BUF_SIZE;

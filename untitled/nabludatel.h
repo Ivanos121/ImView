@@ -14,7 +14,7 @@ class Nabludatel
 {
 public:
     double Ua, Ub, Uc, Ia, Ib, Ic, sigma,alpha, beta, kk, Ts, t, M, Mc;
-    double R1, L2, Lm, J, pn;
+    double R1, R2, R20, L1, L2, Lkp, Lk0, Lm, J, pn, R2p, snom;
     double p_akt_a, p_akt_b, p_akt_c, p_akt, i_dev_a, i_dev_b, i_dev_c, u_dev_a, u_dev_b, u_dev_c,
     p_poln_a, p_poln_b, p_poln_c, p_poln, p_reakt_a, p_reakt_b, p_reakt_c=0, p_reakt, cos_f_a,
     cos_f_b, cos_f_c, cos_f, M_sr, w_sr;
