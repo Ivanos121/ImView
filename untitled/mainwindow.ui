@@ -11,11 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Cerebro</string>
+   <string>IM View</string>
   </property>
   <property name="windowIcon">
    <iconset resource="resurce.qrc">
-    <normaloff>:/new/prefix1/img/cerebro48.png</normaloff>:/new/prefix1/img/cerebro48.png</iconset>
+    <normaloff>:/new/prefix1/img/IM_48x48.png</normaloff>:/new/prefix1/img/IM_48x48.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -359,7 +359,7 @@
   <action name="action_5">
    <property name="icon">
     <iconset resource="resurce.qrc">
-     <normaloff>:/new/prefix1/Видео/media-playback-start_2.svg</normaloff>:/new/prefix1/Видео/media-playback-start_2.svg</iconset>
+     <normaloff>:/new/prefix1/img/media-playback-start_2.svg</normaloff>:/new/prefix1/img/media-playback-start_2.svg</iconset>
    </property>
    <property name="text">
     <string>Пуск</string>
@@ -368,7 +368,7 @@
   <action name="action_9">
    <property name="icon">
     <iconset resource="resurce.qrc">
-     <normaloff>:/new/prefix1/Видео/media-playback-stop_2.svg</normaloff>:/new/prefix1/Видео/media-playback-stop_2.svg</iconset>
+     <normaloff>:/new/prefix1/img/media-playback-stop_2.svg</normaloff>:/new/prefix1/img/media-playback-stop_2.svg</iconset>
    </property>
    <property name="text">
     <string>Стоп</string>
@@ -454,7 +454,7 @@
   <action name="action_20">
    <property name="icon">
     <iconset theme="media-playback-start" resource="resurce.qrc">
-     <normaloff>:/new/prefix1/Видео/media-playback-start_2.svg</normaloff>:/new/prefix1/Видео/media-playback-start_2.svg</iconset>
+     <normaloff>:/new/prefix1/img/media-playback-start.svg</normaloff>:/new/prefix1/img/media-playback-start.svg</iconset>
    </property>
    <property name="text">
     <string>Запуск</string>
@@ -462,8 +462,8 @@
   </action>
   <action name="action_21">
    <property name="icon">
-    <iconset theme="media-playback-stop">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="media-playback-stop" resource="resurce.qrc">
+     <normaloff>:/new/prefix1/img/media-playback-stop.svg</normaloff>:/new/prefix1/img/media-playback-stop.svg</iconset>
    </property>
    <property name="text">
     <string>Останов</string>

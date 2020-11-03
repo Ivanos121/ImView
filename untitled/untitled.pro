@@ -16,7 +16,6 @@ DEFINES += QT_DEPRECATED_WARNINGS QCUSTOMPLOT_USE_OPENGL
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    about.cpp \
     base.cpp \
     bvasthread.cpp \
     bvas.cpp \
@@ -38,10 +37,10 @@ SOURCES += \
     nabludatel_part.cpp \
     plot.cpp \
     qcustomplot.cpp \
+    settings.cpp \
     teplovent.cpp
 
 HEADERS += \
-    about.h \
     base.h \
     bvasthread.h \
     bvas.h \
@@ -62,16 +61,18 @@ HEADERS += \
     nabludatel_part.h \
     plot.h \
     qcustomplot.h \
+    settings.h \
     teplovent.h
 
 FORMS += \
-    about.ui \
+    about_dialog.ui \
     datas.ui \
     electromagn.ui \
     identf.ui \
     itogs.ui \
     kalibr.ui \
     mainwindow.ui \
+    settings.ui \
     teplovent.ui
 
 # Default rules for deployment.

@@ -30,7 +30,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionabout_triggered()
 {
-    QScreen *screen = QGuiApplication::primaryScreen();
+    /*QScreen *screen = QGuiApplication::primaryScreen();
     rsc=new about(this);
     rsc->show();
     rsc->setGeometry(
@@ -39,6 +39,16 @@ void MainWindow::on_actionabout_triggered()
         Qt::AlignCenter,
         rsc->size(),
         screen->geometry()));
+     */
+    QScreen *screen = QGuiApplication::primaryScreen();
+        rsc= new AboutDialog(this);
+        rsc->exec();
+        rsc->setGeometry(
+            QStyle::alignedRect(
+            Qt::LeftToRight,
+            Qt::AlignCenter,
+            rsc->size(),
+            screen->geometry()));
 }
 
 void MainWindow::on_actionExit_triggered()
@@ -131,4 +141,29 @@ void MainWindow::on_action_22_triggered()
 void MainWindow::on_action_23_triggered()
 {
 QDir().mkdir("MyFolder");
+}
+
+AboutDialog::AboutDialog(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::aboutDialog)
+{
+    ui->setupUi(this);
+}
+
+void AboutDialog::on_pushButton_clicked()
+{
+    close();
+}
+
+void MainWindow::on_action_15_triggered()
+{
+    QScreen *screen = QGuiApplication::primaryScreen();
+        rsc2= new Settings(this);
+        rsc2->exec();
+        rsc2->setGeometry(
+            QStyle::alignedRect(
+            Qt::LeftToRight,
+            Qt::AlignCenter,
+            rsc2->size(),
+            screen->geometry()));
 }

@@ -2,16 +2,46 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "about.h"
 #include "kalibr.h"
 #include <QTimer>
 #include <QElapsedTimer>
 #include <QWebEngineView>
 #include "itogs.h"
 
+#include "ui_about_dialog.h"
+#include "ui_settings.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
+
+class AboutDialog : public QDialog
+{
+    Q_OBJECT
+
+public:
+    explicit AboutDialog(QWidget *parent = nullptr);
+
+private slots:
+    void on_pushButton_clicked();
+
+private:
+    Ui::aboutDialog *ui;
+};
+
+class Settings : public QDialog
+{
+    Q_OBJECT
+
+public:
+    explicit Settings(QWidget *parent = nullptr);
+
+private slots:
+    void on_pushButton_clicked();
+
+private:
+    Ui::settings *ui;
+};
 
 class MainWindow : public QMainWindow
 {
@@ -55,11 +85,15 @@ private slots:
     void on_action_22_triggered();
     void on_action_23_triggered();
 
+    void on_action_15_triggered();
+
 public:
     Ui::MainWindow *ui;
-    about *rsc;
+    AboutDialog *rsc;
     Kalibr *kalibr;
+    Settings *rsc2;
 
     QWebEngineView * view;
 };
+
 #endif // MAINWINDOW_H
