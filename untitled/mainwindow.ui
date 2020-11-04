@@ -113,7 +113,6 @@
      <string>&amp;Инструменты</string>
     </property>
     <addaction name="action_15"/>
-    <addaction name="action_23"/>
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">

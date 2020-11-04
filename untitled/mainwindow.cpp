@@ -155,6 +155,23 @@ void AboutDialog::on_pushButton_clicked()
     close();
 }
 
+Settings::Settings(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::settings)
+{
+    ui->setupUi(this);
+}
+
+void Settings::on_pushButton_clicked()
+{
+    close();
+}
+
+void Settings::on_pushButton_3_clicked()
+{
+    close();
+}
+
 void MainWindow::on_action_15_triggered()
 {
     QScreen *screen = QGuiApplication::primaryScreen();
