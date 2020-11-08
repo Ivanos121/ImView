@@ -12,5 +12,12 @@
         <file>img/media-playback-start.svg</file>
         <file>img/media-playback-stop_2.svg</file>
         <file>img/media-playback-stop.svg</file>
+        <file>img/labplot-axis-vertical.svg</file>
+        <file>img/labplot-matrix-new.svg</file>
+        <file>img/labplot-xy-interpolation-curve.svg</file>
+        <file>img/labplot-zoom-out-y.svg</file>
+        <file>img/map-flat.svg</file>
+        <file>img/markasblank.svg</file>
+        <file>img/zastavka.png</file>
     </qresource>
 </RCC>

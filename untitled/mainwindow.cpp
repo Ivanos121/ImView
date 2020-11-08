@@ -160,6 +160,29 @@ Settings::Settings(QWidget *parent) :
     ui(new Ui::settings)
 {
     ui->setupUi(this);
+    QListWidgetItem *item_1=new QListWidgetItem(QIcon(":/new/prefix1/img/folder.svg"), "Интерфейс");
+    ui->listWidget->addItem(item_1);
+    QListWidgetItem *item_2=new QListWidgetItem(QIcon(":/new/prefix1/img/labplot-axis-vertical.svg"), "Исходные данные");
+    ui->listWidget->addItem(item_2);
+    QListWidgetItem *item_3=new QListWidgetItem(QIcon(":/new/prefix1/img/labplot-matrix-new.svg"), "Идентификация параметров");
+    ui->listWidget->addItem(item_3);
+    QListWidgetItem *item_4=new QListWidgetItem(QIcon(":/new/prefix1/img/labplot-xy-interpolation-curve.svg"), "Энергетические показатели");
+    ui->listWidget->addItem(item_4);
+    QListWidgetItem *item_5=new QListWidgetItem(QIcon(":/new/prefix1/img/labplot-zoom-out-y.svg"), "Тепловентиляция");
+    ui->listWidget->addItem(item_5);
+    QListWidgetItem *item_6=new QListWidgetItem(QIcon(":/new/prefix1/img/map-flat.svg"), "Выходные данные");
+    ui->listWidget->addItem(item_6);
+
+    QModelIndex firstRow = ui->listWidget->model()->index(0, 0);
+    ui->listWidget->selectionModel()->select(firstRow,
+                                   QItemSelectionModel::ClearAndSelect |
+                                   QItemSelectionModel::Rows);
+
+    ui->listWidget->setFocus();
+
+    connect(ui->listWidget, &QListWidget::itemSelectionChanged, this, &Settings::on_listWidget_itemSelectionChanged);
+
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
 void Settings::on_pushButton_clicked()
@@ -170,6 +193,11 @@ void Settings::on_pushButton_clicked()
 void Settings::on_pushButton_3_clicked()
 {
     close();
+}
+
+void Settings::on_listWidget_itemSelectionChanged()
+{
+    ui->stackedWidget->setCurrentIndex(ui->listWidget->currentRow());
 }
 
 void MainWindow::on_action_15_triggered()
