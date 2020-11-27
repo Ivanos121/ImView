@@ -23,6 +23,11 @@ MainWindow::MainWindow(QWidget *parent)
     showMaximized();
 }
 
+void MainWindow::closeEvent (QCloseEvent *event)
+{
+    ui->widget_3->stop();
+}
+
 MainWindow::~MainWindow()
 {
     delete ui;

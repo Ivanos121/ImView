@@ -9,7 +9,7 @@ Nabludatel::Nabludatel()
 
 void Nabludatel::init(double _R1, double _R2, double _L1, double _L2, double _Lm)
 {
-    R2p = _R2;
+    R2p = _R2*2;
     snom = 0.05;
 
     R1=_R1;
@@ -19,7 +19,8 @@ void Nabludatel::init(double _R1, double _R2, double _L1, double _L2, double _Lm
     L2 = _L2;
     Lm = _Lm;
     Lk0 = _L2 + _L1 - 2.0*Lm;
-    Lkp = (_L2 - Lm) / 1.0 + _L1 - Lm;
+    //Lkp = (_L2 - Lm) / 1.0 + _L1 - Lm;
+    Lkp = Lk0 / 1.3;
 
     sigma=L1-((Lm*Lm)/(L2));
     alpha=R2/L2;
@@ -119,9 +120,9 @@ void Nabludatel::rasch(DataSourceBVAS *dataSourceBVAS)
         Ub_zero += dataSourceBVAS->Ub[i];
         Uc_zero += dataSourceBVAS->Uc[i];
 
-        Ia_zero += dataSourceBVAS->Ua[i];
-        Ib_zero += dataSourceBVAS->Ub[i];
-        Ic_zero += dataSourceBVAS->Uc[i];
+        Ia_zero += dataSourceBVAS->Ia[i];
+        Ib_zero += dataSourceBVAS->Ib[i];
+        Ic_zero += dataSourceBVAS->Ic[i];
     }
 
     Ua_zero /= BUF_SIZE;
@@ -134,12 +135,12 @@ void Nabludatel::rasch(DataSourceBVAS *dataSourceBVAS)
 
     for (int i = 0; i < BUF_SIZE; i++)
     {
-    Ia = dataSourceBVAS->Ia[i];
-    Ib = dataSourceBVAS->Ib[i];
+    Ia = dataSourceBVAS->Ib[i];
+    Ib = dataSourceBVAS->Ia[i];
     Ic = dataSourceBVAS->Ic[i];
 
-    Ua = dataSourceBVAS->Ua[i];
-    Ub = dataSourceBVAS->Ub[i];
+    Ua = dataSourceBVAS->Ub[i];
+    Ub = dataSourceBVAS->Ua[i];
     Uc = dataSourceBVAS->Uc[i];
 
     iaizm=sqrt(2.0/3.0)*(Ia-(Ib+Ic)/2.0);
@@ -196,7 +197,8 @@ void Nabludatel::rasch(DataSourceBVAS *dataSourceBVAS)
     psi1a=(Kint1*Ts*uaizm-Kint1*R1*Ts*iaizm+Kint1*Ts*uaizm_prev+2*psi1a_prev-Kint1*R1*Ts*iaizm_prev)/2;
     psi1b=(Kint1*Ts*ubizm-Kint1*R1*Ts*ibizm+Kint1*Ts*ubizm_prev+2*psi1b_prev-Kint1*R1*Ts*ibizm_prev)/2;
     M = (psi1b*iaizm-psi1a*ibizm)*(-3/2*pn);
-    M_sr += M;
+    //M_sr += M;
+    M_sr += ia*ia;
     w_sr += w;
 
     w_prev = w;
@@ -224,10 +226,11 @@ void Nabludatel::rasch(DataSourceBVAS *dataSourceBVAS)
     }
 
     M_sr /= BUF_SIZE;
+    M_sr = sqrt(M_sr);
     w_sr /= BUF_SIZE;
 
-    double deltaR2 = (R2p - R2)/(1-snom);
-    double w0 = -2.0*M_PI*50.0/pn;
+    double deltaR2 = (R2p - R20)/(1-snom);
+    double w0 = 2.0*M_PI*50.0/pn;
     double s = (w0 - w_sr)/w0;
 
     if (s > 1)
@@ -251,10 +254,6 @@ void Nabludatel::rasch(DataSourceBVAS *dataSourceBVAS)
 
         L2 = Lm + Lk - (L1 - Lm);
     }
-    // ВРЕМЕНННО!!!
-
-    L2 = Lk0 + Lm - (L1 - Lm);
-    R2 = 2.4;
 
     printf("R2 = %g L2 = %g s=%g\n", R2, L2,s);
 
