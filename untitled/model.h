@@ -12,6 +12,7 @@ public:
     void rasch(DataSource *dataSource);
     double R1,R2,L,Lm;
     const double Ts=0.0001;
+    Model *model;
 };
 
 #endif // MODEL_H

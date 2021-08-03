@@ -134,7 +134,7 @@ void MainWindow::on_action_22_triggered()
 {
     QScreen *screen = QGuiApplication::primaryScreen();
     kalibr=new Kalibr(this);
-    kalibr->show();
+    kalibr->showMaximized();
     kalibr->setGeometry(
     QStyle::alignedRect(
     Qt::LeftToRight,

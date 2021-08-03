@@ -306,14 +306,12 @@ void Itogs::on_pushButton_3_clicked()
 
 void Itogs::on_pushButton_4_clicked()
 {
-    QPrinter printer;
-   // printer.setResolution(QPrinter::HighResolution);
-    printer.setPaperSize(QPrinter::A4);
-    printer.setOrientation(QPrinter::Portrait);
-    printer.setFullPage(true);
-   // printer.setPageMargins(20, 20, 20, 20, QPrinter::Millimeter);
+    QPrinter *printer = new QPrinter(QPrinter::HighResolution);
+    printer->setPageSize(QPageSize(QPageSize::A4));
+    printer->setPageOrientation(QPageLayout::Portrait);
+    printer->setFullPage(true);
 
-    QPrintPreviewDialog *printPreview = new QPrintPreviewDialog(&printer);
+    QPrintPreviewDialog *printPreview = new QPrintPreviewDialog(printer);
     connect(printPreview, SIGNAL(paintRequested(QPrinter*)), this, SLOT(print(QPrinter *)));
     printPreview->setWindowTitle("Preview Dialog");
     Qt::WindowFlags flags(Qt::WindowTitleHint);

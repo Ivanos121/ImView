@@ -6,6 +6,7 @@
 #include <QElapsedTimer>
 
 #include "datasource.h"
+#include "model.h"
 
 namespace Ui {
 class identf;
@@ -29,6 +30,7 @@ public:
     QElapsedTimer *time2;
 
     DataSource *dataSource;
+
 private slots:
     void on_pushButton_clicked();
 };

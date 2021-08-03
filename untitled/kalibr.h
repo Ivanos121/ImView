@@ -2,8 +2,22 @@
 #define KALIBR_H
 
 #include <QDialog>
+#include "QtSql"
+#include "QSqlDatabase"
+#include <QSet>
+#include <QSerialPort>
+#include <QProgressBar>
+#include <QPrinter>
+#include <QPrintPreviewDialog>
+#include <QTextDocument>
+#include <QPrintDialog>
+#include <QCloseEvent>
+#include <QWebEngineView>
+#include <QStatusBar>
+#include <checkboxheader.h>
 
 #include "datasourcebvas.h"
+#include "modell.h"
 
 namespace Ui {
 class Kalibr;
@@ -16,6 +30,19 @@ class Kalibr : public QDialog
 public:
     explicit Kalibr(QWidget *parent = nullptr);
     ~Kalibr();
+    void open_sdb();
+
+    QSet<int> changedRows;
+    QSet<QPoint> disabledCells;
+    QSet<int> deleteRows;
+    QColor disabledCellBackgroundColor;
+    QColor changedColumnBackgroundColor;
+    QColor deleteRowBackgroundColor;
+
+signals:
+    void savesettings(QString name, int baudrate, int DataBits, int Parity, int StopBits, int FlowControl);
+    void doubleClicked(QModelIndex);
+    void cellclicked(int row , int column );
 
 private slots:
     void bvasSlot();
@@ -25,17 +52,43 @@ private slots:
     void on_pushButtonZeroApplyUa_clicked();
     void on_pushButtonZeroApplyUb_clicked();
     void on_pushButtonZeroApplyUc_clicked();
-
     void on_pushButtonValueApplyIa_clicked();
     void on_pushButtonValueApplyIb_clicked();
     void on_pushButtonValueApplyIc_clicked();
     void on_pushButtonValueApplyUa_clicked();
     void on_pushButtonValueApplyUb_clicked();
     void on_pushButtonValueApplyUc_clicked();
-
     void on_pushButtonClose_clicked();
-
     void on_pushButtonAccept_clicked();
+
+    void onCheckBoxHeaderClick1();
+    void onCheckBoxHeaderClick2();
+    void selectRows();
+    void copyChannelNamesToTableWidget();
+    void timerTimeout();
+    void loadFile(const QString &fileName);
+    void on_OpenFile_clicked();
+    void setCurrentFile(const QString &fileName);
+    void updateRecentFileActions();
+
+    void on_CreateFile_clicked();
+    void onDataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight);
+    void on_SaveFile_clicked();
+    void Save();
+    void on_CloseFile_clicked();
+    void on_AddRow_clicked();
+    void on_RemoveRow_clicked();
+    void on_printSetup_clicked();
+    void on_Print_clicked();
+    void on_Help_clicked();
+
+    void on_SearchPort_clicked();
+
+    void on_EnterPort_clicked();
+
+    void on_ReadPribor_clicked();
+
+    void on_WritePribor_clicked();
 
 protected:
     void showEvent(QShowEvent *event);
@@ -58,6 +111,45 @@ private:
     double u_zero_a;
     double u_zero_b;
     double u_zero_c;
+
+    QSqlDatabase sdb;
+    QSqlTableModel *modell;
+    QString fileName;
+    CheckBoxHeader* headerr;
+    QTimer timer;
+    QProgressBar *progress;
+    QString curFile;
+    enum { MaxRecentFiles = 5 };
+    QAction *recentFileActs[MaxRecentFiles];
+    QAction *separatorAct;
+    bool isChanged = false;
+    QWebEngineView * view;
+    QStatusBar *statusbar;
+
+    qint64 startTime;
+
+    QSerialPort* openArchiverPort();
+    void stopGetData();
+    void setDisabledCells();
+    void closeAllBase_Yes();
+    void closeAllBase_No();
+    void closeAllBase_Otmena();
+    void titleChanged(const QString &title);
+    void printPreview(QPrinter *printer);
+    void printTable(QPrinter *printer, bool isPreview);
 };
+    struct CurrentChannelParams
+    {
+        uint16_t diapazon;
+        uint16_t filter;
+        float minimum;
+        float maximum;
+    };
+
+    inline uint qHash (const QPoint & key)
+    {
+        return qHash (QPair<int,int>(key.x(), key.y()) );
+    }
+
 
 #endif // KALIBR_H

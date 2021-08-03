@@ -1,4 +1,4 @@
-QT       += core gui sql webkitwidgets webenginewidgets
+QT       += core gui sql webkitwidgets webenginewidgets serialport printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
@@ -16,9 +16,18 @@ DEFINES += QT_DEPRECATED_WARNINGS QCUSTOMPLOT_USE_OPENGL
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    archiverchannel.cpp \
     base.cpp \
     bvasthread.cpp \
     bvas.cpp \
+    checkboxdelegate.cpp \
+    checkboxheader.cpp \
+    comboboxbitdelegate.cpp \
+    comboboxcurrentdelegate.cpp \
+    comboboxdelegate.cpp \
+    comboboxerrorarchivedelegate.cpp \
+    comboboxmodbusdelegate.cpp \
+    comboboxvardelegate.cpp \
     datas.cpp \
     datasource.cpp \
     datasource_el.cpp \
@@ -33,17 +42,29 @@ SOURCES += \
     mainwindow.cpp \
     model.cpp \
     model_el.cpp \
+    modell.cpp \
     nabludatel.cpp \
     nabludatel_part.cpp \
+    paintdelegate.cpp \
     plot.cpp \
     qcustomplot.cpp \
     settings.cpp \
     teplovent.cpp
 
 HEADERS += \
+    archiverchannel.h \
     base.h \
     bvasthread.h \
     bvas.h \
+    checkboxdelegate.h \
+    checkboxheader.h \
+    comboboxbitdelegate.h \
+    comboboxcurrentdelegate.h \
+    comboboxdelegate.h \
+    comboboxerrorarchivedelegate.h \
+    comboboxmodbusdelegate.h \
+    comboboxvardelegate.h \
+    crc.h \
     datas.h \
     datasource.h \
     datasource_el.h \
@@ -57,8 +78,10 @@ HEADERS += \
     mainwindow.h \
     model.h \
     model_el.h \
+    modell.h \
     nabludatel.h \
     nabludatel_part.h \
+    paintdelegate.h \
     plot.h \
     qcustomplot.h \
     settings.h \
