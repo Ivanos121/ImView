@@ -6,6 +6,11 @@ teplovent::teplovent(QWidget *parent) :
     ui(new Ui::teplovent)
 {
     ui->setupUi(this);
+    ui->widget_2->t_max = 0.1;
+    ui->widget_2->U_max = 800.0;
+    ui->widget_2->margin_bottom = 40;
+    ui->widget_2->margin_left = 100;
+    ui->widget_2->reset();
 
     //Заполнений таблицы настроек
     ui->tableWidget->setRowCount(24);

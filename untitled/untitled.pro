@@ -47,7 +47,6 @@ SOURCES += \
     nabludatel_part.cpp \
     paintdelegate.cpp \
     plot.cpp \
-    qcustomplot.cpp \
     settings.cpp \
     teplovent.cpp
 
@@ -83,7 +82,6 @@ HEADERS += \
     nabludatel_part.h \
     paintdelegate.h \
     plot.h \
-    qcustomplot.h \
     settings.h \
     teplovent.h
 

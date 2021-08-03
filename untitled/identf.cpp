@@ -20,80 +20,16 @@ identf::identf(QWidget *parent) :
     ui(new Ui::identf)
 {
     ui->setupUi(this);
-    ui->widget->setBufferDevicePixelRatio(.5);
+    ui->widget->t_max = 0.1;
+    ui->widget->U_max = 800.0;
+    ui->widget->margin_bottom = 40;
+    ui->widget->margin_left = 100;
+    ui->widget->reset();
 
 
     //dataTimer = new QTimer(this);
     time=new QElapsedTimer();
     ui->widget->setMaximumSize(ui->widget->maximumWidth(), ui->widget->maximumHeight());
-    ui->widget->setOpenGl(true);
-
-    ui->widget->legend->setVisible(true);
-    ui->widget->legend->setFont(QFont("Hevlrtika",9));
-    ui->widget->setLocale(QLocale(QLocale::Russian, QLocale::Russia));
-    ui->widget->clearGraphs();
-    ui->widget->setInteractions(QCP::iRangeDrag|QCP::iRangeZoom);
-
-    QLinearGradient plotGradient;
-    plotGradient.setStart(0, 0);
-    plotGradient.setFinalStop(0, 350);
-    plotGradient.setColorAt(0, QColor(80, 80, 80));
-    plotGradient.setColorAt(1, QColor(50, 50, 50));
-    ui->widget->setBackground(plotGradient);
-
-    ui->widget->addGraph(); // blue line
-    ui->widget->graph(0)->setName("Идентификация сопротивления ротора R2");
-    ui->widget->graph(0)->setPen(QPen(Qt::red, 1));
-    ui->widget->addGraph(); // red line
-    ui->widget->graph(1)->setName("Идентификация индуктивности фазы L1 и l2");
-    ui->widget->graph(1)->setPen(QPen(Qt::green, 1));
-    ui->widget->addGraph(); // red line
-    ui->widget->graph(2)->setName("Идентификация межфазной индуктивности фазы Lm");
-    ui->widget->graph(2)->setPen(QPen(Qt::cyan, 1));
-
-    QSharedPointer<QCPAxisTickerTime> timeTicker(new QCPAxisTickerTime);
-    timeTicker->setTimeFormat("%h:%m:%s");
-    ui->widget->xAxis->setTicker(timeTicker);
-    ui->widget->xAxis->setBasePen(QPen(Qt::white, 4));
-    ui->widget->yAxis->setBasePen(QPen(Qt::white, 4));
-    ui->widget->xAxis->setTickPen(QPen(Qt::white, 1));
-    ui->widget->yAxis->setTickPen(QPen(Qt::white, 1));
-    ui->widget->xAxis->setSubTickPen(QPen(Qt::white, 1));
-    ui->widget->yAxis->setSubTickPen(QPen(Qt::white, 1));
-    ui->widget->xAxis->setTickLabelColor(Qt::white);
-    ui->widget->yAxis->setTickLabelColor(Qt::white);
-    ui->widget->xAxis->grid()->setVisible(true);
-    ui->widget->xAxis->grid()->setSubGridVisible(true);
-    ui->widget->xAxis->grid()->setAntialiased(true);
-    ui->widget->xAxis->grid()->setAntialiasedSubGrid(true);
-    ui->widget->yAxis->setRange(-1.2, 1.2);
-    ui->widget->xAxis->grid()->setPen(QPen(Qt::white, 1, Qt::SolidLine));
-    ui->widget->xAxis->grid()->setSubGridPen(QPen(Qt::white, 0.5, Qt::DotLine));
-    ui->widget->yAxis->grid()->setVisible(true);
-    ui->widget->yAxis->grid()->setSubGridVisible(true);
-    ui->widget->yAxis->grid()->setAntialiased(true);
-    ui->widget->yAxis->grid()->setAntialiasedSubGrid(true);
-    ui->widget->yAxis->grid()->setPen(QPen(Qt::white, 1, Qt::SolidLine));
-    ui->widget->yAxis->grid()->setSubGridPen(QPen(Qt::white, 0.5, Qt::DotLine));
-
-    ui->widget->xAxis2->setBasePen(QPen(Qt::white, 4));
-    ui->widget->yAxis2->setBasePen(QPen(Qt::white, 4));
-    ui->widget->xAxis2->setTickPen(QPen(Qt::white, 1));
-    ui->widget->yAxis2->setTickPen(QPen(Qt::white, 1));
-    ui->widget->xAxis2->setSubTickPen(QPen(Qt::white, 1));
-    ui->widget->yAxis2->setSubTickPen(QPen(Qt::white, 1));
-    ui->widget->xAxis2->setTickLabelColor(Qt::white);
-    ui->widget->yAxis2->setTickLabelColor(Qt::white);
-    ui->widget->yAxis2->grid()->setVisible(true);
-    ui->widget->yAxis2->grid()->setSubGridVisible(true);
-    ui->widget->yAxis2->grid()->setAntialiased(true);
-    ui->widget->yAxis2->grid()->setAntialiasedSubGrid(true);
-    ui->widget->yAxis2->grid()->setPen(QPen(Qt::white, 1, Qt::SolidLine));
-    ui->widget->yAxis2->grid()->setSubGridPen(QPen(Qt::white, 0.5, Qt::DotLine));
-    ui->widget->axisRect()->setupFullAxesBox();
-
-    connect(ui->widget->xAxis, SIGNAL(rangeChanged(QCPRange)), ui->widget->xAxis2, SLOT(setRange(QCPRange)));
-    connect(ui->widget->yAxis, SIGNAL(rangeChanged(QCPRange)), ui->widget->yAxis2, SLOT(setRange(QCPRange)));
 
     // setup a timer that repeatedly calls MainWindow::realtimeDataSlot:
    //connect(dataTimer, SIGNAL(timeout()), this, SLOT(realtimeDataSlot()));

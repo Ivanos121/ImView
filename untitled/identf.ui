@@ -157,7 +157,7 @@
     </widget>
    </item>
    <item row="0" column="0" rowspan="3">
-    <widget class="QCustomPlot" name="widget" native="true">
+    <widget class="Plot" name="widget" native="true">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
        <horstretch>0</horstretch>
@@ -381,9 +381,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QCustomPlot</class>
+   <class>Plot</class>
    <extends>QWidget</extends>
-   <header location="global">qcustomplot.h</header>
+   <header>plot.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

@@ -16,98 +16,13 @@ electromagn::electromagn(QWidget *parent) :
     ui(new Ui::electromagn)
 {
     ui->setupUi(this);
-    ui->widget->setBufferDevicePixelRatio(.5);
-
+    ui->widget->t_max = 0.1;
+    ui->widget->U_max = 800.0;
+    ui->widget->margin_bottom = 40;
+    ui->widget->margin_left = 100;
+    ui->widget->reset();
     time=new QElapsedTimer();
-    ui->widget->setMaximumSize(ui->widget->maximumWidth(), ui->widget->maximumHeight());
-    ui->widget->setOpenGl(true);
-
-    ui->widget->legend->setVisible(true);
-    ui->widget->legend->setFont(QFont("Hevlrtika",9));
-    ui->widget->setLocale(QLocale(QLocale::Russian, QLocale::Russia));
-    ui->widget->clearGraphs();
-    ui->widget->setInteractions(QCP::iRangeDrag|QCP::iRangeZoom);
-
-    QLinearGradient plotGradient;
-    plotGradient.setStart(0, 0);
-    plotGradient.setFinalStop(0, 350);
-    plotGradient.setColorAt(0, QColor(80, 80, 80));
-    plotGradient.setColorAt(1, QColor(50, 50, 50));
-    ui->widget->setBackground(plotGradient);
-
-    ui->widget->setMouseTracking(true);
-    ui->widget->addGraph();
-    ui->widget->graph(0)->setName("График напряжения статора Ua");
-    ui->widget->graph(0)->setPen(QPen(Qt::blue));
-    ui->widget->addGraph();
-    ui->widget->graph(1)->setName("График напряжения статора Ub");
-    ui->widget->graph(1)->setPen(QPen(Qt::red));
-    ui->widget->addGraph();
-    ui->widget->graph(2)->setName("График напряжения статора Uс");
-    ui->widget->graph(2)->setPen(QPen(Qt::green));
-    ui->widget->addGraph();
-    ui->widget->graph(3)->setName("График тока статора Iа");
-    ui->widget->graph(3)->setPen(QPen(Qt::cyan));
-    ui->widget->addGraph();
-    ui->widget->graph(4)->setName("График тока статора Ib");
-    ui->widget->graph(4)->setPen(QPen(QColor(47, 15, 163)));
-    ui->widget->addGraph();
-    ui->widget->graph(5)->setName("График тока статора Ic");
-    ui->widget->graph(5)->setPen(QPen(QColor(47, 15, 163)));
-    ui->widget->addGraph();
-    ui->widget->graph(6)->setName("График скорости вращения вала w");
-    ui->widget->graph(6)->setPen(QPen(QColor(102, 245, 7)));
-    ui->widget->addGraph();
-    ui->widget->graph(7)->setName("График момента на валу M");
-    ui->widget->graph(7)->setPen(QPen(QColor(102, 245, 7)));
-    ui->widget->addGraph();
-    ui->widget->graph(8)->setName("График момента Mc");
-    ui->widget->graph(8)->setPen(QPen(QColor(102, 245, 7)));
-
-
-    QSharedPointer<QCPAxisTickerTime> timeTicker(new QCPAxisTickerTime);
-    timeTicker->setTimeFormat("%h:%m:%s");
-    ui->widget->xAxis->setTicker(timeTicker);
-    ui->widget->xAxis->setBasePen(QPen(Qt::white, 4));
-    ui->widget->yAxis->setBasePen(QPen(Qt::white, 4));
-    ui->widget->xAxis->setTickPen(QPen(Qt::white, 1));
-    ui->widget->yAxis->setTickPen(QPen(Qt::white, 1));
-    ui->widget->xAxis->setSubTickPen(QPen(Qt::white, 1));
-    ui->widget->yAxis->setSubTickPen(QPen(Qt::white, 1));
-    ui->widget->xAxis->setTickLabelColor(Qt::white);
-    ui->widget->yAxis->setTickLabelColor(Qt::white);
-    ui->widget->xAxis->grid()->setVisible(true);
-    ui->widget->xAxis->grid()->setSubGridVisible(true);
-    ui->widget->xAxis->grid()->setAntialiased(true);
-    ui->widget->xAxis->grid()->setAntialiasedSubGrid(true);
-    ui->widget->yAxis->setRange(-1.2, 1.2);
-    ui->widget->xAxis->grid()->setPen(QPen(Qt::white, 1, Qt::SolidLine));
-    ui->widget->xAxis->grid()->setSubGridPen(QPen(Qt::white, 0.5, Qt::DotLine));
-    ui->widget->yAxis->grid()->setVisible(true);
-    ui->widget->yAxis->grid()->setSubGridVisible(true);
-    ui->widget->yAxis->grid()->setAntialiased(true);
-    ui->widget->yAxis->grid()->setAntialiasedSubGrid(true);
-    ui->widget->yAxis->grid()->setPen(QPen(Qt::white, 1, Qt::SolidLine));
-    ui->widget->yAxis->grid()->setSubGridPen(QPen(Qt::white, 0.5, Qt::DotLine));
-
-    ui->widget->xAxis2->setBasePen(QPen(Qt::white, 4));
-    ui->widget->yAxis2->setBasePen(QPen(Qt::white, 4));
-    ui->widget->xAxis2->setTickPen(QPen(Qt::white, 1));
-    ui->widget->yAxis2->setTickPen(QPen(Qt::white, 1));
-    ui->widget->xAxis2->setSubTickPen(QPen(Qt::white, 1));
-    ui->widget->yAxis2->setSubTickPen(QPen(Qt::white, 1));
-    ui->widget->xAxis2->setTickLabelColor(Qt::white);
-    ui->widget->yAxis2->setTickLabelColor(Qt::white);
-    ui->widget->yAxis2->grid()->setVisible(true);
-    ui->widget->yAxis2->grid()->setSubGridVisible(true);
-    ui->widget->yAxis2->grid()->setAntialiased(true);
-    ui->widget->yAxis2->grid()->setAntialiasedSubGrid(true);
-    ui->widget->yAxis2->grid()->setPen(QPen(Qt::white, 1, Qt::SolidLine));
-    ui->widget->yAxis2->grid()->setSubGridPen(QPen(Qt::white, 0.5, Qt::DotLine));
-    ui->widget->axisRect()->setupFullAxesBox();
-
-    connect(ui->widget->xAxis, SIGNAL(rangeChanged(QCPRange)), ui->widget->xAxis2, SLOT(setRange(QCPRange)));
-    connect(ui->widget->yAxis, SIGNAL(rangeChanged(QCPRange)), ui->widget->yAxis2, SLOT(setRange(QCPRange)));
+    //ui->widget->setMaximumSize(ui->widget->maximumWidth(), ui->widget->maximumHeight());
 
     this->showMaximized();
 
@@ -530,8 +445,8 @@ void electromagn::realtimeDataSlot()
     if(ui->tableWidget_2->model()->index(0,1).data(Qt::CheckStateRole)==Qt::Checked)
     {
         //ui->widget->graph(0)->data()->clear();
-        ui->widget->graph(0)->addData(key, a4+a1*nabludatel.u_dev_a);
-        ui->widget->graph(0)->rescaleValueAxis();
+//        ui->widget->graph(0)->addData(key, a4+a1*nabludatel.u_dev_a);
+//        ui->widget->graph(0)->rescaleValueAxis();
         //ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
         //ui->widget->replot();
     }
@@ -539,8 +454,8 @@ void electromagn::realtimeDataSlot()
     if(ui->tableWidget_2->model()->index(1,1).data(Qt::CheckStateRole)==Qt::Checked)
     {
         //ui->widget->graph(1)->data()->clear();
-        ui->widget->graph(1)->addData(key, a5+a2*nabludatel.u_dev_b);
-        ui->widget->graph(1)->rescaleValueAxis(true);
+//        ui->widget->graph(1)->addData(key, a5+a2*nabludatel.u_dev_b);
+//        ui->widget->graph(1)->rescaleValueAxis(true);
         //ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
         //ui->widget->replot();
     }
@@ -548,8 +463,8 @@ void electromagn::realtimeDataSlot()
     if(ui->tableWidget_2->model()->index(2,1).data(Qt::CheckStateRole)==Qt::Checked)
     {
         //ui->widget->graph(2)->data()->clear();
-        ui->widget->graph(2)->addData(key, a6+a3*nabludatel.u_dev_c);
-        ui->widget->graph(2)->rescaleValueAxis(true);
+//        ui->widget->graph(2)->addData(key, a6+a3*nabludatel.u_dev_c);
+//        ui->widget->graph(2)->rescaleValueAxis(true);
         //ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
         //ui->widget->replot();
     }
@@ -557,8 +472,8 @@ void electromagn::realtimeDataSlot()
     if(ui->tableWidget_2->model()->index(3,1).data(Qt::CheckStateRole)==Qt::Checked)
     {
         //ui->widget->graph(3)->data()->clear();
-        ui->widget->graph(3)->addData(key, a10+a7*nabludatel.i_dev_a);
-        ui->widget->graph(3)->rescaleValueAxis(true);
+//        ui->widget->graph(3)->addData(key, a10+a7*nabludatel.i_dev_a);
+//        ui->widget->graph(3)->rescaleValueAxis(true);
         //ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
         //ui->widget->replot();
     }
@@ -566,8 +481,8 @@ void electromagn::realtimeDataSlot()
     if(ui->tableWidget_2->model()->index(4,1).data(Qt::CheckStateRole)==Qt::Checked)
     {
         //ui->widget->graph(4)->data()->clear();
-        ui->widget->graph(4)->addData(key, a11+a8*nabludatel.i_dev_b);
-        ui->widget->graph(4)->rescaleValueAxis(true);
+//        ui->widget->graph(4)->addData(key, a11+a8*nabludatel.i_dev_b);
+//        ui->widget->graph(4)->rescaleValueAxis(true);
         //ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
         //ui->widget->replot();
     }
@@ -575,8 +490,8 @@ void electromagn::realtimeDataSlot()
     if(ui->tableWidget_2->model()->index(5,1).data(Qt::CheckStateRole)==Qt::Checked)
     {
         //ui->widget->graph(5)->data()->clear();
-        ui->widget->graph(5)->addData(key, a12+a9*nabludatel.i_dev_c);
-        ui->widget->graph(5)->rescaleValueAxis(true);
+//        ui->widget->graph(5)->addData(key, a12+a9*nabludatel.i_dev_c);
+//        ui->widget->graph(5)->rescaleValueAxis(true);
         //ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
         //ui->widget->replot();
     }
@@ -584,8 +499,8 @@ void electromagn::realtimeDataSlot()
     if(ui->tableWidget_2->model()->index(18,1).data(Qt::CheckStateRole)==Qt::Checked)
     {
         //ui->widget->graph(5)->data()->clear();
-        ui->widget->graph(6)->addData(key, nabludatel.w_sr);
-        ui->widget->graph(6)->rescaleValueAxis(true);
+//        ui->widget->graph(6)->addData(key, nabludatel.w_sr);
+//        ui->widget->graph(6)->rescaleValueAxis(true);
         //ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
         //ui->widget->replot();
     }
@@ -593,14 +508,14 @@ void electromagn::realtimeDataSlot()
     if(ui->tableWidget_2->model()->index(19,1).data(Qt::CheckStateRole)==Qt::Checked)
     {
         //ui->widget->graph(5)->data()->clear();
-        ui->widget->graph(7)->addData(key, nabludatel.M_sr);
-        ui->widget->graph(7)->rescaleValueAxis(true);
+//        ui->widget->graph(7)->addData(key, nabludatel.M_sr);
+//        ui->widget->graph(7)->rescaleValueAxis(true);
         //ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
         //ui->widget->replot();
     }
 
-    ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
-    ui->widget->replot();
+//    ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
+//    ui->widget->replot();
 
     //Занесение итоговых данных в таблицу
     if (ui->tableWidget->item(0, 1) != 0)
@@ -719,22 +634,6 @@ void electromagn::realtimeDataSlot()
         if (count % 100 == 0)
         {
             count = 1;
-
-            ui->widget->graph(0)->addData(key, nabludatel_part.Ua);
-            ui->widget->graph(1)->addData(key, nabludatel_part.Ub);
-            ui->widget->graph(2)->addData(key, nabludatel_part.Ia);
-            ui->widget->graph(3)->addData(key, nabludatel_part.Ib);
-            ui->widget->graph(4)->addData(key, nabludatel_part.M);
-            ui->widget->graph(5)->addData(key, dataSourceBVASw.w);
-
-            ui->widget->graph(0)->rescaleValueAxis();
-            ui->widget->graph(1)->rescaleValueAxis(true);
-            ui->widget->graph(2)->rescaleValueAxis(true);
-            ui->widget->graph(3)->rescaleValueAxis(true);
-            ui->widget->graph(4)->rescaleValueAxis(true);
-            ui->widget->graph(5)->rescaleValueAxis(true);
-            ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
-            ui->widget->replot();
         }
     }
 
@@ -886,8 +785,8 @@ void electromagn::realtimeDataSlot()
         if(ui->tableWidget_3->model()->index(5,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
            // ui->widget->graph(0)->addData(key, b4+b1*(0.8165*model_el.Ua));
-            ui->widget->graph(0)->addData(key, b4+b1*(model_el.u_dev_a));
-            ui->widget->graph(0)->rescaleValueAxis();
+//            ui->widget->graph(0)->addData(key, b4+b1*(model_el.u_dev_a));
+//            ui->widget->graph(0)->rescaleValueAxis();
         }
 
         //вывод на qcustomPlot графика напряжения Ub после преобразования 2 в 3
@@ -895,64 +794,64 @@ void electromagn::realtimeDataSlot()
         if(ui->tableWidget_3->model()->index(6,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
            // ui->widget->graph(1)->addData(key, b5+b2*(-0.4082*model_el.Ua+0.7071*model_el.Ub));
-            ui->widget->graph(1)->addData(key, b5+b2*(model_el.u_dev_b));
-            ui->widget->graph(1)->rescaleValueAxis(true);
+//            ui->widget->graph(1)->addData(key, b5+b2*(model_el.u_dev_b));
+//            ui->widget->graph(1)->rescaleValueAxis(true);
         }
 
         //вывод на qcustomPlot графика напряжения Uc после преобразования 2 в 3
 
         if(ui->tableWidget_3->model()->index(7,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
-            ui->widget->graph(2)->addData(key, b6+b3*(model_el.u_dev_c));
-            ui->widget->graph(2)->rescaleValueAxis(true);
+//            ui->widget->graph(2)->addData(key, b6+b3*(model_el.u_dev_c));
+//            ui->widget->graph(2)->rescaleValueAxis(true);
         }
 
         //вывод на qcustomPlot графика напряжения Ia после преобразования 2 в 3
 
         if(ui->tableWidget_3->model()->index(8,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
-            ui->widget->graph(3)->addData(key, b10+b7*(model_el.i_dev_a));
-            ui->widget->graph(3)->rescaleValueAxis(true);
+//            ui->widget->graph(3)->addData(key, b10+b7*(model_el.i_dev_a));
+//            ui->widget->graph(3)->rescaleValueAxis(true);
         }
 
         //вывод на qcustomPlot графика напряжения Ib после преобразования 2 в 3
 
         if(ui->tableWidget_3->model()->index(9,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
-            ui->widget->graph(4)->addData(key, b11+b8*(model_el.i_dev_b));
-            ui->widget->graph(4)->rescaleValueAxis(true);
+//            ui->widget->graph(4)->addData(key, b11+b8*(model_el.i_dev_b));
+//            ui->widget->graph(4)->rescaleValueAxis(true);
         }
 
         //вывод на qcustomPlot графика напряжения Ic после преобразования 2 в 3
 
         if(ui->tableWidget_3->model()->index(10,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
-            ui->widget->graph(5)->addData(key, b12+b9*(model_el.i_dev_c));
-            ui->widget->graph(5)->rescaleValueAxis(true);
+//            ui->widget->graph(5)->addData(key, b12+b9*(model_el.i_dev_c));
+//            ui->widget->graph(5)->rescaleValueAxis(true);
        }
 
         //вывод на qcustomPlot графика скорости omega
 
         if(ui->tableWidget_3->model()->index(11,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
-            ui->widget->graph(6)->addData(key, b15+b13*model_el.omega);
-            ui->widget->graph(6)->rescaleValueAxis(true);
+//            ui->widget->graph(6)->addData(key, b15+b13*model_el.omega);
+//            ui->widget->graph(6)->rescaleValueAxis(true);
         }
 
         //вывод на qcustomPlot момента на валу M
 
         if(ui->tableWidget_3->model()->index(12,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
-            ui->widget->graph(7)->addData(key, b16+b14*model_el.M);
-            ui->widget->graph(7)->rescaleValueAxis(true);
+//            ui->widget->graph(7)->addData(key, b16+b14*model_el.M);
+//            ui->widget->graph(7)->rescaleValueAxis(true);
         }
 
         //вывод на qcustomPlot момента Mс
 
         if(ui->tableWidget_3->model()->index(29,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
-            ui->widget->graph(8)->addData(key, model_el.Mc);
-            ui->widget->graph(8)->rescaleValueAxis(true);
+//            ui->widget->graph(8)->addData(key, model_el.Mc);
+//            ui->widget->graph(8)->rescaleValueAxis(true);
         }
 
         //Занесение итоговых данных в таблицу
@@ -1075,8 +974,8 @@ void electromagn::realtimeDataSlot()
             ui->tableWidget->item(23, 1)->setText(QString("%1").arg(model_el.M));
         }
 
-        ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
-        ui->widget->replot();
+//        ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
+//        ui->widget->replot();
 
         if (ui->tableWidget_4->item(0, 1) != 0)
         {
@@ -1200,13 +1099,13 @@ void electromagn::raschet_el()
                          connect(&model_el, &model_el::ready, this, &electromagn::realtimeDataSlot);
 
     }
-    ui->widget->graph(0)->data()->clear();
-    ui->widget->graph(1)->data()->clear();
-    ui->widget->graph(2)->data()->clear();
-    ui->widget->graph(3)->data()->clear();
-    ui->widget->graph(4)->data()->clear();
-    ui->widget->graph(5)->data()->clear();
-    ui->widget->replot();
+//    ui->widget->graph(0)->data()->clear();
+//    ui->widget->graph(1)->data()->clear();
+//    ui->widget->graph(2)->data()->clear();
+//    ui->widget->graph(3)->data()->clear();
+//    ui->widget->graph(4)->data()->clear();
+//    ui->widget->graph(5)->data()->clear();
+//    ui->widget->replot();
     time->start();
 }
 

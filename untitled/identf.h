@@ -7,6 +7,7 @@
 
 #include "datasource.h"
 #include "model.h"
+#include "plot.h"
 
 namespace Ui {
 class identf;
