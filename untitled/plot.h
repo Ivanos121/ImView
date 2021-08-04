@@ -34,6 +34,7 @@ public:
     void paintEvent(QPaintEvent *);
 
     void reset();
+    void clear();
 
     int margin_bottom;
     int margin_left;

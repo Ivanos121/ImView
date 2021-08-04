@@ -32,7 +32,7 @@ Kalibr::Kalibr(QWidget *parent) :
 {
     ui->setupUi(this);
     open_sdb();
-    ui->label_14->setPixmap(QPixmap(":/img/IM_24_red.png"));
+    ui->label_14->setPixmap(QPixmap(":/new/prefix1/img/IM_24_red.png"));
     ui->label_15->setText("  Связи нет");
     ui->label_39->setText("Загрузите файл");
     QString currentTabText = ui->tabWidget->tabText(0);
@@ -617,7 +617,7 @@ void Kalibr::timerTimeout()
 
 
         ui->label_14->clear();
-        ui->label_14->setPixmap(QPixmap(":/home/elf/progeqts_QT/u21/untitled/img/IM_24_blue.png"));
+        ui->label_14->setPixmap(QPixmap(":/new/prefix1/img/IM_24_blue.png"));
         ui->label_15->setText("  Связь установлена");
 
         delete port;

@@ -9,7 +9,7 @@
 #include <QLinearGradient>
 
 double key;
-//Model model;
+Model model;
 const double R1=2.419;
 int count = 0;
 static double minR2, maxR2, middleR2;
@@ -20,16 +20,15 @@ identf::identf(QWidget *parent) :
     ui(new Ui::identf)
 {
     ui->setupUi(this);
-    ui->widget->t_max = 0.1;
-    ui->widget->U_max = 800.0;
-    ui->widget->margin_bottom = 40;
-    ui->widget->margin_left = 100;
-    ui->widget->reset();
-
+    ui->plot->t_max = 10.0;
+    ui->plot->U_max = 3.0;
+    ui->plot->margin_bottom = 40;
+    ui->plot->margin_left = 100;
+    ui->plot->reset();
 
     //dataTimer = new QTimer(this);
     time=new QElapsedTimer();
-    ui->widget->setMaximumSize(ui->widget->maximumWidth(), ui->widget->maximumHeight());
+    //ui->widget->setMaximumSize(ui->widget->maximumWidth(), ui->widget->maximumHeight());
 
     // setup a timer that repeatedly calls MainWindow::realtimeDataSlot:
    //connect(dataTimer, SIGNAL(timeout()), this, SLOT(realtimeDataSlot()));
@@ -48,83 +47,79 @@ identf::~identf()
 void identf::realtimeDataSlot()
 {
     // calculate two new data points:
-//    key = time->elapsed()/1000.0; // time elapsed since start of demo, in seconds
-//    static double lastPointKey = 0;
+    key = time->elapsed()/1000.0; // time elapsed since start of demo, in seconds
+    static double lastPointKey = 0;
 
-//    model.rasch(dataSource);
+    model.rasch(dataSource);
 
-//       if (model.R2 > maxR2)
-//           {
-//               maxR2 = model.R2;
-//           }
+       if (model.R2 > maxR2)
+           {
+               maxR2 = model.R2;
+           }
 
-//           if (model.R2 < minR2)
-//           {
-//               minR2 = model.R2;
-//           }
+           if (model.R2 < minR2)
+           {
+               minR2 = model.R2;
+           }
 
-//           middleR2 += model.R2;
-//           count++;
+           middleR2 += model.R2;
+           count++;
 
-//   if (count == 10000)
-//   {
-//       middleR2 /= count;
+   if (count == 10000)
+   {
+       middleR2 /= count;
 
-//       count = 0;
-//       //printf("%f\n", fabs((maxR2 - minR2)/middleR2));
-//       if (fabs((maxR2 - minR2)/middleR2) < 0.06)
-//       {
-//            dataSource->stop();
-//            QMessageBox::information(this, tr("Сообщение"), tr("Расчет окончен!"));
-//       }
-//       minR2 = DBL_MAX;
-//       maxR2 = -DBL_MAX;
-//       middleR2 = 0.0;
-//   }
+       count = 0;
+       //printf("%f\n", fabs((maxR2 - minR2)/middleR2));
+       if (fabs((maxR2 - minR2)/middleR2) < 0.06)
+       {
+            dataSource->stop();
+            QMessageBox::information(this, tr("Сообщение"), tr("Расчет окончен!"));
+       }
+       minR2 = DBL_MAX;
+       maxR2 = -DBL_MAX;
+       middleR2 = 0.0;
+   }
 
-//   if (count % 100 == 0)
-//   {
-//        ui->widget->graph(0)->addData(key, model.R2);
-//        ui->widget->graph(1)->addData(key, model.L);
-//        ui->widget->graph(2)->addData(key, model.Lm);
+   if (count % 100 == 0)
+   {
+        ui->plot->addPoint(0, key, model.R2);
+        ui->plot->addPoint(1, key, model.L);
+        ui->plot->addPoint(2, key, model.Lm);
 
-//   //  ui->label->setText(QString::number(key));
-//        ui->lineEdit_8->setText(QString::number(model.Lm));
-//        ui->lineEdit_9->setText(QString::number(model.L));
-//        ui->lineEdit_10->setText(QString::number(model.L));
-//        ui->lineEdit_11->setText(QString::number(model.R2));
-//        ui->lineEdit_12->setText(QString::number(R1));
-//      // rescale value (vertical) axis to fit the current data:
-//        ui->widget->graph(0)->rescaleValueAxis();
-//        ui->widget->graph(1)->rescaleValueAxis(true);
-//        lastPointKey = key;
-//    //}
-//    // make key axis range scroll with the data (at a constant range size of 8):
-//    ui->widget->xAxis->setRange(key, 8, Qt::AlignRight);
-//    ui->widget->replot();
-//    }
+   //  ui->label->setText(QString::number(key));
+        ui->lineEdit_8->setText(QString::number(model.Lm));
+        ui->lineEdit_9->setText(QString::number(model.L));
+        ui->lineEdit_10->setText(QString::number(model.L));
+        ui->lineEdit_11->setText(QString::number(model.R2));
+        ui->lineEdit_12->setText(QString::number(R1));
+      // rescale value (vertical) axis to fit the current data:
+        lastPointKey = key;
+    //}
+    // make key axis range scroll with the data (at a constant range size of 8):
+    }
 }
 
 void identf::raschet_f()
 {
-//    minR2 = DBL_MAX;
-//    maxR2 = -DBL_MAX;
-//    middleR2 = 0.0;
+    minR2 = DBL_MAX;
+    maxR2 = -DBL_MAX;
+    middleR2 = 0.0;
 
-//    ui->lineEdit->setText(QString("%1").arg(base.P_nom));
-//    ui->lineEdit_2->setText(QString("%1").arg(base.n_nom));
-//    ui->lineEdit_3->setText(QString("%1").arg(base.U_fnom));
-//    ui->lineEdit_4->setText(QString("%1").arg(base.cosf_nom));
-//    ui->lineEdit_5->setText(QString("%1").arg(base.kpd_nom));
-//    ui->lineEdit_6->setText(QString("%1").arg(base.muk));
-//    ui->lineEdit_7->setText(QString("%1").arg(base.n_0));
-//    dataSource->init();
-//    model.init(base.P_nom, base.n_nom, base.U_fnom, base.cosf_nom, base.kpd_nom, base.muk, base.n_0);
-//    ui->widget->graph(0)->data()->clear();
-//    ui->widget->graph(1)->data()->clear();
-//    ui->widget->graph(2)->data()->clear();
-//    ui->widget->replot();
-//    time->start();
+    ui->lineEdit->setText(QString("%1").arg(base.P_nom));
+    ui->lineEdit_2->setText(QString("%1").arg(base.n_nom));
+    ui->lineEdit_3->setText(QString("%1").arg(base.U_fnom));
+    ui->lineEdit_4->setText(QString("%1").arg(base.cosf_nom));
+    ui->lineEdit_5->setText(QString("%1").arg(base.kpd_nom));
+    ui->lineEdit_6->setText(QString("%1").arg(base.muk));
+    ui->lineEdit_7->setText(QString("%1").arg(base.n_0));
+    dataSource->init();
+    model.init(base.P_nom, base.n_nom, base.U_fnom, base.cosf_nom, base.kpd_nom, base.muk, base.n_0);
+    ui->plot->clear();
+    ui->plot->addDataLine(Qt::red, 0.0);
+    ui->plot->addDataLine(Qt::green, 0.0);
+    ui->plot->addDataLine(Qt::cyan, 0.0);
+    time->start();
 }
 
 

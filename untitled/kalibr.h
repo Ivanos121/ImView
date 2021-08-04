@@ -81,13 +81,9 @@ private slots:
     void on_printSetup_clicked();
     void on_Print_clicked();
     void on_Help_clicked();
-
     void on_SearchPort_clicked();
-
     void on_EnterPort_clicked();
-
     void on_ReadPribor_clicked();
-
     void on_WritePribor_clicked();
 
 protected:

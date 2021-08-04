@@ -417,3 +417,10 @@ void Plot::setLineDataColor(size_t lineNumber, QColor _color)
     dataLines[lineNumber].color = _color;
     repaint();
 }
+
+void Plot::clear()
+{
+    reset();
+    dataLines.clear();
+    repaint();
+}

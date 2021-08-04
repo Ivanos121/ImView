@@ -19,5 +19,7 @@
         <file>img/map-flat.svg</file>
         <file>img/markasblank.svg</file>
         <file>img/zastavka.png</file>
+        <file>img/IM_24_red.png</file>
+        <file>img/IM_24_blue.png</file>
     </qresource>
 </RCC>

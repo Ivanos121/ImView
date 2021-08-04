@@ -1,5 +1,5 @@
-#ifndef MODEL_H
-#define MODEL_H
+#ifndef MODELL_H
+#define MODELL_H
 
 #include "QSqlDatabase"
 #include <QSqlError>
