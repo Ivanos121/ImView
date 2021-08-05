@@ -7,6 +7,7 @@
 
 #include "datasource.h"
 #include "model.h"
+#include "modell.h"
 #include "plot.h"
 
 namespace Ui {
@@ -29,11 +30,12 @@ public:
     Ui::identf *ui;
     QElapsedTimer *time;
     QElapsedTimer *time2;
-
+    Modell *modell;
     DataSource *dataSource;
 
 private slots:
     void on_pushButton_clicked();
+    void setcolorincell(int row, int column);
 };
 
 #endif // IDENTF_H

@@ -1,15 +1,19 @@
 #include "identf.h"
 #include "ui_identf.h"
 #include "model.h"
+#include "plot.h"
+
 #include "base.h"
 
 #include <iostream>
 #include <fstream>
 #include <cfloat>
 #include <QLinearGradient>
+#include <QColorDialog>
 
 double key;
 Model model;
+Modell modell;
 const double R1=2.419;
 int count = 0;
 static double minR2, maxR2, middleR2;
@@ -37,6 +41,59 @@ identf::identf(QWidget *parent) :
     connect(dataSource, &DataSource::ready, this, &identf::realtimeDataSlot);
 
     this->showMaximized();
+
+    ui->tableWidget->setRowCount(4); //задание количества строк таблицы
+    ui->tableWidget->setColumnCount(4); //задание количества столбцов
+    QStringList name2; //объявление указателя на тип QStringList
+    name2 << "№" << "Цвет" << "Свойство" << "Значение"; //перечисление заголовков
+    ui->tableWidget->setHorizontalHeaderLabels(name2); //установка заголовков в таблицу
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents); //Устанавливает ограничения на то, как размер заголовка может быть изменен до тех, которые описаны в данном режиме
+    ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget->setSelectionMode(QAbstractItemView :: NoSelection);
+    ui->tableWidget->verticalHeader()->setVisible(false);
+    ui->tableWidget->resizeColumnsToContents();
+    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget->setColumnWidth(0, 100);
+
+    for(int row = 0; row<ui->tableWidget->rowCount(); row++)
+    {
+        for(int column = 0; column<ui->tableWidget->columnCount(); column++)
+        {
+          ui->tableWidget->setItem(row, column, new QTableWidgetItem());
+        }
+      //  ui->tableWidget->item(1, 1)->setBackground(QColor(0,0,255));
+    }
+
+    ui->tableWidget->setItem(0, 2, new QTableWidgetItem("Сопротивление ротора R2, Ом:"));
+    ui->tableWidget->setItem(1, 2, new QTableWidgetItem("Индуктивность обмотки статора L1, Гн:"));
+    ui->tableWidget->setItem(2, 2, new QTableWidgetItem("Индуктивность обмотки ротора L2, Гн:"));
+    ui->tableWidget->setItem(3, 2, new QTableWidgetItem("Индуктивность взаимоиндукции Lm, Гн:"));
+
+    for (int i=0; i<5; i++)
+    {
+        if (ui->tableWidget->item(i, 0) != 0)
+        {
+            ui->tableWidget->item(i, 0)->setText(QString("%1").arg(i+1));
+            ui->tableWidget->item(i, 0)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+
+    std::vector<QColor> lineColors(64);
+
+    for (int i = 0; i < 5; i++)
+    {
+        lineColors[i] = QColor(QRandomGenerator::global()->bounded(255),
+                               QRandomGenerator::global()->bounded(255),
+                               QRandomGenerator::global()->bounded(255));
+        ui->plot->addDataLine(lineColors[i], 0);
+    }
+
+    for (int i = 0; i < 4; i++)
+    {
+        ui->tableWidget->item(i, 1)->setBackground(lineColors[i]);
+    }
+
 }
 
 identf::~identf()
@@ -132,3 +189,14 @@ void identf::on_pushButton_clicked()
     base.Lm = ui->lineEdit_8->text().toDouble();
     printf("R1=%f R2=%f L1=%f L2=%f Lm=%f", base.R1, base.R2, base.L1, base.L2, base.Lm);
  }
+
+void identf::setcolorincell(int row, int column)
+{
+    if (column == 1)
+    {
+        row = ui->tableWidget->currentRow();
+        QColor chosenColor = QColorDialog::getColor(); //return the color chosen by user
+        ui->tableWidget->item(row, column)->setBackground(chosenColor);
+        ui->plot->setLineDataColor(row, chosenColor);
+    }
+}

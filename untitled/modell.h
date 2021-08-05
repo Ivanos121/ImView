@@ -21,4 +21,4 @@ signals:
     //void dataChanged(const QModelIndex &, const QModelIndex &, const QVector <int> &);
 
 };
-#endif // MODEL_H
+#endif // MODELL_H
