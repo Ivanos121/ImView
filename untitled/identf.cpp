@@ -106,13 +106,13 @@ void identf::raschet_f()
     maxR2 = -DBL_MAX;
     middleR2 = 0.0;
 
-    ui->lineEdit->setText(QString("%1").arg(base.P_nom));
-    ui->lineEdit_2->setText(QString("%1").arg(base.n_nom));
-    ui->lineEdit_3->setText(QString("%1").arg(base.U_fnom));
-    ui->lineEdit_4->setText(QString("%1").arg(base.cosf_nom));
-    ui->lineEdit_5->setText(QString("%1").arg(base.kpd_nom));
-    ui->lineEdit_6->setText(QString("%1").arg(base.muk));
-    ui->lineEdit_7->setText(QString("%1").arg(base.n_0));
+//    ui->lineEdit->setText(QString("%1").arg(base.P_nom));
+//    ui->lineEdit_2->setText(QString("%1").arg(base.n_nom));
+//    ui->lineEdit_3->setText(QString("%1").arg(base.U_fnom));
+//    ui->lineEdit_4->setText(QString("%1").arg(base.cosf_nom));
+//    ui->lineEdit_5->setText(QString("%1").arg(base.kpd_nom));
+//    ui->lineEdit_6->setText(QString("%1").arg(base.muk));
+//    ui->lineEdit_7->setText(QString("%1").arg(base.n_0));
     dataSource->init();
     model.init(base.P_nom, base.n_nom, base.U_fnom, base.cosf_nom, base.kpd_nom, base.muk, base.n_0);
     ui->plot->clear();

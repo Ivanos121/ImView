@@ -57,6 +57,8 @@ public:
 private:
     Ui::Plot *ui;
     QPoint p1,p2;
+    double t_offset_move;
+    double U_offset_move;
     bool leftButtonPressed = false;
 
     void wheelEvent(QWheelEvent *event);

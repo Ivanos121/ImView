@@ -126,6 +126,24 @@ void Plot::drawMainGrid()
             painter.drawLine(QLine(margin_left,j-offset,width() - 20,j-offset));
         }
     }
+
+    if ((U_offset >= 0) && (U_offset <= U_max_v))
+    {
+        double zero_level = height() - margin_bottom - U_offset/(U_max_v)*(height() - 20 - margin_bottom);
+        QPen zeroPen(coordLineColor3);
+        zeroPen.setWidthF(2.0);
+        painter.setPen(zeroPen);
+        painter.drawLine(QLine(margin_left,zero_level,width() - 20,zero_level));
+    }
+
+    if ((-t_offset >= 0) && (-t_offset <= t_max_v))
+    {
+        double zero_level = margin_left - t_offset/t_max_v*(width() - 20 - margin_left);
+        QPen zeroPen(coordLineColor3);
+        zeroPen.setWidthF(2.0);
+        painter.setPen(zeroPen);
+        painter.drawLine(zero_level,20,zero_level,height() - margin_bottom);
+    }
 }
 
 void Plot::drawAxisText()
@@ -136,21 +154,20 @@ void Plot::drawAxisText()
     QPen apen = QPen(coordLineColor);
     apen.setWidth(2);
     painter.setPen(apen);
-
+    double offset = t_offset / t_max_v * (width() -20 - margin_left);
+    while (offset >= gridStep * 5.0)
+    {
+        offset -= gridStep * 5.0;
+    }
+    while (offset <= -gridStep * 5.0)
+    {
+        offset += gridStep * 5.0;
+    }
     for (double i=margin_left; i <= width() - 20 + gridStep * 5.0; i += gridStep * 5.0)
     {
-        double offset = t_offset / t_max_v * (width() -20 - margin_left);
-        while (offset >= gridStep * 5.0)
-        {
-            offset -= gridStep * 5.0;
-        }
-        while (offset <= -gridStep * 5.0)
-        {
-            offset += gridStep * 5.0;
-        }
         if (!(((i - offset) <= margin_left) || ((i - offset) >= (width() -20))))
         {
-           double t = (double)(i - margin_left) / (double)(width() - margin_left - 20) * t_max_v + t_offset;
+           double t = (double)(i - offset - margin_left) / (double)(width() - margin_left - 20) * t_max_v + t_offset;
            painter.drawText(QPoint(i -20 -offset,height()-15), QString("%1").arg(t, 0, 'f', 4));
         }
     }
@@ -168,7 +185,7 @@ void Plot::drawAxisText()
         }
         if (!(((j - offset) <= 20) || ((j - offset) >= (height() - margin_bottom))))
         {
-            double U = (double)(-j + height() - margin_bottom) / (double)(height() - margin_bottom - 20) * U_max_v - U_offset;
+            double U = (double)(-j + offset + height() - margin_bottom) / (double)(height() - margin_bottom - 20) * U_max_v - U_offset;
             painter.drawText(QPoint(20,j+5-offset), QString("%1").arg(U, 0, 'f', 4));
         }
     }
@@ -326,45 +343,54 @@ void Plot::reset()
 
 void Plot::mousePressEvent(QMouseEvent *e)
 {
+    p1=e->pos();
     if (e->buttons() & Qt::LeftButton)
     {
         setCursor(Qt::CrossCursor);
-        p1=e->pos();
         p2 = p1;
         leftButtonPressed = true;
     }
+
+    if (e->buttons() & Qt::MiddleButton)
+    {
+        t_offset_move = t_offset;
+        U_offset_move = U_offset;
+    }
 }
 
-void Plot::mouseReleaseEvent(QMouseEvent *)
+void Plot::mouseReleaseEvent(QMouseEvent *e)
 {
-    if ((p1.x() == p2.x() || (p1.y() == p2.y())))
+    if (e->buttons() & Qt::LeftButton)
     {
-        return;
-    }
+        if ((p1.x() == p2.x() || (p1.y() == p2.y())))
+        {
+            return;
+        }
 
-    if (p1.x() > p2.x())
-    {
-        int temp = p1.x();
-        p1.setX(p2.x());
-        p2.setX(temp);
-    }
+        if (p1.x() > p2.x())
+        {
+            int temp = p1.x();
+            p1.setX(p2.x());
+            p2.setX(temp);
+        }
 
-    if (p1.y() > p2.y())
-    {
-        int temp = p1.y();
-        p1.setY(p2.y());
-        p2.setY(temp);
-    }
+        if (p1.y() > p2.y())
+        {
+            int temp = p1.y();
+            p1.setY(p2.y());
+            p2.setY(temp);
+        }
 
+        double t1 = (double)(p1.x() - margin_left)/(double)(width() - margin_left - 20) * t_max_v;
+        t_offset += t1;
+        t_max_v *= (p2.x() - p1.x()) / (double)(width() - margin_left - 20);
+
+        double U1 = (double)(-p2.y() + height() - margin_bottom) / (double)(height() - margin_bottom - 20) * U_max_v;
+        U_offset -= U1;
+        U_max_v *= (p2.y() - p1.y()) / (double)(height() - margin_bottom - 20);
+        repaint();
+    }
     leftButtonPressed = false;
-    double t1 = (double)(p1.x() - margin_left)/(double)(width() - margin_left - 20) * t_max_v;
-    t_offset += t1;
-    t_max_v *= (p2.x() - p1.x()) / (double)(width() - margin_left - 20);
-
-    double U1 = (double)(-p2.y() + height() - margin_bottom) / (double)(height() - margin_bottom - 20) * U_max_v;
-    U_offset -= U1;
-    U_max_v *= (p2.y() - p1.y()) / (double)(height() - margin_bottom - 20);
-    repaint();
 }
 
 void Plot::mouseMoveEvent(QMouseEvent *e)
@@ -372,6 +398,17 @@ void Plot::mouseMoveEvent(QMouseEvent *e)
     if (e->buttons() & Qt::LeftButton)
     {
         p2 = e->pos();
+        repaint();
+    }
+
+    if (e->buttons() & Qt::MiddleButton)
+    {
+        double delta_t = (double)(e->pos().x() - p1.x())/(double)(width() - margin_left - 20) * t_max_v;
+        double delta_U = (double)(e->pos().y() - p1.y())/(double)(height() - margin_bottom - 20) * U_max_v;
+        t_offset = t_offset_move;
+        U_offset = U_offset_move;
+        t_offset -= delta_t;
+        U_offset -= delta_U;
         repaint();
     }
 }
