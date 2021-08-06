@@ -55,7 +55,6 @@ public:
     void setLineDataColor(size_t lineNumber, QColor _color);
 
 private:
-    Ui::Plot *ui;
     QPoint p1,p2;
     double t_offset_move;
     double U_offset_move;

@@ -7,21 +7,19 @@
 #include <iostream>
 
 #include "plot.h"
-#include "ui_plot.h"
 
 Plot::Plot(QWidget *parent) :
     QWidget(parent),
     t_offset(0),
     U_offset(0),
-    gridStep(20),
-    ui(new Ui::Plot)
+    gridStep(20)
 {
-    ui->setupUi(this);
+
 }
 
 Plot::~Plot()
 {
-    delete ui;
+
 }
 
 void Plot::drawBorder()

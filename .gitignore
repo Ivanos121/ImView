@@ -1,1 +1,5 @@
 build-*
+untitled.pro.user
+untitled.pro.user.*
+*.o
+moc_*
