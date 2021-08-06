@@ -23,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
     showMaximized();
 }
 
-void MainWindow::closeEvent (QCloseEvent *event)
+void MainWindow::closeEvent (QCloseEvent *)
 {
     ui->widget_3->stop();
 }

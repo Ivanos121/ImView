@@ -44,6 +44,8 @@ private:
     DataSourceBVASw dataSourceBVASw;
     QComboBox* combo = new QComboBox();
     QComboBox* combo2 = new QComboBox();
+
+    void addDataLines();
 };
 
 #endif // ELECTROMAGN_H

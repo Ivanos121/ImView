@@ -67,7 +67,7 @@ void ComboBoxModbusDelegate::setModelData(QWidget* editor, QAbstractItemModel* m
 }
 
 void ComboBoxModbusDelegate::updateEditorGeometry(QWidget* editor,
-    const QStyleOptionViewItem& option, const QModelIndex& index) const
+    const QStyleOptionViewItem& option, const QModelIndex&) const
 {
     editor->setGeometry(option.rect);
 }

@@ -1066,7 +1066,7 @@ void Kalibr::on_CreateFile_clicked()
          setDisabledCells();
 }
 
-void Kalibr::onDataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight)
+void Kalibr::onDataChanged(const QModelIndex&, const QModelIndex&)
 {
     QFileInfo fi(fileName);
     QString base = fi.baseName();

@@ -78,22 +78,35 @@ identf::identf(QWidget *parent) :
         }
     }
 
-
-    std::vector<QColor> lineColors(64);
-
-    for (int i = 0; i < 5; i++)
+    for (int i=0; i<5; i++)
     {
-        lineColors[i] = QColor(QRandomGenerator::global()->bounded(255),
-                               QRandomGenerator::global()->bounded(255),
-                               QRandomGenerator::global()->bounded(255));
-        ui->plot->addDataLine(lineColors[i], 0);
+        if (ui->tableWidget->item(i, 3) != 0)
+        {
+            ui->tableWidget->item(i, 3)->setTextAlignment(Qt::AlignCenter);
+        }
     }
 
-    for (int i = 0; i < 4; i++)
+    ui->lineEdit_8->setAlignment(Qt::AlignCenter);
+    ui->lineEdit_9->setAlignment(Qt::AlignCenter);
+    ui->lineEdit_10->setAlignment(Qt::AlignCenter);
+    ui->lineEdit_11->setAlignment(Qt::AlignCenter);
+    ui->lineEdit_12->setAlignment(Qt::AlignCenter);
+
+    dataLineColors.append(Qt::red);
+    dataLineColors.append(Qt::green);
+    dataLineColors.append(Qt::cyan);
+    dataLineColors.append(Qt::yellow);
+
+    for (int i = 0; i < dataLineColors.size(); i++)
     {
-        ui->tableWidget->item(i, 1)->setBackground(lineColors[i]);
+        ui->plot->addDataLine(dataLineColors[i], 0);
     }
 
+    for (int i = 0; i < dataLineColors.size(); i++)
+    {
+        ui->tableWidget->item(i, 1)->setBackground(dataLineColors[i]);
+    }
+    connect(ui->tableWidget, &QTableWidget::cellClicked,this, &identf::setcolorincell);
 }
 
 identf::~identf()
@@ -105,7 +118,6 @@ void identf::realtimeDataSlot()
 {
     // calculate two new data points:
     key = time->elapsed()/1000.0; // time elapsed since start of demo, in seconds
-    static double lastPointKey = 0;
 
     model.rasch(dataSource);
 
@@ -143,17 +155,35 @@ void identf::realtimeDataSlot()
         ui->plot->addPoint(0, key, model.R2);
         ui->plot->addPoint(1, key, model.L);
         ui->plot->addPoint(2, key, model.Lm);
+        ui->plot->addPoint(3, key, model.Lm);
 
    //  ui->label->setText(QString::number(key));
-        ui->lineEdit_8->setText(QString::number(model.Lm));
-        ui->lineEdit_9->setText(QString::number(model.L));
-        ui->lineEdit_10->setText(QString::number(model.L));
-        ui->lineEdit_11->setText(QString::number(model.R2));
+        ui->lineEdit_8->setText(QString::number(model.Lm,'f',3));
+        ui->lineEdit_9->setText(QString::number(model.L,'f',3));
+        ui->lineEdit_10->setText(QString::number(model.L,'f',3));
+        ui->lineEdit_11->setText(QString::number(model.R2,'f',3));
         ui->lineEdit_12->setText(QString::number(R1));
-      // rescale value (vertical) axis to fit the current data:
-        lastPointKey = key;
-    //}
-    // make key axis range scroll with the data (at a constant range size of 8):
+
+        if (ui->tableWidget->item(0, 3) != 0)
+        {
+            ui->tableWidget->item(0, 3)->setText(QString::number(model.R2,'f',3));
+        }
+
+        if (ui->tableWidget->item(1, 3) != 0)
+        {
+            ui->tableWidget->item(1, 3)->setText(QString::number(model.L,'f',3));
+        }
+
+        if (ui->tableWidget->item(2, 3) != 0)
+        {
+            ui->tableWidget->item(2, 3)->setText(QString::number(model.L,'f',3));
+        }
+
+        if (ui->tableWidget->item(3, 3) != 0)
+        {
+            ui->tableWidget->item(3, 3)->setText(QString::number(model.Lm,'f',3));
+        }
+
     }
 }
 
@@ -162,20 +192,13 @@ void identf::raschet_f()
     minR2 = DBL_MAX;
     maxR2 = -DBL_MAX;
     middleR2 = 0.0;
-
-//    ui->lineEdit->setText(QString("%1").arg(base.P_nom));
-//    ui->lineEdit_2->setText(QString("%1").arg(base.n_nom));
-//    ui->lineEdit_3->setText(QString("%1").arg(base.U_fnom));
-//    ui->lineEdit_4->setText(QString("%1").arg(base.cosf_nom));
-//    ui->lineEdit_5->setText(QString("%1").arg(base.kpd_nom));
-//    ui->lineEdit_6->setText(QString("%1").arg(base.muk));
-//    ui->lineEdit_7->setText(QString("%1").arg(base.n_0));
     dataSource->init();
     model.init(base.P_nom, base.n_nom, base.U_fnom, base.cosf_nom, base.kpd_nom, base.muk, base.n_0);
     ui->plot->clear();
-    ui->plot->addDataLine(Qt::red, 0.0);
-    ui->plot->addDataLine(Qt::green, 0.0);
-    ui->plot->addDataLine(Qt::cyan, 0.0);
+    for (int i = 0; i < dataLineColors.size(); i++)
+    {
+        ui->plot->addDataLine(dataLineColors[i], 0);
+    }
     time->start();
 }
 
@@ -197,6 +220,8 @@ void identf::setcolorincell(int row, int column)
         row = ui->tableWidget->currentRow();
         QColor chosenColor = QColorDialog::getColor(); //return the color chosen by user
         ui->tableWidget->item(row, column)->setBackground(chosenColor);
-        ui->plot->setLineDataColor(row, chosenColor);
+        ui->plot->setDataLineColor(row, chosenColor);
+        dataLineColors[row] = chosenColor;
+        repaint();
     }
 }

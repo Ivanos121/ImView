@@ -20,7 +20,7 @@ void Model::init(double P_nom, double n_nom, double U_fnom,
 {
     double dP_mxnom,dP_dob,dP_nom,dP_per2nom,dP_pernom,dP_post,dP_per1nom;
     double I_1nom,s_nom,w_0,w_nom,M_nom,M_0,M_elmnom,M_elmax,K_z,R10,bb,Z,R20,X_k,s_k,aa,M;
-    double I_0,X10,X20,dP_ct,L10,L20,Rm,sinf_0,Xm,Lm0;
+    double I_0,X10,dP_ct,L10,Rm,sinf_0,Xm,Lm0;
 
 
    //Чтение данных
@@ -52,9 +52,7 @@ void Model::init(double P_nom, double n_nom, double U_fnom,
    M=(2*M_elmax*(1+aa*s_k))/((s_nom/s_k)+(s_k/s_nom)+2*aa*s_k); //Электомагнитный момент при номинальном скольжении
    I_0=I_1nom*sqrt(1-pow(cosf_nom,2)); //ток холостого хода
    X10=0.5*X_k; //индуктивное сопротивление статора
-   X20=X10; //индуктивное сопротивление ротора
    L10=X10/314; //Индуктивность рассеяния фазы статора
-   L20=L10; //Индуктивность рассеяния фазы ротора
    dP_ct=dP_post-(dP_mxnom+dP_dob); //потери в стали
    Rm=dP_ct/(3*I_0*I_0); //Сопротивление потерь в стали
    sinf_0=sqrt(1-((R10+Rm)*I_0/U_fnom)*((R10+Rm)*I_0/U_fnom)); //??????

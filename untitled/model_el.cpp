@@ -41,7 +41,7 @@ void model_el::init_el(double _R1, double _R2, double _L1, double _L2, double _L
     Ia_prev = 0.0;
     Ib_prev = 0.0;
 
-    timer.start();
+    timer.start(100);
 }
 
 void model_el::rasch()

@@ -67,7 +67,7 @@ void ComboBoxErrorArchiveDelegate::setModelData(QWidget* editor, QAbstractItemMo
 }
 
 void ComboBoxErrorArchiveDelegate::updateEditorGeometry(QWidget* editor,
-    const QStyleOptionViewItem& option, const QModelIndex& index) const
+    const QStyleOptionViewItem& option, const QModelIndex&) const
 {
     editor->setGeometry(option.rect);
 }

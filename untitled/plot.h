@@ -52,7 +52,7 @@ public:
     void addPoint(size_t lineNumber, double t, double U);
     void addDataLine(QColor color, double lineOffset);
 
-    void setLineDataColor(size_t lineNumber, QColor _color);
+    void setDataLineColor(size_t lineNumber, QColor _color);
 
 private:
     QPoint p1,p2;

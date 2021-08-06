@@ -33,6 +33,9 @@ public:
     Modell *modell;
     DataSource *dataSource;
 
+private:
+    QVector<QColor> dataLineColors;
+
 private slots:
     void on_pushButton_clicked();
     void setcolorincell(int row, int column);

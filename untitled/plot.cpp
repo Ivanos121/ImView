@@ -166,7 +166,11 @@ void Plot::drawAxisText()
         if (!(((i - offset) <= margin_left) || ((i - offset) >= (width() -20))))
         {
            double t = (double)(i - offset - margin_left) / (double)(width() - margin_left - 20) * t_max_v + t_offset;
-           painter.drawText(QPoint(i -20 -offset,height()-15), QString("%1").arg(t, 0, 'f', 4));
+           if (fabs(t) < 0.0005)
+           {
+               t = 0.0;
+           }
+           painter.drawText(QPoint(i -20 -offset,height()-15), QString("%1").arg(t, 0, 'f', 3));
         }
     }
 
@@ -184,7 +188,11 @@ void Plot::drawAxisText()
         if (!(((j - offset) <= 20) || ((j - offset) >= (height() - margin_bottom))))
         {
             double U = (double)(-j + offset + height() - margin_bottom) / (double)(height() - margin_bottom - 20) * U_max_v - U_offset;
-            painter.drawText(QPoint(20,j+5-offset), QString("%1").arg(U, 0, 'f', 4));
+            if (fabs(U) < 0.0005)
+            {
+                U = 0.0;
+            }
+            painter.drawText(QPoint(20,j+5-offset), QString("%1").arg(U, 0, 'f', 3));
         }
     }
 
@@ -326,6 +334,7 @@ void Plot::wheelEvent(QWheelEvent *event)
 
 void Plot::mouseDoubleClickEvent(QMouseEvent *)
 {
+    setCursor(Qt::ArrowCursor);
     reset();
     repaint();
 }
@@ -348,6 +357,10 @@ void Plot::mousePressEvent(QMouseEvent *e)
         p2 = p1;
         leftButtonPressed = true;
     }
+    else
+    {
+        leftButtonPressed = false;
+    }
 
     if (e->buttons() & Qt::MiddleButton)
     {
@@ -356,9 +369,9 @@ void Plot::mousePressEvent(QMouseEvent *e)
     }
 }
 
-void Plot::mouseReleaseEvent(QMouseEvent *e)
+void Plot::mouseReleaseEvent(QMouseEvent *)
 {
-    if (e->buttons() & Qt::LeftButton)
+    if (leftButtonPressed)
     {
         if ((p1.x() == p2.x() || (p1.y() == p2.y())))
         {
@@ -386,9 +399,10 @@ void Plot::mouseReleaseEvent(QMouseEvent *e)
         double U1 = (double)(-p2.y() + height() - margin_bottom) / (double)(height() - margin_bottom - 20) * U_max_v;
         U_offset -= U1;
         U_max_v *= (p2.y() - p1.y()) / (double)(height() - margin_bottom - 20);
-        repaint();
     }
+    setCursor(Qt::ArrowCursor);
     leftButtonPressed = false;
+    repaint();
 }
 
 void Plot::mouseMoveEvent(QMouseEvent *e)
@@ -447,7 +461,7 @@ void Plot::addDataLine(QColor color, double lineOffset)
     dataLines.push_back(newLine);
 }
 
-void Plot::setLineDataColor(size_t lineNumber, QColor _color)
+void Plot::setDataLineColor(size_t lineNumber, QColor _color)
 {
     dataLines[lineNumber].color = _color;
     repaint();
