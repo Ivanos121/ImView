@@ -79,9 +79,7 @@ void Model::init(double P_nom, double n_nom, double U_fnom,
    Lm=Lm0;
    R2=R20;
    gd=50;
-   //gb=7950;
    gb=8000;
-   //gp=100;
    gp=100;
    ki=2;
    pn=2;

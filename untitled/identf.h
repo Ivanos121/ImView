@@ -10,6 +10,8 @@
 #include "modell.h"
 #include "plot.h"
 
+#include <QButtonGroup>
+
 namespace Ui {
 class identf;
 }
@@ -25,6 +27,8 @@ public:
 public slots:
     void realtimeDataSlot();
     void raschet_f();
+    void on_radioButton_2_toggled(bool checked);
+    void on_radioButton_toggled(bool checked);
 
 public:
     Ui::identf *ui;

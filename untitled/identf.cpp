@@ -107,6 +107,19 @@ identf::identf(QWidget *parent) :
         ui->tableWidget->item(i, 1)->setBackground(dataLineColors[i]);
     }
     connect(ui->tableWidget, &QTableWidget::cellClicked,this, &identf::setcolorincell);
+
+    ui->buttonGroup->setId(ui->radioButton,1);
+    ui->buttonGroup->setId(ui->radioButton_2,2);
+
+    if (ui->buttonGroup->checkedId() == 1)
+    {
+        ui->lineEdit_13->setEnabled(false);
+        ui->lineEdit_14->setEnabled(false);
+        ui->lineEdit_15->setEnabled(false);
+        ui->lineEdit_16->setEnabled(false);
+        ui->lineEdit_17->setEnabled(false);
+        ui->lineEdit_18->setEnabled(false);
+    }
 }
 
 identf::~identf()
@@ -205,6 +218,11 @@ void identf::raschet_f()
 
 void identf::on_pushButton_clicked()
 {
+    if(ui->lineEdit_12->text().isEmpty() || ui->lineEdit_11->text().isEmpty()
+            || ui->lineEdit_10->text().isEmpty() || ui->lineEdit_9->text().isEmpty() || ui->lineEdit_8->text().isEmpty())
+    {
+        QMessageBox::critical(this, "Ошибка!", "Заполните пустые поля");
+    }
     base.R1 = ui->lineEdit_12->text().toDouble();
     base.R2 = ui->lineEdit_11->text().toDouble();
     base.L1 = ui->lineEdit_10->text().toDouble();
@@ -223,5 +241,31 @@ void identf::setcolorincell(int row, int column)
         ui->plot->setDataLineColor(row, chosenColor);
         dataLineColors[row] = chosenColor;
         repaint();
+    }
+}
+
+void identf::on_radioButton_2_toggled(bool checked)
+{
+    if (checked)
+    {
+        ui->lineEdit_13->setEnabled(true);
+        ui->lineEdit_14->setEnabled(true);
+        ui->lineEdit_15->setEnabled(true);
+        ui->lineEdit_16->setEnabled(true);
+        ui->lineEdit_17->setEnabled(true);
+        ui->lineEdit_18->setEnabled(true);
+    }
+}
+
+void identf::on_radioButton_toggled(bool checked)
+{
+    if (checked)
+    {
+        ui->lineEdit_13->setEnabled(false);
+        ui->lineEdit_14->setEnabled(false);
+        ui->lineEdit_15->setEnabled(false);
+        ui->lineEdit_16->setEnabled(false);
+        ui->lineEdit_17->setEnabled(false);
+        ui->lineEdit_18->setEnabled(false);
     }
 }
