@@ -3,8 +3,9 @@
 
 #include <QWidget>
 #include <QTimer>
+#include "datasource.h"
 
-class DataSourceBVASw: public QObject
+class DataSourceBVASw: public DataSource
 {
     Q_OBJECT
 public:

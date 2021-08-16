@@ -31,6 +31,7 @@ SOURCES += \
     datas.cpp \
     datasource.cpp \
     datasource_el.cpp \
+    datasource_file.cpp \
     datasourcebvas.cpp \
     datasourcebvasw.cpp \
     device.cpp \
@@ -42,6 +43,7 @@ SOURCES += \
     mainwindow.cpp \
     model.cpp \
     model_el.cpp \
+    modelidentf.cpp \
     modell.cpp \
     nabludatel.cpp \
     nabludatel_part.cpp \
@@ -67,6 +69,7 @@ HEADERS += \
     datas.h \
     datasource.h \
     datasource_el.h \
+    datasource_file.h \
     datasourcebvas.h \
     datasourcebvasw.h \
     device.h \
@@ -77,6 +80,7 @@ HEADERS += \
     mainwindow.h \
     model.h \
     model_el.h \
+    modelidentf.h \
     modell.h \
     nabludatel.h \
     nabludatel_part.h \

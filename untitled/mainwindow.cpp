@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->widget_2->dataSource->setMainWindow(this);
+    ui->widget_2->setMainWindow(this);
     showMaximized();
 }
 

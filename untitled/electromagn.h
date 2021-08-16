@@ -6,7 +6,7 @@
 #include <QElapsedTimer>
 #include "nabludatel.h"
 #include "nabludatel_part.h"
-#include "datasource.h"
+#include "datasource_file.h"
 #include "datasourcebvas.h"
 #include "datasourcebvasw.h"
 #include "plot.h"

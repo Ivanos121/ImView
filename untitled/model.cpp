@@ -1,4 +1,5 @@
 #include "model.h"
+#include <QDebug>
 #include <fstream>
 #include <cmath>
 //double ua,X1,X2,X3,X4,b,ia,d,w,psia_nev,g,k,l,m,n,o,p,r,q,t,u,sigma,alfa;
@@ -59,6 +60,8 @@ void Model::init(double P_nom, double n_nom, double U_fnom,
    Xm=U_fnom*sinf_0/I_0-X10; //индуктивное сопротивление взаимоиндукции
    Lm0=Xm/314; //Индуктивность рассеяния взаимоиндукции
 
+   L10 = L10 + Lm0;
+
    //инициализация начальных значений
    sigma=L10-pow(Lm0,2)/L10;
    alfa = R20/L10;
@@ -97,19 +100,20 @@ void Model::rasch(DataSource *dataSource)
     //double Ts=0.000032;
     global_counter++;
    // const int s=0;
-    psia_nev = psia_nev+(-R1*dataSource->ia+dataSource->ua+kpsi*m)*kk*Ts;
-    g = g+(-R1*dataSource->ib+dataSource->ub+kpsi*l)*kk*Ts;
-    k = k+(-(p+R1*d)*k-dataSource->w*pn*l+b*psia_nev+d*dataSource->w*pn*g+d*dataSource->ua+ki*m+d*dataSource->w*pn*t)*kk*Ts;
-    l = l+(-(p+R1*d)*l+dataSource->w*pn*k+b*g-d*dataSource->w*pn*psia_nev+d*dataSource->ub+ki*n-d*dataSource->w*pn*o)*kk*Ts;
+    psia_nev = psia_nev+(-R1*dataSource->getIa()+dataSource->getUa()+kpsi*m)*kk*Ts;
+
+    g = g+(-R1*dataSource->getIb()+dataSource->getUb()+kpsi*l)*kk*Ts;
+    k = k+(-(p+R1*d)*k-dataSource->getW()*pn*l+b*psia_nev+d*dataSource->getW()*pn*g+d*dataSource->getUa()+ki*m+d*dataSource->getW()*pn*t)*kk*Ts;
+    l = l+(-(p+R1*d)*l+dataSource->getW()*pn*k+b*g-d*dataSource->getW()*pn*psia_nev+d*dataSource->getUb()+ki*n-d*dataSource->getW()*pn*o)*kk*Ts;
     b = b+gb*(psia_nev*m+g*n)*kk*Ts; // сильно
     d = d+gd*(u*m+q*n)*kk*Ts; // сильно
     p = p-gp*(k*m+l*n)*kk*Ts;
-    o = o+(-kpsi*m-gpsi*dataSource->w*pn*n)*kk*Ts; // слабо
-    t = t+(-kpsi*n+gpsi*dataSource->w*pn*m)*kk*Ts; // слабо
-    m = dataSource->ia-k;
-    n = dataSource->ib-l;
-    u = -R1*k+dataSource->w*pn*g+dataSource->w*pn*t+dataSource->ua;
-    q = -R1*l-dataSource->w*pn*psia_nev-dataSource->w*pn*o+dataSource->ub;
+    o = o+(-kpsi*m-gpsi*dataSource->getW()*pn*n)*kk*Ts; // слабо
+    t = t+(-kpsi*n+gpsi*dataSource->getW()*pn*m)*kk*Ts; // слабо
+    m = dataSource->getIa()-k;
+    n = dataSource->getIb()-l;
+    u = -R1*k+dataSource->getW()*pn*g+dataSource->getW()*pn*t+dataSource->getUa();
+    q = -R1*l-dataSource->getW()*pn*psia_nev-dataSource->getW()*pn*o+dataSource->getUb();
     sigma=1/d;
     alfa = b*sigma;
     L=(p*sigma)/alfa;

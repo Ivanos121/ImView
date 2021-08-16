@@ -33,9 +33,6 @@ datas::datas(QWidget *parent) :
     ui->lineEdit_7->setValidator(new QRegExpValidator(QRegExp("^[0-9]{1}.[0-9]{3}$")));
     ui->lineEdit_8->setValidator(new QRegExpValidator(QRegExp("^[0-9]{1}.[0-9]{3}$")));
     ui->lineEdit_9->setValidator(new QIntValidator(1,1000));
-
-    ui->buttonGroup->setId(ui->radioButton,1);
-    ui->buttonGroup->setId(ui->radioButton_2,2);
 }
 
 datas::~datas()
@@ -150,7 +147,7 @@ void datas::on_pushButton_clicked()
         base.muk = ui->lineEdit_8->text().toDouble();
         base.n_0 = ui->lineEdit_9->text().toDouble();
 
-        if (ui->buttonGroup->checkedId() == 2)
+        if (ui->buttonGroup->checkedButton() == ui->radioButton_2)
         {
             if (dataSourceFilename.isEmpty())
             {

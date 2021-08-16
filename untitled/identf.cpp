@@ -1,3 +1,5 @@
+#include "ui_mainwindow.h"
+#include "ui_datas.h"
 #include "identf.h"
 #include "ui_identf.h"
 #include "model.h"
@@ -37,8 +39,8 @@ identf::identf(QWidget *parent) :
     // setup a timer that repeatedly calls MainWindow::realtimeDataSlot:
    //connect(dataTimer, SIGNAL(timeout()), this, SLOT(realtimeDataSlot()));
 
-    dataSource = new DataSource();
-    connect(dataSource, &DataSource::ready, this, &identf::realtimeDataSlot);
+    //dataSource = new DataSource();
+    //connect(dataSource, &DataSource::ready, this, &identf::realtimeDataSlot);
 
     this->showMaximized();
 
@@ -205,6 +207,27 @@ void identf::raschet_f()
     minR2 = DBL_MAX;
     maxR2 = -DBL_MAX;
     middleR2 = 0.0;
+
+    auto uiDatasWindow = mainWindow->ui->widget->ui;
+
+    if(uiDatasWindow->radioButton_2->isChecked())
+    {
+        dataSource = new DataSource_file();
+        connect(dataSource, &DataSource::ready, this, &identf::realtimeDataSlot);
+    }
+
+    if(uiDatasWindow->radioButton->isChecked())
+    {
+        //dataSource = new DataSource();
+        //connect(dataSource, &DataSource::ready, this, &identf::realtimeDataSlot);
+    }
+
+    if(uiDatasWindow->radioButton_3->isChecked())
+    {
+        dataSource = new DataSource_el(base.P_nom, base.n_nom, base.U_fnom, base.cosf_nom, base.kpd_nom, base.muk, base.n_0);
+        connect(dataSource, &DataSource::ready, this, &identf::realtimeDataSlot);
+    }
+
     dataSource->init();
     model.init(base.P_nom, base.n_nom, base.U_fnom, base.cosf_nom, base.kpd_nom, base.muk, base.n_0);
     ui->plot->clear();
@@ -268,4 +291,9 @@ void identf::on_radioButton_toggled(bool checked)
         ui->lineEdit_17->setEnabled(false);
         ui->lineEdit_18->setEnabled(false);
     }
+}
+
+void identf::setMainWindow(MainWindow* wind)
+{
+    mainWindow = wind;
 }

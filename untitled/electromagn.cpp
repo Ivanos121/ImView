@@ -7,7 +7,7 @@
 #include <QLinearGradient>
 #include <QMessageBox>
 
-model_el model_el;
+Model_el Model_el;
 QPoint p1,p2;
 QCursor curs;
 
@@ -558,28 +558,28 @@ void electromagn::realtimeDataSlot()
         double b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16;
         for (int i = 0; i < 1000; i++)
         {
-            model_el.rasch();
+            Model_el.rasch();
         }
 
         //Считывание значения времени цикла Тц
 
         if(ui->tableWidget_3->item(1,1)!=0)
         {
-            model_el.Tc=ui->tableWidget_3->item(1,1)->text().toDouble();
+            Model_el.Tc=ui->tableWidget_3->item(1,1)->text().toDouble();
         }
 
         //Считывание значения времени работы tp
 
         if(ui->tableWidget_3->item(2,1)!=0)
         {
-            model_el.tp=ui->tableWidget_3->item(2,1)->text().toDouble();
+            Model_el.tp=ui->tableWidget_3->item(2,1)->text().toDouble();
         }
 
         //Считывание значения времени работы Mc
 
         if(ui->tableWidget_3->item(3,1)!=0)
         {
-            model_el.Mc_n=ui->tableWidget_3->item(3,1)->text().toDouble();
+            Model_el.Mc_n=ui->tableWidget_3->item(3,1)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды напряжения фазы А
@@ -694,20 +694,20 @@ void electromagn::realtimeDataSlot()
             b16=ui->tableWidget_3->item(28,1)->text().toDouble();
         }
 
-        key = model_el.t;
+        key = Model_el.t;
 
         //вывод на qcustomPlot графика напряжения Ua после преобразования 2 в 3
 
         if(ui->tableWidget_3->model()->index(5,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
-            ui->widget->addPoint(0, key, b4+b1*(model_el.u_dev_a));
+            ui->widget->addPoint(0, key, b4+b1*(Model_el.u_dev_a));
         }
 
         //вывод на qcustomPlot графика напряжения Ub после преобразования 2 в 3
 
         if(ui->tableWidget_3->model()->index(6,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
-            ui->widget->addPoint(1, key, b5+b2*(model_el.u_dev_b));
+            ui->widget->addPoint(1, key, b5+b2*(Model_el.u_dev_b));
 
         }
 
@@ -715,214 +715,214 @@ void electromagn::realtimeDataSlot()
 
         if(ui->tableWidget_3->model()->index(7,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
-            ui->widget->addPoint(2, key, b6+b3*(model_el.u_dev_c));
+            ui->widget->addPoint(2, key, b6+b3*(Model_el.u_dev_c));
         }
 
         //вывод на qcustomPlot графика напряжения Ia после преобразования 2 в 3
 
         if(ui->tableWidget_3->model()->index(8,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
-            ui->widget->addPoint(3, key, b10+b7*(model_el.i_dev_a));
+            ui->widget->addPoint(3, key, b10+b7*(Model_el.i_dev_a));
         }
 
         //вывод на qcustomPlot графика напряжения Ib после преобразования 2 в 3
 
         if(ui->tableWidget_3->model()->index(9,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
-            ui->widget->addPoint(4, key, b11+b8*(model_el.i_dev_b));
+            ui->widget->addPoint(4, key, b11+b8*(Model_el.i_dev_b));
         }
 
         //вывод на qcustomPlot графика напряжения Ic после преобразования 2 в 3
 
         if(ui->tableWidget_3->model()->index(10,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
-            ui->widget->addPoint(5, key, b12+b9*(model_el.i_dev_c));
+            ui->widget->addPoint(5, key, b12+b9*(Model_el.i_dev_c));
        }
 
         //вывод на qcustomPlot графика скорости omega
 
         if(ui->tableWidget_3->model()->index(11,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
-            ui->widget->addPoint(6, key, b15+b13*model_el.omega);
+            ui->widget->addPoint(6, key, b15+b13*Model_el.omega);
         }
 
         //вывод на qcustomPlot момента на валу M
 
         if(ui->tableWidget_3->model()->index(12,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
-            ui->widget->addPoint(7, key, b16+b14*model_el.M);
+            ui->widget->addPoint(7, key, b16+b14*Model_el.M);
         }
 
         //вывод на qcustomPlot момента Mс
 
         if(ui->tableWidget_3->model()->index(29,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
-            ui->widget->addPoint(8, key, model_el.Mc);
+            ui->widget->addPoint(8, key, Model_el.Mc);
         }
 
         //Занесение итоговых данных в таблицу
         if (ui->tableWidget->item(0, 1) != 0)
         {
-            ui->tableWidget->item(0, 1)->setText(QString("%1").arg(model_el.i_dev_a));
+            ui->tableWidget->item(0, 1)->setText(QString("%1").arg(Model_el.i_dev_a));
         }
 
         if (ui->tableWidget->item(1, 1) != 0)
         {
-            ui->tableWidget->item(1, 1)->setText(QString("%1").arg(model_el.u_dev_a));
+            ui->tableWidget->item(1, 1)->setText(QString("%1").arg(Model_el.u_dev_a));
         }
 
         if (ui->tableWidget->item(2, 1) != 0)
         {
-            ui->tableWidget->item(2, 1)->setText(QString("%1").arg(model_el.p_akt_a));
+            ui->tableWidget->item(2, 1)->setText(QString("%1").arg(Model_el.p_akt_a));
         }
 
         if (ui->tableWidget->item(3, 1) != 0)
         {
-            ui->tableWidget->item(3, 1)->setText(QString("%1").arg(model_el.p_reakt_a));
+            ui->tableWidget->item(3, 1)->setText(QString("%1").arg(Model_el.p_reakt_a));
         }
 
         if (ui->tableWidget->item(4, 1) != 0)
         {
-            ui->tableWidget->item(4, 1)->setText(QString("%1").arg(model_el.p_poln_a));
+            ui->tableWidget->item(4, 1)->setText(QString("%1").arg(Model_el.p_poln_a));
         }
 
         if (ui->tableWidget->item(5, 1) != 0)
         {
-            ui->tableWidget->item(5, 1)->setText(QString("%1").arg(model_el.cos_f_a));
+            ui->tableWidget->item(5, 1)->setText(QString("%1").arg(Model_el.cos_f_a));
         }
 
         if (ui->tableWidget->item(6, 1) != 0)
         {
-            ui->tableWidget->item(6, 1)->setText(QString("%1").arg(model_el.i_dev_b));
+            ui->tableWidget->item(6, 1)->setText(QString("%1").arg(Model_el.i_dev_b));
         }
 
         if (ui->tableWidget->item(7, 1) != 0)
         {
-            ui->tableWidget->item(7, 1)->setText(QString("%1").arg(model_el.u_dev_b));
+            ui->tableWidget->item(7, 1)->setText(QString("%1").arg(Model_el.u_dev_b));
         }
 
         if (ui->tableWidget->item(8, 1) != 0)
         {
-            ui->tableWidget->item(8, 1)->setText(QString("%1").arg(model_el.p_akt_b));
+            ui->tableWidget->item(8, 1)->setText(QString("%1").arg(Model_el.p_akt_b));
         }
 
         if (ui->tableWidget->item(9, 1) != 0)
         {
-            ui->tableWidget->item(9, 1)->setText(QString("%1").arg(model_el.p_reakt_b));
+            ui->tableWidget->item(9, 1)->setText(QString("%1").arg(Model_el.p_reakt_b));
         }
 
         if (ui->tableWidget->item(10, 1) != 0)
         {
-            ui->tableWidget->item(10, 1)->setText(QString("%1").arg(model_el.p_poln_b));
+            ui->tableWidget->item(10, 1)->setText(QString("%1").arg(Model_el.p_poln_b));
         }
 
         if (ui->tableWidget->item(11, 1) != 0)
         {
-            ui->tableWidget->item(11, 1)->setText(QString("%1").arg(model_el.cos_f_b));
+            ui->tableWidget->item(11, 1)->setText(QString("%1").arg(Model_el.cos_f_b));
         }
 
         if (ui->tableWidget->item(12, 1) != 0)
         {
-            ui->tableWidget->item(12, 1)->setText(QString("%1").arg(model_el.i_dev_c));
+            ui->tableWidget->item(12, 1)->setText(QString("%1").arg(Model_el.i_dev_c));
         }
 
         if (ui->tableWidget->item(13, 1) != 0)
         {
-            ui->tableWidget->item(13, 1)->setText(QString("%1").arg(model_el.u_dev_c));
+            ui->tableWidget->item(13, 1)->setText(QString("%1").arg(Model_el.u_dev_c));
         }
 
         if (ui->tableWidget->item(14, 1) != 0)
         {
-            ui->tableWidget->item(14, 1)->setText(QString("%1").arg(model_el.p_akt_c));
+            ui->tableWidget->item(14, 1)->setText(QString("%1").arg(Model_el.p_akt_c));
         }
 
         if (ui->tableWidget->item(15, 1) != 0)
         {
-            ui->tableWidget->item(15, 1)->setText(QString("%1").arg(model_el.p_reakt_c));
+            ui->tableWidget->item(15, 1)->setText(QString("%1").arg(Model_el.p_reakt_c));
         }
 
         if (ui->tableWidget->item(16, 1) != 0)
         {
-            ui->tableWidget->item(16, 1)->setText(QString("%1").arg(model_el.p_poln_c));
+            ui->tableWidget->item(16, 1)->setText(QString("%1").arg(Model_el.p_poln_c));
         }
 
         if (ui->tableWidget->item(17, 1) != 0)
         {
-            ui->tableWidget->item(17, 1)->setText(QString("%1").arg(model_el.cos_f_c));
+            ui->tableWidget->item(17, 1)->setText(QString("%1").arg(Model_el.cos_f_c));
         }
 
         if (ui->tableWidget->item(18, 1) != 0)
         {
-            ui->tableWidget->item(18, 1)->setText(QString("%1").arg(model_el.p_akt));
+            ui->tableWidget->item(18, 1)->setText(QString("%1").arg(Model_el.p_akt));
         }
 
         if (ui->tableWidget->item(19, 1) != 0)
         {
-            ui->tableWidget->item(19, 1)->setText(QString("%1").arg(model_el.p_reakt));
+            ui->tableWidget->item(19, 1)->setText(QString("%1").arg(Model_el.p_reakt));
         }
 
         if (ui->tableWidget->item(20, 1) != 0)
         {
-            ui->tableWidget->item(20, 1)->setText(QString("%1").arg(model_el.p_poln));
+            ui->tableWidget->item(20, 1)->setText(QString("%1").arg(Model_el.p_poln));
         }
 
         if (ui->tableWidget->item(21, 1) != 0)
         {
-            ui->tableWidget->item(21, 1)->setText(QString("%1").arg(model_el.cos_f));
+            ui->tableWidget->item(21, 1)->setText(QString("%1").arg(Model_el.cos_f));
         }
 
         if (ui->tableWidget->item(22, 1) != 0)
         {
-            ui->tableWidget->item(22, 1)->setText(QString("%1").arg(model_el.omega));
+            ui->tableWidget->item(22, 1)->setText(QString("%1").arg(Model_el.omega));
         }
         if (ui->tableWidget->item(23, 1) != 0)
         {
-            ui->tableWidget->item(23, 1)->setText(QString("%1").arg(model_el.M));
+            ui->tableWidget->item(23, 1)->setText(QString("%1").arg(Model_el.M));
         }
 
         if (ui->tableWidget_4->item(0, 1) != 0)
         {
-            ui->tableWidget_4->item(0, 1)->setText(QString("%1").arg(model_el.P1));
+            ui->tableWidget_4->item(0, 1)->setText(QString("%1").arg(Model_el.P1));
         }
 
         if (ui->tableWidget_4->item(1, 1) != 0)
         {
-            ui->tableWidget_4->item(1, 1)->setText(QString("%1").arg(model_el.dPel1));
+            ui->tableWidget_4->item(1, 1)->setText(QString("%1").arg(Model_el.dPel1));
         }
 
         if (ui->tableWidget_4->item(2, 1) != 0)
         {
-            ui->tableWidget_4->item(2, 1)->setText(QString("%1").arg(model_el.dPct));
+            ui->tableWidget_4->item(2, 1)->setText(QString("%1").arg(Model_el.dPct));
         }
 
         if (ui->tableWidget_4->item(3, 1) != 0)
         {
-            ui->tableWidget_4->item(3, 1)->setText(QString("%1").arg(model_el.dPel2));
+            ui->tableWidget_4->item(3, 1)->setText(QString("%1").arg(Model_el.dPel2));
         }
 
         if (ui->tableWidget_4->item(4, 1) != 0)
         {
-            ui->tableWidget_4->item(4, 1)->setText(QString("%1").arg(model_el.dPdob));
+            ui->tableWidget_4->item(4, 1)->setText(QString("%1").arg(Model_el.dPdob));
         }
 
         if (ui->tableWidget_4->item(5, 1) != 0)
         {
-            ui->tableWidget_4->item(5, 1)->setText(QString("%1").arg(model_el.dPmech));
+            ui->tableWidget_4->item(5, 1)->setText(QString("%1").arg(Model_el.dPmech));
         }
 
         if (ui->tableWidget_4->item(6, 1) != 0)
         {
-            ui->tableWidget_4->item(6, 1)->setText(QString("%1").arg(model_el.P2));
+            ui->tableWidget_4->item(6, 1)->setText(QString("%1").arg(Model_el.P2));
         }
 
         if (ui->tableWidget_4->item(7, 1) != 0)
         {
-            ui->tableWidget_4->item(7, 1)->setText(QString("%1").arg(model_el.kpd));
+            ui->tableWidget_4->item(7, 1)->setText(QString("%1").arg(Model_el.kpd));
         }
 
         if (ui->tableWidget_4->item(8, 1) != 0)
         {
-            ui->tableWidget_4->item(8, 1)->setText(QString("%1").arg(model_el.cos_f));
+            ui->tableWidget_4->item(8, 1)->setText(QString("%1").arg(Model_el.cos_f));
         }
     }
 }
@@ -966,11 +966,11 @@ void electromagn::raschet_el()
     if(ui->radioButton_3->isChecked())
     {
         //Модель двигателя
-        model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, combo->currentIndex(),
+        Model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, combo->currentIndex(),
                          ui->tableWidget_3->model()->index(3,1).data().toDouble(),
                          ui->tableWidget_3->model()->index(2,1).data().toDouble(),
                          ui->tableWidget_3->model()->index(4,1).data().toDouble());
-                         connect(&model_el, &model_el::ready, this, &electromagn::realtimeDataSlot);
+                         connect(&Model_el, &Model_el::ready, this, &electromagn::realtimeDataSlot);
 
     }
     ui->widget->clear();
@@ -984,7 +984,7 @@ void electromagn::stop()
 
     disconnect(&dataSourceBVAS, &DataSourceBVAS::ready, this, &electromagn::realtimeDataSlot);
 
-    disconnect(&model_el, &model_el::ready, this, &electromagn::realtimeDataSlot);
+    disconnect(&Model_el, &Model_el::ready, this, &electromagn::realtimeDataSlot);
 
     if(ui->radioButton->isChecked())
     {
@@ -998,7 +998,7 @@ void electromagn::stop()
 
     if(ui->radioButton_3->isChecked())
     {
-        model_el.stop();
+        Model_el.stop();
     }
 
 }

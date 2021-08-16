@@ -4,12 +4,12 @@
 #include <QTimer>
 #include <QWidget>
 #include <QThread>
-
+#include "datasource.h"
 #include "device.h"
 
 class BVASThread;
 
-class DataSourceBVAS: public QObject
+class DataSourceBVAS: public DataSource
 {
     Q_OBJECT
 public:
@@ -47,9 +47,6 @@ public:
 
 public slots:
     void read();
-
-signals:
-    void ready();
 
 };
 

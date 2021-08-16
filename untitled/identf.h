@@ -6,9 +6,12 @@
 #include <QElapsedTimer>
 
 #include "datasource.h"
+#include "datasource_file.h"
+#include "datasource_el.h"
 #include "model.h"
 #include "modell.h"
 #include "plot.h"
+#include "mainwindow.h"
 
 #include <QButtonGroup>
 
@@ -37,8 +40,11 @@ public:
     Modell *modell;
     DataSource *dataSource;
 
+    void setMainWindow(MainWindow* wind);
+
 private:
     QVector<QColor> dataLineColors;
+    MainWindow *mainWindow;
 
 private slots:
     void on_pushButton_clicked();
