@@ -29,11 +29,11 @@ public:
 
 public slots:
     void realtimeDataSlot();
-    void raschet_el();
+    void raschet_el(); 
 
 private slots:
     void on_pushButton_clicked();
-    //void on_tableWidget_2_cellChanged(int row, int column);
+    void setcolorincell(int row, int column);
 
 private:
     Ui::electromagn *ui;
@@ -44,6 +44,7 @@ private:
     DataSourceBVASw dataSourceBVASw;
     QComboBox* combo = new QComboBox();
     QComboBox* combo2 = new QComboBox();
+    QVector<QColor> dataLineColors;
 
     void addDataLines();
 };
