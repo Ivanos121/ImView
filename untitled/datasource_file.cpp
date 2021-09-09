@@ -22,15 +22,16 @@ void DataSource_file::init()
         QMessageBox::critical(nullptr, "Ошибка!", "Не удалось открыть файл!");
         return;
     }
-    double X1_1;
-    fin >> X1_1>> ua >> ub >>ia >> ib >> w;
-    dataTimer->start();
+    dataTimer->start(1000);
 }
 
 void DataSource_file::read()
 {
-    double X1_1;
-    fin >> X1_1 >> ua >> ub >>ia >> ib >> w;
+    for (int i = 0; i < BUF_SIZE; i++)
+    {
+        double X1_1;
+        fin >> X1_1 >> ua[i] >> ub[i] >> uc[i] >>ia[i] >> ib[i] >> ic[i] >> w[i];
+    }
 
     emit ready();
 }

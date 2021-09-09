@@ -1,6 +1,7 @@
 #include "nabludatel.h"
 #include "base.h"
 #include "math.h"
+#include "device.h"
 
 Nabludatel::Nabludatel()
 {
@@ -79,7 +80,7 @@ void Nabludatel::init(double _R1, double _R2, double _L1, double _L2, double _Lm
     psi2b_prev=0.0;
 }
 
-void Nabludatel::rasch(DataSourceBVAS *dataSourceBVAS)
+void Nabludatel::rasch(DataSource *dataSource)
 {
     p_akt_a = 0.0;
     p_akt_b = 0.0;
@@ -116,13 +117,13 @@ void Nabludatel::rasch(DataSourceBVAS *dataSourceBVAS)
 
     for (int i = 0; i < BUF_SIZE; i++)
     {
-        Ua_zero += dataSourceBVAS->Ua[i];
-        Ub_zero += dataSourceBVAS->Ub[i];
-        Uc_zero += dataSourceBVAS->Uc[i];
+        Ua_zero += dataSource->getUa()[i];
+        Ub_zero += dataSource->getUb()[i];
+        Uc_zero += dataSource->getUc()[i];
 
-        Ia_zero += dataSourceBVAS->Ia[i];
-        Ib_zero += dataSourceBVAS->Ib[i];
-        Ic_zero += dataSourceBVAS->Ic[i];
+        Ia_zero += dataSource->getIa()[i];
+        Ib_zero += dataSource->getIb()[i];
+        Ic_zero += dataSource->getIc()[i];
     }
 
     Ua_zero /= BUF_SIZE;
@@ -135,13 +136,13 @@ void Nabludatel::rasch(DataSourceBVAS *dataSourceBVAS)
 
     for (int i = 0; i < BUF_SIZE; i++)
     {
-    Ia = dataSourceBVAS->Ib[i];
-    Ib = dataSourceBVAS->Ia[i];
-    Ic = dataSourceBVAS->Ic[i];
+    Ia = dataSource->getIb()[i];
+    Ib = dataSource->getIa()[i];
+    Ic = dataSource->getIc()[i];
 
-    Ua = dataSourceBVAS->Ub[i];
-    Ub = dataSourceBVAS->Ua[i];
-    Uc = dataSourceBVAS->Uc[i];
+    Ua = dataSource->getUb()[i];
+    Ub = dataSource->getUa()[i];
+    Uc = dataSource->getUc()[i];
 
     iaizm=sqrt(2.0/3.0)*(Ia-(Ib+Ic)/2.0);
     iaizm = iaCorrector.apply(iaizm,Kint,1.0,2.0,8.0,Ts);
@@ -213,15 +214,15 @@ void Nabludatel::rasch(DataSourceBVAS *dataSourceBVAS)
     psi2a_prev=psi2a;
     psi2b_prev=psi2b;
 
-        p_akt_a += dataSourceBVAS->Ua[i]*dataSourceBVAS->Ia[i];
-        p_akt_b += dataSourceBVAS->Ub[i]*dataSourceBVAS->Ib[i];
-        p_akt_c += dataSourceBVAS->Uc[i]*dataSourceBVAS->Ic[i];
-        i_dev_a += pow(dataSourceBVAS->Ia[i],2);
-        i_dev_b += pow(dataSourceBVAS->Ib[i],2);
-        i_dev_c += pow(dataSourceBVAS->Ic[i],2);
-        u_dev_a += pow(dataSourceBVAS->Ua[i],2);
-        u_dev_b += pow(dataSourceBVAS->Ub[i],2);
-        u_dev_c += pow(dataSourceBVAS->Uc[i],2);
+        p_akt_a += dataSource->getUa()[i]*dataSource->getIa()[i];
+        p_akt_b += dataSource->getUb()[i]*dataSource->getIb()[i];
+        p_akt_c += dataSource->getUc()[i]*dataSource->getIc()[i];
+        i_dev_a += pow(dataSource->getIa()[i],2);
+        i_dev_b += pow(dataSource->getIb()[i],2);
+        i_dev_c += pow(dataSource->getIc()[i],2);
+        u_dev_a += pow(dataSource->getUa()[i],2);
+        u_dev_b += pow(dataSource->getUb()[i],2);
+        u_dev_c += pow(dataSource->getUc()[i],2);
 
     }
 

@@ -52,17 +52,22 @@ DataSource_el::DataSource_el(double P_nom, double n_nom, double U_fnom,
 void DataSource_el::init()
 {
     model->init(R10, R20, L10, L10, Lm0);
-    dataTimer2->start();
+    dataTimer2->start(1000);
 }
 
 void DataSource_el::read()
 {
-    model->rasch();
-    ua = model->Ualpha;
-    ub = model->Ubeta;
-    ia = model->Ialpha;
-    ib = model->Ibeta;
-    w = model->omega;
+    for (int i = 0; i < BUF_SIZE; i++)
+    {
+        model->rasch();
+        ua[i] = model->Ualpha;
+        ub[i] = -1.0/2.0 * model->Ualpha + sqrt(3)/2.0*model->Ubeta;
+        uc[i] = -1.0/2.0 * model->Ualpha - sqrt(3)/2.0*model->Ubeta;
+        ia[i] = model->Ialpha;
+        ib[i] = -1.0/2.0 * model->Ialpha + sqrt(3)/2.0*model->Ibeta;
+        ic[i] = -1.0/2.0 * model->Ialpha - sqrt(3)/2.0*model->Ibeta;
+        w[i] = model->omega;
+    }
     emit ready();
 }
 

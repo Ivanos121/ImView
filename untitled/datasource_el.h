@@ -19,14 +19,22 @@ public:
 
     QTimer *dataTimer2;
 
-    double getUa() {return ua;};
-    double getUb() {return ub;};
-    double getIa() {return ia;};
-    double getIb() {return ib;};
-    double getW() {return w;};
+    double* getUa() {return ua;};
+    double* getUb() {return ub;};
+    double* getUc() {return uc;};
+    double* getIa() {return ia;};
+    double* getIb() {return ib;};
+    double* getIc() {return ic;};
+    double* getW() {return w;};
 
 private:
-    double ua,ub,ia,ib,w;
+    double ua[BUF_SIZE];
+    double ub[BUF_SIZE];
+    double uc[BUF_SIZE];
+    double ia[BUF_SIZE];
+    double ib[BUF_SIZE];
+    double ic[BUF_SIZE];
+    double w[BUF_SIZE];
 
     double R10, R20, L10, Lm0;
     ModelIdentf *model;

@@ -1,7 +1,7 @@
 #ifndef NABLUDATEL_H
 #define NABLUDATEL_H
 
-#include "datasourcebvas.h"
+#include "datasource.h"
 
 class ZeroCorrector
 {
@@ -24,7 +24,7 @@ public:
     psi2a,psi2a_prev,psi2b,psi2b_prev,ia_prev,ib_prev;
     Nabludatel();
     void init(double _R1, double _R2, double _L1, double _L2, double _Lm);
-    void rasch(DataSourceBVAS *dataSourceBVAS);
+    void rasch(DataSource *dataSourceBVAS);
 
     ZeroCorrector uaCorrector;
     ZeroCorrector ubCorrector;

@@ -801,19 +801,19 @@ void Kalibr::bvasSlot()
 
     for (int i=0; i<BUF_SIZE; i++)
     {
-        i_dev_a += pow(dataSourceBVAS.Ia[i],2);
-        i_dev_b += pow(dataSourceBVAS.Ib[i],2);
-        i_dev_c += pow(dataSourceBVAS.Ic[i],2);
-        u_dev_a += pow(dataSourceBVAS.Ua[i],2);
-        u_dev_b += pow(dataSourceBVAS.Ub[i],2);
-        u_dev_c += pow(dataSourceBVAS.Uc[i],2);
+        i_dev_a += pow(dataSourceBVAS.getIa()[i],2);
+        i_dev_b += pow(dataSourceBVAS.getIb()[i],2);
+        i_dev_c += pow(dataSourceBVAS.getIc()[i],2);
+        u_dev_a += pow(dataSourceBVAS.getUa()[i],2);
+        u_dev_b += pow(dataSourceBVAS.getUb()[i],2);
+        u_dev_c += pow(dataSourceBVAS.getUc()[i],2);
 
-        i_zero_a += dataSourceBVAS.Ia[i];
-        i_zero_b += dataSourceBVAS.Ib[i];
-        i_zero_c += dataSourceBVAS.Ic[i];
-        u_zero_a += dataSourceBVAS.Ua[i];
-        u_zero_b += dataSourceBVAS.Ub[i];
-        u_zero_c += dataSourceBVAS.Uc[i];
+        i_zero_a += dataSourceBVAS.getIa()[i];
+        i_zero_b += dataSourceBVAS.getIb()[i];
+        i_zero_c += dataSourceBVAS.getIc()[i];
+        u_zero_a += dataSourceBVAS.getUa()[i];
+        u_zero_b += dataSourceBVAS.getUb()[i];
+        u_zero_c += dataSourceBVAS.getUc()[i];
     }
 
     //Расчет действующих значений токов

@@ -2,6 +2,7 @@
 #include <QDebug>
 #include <fstream>
 #include <cmath>
+#include "device.h"
 //double ua,X1,X2,X3,X4,b,ia,d,w,psia_nev,g,k,l,m,n,o,p,r,q,t,u,sigma,alfa;
 double X1,X2,X3,X4,b,d,psia_nev,g,k,l,m,n,o,p,q,t,u,sigma,alfa;
 //double ua_1,X1_1,X2_1,X3_1,X4_1,X5_1,b_1,ub_1,c_1,d_1,e_1,f_1,g_1,k_1,l_1,
@@ -9,7 +10,6 @@ double X1,X2,X3,X4,b,d,psia_nev,g,k,l,m,n,o,p,q,t,u,sigma,alfa;
 double R2_1,L_1,Lm_1;
 double kpsi, pn, ki, R1,kk, Ts, gpsi, gd, gb, gp;
 
-int global_counter = 0;
 
 Model::Model()
 {
@@ -94,32 +94,32 @@ void Model::init(double P_nom, double n_nom, double U_fnom,
 
 void Model::rasch(DataSource *dataSource)
 {
-    //printf("a=%f %f %f %f\n", dataSource->ua, dataSource->ia, dataSource->r, dataSource->w);
-    //printf("%2.5f %2.5f %2.5f %2.5f %2.5f\n", dataSource->ua,dataSource->ub,dataSource->ia,dataSource->ib,dataSource->w);
-    double Ts=0.0001;
-    //double Ts=0.000032;
-    global_counter++;
-   // const int s=0;
-    psia_nev = psia_nev+(-R1*dataSource->getIa()+dataSource->getUa()+kpsi*m)*kk*Ts;
+    for (int i = 0; i < BUF_SIZE; i++)
+    {
+        double Ts=0.0001;
+        double u_alfa = dataSource->getUa()[i];
+        double u_beta = 1.0/sqrt(3)*(dataSource->getUa()[i] + 2*dataSource->getUb()[i]);
+        double i_alfa = dataSource->getIa()[i];
+        double i_beta = 1.0/sqrt(3)*(dataSource->getIa()[i] + 2*dataSource->getIb()[i]);
 
-    g = g+(-R1*dataSource->getIb()+dataSource->getUb()+kpsi*l)*kk*Ts;
-    k = k+(-(p+R1*d)*k-dataSource->getW()*pn*l+b*psia_nev+d*dataSource->getW()*pn*g+d*dataSource->getUa()+ki*m+d*dataSource->getW()*pn*t)*kk*Ts;
-    l = l+(-(p+R1*d)*l+dataSource->getW()*pn*k+b*g-d*dataSource->getW()*pn*psia_nev+d*dataSource->getUb()+ki*n-d*dataSource->getW()*pn*o)*kk*Ts;
-    b = b+gb*(psia_nev*m+g*n)*kk*Ts; // сильно
-    d = d+gd*(u*m+q*n)*kk*Ts; // сильно
-    p = p-gp*(k*m+l*n)*kk*Ts;
-    o = o+(-kpsi*m-gpsi*dataSource->getW()*pn*n)*kk*Ts; // слабо
-    t = t+(-kpsi*n+gpsi*dataSource->getW()*pn*m)*kk*Ts; // слабо
-    m = dataSource->getIa()-k;
-    n = dataSource->getIb()-l;
-    u = -R1*k+dataSource->getW()*pn*g+dataSource->getW()*pn*t+dataSource->getUa();
-    q = -R1*l-dataSource->getW()*pn*psia_nev-dataSource->getW()*pn*o+dataSource->getUb();
-    sigma=1/d;
-    alfa = b*sigma;
-    L=(p*sigma)/alfa;
-    Lm=sqrt(L*(L-sigma));
-    R2=alfa*L;
+        psia_nev = psia_nev+(-R1*i_alfa+u_alfa+kpsi*m)*kk*Ts;
 
-    //Чтение данных
-    //dataSource->read();
+        g = g+(-R1*i_beta+u_beta+kpsi*l)*kk*Ts;
+        k = k+(-(p+R1*d)*k-dataSource->getW()[i]*pn*l+b*psia_nev+d*dataSource->getW()[i]*pn*g+d*u_alfa+ki*m+d*dataSource->getW()[i]*pn*t)*kk*Ts;
+        l = l+(-(p+R1*d)*l+dataSource->getW()[i]*pn*k+b*g-d*dataSource->getW()[i]*pn*psia_nev+d*u_beta+ki*n-d*dataSource->getW()[i]*pn*o)*kk*Ts;
+        b = b+gb*(psia_nev*m+g*n)*kk*Ts; // сильно
+        d = d+gd*(u*m+q*n)*kk*Ts; // сильно
+        p = p-gp*(k*m+l*n)*kk*Ts;
+        o = o+(-kpsi*m-gpsi*dataSource->getW()[i]*pn*n)*kk*Ts; // слабо
+        t = t+(-kpsi*n+gpsi*dataSource->getW()[i]*pn*m)*kk*Ts; // слабо
+        m = i_alfa - k;
+        n = i_beta - l;
+        u = -R1*k+dataSource->getW()[i]*pn*g+dataSource->getW()[i]*pn*t+u_alfa;
+        q = -R1*l-dataSource->getW()[i]*pn*psia_nev-dataSource->getW()[i]*pn*o+u_beta;
+        sigma=1/d;
+        alfa = b*sigma;
+        L=(p*sigma)/alfa;
+        Lm=sqrt(L*(L-sigma));
+        R2=alfa*L;
+    }
 }

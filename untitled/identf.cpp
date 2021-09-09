@@ -136,7 +136,7 @@ void identf::realtimeDataSlot()
 
     model.rasch(dataSource);
 
-       if (model.R2 > maxR2)
+    if (model.R2 > maxR2)
            {
                maxR2 = model.R2;
            }
@@ -149,13 +149,13 @@ void identf::realtimeDataSlot()
            middleR2 += model.R2;
            count++;
 
-   if (count == 10000)
+   if (count == 3)
    {
        middleR2 /= count;
 
        count = 0;
        //printf("%f\n", fabs((maxR2 - minR2)/middleR2));
-       if (fabs((maxR2 - minR2)/middleR2) < 0.06)
+       if (fabs((maxR2 - minR2)/middleR2) < 0.006)
        {
             dataSource->stop();
             QMessageBox::information(this, tr("Сообщение"), tr("Расчет окончен!"));
@@ -165,14 +165,14 @@ void identf::realtimeDataSlot()
        middleR2 = 0.0;
    }
 
-   if (count % 100 == 0)
+   //if (count % 100 == 0)
+   if (true)
    {
         ui->plot->addPoint(0, key, model.R2);
         ui->plot->addPoint(1, key, model.L);
-        ui->plot->addPoint(2, key, model.Lm);
+        ui->plot->addPoint(2, key, model.L);
         ui->plot->addPoint(3, key, model.Lm);
 
-   //  ui->label->setText(QString::number(key));
         ui->lineEdit_8->setText(QString::number(model.Lm,'f',3));
         ui->lineEdit_9->setText(QString::number(model.L,'f',3));
         ui->lineEdit_10->setText(QString::number(model.L,'f',3));
@@ -235,6 +235,18 @@ void identf::raschet_f()
     {
         ui->plot->addDataLine(dataLineColors[i], 0);
     }
+
+    ui->plot->addPoint(0, 0, model.R2);
+    ui->plot->addPoint(1, 0, model.L);
+    ui->plot->addPoint(2, 0, model.L);
+    ui->plot->addPoint(3, 0, model.Lm);
+
+    ui->lineEdit_8->setText(QString::number(model.Lm,'f',3));
+    ui->lineEdit_9->setText(QString::number(model.L,'f',3));
+    ui->lineEdit_10->setText(QString::number(model.L,'f',3));
+    ui->lineEdit_11->setText(QString::number(model.R2,'f',3));
+    ui->lineEdit_12->setText(QString::number(R1));
+
     time->start();
 }
 
