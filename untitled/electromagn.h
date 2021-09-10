@@ -8,7 +8,7 @@
 #include "nabludatel_part.h"
 #include "datasource_file.h"
 #include "datasourcebvas.h"
-#include "datasourcebvasw.h"
+#include "datasource.h"
 #include "plot.h"
 
 namespace Ui {
@@ -35,13 +35,14 @@ private slots:
     void on_pushButton_clicked();
     void setcolorincell(int row, int column);
 
+    void on_pushButton_2_clicked();
+
 private:
     Ui::electromagn *ui;
     QElapsedTimer *time;
     Nabludatel nabludatel;
     Nabludatel_part nabludatel_part;
-    DataSourceBVAS dataSourceBVAS;
-    DataSourceBVASw dataSourceBVASw;
+    DataSource* dataSource;
     QComboBox* combo = new QComboBox();
     QComboBox* combo2 = new QComboBox();
     QVector<QColor> dataLineColors;

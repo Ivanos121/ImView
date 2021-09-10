@@ -234,7 +234,7 @@ void Nabludatel::rasch(DataSource *dataSource)
     double w0 = 2.0*M_PI*50.0/pn;
     double s = (w0 - w_sr)/w0;
 
-    if (s > 1)
+    /*if (s > 1)
     {
         R2 = R2p;
         L2 = Lkp + Lm - (L1 - Lm);
@@ -254,9 +254,9 @@ void Nabludatel::rasch(DataSource *dataSource)
         double Lk = Lk0 / (k1 + k*s);
 
         L2 = Lm + Lk - (L1 - Lm);
-    }
+    }*/
 
-    printf("R2 = %g L2 = %g s=%g\n", R2, L2,s);
+    //printf("R2 = %g L2 = %g s=%g\n", R2, L2,s);
 
     sigma=L1-((Lm*Lm)/(L2));
     alpha=R2/L2;

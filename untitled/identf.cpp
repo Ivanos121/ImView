@@ -154,7 +154,7 @@ void identf::realtimeDataSlot()
        middleR2 /= count;
 
        count = 0;
-       //printf("%f\n", fabs((maxR2 - minR2)/middleR2));
+
        if (fabs((maxR2 - minR2)/middleR2) < 0.006)
        {
             dataSource->stop();
@@ -263,7 +263,6 @@ void identf::on_pushButton_clicked()
     base.L1 = ui->lineEdit_10->text().toDouble();
     base.L2 = ui->lineEdit_9->text().toDouble();
     base.Lm = ui->lineEdit_8->text().toDouble();
-    printf("R1=%f R2=%f L1=%f L2=%f Lm=%f", base.R1, base.R2, base.L1, base.L2, base.Lm);
  }
 
 void identf::setcolorincell(int row, int column)

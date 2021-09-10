@@ -22,7 +22,7 @@ void DataSource_file::init()
         QMessageBox::critical(nullptr, "Ошибка!", "Не удалось открыть файл!");
         return;
     }
-    dataTimer->start(1000);
+    dataTimer->start(300);
 }
 
 void DataSource_file::read()

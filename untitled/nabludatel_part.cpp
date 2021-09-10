@@ -31,7 +31,7 @@ void Nabludatel_part::init(double _R1, double _R2, double _L1, double _L2, doubl
     kk=1;
 }
 
-void Nabludatel_part::rasch(DataSourceBVASw *dataSourceBVASw)
+void Nabludatel_part::rasch(DataSource *dataSourceBVASw)
 {
 
 }
