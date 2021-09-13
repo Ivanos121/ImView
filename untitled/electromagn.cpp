@@ -1066,6 +1066,8 @@ void electromagn::realtimeDataSlot()
     {
         nabludatel.rasch(dataSource);
 
+        printf("%f %f %f\n", dataSource->getTime()[BUF_SIZE - 1], dataSource->getW()[BUF_SIZE - 1], nabludatel.w_sr);
+
         //Считывание коэффициента изменения амплитуды напряжения фазы А
         a1=ui->tableWidget_2->item(6,1)->text().toDouble();
 
@@ -1250,7 +1252,6 @@ void electromagn::realtimeDataSlot()
         ui->tableWidget->item(21, 1)->setText(QString("%1").arg(nabludatel.cos_f));
     }
 
-    printf("%f\n", nabludatel.w);
     }
 }
 
@@ -1325,7 +1326,7 @@ void electromagn::stop()
 {
     count = 0;
 
-    if(ui->radioButton->isChecked())
+    if((ui->radioButton->isChecked()) || (ui->radioButton_4->isChecked()))
     {
         dataSource->stop();
         disconnect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);

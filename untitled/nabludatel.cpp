@@ -8,21 +8,8 @@ Nabludatel::Nabludatel()
 
 }
 
-void Nabludatel::init(double _R1, double _R2, double _L1, double _L2, double _Lm)
+void Nabludatel::calcInternalParameters()
 {
-    R2p = _R2*2;
-    snom = 0.05;
-
-    R1=_R1;
-    R2 = _R2;
-    R20 = _R2;
-    L1 = _L1;
-    L2 = _L2;
-    Lm = _Lm;
-    Lk0 = _L2 + _L1 - 2.0*Lm;
-    //Lkp = (_L2 - Lm) / 1.0 + _L1 - Lm;
-    Lkp = Lk0 / 1.3;
-
     sigma=L1-((Lm*Lm)/(L2));
     alpha=R2/L2;
     beta=Lm/(sigma*L2);
@@ -37,6 +24,24 @@ void Nabludatel::init(double _R1, double _R2, double _L1, double _L2, double _Lm
     g1=(k-1)*(-(R1/sigma+alpha*beta*Lm)-alpha);
     cc=1/beta;
     g3=(k*k-1)*(-(R1/sigma+alpha*beta*Lm)*cc+alpha*Lm)-cc*(k-1)*(-R1/sigma-alpha*beta*Lm-alpha);
+}
+
+void Nabludatel::init(double _R1, double _R2, double _L1, double _L2, double _Lm)
+{
+    R2p = 4.0;
+    snom = 0.05;
+
+    R1=_R1;
+    R2 = _R2;
+    R20 = _R2;
+    L1 = _L1;
+    L2 = _L2;
+    Lm = _Lm;
+    Lk0 = _L2 + _L1 - 2.0*Lm;
+    //Lkp = (_L2 - Lm) / 1.0 + _L1 - Lm;
+    Lkp = Lk0 / 1.3;
+
+    calcInternalParameters();
 
     pn=2;
     J=0.01;
@@ -234,7 +239,7 @@ void Nabludatel::rasch(DataSource *dataSource)
     double w0 = 2.0*M_PI*50.0/pn;
     double s = (w0 - w_sr)/w0;
 
-    /*if (s > 1)
+    if (s > 1)
     {
         R2 = R2p;
         L2 = Lkp + Lm - (L1 - Lm);
@@ -254,7 +259,9 @@ void Nabludatel::rasch(DataSource *dataSource)
         double Lk = Lk0 / (k1 + k*s);
 
         L2 = Lm + Lk - (L1 - Lm);
-    }*/
+    }
+
+    calcInternalParameters();
 
     //printf("R2 = %g L2 = %g s=%g\n", R2, L2,s);
 

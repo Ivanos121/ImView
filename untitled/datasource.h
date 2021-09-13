@@ -16,6 +16,7 @@ public:
     virtual double* getIb() {return nullptr;};
     virtual double* getIc() {return nullptr;};
     virtual double* getW() {return nullptr;};
+    virtual double* getTime() {return nullptr;};
 
     virtual void init() {};
     virtual void stop() {};

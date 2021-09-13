@@ -23,6 +23,7 @@ public:
     double* getIb() {return ib;};
     double* getIc() {return ic;};
     double* getW() {return w;};
+    double* getTime() {return time;};
 
 private:
     double ua[BUF_SIZE];
@@ -32,6 +33,7 @@ private:
     double ib[BUF_SIZE];
     double ic[BUF_SIZE];
     double w[BUF_SIZE];
+    double time[BUF_SIZE];
 
 public slots:
     void read();

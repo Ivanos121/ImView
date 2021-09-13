@@ -29,8 +29,7 @@ void DataSource_file::read()
 {
     for (int i = 0; i < BUF_SIZE; i++)
     {
-        double X1_1;
-        fin >> X1_1 >> ua[i] >> ub[i] >> uc[i] >>ia[i] >> ib[i] >> ic[i] >> w[i];
+        fin >> time[i] >> ua[i] >> ub[i] >> uc[i] >>ia[i] >> ib[i] >> ic[i] >> w[i];
     }
 
     emit ready();
