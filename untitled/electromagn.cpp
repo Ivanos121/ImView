@@ -11,6 +11,7 @@
 #include <QMessageBox>
 #include <QColorDialog>
 #include <QFileDialog>
+#include <QScrollArea>
 
 
 
@@ -416,6 +417,15 @@ electromagn::electromagn(QWidget *parent) :
         ui->tableWidget_5->item(i, 1)->setBackground(dataLineColors[i]);
     }
     connect(ui->tableWidget_5, &QTableWidget::cellClicked,this, &electromagn::setcolorincell);
+
+    QScrollArea* scrollArea = new QScrollArea();
+    scrollArea->setWidget(ui->groupBox_4);
+    scrollArea->setWidgetResizable(true);
+    QVBoxLayout* groupBoxLayout = new QVBoxLayout;
+    groupBoxLayout->addWidget( scrollArea );
+    ui->groupBox->setLayout( groupBoxLayout );
+
+
 }
 
 
