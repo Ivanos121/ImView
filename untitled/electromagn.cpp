@@ -418,14 +418,12 @@ electromagn::electromagn(QWidget *parent) :
     }
     connect(ui->tableWidget_5, &QTableWidget::cellClicked,this, &electromagn::setcolorincell);
 
-    QScrollArea* scrollArea = new QScrollArea();
-    scrollArea->setWidget(ui->groupBox_4);
+    /*QScrollArea* scrollArea = new QScrollArea();
+    scrollArea->setWidget(ui->groupBox);
     scrollArea->setWidgetResizable(true);
     QVBoxLayout* groupBoxLayout = new QVBoxLayout;
-    groupBoxLayout->addWidget( scrollArea );
-    ui->groupBox->setLayout( groupBoxLayout );
-
-
+    groupBoxLayout->addWidget(scrollArea);
+    ui->groupBox->setLayout(groupBoxLayout);*/
 }
 
 
