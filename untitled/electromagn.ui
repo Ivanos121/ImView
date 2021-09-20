@@ -112,6 +112,18 @@
              <layout class="QGridLayout" name="gridLayout_3">
               <item row="0" column="0">
                <widget class="QTableWidget" name="tableWidget_3">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>400</height>
+                 </size>
+                </property>
                 <property name="alternatingRowColors">
                  <bool>true</bool>
                 </property>
@@ -265,12 +277,15 @@
                 <string>Внутренний источник данных</string>
                </property>
                <property name="checked">
-                <bool>true</bool>
+                <bool>false</bool>
                </property>
               </widget>
              </item>
-             <item row="7" column="0">
+             <item row="7" column="0" alignment="Qt::AlignHCenter">
               <widget class="QPushButton" name="pushButton_2">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -288,7 +303,7 @@
                 <string>Осциллограф+наблюдатель скорости (без датчика скорости)</string>
                </property>
                <property name="checked">
-                <bool>false</bool>
+                <bool>true</bool>
                </property>
               </widget>
              </item>

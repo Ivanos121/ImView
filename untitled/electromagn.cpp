@@ -1406,3 +1406,39 @@ void electromagn::on_pushButton_2_clicked()
                                 "txt files (*.txt);;All files (*.*)");
 }
 
+
+void electromagn::on_radioButton_toggled(bool checked)
+{
+    if (checked)
+    {
+       ui->pushButton_2->setEnabled(false);
+    }
+}
+
+
+void electromagn::on_radioButton_2_toggled(bool checked)
+{
+    if (checked)
+    {
+       ui->pushButton_2->setEnabled(false);
+    }
+}
+
+
+void electromagn::on_radioButton_3_toggled(bool checked)
+{
+    if (checked)
+    {
+       ui->pushButton_2->setEnabled(false);
+    }
+}
+
+
+void electromagn::on_radioButton_4_toggled(bool checked)
+{
+    if (checked)
+    {
+       ui->pushButton_2->setEnabled(true);
+    }
+}
+

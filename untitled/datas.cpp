@@ -33,6 +33,15 @@ datas::datas(QWidget *parent) :
     ui->lineEdit_7->setValidator(new QRegExpValidator(QRegExp("^[0-9]{1}.[0-9]{3}$")));
     ui->lineEdit_8->setValidator(new QRegExpValidator(QRegExp("^[0-9]{1}.[0-9]{3}$")));
     ui->lineEdit_9->setValidator(new QIntValidator(1,1000));
+
+    ui->lineEdit_2->setAlignment(Qt::AlignCenter);
+    ui->lineEdit_3->setAlignment(Qt::AlignCenter);
+    ui->lineEdit_4->setAlignment(Qt::AlignCenter);
+    ui->lineEdit_5->setAlignment(Qt::AlignCenter);
+    ui->lineEdit_6->setAlignment(Qt::AlignCenter);
+    ui->lineEdit_7->setAlignment(Qt::AlignCenter);
+    ui->lineEdit_8->setAlignment(Qt::AlignCenter);
+    ui->lineEdit_9->setAlignment(Qt::AlignCenter);
 }
 
 datas::~datas()
@@ -106,7 +115,8 @@ void datas::zapis()
     if(!query.exec()){
         qDebug() << query.lastError().databaseText();
         qDebug() << query.lastError().driverText();
-        return;}
+        return;
+    }
 
 }
 
@@ -201,3 +211,12 @@ void datas::on_radioButton_toggled(bool checked)
        ui->pushButton_5->setEnabled(false);
     }
 }
+
+void datas::on_radioButton_3_toggled(bool checked)
+{
+    if (checked)
+    {
+       ui->pushButton_5->setEnabled(false);
+    }
+}
+

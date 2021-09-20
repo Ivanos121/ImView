@@ -265,16 +265,19 @@
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QPushButton" name="pushButton_2">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>0</height>
+          <height>33</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>150</width>
-          <height>16777215</height>
+          <height>33</height>
          </size>
         </property>
         <property name="text">
@@ -287,7 +290,7 @@
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>0</height>
+          <height>33</height>
          </size>
         </property>
         <property name="maximumSize">
@@ -318,10 +321,16 @@
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
        <widget class="QPushButton" name="pushButton_3">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>33</height>
+         </size>
+        </property>
         <property name="maximumSize">
          <size>
           <width>150</width>
-          <height>16777215</height>
+          <height>33</height>
          </size>
         </property>
         <property name="text">
@@ -331,10 +340,16 @@
       </item>
       <item>
        <widget class="QPushButton" name="pushButton_4">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>33</height>
+         </size>
+        </property>
         <property name="maximumSize">
          <size>
           <width>150</width>
-          <height>16777215</height>
+          <height>33</height>
          </size>
         </property>
         <property name="text">
@@ -344,10 +359,16 @@
       </item>
       <item>
        <widget class="QPushButton" name="pushButton_6">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>33</height>
+         </size>
+        </property>
         <property name="maximumSize">
          <size>
           <width>150</width>
-          <height>16777215</height>
+          <height>33</height>
          </size>
         </property>
         <property name="text">

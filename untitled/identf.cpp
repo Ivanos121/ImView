@@ -87,12 +87,23 @@ identf::identf(QWidget *parent) :
             ui->tableWidget->item(i, 3)->setTextAlignment(Qt::AlignCenter);
         }
     }
+    ui->lineEdit_8->setReadOnly(true);
+    ui->lineEdit_9->setReadOnly(true);
+    ui->lineEdit_10->setReadOnly(true);
+    ui->lineEdit_11->setReadOnly(true);
+    ui->lineEdit_12->setReadOnly(true);
 
     ui->lineEdit_8->setAlignment(Qt::AlignCenter);
     ui->lineEdit_9->setAlignment(Qt::AlignCenter);
     ui->lineEdit_10->setAlignment(Qt::AlignCenter);
     ui->lineEdit_11->setAlignment(Qt::AlignCenter);
     ui->lineEdit_12->setAlignment(Qt::AlignCenter);
+    ui->lineEdit_13->setAlignment(Qt::AlignCenter);
+    ui->lineEdit_14->setAlignment(Qt::AlignCenter);
+    ui->lineEdit_15->setAlignment(Qt::AlignCenter);
+    ui->lineEdit_16->setAlignment(Qt::AlignCenter);
+    ui->lineEdit_17->setAlignment(Qt::AlignCenter);
+    ui->lineEdit_18->setAlignment(Qt::AlignCenter);
 
     dataLineColors.append(Qt::red);
     dataLineColors.append(Qt::green);
@@ -122,6 +133,13 @@ identf::identf(QWidget *parent) :
         ui->lineEdit_17->setEnabled(false);
         ui->lineEdit_18->setEnabled(false);
     }
+
+    ui->lineEdit_13->setValidator(new QRegExpValidator(QRegExp("^[0-9]{1}.[0-9]{3}$")));
+    ui->lineEdit_14->setValidator(new QRegExpValidator(QRegExp("^[0-9]{1}.[0-9]{3}$")));
+    ui->lineEdit_15->setValidator(new QRegExpValidator(QRegExp("^[0-9]{1}.[0-9]{3}$")));
+    ui->lineEdit_16->setValidator(new QRegExpValidator(QRegExp("^[0-9]{1}.[0-9]{3}$")));
+    ui->lineEdit_17->setValidator(new QRegExpValidator(QRegExp("^[0-9]{1}.[0-9]{3}$")));
+    ui->lineEdit_18->setValidator(new QRegExpValidator(QRegExp("^[0-9]{1}.[0-9]{3}$")));
 }
 
 identf::~identf()
@@ -290,6 +308,7 @@ void identf::on_radioButton_2_toggled(bool checked)
         ui->lineEdit_16->setEnabled(true);
         ui->lineEdit_17->setEnabled(true);
         ui->lineEdit_18->setEnabled(true);
+        ui->pushButton_2->setEnabled(true);
     }
 }
 
@@ -303,6 +322,7 @@ void identf::on_radioButton_toggled(bool checked)
         ui->lineEdit_16->setEnabled(false);
         ui->lineEdit_17->setEnabled(false);
         ui->lineEdit_18->setEnabled(false);
+        ui->pushButton_2->setEnabled(false);
     }
 }
 
@@ -310,3 +330,14 @@ void identf::setMainWindow(MainWindow* wind)
 {
     mainWindow = wind;
 }
+
+void identf::on_pushButton_2_clicked()
+{
+    if(ui->lineEdit_13->text().isEmpty() || ui->lineEdit_14->text().isEmpty()
+            || ui->lineEdit_15->text().isEmpty() || ui->lineEdit_16->text().isEmpty() || ui->lineEdit_17->text().isEmpty()
+            || ui->lineEdit_18->text().isEmpty())
+    {
+        QMessageBox::critical(this, "Ошибка!", "Заполните пустые поля");
+    }
+}
+

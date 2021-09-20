@@ -49,6 +49,7 @@ private:
 private slots:
     void on_pushButton_clicked();
     void setcolorincell(int row, int column);
+    void on_pushButton_2_clicked();
 };
 
 #endif // IDENTF_H
