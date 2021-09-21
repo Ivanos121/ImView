@@ -17,11 +17,18 @@ Model::Model()
 }
 
 void Model::init(double P_nom, double n_nom, double U_fnom,
-          double cosf_nom, double kpd_nom, double muk, double n_0)
+          double cosf_nom, double kpd_nom, double muk, double n_0, double _gd, double _gb, double _gp,
+                 double _ki, double _kpsi, double _gpsi)
 {
     double dP_mxnom,dP_dob,dP_nom,dP_per2nom,dP_pernom,dP_post,dP_per1nom;
     double I_1nom,s_nom,w_0,w_nom,M_nom,M_0,M_elmnom,M_elmax,K_z,R10,bb,Z,R20,X_k,s_k,aa,M;
     double I_0,X10,dP_ct,L10,Rm,sinf_0,Xm,Lm0;
+    gb=_gb;
+    gd=_gd;
+    gp=_gp;
+    ki=_ki;
+    kpsi=_kpsi;
+    gpsi=_gpsi;
 
 
    //Чтение данных
@@ -81,14 +88,14 @@ void Model::init(double P_nom, double n_nom, double U_fnom,
    L=L10;
    Lm=Lm0;
    R2=R20;
-   gd=50;
-   gb=8000;
-   gp=100;
-   ki=2;
+   //gd=50;
+   //gb=8000;
+   //gp=100;
+   //ki=2;
    pn=2;
-   kpsi=0.005;
+   //kpsi=0.005;
    R1=R10;
-   gpsi=1;
+   //gpsi=1;
    kk=1;
    }
 
