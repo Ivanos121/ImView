@@ -432,7 +432,7 @@
             <item row="1" column="0" alignment="Qt::AlignRight">
              <widget class="QLabel" name="label_18">
               <property name="text">
-               <string>Настроечный коэффициент kpsi=</string>
+               <string>Настроечный коэффициент ki =</string>
               </property>
              </widget>
             </item>
@@ -457,21 +457,21 @@
                </size>
               </property>
               <property name="text">
-               <string>Настроечный коэффициент gp =</string>
+               <string>Настроечный коэффициент gd =</string>
               </property>
              </widget>
             </item>
             <item row="3" column="0" alignment="Qt::AlignRight">
              <widget class="QLabel" name="label_19">
               <property name="text">
-               <string>Настроечный коэффициент kpsi=</string>
+               <string>Настроечный коэффициент kpsi =</string>
               </property>
              </widget>
             </item>
             <item row="4" column="0" alignment="Qt::AlignRight">
              <widget class="QLabel" name="label_17">
               <property name="text">
-               <string>Настроечный коэффициент ki =</string>
+               <string>Настроечный коэффициент gp =</string>
               </property>
              </widget>
             </item>
@@ -520,7 +520,7 @@
             <item row="2" column="0" alignment="Qt::AlignRight">
              <widget class="QLabel" name="label_20">
               <property name="text">
-               <string>Настроечный коэффициент gp =</string>
+               <string>Настроечный коэффициент gb =</string>
               </property>
              </widget>
             </item>

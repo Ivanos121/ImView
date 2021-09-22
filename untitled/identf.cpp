@@ -249,7 +249,9 @@ void identf::raschet_f()
     }
 
     dataSource->init();
-    model.init(base.P_nom, base.n_nom, base.U_fnom, base.cosf_nom, base.kpd_nom, base.muk, base.n_0);
+    model.init(base.P_nom, base.n_nom, base.U_fnom, base.cosf_nom, base.kpd_nom, base.muk, base.n_0,
+               ui->lineEdit_13->text().toDouble(),ui->lineEdit_14->text().toDouble(),ui->lineEdit_15->text().toDouble(),
+               ui->lineEdit_16->text().toDouble(),ui->lineEdit_17->text().toDouble(),ui->lineEdit_18->text().toDouble());
     ui->plot->clear();
     for (int i = 0; i < dataLineColors.size(); i++)
     {
