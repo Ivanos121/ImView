@@ -203,8 +203,8 @@ void Nabludatel::rasch(DataSource *dataSource)
     psi1a=(Kint1*Ts*uaizm-Kint1*R1*Ts*iaizm+Kint1*Ts*uaizm_prev+2*psi1a_prev-Kint1*R1*Ts*iaizm_prev)/2;
     psi1b=(Kint1*Ts*ubizm-Kint1*R1*Ts*ibizm+Kint1*Ts*ubizm_prev+2*psi1b_prev-Kint1*R1*Ts*ibizm_prev)/2;
     M = (psi1b*iaizm-psi1a*ibizm)*(-3/2*pn);
-    //M_sr += M;
-    M_sr += ia*ia;
+    M_sr += M;
+    //M_sr += ia*ia;
     w_sr += w;
 
     w_prev = w;
@@ -232,7 +232,6 @@ void Nabludatel::rasch(DataSource *dataSource)
     }
 
     M_sr /= BUF_SIZE;
-    M_sr = sqrt(M_sr);
     w_sr /= BUF_SIZE;
 
     double deltaR2 = (R2p - R20)/(1-snom);
@@ -310,6 +309,21 @@ void Nabludatel::rasch(DataSource *dataSource)
     cos_f_b=p_akt_b/p_poln_b;
     cos_f_c=p_akt_c/p_poln_c;
     cos_f=p_akt/p_poln;
+
+    P1=p_akt_a + p_akt_b + p_akt_c;
+    dPdob=0.005*P1;
+    dPmech = 0.005*P1;
+    double Mel = M_sr;
+    double M_meh = Mel - (dPdob + dPmech) / w_sr;
+
+    P2=w_sr*M_meh;
+    dPel1=pow(i_dev_a,2)*R1 + pow(i_dev_b,2)*R1 + pow(i_dev_c,2)*R1;
+
+    kpd=P2/P1;
+    w_0=2*3.14*base.n_0/60;
+    Pelm=w_0*Mel;
+    dPct=P1-Pelm-dPel1;
+    dPel2=((w_0-w_sr)/w_0)*Pelm;
 }
 
 double ZeroCorrector::apply(double z, double K, double K1, double K2, double K3, double Ts)

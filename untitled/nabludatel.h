@@ -22,6 +22,8 @@ public:
     double ma11,ma12,ma13,ma14,ma21,ma22,ma23,ma24,ma31,ma32,ma33,ma34,ma41,ma42,ma43,ma44;
     double w, w_prev,ua,ub,ia,ib,psi1a,psi1a_prev,psi1b,psi1b_prev,iaizm,iaizm_prev,ibizm,ibizm_prev,uaizm,uaizm_prev,ubizm,ubizm_prev,
     psi2a,psi2a_prev,psi2b,psi2b_prev,ia_prev,ib_prev;
+    double P1, dPel1,dPct,dPel2,dPmech,dPdob,P2,kpd,cosf, w_0, Pelm;
+
     Nabludatel();
     void init(double _R1, double _R2, double _L1, double _L2, double _Lm);
 

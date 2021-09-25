@@ -45,6 +45,8 @@ private slots:
 
     void on_radioButton_4_toggled(bool checked);
 
+    void on_radioButton_4_clicked();
+
 private:
     Ui::electromagn *ui;
     QElapsedTimer *time;

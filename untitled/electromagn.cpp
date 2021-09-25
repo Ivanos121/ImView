@@ -1065,8 +1065,6 @@ void electromagn::realtimeDataSlot()
         if (ui->tableWidget_5->item(8, 3) != 0)
         {
             ui->tableWidget_5->item(8, 3)->setText(QString::number(Model_el.Mc,'f',3));
-
-
         }
     }
 
@@ -1074,7 +1072,7 @@ void electromagn::realtimeDataSlot()
     {
         nabludatel.rasch(dataSource);
 
-        printf("%f %f %f\n", dataSource->getTime()[BUF_SIZE - 1], dataSource->getW()[BUF_SIZE - 1], nabludatel.w_sr);
+       // printf("%f %f %f\n", dataSource->getTime()[BUF_SIZE - 1], dataSource->getW()[BUF_SIZE - 1], nabludatel.w_sr);
 
         //Считывание коэффициента изменения амплитуды напряжения фазы А
         a1=ui->tableWidget_2->item(6,1)->text().toDouble();
@@ -1112,17 +1110,17 @@ void electromagn::realtimeDataSlot()
         //Считывание коэффициента смещения тока фазы С
         a12=ui->tableWidget_2->item(17,1)->text().toDouble();
 
-    if(ui->tableWidget_2->model()->index(0,1).data(Qt::CheckStateRole)==Qt::Checked)
+    if(ui->tableWidget_3->model()->index(5,1).data(Qt::CheckStateRole)==Qt::Checked)
     {
         ui->plot->addPoint(0, key, a4+a1*nabludatel.u_dev_a);
     }
 
-    if(ui->tableWidget_2->model()->index(1,1).data(Qt::CheckStateRole)==Qt::Checked)
+    if(ui->tableWidget_3->model()->index(6,1).data(Qt::CheckStateRole)==Qt::Checked)
     {
         ui->plot->addPoint(1, key, a5+a2*nabludatel.u_dev_b);
     }
 
-    if(ui->tableWidget_2->model()->index(2,1).data(Qt::CheckStateRole)==Qt::Checked)
+    if(ui->tableWidget_3->model()->index(7,1).data(Qt::CheckStateRole)==Qt::Checked)
     {
         ui->plot->addPoint(2, key, a6+a3*nabludatel.u_dev_c);
     }
@@ -1258,6 +1256,104 @@ void electromagn::realtimeDataSlot()
     if (ui->tableWidget->item(21, 1) != 0)
     {
         ui->tableWidget->item(21, 1)->setText(QString("%1").arg(nabludatel.cos_f));
+    }
+    if (ui->tableWidget->item(22, 1) != 0)
+    {
+        ui->tableWidget->item(22, 1)->setText(QString("%1").arg(nabludatel.w_sr));
+    }
+    if (ui->tableWidget->item(23, 1) != 0)
+    {
+        ui->tableWidget->item(23, 1)->setText(QString("%1").arg(nabludatel.M_sr));
+    }
+    if (ui->tableWidget_4->item(0, 1) != 0)
+    {
+        ui->tableWidget_4->item(0, 1)->setText(QString::number(nabludatel.P1,'f',3));
+    }
+
+    if (ui->tableWidget_4->item(1, 1) != 0)
+    {
+        ui->tableWidget_4->item(1, 1)->setText(QString::number(nabludatel.dPel1,'f',3));
+    }
+
+    if (ui->tableWidget_4->item(2, 1) != 0)
+    {
+        ui->tableWidget_4->item(2, 1)->setText(QString::number(nabludatel.dPct,'f',3));
+    }
+
+    if (ui->tableWidget_4->item(3, 1) != 0)
+    {
+        ui->tableWidget_4->item(3, 1)->setText(QString::number(nabludatel.dPel2,'f',3));
+    }
+
+    if (ui->tableWidget_4->item(4, 1) != 0)
+    {
+        ui->tableWidget_4->item(4, 1)->setText(QString::number(nabludatel.dPdob,'f',3));
+    }
+
+    if (ui->tableWidget_4->item(5, 1) != 0)
+    {
+        ui->tableWidget_4->item(5, 1)->setText(QString::number(nabludatel.dPmech,'f',3));
+    }
+
+    if (ui->tableWidget_4->item(6, 1) != 0)
+    {
+        ui->tableWidget_4->item(6, 1)->setText(QString::number(nabludatel.P2,'f',3));
+    }
+
+    if (ui->tableWidget_4->item(7, 1) != 0)
+    {
+        ui->tableWidget_4->item(7, 1)->setText(QString::number(nabludatel.kpd,'f',3));
+    }
+
+    if (ui->tableWidget_4->item(8, 1) != 0)
+    {
+        ui->tableWidget_4->item(8, 1)->setText(QString::number(nabludatel.cos_f,'f',3));
+    }
+
+
+    if (ui->tableWidget_5->item(0, 3) != 0)
+    {
+        ui->tableWidget_5->item(0, 3)->setText(QString::number(nabludatel.u_dev_a,'f',3));
+    }
+
+    if (ui->tableWidget_5->item(1, 3) != 0)
+    {
+        ui->tableWidget_5->item(1, 3)->setText(QString::number(nabludatel.u_dev_b,'f',3));
+    }
+
+    if (ui->tableWidget_5->item(2, 3) != 0)
+    {
+        ui->tableWidget_5->item(2, 3)->setText(QString::number(nabludatel.u_dev_c,'f',3));
+    }
+
+    if (ui->tableWidget_5->item(3, 3) != 0)
+    {
+        ui->tableWidget_5->item(3, 3)->setText(QString::number(nabludatel.i_dev_a,'f',3));
+    }
+
+    if (ui->tableWidget_5->item(4, 3) != 0)
+    {
+        ui->tableWidget_5->item(4, 3)->setText(QString::number(nabludatel.i_dev_b,'f',3));
+    }
+
+    if (ui->tableWidget_5->item(5, 3) != 0)
+    {
+        ui->tableWidget_5->item(5, 3)->setText(QString::number(nabludatel.i_dev_c,'f',3));
+    }
+
+    if (ui->tableWidget_5->item(6, 3) != 0)
+    {
+        ui->tableWidget_5->item(6, 3)->setText(QString::number(nabludatel.w_sr,'f',3));
+    }
+
+    if (ui->tableWidget_5->item(7, 3) != 0)
+    {
+        ui->tableWidget_5->item(7, 3)->setText(QString::number(nabludatel.M_sr,'f',3));
+    }
+
+    if (ui->tableWidget_5->item(8, 3) != 0)
+    {
+        ui->tableWidget_5->item(8, 3)->setText(QString::number(nabludatel.Mc,'f',3));
     }
 
     }
@@ -1440,5 +1536,11 @@ void electromagn::on_radioButton_4_toggled(bool checked)
     {
        ui->pushButton_2->setEnabled(true);
     }
+}
+
+
+void electromagn::on_radioButton_4_clicked()
+{
+
 }
 
