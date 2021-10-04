@@ -65,7 +65,7 @@
           </size>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>4</number>
          </property>
          <widget class="QWidget" name="tab">
           <attribute name="title">
@@ -104,6 +104,16 @@
               <bool>true</bool>
              </property>
             </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="tab_5">
+          <attribute name="title">
+           <string>Настройки внешнего моделирования</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout">
+           <item row="0" column="0">
+            <widget class="QTableWidget" name="tableWidget_6"/>
            </item>
           </layout>
          </widget>
@@ -270,7 +280,7 @@
           <item row="7" column="0" alignment="Qt::AlignHCenter">
            <widget class="QPushButton" name="pushButton_2">
             <property name="enabled">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">

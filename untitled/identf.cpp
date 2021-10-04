@@ -217,7 +217,7 @@ void identf::realtimeDataSlot()
             ui->tableWidget->item(3, 3)->setText(QString::number(model.Lm,'f',3));
         }
 
-        printf("%f %f %f\n", model.R2, model.L, model.Lm);
+     //   printf("%f %f %f\n", model.R2, model.L, model.Lm);
 
     }
 }
