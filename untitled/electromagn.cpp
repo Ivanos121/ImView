@@ -350,16 +350,17 @@ electromagn::electromagn(QWidget *parent) :
     ui->tableWidget_4->setPalette(p3);
 
     ui->tableWidget_5->setRowCount(9); //задание количества строк таблицы
-    ui->tableWidget_5->setColumnCount(4); //задание количества столбцов
+    ui->tableWidget_5->setColumnCount(6); //задание количества столбцов
     QStringList name5; //объявление указателя на тип QStringList
-    name5 << "№" << "Цвет" << "Свойство" << "Значение"; //перечисление заголовков
+    name5 << "№" << "Цвет" << "Свойство" << "Значение" << "Масштабирование" << "Смещение"; //перечисление заголовков
     ui->tableWidget_5->setHorizontalHeaderLabels(name5); //установка заголовков в таблицу
     ui->tableWidget_5->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents); //Устанавливает ограничения на то, как размер заголовка может быть изменен до тех, которые описаны в данном режиме
     ui->tableWidget_5->horizontalHeader()->setStretchLastSection(true);
-    ui->tableWidget_5->setSelectionMode(QAbstractItemView :: NoSelection);
+    ui->tableWidget_5->setSelectionBehavior(QAbstractItemView :: SelectRows);
+    ui->tableWidget_5->setSelectionMode(QAbstractItemView :: SingleSelection);
     ui->tableWidget_5->verticalHeader()->setVisible(false);
     ui->tableWidget_5->resizeColumnsToContents();
-    ui->tableWidget_5->setEditTriggers(QAbstractItemView::NoEditTriggers);
+   // ui->tableWidget_5->setEditTriggers(QAbstractItemView::AnyKeyPressed);
     ui->tableWidget_5->setColumnWidth(0, 100);
 
     for(int row = 0; row<ui->tableWidget_5->rowCount(); row++)
@@ -415,16 +416,6 @@ electromagn::electromagn(QWidget *parent) :
     item59->setText("Момент Мс, Н*м:");
     ui->tableWidget_5->setItem(8, 2, item59);
 
-   // ui->tableWidget_5->setItem(0, 2, new QTableWidgetItem("Напряжение фазы А, В:"));
-   // ui->tableWidget_5->setItem(1, 2, new QTableWidgetItem("Напряжение фазы B, В:"));
-   // ui->tableWidget_5->setItem(2, 2, new QTableWidgetItem("Напряжение фазы C, В:"));
-   // ui->tableWidget_5->setItem(3, 2, new QTableWidgetItem("Ток фазы А, А:"));
-   // ui->tableWidget_5->setItem(4, 2, new QTableWidgetItem("Ток фазы В, А:"));
-   // ui->tableWidget_5->setItem(5, 2, new QTableWidgetItem("Ток фазы С, А:"));
-   // ui->tableWidget_5->setItem(6, 2, new QTableWidgetItem("Частота вращения, рад/с:"));
-   // ui->tableWidget_5->setItem(7, 2, new QTableWidgetItem("Момент на валу, Н*м:"));
-   // ui->tableWidget_5->setItem(8, 2, new QTableWidgetItem("Момент Мс, Н*м:"));
-
     for (int i=0; i<10; i++)
     {
         if (ui->tableWidget_5->item(i, 0) != 0)
@@ -441,6 +432,41 @@ electromagn::electromagn(QWidget *parent) :
             ui->tableWidget_5->item(i, 3)->setTextAlignment(Qt::AlignCenter);
         }
     }
+
+    for (int i=0; i<10; i++)
+    {
+        if (ui->tableWidget_5->item(i, 4) != 0)
+        {
+            ui->tableWidget_5->item(i, 4)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+    for (int i=0; i<10; i++)
+    {
+        if (ui->tableWidget_5->item(i, 5) != 0)
+        {
+            ui->tableWidget_5->item(i, 5)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+    ui->tableWidget_5->setItem(0, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget_5->setItem(0, 5, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget_5->setItem(1, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget_5->setItem(1, 5, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget_5->setItem(2, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget_5->setItem(2, 5, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget_5->setItem(3, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget_5->setItem(3, 5, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget_5->setItem(4, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget_5->setItem(4, 5, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget_5->setItem(5, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget_5->setItem(5, 5, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget_5->setItem(6, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget_5->setItem(6, 5, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget_5->setItem(7, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget_5->setItem(7, 5, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget_5->setItem(8, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget_5->setItem(8, 5, new QTableWidgetItem(QString("%1").arg(0)));
 
     dataLineColors.append(Qt::red);
     dataLineColors.append(Qt::green);
@@ -1222,10 +1248,12 @@ void electromagn::realtimeDataSlot()
        // printf("%f %f %f\n", dataSource->getTime()[BUF_SIZE - 1], dataSource->getW()[BUF_SIZE - 1], nabludatel.w_sr);
 
         //Считывание коэффициента изменения амплитуды напряжения фазы А
-        a1=ui->tableWidget_2->item(6,1)->text().toDouble();
+        //a1=ui->tableWidget_2->item(6,1)->text().toDouble();
+        a1=ui->tableWidget_5->item(0,4)->text().toDouble();
 
         //Считывание коэффициента изменения амплитуды напряжения фазы В
-        a2=ui->tableWidget_2->item(7,1)->text().toDouble();
+        //a2=ui->tableWidget_2->item(7,1)->text().toDouble();
+        a2=ui->tableWidget_5->item(1,4)->text().toDouble();
 
         //Считывание коэффициента изменения амплитуды напряжения фазы С
         a3=ui->tableWidget_2->item(8,1)->text().toDouble();
@@ -1257,50 +1285,50 @@ void electromagn::realtimeDataSlot()
         //Считывание коэффициента смещения тока фазы С
         a12=ui->tableWidget_2->item(17,1)->text().toDouble();
 
-    if(ui->tableWidget_3->model()->index(5,1).data(Qt::CheckStateRole)==Qt::Checked)
-    {
-        ui->plot->addPoint(0, key, a4+a1*nabludatel.u_dev_a);
-    }
+//    if(ui->tableWidget_3->model()->index(5,1).data(Qt::CheckStateRole)==Qt::Checked)
+//    {
+//        ui->plot->addPoint(0, key, a4+a1*nabludatel.u_dev_a);
+//    }
 
-    if(ui->tableWidget_3->model()->index(6,1).data(Qt::CheckStateRole)==Qt::Checked)
-    {
-        ui->plot->addPoint(1, key, a5+a2*nabludatel.u_dev_b);
-    }
+//    if(ui->tableWidget_3->model()->index(6,1).data(Qt::CheckStateRole)==Qt::Checked)
+//    {
+//        ui->plot->addPoint(1, key, a5+a2*nabludatel.u_dev_b);
+//    }
 
-    if(ui->tableWidget_3->model()->index(7,1).data(Qt::CheckStateRole)==Qt::Checked)
-    {
-        ui->plot->addPoint(2, key, a6+a3*nabludatel.u_dev_c);
-    }
+//    if(ui->tableWidget_3->model()->index(7,1).data(Qt::CheckStateRole)==Qt::Checked)
+//    {
+//        ui->plot->addPoint(2, key, a6+a3*nabludatel.u_dev_c);
+//    }
 
     if(ui->tableWidget_2->model()->index(3,1).data(Qt::CheckStateRole)==Qt::Checked)
     {
         ui->plot->addPoint(3, key, a10+a7*nabludatel.i_dev_a);
     }
 
-    if(ui->tableWidget_2->model()->index(4,1).data(Qt::CheckStateRole)==Qt::Checked)
-    {
-        ui->plot->addPoint(4, key, a11+a8*nabludatel.i_dev_b);
-    }
+//    if(ui->tableWidget_2->model()->index(4,1).data(Qt::CheckStateRole)==Qt::Checked)
+//    {
+//        ui->plot->addPoint(4, key, a11+a8*nabludatel.i_dev_b);
+//    }
 
-    if(ui->tableWidget_2->model()->index(5,1).data(Qt::CheckStateRole)==Qt::Checked)
-    {
-        ui->plot->addPoint(5, key, a12+a9*nabludatel.i_dev_c);
-    }
+//    if(ui->tableWidget_2->model()->index(5,1).data(Qt::CheckStateRole)==Qt::Checked)
+//    {
+//        ui->plot->addPoint(5, key, a12+a9*nabludatel.i_dev_c);
+//    }
 
-    if(ui->tableWidget_2->model()->index(18,1).data(Qt::CheckStateRole)==Qt::Checked)
-    {
-        ui->plot->addPoint(6, key, nabludatel.w_sr);
-    }
+//    if(ui->tableWidget_2->model()->index(18,1).data(Qt::CheckStateRole)==Qt::Checked)
+//    {
+//        ui->plot->addPoint(6, key, nabludatel.w_sr);
+//    }
 
-    if(ui->tableWidget_2->model()->index(19,1).data(Qt::CheckStateRole)==Qt::Checked)
-    {
-        ui->plot->addPoint(7, key, nabludatel.M_sr);
-    }
+//    if(ui->tableWidget_2->model()->index(19,1).data(Qt::CheckStateRole)==Qt::Checked)
+//    {
+//        ui->plot->addPoint(7, key, nabludatel.M_sr);
+//    }
 
-    if(ui->tableWidget_5->model()->index(0,2).data(Qt::CheckStateRole)==Qt::Checked)
-    {
-        ui->plot->addPoint(0, key, a4+a1*nabludatel.u_dev_a);
-    }
+//    if(ui->tableWidget_5->model()->index(0,2).data(Qt::CheckStateRole)==Qt::Checked)
+//    {
+//        ui->plot->addPoint(0, key, a4+a1*nabludatel.u_dev_a);
+//    }
 
     //Занесение итоговых данных в таблицу
     if (ui->tableWidget->item(0, 1) != 0)
@@ -1462,7 +1490,6 @@ void electromagn::realtimeDataSlot()
         ui->tableWidget_4->item(8, 1)->setText(QString::number(nabludatel.cos_f,'f',3));
     }
 
-
     if (ui->tableWidget_5->item(0, 3) != 0)
     {
         ui->tableWidget_5->item(0, 3)->setText(QString::number(nabludatel.u_dev_a,'f',3));
@@ -1506,6 +1533,53 @@ void electromagn::realtimeDataSlot()
     if (ui->tableWidget_5->item(8, 3) != 0)
     {
         ui->tableWidget_5->item(8, 3)->setText(QString::number(nabludatel.Mc,'f',3));
+    }
+
+    //вывод графиков на экран plot
+
+    if(ui->tableWidget_5->model()->index(0,2).data(Qt::CheckStateRole)==Qt::Checked)
+    {
+        ui->plot->addPoint(0, key, a4+a1*nabludatel.u_dev_a);
+    }
+
+    if(ui->tableWidget_5->model()->index(1,2).data(Qt::CheckStateRole)==Qt::Checked)
+    {
+        ui->plot->addPoint(1, key, a5+a2*nabludatel.u_dev_b);
+    }
+
+    if(ui->tableWidget_5->model()->index(2,2).data(Qt::CheckStateRole)==Qt::Checked)
+    {
+        ui->plot->addPoint(2, key, a6+a3*nabludatel.u_dev_c);
+    }
+
+    if(ui->tableWidget_5->model()->index(3,2).data(Qt::CheckStateRole)==Qt::Checked)
+    {
+        ui->plot->addPoint(3, key, a10+a7*nabludatel.i_dev_a);
+    }
+
+    if(ui->tableWidget_5->model()->index(4,2).data(Qt::CheckStateRole)==Qt::Checked)
+    {
+        ui->plot->addPoint(4, key, a11+a8*nabludatel.i_dev_b);
+    }
+
+    if(ui->tableWidget_5->model()->index(5,2).data(Qt::CheckStateRole)==Qt::Checked)
+    {
+        ui->plot->addPoint(5, key, a12+a9*nabludatel.i_dev_c);
+    }
+
+    if(ui->tableWidget_5->model()->index(6,2).data(Qt::CheckStateRole)==Qt::Checked)
+    {
+        ui->plot->addPoint(6, key, nabludatel.w_sr);
+    }
+
+    if(ui->tableWidget_5->model()->index(7,2).data(Qt::CheckStateRole)==Qt::Checked)
+    {
+        ui->plot->addPoint(7, key, nabludatel.M_sr);
+    }
+
+    if(ui->tableWidget_5->model()->index(8,2).data(Qt::CheckStateRole)==Qt::Checked)
+    {
+        ui->plot->addPoint(8, key, nabludatel.Mc);
     }
 
     }
