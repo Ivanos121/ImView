@@ -5,6 +5,7 @@
 #include "base.h"
 #include <fstream>
 #include <QMessageBox>
+#include <stdio.h>
 
 std::ifstream fin;
 
@@ -33,6 +34,14 @@ void DataSource_file::read()
     }
 
     emit ready();
+
+    if (fin.eof()) // Достигнут конец файла
+    {
+        QMessageBox msg;
+        msg.setText("чтение файла закончено");
+        msg.exec();
+        stop();
+    }
 }
 
 void DataSource_file::stop()

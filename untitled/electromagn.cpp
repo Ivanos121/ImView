@@ -776,7 +776,7 @@ void electromagn::realtimeDataSlot()
         }
 
         key = Model_el.t;
-        key=dataSource_file.time;
+        //key=dataSource_file.getTime();
 
         //вывод на qcustomPlot графика напряжения Ua после преобразования 2 в 3
 
@@ -1596,6 +1596,12 @@ void electromagn::on_radioButton_4_toggled(bool checked)
 
 
 void electromagn::on_radioButton_4_clicked()
+{
+
+}
+
+
+void electromagn::on_radioButton_3_clicked()
 {
 
 }
