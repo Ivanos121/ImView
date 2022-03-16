@@ -55,6 +55,10 @@ private:
 
 public slots:
     void read();
+    void bvasFailureSlot();
+
+signals:
+    void bvasFailure();
 
 };
 

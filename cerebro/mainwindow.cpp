@@ -35,16 +35,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionabout_triggered()
 {
-    /*QScreen *screen = QGuiApplication::primaryScreen();
-    rsc=new about(this);
-    rsc->show();
-    rsc->setGeometry(
-        QStyle::alignedRect(
-        Qt::LeftToRight,
-        Qt::AlignCenter,
-        rsc->size(),
-        screen->geometry()));
-     */
     QScreen *screen = QGuiApplication::primaryScreen();
         rsc= new AboutDialog(this);
         rsc->exec();
@@ -70,7 +60,7 @@ void MainWindow::on_actionhelp_triggered()
 {
     view = new QWebEngineView;
     connect(view, &QWebEngineView::titleChanged, this, &MainWindow::titleChanged);
-    view->setUrl(QUrl::fromLocalFile(QFileInfo("help_v1/index.html").absoluteFilePath()));
+    view->setUrl(QUrl::fromLocalFile(QFileInfo("../help/index.html").absoluteFilePath()));
     view->setWindowIcon(QIcon::fromTheme("help-contents"));
     view->showMaximized();
 }

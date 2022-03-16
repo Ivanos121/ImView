@@ -1,3 +1,5 @@
+#include <QMessageBox>
+
 #include "datasourcebvas.h"
 #include "bvasthread.h"
 
@@ -8,6 +10,7 @@ DataSourceBVAS::DataSourceBVAS()
     bvasThread->setDevice(bvasDevice);
 
     connect(bvasThread, &BVASThread::dataReady, this, &DataSourceBVAS::read);
+    connect(bvasDevice, &Device::bvasFailure, this, &DataSourceBVAS::bvasFailureSlot);
 
     /*UaZeroLevel = 34833.125469;
     UbZeroLevel = 2091.935000;
@@ -53,6 +56,12 @@ void DataSourceBVAS::read()
     }
 
     emit ready();
+}
+
+void DataSourceBVAS::bvasFailureSlot()
+{
+    stop();
+    emit bvasFailure();
 }
 
 void DataSourceBVAS::stop()

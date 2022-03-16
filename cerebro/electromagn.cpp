@@ -1441,6 +1441,7 @@ void electromagn::raschet_el()
         dataSource->init();
         nabludatel.init(base.R1, base.R2, base.L1, base.L2, base.Lm);
         connect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
+        connect(dataSourceBVAS, &DataSourceBVAS::bvasFailure, this, &electromagn::bvasFailureSlot);
 
     }
 
@@ -1604,5 +1605,10 @@ void electromagn::on_radioButton_4_clicked()
 void electromagn::on_radioButton_3_clicked()
 {
 
+}
+
+void electromagn::bvasFailureSlot()
+{
+    QMessageBox::critical(this, "Ошибка!", "Ошибка подключения BVAS!");
 }
 

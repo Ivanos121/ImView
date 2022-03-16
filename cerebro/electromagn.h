@@ -49,6 +49,8 @@ private slots:
 
     void on_radioButton_3_clicked();
 
+    void bvasFailureSlot();
+
 private:
     Ui::electromagn *ui;
     QElapsedTimer *time;

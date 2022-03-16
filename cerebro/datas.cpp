@@ -22,7 +22,7 @@ datas::datas(QWidget *parent) :
 
     sdb = QSqlDatabase::addDatabase("QSQLITE");
     //sdb.setDatabaseName("/home/elf/Dropbox/Наблюдатель/injterfece/build-untitled-Desktop-Debug/mydb.db");
-    sdb.setDatabaseName(QFileInfo("mydb.db").absoluteFilePath());
+    sdb.setDatabaseName(QFileInfo("../data/base_db/mydb.db").absoluteFilePath());
     table();
 
     ui->lineEdit_2->setValidator(new QRegExpValidator(QRegExp( "^[А-Я]{3}\[0-9]{3}\[A-Z]{1}\[0-9]{1}\[А-Я]{1}\[1-9]{1}$" )));

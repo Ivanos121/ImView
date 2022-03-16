@@ -7,7 +7,10 @@
 void BVASThread::run()
 {
   stopping = true;
-  bvasDevice->init();
+  if (bvasDevice->init() == 1)
+  {
+      return;
+  }
   counter = 0;
 
   while (stopping)
