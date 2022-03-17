@@ -220,7 +220,10 @@ void Plot::paintEvent(QPaintEvent *)
 
     for (DataLine& line : dataLines)
     {
-        painter.setPen(QPen(QColor(line.color), 2));
+        //painter.setPen(QPen(QColor(line.color), 2));
+        QPen pen(QBrush(), 2, Qt::SolidLine, Qt::SquareCap, Qt::BevelJoin);
+        pen.setColor(QColor(line.color));
+        painter.setPen(pen);
 
         for (int i=0 , n=line.data.size(); i < n - 1 - 1; i++)
         {

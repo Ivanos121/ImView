@@ -22,7 +22,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>3</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -61,11 +61,21 @@
       </widget>
       <widget class="QWidget" name="tab_4">
        <attribute name="title">
-        <string>Тепловентиляция</string>
+        <string>Тепловая модель</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="0" column="0">
          <widget class="teplovent" name="widget_5" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_5">
+       <attribute name="title">
+        <string>Вентиляционная модель</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0">
+         <widget class="vent_model" name="widget_6" native="true"/>
         </item>
        </layout>
       </widget>
@@ -517,6 +527,12 @@
    <class>teplovent</class>
    <extends>QWidget</extends>
    <header>teplovent.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>vent_model</class>
+   <extends>QWidget</extends>
+   <header>vent_model.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

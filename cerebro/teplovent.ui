@@ -34,16 +34,6 @@
        <string>Тепловая схема замещения</string>
       </attribute>
      </widget>
-     <widget class="QWidget" name="tab_3">
-      <attribute name="title">
-       <string>Вентиляционная схема замещения</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout_4">
-       <item row="0" column="0">
-        <widget class="Plot" name="widget" native="true"/>
-       </item>
-      </layout>
-     </widget>
      <widget class="QWidget" name="tab_4">
       <attribute name="title">
        <string>Тренды температур</string>
@@ -107,6 +97,21 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="tab_3">
+      <attribute name="title">
+       <string>Распределение температур по продольному сечению</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="0">
+        <widget class="draw_line" name="widget" native="true"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_13">
+      <attribute name="title">
+       <string>Распределение температур по поперечному сечению</string>
+      </attribute>
+     </widget>
     </widget>
    </item>
   </layout>
@@ -116,6 +121,12 @@
    <class>Plot</class>
    <extends>QWidget</extends>
    <header>plot.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>draw_line</class>
+   <extends>QWidget</extends>
+   <header>draw_line.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

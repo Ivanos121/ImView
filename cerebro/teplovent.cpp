@@ -6,11 +6,11 @@ teplovent::teplovent(QWidget *parent) :
     ui(new Ui::teplovent)
 {
     ui->setupUi(this);
-    ui->widget->t_max = 10.0;
-    ui->widget->U_max = 3.0;
-    ui->widget->margin_bottom = 40;
-    ui->widget->margin_left = 100;
-    ui->widget->reset();
+//    ui->widget->t_max = 10.0;
+//    ui->widget->U_max = 3.0;
+//    ui->widget->margin_bottom = 40;
+//    ui->widget->margin_left = 100;
+//    ui->widget->reset();
     ui->widget_2->t_max = 0.1;
     ui->widget_2->U_max = 800.0;
     ui->widget_2->margin_bottom = 40;

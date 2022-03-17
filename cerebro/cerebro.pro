@@ -1,4 +1,4 @@
-QT       += core gui sql webkitwidgets webenginewidgets serialport printsupport
+QT       += core gui sql webkitwidgets webenginewidgets serialport printsupport svg xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
@@ -35,6 +35,7 @@ SOURCES += \
     datasourcebvas.cpp \
     datasourcebvasw.cpp \
     device.cpp \
+    draw_line.cpp \
     electromagn.cpp \
     identf.cpp \
     itogs.cpp \
@@ -50,7 +51,8 @@ SOURCES += \
     paintdelegate.cpp \
     plot.cpp \
     settings.cpp \
-    teplovent.cpp
+    teplovent.cpp \
+    vent_model.cpp
 
 HEADERS += \
     archiverchannel.h \
@@ -73,6 +75,7 @@ HEADERS += \
     datasourcebvas.h \
     datasourcebvasw.h \
     device.h \
+    draw_line.h \
     electromagn.h \
     identf.h \
     itogs.h \
@@ -87,18 +90,21 @@ HEADERS += \
     paintdelegate.h \
     plot.h \
     settings.h \
-    teplovent.h
+    teplovent.h \
+    vent_model.h
 
 FORMS += \
     about_dialog.ui \
     datas.ui \
+    draw_line.ui \
     electromagn.ui \
     identf.ui \
     itogs.ui \
     kalibr.ui \
     mainwindow.ui \
     settings.ui \
-    teplovent.ui
+    teplovent.ui \
+    vent_model.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
