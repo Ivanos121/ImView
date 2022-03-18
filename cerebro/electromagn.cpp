@@ -780,7 +780,7 @@ void electromagn::realtimeDataSlot()
 
         //вывод на qcustomPlot графика напряжения Ua после преобразования 2 в 3
 
-        if(ui->tableWidget_3->model()->index(5,1).data(Qt::CheckStateRole)==Qt::Checked)
+        if(ui->tableWidget_5->model()->index(0,2).data(Qt::CheckStateRole)==Qt::Checked)
         {
             ui->plot->addPoint(0, key, b4+b1*(Model_el.u_dev_a));
         }

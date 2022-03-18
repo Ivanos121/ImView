@@ -21,5 +21,6 @@
         <file>img/zastavka.png</file>
         <file>img/IM_24_red.png</file>
         <file>img/IM_24_blue.png</file>
+        <file>img/media-playback-paused.svg</file>
     </qresource>
 </RCC>

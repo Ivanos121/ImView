@@ -97,7 +97,8 @@ void MainWindow::on_action_18_triggered()
 
 void MainWindow::on_action_5_triggered()
 {
- ui->widget_2->raschet_f();
+    ui->action_5->setIcon(QIcon(":/new/prefix1/img/media-playback-paused.svg"));
+    ui->widget_2->raschet_f();
 }
 
 void MainWindow::on_action_9_triggered()
