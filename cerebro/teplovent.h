@@ -2,6 +2,7 @@
 #define TEPLOVENT_H
 
 #include <QWidget>
+#include "mainwindow.h"
 
 namespace Ui {
 class teplovent;
@@ -15,8 +16,13 @@ public:
     explicit teplovent(QWidget *parent = nullptr);
     ~teplovent();
 
-private:
+    void setMainWindow(MainWindow* wind);
+    MainWindow *mainWindow;
+
+public:
     Ui::teplovent *ui;
+    MainWindow *wwff;
 };
+
 
 #endif // TEPLOVENT_H

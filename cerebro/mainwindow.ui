@@ -22,7 +22,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>2</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -382,7 +382,7 @@
   <action name="action_9">
    <property name="icon">
     <iconset resource="resurce.qrc">
-     <normaloff>:/new/prefix1/img/media-playback-stop_2.svg</normaloff>:/new/prefix1/img/media-playback-stop_2.svg</iconset>
+     <normaloff>:/new/prefix1/img/media-playback-stop.svg</normaloff>:/new/prefix1/img/media-playback-stop.svg</iconset>
    </property>
    <property name="text">
     <string>Стоп</string>

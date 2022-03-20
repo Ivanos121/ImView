@@ -19,8 +19,24 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->widget_2->wf=this;
     ui->widget_2->setMainWindow(this);
+    ui->widget_3->wwf=this;
+    ui->widget_3->setMainWindow(this);
+    ui->widget_5->wwff=this;
+    ui->widget_5->setMainWindow(this);
+    ui->widget_6->wwwf=this;
+    ui->widget_6->setMainWindow(this);
+
+//    ui->widget_5->ui->widget->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
+//    ui->widget_5->ui->widget_5->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
+//    ui->widget_5->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
+//    ui->widget_9->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_tract/vent_tract.html").absoluteFilePath()));
+
     showMaximized();
+    ui->action_9->setEnabled(false);
+    ui->action_21->setEnabled(false);
+
 }
 
 void MainWindow::closeEvent (QCloseEvent *)
@@ -98,22 +114,29 @@ void MainWindow::on_action_18_triggered()
 void MainWindow::on_action_5_triggered()
 {
     ui->action_5->setIcon(QIcon(":/new/prefix1/img/media-playback-paused.svg"));
+    ui->action_9->setEnabled(true);
     ui->widget_2->raschet_f();
 }
 
 void MainWindow::on_action_9_triggered()
 {
- ui->widget_2->dataSource->stop();
+    ui->action_5->setIcon(QIcon(":/new/prefix1/img/media-playback-start.svg"));
+    ui->action_9->setEnabled(false);
+    ui->widget_2->dataSource->stop();
 }
 
 void MainWindow::on_action_20_triggered()
 {
+    ui->action_20->setIcon(QIcon(":/new/prefix1/img/media-playback-paused.svg"));
+    ui->action_21->setEnabled(true);
  ui->widget_3->raschet_el();
 }
 
 void MainWindow::on_action_21_triggered()
 {
- ui->widget_3->stop();
+    ui->action_20->setIcon(QIcon(":/new/prefix1/img/media-playback-start.svg"));
+    ui->action_21->setEnabled(false);
+    ui->widget_3->stop();
 }
 
 void MainWindow::on_tabWidget_currentChanged(int)

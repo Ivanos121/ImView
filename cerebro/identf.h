@@ -39,6 +39,7 @@ public:
     QElapsedTimer *time2;
     Modell *modell;
     DataSource *dataSource;
+    MainWindow *wf;
 
     void setMainWindow(MainWindow* wind);
 

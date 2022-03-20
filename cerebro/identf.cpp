@@ -176,6 +176,8 @@ void identf::realtimeDataSlot()
        if (fabs((maxR2 - minR2)/middleR2) < 0.006)
        {
             dataSource->stop();
+            wf->ui->action_9->setEnabled(false);
+            wf->ui->action_5->setIcon(QIcon(":/new/prefix1/img/media-playback-start.svg"));
             QMessageBox::information(this, tr("Сообщение"), tr("Расчет окончен!"));
        }
        minR2 = DBL_MAX;

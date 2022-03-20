@@ -53,3 +53,8 @@ teplovent::~teplovent()
 {
     delete ui;
 }
+
+void teplovent::setMainWindow(MainWindow* wind)
+{
+    mainWindow = wind;
+}

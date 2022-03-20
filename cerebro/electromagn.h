@@ -24,6 +24,9 @@ public:
     ~electromagn();
     double key;
     int count = 0;
+    MainWindow *wwf;
+
+    void setMainWindow(MainWindow* wind);
 
     void stop();
 
@@ -60,8 +63,10 @@ private:
     QComboBox* combo = new QComboBox();
     QComboBox* combo2 = new QComboBox();
     QVector<QColor> dataLineColors;
+    MainWindow *mainWindow;
 
     void addDataLines();
+
 };
 
 #endif // ELECTROMAGN_H

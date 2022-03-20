@@ -33,11 +33,21 @@
       <attribute name="title">
        <string>Распределение воздушного потока</string>
       </attribute>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="vent_izm" name="widget_2" native="true"/>
+       </item>
+      </layout>
      </widget>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
        <string>Распределение температур</string>
       </attribute>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="Vent_tract" name="widget" native="true"/>
+       </item>
+      </layout>
      </widget>
      <widget class="QWidget" name="tab_6">
       <attribute name="title">
@@ -53,6 +63,20 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Vent_tract</class>
+   <extends>QWidget</extends>
+   <header>vent_tract.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>vent_izm</class>
+   <extends>QWidget</extends>
+   <header>vent_izm.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

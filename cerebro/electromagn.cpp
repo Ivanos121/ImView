@@ -6,6 +6,7 @@
 #include "nabludatel_part.h"
 #include "plot.h"
 #include "datasource_file.h"
+#include"ui_mainwindow.h"
 
 #include <QLinearGradient>
 #include <QMessageBox>
@@ -1607,8 +1608,15 @@ void electromagn::on_radioButton_3_clicked()
 
 }
 
+void electromagn::setMainWindow(MainWindow* wind)
+{
+    mainWindow = wind;
+}
+
 void electromagn::bvasFailureSlot()
 {
+    wwf->ui->action_20->setIcon(QIcon(":/new/prefix1/img/media-playback-start.svg"));
+    wwf->ui->action_21->setEnabled(false);
     QMessageBox::critical(this, "Ошибка!", "Ошибка подключения BVAS!");
 }
 

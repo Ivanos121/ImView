@@ -36,6 +36,7 @@ SOURCES += \
     datasourcebvasw.cpp \
     device.cpp \
     draw_line.cpp \
+    draw_poper.cpp \
     electromagn.cpp \
     identf.cpp \
     itogs.cpp \
@@ -52,7 +53,11 @@ SOURCES += \
     plot.cpp \
     settings.cpp \
     teplovent.cpp \
-    vent_model.cpp
+    teplschem.cpp \
+    trend.cpp \
+    vent_izm.cpp \
+    vent_model.cpp \
+    vent_tract.cpp
 
 HEADERS += \
     archiverchannel.h \
@@ -76,6 +81,7 @@ HEADERS += \
     datasourcebvasw.h \
     device.h \
     draw_line.h \
+    draw_poper.h \
     electromagn.h \
     identf.h \
     itogs.h \
@@ -91,12 +97,17 @@ HEADERS += \
     plot.h \
     settings.h \
     teplovent.h \
-    vent_model.h
+    teplschem.h \
+    trend.h \
+    vent_izm.h \
+    vent_model.h \
+    vent_tract.h
 
 FORMS += \
     about_dialog.ui \
     datas.ui \
     draw_line.ui \
+    draw_poper.ui \
     electromagn.ui \
     identf.ui \
     itogs.ui \
@@ -104,7 +115,11 @@ FORMS += \
     mainwindow.ui \
     settings.ui \
     teplovent.ui \
-    vent_model.ui
+    teplschem.ui \
+    trend.ui \
+    vent_izm.ui \
+    vent_model.ui \
+    vent_tract.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

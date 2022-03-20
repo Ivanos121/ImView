@@ -17,7 +17,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>3</number>
+      <number>4</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -33,6 +33,11 @@
       <attribute name="title">
        <string>Тепловая схема замещения</string>
       </attribute>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="teplschem" name="widget_3" native="true"/>
+       </item>
+      </layout>
      </widget>
      <widget class="QWidget" name="tab_4">
       <attribute name="title">
@@ -40,60 +45,7 @@
       </attribute>
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
-        <widget class="QTabWidget" name="tabWidget_2">
-         <property name="currentIndex">
-          <number>3</number>
-         </property>
-         <widget class="QWidget" name="tab_5">
-          <attribute name="title">
-           <string>Тренды температур</string>
-          </attribute>
-         </widget>
-         <widget class="QWidget" name="tab_6">
-          <attribute name="title">
-           <string>Распределение температур по продольному сечению</string>
-          </attribute>
-         </widget>
-         <widget class="QWidget" name="tab_7">
-          <attribute name="title">
-           <string>Распределение температур по продольному сечению</string>
-          </attribute>
-         </widget>
-         <widget class="QWidget" name="tab_8">
-          <attribute name="title">
-           <string>Вентиляционная сеть</string>
-          </attribute>
-          <layout class="QGridLayout" name="gridLayout_3">
-           <item row="0" column="0">
-            <widget class="QTabWidget" name="tabWidget_3">
-             <property name="currentIndex">
-              <number>3</number>
-             </property>
-             <widget class="QWidget" name="tab_9">
-              <attribute name="title">
-               <string>Распределение воздушного потока</string>
-              </attribute>
-             </widget>
-             <widget class="QWidget" name="tab_10">
-              <attribute name="title">
-               <string>Распределение температур</string>
-              </attribute>
-             </widget>
-             <widget class="QWidget" name="tab_11">
-              <attribute name="title">
-               <string>Тренды параметров вентиляционной сети</string>
-              </attribute>
-             </widget>
-             <widget class="QWidget" name="tab_12">
-              <attribute name="title">
-               <string>Вентиляционная схема замещения</string>
-              </attribute>
-             </widget>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </widget>
+        <widget class="trend" name="widget_4" native="true"/>
        </item>
       </layout>
      </widget>
@@ -111,6 +63,11 @@
       <attribute name="title">
        <string>Распределение температур по поперечному сечению</string>
       </attribute>
+      <layout class="QGridLayout" name="gridLayout_5">
+       <item row="0" column="0">
+        <widget class="draw_poper" name="widget_5" native="true"/>
+       </item>
+      </layout>
      </widget>
     </widget>
    </item>
@@ -127,6 +84,24 @@
    <class>draw_line</class>
    <extends>QWidget</extends>
    <header>draw_line.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>teplschem</class>
+   <extends>QWidget</extends>
+   <header>teplschem.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>trend</class>
+   <extends>QWidget</extends>
+   <header location="global">trend.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>draw_poper</class>
+   <extends>QWidget</extends>
+   <header>draw_poper.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

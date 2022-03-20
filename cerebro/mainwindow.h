@@ -57,38 +57,22 @@ public:
 
 private slots:
     void on_actionabout_triggered();
-
     void on_actionExit_triggered();
-
     void on_action_10_triggered();
-
     void on_actionhelp_triggered();
-
     void titleChanged(const QString &title);
-
     void on_action_16_triggered();
-
     void on_action_12_triggered();
-
     void on_action_17_triggered();
-
     void on_action_19_triggered();
-
     void on_action_18_triggered();
-
     void on_action_5_triggered();
-
     void on_action_9_triggered();
-
     void on_action_20_triggered();
-
     void on_action_21_triggered();
-
     void on_tabWidget_currentChanged(int);
-
     void on_action_22_triggered();
     void on_action_23_triggered();
-
     void on_action_15_triggered();
 
 public:
