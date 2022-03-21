@@ -16,12 +16,9 @@ public:
     explicit teplovent(QWidget *parent = nullptr);
     ~teplovent();
 
-    void setMainWindow(MainWindow* wind);
-    MainWindow *mainWindow;
-
 public:
     Ui::teplovent *ui;
-    MainWindow *wwff;
+    MainWindow *wf;
 };
 
 

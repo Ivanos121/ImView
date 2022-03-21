@@ -13,7 +13,3 @@ vent_model::~vent_model()
     delete ui;
 }
 
-void vent_model::setMainWindow(MainWindow* wind)
-{
-    mainWindow = wind;
-}

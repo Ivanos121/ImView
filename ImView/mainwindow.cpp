@@ -11,6 +11,7 @@
 #include "electromagn.h"
 #include "kalibr.h"
 #include "teplovent.h"
+#include "ui_teplovent.h"
 
 Base base;
 
@@ -20,13 +21,10 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->widget_2->wf=this;
-    ui->widget_2->setMainWindow(this);
-    ui->widget_3->wwf=this;
-    ui->widget_3->setMainWindow(this);
-    ui->widget_5->wwff=this;
-    ui->widget_5->setMainWindow(this);
-    ui->widget_6->wwwf=this;
-    ui->widget_6->setMainWindow(this);
+    ui->widget_3->wf=this;
+    ui->widget_5->wf=this;
+    ui->widget_6->wf=this;
+    ui->widget_5->ui->widget_4->wf=this;
 
 //    ui->widget_5->ui->widget->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
 //    ui->widget_5->ui->widget_5->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
@@ -129,6 +127,7 @@ void MainWindow::on_action_20_triggered()
 {
     ui->action_20->setIcon(QIcon(":/new/prefix1/img/media-playback-paused.svg"));
     ui->action_21->setEnabled(true);
+    ui->widget_5->ui->widget_4->startTeplo();
  ui->widget_3->raschet_el();
 }
 
@@ -136,6 +135,7 @@ void MainWindow::on_action_21_triggered()
 {
     ui->action_20->setIcon(QIcon(":/new/prefix1/img/media-playback-start.svg"));
     ui->action_21->setEnabled(false);
+    ui->widget_5->ui->widget_4->stopTeplo();
     ui->widget_3->stop();
 }
 
@@ -179,7 +179,7 @@ Settings::Settings(QWidget *parent) :
     ui(new Ui::settings)
 {
     ui->setupUi(this);
-    QListWidgetItem *item_1=new QListWidgetItem(QIcon(":/new/prefix1/img/folder.svg"), "Интерфейс");
+    QListWidgetItem *item_1=new QListWidgetItem(QIcon(":/new/prefix1/data/img/folder.svg"), "Интерфейс");
     ui->listWidget->addItem(item_1);
     QListWidgetItem *item_2=new QListWidgetItem(QIcon(":/new/prefix1/img/labplot-axis-vertical.svg"), "Исходные данные");
     ui->listWidget->addItem(item_2);

@@ -369,7 +369,7 @@ trend::~trend()
     delete ui;
 }
 
-void trend::on_pushButton_clicked()
+void trend::startTeplo()
 {
     y_0=20*(1-exp(-t/20))+ui->lineEdit->text().toDouble();//станина
     y_1=54*(1-exp(-t/20))+ui->lineEdit->text().toDouble();//Подшипниковый узел справа сзади
@@ -411,14 +411,14 @@ void trend::on_pushButton_clicked()
 
     t += 10.0;
 
-//    wwwf->ui->widget_6->ui->widget->ui->verticalSlider->setValue(50);
-//    wwwf->ui->widget_6->ui->widget->ui->verticalSlider_2->setValue(20);
+    wf->ui->widget_6->ui->widget->ui->verticalSlider->setValue(50);
+    wf->ui->widget_6->ui->widget->ui->verticalSlider_2->setValue(20);
 
    // ui->label_4->setText(QString("%1 moment").arg(moment, 0, 'f', 1));
 }
 
 
-void trend::on_pushButton_2_clicked()
+void trend::stopTeplo()
 {
     timer.stop();
 }
@@ -452,16 +452,16 @@ void trend::on_timerTimeout()
 
 
 
-    if (wwff->ui->widget_5->ui->widget->ui->tableWidget->item(0, 2) != 0)
+    if (wf->ui->widget_5->ui->widget->ui->tableWidget->item(0, 2) != 0)
     {
-        wwff->ui->widget_5->ui->widget->ui->tableWidget->item(0, 2)->setText(QString("%1").arg(QString::number(y_0,'f',1)));
-        wwff->ui->widget_5->ui->widget->ui->tableWidget->item(0, 2)->setTextAlignment(Qt::AlignCenter);
+        wf->ui->widget_5->ui->widget->ui->tableWidget->item(0, 2)->setText(QString("%1").arg(QString::number(y_0,'f',1)));
+        wf->ui->widget_5->ui->widget->ui->tableWidget->item(0, 2)->setTextAlignment(Qt::AlignCenter);
     }
 
-    if (wwff->ui->widget_5->ui->widget->ui->tableWidget->item(1, 2) != 0)
+    if (wf->ui->widget_5->ui->widget->ui->tableWidget->item(1, 2) != 0)
     {
-        wwff->ui->widget_5->ui->widget->ui->tableWidget->item(1, 2)->setText(QString("%1").arg(QString::number(y_1,'f',1)));
-        wwff->ui->widget_5->ui->widget->ui->tableWidget->item(1, 2)->setTextAlignment(Qt::AlignCenter);
+        wf->ui->widget_5->ui->widget->ui->tableWidget->item(1, 2)->setText(QString("%1").arg(QString::number(y_1,'f',1)));
+        wf->ui->widget_5->ui->widget->ui->tableWidget->item(1, 2)->setTextAlignment(Qt::AlignCenter);
     }
 
 //    if (mw->ui->widget_7->ui->tableWidget->item(2, 2) != 0)

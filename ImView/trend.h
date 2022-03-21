@@ -22,16 +22,11 @@ public:
     explicit trend(QWidget *parent = nullptr);
     ~trend();
 
-    MainWindow *mw;
-    MainWindow *wwwf;
-    MainWindow *wwff;
+    MainWindow *wf;
+    void startTeplo();
+    void stopTeplo();
 
 private slots:
-
-    void on_pushButton_clicked();
-
-    void on_pushButton_2_clicked();
-
     void on_timerTimeout();
     void setcolorincell(int row, int column);
 

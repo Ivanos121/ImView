@@ -15,15 +15,11 @@ class vent_model : public QWidget
 public:
     explicit vent_model(QWidget *parent = nullptr);
     ~vent_model();
-    MainWindow *wwwf;
+    MainWindow *wf;
 
-    void setMainWindow(MainWindow* wind);
 
 public:
     Ui::vent_model *ui;
-
-private:
-    MainWindow *mainWindow;
 };
 
 #endif // VENT_MODEL_H

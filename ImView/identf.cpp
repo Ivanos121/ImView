@@ -230,7 +230,7 @@ void identf::raschet_f()
     maxR2 = -DBL_MAX;
     middleR2 = 0.0;
 
-    auto uiDatasWindow = mainWindow->ui->widget->ui;
+    auto uiDatasWindow = wf->ui->widget->ui;
 
     if(uiDatasWindow->radioButton_2->isChecked())
     {
@@ -328,11 +328,6 @@ void identf::on_radioButton_toggled(bool checked)
         ui->lineEdit_18->setEnabled(false);
         ui->pushButton_2->setEnabled(false);
     }
-}
-
-void identf::setMainWindow(MainWindow* wind)
-{
-    mainWindow = wind;
 }
 
 void identf::on_pushButton_2_clicked()

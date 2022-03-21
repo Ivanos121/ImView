@@ -41,11 +41,8 @@ public:
     DataSource *dataSource;
     MainWindow *wf;
 
-    void setMainWindow(MainWindow* wind);
-
 private:
     QVector<QColor> dataLineColors;
-    MainWindow *mainWindow;
 
 private slots:
     void on_pushButton_clicked();
