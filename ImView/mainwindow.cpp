@@ -12,6 +12,8 @@
 #include "kalibr.h"
 #include "teplovent.h"
 #include "ui_teplovent.h"
+#include "ui_draw_line.h"
+#include "ui_teplschem.h"
 
 Base base;
 
@@ -26,7 +28,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_6->wf=this;
     ui->widget_5->ui->widget_4->wf=this;
 
-//    ui->widget_5->ui->widget->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
+    ui->widget_5->ui->widget->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/ax_var/ax_var_2.html").absoluteFilePath()));
+    ui->widget_5->ui->widget_3->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/ax_var/ax_var_2.html").absoluteFilePath()));
 //    ui->widget_5->ui->widget_5->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
 //    ui->widget_5->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
 //    ui->widget_9->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_tract/vent_tract.html").absoluteFilePath()));
@@ -111,29 +114,29 @@ void MainWindow::on_action_18_triggered()
 
 void MainWindow::on_action_5_triggered()
 {
-    ui->action_5->setIcon(QIcon(":/new/prefix1/img/media-playback-paused.svg"));
+    ui->action_5->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
     ui->action_9->setEnabled(true);
     ui->widget_2->raschet_f();
 }
 
 void MainWindow::on_action_9_triggered()
 {
-    ui->action_5->setIcon(QIcon(":/new/prefix1/img/media-playback-start.svg"));
+    ui->action_5->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start.svg"));
     ui->action_9->setEnabled(false);
     ui->widget_2->dataSource->stop();
 }
 
 void MainWindow::on_action_20_triggered()
 {
-    ui->action_20->setIcon(QIcon(":/new/prefix1/img/media-playback-paused.svg"));
+    ui->action_20->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
     ui->action_21->setEnabled(true);
     ui->widget_5->ui->widget_4->startTeplo();
- ui->widget_3->raschet_el();
+    ui->widget_3->raschet_el();
 }
 
 void MainWindow::on_action_21_triggered()
 {
-    ui->action_20->setIcon(QIcon(":/new/prefix1/img/media-playback-start.svg"));
+    ui->action_20->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start.svg"));
     ui->action_21->setEnabled(false);
     ui->widget_5->ui->widget_4->stopTeplo();
     ui->widget_3->stop();

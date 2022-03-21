@@ -177,7 +177,7 @@ void identf::realtimeDataSlot()
        {
             dataSource->stop();
             wf->ui->action_9->setEnabled(false);
-            wf->ui->action_5->setIcon(QIcon(":/new/prefix1/img/media-playback-start.svg"));
+            wf->ui->action_5->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start.svg"));
             QMessageBox::information(this, tr("Сообщение"), tr("Расчет окончен!"));
        }
        minR2 = DBL_MAX;

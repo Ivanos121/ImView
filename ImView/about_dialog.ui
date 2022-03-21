@@ -14,7 +14,7 @@
    <string>О программе IM View</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resurce.qrc">
+   <iconset>
     <normaloff>:/new/prefix1/img/IM_48x48.png</normaloff>:/new/prefix1/img/IM_48x48.png</iconset>
   </property>
   <property name="modal">
@@ -33,7 +33,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="resurce.qrc">:/new/prefix1/img/zastavka.png</pixmap>
+    <pixmap resource="Images.qrc">:/image/data/img/images/zastavka.png</pixmap>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton">
@@ -67,7 +67,7 @@
   </widget>
  </widget>
  <resources>
-  <include location="resurce.qrc"/>
+  <include location="Images.qrc"/>
  </resources>
  <connections/>
 </ui>

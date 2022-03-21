@@ -14,8 +14,8 @@
    <string>IM View</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resurce.qrc">
-    <normaloff>:/new/prefix1/img/IM_48x48.png</normaloff>:/new/prefix1/img/IM_48x48.png</iconset>
+   <iconset resource="Images.qrc">
+    <normaloff>:/icons/data/img/icons/IM_48x48.png</normaloff>:/icons/data/img/icons/IM_48x48.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -206,12 +206,11 @@
    <addaction name="action_21"/>
    <addaction name="action_22"/>
    <addaction name="separator"/>
-   <addaction name="action_23"/>
   </widget>
   <action name="actionExit">
    <property name="icon">
-    <iconset theme="application-exit">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/application-exit.svg</normaloff>:/system_icons/data/img/system_icons/application-exit.svg</iconset>
    </property>
    <property name="text">
     <string>Выход</string>
@@ -222,8 +221,8 @@
   </action>
   <action name="actionhelp">
    <property name="icon">
-    <iconset theme="help-contents">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/system-help.svg</normaloff>:/system_icons/data/img/system_icons/system-help.svg</iconset>
    </property>
    <property name="text">
     <string>Справка</string>
@@ -234,8 +233,8 @@
   </action>
   <action name="actionabout">
    <property name="icon">
-    <iconset theme="help-about">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/help-about.svg</normaloff>:/system_icons/data/img/system_icons/help-about.svg</iconset>
    </property>
    <property name="text">
     <string>О программе</string>
@@ -243,8 +242,8 @@
   </action>
   <action name="action">
    <property name="icon">
-    <iconset theme="document-open">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/document-open.svg</normaloff>:/system_icons/data/img/system_icons/document-open.svg</iconset>
    </property>
    <property name="text">
     <string>Открыть</string>
@@ -255,8 +254,8 @@
   </action>
   <action name="action_2">
    <property name="icon">
-    <iconset theme="document-save">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/document-save.svg</normaloff>:/system_icons/data/img/system_icons/document-save.svg</iconset>
    </property>
    <property name="text">
     <string>Сохранить</string>
@@ -267,8 +266,8 @@
   </action>
   <action name="action_3">
    <property name="icon">
-    <iconset theme="document-print">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/document-print.svg</normaloff>:/system_icons/data/img/system_icons/document-print.svg</iconset>
    </property>
    <property name="text">
     <string>Печать</string>
@@ -279,8 +278,8 @@
   </action>
   <action name="action_6">
    <property name="icon">
-    <iconset theme="document-save-as">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/document-save-as.svg</normaloff>:/system_icons/data/img/system_icons/document-save-as.svg</iconset>
    </property>
    <property name="text">
     <string>Сохранить рисунок</string>
@@ -291,8 +290,8 @@
   </action>
   <action name="action_7">
    <property name="icon">
-    <iconset theme="edit-undo">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/edit-undo.svg</normaloff>:/system_icons/data/img/system_icons/edit-undo.svg</iconset>
    </property>
    <property name="text">
     <string>Отменить действие</string>
@@ -303,8 +302,8 @@
   </action>
   <action name="action_8">
    <property name="icon">
-    <iconset theme="edit-redo">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/edit-redo.svg</normaloff>:/system_icons/data/img/system_icons/edit-redo.svg</iconset>
    </property>
    <property name="text">
     <string>Повторить действие</string>
@@ -315,8 +314,8 @@
   </action>
   <action name="actioncut">
    <property name="icon">
-    <iconset theme="edit-cut">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/edit-cut.svg</normaloff>:/system_icons/data/img/system_icons/edit-cut.svg</iconset>
    </property>
    <property name="text">
     <string>Вырезать</string>
@@ -327,8 +326,8 @@
   </action>
   <action name="action_10">
    <property name="icon">
-    <iconset theme="edit-copy">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/edit-copy.svg</normaloff>:/system_icons/data/img/system_icons/edit-copy.svg</iconset>
    </property>
    <property name="text">
     <string>Копировать</string>
@@ -339,8 +338,8 @@
   </action>
   <action name="action_11">
    <property name="icon">
-    <iconset theme="edit-paste">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/edit-paste.svg</normaloff>:/system_icons/data/img/system_icons/edit-paste.svg</iconset>
    </property>
    <property name="text">
     <string>Вставить</string>
@@ -351,8 +350,8 @@
   </action>
   <action name="action_13">
    <property name="icon">
-    <iconset theme="system-search">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/edit-find.svg</normaloff>:/system_icons/data/img/system_icons/edit-find.svg</iconset>
    </property>
    <property name="text">
     <string>Поиск/замена</string>
@@ -360,8 +359,8 @@
   </action>
   <action name="action_4">
    <property name="icon">
-    <iconset theme="edit-delete">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/edit-delete.svg</normaloff>:/system_icons/data/img/system_icons/edit-delete.svg</iconset>
    </property>
    <property name="text">
     <string>Удалить</string>
@@ -372,8 +371,8 @@
   </action>
   <action name="action_5">
    <property name="icon">
-    <iconset resource="resurce.qrc">
-     <normaloff>:/new/prefix1/img/media-playback-start_2.svg</normaloff>:/new/prefix1/img/media-playback-start_2.svg</iconset>
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/media-playback-start_2.svg</normaloff>:/system_icons/data/img/system_icons/media-playback-start_2.svg</iconset>
    </property>
    <property name="text">
     <string>Пуск</string>
@@ -381,22 +380,26 @@
   </action>
   <action name="action_9">
    <property name="icon">
-    <iconset resource="resurce.qrc">
-     <normaloff>:/new/prefix1/img/media-playback-stop.svg</normaloff>:/new/prefix1/img/media-playback-stop.svg</iconset>
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/media-playback-stop_2.svg</normaloff>:/system_icons/data/img/system_icons/media-playback-stop_2.svg</iconset>
    </property>
    <property name="text">
     <string>Стоп</string>
    </property>
   </action>
   <action name="action_14">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/configure.svg</normaloff>:/system_icons/data/img/system_icons/configure.svg</iconset>
+   </property>
    <property name="text">
     <string>Настройки</string>
    </property>
   </action>
   <action name="action_15">
    <property name="icon">
-    <iconset resource="resurce.qrc">
-     <normaloff>:/new/prefix1/img/configure.svg</normaloff>:/new/prefix1/img/configure.svg</iconset>
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/configure.svg</normaloff>:/system_icons/data/img/system_icons/configure.svg</iconset>
    </property>
    <property name="text">
     <string>Настройки</string>
@@ -407,8 +410,8 @@
   </action>
   <action name="action_12">
    <property name="icon">
-    <iconset theme="document-open">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/document-open.svg</normaloff>:/system_icons/data/img/system_icons/document-open.svg</iconset>
    </property>
    <property name="text">
     <string>Загрузить данные</string>
@@ -419,8 +422,8 @@
   </action>
   <action name="action_16">
    <property name="icon">
-    <iconset theme="document-save">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/document-save.svg</normaloff>:/system_icons/data/img/system_icons/document-save.svg</iconset>
    </property>
    <property name="text">
     <string>Сохранить данные</string>
@@ -431,8 +434,8 @@
   </action>
   <action name="action_17">
    <property name="icon">
-    <iconset theme="edit-delete">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/edit-delete.svg</normaloff>:/system_icons/data/img/system_icons/edit-delete.svg</iconset>
    </property>
    <property name="text">
     <string>Удалить данные</string>
@@ -443,8 +446,8 @@
   </action>
   <action name="action_18">
    <property name="icon">
-    <iconset theme="edit-clear">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/edit-clear.svg</normaloff>:/system_icons/data/img/system_icons/edit-clear.svg</iconset>
    </property>
    <property name="text">
     <string>Очистить данные</string>
@@ -455,8 +458,8 @@
   </action>
   <action name="action_19">
    <property name="icon">
-    <iconset theme="document-new">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/document-new.svg</normaloff>:/system_icons/data/img/system_icons/document-new.svg</iconset>
    </property>
    <property name="text">
     <string>Принять данные</string>
@@ -467,8 +470,8 @@
   </action>
   <action name="action_20">
    <property name="icon">
-    <iconset theme="media-playback-start" resource="resurce.qrc">
-     <normaloff>:/new/prefix1/img/media-playback-start.svg</normaloff>:/new/prefix1/img/media-playback-start.svg</iconset>
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/media-playback-start.svg</normaloff>:/system_icons/data/img/system_icons/media-playback-start.svg</iconset>
    </property>
    <property name="text">
     <string>Запуск</string>
@@ -476,8 +479,8 @@
   </action>
   <action name="action_21">
    <property name="icon">
-    <iconset theme="media-playback-stop" resource="resurce.qrc">
-     <normaloff>:/new/prefix1/img/media-playback-stop.svg</normaloff>:/new/prefix1/img/media-playback-stop.svg</iconset>
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/media-playback-stop.svg</normaloff>:/system_icons/data/img/system_icons/media-playback-stop.svg</iconset>
    </property>
    <property name="text">
     <string>Останов</string>
@@ -485,16 +488,11 @@
   </action>
   <action name="action_22">
    <property name="icon">
-    <iconset theme="system-reboot" resource="resurce.qrc">
-     <normaloff>:/new/prefix1/img/configure.svg</normaloff>:/new/prefix1/img/configure.svg</iconset>
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/view-refresh.svg</normaloff>:/system_icons/data/img/system_icons/view-refresh.svg</iconset>
    </property>
    <property name="text">
     <string>Калибровка осциллографа</string>
-   </property>
-  </action>
-  <action name="action_23">
-   <property name="text">
-    <string>Создать папку</string>
    </property>
   </action>
  </widget>
@@ -537,7 +535,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="resurce.qrc"/>
+  <include location="Images.qrc"/>
  </resources>
  <connections/>
 </ui>

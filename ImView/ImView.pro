@@ -129,4 +129,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 LIBS += -lusb-1.0
 
 RESOURCES += \
-    resurce.qrc
+    Images.qrc 
