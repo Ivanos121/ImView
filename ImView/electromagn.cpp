@@ -1452,6 +1452,7 @@ void electromagn::raschet_el()
         //БВАС с датчиком скорости + наблюдатель частично (момента)
         //dataSource->init();
         //nabludatel_part.init(base.R1, base.R2, base.L1, base.L2, base.Lm);
+
     }
 
     if(ui->radioButton_3->isChecked())
