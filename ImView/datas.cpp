@@ -21,10 +21,11 @@ datas::datas(QWidget *parent) :
     ui->setupUi(this);
 
     sdb = QSqlDatabase::addDatabase("QSQLITE");
-    //sdb.setDatabaseName("/home/elf/Dropbox/Наблюдатель/injterfece/build-untitled-Desktop-Debug/mydb.db");
-    sdb.setDatabaseName(QFileInfo("../data/base_db/mydb.db").absoluteFilePath());
-    table();
+  //  sdb.setDatabaseName(QFileInfo(":/databases/data/databases/mydb.db").absoluteFilePath());
+  sdb.setDatabaseName(QFileInfo("/home/elf/ImView/data/base_db/mydb.db").absoluteFilePath());
 
+
+    table();
     ui->lineEdit_2->setValidator(new QRegExpValidator(QRegExp( "^[А-Я]{3}\[0-9]{3}\[A-Z]{1}\[0-9]{1}\[А-Я]{1}\[1-9]{1}$" )));
     ui->lineEdit_3->setValidator(new QIntValidator(1,1000));
     ui->lineEdit_4->setValidator(new QIntValidator(1,1000));

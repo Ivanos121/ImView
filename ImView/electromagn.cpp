@@ -22,7 +22,8 @@ QCursor curs;
 
 electromagn::electromagn(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::electromagn)
+    ui(new Ui::electromagn),
+    dataSource(nullptr)
 {
     ui->setupUi(this);
     ui->plot->t_max = 10.0;
@@ -1449,8 +1450,8 @@ void electromagn::raschet_el()
     if(ui->radioButton_2->isChecked())
     {
         //БВАС с датчиком скорости + наблюдатель частично (момента)
-        dataSource->init();
-        nabludatel_part.init(base.R1, base.R2, base.L1, base.L2, base.Lm);
+        //dataSource->init();
+        //nabludatel_part.init(base.R1, base.R2, base.L1, base.L2, base.Lm);
     }
 
     if(ui->radioButton_3->isChecked())
@@ -1490,9 +1491,12 @@ void electromagn::stop()
 
     if((ui->radioButton->isChecked()) || (ui->radioButton_4->isChecked()))
     {
-        dataSource->stop();
-        disconnect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
-        delete dataSource;
+        if (dataSource != nullptr )
+        {
+          dataSource->stop();
+          disconnect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
+          delete dataSource;
+        }
     }
 
     if(ui->radioButton_2->isChecked())

@@ -12,7 +12,7 @@ draw_poper::draw_poper(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->webEngineView_2->hide();
-    ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/rad_var/rad_var_2.html").absoluteFilePath()));
+    //ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/rad_var/rad_var_2.html").absoluteFilePath()));
     //ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
 
     ui->tableWidget->setRowCount(8);

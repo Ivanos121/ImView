@@ -44,4 +44,8 @@
         <file>../data/img/images/IM_LOGO.png</file>
         <file>../data/img/images/zastavka.png</file>
     </qresource>
+    <qresource prefix="/databases">
+        <file>../data/databases/mydb.db</file>
+        <file>../data/databases/netdb_base.db</file>
+    </qresource>
 </RCC>

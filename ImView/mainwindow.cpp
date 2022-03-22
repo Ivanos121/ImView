@@ -13,7 +13,10 @@
 #include "teplovent.h"
 #include "ui_teplovent.h"
 #include "ui_draw_line.h"
+#include "ui_draw_poper.h"
 #include "ui_teplschem.h"
+#include "ui_vent_model.h"
+#include "ui_vent_izm.h"
 
 Base base;
 
@@ -29,10 +32,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_5->ui->widget_4->wf=this;
 
     ui->widget_5->ui->widget->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/ax_var/ax_var_2.html").absoluteFilePath()));
-    ui->widget_5->ui->widget_3->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/ax_var/ax_var_2.html").absoluteFilePath()));
-//    ui->widget_5->ui->widget_5->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
-//    ui->widget_5->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
-//    ui->widget_9->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_tract/vent_tract.html").absoluteFilePath()));
+    ui->widget_5->ui->widget_5->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/rad_var/rad_var_2.html").absoluteFilePath()));
+    ui->widget_5->ui->widget->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
+    ui->widget_5->ui->widget_5->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
+    ui->widget_6->ui->widget_2->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_tract/vent_tract.html").absoluteFilePath()));
 
     showMaximized();
     ui->action_9->setEnabled(false);
@@ -182,17 +185,17 @@ Settings::Settings(QWidget *parent) :
     ui(new Ui::settings)
 {
     ui->setupUi(this);
-    QListWidgetItem *item_1=new QListWidgetItem(QIcon(":/new/prefix1/data/img/folder.svg"), "Интерфейс");
+    QListWidgetItem *item_1=new QListWidgetItem(QIcon(":/system_icons/data/img/system_icons/folder.svg"), "Интерфейс");
     ui->listWidget->addItem(item_1);
-    QListWidgetItem *item_2=new QListWidgetItem(QIcon(":/new/prefix1/img/labplot-axis-vertical.svg"), "Исходные данные");
+    QListWidgetItem *item_2=new QListWidgetItem(QIcon(":/system_icons/data/img/system_icons/labplot-axis-vertical.svg"), "Исходные данные");
     ui->listWidget->addItem(item_2);
-    QListWidgetItem *item_3=new QListWidgetItem(QIcon(":/new/prefix1/img/labplot-matrix-new.svg"), "Идентификация параметров");
+    QListWidgetItem *item_3=new QListWidgetItem(QIcon(":/system_icons/data/img/system_icons/labplot-matrix-new.svg"), "Идентификация параметров");
     ui->listWidget->addItem(item_3);
-    QListWidgetItem *item_4=new QListWidgetItem(QIcon(":/new/prefix1/img/labplot-xy-interpolation-curve.svg"), "Энергетические показатели");
+    QListWidgetItem *item_4=new QListWidgetItem(QIcon(":/system_icons/data/img/system_icons/labplot-xy-interpolation-curve.svg"), "Энергетические показатели");
     ui->listWidget->addItem(item_4);
-    QListWidgetItem *item_5=new QListWidgetItem(QIcon(":/new/prefix1/img/labplot-zoom-out-y.svg"), "Тепловентиляция");
+    QListWidgetItem *item_5=new QListWidgetItem(QIcon(":/system_icons/data/img/system_icons/labplot-zoom-out-y.svg"), "Тепловентиляция");
     ui->listWidget->addItem(item_5);
-    QListWidgetItem *item_6=new QListWidgetItem(QIcon(":/new/prefix1/img/map-flat.svg"), "Выходные данные");
+    QListWidgetItem *item_6=new QListWidgetItem(QIcon(":/system_icons/data/img/system_icons/map-flat.svg"), "Выходные данные");
     ui->listWidget->addItem(item_6);
 
     QModelIndex firstRow = ui->listWidget->model()->index(0, 0);
