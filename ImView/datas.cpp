@@ -141,33 +141,33 @@ void datas::on_pushButton_6_clicked()
 
 void datas::on_pushButton_clicked()
 {
-    if(ui->lineEdit_2->text().isEmpty() || ui->lineEdit_3->text().isEmpty()
-            || ui->lineEdit_4->text().isEmpty() || ui->lineEdit_5->text().isEmpty() || ui->lineEdit_6->text().isEmpty()
-            || ui->lineEdit_7->text().isEmpty() || ui->lineEdit_8->text().isEmpty() || ui->lineEdit_9->text().isEmpty())
-        {
-        QMessageBox::critical(this, "Ошибка!", "Заполните пустые поля");
-        return;
-        }
+//    if(ui->lineEdit_2->text().isEmpty() || ui->lineEdit_3->text().isEmpty()
+//            || ui->lineEdit_4->text().isEmpty() || ui->lineEdit_5->text().isEmpty() || ui->lineEdit_6->text().isEmpty()
+//            || ui->lineEdit_7->text().isEmpty() || ui->lineEdit_8->text().isEmpty() || ui->lineEdit_9->text().isEmpty())
+//        {
+//        QMessageBox::critical(this, "Ошибка!", "Заполните пустые поля");
+//        return;
+//        }
 
-        base.name = ui->lineEdit_2->text();
-        base.P_nom = ui->lineEdit_3->text().toDouble();
-        base.n_nom = ui->lineEdit_4->text().toDouble();
-        base.U_fnom = ui->lineEdit_5->text().toDouble();
-        base.cosf_nom = ui->lineEdit_6->text().toDouble();
-        base.kpd_nom = ui->lineEdit_7->text().toDouble();
-        base.muk = ui->lineEdit_8->text().toDouble();
-        base.n_0 = ui->lineEdit_9->text().toDouble();
+//        base.name = ui->lineEdit_2->text();
+//        base.P_nom = ui->lineEdit_3->text().toDouble();
+//        base.n_nom = ui->lineEdit_4->text().toDouble();
+//        base.U_fnom = ui->lineEdit_5->text().toDouble();
+//        base.cosf_nom = ui->lineEdit_6->text().toDouble();
+//        base.kpd_nom = ui->lineEdit_7->text().toDouble();
+//        base.muk = ui->lineEdit_8->text().toDouble();
+//        base.n_0 = ui->lineEdit_9->text().toDouble();
 
-        if (ui->buttonGroup->checkedButton() == ui->radioButton_2)
-        {
-            if (dataSourceFilename.isEmpty())
-            {
-                QMessageBox::critical(this, tr("Ошибка!"), tr("Файл не выбран!"));
-                return;
-            }
+//        if (ui->buttonGroup->checkedButton() == ui->radioButton_2)
+//        {
+//            if (dataSourceFilename.isEmpty())
+//            {
+//                QMessageBox::critical(this, tr("Ошибка!"), tr("Файл не выбран!"));
+//                return;
+//            }
 
-            base.dataSourceFilename = dataSourceFilename;
-        }
+//            base.dataSourceFilename = dataSourceFilename;
+//        }
 }
 
 void datas::on_pushButton_2_clicked()

@@ -440,82 +440,6 @@ void electromagn::realtimeDataSlot()
     {
         nabludatel.rasch(dataSource);
 
-        //Считывание коэффициента изменения амплитуды напряжения фазы А
-//        a1=ui->tableWidget_2->item(6,1)->text().toDouble();
-
-//        //Считывание коэффициента изменения амплитуды напряжения фазы В
-//        a2=ui->tableWidget_2->item(7,1)->text().toDouble();
-
-//        //Считывание коэффициента изменения амплитуды напряжения фазы С
-//        a3=ui->tableWidget_2->item(8,1)->text().toDouble();
-
-//        //Считывание коэффициента смещения напряжения фазы А
-//        a4=ui->tableWidget_2->item(9,1)->text().toDouble();
-
-//        //Считывание коэффициента смещения напряжения фазы В
-//        a5=ui->tableWidget_2->item(10,1)->text().toDouble();
-
-//        //Считывание коэффициента смещения напряжения фазы С
-//        a6=ui->tableWidget_2->item(11,1)->text().toDouble();
-
-//        //Считывание коэффициента изменения амплитуды тока фазы А
-//        a7=ui->tableWidget_2->item(12,1)->text().toDouble();
-
-//        //Считывание коэффициента изменения амплитуды тока фазы В
-//        a8=ui->tableWidget_2->item(13,1)->text().toDouble();
-
-//        //Считывание коэффициента изменения амплитуды тока фазы С
-//        a9=ui->tableWidget_2->item(14,1)->text().toDouble();
-
-//        //Считывание коэффициента смещения тока фазы А
-//        a10=ui->tableWidget_2->item(15,1)->text().toDouble();
-
-//        //Считывание коэффициента смещения тока фазы В
-//        a11=ui->tableWidget_2->item(16,1)->text().toDouble();
-
-//        //Считывание коэффициента смещения тока фазы С
-//        a12=ui->tableWidget_2->item(17,1)->text().toDouble();
-
-//    if(ui->tableWidget_2->model()->index(0,1).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(0, key, a4+a1*nabludatel.u_dev_a);
-//    }
-
-//    if(ui->tableWidget_2->model()->index(1,1).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(1, key, a5+a2*nabludatel.u_dev_b);
-//    }
-
-//    if(ui->tableWidget_2->model()->index(2,1).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(2, key, a6+a3*nabludatel.u_dev_c);
-//    }
-
-//    if(ui->tableWidget_2->model()->index(3,1).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(3, key, a10+a7*nabludatel.i_dev_a);
-//    }
-
-//    if(ui->tableWidget_2->model()->index(4,1).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(4, key, a11+a8*nabludatel.i_dev_b);
-//    }
-
-//    if(ui->tableWidget_2->model()->index(5,1).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(5, key, a12+a9*nabludatel.i_dev_c);
-//    }
-
-//    if(ui->tableWidget_2->model()->index(18,1).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(6, key, nabludatel.w_sr);
-//    }
-
-//    if(ui->tableWidget_2->model()->index(19,1).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(7, key, nabludatel.M_sr);
-//    }
-
     //Занесение итоговых данных в таблицу
     if (ui->tableWidget->item(0, 1) != 0)
     {
@@ -667,114 +591,114 @@ void electromagn::realtimeDataSlot()
 
         //Считывание коэффициента изменения амплитуды напряжения фазы А
 
-        if(ui->tableWidget_3->item(13,1)!=0)
+        if(ui->tableWidget_5->item(13,1)!=0)
         {
-            b1=ui->tableWidget_3->item(13,1)->text().toDouble();
+            b1=ui->tableWidget_5->item(13,1)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды напряжения фазы В
 
-        if(ui->tableWidget_3->item(14,1)!=0)
+        if(ui->tableWidget_5->item(14,1)!=0)
         {
-            b2=ui->tableWidget_3->item(14,1)->text().toDouble();
+            b2=ui->tableWidget_5->item(14,1)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды напряжения фазы С
 
-        if(ui->tableWidget_3->item(15,1)!=0)
+        if(ui->tableWidget_5->item(15,1)!=0)
         {
-            b3=ui->tableWidget_3->item(15,1)->text().toDouble();
+            b3=ui->tableWidget_5->item(15,1)->text().toDouble();
         }
 
         //Считывание коэффициента смещения напряжения фазы А
 
-        if(ui->tableWidget_3->item(16,1)!=0)
+        if(ui->tableWidget_5->item(16,1)!=0)
         {
-            b4=ui->tableWidget_3->item(16,1)->text().toDouble();
+            b4=ui->tableWidget_5->item(16,1)->text().toDouble();
         }
 
         //Считывание коэффициента смещения напряжения фазы В
 
-        if(ui->tableWidget_3->item(17,1)!=0)
+        if(ui->tableWidget_5->item(17,1)!=0)
         {
-            b5=ui->tableWidget_3->item(17,1)->text().toDouble();
+            b5=ui->tableWidget_5->item(17,1)->text().toDouble();
         }
 
         //Считывание коэффициента смещения напряжения фазы С
 
-        if(ui->tableWidget_3->item(18,1)!=0)
+        if(ui->tableWidget_5->item(18,1)!=0)
         {
-            b6=ui->tableWidget_3->item(18,1)->text().toDouble();
+            b6=ui->tableWidget_5->item(18,1)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды тока фазы А
 
-        if(ui->tableWidget_3->item(19,1)!=0)
+        if(ui->tableWidget_5->item(19,1)!=0)
         {
-            b7=ui->tableWidget_3->item(20,1)->text().toDouble();
+            b7=ui->tableWidget_5->item(20,1)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды тока фазы В
 
-        if(ui->tableWidget_3->item(20,1)!=0)
+        if(ui->tableWidget_5->item(20,1)!=0)
         {
-            b8=ui->tableWidget_3->item(20,1)->text().toDouble();
+            b8=ui->tableWidget_5->item(20,1)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды тока фазы С
 
-        if(ui->tableWidget_3->item(21,1)!=0)
+        if(ui->tableWidget_5->item(21,1)!=0)
         {
-            b9=ui->tableWidget_3->item(21,1)->text().toDouble();
+            b9=ui->tableWidget_5->item(21,1)->text().toDouble();
         }
 
         //Считывание коэффициента смещения тока фазы А
 
-        if(ui->tableWidget_3->item(22,1)!=0)
+        if(ui->tableWidget_5->item(22,1)!=0)
         {
-            b10=ui->tableWidget_3->item(22,1)->text().toDouble();
+            b10=ui->tableWidget_5->item(22,1)->text().toDouble();
         }
 
         //Считывание коэффициента смещения тока фазы В
 
-        if(ui->tableWidget_3->item(23,1)!=0)
+        if(ui->tableWidget_5->item(23,1)!=0)
         {
-            b11=ui->tableWidget_3->item(23,1)->text().toDouble();
+            b11=ui->tableWidget_5->item(23,1)->text().toDouble();
         }
 
         //Считывание коэффициента смещения тока фазы С
 
-        if(ui->tableWidget_3->item(24,1)!=0)
+        if(ui->tableWidget_5->item(24,1)!=0)
         {
-            b12=ui->tableWidget_3->item(24,1)->text().toDouble();
+            b12=ui->tableWidget_5->item(24,1)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды скорости вращения
 
-        if(ui->tableWidget_3->item(25,1)!=0)
+        if(ui->tableWidget_5->item(25,1)!=0)
         {
-            b13=ui->tableWidget_3->item(25,1)->text().toDouble();
+            b13=ui->tableWidget_5->item(25,1)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды момента на валу
 
-        if(ui->tableWidget_3->item(26,1)!=0)
+        if(ui->tableWidget_5->item(26,1)!=0)
         {
-            b14=ui->tableWidget_3->item(26,1)->text().toDouble();
+            b14=ui->tableWidget_5->item(26,1)->text().toDouble();
         }
 
         //Считывание коэффициента смещения скорости вращения
 
-        if(ui->tableWidget_3->item(27,1)!=0)
+        if(ui->tableWidget_5->item(27,1)!=0)
         {
-            b15=ui->tableWidget_3->item(27,1)->text().toDouble();
+            b15=ui->tableWidget_5->item(27,1)->text().toDouble();
         }
 
         //Считывание коэффициента смещения момента на валу
 
-        if(ui->tableWidget_3->item(28,1)!=0)
+        if(ui->tableWidget_5->item(28,1)!=0)
         {
-            b16=ui->tableWidget_3->item(28,1)->text().toDouble();
+            b16=ui->tableWidget_5->item(28,1)->text().toDouble();
         }
 
         key = Model_el.t;
@@ -789,7 +713,7 @@ void electromagn::realtimeDataSlot()
 
         //вывод на qcustomPlot графика напряжения Ub после преобразования 2 в 3
 
-        if(ui->tableWidget_3->model()->index(6,1).data(Qt::CheckStateRole)==Qt::Checked)
+        if(ui->tableWidget_5->model()->index(1,2).data(Qt::CheckStateRole)==Qt::Checked)
         {
             ui->plot->addPoint(1, key, b5+b2*(Model_el.u_dev_b));
 
@@ -797,49 +721,49 @@ void electromagn::realtimeDataSlot()
 
         //вывод на qcustomPlot графика напряжения Uc после преобразования 2 в 3
 
-        if(ui->tableWidget_3->model()->index(7,1).data(Qt::CheckStateRole)==Qt::Checked)
+        if(ui->tableWidget_3->model()->index(2,2).data(Qt::CheckStateRole)==Qt::Checked)
         {
             ui->plot->addPoint(2, key, b6+b3*(Model_el.u_dev_c));
         }
 
         //вывод на qcustomPlot графика напряжения Ia после преобразования 2 в 3
 
-        if(ui->tableWidget_3->model()->index(8,1).data(Qt::CheckStateRole)==Qt::Checked)
+        if(ui->tableWidget_3->model()->index(3,2).data(Qt::CheckStateRole)==Qt::Checked)
         {
             ui->plot->addPoint(3, key, b10+b7*(Model_el.i_dev_a));
         }
 
         //вывод на qcustomPlot графика напряжения Ib после преобразования 2 в 3
 
-        if(ui->tableWidget_3->model()->index(9,1).data(Qt::CheckStateRole)==Qt::Checked)
+        if(ui->tableWidget_3->model()->index(4,2).data(Qt::CheckStateRole)==Qt::Checked)
         {
             ui->plot->addPoint(4, key, b11+b8*(Model_el.i_dev_b));
         }
 
         //вывод на qcustomPlot графика напряжения Ic после преобразования 2 в 3
 
-        if(ui->tableWidget_3->model()->index(10,1).data(Qt::CheckStateRole)==Qt::Checked)
+        if(ui->tableWidget_3->model()->index(5,2).data(Qt::CheckStateRole)==Qt::Checked)
         {
             ui->plot->addPoint(5, key, b12+b9*(Model_el.i_dev_c));
        }
 
         //вывод на qcustomPlot графика скорости omega
 
-        if(ui->tableWidget_3->model()->index(11,1).data(Qt::CheckStateRole)==Qt::Checked)
+        if(ui->tableWidget_3->model()->index(6,2).data(Qt::CheckStateRole)==Qt::Checked)
         {
             ui->plot->addPoint(6, key, b15+b13*Model_el.omega);
         }
 
         //вывод на qcustomPlot момента на валу M
 
-        if(ui->tableWidget_3->model()->index(12,1).data(Qt::CheckStateRole)==Qt::Checked)
+        if(ui->tableWidget_3->model()->index(7,2).data(Qt::CheckStateRole)==Qt::Checked)
         {
             ui->plot->addPoint(7, key, b16+b14*Model_el.M);
         }
 
         //вывод на qcustomPlot момента Mс
 
-        if(ui->tableWidget_3->model()->index(29,1).data(Qt::CheckStateRole)==Qt::Checked)
+        if(ui->tableWidget_3->model()->index(8,2).data(Qt::CheckStateRole)==Qt::Checked)
         {
             ui->plot->addPoint(8, key, Model_el.Mc);
         }
@@ -1113,50 +1037,46 @@ void electromagn::realtimeDataSlot()
         //Считывание коэффициента смещения момента Mc
         a18=ui->tableWidget_5->item(8,5)->text().toDouble();
 
-//    if(ui->tableWidget_3->model()->index(5,1).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(0, key, a4+a1*nabludatel.u_dev_a);
-//    }
 
-//    if(ui->tableWidget_3->model()->index(6,1).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(1, key, a5+a2*nabludatel.u_dev_b);
-//    }
+    if(ui->tableWidget_5->model()->index(0,2).data(Qt::CheckStateRole)==Qt::Checked)
+    {
+        ui->plot->addPoint(0, key, a4+a1*nabludatel.u_dev_a);
+    }
 
-//    if(ui->tableWidget_3->model()->index(7,1).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(2, key, a6+a3*nabludatel.u_dev_c);
-//    }
+    if(ui->tableWidget_5->model()->index(1,2).data(Qt::CheckStateRole)==Qt::Checked)
+    {
+        ui->plot->addPoint(1, key, a5+a2*nabludatel.u_dev_b);
+    }
 
-//    if(ui->tableWidget_2->model()->index(3,1).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(3, key, a10+a7*nabludatel.i_dev_a);
-//    }
+    if(ui->tableWidget_5->model()->index(2,2).data(Qt::CheckStateRole)==Qt::Checked)
+    {
+        ui->plot->addPoint(2, key, a6+a3*nabludatel.u_dev_c);
+    }
 
-//    if(ui->tableWidget_2->model()->index(4,1).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(4, key, a11+a8*nabludatel.i_dev_b);
-//    }
+    if(ui->tableWidget_5->model()->index(3,2).data(Qt::CheckStateRole)==Qt::Checked)
+    {
+        ui->plot->addPoint(3, key, a10+a7*nabludatel.i_dev_a);
+    }
 
-//    if(ui->tableWidget_2->model()->index(5,1).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(5, key, a12+a9*nabludatel.i_dev_c);
-//    }
+    if(ui->tableWidget_5->model()->index(4,2).data(Qt::CheckStateRole)==Qt::Checked)
+    {
+        ui->plot->addPoint(4, key, a11+a8*nabludatel.i_dev_b);
+    }
 
-//    if(ui->tableWidget_2->model()->index(18,1).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(6, key, nabludatel.w_sr);
-//    }
+    if(ui->tableWidget_5->model()->index(5,2).data(Qt::CheckStateRole)==Qt::Checked)
+    {
+        ui->plot->addPoint(5, key, a12+a9*nabludatel.i_dev_c);
+    }
 
-//    if(ui->tableWidget_2->model()->index(19,1).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(7, key, nabludatel.M_sr);
-//    }
+    if(ui->tableWidget_5->model()->index(6,2).data(Qt::CheckStateRole)==Qt::Checked)
+    {
+        ui->plot->addPoint(6, key, nabludatel.w_sr);
+    }
 
-//    if(ui->tableWidget_5->model()->index(0,2).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(0, key, a4+a1*nabludatel.u_dev_a);
-//    }
+    if(ui->tableWidget_5->model()->index(7,2).data(Qt::CheckStateRole)==Qt::Checked)
+    {
+        ui->plot->addPoint(7, key, nabludatel.M_sr);
+    }
 
     //Занесение итоговых данных в таблицу
     if (ui->tableWidget->item(0, 1) != 0)

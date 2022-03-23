@@ -4,7 +4,6 @@
 #include "ui_identf.h"
 #include "model.h"
 #include "plot.h"
-
 #include "base.h"
 
 #include <iostream>

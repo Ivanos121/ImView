@@ -579,29 +579,29 @@ void trend::on_timerTimeout()
         wf->ui->widget_5->ui->widget_5->ui->tableWidget->item(3, 2)->setTextAlignment(Qt::AlignCenter);
     }
 
-//    if (mw->ui->widget_8->ui->tableWidget->item(4, 2) != 0)
-//    {
-//        mw->ui->widget_8->ui->tableWidget->item(4, 2)->setText(QString("%1").arg(QString::number(y_15,'f',1)));
-//        mw->ui->widget_8->ui->tableWidget->item(4, 2)->setTextAlignment(Qt::AlignCenter);
-//    }
+    if (wf->ui->widget_5->ui->widget_5->ui->tableWidget->item(4, 2) != 0)
+    {
+        wf->ui->widget_5->ui->widget_5->ui->tableWidget->item(4, 2)->setText(QString("%1").arg(QString::number(y_15,'f',1)));
+        wf->ui->widget_5->ui->widget_5->ui->tableWidget->item(4, 2)->setTextAlignment(Qt::AlignCenter);
+    }
 
-//    if (mw->ui->widget_8->ui->tableWidget->item(5, 2) != 0)
-//    {
-//        mw->ui->widget_8->ui->tableWidget->item(5, 2)->setText(QString("%1").arg(QString::number(y_16,'f',1)));
-//        mw->ui->widget_8->ui->tableWidget->item(5, 2)->setTextAlignment(Qt::AlignCenter);
-//    }
+    if (wf->ui->widget_5->ui->widget_5->ui->tableWidget->item(5, 2) != 0)
+    {
+        wf->ui->widget_5->ui->widget_5->ui->tableWidget->item(5, 2)->setText(QString("%1").arg(QString::number(y_16,'f',1)));
+        wf->ui->widget_5->ui->widget_5->ui->tableWidget->item(5, 2)->setTextAlignment(Qt::AlignCenter);
+    }
 
-//    if (mw->ui->widget_8->ui->tableWidget->item(6, 2) != 0)
-//    {
-//        mw->ui->widget_8->ui->tableWidget->item(6, 2)->setText(QString("%1").arg(QString::number(y_8,'f',1)));
-//        mw->ui->widget_8->ui->tableWidget->item(6, 2)->setTextAlignment(Qt::AlignCenter);
-//    }
+    if (wf->ui->widget_5->ui->widget_5->ui->tableWidget->item(6, 2) != 0)
+    {
+        wf->ui->widget_5->ui->widget_5->ui->tableWidget->item(6, 2)->setText(QString("%1").arg(QString::number(y_8,'f',1)));
+        wf->ui->widget_5->ui->widget_5->ui->tableWidget->item(6, 2)->setTextAlignment(Qt::AlignCenter);
+    }
 
-//    if (mw->ui->widget_8->ui->tableWidget->item(7, 2) != 0)
-//    {
-//        mw->ui->widget_8->ui->tableWidget->item(7, 2)->setText(QString("%1").arg(QString::number(y_8,'f',1)));
-//        mw->ui->widget_8->ui->tableWidget->item(7, 2)->setTextAlignment(Qt::AlignCenter);
-//    }
+    if (wf->ui->widget_5->ui->widget_5->ui->tableWidget->item(7, 2) != 0)
+    {
+        wf->ui->widget_5->ui->widget_5->ui->tableWidget->item(7, 2)->setText(QString("%1").arg(QString::number(y_8,'f',1)));
+        wf->ui->widget_5->ui->widget_5->ui->tableWidget->item(7, 2)->setTextAlignment(Qt::AlignCenter);
+    }
 
 
 
@@ -1206,7 +1206,8 @@ void trend::on_timerTimeout()
                 max=y_16;
             }
 
-            double miny=ui->lineEdit->text().toDouble();
+         //   double miny=ui->lineEdit->text().toDouble();
+           double miny=20.0;
             double h=(max-miny)/9;
             double shag1=miny+h;
             double shag2=shag1+h;

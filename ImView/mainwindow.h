@@ -80,6 +80,7 @@ public:
     AboutDialog *rsc;
     Kalibr *kalibr;
     Settings *rsc2;
+    QString dataSourceFilename;
 
     QWebEngineView * view;
 };

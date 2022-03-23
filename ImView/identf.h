@@ -40,6 +40,7 @@ public:
     Modell *modell;
     DataSource *dataSource;
     MainWindow *wf;
+    QString dataSourceFilename;
 
 private:
     QVector<QColor> dataLineColors;

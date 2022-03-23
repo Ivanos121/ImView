@@ -121,15 +121,47 @@ void MainWindow::on_action_5_triggered()
     if(ui->widget->ui->lineEdit_2->text().isEmpty() || ui->widget->ui->lineEdit_3->text().isEmpty()
             || ui->widget->ui->lineEdit_4->text().isEmpty() || ui->widget->ui->lineEdit_5->text().isEmpty() || ui->widget->ui->lineEdit_6->text().isEmpty()
             || ui->widget->ui->lineEdit_7->text().isEmpty() || ui->widget->ui->lineEdit_8->text().isEmpty() || ui->widget->ui->lineEdit_9->text().isEmpty())
-        {
-        QMessageBox::critical(this, "Ошибка!", "Заполните пустые поля");
-        }
-    else
-        {
-            ui->action_5->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
-            ui->action_9->setEnabled(true);
-            ui->widget_2->raschet_f();
-        }
+            {
+            QMessageBox::critical(this, "Ошибка!", "Заполните пустые поля");
+            return;
+            }
+     else
+    {
+
+//            if (ui->widget->ui->buttonGroup->checkedButton() == ui->widget->ui->radioButton_2)
+//            {
+//                if (dataSourceFilename.isEmpty())
+//                {
+//                    QMessageBox::critical(this, tr("Ошибка!"), tr("Файл не выбран!"));
+//                    return;
+//                }
+
+
+                base.name = ui->widget->ui->lineEdit_2->text();
+                base.P_nom = ui->widget->ui->lineEdit_3->text().toDouble();
+                base.n_nom = ui->widget->ui->lineEdit_4->text().toDouble();
+                base.U_fnom = ui->widget->ui->lineEdit_5->text().toDouble();
+                base.cosf_nom = ui->widget->ui->lineEdit_6->text().toDouble();
+                base.kpd_nom = ui->widget->ui->lineEdit_7->text().toDouble();
+                base.muk = ui->widget->ui->lineEdit_8->text().toDouble();
+                base.n_0 = ui->widget->ui->lineEdit_9->text().toDouble();
+                base.dataSourceFilename = dataSourceFilename;
+                ui->action_5->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
+                ui->action_9->setEnabled(true);
+                ui->widget_2->raschet_f();}
+
+//    if(ui->widget->ui->lineEdit_2->text().isEmpty() || ui->widget->ui->lineEdit_3->text().isEmpty()
+//            || ui->widget->ui->lineEdit_4->text().isEmpty() || ui->widget->ui->lineEdit_5->text().isEmpty() || ui->widget->ui->lineEdit_6->text().isEmpty()
+//            || ui->widget->ui->lineEdit_7->text().isEmpty() || ui->widget->ui->lineEdit_8->text().isEmpty() || ui->widget->ui->lineEdit_9->text().isEmpty())
+//        {
+//        QMessageBox::critical(this, "Ошибка!", "Заполните пустые поля");
+//        }
+//    else
+//        {
+//            ui->action_5->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
+//            ui->action_9->setEnabled(true);
+//            ui->widget_2->raschet_f();
+//        }
 
 }
 
