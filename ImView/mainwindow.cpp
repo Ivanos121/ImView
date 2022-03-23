@@ -17,6 +17,7 @@
 #include "ui_teplschem.h"
 #include "ui_vent_model.h"
 #include "ui_vent_izm.h"
+#include "ui_datas.h"
 
 Base base;
 
@@ -117,14 +118,24 @@ void MainWindow::on_action_18_triggered()
 
 void MainWindow::on_action_5_triggered()
 {
-    ui->action_5->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
-    ui->action_9->setEnabled(true);
-    ui->widget_2->raschet_f();
+    if(ui->widget->ui->lineEdit_2->text().isEmpty() || ui->widget->ui->lineEdit_3->text().isEmpty()
+            || ui->widget->ui->lineEdit_4->text().isEmpty() || ui->widget->ui->lineEdit_5->text().isEmpty() || ui->widget->ui->lineEdit_6->text().isEmpty()
+            || ui->widget->ui->lineEdit_7->text().isEmpty() || ui->widget->ui->lineEdit_8->text().isEmpty() || ui->widget->ui->lineEdit_9->text().isEmpty())
+        {
+        QMessageBox::critical(this, "Ошибка!", "Заполните пустые поля");
+        }
+    else
+        {
+            ui->action_5->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
+            ui->action_9->setEnabled(true);
+            ui->widget_2->raschet_f();
+        }
+
 }
 
 void MainWindow::on_action_9_triggered()
 {
-    ui->action_5->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start.svg"));
+    ui->action_5->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start_2.svg"));
     ui->action_9->setEnabled(false);
     ui->widget_2->dataSource->stop();
 }

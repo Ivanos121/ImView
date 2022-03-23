@@ -1615,7 +1615,7 @@ void electromagn::on_radioButton_3_clicked()
 
 void electromagn::bvasFailureSlot()
 {
-    wf->ui->action_20->setIcon(QIcon(":/new/prefix1/img/media-playback-start.svg"));
+    wf->ui->action_20->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start.svg"));
     wf->ui->action_21->setEnabled(false);
     QMessageBox::critical(this, "Ошибка!", "Ошибка подключения BVAS!");
 }

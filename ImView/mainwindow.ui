@@ -22,7 +22,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>6</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -86,7 +86,7 @@
       </widget>
       <widget class="QWidget" name="tab_8">
        <attribute name="title">
-        <string>Рценка остаточного ресурса обмотки статора</string>
+        <string>Оценка остаточного ресурса обмотки статора</string>
        </attribute>
       </widget>
       <widget class="QWidget" name="tab_6">
@@ -499,7 +499,7 @@
   <action name="action_22">
    <property name="icon">
     <iconset resource="Images.qrc">
-     <normaloff>:/system_icons/data/img/system_icons/view-refresh.svg</normaloff>:/system_icons/data/img/system_icons/view-refresh.svg</iconset>
+     <normaloff>:/system_icons/data/img/system_icons/configure.svg</normaloff>:/system_icons/data/img/system_icons/configure.svg</iconset>
    </property>
    <property name="text">
     <string>Калибровка осциллографа</string>
