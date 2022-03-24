@@ -18,6 +18,9 @@
 #include "ui_vent_model.h"
 #include "ui_vent_izm.h"
 #include "ui_datas.h"
+#include "vent_model.h"
+#include "ui_vent_model.h"
+#include "ui_vent_tract.h"
 
 Base base;
 
@@ -36,6 +39,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_5->ui->widget_5->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/rad_var/rad_var_2.html").absoluteFilePath()));
     ui->widget_6->ui->widget_2->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_tract/vent_tract.html").absoluteFilePath()));
     ui->widget_5->ui->widget_3->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/tepl_schen_zam/vent_tract.html").absoluteFilePath()));
+
+    ui->widget_5->ui->widget->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
+    ui->widget_5->ui->widget_5->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
+    ui->widget_6->ui->widget->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
 
 
     showMaximized();
@@ -119,23 +126,14 @@ void MainWindow::on_action_18_triggered()
 void MainWindow::on_action_5_triggered()
 {
     if(ui->widget->ui->lineEdit_2->text().isEmpty() || ui->widget->ui->lineEdit_3->text().isEmpty()
-            || ui->widget->ui->lineEdit_4->text().isEmpty() || ui->widget->ui->lineEdit_5->text().isEmpty() || ui->widget->ui->lineEdit_6->text().isEmpty()
-            || ui->widget->ui->lineEdit_7->text().isEmpty() || ui->widget->ui->lineEdit_8->text().isEmpty() || ui->widget->ui->lineEdit_9->text().isEmpty())
+    || ui->widget->ui->lineEdit_4->text().isEmpty() || ui->widget->ui->lineEdit_5->text().isEmpty() || ui->widget->ui->lineEdit_6->text().isEmpty()
+    || ui->widget->ui->lineEdit_7->text().isEmpty() || ui->widget->ui->lineEdit_8->text().isEmpty() || ui->widget->ui->lineEdit_9->text().isEmpty())
             {
             QMessageBox::critical(this, "Ошибка!", "Заполните пустые поля");
             return;
             }
      else
     {
-
-//            if (ui->widget->ui->buttonGroup->checkedButton() == ui->widget->ui->radioButton_2)
-//            {
-//                if (dataSourceFilename.isEmpty())
-//                {
-//                    QMessageBox::critical(this, tr("Ошибка!"), tr("Файл не выбран!"));
-//                    return;
-//                }
-
 
                 base.name = ui->widget->ui->lineEdit_2->text();
                 base.P_nom = ui->widget->ui->lineEdit_3->text().toDouble();

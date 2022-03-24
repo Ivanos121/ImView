@@ -591,37 +591,37 @@ void electromagn::realtimeDataSlot()
 
         //Считывание коэффициента изменения амплитуды напряжения фазы А
 
-        if(ui->tableWidget_5->item(13,1)!=0)
+        if(ui->tableWidget_5->item(0,4)!=0)
         {
-            b1=ui->tableWidget_5->item(13,1)->text().toDouble();
+            b1=ui->tableWidget_5->item(0,4)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды напряжения фазы В
 
-        if(ui->tableWidget_5->item(14,1)!=0)
+        if(ui->tableWidget_5->item(1,4)!=0)
         {
-            b2=ui->tableWidget_5->item(14,1)->text().toDouble();
+            b2=ui->tableWidget_5->item(1,4)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды напряжения фазы С
 
-        if(ui->tableWidget_5->item(15,1)!=0)
+        if(ui->tableWidget_5->item(2,4)!=0)
         {
-            b3=ui->tableWidget_5->item(15,1)->text().toDouble();
+            b3=ui->tableWidget_5->item(2,4)->text().toDouble();
         }
 
         //Считывание коэффициента смещения напряжения фазы А
 
-        if(ui->tableWidget_5->item(16,1)!=0)
+        if(ui->tableWidget_5->item(3,4)!=0)
         {
-            b4=ui->tableWidget_5->item(16,1)->text().toDouble();
+            b4=ui->tableWidget_5->item(3,4)->text().toDouble();
         }
 
         //Считывание коэффициента смещения напряжения фазы В
 
-        if(ui->tableWidget_5->item(17,1)!=0)
+        if(ui->tableWidget_5->item(4,4)!=0)
         {
-            b5=ui->tableWidget_5->item(17,1)->text().toDouble();
+            b5=ui->tableWidget_5->item(4,4)->text().toDouble();
         }
 
         //Считывание коэффициента смещения напряжения фазы С

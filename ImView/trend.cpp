@@ -1206,8 +1206,8 @@ void trend::on_timerTimeout()
                 max=y_16;
             }
 
-         //   double miny=ui->lineEdit->text().toDouble();
-           double miny=20.0;
+            double miny=ui->lineEdit->text().toDouble();
+           //double miny=20.0;
             double h=(max-miny)/9;
             double shag1=miny+h;
             double shag2=shag1+h;
@@ -1220,9 +1220,7 @@ void trend::on_timerTimeout()
 
             //Отображение градиентного столбца на форме draw_line после окончания расчетов
 
-            wf->ui->widget_5->ui->widget->ui->webEngineView_2->show();
-            wf->ui->widget_5->ui->widget->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
-
+            wf->ui->widget_5->ui->widget->ui->webEngineView_2->show();     
 
             wf->ui->widget_5->ui->widget->ui->webEngineView_2->page()->runJavaScript(QString("$(\"#tspan901\").text('%1');").arg(max, 0, 'f', 1));
             wf->ui->widget_5->ui->widget->ui->webEngineView_2->page()->runJavaScript(QString("$(\"#tspan865\").text('%1');").arg(miny, 0, 'f', 1));
@@ -1237,8 +1235,7 @@ void trend::on_timerTimeout()
 
             //Отображение градиентного столбца на форме draw_poper после окончания расчетов
 
-            wf->ui->widget_5->ui->widget_5->ui->webEngineView_2->show();
-            wf->ui->widget_5->ui->widget_5->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
+            wf->ui->widget_5->ui->widget_5->ui->webEngineView_2->show();            
 
             wf->ui->widget_5->ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$(\"#tspan901\").text('%1');").arg(max, 0, 'f', 1));
             wf->ui->widget_5->ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$(\"#tspan865\").text('%1');").arg(miny, 0, 'f', 1));
@@ -1253,8 +1250,7 @@ void trend::on_timerTimeout()
 
             //Отображение градиентного столбца на форме vent_tract после окончания расчетов
 
-            wf->ui->widget_6->ui->widget->ui->webEngineView_2->show();
-            wf->ui->widget_6->ui->widget->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
+            wf->ui->widget_6->ui->widget->ui->webEngineView_2->show();           
 
             wf->ui->widget_6->ui->widget->ui->webEngineView_2->page()->runJavaScript(QString("$(\"#tspan901\").text('%1');").arg(max, 0, 'f', 1));
             wf->ui->widget_6->ui->widget->ui->webEngineView_2->page()->runJavaScript(QString("$(\"#tspan865\").text('%1');").arg(miny, 0, 'f', 1));
