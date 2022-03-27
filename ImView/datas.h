@@ -25,8 +25,6 @@ public slots:
 
     void on_pushButton_6_clicked();
 
-    void on_pushButton_clicked();
-
     void on_pushButton_2_clicked();
 
 private slots:
@@ -38,12 +36,18 @@ private slots:
 
     void on_radioButton_3_toggled(bool checked);
 
+    void on_addRow_clicked();
+
+    void on_remdRow_clicked();
+
+    void onDataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight);
+
 public:
     Ui::datas *ui;
 private:
     QSqlDatabase sdb;
     QString dataSourceFilename;
-
+    //QSqlTableModel *model;
     void table();
     void zapis();
 };

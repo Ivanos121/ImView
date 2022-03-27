@@ -21,9 +21,7 @@ datas::datas(QWidget *parent) :
     ui->setupUi(this);
 
     sdb = QSqlDatabase::addDatabase("QSQLITE");
-  //  sdb.setDatabaseName(QFileInfo(":/databases/data/databases/mydb.db").absoluteFilePath());
-  sdb.setDatabaseName(QFileInfo("/home/elf/ImView/data/base_db/mydb.db").absoluteFilePath());
-
+    sdb.setDatabaseName(QFileInfo("/home/elf/ImView/data/base_db/mydb.db").absoluteFilePath());
 
     table();
     ui->lineEdit_2->setValidator(new QRegExpValidator(QRegExp( "^[А-Я]{3}\[0-9]{3}\[A-Z]{1}\[0-9]{1}\[А-Я]{1}\[1-9]{1}$" )));
@@ -90,6 +88,7 @@ void datas::on_pushButton_4_clicked()
 void datas::table()
 {
     QSqlTableModel *model = new QSqlTableModel;
+
     model->setTable("dvigatels");
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
     model->select();
@@ -97,6 +96,8 @@ void datas::table()
     ui->tableView->setColumnHidden(0, true); //скрытие колонки id
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows); //выделение строки
     ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection); //выделение одной строки
+
+
 }
 
 void datas::zapis()
@@ -137,37 +138,6 @@ void datas::on_pushButton_6_clicked()
     query.exec();
     table();
     }
-}
-
-void datas::on_pushButton_clicked()
-{
-//    if(ui->lineEdit_2->text().isEmpty() || ui->lineEdit_3->text().isEmpty()
-//            || ui->lineEdit_4->text().isEmpty() || ui->lineEdit_5->text().isEmpty() || ui->lineEdit_6->text().isEmpty()
-//            || ui->lineEdit_7->text().isEmpty() || ui->lineEdit_8->text().isEmpty() || ui->lineEdit_9->text().isEmpty())
-//        {
-//        QMessageBox::critical(this, "Ошибка!", "Заполните пустые поля");
-//        return;
-//        }
-
-//        base.name = ui->lineEdit_2->text();
-//        base.P_nom = ui->lineEdit_3->text().toDouble();
-//        base.n_nom = ui->lineEdit_4->text().toDouble();
-//        base.U_fnom = ui->lineEdit_5->text().toDouble();
-//        base.cosf_nom = ui->lineEdit_6->text().toDouble();
-//        base.kpd_nom = ui->lineEdit_7->text().toDouble();
-//        base.muk = ui->lineEdit_8->text().toDouble();
-//        base.n_0 = ui->lineEdit_9->text().toDouble();
-
-//        if (ui->buttonGroup->checkedButton() == ui->radioButton_2)
-//        {
-//            if (dataSourceFilename.isEmpty())
-//            {
-//                QMessageBox::critical(this, tr("Ошибка!"), tr("Файл не выбран!"));
-//                return;
-//            }
-
-//            base.dataSourceFilename = dataSourceFilename;
-//        }
 }
 
 void datas::on_pushButton_2_clicked()
@@ -221,3 +191,39 @@ void datas::on_radioButton_3_toggled(bool checked)
     }
 }
 
+void datas::on_addRow_clicked()
+{
+//    model->insertRow(model->rowCount());
+
+//    for(int y = 1; y <= 20; y++)
+//    {//взять каждую ячейку
+//        QString myData;
+//        QModelIndex myIndex, myIndex2;
+
+//        myIndex = ui->tableView->model()->index(model->rowCount() - 1, y, QModelIndex()); //Куда копируем
+//        myIndex2 = ui->tableView->model()->index(0, y, QModelIndex()); //откуда
+//        myData = ui->tableView->model()->data(myIndex2).toString(); //содержимое (можно QVariant)
+//        ui->tableView->model()->setData(myIndex, myData); //тадам-с!
+//    }
+
+//     onDataChanged(QModelIndex(), QModelIndex());
+}
+
+void datas::on_remdRow_clicked()
+{
+//    int selectRow = ui->tableView->currentIndex().row();
+//    if (selectRow >=0)
+//    {
+//        model->removeRow(selectRow);
+//    }
+}
+
+void datas::onDataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight)
+{
+//    QFileInfo fi(fileName);
+//    QString base = fi.baseName();
+//    int index = ui->tabWidget->currentIndex();
+//    QString currentTabText = ui->tabWidget->tabText(index);
+//    setWindowTitle(currentTabText + "@" + base + QString(" - Konfiguretor") + QString("*"));
+//    isChanged = true;
+}

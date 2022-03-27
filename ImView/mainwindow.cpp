@@ -115,7 +115,7 @@ void MainWindow::on_action_17_triggered()
 
 void MainWindow::on_action_19_triggered()
 {
-    ui->widget->on_pushButton_clicked();
+
 }
 
 void MainWindow::on_action_18_triggered()
