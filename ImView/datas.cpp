@@ -13,6 +13,7 @@
 #include <QPainter>
 #include <QIntValidator>
 #include <QFileDialog>
+#include <QScreen>
 
 datas::datas(QWidget *parent) :
     QWidget(parent),
@@ -106,7 +107,7 @@ void datas::zapis()
     query.prepare("INSERT INTO dvigatels (id, name, pn, n, un, cosf, kpd, mk, n0) "
                   "VALUES (:id, :name, :pn, :n, :un, :cosf, :kpd, :mk, :n0)");
     query.bindValue(":id", QVariant(QVariant::String));
-    query.bindValue(":name", ui->lineEdit_2->text());
+    query.bindValue(":name", QVariant(base.P_nom));
     query.bindValue(":pn",ui->lineEdit_3->text());
     query.bindValue(":n",ui->lineEdit_4->text());
     query.bindValue(":un",ui->lineEdit_5->text());
@@ -227,3 +228,19 @@ void datas::onDataChanged(const QModelIndex& topLeft, const QModelIndex& bottomR
 //    setWindowTitle(currentTabText + "@" + base + QString(" - Konfiguretor") + QString("*"));
 //    isChanged = true;
 }
+
+void datas::on_pushButton_clicked()
+{
+    QScreen *screen = QGuiApplication::primaryScreen();
+    isdn=new ischodn_dannie(this);
+    isdn->wf = this;
+    isdn->exec();
+    isdn->setGeometry(
+    QStyle::alignedRect(
+    Qt::LeftToRight,
+    Qt::AlignCenter,
+    isdn->size(),
+    screen->geometry()));
+}
+
+

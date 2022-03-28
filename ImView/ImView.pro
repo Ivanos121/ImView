@@ -39,6 +39,7 @@ SOURCES += \
     draw_poper.cpp \
     electromagn.cpp \
     identf.cpp \
+    ischodn_dannie.cpp \
     itogs.cpp \
     kalibr.cpp \
     main.cpp \
@@ -84,6 +85,7 @@ HEADERS += \
     draw_poper.h \
     electromagn.h \
     identf.h \
+    ischodn_dannie.h \
     itogs.h \
     kalibr.h \
     mainwindow.h \
@@ -110,6 +112,7 @@ FORMS += \
     draw_poper.ui \
     electromagn.ui \
     identf.ui \
+    ischodn_dannie.ui \
     itogs.ui \
     kalibr.ui \
     mainwindow.ui \

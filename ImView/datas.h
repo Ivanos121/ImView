@@ -4,7 +4,10 @@
 #include <QWidget>
 #include "QtSql"
 #include "QSqlDatabase"
+#include "ischodn_dannie.h"
 #include <QButtonGroup>
+#include <QDialog>
+#include "mainwindow.h"
 
 namespace Ui {
 class datas;
@@ -42,14 +45,16 @@ private slots:
 
     void onDataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight);
 
+    void on_pushButton_clicked();
+
 public:
     Ui::datas *ui;
+    void zapis();
 private:
     QSqlDatabase sdb;
     QString dataSourceFilename;
-    //QSqlTableModel *model;
+    ischodn_dannie *isdn;
     void table();
-    void zapis();
 };
 
 #endif // DATAS_H
