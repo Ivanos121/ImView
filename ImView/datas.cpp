@@ -25,23 +25,7 @@ datas::datas(QWidget *parent) :
     sdb.setDatabaseName(QFileInfo("/home/elf/ImView/data/base_db/mydb.db").absoluteFilePath());
 
     table();
-    ui->lineEdit_2->setValidator(new QRegExpValidator(QRegExp( "^[А-Я]{3}\[0-9]{3}\[A-Z]{1}\[0-9]{1}\[А-Я]{1}\[1-9]{1}$" )));
-    ui->lineEdit_3->setValidator(new QIntValidator(1,1000));
-    ui->lineEdit_4->setValidator(new QIntValidator(1,1000));
-    ui->lineEdit_5->setValidator(new QIntValidator(1,1000));
-    ui->lineEdit_6->setValidator(new QRegExpValidator(QRegExp("^[0-9]{1}.[0-9]{3}$")));
-    ui->lineEdit_7->setValidator(new QRegExpValidator(QRegExp("^[0-9]{1}.[0-9]{3}$")));
-    ui->lineEdit_8->setValidator(new QRegExpValidator(QRegExp("^[0-9]{1}.[0-9]{3}$")));
-    ui->lineEdit_9->setValidator(new QIntValidator(1,1000));
 
-    ui->lineEdit_2->setAlignment(Qt::AlignCenter);
-    ui->lineEdit_3->setAlignment(Qt::AlignCenter);
-    ui->lineEdit_4->setAlignment(Qt::AlignCenter);
-    ui->lineEdit_5->setAlignment(Qt::AlignCenter);
-    ui->lineEdit_6->setAlignment(Qt::AlignCenter);
-    ui->lineEdit_7->setAlignment(Qt::AlignCenter);
-    ui->lineEdit_8->setAlignment(Qt::AlignCenter);
-    ui->lineEdit_9->setAlignment(Qt::AlignCenter);
 }
 
 datas::~datas()
@@ -49,41 +33,10 @@ datas::~datas()
     delete ui;
 }
 
-void datas::on_pushButton_3_clicked()
+void datas::on_pushButton_clicked()
 {
-    if(ui->lineEdit_2->text().isEmpty() || ui->lineEdit_3->text().isEmpty()
-            || ui->lineEdit_4->text().isEmpty() || ui->lineEdit_5->text().isEmpty() || ui->lineEdit_6->text().isEmpty()
-            || ui->lineEdit_7->text().isEmpty() || ui->lineEdit_8->text().isEmpty() || ui->lineEdit_9->text().isEmpty())
-        {
-        QMessageBox::critical(this, "Ошибка!", "Заполните пустые поля");
-        }
-    else
-        {
-        zapis();
-        table();
-        }
-
-}
-
-void datas::on_pushButton_4_clicked()
-{
-    QItemSelectionModel *selectModel = ui->tableView->selectionModel();
-    if(selectModel->selectedRows().isEmpty())
-    {
-    QMessageBox::critical(this, "Ошибка!", "Выберите необходимую строку");
-    }
-    else
-    {
-    int rowNumber = ui->tableView->selectionModel()->selection().indexes()[0].row();
-    ui->lineEdit_2->setText(ui->tableView->model()->index(rowNumber, 1).data().toString());
-    ui->lineEdit_3->setText(ui->tableView->model()->index(rowNumber, 2).data().toString());
-    ui->lineEdit_4->setText(ui->tableView->model()->index(rowNumber, 3).data().toString());
-    ui->lineEdit_5->setText(ui->tableView->model()->index(rowNumber, 4).data().toString());
-    ui->lineEdit_6->setText(ui->tableView->model()->index(rowNumber, 5).data().toString());
-    ui->lineEdit_7->setText(ui->tableView->model()->index(rowNumber, 6).data().toString());
-    ui->lineEdit_8->setText(ui->tableView->model()->index(rowNumber, 7).data().toString());
-    ui->lineEdit_9->setText(ui->tableView->model()->index(rowNumber, 8).data().toString());
-    }
+    zapis();
+    table();
 }
 
 void datas::table()
@@ -107,14 +60,14 @@ void datas::zapis()
     query.prepare("INSERT INTO dvigatels (id, name, pn, n, un, cosf, kpd, mk, n0) "
                   "VALUES (:id, :name, :pn, :n, :un, :cosf, :kpd, :mk, :n0)");
     query.bindValue(":id", QVariant(QVariant::String));
-    query.bindValue(":name", QVariant(base.P_nom));
-    query.bindValue(":pn",ui->lineEdit_3->text());
-    query.bindValue(":n",ui->lineEdit_4->text());
-    query.bindValue(":un",ui->lineEdit_5->text());
-    query.bindValue(":cosf",ui->lineEdit_6->text());
-    query.bindValue(":kpd",ui->lineEdit_7->text());
-    query.bindValue(":mk",ui->lineEdit_8->text());
-    query.bindValue(":n0",ui->lineEdit_9->text());
+    query.bindValue(":name", QString(base.name));
+    query.bindValue(":pn",QString("%1").arg(base.P_nom, 0, 'f', 3));
+    query.bindValue(":n",QString("%1").arg(base.n_nom, 0, 'f', 3));
+    query.bindValue(":un",QString("%1").arg(base.U_fnom, 0, 'f', 3));
+    query.bindValue(":cosf",QString("%1").arg(base.cosf_nom, 0, 'f', 3));
+    query.bindValue(":kpd",QString("%1").arg(base.kpd_nom, 0, 'f', 3));
+    query.bindValue(":mk",QString("%1").arg(base.muk, 0, 'f', 3));
+    query.bindValue(":n0",QString("%1").arg(base.n_0, 0, 'f', 3));
     if(!query.exec()){
         qDebug() << query.lastError().databaseText();
         qDebug() << query.lastError().driverText();
@@ -123,7 +76,7 @@ void datas::zapis()
 
 }
 
-void datas::on_pushButton_6_clicked()
+void datas::on_deleteDannie_clicked()
 {
     QItemSelectionModel *selectModel = ui->tableView->selectionModel();
     if(selectModel->selectedRows().isEmpty())
@@ -139,18 +92,6 @@ void datas::on_pushButton_6_clicked()
     query.exec();
     table();
     }
-}
-
-void datas::on_pushButton_2_clicked()
-{
-    ui->lineEdit_2->clear();
-    ui->lineEdit_3->clear();
-    ui->lineEdit_4->clear();
-    ui->lineEdit_5->clear();
-    ui->lineEdit_6->clear();
-    ui->lineEdit_7->clear();
-    ui->lineEdit_8->clear();
-    ui->lineEdit_9->clear();
 }
 
 void datas::on_pushButton_5_clicked()
@@ -173,6 +114,7 @@ void datas::on_radioButton_2_toggled(bool checked)
     if (checked)
     {
        ui->pushButton_5->setEnabled(true);
+       ui->pushButton_7->setEnabled(false);
     }
 }
 
@@ -181,6 +123,7 @@ void datas::on_radioButton_toggled(bool checked)
     if (checked)
     {
        ui->pushButton_5->setEnabled(false);
+       ui->pushButton_7->setEnabled(false);
     }
 }
 
@@ -189,47 +132,11 @@ void datas::on_radioButton_3_toggled(bool checked)
     if (checked)
     {
        ui->pushButton_5->setEnabled(false);
+       ui->pushButton_7->setEnabled(false);
     }
 }
 
-void datas::on_addRow_clicked()
-{
-//    model->insertRow(model->rowCount());
-
-//    for(int y = 1; y <= 20; y++)
-//    {//взять каждую ячейку
-//        QString myData;
-//        QModelIndex myIndex, myIndex2;
-
-//        myIndex = ui->tableView->model()->index(model->rowCount() - 1, y, QModelIndex()); //Куда копируем
-//        myIndex2 = ui->tableView->model()->index(0, y, QModelIndex()); //откуда
-//        myData = ui->tableView->model()->data(myIndex2).toString(); //содержимое (можно QVariant)
-//        ui->tableView->model()->setData(myIndex, myData); //тадам-с!
-//    }
-
-//     onDataChanged(QModelIndex(), QModelIndex());
-}
-
-void datas::on_remdRow_clicked()
-{
-//    int selectRow = ui->tableView->currentIndex().row();
-//    if (selectRow >=0)
-//    {
-//        model->removeRow(selectRow);
-//    }
-}
-
-void datas::onDataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight)
-{
-//    QFileInfo fi(fileName);
-//    QString base = fi.baseName();
-//    int index = ui->tabWidget->currentIndex();
-//    QString currentTabText = ui->tabWidget->tabText(index);
-//    setWindowTitle(currentTabText + "@" + base + QString(" - Konfiguretor") + QString("*"));
-//    isChanged = true;
-}
-
-void datas::on_pushButton_clicked()
+void datas::on_enterDannie_clicked()
 {
     QScreen *screen = QGuiApplication::primaryScreen();
     isdn=new ischodn_dannie(this);
@@ -243,4 +150,29 @@ void datas::on_pushButton_clicked()
     screen->geometry()));
 }
 
+void datas::on_radioButton_5_toggled(bool checked)
+{
+    if (checked)
+    {
+       ui->pushButton_7->setEnabled(true);
+       ui->pushButton_5->setEnabled(false);
+    }
+}
+
+
+void datas::on_saveDannie_clicked()
+{
+    zapis();
+    table();
+}
+
+
+void datas::on_radioButton_4_toggled(bool checked)
+{
+    if (checked)
+    {
+       ui->pushButton_5->setEnabled(false);
+       ui->pushButton_7->setEnabled(false);
+    }
+}
 

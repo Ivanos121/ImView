@@ -6,6 +6,7 @@
 #include "ui_mainwindow.h"
 
 #include <QSqlQuery>
+#include <QDebug>
 
 ischodn_dannie::ischodn_dannie(QWidget *parent) :
     QDialog(parent),
@@ -23,7 +24,8 @@ ischodn_dannie::ischodn_dannie(QWidget *parent) :
     //ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableWidget->setSelectionBehavior(QAbstractItemView :: SelectRows);
     //ui->tableWidget->setSelectionMode(QAbstractItemView :: SingleSelection);
-    ui->tableWidget->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
+    //ui->tableWidget->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
 
     ui->tableWidget->setItem(0, 0, new QTableWidgetItem("марка двигателя:"));
     ui->tableWidget->setItem(1, 0, new QTableWidgetItem("Номинальная мощность двигателя, кВт:"));
@@ -63,16 +65,31 @@ void ischodn_dannie::on_pushButton_2_clicked()
 
 void ischodn_dannie::on_pushButton_clicked()
 {
-    base.name = ui->tableWidget->item(0,2)->text().toDouble();
-    base.P_nom = ui->tableWidget->item(1,2)->text().toDouble();
-    base.n_nom = ui->tableWidget->item(2,2)->text().toDouble();
-    base.U_fnom = ui->tableWidget->item(3,2)->text().toDouble();
-    base.cosf_nom = ui->tableWidget->item(4,2)->text().toDouble();
-    base.kpd_nom = ui->tableWidget->item(5,2)->text().toDouble();
-    base.muk = ui->tableWidget->item(6,2)->text().toDouble();
-    base.n_0 = ui->tableWidget->item(7,2)->text().toDouble();
+    base.name = ui->tableWidget->item(0,1)->text();
+    base.P_nom = ui->tableWidget->item(1,1)->text().toDouble();
+    base.n_nom = ui->tableWidget->item(2,1)->text().toDouble();
+    base.U_fnom = ui->tableWidget->item(3,1)->text().toDouble();
+    base.cosf_nom = ui->tableWidget->item(4,1)->text().toDouble();
+    base.kpd_nom = ui->tableWidget->item(5,1)->text().toDouble();
+    base.muk = ui->tableWidget->item(6,1)->text().toDouble();
+    base.n_0 = ui->tableWidget->item(7,1)->text().toDouble();
 
+    if(ui->tableWidget->item(0,1)->text().isEmpty()||
+            ui->tableWidget->item(1,1)->text().isEmpty()||
+            ui->tableWidget->item(2,1)->text().isEmpty()||
+            ui->tableWidget->item(3,1)->text().isEmpty()||
+            ui->tableWidget->item(4,1)->text().isEmpty()||
+            ui->tableWidget->item(5,1)->text().isEmpty()||
+            ui->tableWidget->item(6,1)->text().isEmpty()||
+            ui->tableWidget->item(7,1)->text().isEmpty())
+    {
+        QMessageBox::critical(this, "Ошибка!", "Заполните пустые поля");
+    }
+    else
+    {
     wf->zapis();
+    wf->table();
     close();
+    }
 }
 

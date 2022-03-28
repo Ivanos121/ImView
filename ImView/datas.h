@@ -22,13 +22,9 @@ public:
     ~datas();
 
 public slots:
-    void on_pushButton_3_clicked();
+    void on_enterDannie_clicked();
 
-    void on_pushButton_4_clicked();
-
-    void on_pushButton_6_clicked();
-
-    void on_pushButton_2_clicked();
+    void on_deleteDannie_clicked();
 
 private slots:
     void on_pushButton_5_clicked();
@@ -39,22 +35,24 @@ private slots:
 
     void on_radioButton_3_toggled(bool checked);
 
-    void on_addRow_clicked();
-
-    void on_remdRow_clicked();
-
-    void onDataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight);
-
     void on_pushButton_clicked();
+
+    void on_radioButton_5_toggled(bool checked);
+
+    void on_saveDannie_clicked();
+
+    void on_radioButton_4_toggled(bool checked);
 
 public:
     Ui::datas *ui;
     void zapis();
+    void table();
+    MainWindow *wf;
 private:
     QSqlDatabase sdb;
     QString dataSourceFilename;
     ischodn_dannie *isdn;
-    void table();
+
 };
 
 #endif // DATAS_H

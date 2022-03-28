@@ -34,6 +34,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_5->wf=this;
     ui->widget_6->wf=this;
     ui->widget_5->ui->widget_4->wf=this;
+    ui->widget->wf=this;
 
     ui->widget_5->ui->widget->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/ax_var/ax_var_2.html").absoluteFilePath()));
     ui->widget_5->ui->widget_5->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/rad_var/rad_var_2.html").absoluteFilePath()));
@@ -79,11 +80,6 @@ void MainWindow::on_actionExit_triggered()
     close();
 }
 
-void MainWindow::on_action_10_triggered()
-{
-ui->widget->ui->lineEdit_3->cut();
-}
-
 void MainWindow::on_actionhelp_triggered()
 {
     view = new QWebEngineView;
@@ -100,17 +96,17 @@ void MainWindow::titleChanged(const QString &title)
 
 void MainWindow::on_action_16_triggered()
 {
-    ui->widget->on_pushButton_3_clicked();
+    ui->widget->on_enterDannie_clicked();
 }
 
 void MainWindow::on_action_12_triggered()
 {
-    ui->widget->on_pushButton_4_clicked();
+
 }
 
 void MainWindow::on_action_17_triggered()
 {
-    ui->widget->on_pushButton_6_clicked();
+    ui->widget->on_deleteDannie_clicked();
 }
 
 void MainWindow::on_action_19_triggered()
@@ -118,49 +114,28 @@ void MainWindow::on_action_19_triggered()
 
 }
 
-void MainWindow::on_action_18_triggered()
-{
-    ui->widget->on_pushButton_2_clicked();
-}
-
 void MainWindow::on_action_5_triggered()
 {
-    if(ui->widget->ui->lineEdit_2->text().isEmpty() || ui->widget->ui->lineEdit_3->text().isEmpty()
-    || ui->widget->ui->lineEdit_4->text().isEmpty() || ui->widget->ui->lineEdit_5->text().isEmpty() || ui->widget->ui->lineEdit_6->text().isEmpty()
-    || ui->widget->ui->lineEdit_7->text().isEmpty() || ui->widget->ui->lineEdit_8->text().isEmpty() || ui->widget->ui->lineEdit_9->text().isEmpty())
-            {
-            QMessageBox::critical(this, "Ошибка!", "Заполните пустые поля");
-            return;
-            }
-     else
-    {
+    QModelIndex myIndex, myIndex2, myIndex3,myIndex4,myIndex5,myIndex6,myIndex7;
+    myIndex = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 2, QModelIndex());
+    base.P_nom=ui->widget->ui->tableView->model()->data(myIndex).toDouble();
+    myIndex2 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 3, QModelIndex());
+    base.n_nom=ui->widget->ui->tableView->model()->data(myIndex2).toDouble();
+    myIndex3 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 4, QModelIndex());
+    base.U_fnom=ui->widget->ui->tableView->model()->data(myIndex3).toDouble();
+    myIndex4 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 5, QModelIndex());
+    base.cosf_nom=ui->widget->ui->tableView->model()->data(myIndex4).toDouble();
+    myIndex5 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 6, QModelIndex());
+    base.kpd_nom=ui->widget->ui->tableView->model()->data(myIndex5).toDouble();
+    myIndex6 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 7, QModelIndex());
+    base.muk=ui->widget->ui->tableView->model()->data(myIndex6).toDouble();
+    myIndex7 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 8, QModelIndex());
+    base.n_0=ui->widget->ui->tableView->model()->data(myIndex7).toDouble();
+//qDebug() << QString("%1").arg(base.P_nom);
 
-                base.name = ui->widget->ui->lineEdit_2->text();
-                base.P_nom = ui->widget->ui->lineEdit_3->text().toDouble();
-                base.n_nom = ui->widget->ui->lineEdit_4->text().toDouble();
-                base.U_fnom = ui->widget->ui->lineEdit_5->text().toDouble();
-                base.cosf_nom = ui->widget->ui->lineEdit_6->text().toDouble();
-                base.kpd_nom = ui->widget->ui->lineEdit_7->text().toDouble();
-                base.muk = ui->widget->ui->lineEdit_8->text().toDouble();
-                base.n_0 = ui->widget->ui->lineEdit_9->text().toDouble();
-                base.dataSourceFilename = dataSourceFilename;
-                ui->action_5->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
-                ui->action_9->setEnabled(true);
-                ui->widget_2->raschet_f();}
-
-//    if(ui->widget->ui->lineEdit_2->text().isEmpty() || ui->widget->ui->lineEdit_3->text().isEmpty()
-//            || ui->widget->ui->lineEdit_4->text().isEmpty() || ui->widget->ui->lineEdit_5->text().isEmpty() || ui->widget->ui->lineEdit_6->text().isEmpty()
-//            || ui->widget->ui->lineEdit_7->text().isEmpty() || ui->widget->ui->lineEdit_8->text().isEmpty() || ui->widget->ui->lineEdit_9->text().isEmpty())
-//        {
-//        QMessageBox::critical(this, "Ошибка!", "Заполните пустые поля");
-//        }
-//    else
-//        {
-//            ui->action_5->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
-//            ui->action_9->setEnabled(true);
-//            ui->widget_2->raschet_f();
-//        }
-
+    ui->action_5->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
+    ui->action_9->setEnabled(true);
+    ui->widget_2->raschet_f();
 }
 
 void MainWindow::on_action_9_triggered()

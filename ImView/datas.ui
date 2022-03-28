@@ -13,18 +13,97 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_2">
-   <item row="3" column="2">
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="1">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string/>
+     </property>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>12</x>
+        <y>15</y>
+        <width>189</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Сохранение данных&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>50</y>
+        <width>273</width>
+        <height>116</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QCheckBox" name="checkBox">
+         <property name="text">
+          <string>Данные идентификации</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QCheckBox" name="checkBox_2">
+         <property name="text">
+          <string>Данные электромагнитных процессов</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QCheckBox" name="checkBox_3">
+         <property name="text">
+          <string>Данные тепловых процессов</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QCheckBox" name="checkBox_4">
+         <property name="text">
+          <string>Данные вентиляционной сети</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item row="2" column="0">
     <widget class="QWidget" name="widget_2" native="true">
      <property name="maximumSize">
       <size>
-       <width>600</width>
-       <height>40</height>
+       <width>16777215</width>
+       <height>55</height>
       </size>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <widget class="QPushButton" name="pushButton_3">
+       <widget class="QPushButton" name="enterDannie">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>33</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>150</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Ввести данные</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="saveDannie">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -42,27 +121,8 @@
         </property>
        </widget>
       </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_4">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>33</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>150</width>
-          <height>33</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>Загрузить данные</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_6">
+      <item alignment="Qt::AlignVCenter">
+       <widget class="QPushButton" name="deleteDannie">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -80,43 +140,17 @@
         </property>
        </widget>
       </item>
-      <item>
-       <widget class="QPushButton" name="addRow">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>33</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>Add</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="remRow">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>33</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>Remove</string>
-        </property>
-       </widget>
-      </item>
      </layout>
     </widget>
    </item>
-   <item row="0" column="2" rowspan="3">
+   <item row="0" column="0" rowspan="2">
     <widget class="QGroupBox" name="groupBox_2">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>16777215</height>
+      </size>
+     </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <widget class="QLabel" name="label_12">
@@ -131,17 +165,17 @@
      </layout>
     </widget>
    </item>
-   <item row="2" column="0">
+   <item row="0" column="1">
     <widget class="QGroupBox" name="groupBox_3">
      <property name="minimumSize">
       <size>
-       <width>400</width>
+       <width>0</width>
        <height>0</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>500</width>
+       <width>16777215</width>
        <height>16777215</height>
       </size>
      </property>
@@ -189,7 +223,7 @@
       <item>
        <widget class="QRadioButton" name="radioButton_2">
         <property name="text">
-         <string>Чтение данных из файла</string>
+         <string>Чтение данных из файла  для идентификации параметров схемы замещения</string>
         </property>
         <attribute name="buttonGroup">
          <string notr="true">buttonGroup</string>
@@ -212,215 +246,26 @@
         </property>
        </widget>
       </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="3" column="0">
-    <widget class="QWidget" name="widget" native="true">
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>40</height>
-      </size>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QPushButton" name="pushButton">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>33</height>
-         </size>
+       <widget class="QRadioButton" name="radioButton_5">
+        <property name="text">
+         <string>Чтение данных из файла  для наблюдателя скорости</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup</string>
+        </attribute>
+       </widget>
+      </item>
+      <item alignment="Qt::AlignHCenter">
+       <widget class="QPushButton" name="pushButton_7">
         <property name="maximumSize">
          <size>
-          <width>150</width>
+          <width>100</width>
           <height>16777215</height>
          </size>
         </property>
         <property name="text">
-         <string>Ввести данные</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_2">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>33</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>150</width>
-          <height>33</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>Очистить данные</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <layout class="QVBoxLayout" name="verticalLayout_2"/>
-   </item>
-   <item row="0" column="0">
-    <widget class="QGroupBox" name="groupBox">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>500</width>
-       <height>16777215</height>
-      </size>
-     </property>
-     <property name="mouseTracking">
-      <bool>false</bool>
-     </property>
-     <property name="tabletTracking">
-      <bool>false</bool>
-     </property>
-     <property name="acceptDrops">
-      <bool>false</bool>
-     </property>
-     <property name="autoFillBackground">
-      <bool>false</bool>
-     </property>
-     <property name="title">
-      <string/>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignJustify|Qt::AlignTop</set>
-     </property>
-     <property name="flat">
-      <bool>false</bool>
-     </property>
-     <property name="checkable">
-      <bool>false</bool>
-     </property>
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0" colspan="2">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Исходные данные&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QLineEdit" name="lineEdit_3">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0" alignment="Qt::AlignRight">
-       <widget class="QLabel" name="label_3">
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Номинальная мощность двигателя, кВт =&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </item>
-      <item row="11" column="1">
-       <widget class="QLineEdit" name="lineEdit_9"/>
-      </item>
-      <item row="7" column="0" alignment="Qt::AlignRight">
-       <widget class="QLabel" name="label_5">
-        <property name="text">
-         <string>Номинальное напряжение фазы, В =</string>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="1">
-       <widget class="QLineEdit" name="lineEdit_5">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item row="10" column="1">
-       <widget class="QLineEdit" name="lineEdit_8"/>
-      </item>
-      <item row="10" column="0" alignment="Qt::AlignRight">
-       <widget class="QLabel" name="label_9">
-        <property name="text">
-         <string>Кратность максимального момента =</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="1">
-       <widget class="QLineEdit" name="lineEdit_4">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item row="8" column="0" alignment="Qt::AlignRight">
-       <widget class="QLabel" name="label_7">
-        <property name="text">
-         <string>Номинальный коэффициент мощности =</string>
-        </property>
-       </widget>
-      </item>
-      <item row="11" column="0" alignment="Qt::AlignRight">
-       <widget class="QLabel" name="label_6">
-        <property name="text">
-         <string>Синхронная частота вращения, об/мин =</string>
-        </property>
-       </widget>
-      </item>
-      <item row="8" column="1">
-       <widget class="QLineEdit" name="lineEdit_6">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item row="9" column="0" alignment="Qt::AlignRight">
-       <widget class="QLabel" name="label_8">
-        <property name="text">
-         <string>Номинальный КПД =</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QLineEdit" name="lineEdit_2">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="0" alignment="Qt::AlignRight">
-       <widget class="QLabel" name="label_4">
-        <property name="text">
-         <string>Номинальная частота вращения , рад/с =</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0" alignment="Qt::AlignRight">
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Марка двигателя:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </item>
-      <item row="9" column="1">
-       <widget class="QLineEdit" name="lineEdit_7">
-        <property name="text">
-         <string/>
+         <string>Обзор</string>
         </property>
        </widget>
       </item>
@@ -430,17 +275,8 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>lineEdit_2</tabstop>
-  <tabstop>lineEdit_3</tabstop>
-  <tabstop>lineEdit_4</tabstop>
-  <tabstop>lineEdit_5</tabstop>
-  <tabstop>lineEdit_6</tabstop>
-  <tabstop>lineEdit_7</tabstop>
-  <tabstop>lineEdit_8</tabstop>
-  <tabstop>lineEdit_9</tabstop>
-  <tabstop>pushButton_3</tabstop>
-  <tabstop>pushButton_4</tabstop>
-  <tabstop>pushButton_6</tabstop>
+  <tabstop>saveDannie</tabstop>
+  <tabstop>deleteDannie</tabstop>
   <tabstop>tableView</tabstop>
  </tabstops>
  <resources/>
