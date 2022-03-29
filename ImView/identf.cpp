@@ -231,19 +231,19 @@ void identf::raschet_f()
 
     auto uiDatasWindow = wf->ui->widget->ui;
 
-    if(uiDatasWindow->radioButton_2->isChecked())
+    if(uiDatasWindow->oscNoSpeed->isChecked())
     {
         dataSource = new DataSource_file();
         connect(dataSource, &DataSource::ready, this, &identf::realtimeDataSlot);
     }
 
-    if(uiDatasWindow->radioButton->isChecked())
+    if(uiDatasWindow->oscWithSpeed->isChecked())
     {
         //dataSource = new DataSource();
         //connect(dataSource, &DataSource::ready, this, &identf::realtimeDataSlot);
     }
 
-    if(uiDatasWindow->radioButton_3->isChecked())
+    if(uiDatasWindow->internalDataSource->isChecked())
     {
         dataSource = new DataSource_el(base.P_nom, base.n_nom, base.U_fnom, base.cosf_nom, base.kpd_nom, base.muk, base.n_0);
         connect(dataSource, &DataSource::ready, this, &identf::realtimeDataSlot);

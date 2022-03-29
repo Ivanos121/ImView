@@ -32,7 +32,7 @@
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Сохранение данных&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -167,6 +167,9 @@
    </item>
    <item row="0" column="1">
     <widget class="QGroupBox" name="groupBox_3">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="minimumSize">
       <size>
        <width>0</width>
@@ -188,7 +191,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="radioButton">
+       <widget class="QRadioButton" name="oscNoSpeed">
         <property name="text">
          <string>Осциллограф+наблюдатель скорости (без датчика скорости)</string>
         </property>
@@ -201,7 +204,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="radioButton_4">
+       <widget class="QRadioButton" name="oscWithSpeed">
         <property name="text">
          <string>Осциллограф+наблюдатель момента (с датчиком скорости)</string>
         </property>
@@ -211,7 +214,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="radioButton_3">
+       <widget class="QRadioButton" name="internalDataSource">
         <property name="text">
          <string>Внутренний источник данных</string>
         </property>
@@ -221,7 +224,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="radioButton_2">
+       <widget class="QRadioButton" name="ReadIdent">
         <property name="text">
          <string>Чтение данных из файла  для идентификации параметров схемы замещения</string>
         </property>
@@ -231,7 +234,7 @@
        </widget>
       </item>
       <item alignment="Qt::AlignHCenter">
-       <widget class="QPushButton" name="pushButton_5">
+       <widget class="QPushButton" name="dannieIdent">
         <property name="enabled">
          <bool>false</bool>
         </property>
@@ -247,7 +250,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="radioButton_5">
+       <widget class="QRadioButton" name="ReadNabl">
         <property name="text">
          <string>Чтение данных из файла  для наблюдателя скорости</string>
         </property>
@@ -257,7 +260,10 @@
        </widget>
       </item>
       <item alignment="Qt::AlignHCenter">
-       <widget class="QPushButton" name="pushButton_7">
+       <widget class="QPushButton" name="dannieNabl">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="maximumSize">
          <size>
           <width>100</width>

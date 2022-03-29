@@ -147,12 +147,12 @@ void Itogs::on_pushButton_clicked()
     }*/
 
     MainWindow *mainWin = getMainWindow();
-    if (mainWin->ui->widget->ui->radioButton->isChecked())
+    if (mainWin->ui->widget->ui->oscNoSpeed->isChecked())
     {
        ui->textEdit->append("Алгоритм проведения испытаний: осциллограф");
     }
 
-    if (mainWin->ui->widget->ui->radioButton_2->isChecked())
+    if (mainWin->ui->widget->ui->oscWithSpeed->isChecked())
     {
        ui->textEdit->append("Алгоритм проведения испытаний: внутренний источник данных");
     }
