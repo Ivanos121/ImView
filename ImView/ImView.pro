@@ -38,6 +38,7 @@ SOURCES += \
     draw_line.cpp \
     draw_poper.cpp \
     electromagn.cpp \
+    gridlinedelegate.cpp \
     identf.cpp \
     ischodn_dannie.cpp \
     itogs.cpp \
@@ -84,6 +85,7 @@ HEADERS += \
     draw_line.h \
     draw_poper.h \
     electromagn.h \
+    gridlinedelegate.h \
     identf.h \
     ischodn_dannie.h \
     itogs.h \

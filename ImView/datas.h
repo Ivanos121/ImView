@@ -52,6 +52,7 @@ private:
     QSqlDatabase sdb;
     QString dataSourceFilename;
     ischodn_dannie *isdn;
+    QSqlTableModel *model;
 
 };
 

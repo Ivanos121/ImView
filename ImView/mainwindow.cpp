@@ -21,6 +21,7 @@
 #include "vent_model.h"
 #include "ui_vent_model.h"
 #include "ui_vent_tract.h"
+#include "gridlinedelegate.h"
 
 Base base;
 
@@ -49,6 +50,92 @@ MainWindow::MainWindow(QWidget *parent)
     showMaximized();
     ui->action_9->setEnabled(false);
     ui->action_21->setEnabled(false);
+
+    ui->treeWidget->setColumnCount(2);
+    QStringList name;
+    name << "Параметр" << "Свойство";
+    ui->treeWidget->setHeaderLabels(name);
+
+    ui->treeWidget->header()->setVisible(1);
+    ui->treeWidget->header()->setStretchLastSection(false);
+    ui->treeWidget->header()->setSectionResizeMode(0, QHeaderView::Stretch);
+    ui->treeWidget->header()->setSectionResizeMode(1, QHeaderView::Interactive);
+   // ui->treeWidget->setStyleSheet("QTreeWidget::item { border-bottom: 1px solid black;}");
+
+    QTreeWidgetItem *treeItem = new QTreeWidgetItem(ui->treeWidget);
+    treeItem->setText(0,"Настройки проекта");
+    //treeItem->setText(1,"Описание");
+    ui->treeWidget->addTopLevelItem(treeItem);
+
+    QTreeWidgetItem *child= new QTreeWidgetItem();
+    child->setText(0,"Название проекта");
+    child->setText(1,"Описание");
+    treeItem->addChild(child);
+
+    QTreeWidgetItem *child2= new QTreeWidgetItem();
+    child2->setText(0,"Расположение проекта");
+    child2->setText(1,"Описание");
+    QPushButton *pushbutton=new QPushButton();
+    ui->treeWidget->setItemWidget(child2, 1, pushbutton);
+    treeItem->addChild(child2);
+
+    QTreeWidgetItem *treeItem2 = new QTreeWidgetItem(ui->treeWidget);
+    treeItem2->setText(0,"Исходные данные");
+    treeItem2->setText(1,"Описание");
+    ui->treeWidget->addTopLevelItem(treeItem2);
+
+    QTreeWidgetItem *child3= new QTreeWidgetItem();
+    child3->setText(0,"Исходные данные");
+    child3->setText(1,"Описание");
+    treeItem2->addChild(child3);
+
+    QTreeWidgetItem *treeItem3 = new QTreeWidgetItem(ui->treeWidget);
+    treeItem3->setText(0,"Идентификация параметров схемы замещения");
+    treeItem3->setText(1,"Описание");
+    ui->treeWidget->addTopLevelItem(treeItem3);
+
+    QTreeWidgetItem *child4= new QTreeWidgetItem();
+    child4->setText(0,"Исходные данные");
+    child4->setText(1,"Описание");
+    treeItem3->addChild(child4);
+
+    QTreeWidgetItem *treeItem4 = new QTreeWidgetItem(ui->treeWidget);
+    treeItem4->setText(0,"Электромагнитные процессы");
+    treeItem4->setText(1,"Описание");
+    ui->treeWidget->addTopLevelItem(treeItem4);
+
+    QTreeWidgetItem *treeItem5 = new QTreeWidgetItem(ui->treeWidget);
+    treeItem5->setText(0,"Тепловые процессы");
+    treeItem5->setText(1,"Описание");
+    ui->treeWidget->addTopLevelItem(treeItem5);
+
+    QTreeWidgetItem *treeItem6 = new QTreeWidgetItem(ui->treeWidget);
+    treeItem6->setText(0,"Вентиляционные процессы");
+    treeItem6->setText(1,"Описание");
+    ui->treeWidget->addTopLevelItem(treeItem6);
+
+    QTreeWidgetItem *treeItem7 = new QTreeWidgetItem(ui->treeWidget);
+    treeItem7->setText(0,"Энергетика");
+    treeItem7->setText(1,"Описание");
+    ui->treeWidget->addTopLevelItem(treeItem7);
+
+    QTreeWidgetItem *treeItem8 = new QTreeWidgetItem(ui->treeWidget);
+    treeItem8->setText(0,"Выходные данные");
+    treeItem8->setText(1,"Описание");
+    ui->treeWidget->addTopLevelItem(treeItem8);
+
+    GridLineDelegate* gridlinedelegate = new GridLineDelegate(this); //создание делегата для создания комбобоксов
+    ui->treeWidget->setItemDelegateForColumn(0, gridlinedelegate);
+    ui->treeWidget->setItemDelegateForColumn(1, gridlinedelegate);
+
+    ui->treeWidget->header()->setVisible(1);
+
+    QPalette p99=ui->treeWidget->palette();
+    p99.setColor(QPalette::Base, QColor(255, 255, 222));
+    p99.setColor(QPalette::AlternateBase, QColor(255, 255, 191));
+    ui->treeWidget->setPalette(p99);
+    //ui->treeWidget->hide();
+
 
 }
 

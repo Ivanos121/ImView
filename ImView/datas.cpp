@@ -110,8 +110,14 @@ void datas::on_dannieIdent_clicked()
 
 void datas::on_saveDannie_clicked()
 {
-    zapis();
-    table();
+//    zapis();
+//    table();
+
+    model->database().transaction();
+        if(model->submitAll())
+            model->database().commit();
+        else
+            model->database().rollback();
 }
 
 void datas::on_enterDannie_clicked()
