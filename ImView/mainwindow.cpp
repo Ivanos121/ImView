@@ -4,6 +4,8 @@
 #include <QDesktopWidget>
 #include <QClipboard>
 #include <QScreen>
+#include <QSpinBox>
+
 #include "base.h"
 #include "datas.h"
 #include "ui_datas.h"
@@ -59,34 +61,53 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->treeWidget->header()->setVisible(1);
     ui->treeWidget->header()->setStretchLastSection(false);
-    ui->treeWidget->header()->setSectionResizeMode(0, QHeaderView::Stretch);
-    ui->treeWidget->header()->setSectionResizeMode(1, QHeaderView::Interactive);
-   // ui->treeWidget->setStyleSheet("QTreeWidget::item { border-bottom: 1px solid black;}");
+    ui->treeWidget->header()->setSectionResizeMode(0, QHeaderView::Interactive);
+    ui->treeWidget->header()->setDefaultSectionSize(250);
+    ui->treeWidget->header()->setSectionResizeMode(1, QHeaderView::Stretch);
+    ui->treeWidget->resizeColumnToContents(1);
+    //ui->treeWidget->setStyleSheet("QTreeView::item { height: 16px;}");
 
+    //вставка основного узла НАСТРОЙКИ ПРОЕКТА
     QTreeWidgetItem *treeItem = new QTreeWidgetItem(ui->treeWidget);
+    QFont fonts;
+    fonts.setPointSize(10);
+    fonts.setBold(true);
+    treeItem->setData(0,Qt::FontRole,fonts);
     treeItem->setText(0,"Настройки проекта");
-    //treeItem->setText(1,"Описание");
+    treeItem->setBackground(0, QColor(126, 126, 126));
+    treeItem->setBackground(1, QColor(126, 126, 126));
     ui->treeWidget->addTopLevelItem(treeItem);
+    ui->treeWidget->expandItem(treeItem);
 
+    //вставка дочернего узла
     QTreeWidgetItem *child= new QTreeWidgetItem();
-    child->setText(0,"Название проекта");
-    child->setText(1,"Описание");
+    child->setText(0,"Настройки 2");
+    treeItem->addChild(child);
+    child->setText(1,"Описание 2");
+    child->setFlags(child->flags() | Qt::ItemIsUserCheckable);
+    child->setCheckState(1, Qt::Checked);
     treeItem->addChild(child);
 
+    //вставка кнопки
     QTreeWidgetItem *child2= new QTreeWidgetItem();
     child2->setText(0,"Расположение проекта");
     child2->setText(1,"Описание");
+    treeItem->addChild(child2);
     QPushButton *pushbutton=new QPushButton();
+    QFont font = pushbutton->font();
+    font.setPointSize(8);
+    pushbutton->setFont(font);
+    pushbutton->setStyleSheet("font: bold;background-color: red;font-size: 10px;height: 10px;width: 10px;");
+    pushbutton->setText("murka");
     ui->treeWidget->setItemWidget(child2, 1, pushbutton);
     treeItem->addChild(child2);
 
+    //вставка comboBox
     QTreeWidgetItem *child3= new QTreeWidgetItem();
     child3->setText(0,"Расположение проекта!!!!");
-   // child3->setText(1,"Описание");
-//    child3->setFlags(child3->flags() | Qt::ItemIsUserCheckable);
-//    child3->setCheckState(0, Qt::Checked);
     treeItem->addChild(child3);
     QComboBox *cmb = new QComboBox(ui->treeWidget);
+    cmb->setStyleSheet("QComboBox { height: 10px;}");
     cmb->addItem("One");
     cmb->addItem("Two");
     cmb->addItem("Three");
@@ -96,8 +117,8 @@ MainWindow::MainWindow(QWidget *parent)
     QTreeWidgetItem *child4= new QTreeWidgetItem();
     child4->setText(0,"Исходные данные");
     //child4->setText(1,"Описание");
-    child4->setFlags(child3->flags() | Qt::ItemIsUserCheckable);
-    child4->setCheckState(0, Qt::Checked);
+//    child4->setFlags(child3->flags() | Qt::ItemIsUserCheckable);
+//    child4->setCheckState(0, Qt::Checked);
     treeItem->addChild(child4);
     QPushButton *btn=new QPushButton(ui->treeWidget);
     btn->setText("Drk");
@@ -116,47 +137,100 @@ MainWindow::MainWindow(QWidget *parent)
     //child5->setCheckState(1, Qt::Checked);
     ui->treeWidget->setItemWidget(child10, 1, lbl);
 
+    QTreeWidgetItem *child11 = new QTreeWidgetItem();
+    child11->setText(0,"Исходные книги");
+    child11->setText(1,"11");
+    treeItem->addChild(child11);
+    QSpinBox *spin = new QSpinBox(ui->treeWidget);
+    spin->setStyleSheet("QSpinBox { height: 10px;}");
+    spin->width();
+    ui->treeWidget->setItemWidget(child11, 1, spin);
+
     QTreeWidgetItem *treeItem2 = new QTreeWidgetItem(ui->treeWidget);
-    treeItem2->setText(0,"Исходные данные");
-    treeItem2->setText(1,"Описание");
+    QFont fontss;
+    fontss.setPointSize(10);
+    fontss.setBold(true);
+    treeItem2->setData(0,Qt::FontRole,fontss);
+    treeItem2->setText(0,"Настройки проекта");
+    treeItem2->setBackground(0, QColor(126, 126, 126));
+    treeItem2->setBackground(1, QColor(126, 126, 126));
     ui->treeWidget->addTopLevelItem(treeItem2);
+    ui->treeWidget->expandItem(treeItem2);
 
+    QTreeWidgetItem *child12= new QTreeWidgetItem();
+    child12->setText(0,"Исходные данные");
+    child12->setFlags(child12->flags() | Qt::ItemIsEditable | Qt:: ItemIsEnabled);
+    child12->setText(1,"Описание");
+    treeItem2->addChild(child12);
 
+    QTreeWidgetItem *child13= new QTreeWidgetItem();
+    child13->setText(0,"Исходные данные");
+    child13->setFlags(child13->flags() | Qt::ItemIsEditable | Qt:: ItemIsEnabled);
+    child13->setText(1,"Описание");
+    treeItem2->addChild(child13);
+
+    QTreeWidgetItem *child14= new QTreeWidgetItem();
+    child14->setText(0,"Исходные данные");
+    child14->setFlags(child14->flags() | Qt::ItemIsEditable | Qt:: ItemIsEnabled);
+    child14->setText(1,"Описание");
+    treeItem2->addChild(child14);
+
+    QTreeWidgetItem *child15= new QTreeWidgetItem();
+    child15->setText(0,"Исходные данные");
+    child15->setFlags(child15->flags() | Qt::ItemIsEditable | Qt:: ItemIsEnabled);
+    child15->setText(1,"Описание");
+    treeItem2->addChild(child15);
 
     QTreeWidgetItem *treeItem3 = new QTreeWidgetItem(ui->treeWidget);
-    treeItem3->setText(0,"Идентификация параметров схемы замещения");
-    treeItem3->setText(1,"Описание");
+    QFont fontsss;
+    fontsss.setPointSize(10);
+    fontsss.setBold(true);
+    treeItem3->setData(0,Qt::FontRole,fontsss);
+    treeItem3->setText(0,"Настройки проекта");
+    treeItem3->setBackground(0, QColor(126, 126, 126));
+    treeItem3->setBackground(1, QColor(126, 126, 126));
     ui->treeWidget->addTopLevelItem(treeItem3);
+    ui->treeWidget->expandItem(treeItem3);
 
-//    QTreeWidgetItem *child4= new QTreeWidgetItem();
-//    child4->setText(0,"Исходные данные");
-//    child4->setText(1,"Описание");
-//    treeItem3->addChild(child4);
+    QTreeWidgetItem *child40= new QTreeWidgetItem();
+    child40->setText(0,"Исходные данные");
+    child40->setText(1,"Описание");
+    treeItem3->addChild(child40);
 
-    QTreeWidgetItem *treeItem4 = new QTreeWidgetItem(ui->treeWidget);
-    treeItem4->setText(0,"Электромагнитные процессы");
-    treeItem4->setText(1,"Описание");
-    ui->treeWidget->addTopLevelItem(treeItem4);
+    QTreeWidgetItem *child41= new QTreeWidgetItem();
+    child41->setText(0,"Исходные данные");
+    child41->setText(1,"Описание");
+    treeItem3->addChild(child41);
 
-    QTreeWidgetItem *treeItem5 = new QTreeWidgetItem(ui->treeWidget);
-    treeItem5->setText(0,"Тепловые процессы");
-    treeItem5->setText(1,"Описание");
-    ui->treeWidget->addTopLevelItem(treeItem5);
+    QTreeWidgetItem *child42= new QTreeWidgetItem();
+    child42->setText(0,"Исходные данные");
+    child42->setText(1,"Описание");
+    treeItem3->addChild(child42);
 
-    QTreeWidgetItem *treeItem6 = new QTreeWidgetItem(ui->treeWidget);
-    treeItem6->setText(0,"Вентиляционные процессы");
-    treeItem6->setText(1,"Описание");
-    ui->treeWidget->addTopLevelItem(treeItem6);
+//    QTreeWidgetItem *treeItem4 = new QTreeWidgetItem(ui->treeWidget);
+//    treeItem4->setText(0,"Электромагнитные процессы");
+//    treeItem4->setText(1,"Описание");
+//    ui->treeWidget->addTopLevelItem(treeItem4);
 
-    QTreeWidgetItem *treeItem7 = new QTreeWidgetItem(ui->treeWidget);
-    treeItem7->setText(0,"Энергетика");
-    treeItem7->setText(1,"Описание");
-    ui->treeWidget->addTopLevelItem(treeItem7);
+//    QTreeWidgetItem *treeItem5 = new QTreeWidgetItem(ui->treeWidget);
+//    treeItem5->setText(0,"Тепловые процессы");
+//    treeItem5->setText(1,"Описание");
+//    ui->treeWidget->addTopLevelItem(treeItem5);
 
-    QTreeWidgetItem *treeItem8 = new QTreeWidgetItem(ui->treeWidget);
-    treeItem8->setText(0,"Выходные данные");
-    treeItem8->setText(1,"Описание");
-    ui->treeWidget->addTopLevelItem(treeItem8);
+//    QTreeWidgetItem *treeItem6 = new QTreeWidgetItem(ui->treeWidget);
+//    treeItem6->setText(0,"Вентиляционные процессы");
+//    treeItem6->setText(1,"Описание");
+//    ui->treeWidget->addTopLevelItem(treeItem6);
+
+//    QTreeWidgetItem *treeItem7 = new QTreeWidgetItem(ui->treeWidget);
+//    treeItem7->setText(0,"Энергетика");
+//    treeItem7->setText(1,"Описание");
+//    ui->treeWidget->addTopLevelItem(treeItem7);
+
+//    QTreeWidgetItem *treeItem8 = new QTreeWidgetItem(ui->treeWidget);
+//    treeItem8->setText(0,"Выходные данные");
+//    treeItem8->setText(1,"Описание");
+//    ui->treeWidget->addTopLevelItem(treeItem8);
 
     GridLineDelegate* gridlinedelegate = new GridLineDelegate(this); //создание делегата для создания комбобоксов
     ui->treeWidget->setItemDelegateForColumn(0, gridlinedelegate);
@@ -168,9 +242,7 @@ MainWindow::MainWindow(QWidget *parent)
     p99.setColor(QPalette::Base, QColor(255, 255, 222));
     p99.setColor(QPalette::AlternateBase, QColor(255, 255, 191));
     ui->treeWidget->setPalette(p99);
-    //ui->treeWidget->hide();
-
-
+    //ui->treeWidget->hide();  
 }
 
 void MainWindow::closeEvent (QCloseEvent *)
