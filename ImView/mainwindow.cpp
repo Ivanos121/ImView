@@ -22,6 +22,7 @@
 #include "ui_vent_model.h"
 #include "ui_vent_tract.h"
 #include "gridlinedelegate.h"
+#include <QSplitter>
 
 Base base;
 
@@ -79,25 +80,58 @@ MainWindow::MainWindow(QWidget *parent)
     ui->treeWidget->setItemWidget(child2, 1, pushbutton);
     treeItem->addChild(child2);
 
+    QTreeWidgetItem *child3= new QTreeWidgetItem();
+    child3->setText(0,"Расположение проекта!!!!");
+   // child3->setText(1,"Описание");
+//    child3->setFlags(child3->flags() | Qt::ItemIsUserCheckable);
+//    child3->setCheckState(0, Qt::Checked);
+    treeItem->addChild(child3);
+    QComboBox *cmb = new QComboBox(ui->treeWidget);
+    cmb->addItem("One");
+    cmb->addItem("Two");
+    cmb->addItem("Three");
+    cmb->addItem("Four");
+    ui->treeWidget->setItemWidget(child3, 1, cmb);
+
+    QTreeWidgetItem *child4= new QTreeWidgetItem();
+    child4->setText(0,"Исходные данные");
+    //child4->setText(1,"Описание");
+    child4->setFlags(child3->flags() | Qt::ItemIsUserCheckable);
+    child4->setCheckState(0, Qt::Checked);
+    treeItem->addChild(child4);
+    QPushButton *btn=new QPushButton(ui->treeWidget);
+    btn->setText("Drk");
+    ui->treeWidget->setItemWidget(child4, 1, btn);
+
+    QTreeWidgetItem *child5= new QTreeWidgetItem();
+    child5->setText(0,"Исходные данные");
+    child5->setFlags(child5->flags() | Qt::ItemIsEditable | Qt:: ItemIsEnabled);
+    child5->setText(1,"Описание");
+    treeItem->addChild(child5);
+
+    QTreeWidgetItem *child10= new QTreeWidgetItem();
+    QLabel *lbl=new QLabel(ui->treeWidget);
+    lbl->setText("Ghbdtn");
+    child10->setFlags(child10->flags() | Qt::ItemIsEditable | Qt:: ItemIsEnabled);
+    //child5->setCheckState(1, Qt::Checked);
+    ui->treeWidget->setItemWidget(child10, 1, lbl);
+
     QTreeWidgetItem *treeItem2 = new QTreeWidgetItem(ui->treeWidget);
     treeItem2->setText(0,"Исходные данные");
     treeItem2->setText(1,"Описание");
     ui->treeWidget->addTopLevelItem(treeItem2);
 
-    QTreeWidgetItem *child3= new QTreeWidgetItem();
-    child3->setText(0,"Исходные данные");
-    child3->setText(1,"Описание");
-    treeItem2->addChild(child3);
+
 
     QTreeWidgetItem *treeItem3 = new QTreeWidgetItem(ui->treeWidget);
     treeItem3->setText(0,"Идентификация параметров схемы замещения");
     treeItem3->setText(1,"Описание");
     ui->treeWidget->addTopLevelItem(treeItem3);
 
-    QTreeWidgetItem *child4= new QTreeWidgetItem();
-    child4->setText(0,"Исходные данные");
-    child4->setText(1,"Описание");
-    treeItem3->addChild(child4);
+//    QTreeWidgetItem *child4= new QTreeWidgetItem();
+//    child4->setText(0,"Исходные данные");
+//    child4->setText(1,"Описание");
+//    treeItem3->addChild(child4);
 
     QTreeWidgetItem *treeItem4 = new QTreeWidgetItem(ui->treeWidget);
     treeItem4->setText(0,"Электромагнитные процессы");
