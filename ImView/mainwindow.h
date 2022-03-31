@@ -6,6 +6,7 @@
 #include <QTimer>
 #include <QElapsedTimer>
 #include <QWebEngineView>
+#include <QTreeWidgetItem>
 #include "itogs.h"
 
 #include "ui_about_dialog.h"
@@ -73,6 +74,8 @@ private slots:
     void on_action_23_triggered();
     void on_action_15_triggered();
 
+    void on_treeWidget_itemClicked(QTreeWidgetItem *item, int column);
+
 public:
     Ui::MainWindow *ui;
     AboutDialog *rsc;
@@ -81,6 +84,8 @@ public:
     QString dataSourceFilename;
 
     QWebEngineView * view;
+
+    QTreeWidgetItem *child3;
 };
 
 #endif // MAINWINDOW_H

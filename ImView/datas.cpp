@@ -40,7 +40,7 @@ datas::~datas()
 
 void datas::table()
 {
-    QSqlTableModel *model = new QSqlTableModel;
+    model = new QSqlTableModel;
 
     model->setTable("dvigatels");
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);

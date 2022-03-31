@@ -25,6 +25,7 @@
 #include "ui_vent_tract.h"
 #include "gridlinedelegate.h"
 #include <QSplitter>
+#include <QMessageBox>
 
 Base base;
 
@@ -103,7 +104,7 @@ MainWindow::MainWindow(QWidget *parent)
     treeItem->addChild(child2);
 
     //вставка comboBox
-    QTreeWidgetItem *child3= new QTreeWidgetItem();
+    child3= new QTreeWidgetItem();
     child3->setText(0,"Расположение проекта!!!!");
     treeItem->addChild(child3);
     QComboBox *cmb = new QComboBox(ui->treeWidget);
@@ -446,3 +447,12 @@ void MainWindow::on_action_15_triggered()
             rsc2->size(),
             screen->geometry()));
 }
+
+void MainWindow::on_treeWidget_itemClicked(QTreeWidgetItem *item, int column)
+{
+    if (item == child3)
+    {
+        QMessageBox::information(this,"aaa","Расположение проекта!!!");
+    }
+}
+
