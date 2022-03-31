@@ -55,6 +55,7 @@ public:
     ~MainWindow();
 
     void closeEvent (QCloseEvent *event);
+signals:
 
 private slots:
     void on_actionabout_triggered();
@@ -75,6 +76,8 @@ private slots:
     void on_action_15_triggered();
 
     void on_treeWidget_itemClicked(QTreeWidgetItem *item, int column);
+    bool eventFilter(QObject *obj, QEvent *event);
+    void on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column);
 
 public:
     Ui::MainWindow *ui;
@@ -85,7 +88,9 @@ public:
 
     QWebEngineView * view;
 
-    QTreeWidgetItem *child3;
+    QTreeWidgetItem *treeItem, *child3, *child, *child2;
+    QTreeWidgetItem *currentItem;
+    int currentColumn;
 };
 
 #endif // MAINWINDOW_H

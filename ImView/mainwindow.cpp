@@ -41,6 +41,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_5->ui->widget_4->wf=this;
     ui->widget->wf=this;
 
+    ui->treeWidget->installEventFilter(this); //Установим фильтр
+
     ui->widget_5->ui->widget->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/ax_var/ax_var_2.html").absoluteFilePath()));
     ui->widget_5->ui->widget_5->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/rad_var/rad_var_2.html").absoluteFilePath()));
     ui->widget_6->ui->widget_2->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_tract/vent_tract.html").absoluteFilePath()));
@@ -69,7 +71,7 @@ MainWindow::MainWindow(QWidget *parent)
     //ui->treeWidget->setStyleSheet("QTreeView::item { height: 16px;}");
 
     //вставка основного узла НАСТРОЙКИ ПРОЕКТА
-    QTreeWidgetItem *treeItem = new QTreeWidgetItem(ui->treeWidget);
+    treeItem = new QTreeWidgetItem(ui->treeWidget);
     QFont fonts;
     fonts.setPointSize(10);
     fonts.setBold(true);
@@ -85,22 +87,22 @@ MainWindow::MainWindow(QWidget *parent)
     child->setText(0,"Настройки 2");
     treeItem->addChild(child);
     child->setText(1,"Описание 2");
-    child->setFlags(child->flags() | Qt::ItemIsUserCheckable);
-    child->setCheckState(1, Qt::Checked);
-    treeItem->addChild(child);
+//    child->setFlags(child->flags() | Qt::ItemIsUserCheckable);
+//    child->setCheckState(1, Qt::Checked);
+    treeItem->insertChild(1,child);
 
     //вставка кнопки
     QTreeWidgetItem *child2= new QTreeWidgetItem();
     child2->setText(0,"Расположение проекта");
     child2->setText(1,"Описание");
     treeItem->addChild(child2);
-    QPushButton *pushbutton=new QPushButton();
-    QFont font = pushbutton->font();
-    font.setPointSize(8);
-    pushbutton->setFont(font);
-    pushbutton->setStyleSheet("font: bold;background-color: red;font-size: 10px;height: 10px;width: 10px;");
-    pushbutton->setText("murka");
-    ui->treeWidget->setItemWidget(child2, 1, pushbutton);
+//    QPushButton *pushbutton=new QPushButton();
+//    QFont font = pushbutton->font();
+//    font.setPointSize(8);
+//    pushbutton->setFont(font);
+//    pushbutton->setStyleSheet("font: bold;background-color: red;font-size: 10px;height: 10px;width: 10px;");
+//    pushbutton->setText("murka");
+//    ui->treeWidget->setItemWidget(child2, 1, pushbutton);
     treeItem->addChild(child2);
 
     //вставка comboBox
@@ -117,9 +119,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     QTreeWidgetItem *child4= new QTreeWidgetItem();
     child4->setText(0,"Исходные данные");
-    //child4->setText(1,"Описание");
-//    child4->setFlags(child3->flags() | Qt::ItemIsUserCheckable);
-//    child4->setCheckState(0, Qt::Checked);
     treeItem->addChild(child4);
     QPushButton *btn=new QPushButton(ui->treeWidget);
     btn->setText("Drk");
@@ -450,9 +449,68 @@ void MainWindow::on_action_15_triggered()
 
 void MainWindow::on_treeWidget_itemClicked(QTreeWidgetItem *item, int column)
 {
-    if (item == child3)
+//    if (item == child3)
+//    {
+//        QMessageBox::information(this,"aaa","Расположение проекта!!!");
+//    }
+
+//    currentItem = item;
+//    currentColumn = column;
+//    qDebug()<<item->text(column);
+//    item = ui->treeWidget->currentItem();
+//    QMessageBox::information(this,"aaa",QString::number(column));
+
+//    QModelIndex index = item->treeWidget()->currentIndex();
+//    QString message = QString( "Item at model index row %1, column %2 clicked" ).arg( index.row() ).arg( index.column() );
+//    QMessageBox::information(this,"Info:", message );
+
+    if(item == child2 && column==1)
     {
-        QMessageBox::information(this,"aaa","Расположение проекта!!!");
+        QComboBox *cmb = new QComboBox(ui->treeWidget);
+        cmb->setStyleSheet("QComboBox { height: 10px;}");
+        cmb->addItem("One");
+        cmb->addItem("Two");
+        cmb->addItem("Three");
+        cmb->addItem("Four");
+        ui->treeWidget->setItemWidget(child2, 1, cmb);
     }
 }
+
+bool MainWindow::eventFilter(QObject *obj, QEvent *event)
+
+{
+    if (obj==ui->treeWidget)         // Сначала оцениваем элемент управления
+    {
+        if (event->type()==QEvent::FocusIn)     // Затем оцениваем конкретное событие элемента управления (здесь относится к событию фокуса)
+            {
+
+                QPalette p=QPalette();
+                p.setColor(QPalette::Base,Qt::green);
+                ui->treeWidget->setPalette(p);
+            }
+        else if (event->type()==QEvent::FocusOut)
+        {
+             QPalette p=QPalette();
+             p.setColor(QPalette::Base,Qt::white);
+             ui->treeWidget->setPalette(p);
+        }
+    }
+    return QWidget::eventFilter(obj,event);
+}
+
+void MainWindow::on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column)
+{
+    if(item == child2)
+    {
+        QComboBox *cmb = new QComboBox(ui->treeWidget);
+        cmb->setStyleSheet("QComboBox { height: 10px;}");
+        cmb->addItem("One");
+        cmb->addItem("Two");
+        cmb->addItem("Three");
+        cmb->addItem("Four");
+        ui->treeWidget->setItemWidget(child2, 1, cmb);
+    }
+
+}
+
 
