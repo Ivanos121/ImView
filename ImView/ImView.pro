@@ -96,6 +96,7 @@ HEADERS += \
     modelidentf.h \
     modell.h \
     nabludatel.h \
+    nabludatel_base.h \
     nabludatel_part.h \
     paintdelegate.h \
     plot.h \

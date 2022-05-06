@@ -75,9 +75,9 @@ private slots:
     void on_action_23_triggered();
     void on_action_15_triggered();
 
-    void on_treeWidget_itemClicked(QTreeWidgetItem *item, int column);
-    bool eventFilter(QObject *obj, QEvent *event);
-    void on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column);
+    //void on_treeWidget_itemClicked(QTreeWidgetItem *item, int column);
+   // bool eventFilter(QObject *obj, QEvent *event);
+    //void on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column);
 
 public:
     Ui::MainWindow *ui;

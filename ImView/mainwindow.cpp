@@ -151,34 +151,47 @@ MainWindow::MainWindow(QWidget *parent)
     fontss.setPointSize(10);
     fontss.setBold(true);
     treeItem2->setData(0,Qt::FontRole,fontss);
-    treeItem2->setText(0,"Настройки проекта");
+    treeItem2->setText(0,"Источник данных");
     treeItem2->setBackground(0, QColor(126, 126, 126));
     treeItem2->setBackground(1, QColor(126, 126, 126));
     ui->treeWidget->addTopLevelItem(treeItem2);
     ui->treeWidget->expandItem(treeItem2);
 
     QTreeWidgetItem *child12= new QTreeWidgetItem();
-    child12->setText(0,"Исходные данные");
-    child12->setFlags(child12->flags() | Qt::ItemIsEditable | Qt:: ItemIsEnabled);
-    child12->setText(1,"Описание");
+    child12->setText(0,"Осциллограф+наблюдатель скорости (без датчика скорости)");
+    treeItem2->addChild(child12);
+    child12->setFlags(child->flags() | Qt::ItemIsUserCheckable);
+    child12->setCheckState(1, Qt::Checked);
     treeItem2->addChild(child12);
 
     QTreeWidgetItem *child13= new QTreeWidgetItem();
-    child13->setText(0,"Исходные данные");
-    child13->setFlags(child13->flags() | Qt::ItemIsEditable | Qt:: ItemIsEnabled);
-    child13->setText(1,"Описание");
+    child13->setText(0,"Осциллограф+наблюдатель скорости (с датчиком скорости)");
+    child13->setFlags(child->flags() | Qt::ItemIsUserCheckable);
+    child13->setCheckState(1, Qt::Checked);
     treeItem2->addChild(child13);
 
     QTreeWidgetItem *child14= new QTreeWidgetItem();
-    child14->setText(0,"Исходные данные");
-    child14->setFlags(child14->flags() | Qt::ItemIsEditable | Qt:: ItemIsEnabled);
-    child14->setText(1,"Описание");
+    child14->setText(0,"Чтение данных из файла  для идентификации параметров схемы замещения");
+    treeItem2->addChild(child14);
+    QPushButton *pushbutton=new QPushButton();
+    QFont font = pushbutton->font();
+    font.setPointSize(8);
+    pushbutton->setFont(font);
+    pushbutton->setStyleSheet("font: bold;font-size: 10px;height: 10px;width: 10px;");
+    pushbutton->setText("Обзор");
+    ui->treeWidget->setItemWidget(child14, 1, pushbutton);
     treeItem2->addChild(child14);
 
     QTreeWidgetItem *child15= new QTreeWidgetItem();
-    child15->setText(0,"Исходные данные");
-    child15->setFlags(child15->flags() | Qt::ItemIsEditable | Qt:: ItemIsEnabled);
-    child15->setText(1,"Описание");
+    child15->setText(0,"Чтение данных из файла  для наблюдателя скорости");
+    treeItem2->addChild(child15);
+    QPushButton *pushbutton2=new QPushButton();
+    QFont font2 = pushbutton->font();
+    font2.setPointSize(8);
+    pushbutton2->setFont(font);
+    pushbutton2->setStyleSheet("font: bold;font-size: 10px;height: 10px;width: 10px;");
+    pushbutton2->setText("Обзор");
+    ui->treeWidget->setItemWidget(child15, 1, pushbutton2);
     treeItem2->addChild(child15);
 
     QTreeWidgetItem *treeItem3 = new QTreeWidgetItem(ui->treeWidget);
@@ -232,9 +245,9 @@ MainWindow::MainWindow(QWidget *parent)
 //    treeItem8->setText(1,"Описание");
 //    ui->treeWidget->addTopLevelItem(treeItem8);
 
-    GridLineDelegate* gridlinedelegate = new GridLineDelegate(this); //создание делегата для создания комбобоксов
+    /*GridLineDelegate* gridlinedelegate = new GridLineDelegate(this); //создание делегата для создания комбобоксов
     ui->treeWidget->setItemDelegateForColumn(0, gridlinedelegate);
-    ui->treeWidget->setItemDelegateForColumn(1, gridlinedelegate);
+    ui->treeWidget->setItemDelegateForColumn(1, gridlinedelegate);*/
 
     ui->treeWidget->header()->setVisible(1);
 
@@ -447,7 +460,7 @@ void MainWindow::on_action_15_triggered()
             screen->geometry()));
 }
 
-void MainWindow::on_treeWidget_itemClicked(QTreeWidgetItem *item, int column)
+/*void MainWindow::on_treeWidget_itemClicked(QTreeWidgetItem *item, int column)
 {
 //    if (item == child3)
 //    {
@@ -474,16 +487,15 @@ void MainWindow::on_treeWidget_itemClicked(QTreeWidgetItem *item, int column)
         cmb->addItem("Four");
         ui->treeWidget->setItemWidget(child2, 1, cmb);
     }
-}
+}*/
 
-bool MainWindow::eventFilter(QObject *obj, QEvent *event)
+/*bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 
 {
     if (obj==ui->treeWidget)         // Сначала оцениваем элемент управления
     {
         if (event->type()==QEvent::FocusIn)     // Затем оцениваем конкретное событие элемента управления (здесь относится к событию фокуса)
             {
-
                 QPalette p=QPalette();
                 p.setColor(QPalette::Base,Qt::green);
                 ui->treeWidget->setPalette(p);
@@ -496,21 +508,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         }
     }
     return QWidget::eventFilter(obj,event);
-}
+}*/
 
-void MainWindow::on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column)
-{
-    if(item == child2)
-    {
-        QComboBox *cmb = new QComboBox(ui->treeWidget);
-        cmb->setStyleSheet("QComboBox { height: 10px;}");
-        cmb->addItem("One");
-        cmb->addItem("Two");
-        cmb->addItem("Three");
-        cmb->addItem("Four");
-        ui->treeWidget->setItemWidget(child2, 1, cmb);
-    }
-
-}
 
 

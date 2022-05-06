@@ -338,130 +338,6 @@ void electromagn::realtimeDataSlot()
     double a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18;
     key = time->elapsed()/1000.0;
 
-    if(ui->radioButton->isChecked())
-    {
-        nabludatel.rasch(dataSource);
-
-    //Занесение итоговых данных в таблицу
-    if (ui->tableWidget->item(0, 1) != 0)
-    {
-        ui->tableWidget->item(0, 1)->setText(QString("%1").arg(nabludatel.i_dev_a));
-    }
-
-    if (ui->tableWidget->item(1, 1) != 0)
-    {
-        ui->tableWidget->item(1, 1)->setText(QString("%1").arg(nabludatel.u_dev_a));
-    }
-
-    if (ui->tableWidget->item(2, 1) != 0)
-    {
-        ui->tableWidget->item(2, 1)->setText(QString("%1").arg(nabludatel.p_akt_a));
-    }
-
-    if (ui->tableWidget->item(3, 1) != 0)
-    {
-        ui->tableWidget->item(3, 1)->setText(QString("%1").arg(nabludatel.p_reakt_a));
-    }
-
-    if (ui->tableWidget->item(4, 1) != 0)
-    {
-        ui->tableWidget->item(4, 1)->setText(QString("%1").arg(nabludatel.p_poln_a));
-    }
-
-    if (ui->tableWidget->item(5, 1) != 0)
-    {
-        ui->tableWidget->item(5, 1)->setText(QString("%1").arg(nabludatel.cos_f_a));
-    }
-
-    if (ui->tableWidget->item(6, 1) != 0)
-    {
-        ui->tableWidget->item(6, 1)->setText(QString("%1").arg(nabludatel.i_dev_b));
-    }
-
-    if (ui->tableWidget->item(7, 1) != 0)
-    {
-        ui->tableWidget->item(7, 1)->setText(QString("%1").arg(nabludatel.u_dev_b));
-    }
-    if (ui->tableWidget->item(8, 1) != 0)
-    {
-        ui->tableWidget->item(8, 1)->setText(QString("%1").arg(nabludatel.p_akt_b));
-    }
-
-    if (ui->tableWidget->item(9, 1) != 0)
-    {
-        ui->tableWidget->item(9, 1)->setText(QString("%1").arg(nabludatel.p_reakt_b));
-    }
-
-    if (ui->tableWidget->item(10, 1) != 0)
-    {
-        ui->tableWidget->item(10, 1)->setText(QString("%1").arg(nabludatel.p_poln_b));
-    }
-
-    if (ui->tableWidget->item(11, 1) != 0)
-    {
-        ui->tableWidget->item(11, 1)->setText(QString("%1").arg(nabludatel.cos_f_b));
-    }
-
-    if (ui->tableWidget->item(12, 1) != 0)
-    {
-        ui->tableWidget->item(12, 1)->setText(QString("%1").arg(nabludatel.i_dev_c));
-    }
-
-    if (ui->tableWidget->item(13, 1) != 0)
-    {
-        ui->tableWidget->item(13, 1)->setText(QString("%1").arg(nabludatel.u_dev_c));
-    }
-
-    if (ui->tableWidget->item(14, 1) != 0)
-    {
-        ui->tableWidget->item(14, 1)->setText(QString("%1").arg(nabludatel.p_akt_c));
-    }
-
-    if (ui->tableWidget->item(15, 1) != 0)
-    {
-        ui->tableWidget->item(15, 1)->setText(QString("%1").arg(nabludatel.p_reakt_c));
-    }
-
-    if (ui->tableWidget->item(16, 1) != 0)
-    {
-        ui->tableWidget->item(16, 1)->setText(QString("%1").arg(nabludatel.p_poln_c));
-    }
-
-    if (ui->tableWidget->item(17, 1) != 0)
-    {
-        ui->tableWidget->item(17, 1)->setText(QString("%1").arg(nabludatel.cos_f_c));
-    }
-
-    if (ui->tableWidget->item(18, 1) != 0)
-    {
-        ui->tableWidget->item(18, 1)->setText(QString("%1").arg(nabludatel.p_akt));
-    }
-
-    if (ui->tableWidget->item(19, 1) != 0)
-    {
-        ui->tableWidget->item(19, 1)->setText(QString("%1").arg(nabludatel.p_reakt));
-    }
-    if (ui->tableWidget->item(20, 1) != 0)
-    {
-        ui->tableWidget->item(20, 1)->setText(QString("%1").arg(nabludatel.p_poln));
-    }
-    if (ui->tableWidget->item(21, 1) != 0)
-    {
-        ui->tableWidget->item(21, 1)->setText(QString("%1").arg(nabludatel.cos_f));
-    }
-}
-
-    if(ui->radioButton_2->isChecked())
-    {
-        nabludatel_part.rasch(dataSource);
-        count++;
-
-        if (count % 100 == 0)
-        {
-            count = 1;
-        }
-    }
-
     if(ui->radioButton_3->isChecked())
     {
         double b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16;
@@ -881,7 +757,7 @@ void electromagn::realtimeDataSlot()
         }
     }
 
-    if(ui->radioButton_4->isChecked())
+    if((ui->radioButton->isChecked()) || (ui->radioButton_2->isChecked()) || (ui->radioButton_4->isChecked()))
     {
         nabludatel.rasch(dataSource);
 
