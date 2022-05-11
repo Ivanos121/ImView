@@ -8,6 +8,7 @@
 #include "nabludatel_part.h"
 #include "datasource_file.h"
 #include "datasourcebvas.h"
+#include "datasourcebvasw.h"
 #include "datasource.h"
 #include "plot.h"
 
@@ -55,8 +56,9 @@ private slots:
 private:
     Ui::electromagn *ui;
     QElapsedTimer *time;
-    Nabludatel nabludatel;
-    Nabludatel_part nabludatel_part;
+    NabludatelBase *nabludatel;
+    Nabludatel nabludatel_full;
+    NabludatelPart nabludatel_part;
     DataSource* dataSource;
     QComboBox* combo = new QComboBox();
     QComboBox* combo2 = new QComboBox();

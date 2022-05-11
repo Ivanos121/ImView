@@ -6,7 +6,7 @@
 #include "nabludatel_part.h"
 #include "plot.h"
 #include "datasource_file.h"
-#include"ui_mainwindow.h"
+#include "ui_mainwindow.h"
 
 #include <QLinearGradient>
 #include <QMessageBox>
@@ -759,7 +759,7 @@ void electromagn::realtimeDataSlot()
 
     if((ui->radioButton->isChecked()) || (ui->radioButton_2->isChecked()) || (ui->radioButton_4->isChecked()))
     {
-        nabludatel.rasch(dataSource);
+        nabludatel->rasch(dataSource);
 
         //Считывание коэффициента изменения амплитуды напряжения фазы А
         a1=ui->tableWidget_5->item(0,4)->text().toDouble();
@@ -818,294 +818,294 @@ void electromagn::realtimeDataSlot()
 
     if(ui->tableWidget_5->model()->index(0,2).data(Qt::CheckStateRole)==Qt::Checked)
     {
-        ui->plot->addPoint(0, key, a4+a1*nabludatel.u_dev_a);
+        ui->plot->addPoint(0, key, a4+a1*nabludatel->get_u_dev_a());
     }
 
     if(ui->tableWidget_5->model()->index(1,2).data(Qt::CheckStateRole)==Qt::Checked)
     {
-        ui->plot->addPoint(1, key, a5+a2*nabludatel.u_dev_b);
+        ui->plot->addPoint(1, key, a5+a2*nabludatel->get_u_dev_b());
     }
 
     if(ui->tableWidget_5->model()->index(2,2).data(Qt::CheckStateRole)==Qt::Checked)
     {
-        ui->plot->addPoint(2, key, a6+a3*nabludatel.u_dev_c);
+        ui->plot->addPoint(2, key, a6+a3*nabludatel->get_u_dev_c());
     }
 
     if(ui->tableWidget_5->model()->index(3,2).data(Qt::CheckStateRole)==Qt::Checked)
     {
-        ui->plot->addPoint(3, key, a10+a7*nabludatel.i_dev_a);
+        ui->plot->addPoint(3, key, a10+a7*nabludatel->get_i_dev_a());
     }
 
     if(ui->tableWidget_5->model()->index(4,2).data(Qt::CheckStateRole)==Qt::Checked)
     {
-        ui->plot->addPoint(4, key, a11+a8*nabludatel.i_dev_b);
+        ui->plot->addPoint(4, key, a11+a8*nabludatel->get_i_dev_b());
     }
 
     if(ui->tableWidget_5->model()->index(5,2).data(Qt::CheckStateRole)==Qt::Checked)
     {
-        ui->plot->addPoint(5, key, a12+a9*nabludatel.i_dev_c);
+        ui->plot->addPoint(5, key, a12+a9*nabludatel->get_i_dev_c());
     }
 
     if(ui->tableWidget_5->model()->index(6,2).data(Qt::CheckStateRole)==Qt::Checked)
     {
-        ui->plot->addPoint(6, key, nabludatel.w_sr);
+        ui->plot->addPoint(6, key, nabludatel->get_w_sr());
     }
 
     if(ui->tableWidget_5->model()->index(7,2).data(Qt::CheckStateRole)==Qt::Checked)
     {
-        ui->plot->addPoint(7, key, nabludatel.M_sr);
+        ui->plot->addPoint(7, key, nabludatel->get_M_sr());
     }
 
     //Занесение итоговых данных в таблицу
     if (ui->tableWidget->item(0, 1) != 0)
     {
-        ui->tableWidget->item(0, 1)->setText(QString("%1").arg(nabludatel.i_dev_a));
+        ui->tableWidget->item(0, 1)->setText(QString("%1").arg(nabludatel->get_i_dev_a()));
     }
 
     if (ui->tableWidget->item(1, 1) != 0)
     {
-        ui->tableWidget->item(1, 1)->setText(QString("%1").arg(nabludatel.u_dev_a));
+        ui->tableWidget->item(1, 1)->setText(QString("%1").arg(nabludatel->get_u_dev_a()));
     }
 
     if (ui->tableWidget->item(2, 1) != 0)
     {
-        ui->tableWidget->item(2, 1)->setText(QString("%1").arg(nabludatel.p_akt_a));
+        ui->tableWidget->item(2, 1)->setText(QString("%1").arg(nabludatel->get_p_akt_a()));
     }
 
     if (ui->tableWidget->item(3, 1) != 0)
     {
-        ui->tableWidget->item(3, 1)->setText(QString("%1").arg(nabludatel.p_reakt_a));
+        ui->tableWidget->item(3, 1)->setText(QString("%1").arg(nabludatel->get_p_reakt_a()));
     }
 
     if (ui->tableWidget->item(4, 1) != 0)
     {
-        ui->tableWidget->item(4, 1)->setText(QString("%1").arg(nabludatel.p_poln_a));
+        ui->tableWidget->item(4, 1)->setText(QString("%1").arg(nabludatel->get_p_poln_a()));
     }
 
     if (ui->tableWidget->item(5, 1) != 0)
     {
-        ui->tableWidget->item(5, 1)->setText(QString("%1").arg(nabludatel.cos_f_a));
+        ui->tableWidget->item(5, 1)->setText(QString("%1").arg(nabludatel->get_cos_f_a()));
     }
 
     if (ui->tableWidget->item(6, 1) != 0)
     {
-        ui->tableWidget->item(6, 1)->setText(QString("%1").arg(nabludatel.i_dev_b));
+        ui->tableWidget->item(6, 1)->setText(QString("%1").arg(nabludatel->get_i_dev_b()));
     }
 
     if (ui->tableWidget->item(7, 1) != 0)
     {
-        ui->tableWidget->item(7, 1)->setText(QString("%1").arg(nabludatel.u_dev_b));
+        ui->tableWidget->item(7, 1)->setText(QString("%1").arg(nabludatel->get_u_dev_b()));
     }
     if (ui->tableWidget->item(8, 1) != 0)
     {
-        ui->tableWidget->item(8, 1)->setText(QString("%1").arg(nabludatel.p_akt_b));
+        ui->tableWidget->item(8, 1)->setText(QString("%1").arg(nabludatel->get_p_akt_b()));
     }
 
     if (ui->tableWidget->item(9, 1) != 0)
     {
-        ui->tableWidget->item(9, 1)->setText(QString("%1").arg(nabludatel.p_reakt_b));
+        ui->tableWidget->item(9, 1)->setText(QString("%1").arg(nabludatel->get_p_reakt_b()));
     }
 
     if (ui->tableWidget->item(10, 1) != 0)
     {
-        ui->tableWidget->item(10, 1)->setText(QString("%1").arg(nabludatel.p_poln_b));
+        ui->tableWidget->item(10, 1)->setText(QString("%1").arg(nabludatel->get_p_poln_b()));
     }
 
     if (ui->tableWidget->item(11, 1) != 0)
     {
-        ui->tableWidget->item(11, 1)->setText(QString("%1").arg(nabludatel.cos_f_b));
+        ui->tableWidget->item(11, 1)->setText(QString("%1").arg(nabludatel->get_cos_f_b()));
     }
 
     if (ui->tableWidget->item(12, 1) != 0)
     {
-        ui->tableWidget->item(12, 1)->setText(QString("%1").arg(nabludatel.i_dev_c));
+        ui->tableWidget->item(12, 1)->setText(QString("%1").arg(nabludatel->get_i_dev_c()));
     }
 
     if (ui->tableWidget->item(13, 1) != 0)
     {
-        ui->tableWidget->item(13, 1)->setText(QString("%1").arg(nabludatel.u_dev_c));
+        ui->tableWidget->item(13, 1)->setText(QString("%1").arg(nabludatel->get_u_dev_c()));
     }
 
     if (ui->tableWidget->item(14, 1) != 0)
     {
-        ui->tableWidget->item(14, 1)->setText(QString("%1").arg(nabludatel.p_akt_c));
+        ui->tableWidget->item(14, 1)->setText(QString("%1").arg(nabludatel->get_p_akt_c()));
     }
 
     if (ui->tableWidget->item(15, 1) != 0)
     {
-        ui->tableWidget->item(15, 1)->setText(QString("%1").arg(nabludatel.p_reakt_c));
+        ui->tableWidget->item(15, 1)->setText(QString("%1").arg(nabludatel->get_p_reakt_c()));
     }
 
     if (ui->tableWidget->item(16, 1) != 0)
     {
-        ui->tableWidget->item(16, 1)->setText(QString("%1").arg(nabludatel.p_poln_c));
+        ui->tableWidget->item(16, 1)->setText(QString("%1").arg(nabludatel->get_p_poln_c()));
     }
 
     if (ui->tableWidget->item(17, 1) != 0)
     {
-        ui->tableWidget->item(17, 1)->setText(QString("%1").arg(nabludatel.cos_f_c));
+        ui->tableWidget->item(17, 1)->setText(QString("%1").arg(nabludatel->get_cos_f_c()));
     }
 
     if (ui->tableWidget->item(18, 1) != 0)
     {
-        ui->tableWidget->item(18, 1)->setText(QString("%1").arg(nabludatel.p_akt));
+        ui->tableWidget->item(18, 1)->setText(QString("%1").arg(nabludatel->get_p_akt()));
     }
 
     if (ui->tableWidget->item(19, 1) != 0)
     {
-        ui->tableWidget->item(19, 1)->setText(QString("%1").arg(nabludatel.p_reakt));
+        ui->tableWidget->item(19, 1)->setText(QString("%1").arg(nabludatel->get_p_reakt()));
     }
     if (ui->tableWidget->item(20, 1) != 0)
     {
-        ui->tableWidget->item(20, 1)->setText(QString("%1").arg(nabludatel.p_poln));
+        ui->tableWidget->item(20, 1)->setText(QString("%1").arg(nabludatel->get_p_poln()));
     }
     if (ui->tableWidget->item(21, 1) != 0)
     {
-        ui->tableWidget->item(21, 1)->setText(QString("%1").arg(nabludatel.cos_f));
+        ui->tableWidget->item(21, 1)->setText(QString("%1").arg(nabludatel->get_cos_f()));
     }
     if (ui->tableWidget->item(22, 1) != 0)
     {
-        ui->tableWidget->item(22, 1)->setText(QString("%1").arg(nabludatel.w_sr));
+        ui->tableWidget->item(22, 1)->setText(QString("%1").arg(nabludatel->get_w_sr()));
     }
     if (ui->tableWidget->item(23, 1) != 0)
     {
-        ui->tableWidget->item(23, 1)->setText(QString("%1").arg(nabludatel.M_sr));
+        ui->tableWidget->item(23, 1)->setText(QString("%1").arg(nabludatel->get_M_sr()));
     }
     if (ui->tableWidget_4->item(0, 1) != 0)
     {
-        ui->tableWidget_4->item(0, 1)->setText(QString::number(nabludatel.P1,'f',3));
+        ui->tableWidget_4->item(0, 1)->setText(QString::number(nabludatel->get_P1(),'f',3));
     }
 
     if (ui->tableWidget_4->item(1, 1) != 0)
     {
-        ui->tableWidget_4->item(1, 1)->setText(QString::number(nabludatel.dPel1,'f',3));
+        ui->tableWidget_4->item(1, 1)->setText(QString::number(nabludatel->get_dPel1(),'f',3));
     }
 
     if (ui->tableWidget_4->item(2, 1) != 0)
     {
-        ui->tableWidget_4->item(2, 1)->setText(QString::number(nabludatel.dPct,'f',3));
+        ui->tableWidget_4->item(2, 1)->setText(QString::number(nabludatel->get_dPct(),'f',3));
     }
 
     if (ui->tableWidget_4->item(3, 1) != 0)
     {
-        ui->tableWidget_4->item(3, 1)->setText(QString::number(nabludatel.dPel2,'f',3));
+        ui->tableWidget_4->item(3, 1)->setText(QString::number(nabludatel->get_dPel2(),'f',3));
     }
 
     if (ui->tableWidget_4->item(4, 1) != 0)
     {
-        ui->tableWidget_4->item(4, 1)->setText(QString::number(nabludatel.dPdob,'f',3));
+        ui->tableWidget_4->item(4, 1)->setText(QString::number(nabludatel->get_dPdob(),'f',3));
     }
 
     if (ui->tableWidget_4->item(5, 1) != 0)
     {
-        ui->tableWidget_4->item(5, 1)->setText(QString::number(nabludatel.dPmech,'f',3));
+        ui->tableWidget_4->item(5, 1)->setText(QString::number(nabludatel->get_dPmech(),'f',3));
     }
 
     if (ui->tableWidget_4->item(6, 1) != 0)
     {
-        ui->tableWidget_4->item(6, 1)->setText(QString::number(nabludatel.P2,'f',3));
+        ui->tableWidget_4->item(6, 1)->setText(QString::number(nabludatel->get_P2(),'f',3));
     }
 
     if (ui->tableWidget_4->item(7, 1) != 0)
     {
-        ui->tableWidget_4->item(7, 1)->setText(QString::number(nabludatel.kpd,'f',3));
+        ui->tableWidget_4->item(7, 1)->setText(QString::number(nabludatel->get_kpd(),'f',3));
     }
 
     if (ui->tableWidget_4->item(8, 1) != 0)
     {
-        ui->tableWidget_4->item(8, 1)->setText(QString::number(nabludatel.cos_f,'f',3));
+        ui->tableWidget_4->item(8, 1)->setText(QString::number(nabludatel->get_cos_f(),'f',3));
     }
 
     if (ui->tableWidget_5->item(0, 3) != 0)
     {
-        ui->tableWidget_5->item(0, 3)->setText(QString::number(nabludatel.u_dev_a,'f',3));
+        ui->tableWidget_5->item(0, 3)->setText(QString::number(nabludatel->get_u_dev_a(),'f',3));
     }
 
     if (ui->tableWidget_5->item(1, 3) != 0)
     {
-        ui->tableWidget_5->item(1, 3)->setText(QString::number(nabludatel.u_dev_b,'f',3));
+        ui->tableWidget_5->item(1, 3)->setText(QString::number(nabludatel->get_u_dev_b(),'f',3));
     }
 
     if (ui->tableWidget_5->item(2, 3) != 0)
     {
-        ui->tableWidget_5->item(2, 3)->setText(QString::number(nabludatel.u_dev_c,'f',3));
+        ui->tableWidget_5->item(2, 3)->setText(QString::number(nabludatel->get_u_dev_c(),'f',3));
     }
 
     if (ui->tableWidget_5->item(3, 3) != 0)
     {
-        ui->tableWidget_5->item(3, 3)->setText(QString::number(nabludatel.i_dev_a,'f',3));
+        ui->tableWidget_5->item(3, 3)->setText(QString::number(nabludatel->get_i_dev_a(),'f',3));
     }
 
     if (ui->tableWidget_5->item(4, 3) != 0)
     {
-        ui->tableWidget_5->item(4, 3)->setText(QString::number(nabludatel.i_dev_b,'f',3));
+        ui->tableWidget_5->item(4, 3)->setText(QString::number(nabludatel->get_i_dev_b(),'f',3));
     }
 
     if (ui->tableWidget_5->item(5, 3) != 0)
     {
-        ui->tableWidget_5->item(5, 3)->setText(QString::number(nabludatel.i_dev_c,'f',3));
+        ui->tableWidget_5->item(5, 3)->setText(QString::number(nabludatel->get_i_dev_c(),'f',3));
     }
 
     if (ui->tableWidget_5->item(6, 3) != 0)
     {
-        ui->tableWidget_5->item(6, 3)->setText(QString::number(nabludatel.w_sr,'f',3));
+        ui->tableWidget_5->item(6, 3)->setText(QString::number(nabludatel->get_w_sr(),'f',3));
     }
 
     if (ui->tableWidget_5->item(7, 3) != 0)
     {
-        ui->tableWidget_5->item(7, 3)->setText(QString::number(nabludatel.M_sr,'f',3));
+        ui->tableWidget_5->item(7, 3)->setText(QString::number(nabludatel->get_M_sr(),'f',3));
     }
 
     if (ui->tableWidget_5->item(8, 3) != 0)
     {
-        ui->tableWidget_5->item(8, 3)->setText(QString::number(nabludatel.Mc,'f',3));
+        ui->tableWidget_5->item(8, 3)->setText(QString::number(nabludatel->get_Mc(),'f',3));
     }
 
     //вывод графиков на экран plot
 
     if(ui->tableWidget_5->model()->index(0,2).data(Qt::CheckStateRole)==Qt::Checked)
     {
-        ui->plot->addPoint(0, key, a4+a1*nabludatel.u_dev_a);
+        ui->plot->addPoint(0, key, a4+a1*nabludatel->get_u_dev_a());
     }
 
     if(ui->tableWidget_5->model()->index(1,2).data(Qt::CheckStateRole)==Qt::Checked)
     {
-        ui->plot->addPoint(1, key, a5+a2*nabludatel.u_dev_b);
+        ui->plot->addPoint(1, key, a5+a2*nabludatel->get_u_dev_b());
     }
 
     if(ui->tableWidget_5->model()->index(2,2).data(Qt::CheckStateRole)==Qt::Checked)
     {
-        ui->plot->addPoint(2, key, a6+a3*nabludatel.u_dev_c);
+        ui->plot->addPoint(2, key, a6+a3*nabludatel->get_u_dev_c());
     }
 
     if(ui->tableWidget_5->model()->index(3,2).data(Qt::CheckStateRole)==Qt::Checked)
     {
-        ui->plot->addPoint(3, key, a10+a7*nabludatel.i_dev_a);
+        ui->plot->addPoint(3, key, a10+a7*nabludatel->get_i_dev_a());
     }
 
     if(ui->tableWidget_5->model()->index(4,2).data(Qt::CheckStateRole)==Qt::Checked)
     {
-        ui->plot->addPoint(4, key, a11+a8*nabludatel.i_dev_b);
+        ui->plot->addPoint(4, key, a11+a8*nabludatel->get_i_dev_b());
     }
 
     if(ui->tableWidget_5->model()->index(5,2).data(Qt::CheckStateRole)==Qt::Checked)
     {
-        ui->plot->addPoint(5, key, a12+a9*nabludatel.i_dev_c);
+        ui->plot->addPoint(5, key, a12+a9*nabludatel->get_i_dev_c());
     }
 
     if(ui->tableWidget_5->model()->index(6,2).data(Qt::CheckStateRole)==Qt::Checked)
     {
-        ui->plot->addPoint(6, key, a16+a13*nabludatel.w_sr);
+        ui->plot->addPoint(6, key, a16+a13*nabludatel->get_w_sr());
     }
 
     if(ui->tableWidget_5->model()->index(7,2).data(Qt::CheckStateRole)==Qt::Checked)
     {
-        ui->plot->addPoint(7, key, a17+a14*nabludatel.M_sr);
+        ui->plot->addPoint(7, key, a17+a14*nabludatel->get_M_sr());
     }
 
     if(ui->tableWidget_5->model()->index(8,2).data(Qt::CheckStateRole)==Qt::Checked)
     {
-        ui->plot->addPoint(8, key, a18+a15*nabludatel.Mc);
+        ui->plot->addPoint(8, key, a18+a15*nabludatel->get_Mc());
     }
 
     }
@@ -1137,9 +1137,10 @@ void electromagn::raschet_el()
         dataSourceBVAS->UcCalibrationCoeff = settings.value("calibration/UcCoeff", 1.0).toDouble();
 
         dataSource = dataSourceBVAS;
+        nabludatel = &nabludatel_full;
 
         dataSource->init();
-        nabludatel.init(base.R1, base.R2, base.L1, base.L2, base.Lm);
+        nabludatel->init(base.R1, base.R2, base.L1, base.L2, base.Lm);
         connect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
         connect(dataSourceBVAS, &DataSourceBVAS::bvasFailure, this, &electromagn::bvasFailureSlot);
 
@@ -1148,8 +1149,34 @@ void electromagn::raschet_el()
     if(ui->radioButton_2->isChecked())
     {
         //БВАС с датчиком скорости + наблюдатель частично (момента)
-        //dataSource->init();
-        //nabludatel_part.init(base.R1, base.R2, base.L1, base.L2, base.Lm);
+        //БВАС без датчика скорости + наблюдатель скорости
+        QSettings settings;
+
+        DataSourceBVASw* dataSourceBVAS = new DataSourceBVASw();
+
+        dataSourceBVAS->IaZeroLevel = settings.value("calibration/IaZero", 0.0).toDouble();
+        dataSourceBVAS->IbZeroLevel = settings.value("calibration/IbZero", 0.0).toDouble();
+        dataSourceBVAS->IcZeroLevel = settings.value("calibration/IcZero", 0.0).toDouble();
+
+        dataSourceBVAS->UaZeroLevel = settings.value("calibration/UaZero", 0.0).toDouble();
+        dataSourceBVAS->UbZeroLevel = settings.value("calibration/UbZero", 0.0).toDouble();
+        dataSourceBVAS->UcZeroLevel = settings.value("calibration/UcZero", 0.0).toDouble();
+
+        dataSourceBVAS->IaCalibrationCoeff = settings.value("calibration/IaCoeff", 1.0).toDouble();
+        dataSourceBVAS->IbCalibrationCoeff = settings.value("calibration/IbCoeff", 1.0).toDouble();
+        dataSourceBVAS->IcCalibrationCoeff = settings.value("calibration/IcCoeff", 1.0).toDouble();
+
+        dataSourceBVAS->UaCalibrationCoeff = settings.value("calibration/UaCoeff", 1.0).toDouble();
+        dataSourceBVAS->UbCalibrationCoeff = settings.value("calibration/UbCoeff", 1.0).toDouble();
+        dataSourceBVAS->UcCalibrationCoeff = settings.value("calibration/UcCoeff", 1.0).toDouble();
+
+        dataSource = dataSourceBVAS;
+        nabludatel = &nabludatel_part;
+
+        dataSource->init();
+        nabludatel->init(base.R1, base.R2, base.L1, base.L2, base.Lm);
+        connect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
+        connect(dataSourceBVAS, &DataSourceBVASw::bvasFailure, this, &electromagn::bvasFailureSlot);
 
     }
 
@@ -1170,7 +1197,7 @@ void electromagn::raschet_el()
 
 
         dataSource->init();
-        nabludatel.init(base.R1, base.R2, base.L1, base.L2, base.Lm);
+        nabludatel->init(base.R1, base.R2, base.L1, base.L2, base.Lm);
         connect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
 
     }

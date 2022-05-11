@@ -59,7 +59,8 @@ SOURCES += \
     trend.cpp \
     vent_izm.cpp \
     vent_model.cpp \
-    vent_tract.cpp
+    vent_tract.cpp \
+    zerocorrector.cpp
 
 HEADERS += \
     archiverchannel.h \
@@ -106,7 +107,8 @@ HEADERS += \
     trend.h \
     vent_izm.h \
     vent_model.h \
-    vent_tract.h
+    vent_tract.h \
+    zerocorrector.h
 
 FORMS += \
     about_dialog.ui \

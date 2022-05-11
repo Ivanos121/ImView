@@ -3,13 +3,7 @@
 
 #include "datasource.h"
 #include "nabludatel_base.h"
-
-class ZeroCorrector
-{
-public:
-    double u_prev=0, z_prev=0, z_int_prev=0, y_prev=0;
-    double apply(double z, double K, double K1, double K2, double K3, double Ts);
-};
+#include "zerocorrector.h"
 
 class Nabludatel : public NabludatelBase
 {
@@ -41,6 +35,7 @@ public:
     virtual double get_cos_f_c() {return cos_f_c;};
     virtual double get_cos_f() {return cos_f;};
     virtual double get_M_sr() {return M_sr;};
+    virtual double get_Mc() {return Mc;};
     virtual double get_w_sr() {return w_sr;};
 
     virtual double get_P1() {return P1;};

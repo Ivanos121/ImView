@@ -6,7 +6,7 @@
 class NabludatelBase
 {
 public:
-    NabludatelBase();
+    NabludatelBase() {};
     virtual void init(double _R1, double _R2, double _L1, double _L2, double _Lm) {};
 
     virtual void rasch(DataSource *dataSourceBVAS) {};
@@ -34,6 +34,7 @@ public:
     virtual double get_cos_f_c() {return 0.0;};
     virtual double get_cos_f() {return 0.0;};
     virtual double get_M_sr() {return 0.0;};
+    virtual double get_Mc() {return 0.0;};
     virtual double get_w_sr() {return 0.0;};
 
     virtual double get_P1() {return 0.0;};
