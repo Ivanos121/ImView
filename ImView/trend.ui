@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1778</width>
+    <width>1144</width>
     <height>828</height>
    </rect>
   </property>
@@ -140,14 +140,14 @@
    <item>
     <widget class="Plot" name="plot" native="true">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
      <property name="minimumSize">
       <size>
-       <width>1000</width>
+       <width>0</width>
        <height>0</height>
       </size>
      </property>
