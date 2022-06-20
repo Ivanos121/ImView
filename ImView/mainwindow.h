@@ -7,10 +7,12 @@
 #include <QElapsedTimer>
 #include <QWebEngineView>
 #include <QTreeWidgetItem>
+#include <QStandardItem>
 #include "itogs.h"
 
 #include "ui_about_dialog.h"
 #include "ui_settings.h"
+#include "pushbuttondelegate.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -75,10 +77,16 @@ private slots:
     void on_action_23_triggered();
     void on_action_15_triggered();
 
-    //void on_treeWidget_itemClicked(QTreeWidgetItem *item, int column);
-   // bool eventFilter(QObject *obj, QEvent *event);
-    //void on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column);
-
+    void modelItemChangedSlot(QStandardItem *item);
+    void modelItemChangedSlot_2(QStandardItem *item);
+    void modelItemChangedSlot_3(QStandardItem *item);
+    void modelItemChangedSlot_4(QStandardItem *item);
+    void projectFileSelectedSlot(QString projectFile);
+    void projectFileSelectedSlot_2(QString projectFile_2);
+    void projectFileSelectedSlot_3(QString projectFile_3);
+    void projectFileSelectedSlot_4(QString projectFile_4);
+    void projectFileSelectedSlot_5(QString projectFile_5);
+    void projectFileSelectedSlot_6(QString projectFile_6);
 public:
     Ui::MainWindow *ui;
     AboutDialog *rsc;
@@ -91,6 +99,21 @@ public:
     QTreeWidgetItem *treeItem, *child3, *child, *child2;
     QTreeWidgetItem *currentItem;
     int currentColumn;
+
+    QStandardItem *item1,  *item2,  *item3,  *item4,  *item5,  *item6,  *item7,  *item8;
+    QStandardItem *item9,  *item10, *item11, *item12, *item13, *item14, *item15, *item16;
+    QStandardItem *item17, *item18, *item19, *item20, *item21, *item22, *item23, *item24;
+    QStandardItem *item25, *item26, *item27, *item28, *item29, *item30, *item31, *item32;
+    QStandardItem *item33, *item34, *item35, *item36, *item37, *item38, *item39, *item40;
+    QStandardItem *item41, *item42, *item43, *item44, *item45, *item46, *item47, *item48;
+    QStandardItem *item49, *item50, *item51, *item52, *item53, *item54, *item55, *item56;
+    QStandardItem *item57, *item58, *item59, *item60, *item61, *item62, *item63, *item64;
+    QStandardItem *item65, *item66, *item67, *item68, *item69, *item70, *item71, *item72;
+    QStandardItem *item73, *item74, *item75, *item76, *item77, *item78, *item79, *item80;
+    QStandardItem *item81, *item82, *item83, *item84, *item85, *item86, *item87, *item88;
+    QStandardItem *item89, *item90, *item91, *item92, *item93, *item94, *item95, *item96;
+    QStandardItem *item97, *item98, *item99, *item100, *item101, *item102, *item103, *item104;
+    QStandardItem *item105, *item106, *item107, *item108, *item109, *item110, *item111, *item112;
 };
 
 #endif // MAINWINDOW_H

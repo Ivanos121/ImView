@@ -53,6 +53,7 @@ SOURCES += \
     nabludatel_part.cpp \
     paintdelegate.cpp \
     plot.cpp \
+    pushbuttondelegate.cpp \
     settings.cpp \
     teplovent.cpp \
     teplschem.cpp \
@@ -101,6 +102,7 @@ HEADERS += \
     nabludatel_part.h \
     paintdelegate.h \
     plot.h \
+    pushbuttondelegate.h \
     settings.h \
     teplovent.h \
     teplschem.h \

@@ -41,8 +41,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_5->ui->widget_4->wf=this;
     ui->widget->wf=this;
 
-    ui->treeWidget->installEventFilter(this); //Установим фильтр
-
     ui->widget_5->ui->widget->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/ax_var/ax_var_2.html").absoluteFilePath()));
     ui->widget_5->ui->widget_5->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/rad_var/rad_var_2.html").absoluteFilePath()));
     ui->widget_6->ui->widget_2->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_tract/vent_tract.html").absoluteFilePath()));
@@ -52,210 +50,728 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_5->ui->widget_5->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
     ui->widget_6->ui->widget->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
 
-
     showMaximized();
     ui->action_9->setEnabled(false);
     ui->action_21->setEnabled(false);
 
-    ui->treeWidget->setColumnCount(2);
-    QStringList name;
-    name << "Параметр" << "Свойство";
-    ui->treeWidget->setHeaderLabels(name);
+    ui->treeView->setSelectionBehavior(QTreeView :: SelectRows); // Выбираем всю строку за раз
+    ui->treeView->setSelectionMode(QTreeView :: SingleSelection); // Одиночный выбор, при этом вся строка над ним является одной строкой меню
+    ui->treeView->setAlternatingRowColors(true); // Цвет каждой строки интервала разный, при наличии qss этот атрибут недействителен
+    ui->treeView->setFocusPolicy(Qt :: NoFocus);
+    ui->treeView->setExpandsOnDoubleClick(true);
+    ui->treeView->setRootIsDecorated(true);
+    QFont newFontt("DroidSans", 10, QFont::Normal, false);
+    ui->treeView->setFont(newFontt);
 
-    ui->treeWidget->header()->setVisible(1);
-    ui->treeWidget->header()->setStretchLastSection(false);
-    ui->treeWidget->header()->setSectionResizeMode(0, QHeaderView::Interactive);
-    ui->treeWidget->header()->setDefaultSectionSize(250);
-    ui->treeWidget->header()->setSectionResizeMode(1, QHeaderView::Stretch);
-    ui->treeWidget->resizeColumnToContents(1);
-    //ui->treeWidget->setStyleSheet("QTreeView::item { height: 16px;}");
+    ui->treeView->setExpandsOnDoubleClick(false);
+    QObject::connect(ui->treeView, &QTreeView::clicked, [this]() {
+        if (ui->treeView->isExpanded(ui->treeView->currentIndex())) {
+            ui->treeView->collapse(ui->treeView->currentIndex());
+        }else{
+            ui->treeView->expand(ui->treeView->currentIndex());
+        }
+    });
 
-    //вставка основного узла НАСТРОЙКИ ПРОЕКТА
-    treeItem = new QTreeWidgetItem(ui->treeWidget);
-    QFont fonts;
-    fonts.setPointSize(10);
-    fonts.setBold(true);
-    treeItem->setData(0,Qt::FontRole,fonts);
-    treeItem->setText(0,"Настройки проекта");
-    treeItem->setBackground(0, QColor(126, 126, 126));
-    treeItem->setBackground(1, QColor(126, 126, 126));
-    ui->treeWidget->addTopLevelItem(treeItem);
-    ui->treeWidget->expandItem(treeItem);
+    QStandardItemModel* model=new QStandardItemModel(ui->treeView);
+    model->setHorizontalHeaderLabels (QStringList () << QStringLiteral ("Наименование") << QStringLiteral ("Свойство")); // Установить заголовок столбца
+    ui->treeView->header()->setDefaultAlignment(Qt::AlignCenter);
 
-    //вставка дочернего узла
-    QTreeWidgetItem *child= new QTreeWidgetItem();
-    child->setText(0,"Настройки 2");
-    treeItem->addChild(child);
-    child->setText(1,"Описание 2");
-//    child->setFlags(child->flags() | Qt::ItemIsUserCheckable);
-//    child->setCheckState(1, Qt::Checked);
-    treeItem->insertChild(1,child);
+        ui->treeView->setStyleSheet("*::item{"
+                            "    border-top-width: 0px;"
+                            "    border-right-width: 1px;"
+                            "    border-bottom-width: 1px;"
+                            "    border-left-width: 0px;"
+                            "    border-style: solid;"
+                            "    border-color: silver;"
+                            "}"
+                            "*::item:selected{"
+                            "    background: palette(Highlight);"
+                            "}"
+//                            "*::item:has-children{"
+//                            "    background: rgb(128,128,128);"
+//                            "}"
+                                    "::branch:has-children:!has-siblings:closed,"
+                                    "::branch:closed:has-children:has-siblings {"
+                                    "        border-image: none;"
+                                    "        image: url(branch-closed.png);"
+                                    "}"
+                                    "::branch:open:has-children:!has-siblings,"
+                                    "::branch:open:has-children:has-siblings  {"
+                                   "        border-image: none;"
+                                    "        image: url(branch-open.png);"
+                                    "}"
+                                    );
 
-    //вставка кнопки
-    QTreeWidgetItem *child2= new QTreeWidgetItem();
-    child2->setText(0,"Расположение проекта");
-    child2->setText(1,"Описание");
-    treeItem->addChild(child2);
-//    QPushButton *pushbutton=new QPushButton();
-//    QFont font = pushbutton->font();
-//    font.setPointSize(8);
-//    pushbutton->setFont(font);
-//    pushbutton->setStyleSheet("font: bold;background-color: red;font-size: 10px;height: 10px;width: 10px;");
-//    pushbutton->setText("murka");
-//    ui->treeWidget->setItemWidget(child2, 1, pushbutton);
-    treeItem->addChild(child2);
+    QList<QStandardItem*> items1;
+    item1 = new QStandardItem(QStringLiteral ("Общие настройки проекта"));
+    QString w0=item1->text();
+    item1->setToolTip(w0);
+    item2 = new QStandardItem();
+    items1.append(item1);
+    items1.append(item2);
+    model->appendRow(items1);
+    //item1->setForeground(QBrush(Qt::white));
+    item1->setSelectable(false);
+    item1->setEditable(false);
+    item2->setSelectable(false);
+    item2->setEditable(false);
+    QFont newFont("DroidSans", 10, QFont::Bold,false);
+    item1->setFont(newFont);
 
-    //вставка comboBox
-    child3= new QTreeWidgetItem();
-    child3->setText(0,"Расположение проекта!!!!");
-    treeItem->addChild(child3);
-    QComboBox *cmb = new QComboBox(ui->treeWidget);
-    cmb->setStyleSheet("QComboBox { height: 10px;}");
-    cmb->addItem("One");
-    cmb->addItem("Two");
-    cmb->addItem("Three");
-    cmb->addItem("Four");
-    ui->treeWidget->setItemWidget(child3, 1, cmb);
+    QList<QStandardItem*> items2;
+    item3 = new QStandardItem(QStringLiteral ("Название проекта"));
+    item3->setEditable(false);
+    QString w1=item3->text();
+    item3->setToolTip(w1);
+    item4 = new QStandardItem(QStringLiteral ("Имя проекта"));
+    QString w2=item4->text();
+    item4->setToolTip(w2);
+    items2.append(item3);
+    items2.append(item4);
+    item1->appendRow(items2);
+    items2.clear();
 
-    QTreeWidgetItem *child4= new QTreeWidgetItem();
-    child4->setText(0,"Исходные данные");
-    treeItem->addChild(child4);
-    QPushButton *btn=new QPushButton(ui->treeWidget);
-    btn->setText("Drk");
-    ui->treeWidget->setItemWidget(child4, 1, btn);
+    if(item4->parent())
+    item5 = new QStandardItem(QStringLiteral ("Расположение файла проекта"));
+    item5->setEditable(false);
+    QString w3=item5->text();
+    item5->setToolTip(w3);
+    item6 = new QStandardItem(QStringLiteral ("Выбрать файл"));
+    QString w4=item6->text();
+    item6->setToolTip(w4);
+    items2.append(item5);
+    items2.append(item6);
+    item1->appendRow(items2);
+    items2.clear();
 
-    QTreeWidgetItem *child5= new QTreeWidgetItem();
-    child5->setText(0,"Исходные данные");
-    child5->setFlags(child5->flags() | Qt::ItemIsEditable | Qt:: ItemIsEnabled);
-    child5->setText(1,"Описание");
-    treeItem->addChild(child5);
+    item83 = new QStandardItem(QStringLiteral ("Расположение файла базы данных двигателей"));
+    item83->setEditable(false);
+    QString w5=item83->text();
+    item83->setToolTip(w5);
+    item84 = new QStandardItem(QStringLiteral ("Выбрать файл"));
+    QString w6=item84->text();
+    item84->setToolTip(w6);
+    items2.append(item83);
+    items2.append(item84);
+    item1->appendRow(items2);
+    items2.clear();
 
-    QTreeWidgetItem *child10= new QTreeWidgetItem();
-    QLabel *lbl=new QLabel(ui->treeWidget);
-    lbl->setText("Ghbdtn");
-    child10->setFlags(child10->flags() | Qt::ItemIsEditable | Qt:: ItemIsEnabled);
-    //child5->setCheckState(1, Qt::Checked);
-    ui->treeWidget->setItemWidget(child10, 1, lbl);
+    item85 = new QStandardItem(QStringLiteral ("Расположение файла базы данных настроек"));
+    item85->setEditable(false);
+    QString w7=item85->text();
+    item85->setToolTip(w7);
+    item86 = new QStandardItem(QStringLiteral ("Выбрать файл"));
+    QString w8=item86->text();
+    item86->setToolTip(w8);
+    items2.append(item85);
+    items2.append(item86);
+    item1->appendRow(items2);
+    items2.clear();
 
-    QTreeWidgetItem *child11 = new QTreeWidgetItem();
-    child11->setText(0,"Исходные книги");
-    child11->setText(1,"11");
-    treeItem->addChild(child11);
-    QSpinBox *spin = new QSpinBox(ui->treeWidget);
-    spin->setStyleSheet("QSpinBox { height: 10px;}");
-    spin->width();
-    ui->treeWidget->setItemWidget(child11, 1, spin);
+    item7 = new QStandardItem(QStringLiteral ("Тип эксперимента"));
+    item7->setEditable(false);
+    QString w9=item7->text();
+    item7->setToolTip(w9);
+    QFont newFont10("DroidSans", 10, QFont::Bold,false);
+    item7->setFont(newFont10);
+    item8 = new QStandardItem();
+    item8->setEditable(false);
+    items2.append(item7);
+    items2.append(item8);
+    item1->appendRow(items2);
+    items2.clear();
 
-    QTreeWidgetItem *treeItem2 = new QTreeWidgetItem(ui->treeWidget);
-    QFont fontss;
-    fontss.setPointSize(10);
-    fontss.setBold(true);
-    treeItem2->setData(0,Qt::FontRole,fontss);
-    treeItem2->setText(0,"Источник данных");
-    treeItem2->setBackground(0, QColor(126, 126, 126));
-    treeItem2->setBackground(1, QColor(126, 126, 126));
-    ui->treeWidget->addTopLevelItem(treeItem2);
-    ui->treeWidget->expandItem(treeItem2);
+    item87 = new QStandardItem(QStringLiteral ("Идентификация данных схемы замещения"));
+    item87->setEditable(false);
+    QString w10=item87->text();
+    item87->setToolTip(w10);
+    item88 = new QStandardItem(QStringLiteral ("Выбрать тип эксперимента"));
+    QString w11=item88->text();
+    item88->setToolTip(w11);
+    items2.append(item87);
+    items2.append(item88);
+    item7->appendRow(items2);
+    items2.clear();
 
-    QTreeWidgetItem *child12= new QTreeWidgetItem();
-    child12->setText(0,"Осциллограф+наблюдатель скорости (без датчика скорости)");
-    treeItem2->addChild(child12);
-    child12->setFlags(child->flags() | Qt::ItemIsUserCheckable);
-    child12->setCheckState(1, Qt::Checked);
-    treeItem2->addChild(child12);
+    item105 = new QStandardItem(QStringLiteral ("Загрузка данных ручной идентификации"));
+    item105->setEditable(false);
+    item105->setEnabled(false);
+    QString w12=item105->text();
+    item105->setToolTip(w12);
+    item106 = new QStandardItem(QStringLiteral ("Указать каталог"));
+    item106->setEnabled(false);
+    QString w13=item106->text();
+    item106->setToolTip(w13);
+    items2.append(item105);
+    items2.append(item106);
+    item7->appendRow(items2);
+    items2.clear();
 
-    QTreeWidgetItem *child13= new QTreeWidgetItem();
-    child13->setText(0,"Осциллограф+наблюдатель скорости (с датчиком скорости)");
-    child13->setFlags(child->flags() | Qt::ItemIsUserCheckable);
-    child13->setCheckState(1, Qt::Checked);
-    treeItem2->addChild(child13);
+    item79 = new QStandardItem(QStringLiteral ("Наблюдатель состояния"));
+    item79->setEditable(false);
+    QString w14=item79->text();
+    item79->setToolTip(w14);
+    item80 = new QStandardItem(QStringLiteral ("Выбрать тип эксперимента"));
+    QString w15=item80->text();
+    item80->setToolTip(w15);
+    items2.append(item79);
+    items2.append(item80);
+    item7->appendRow(items2);
+    items2.clear();
 
-    QTreeWidgetItem *child14= new QTreeWidgetItem();
-    child14->setText(0,"Чтение данных из файла  для идентификации параметров схемы замещения");
-    treeItem2->addChild(child14);
-    QPushButton *pushbutton=new QPushButton();
-    QFont font = pushbutton->font();
-    font.setPointSize(8);
-    pushbutton->setFont(font);
-    pushbutton->setStyleSheet("font: bold;font-size: 10px;height: 10px;width: 10px;");
-    pushbutton->setText("Обзор");
-    ui->treeWidget->setItemWidget(child14, 1, pushbutton);
-    treeItem2->addChild(child14);
+    item81 = new QStandardItem(QStringLiteral ("Чтение данных для наблюдателя скорости"));
+    item81->setEditable(false);
+    item81->setEnabled(false);
+    QString w16=item81->text();
+    item81->setToolTip(w16);
+    item82 = new QStandardItem(QStringLiteral ("Указать каталог"));
+    item82->setEnabled(false);
+    QString w17=item82->text();
+    item82->setToolTip(w17);
+    items2.append(item81);
+    items2.append(item82);
+    item7->appendRow(items2);
+    items2.clear();
 
-    QTreeWidgetItem *child15= new QTreeWidgetItem();
-    child15->setText(0,"Чтение данных из файла  для наблюдателя скорости");
-    treeItem2->addChild(child15);
-    QPushButton *pushbutton2=new QPushButton();
-    QFont font2 = pushbutton->font();
-    font2.setPointSize(8);
-    pushbutton2->setFont(font);
-    pushbutton2->setStyleSheet("font: bold;font-size: 10px;height: 10px;width: 10px;");
-    pushbutton2->setText("Обзор");
-    ui->treeWidget->setItemWidget(child15, 1, pushbutton2);
-    treeItem2->addChild(child15);
 
-    QTreeWidgetItem *treeItem3 = new QTreeWidgetItem(ui->treeWidget);
-    QFont fontsss;
-    fontsss.setPointSize(10);
-    fontsss.setBold(true);
-    treeItem3->setData(0,Qt::FontRole,fontsss);
-    treeItem3->setText(0,"Настройки проекта");
-    treeItem3->setBackground(0, QColor(126, 126, 126));
-    treeItem3->setBackground(1, QColor(126, 126, 126));
-    ui->treeWidget->addTopLevelItem(treeItem3);
-    ui->treeWidget->expandItem(treeItem3);
+    item65 = new QStandardItem(QStringLiteral ("Сохранение данных"));
+    item65->setEditable(false);
+    QFont newFont11("DroidSans", 10, QFont::Bold,false);
+    item65->setFont(newFont11);
+    QString w18=item65->text();
+    item65->setToolTip(w18);
+    item66 = new QStandardItem();
+    item66->setEditable(false);
+    items2.append(item65);
+    items2.append(item66);
+    item1->appendRow(items2);
+    items2.clear();
 
-    QTreeWidgetItem *child40= new QTreeWidgetItem();
-    child40->setText(0,"Исходные данные");
-    child40->setText(1,"Описание");
-    treeItem3->addChild(child40);
+    item67 = new QStandardItem(QStringLiteral ("Данные идентификации"));
+    item67->setEditable(false);
+    QString w19=item67->text();
+    item67->setToolTip(w19);
+    item68 = new QStandardItem();
+    item68->setEditable(false);
+    item68->setCheckable(true);
+    item68->setToolTip(QStringLiteral ("Выкл"));
+    items2.append(item67);
+    items2.append(item68);
+    item65->appendRow(items2);
+    items2.clear();
 
-    QTreeWidgetItem *child41= new QTreeWidgetItem();
-    child41->setText(0,"Исходные данные");
-    child41->setText(1,"Описание");
-    treeItem3->addChild(child41);
+    item69 = new QStandardItem(QStringLiteral ("Данные электромагнитных процессов"));
+    item69->setEditable(false);
+    QString w21=item69->text();
+    item69->setToolTip(w21);
+    item70 = new QStandardItem();
+    item70->setEditable(false);
+    item70->setCheckable(true);
+    item70->setToolTip(QStringLiteral ("Выкл"));
+    items2.append(item69);
+    items2.append(item70);
+    item65->appendRow(items2);
+    items2.clear();
 
-    QTreeWidgetItem *child42= new QTreeWidgetItem();
-    child42->setText(0,"Исходные данные");
-    child42->setText(1,"Описание");
-    treeItem3->addChild(child42);
+    item71 = new QStandardItem(QStringLiteral ("Данные тепловых процессов"));
+    item71->setEditable(false);
+    QString w23=item71->text();
+    item71->setToolTip(w23);
+    item72 = new QStandardItem();
+    item72->setEditable(false);
+    item72->setCheckable(true);
+    item72->setToolTip(QStringLiteral ("Выкл"));
+    items2.append(item71);
+    items2.append(item72);
+    item65->appendRow(items2);
+    items2.clear();
 
-//    QTreeWidgetItem *treeItem4 = new QTreeWidgetItem(ui->treeWidget);
-//    treeItem4->setText(0,"Электромагнитные процессы");
-//    treeItem4->setText(1,"Описание");
-//    ui->treeWidget->addTopLevelItem(treeItem4);
+    item73 = new QStandardItem(QStringLiteral ("Данные вентиляционных процессов"));
+    item73->setEditable(false);
+    QString w25=item73->text();
+    item73->setToolTip(w25);
+    item74 = new QStandardItem();
+    item74->setEditable(false);
+    item74->setCheckable(true);
+    item74->setToolTip(QStringLiteral ("Выкл"));
+    items2.append(item73);
+    items2.append(item74);
+    item65->appendRow(items2);
+    items2.clear();
 
-//    QTreeWidgetItem *treeItem5 = new QTreeWidgetItem(ui->treeWidget);
-//    treeItem5->setText(0,"Тепловые процессы");
-//    treeItem5->setText(1,"Описание");
-//    ui->treeWidget->addTopLevelItem(treeItem5);
+    item75 = new QStandardItem(QStringLiteral ("Данные прогноза температур"));
+    item75->setEditable(false);
+    QString w27=item75->text();
+    item75->setToolTip(w27);
+    item76 = new QStandardItem();
+    item76->setEditable(false);
+    item76->setCheckable(true);
+    item76->setToolTip(QStringLiteral ("Выкл"));
+    items2.append(item75);
+    items2.append(item76);
+    item65->appendRow(items2);
+    items2.clear();
 
-//    QTreeWidgetItem *treeItem6 = new QTreeWidgetItem(ui->treeWidget);
-//    treeItem6->setText(0,"Вентиляционные процессы");
-//    treeItem6->setText(1,"Описание");
-//    ui->treeWidget->addTopLevelItem(treeItem6);
+    item77 = new QStandardItem(QStringLiteral ("Данные остаточного теплового ресурса"));
+    item77->setEditable(false);
+    QString w29=item77->text();
+    item77->setToolTip(w29);
+    item78 = new QStandardItem();
+    item78->setEditable(false);
+    item78->setCheckable(true);
+    item78->setToolTip(QStringLiteral ("Выкл"));
+    items2.append(item77);
+    items2.append(item78);
+    item65->appendRow(items2);
+    items2.clear();
 
-//    QTreeWidgetItem *treeItem7 = new QTreeWidgetItem(ui->treeWidget);
-//    treeItem7->setText(0,"Энергетика");
-//    treeItem7->setText(1,"Описание");
-//    ui->treeWidget->addTopLevelItem(treeItem7);
+    QList<QStandardItem*> items3;
+    item9 = new QStandardItem(QStringLiteral ("Идентификация параметров схемы замещения"));
+    item10 = new QStandardItem();
+    items3.append(item9);
+    items3.append(item10);
+    model->appendRow(items3);
+    items3.clear();
+    item9->setSelectable(false);
+    item9->setEditable(false);
+    QString w31=item9->text();
+    item9->setToolTip(w31);
+    item10->setSelectable(false);
+    item10->setEditable(false);
+    QString w32=item10->text();
+    item10->setToolTip(w32);
+    QFont newFont2("SansSerif", 10, QFont::Bold,false);
+    item9->setFont(newFont2);
 
-//    QTreeWidgetItem *treeItem8 = new QTreeWidgetItem(ui->treeWidget);
-//    treeItem8->setText(0,"Выходные данные");
-//    treeItem8->setText(1,"Описание");
-//    ui->treeWidget->addTopLevelItem(treeItem8);
+    QList<QStandardItem*> items4;
+    item11 = new QStandardItem(QStringLiteral ("Настройки поправочных коэффициентов"));
+    item11->setEditable(false);
+    QFont newFont12("SansSerif", 10, QFont::Bold,false);
+    item11->setFont(newFont12);
+    QString w33=item11->text();
+    item11->setToolTip(w33);
+    item12 = new QStandardItem();
+    item12->setEditable(false);
+    QString w34=item12->text();
+    item12->setToolTip(w34);
+    items4.append(item11);
+    items4.append(item12);
+    item9->appendRow(items4);
+    items4.clear();
 
-    /*GridLineDelegate* gridlinedelegate = new GridLineDelegate(this); //создание делегата для создания комбобоксов
-    ui->treeWidget->setItemDelegateForColumn(0, gridlinedelegate);
-    ui->treeWidget->setItemDelegateForColumn(1, gridlinedelegate);*/
+    item13 = new QStandardItem(QStringLiteral ("Автоматический режим"));
+    item13->setEditable(false);
+    QString w35=item13->text();
+    item13->setToolTip(w35);
+    item14 = new QStandardItem();
+    item14->setEditable(false);
+    item14->setCheckable(true);
+    item14->setToolTip(QStringLiteral ("Выкл"));
+    items4.append(item13);
+    items4.append(item14);
+    item11->appendRow(items4);
+    items4.clear();
 
-    ui->treeWidget->header()->setVisible(1);
+    item15 = new QStandardItem(QStringLiteral ("Ручной режим"));
+    item15->setEditable(false);
+    QString w36=item15->text();
+    item15->setToolTip(w36);
+    item16 = new QStandardItem();
+    item16->setEditable(false);
+    item16->setCheckable(true);
+    item16->setToolTip(QStringLiteral ("Выкл"));
+    items4.append(item15);
+    items4.append(item16);
+    item11->appendRow(items4);
+    items4.clear();
 
-    QPalette p99=ui->treeWidget->palette();
+    item93 = new QStandardItem(QStringLiteral ("Настроечный коэффициент gd="));
+    item93->setEditable(false);
+    item93->setEnabled(false);
+    QString w37=item93->text();
+    item93->setToolTip(w37);
+    item94 = new QStandardItem(QStringLiteral ("0"));
+    item94->setEnabled(false);
+    item94->setCheckable(false);
+    QString w38=item94->text();
+    item94->setToolTip(w38);
+    items4.append(item93);
+    items4.append(item94);
+    item15->appendRow(items4);
+    items4.clear();
+
+    item95 = new QStandardItem(QStringLiteral ("Настроечный коэффициент ki="));
+    item95->setEditable(false);
+    item95->setEnabled(false);
+    QString w39=item95->text();
+    item95->setToolTip(w39);
+    item96 = new QStandardItem(QStringLiteral ("0"));
+    item96->setEnabled(false);
+    item96->setCheckable(false);
+    QString w40=item96->text();
+    item96->setToolTip(w40);
+    items4.append(item95);
+    items4.append(item96);
+    item15->appendRow(items4);
+    items4.clear();
+
+    item97 = new QStandardItem(QStringLiteral ("Настроечный коэффициент gb="));
+    item97->setEditable(false);
+    item97->setEnabled(false);
+    QString w41=item97->text();
+    item97->setToolTip(w41);
+    item98 = new QStandardItem(QStringLiteral ("0"));
+    item98->setEnabled(false);
+    item98->setCheckable(false);
+    QString w42=item98->text();
+    item98->setToolTip(w42);
+    items4.append(item97);
+    items4.append(item98);
+    item15->appendRow(items4);
+    items4.clear();
+
+    item99 = new QStandardItem(QStringLiteral ("Настроечный коэффициент kpsi="));
+    item99->setEditable(false);
+    item99->setEnabled(false);
+    QString w43=item99->text();
+    item99->setToolTip(w43);
+    item100 = new QStandardItem(QStringLiteral ("0"));
+    item100->setEnabled(false);
+    item100->setCheckable(false);
+    QString w44=item100->text();
+    item100->setToolTip(w44);
+    items4.append(item99);
+    items4.append(item100);
+    item15->appendRow(items4);
+    items4.clear();
+
+    item101 = new QStandardItem(QStringLiteral ("Настроечный коэффициент gp="));
+    item101->setEditable(false);
+    item101->setEnabled(false);
+    QString w45=item101->text();
+    item101->setToolTip(w45);
+    item102 = new QStandardItem(QStringLiteral ("0"));
+    item102->setEnabled(false);
+    item102->setCheckable(false);
+    QString w46=item102->text();
+    item102->setToolTip(w46);
+    items4.append(item101);
+    items4.append(item102);
+    item15->appendRow(items4);
+    items4.clear();
+
+    item103 = new QStandardItem(QStringLiteral ("Настроечный коэффициент gpsi="));
+    item103->setEditable(false);
+    item103->setEnabled(false);
+    QString w47=item103->text();
+    item103->setToolTip(w47);
+    item104 = new QStandardItem(QStringLiteral ("0"));
+    item104->setEnabled(false);
+    item104->setCheckable(false);
+    QString w48=item104->text();
+    item104->setToolTip(w48);
+    items4.append(item103);
+    items4.append(item104);
+    item15->appendRow(items4);
+    items4.clear();
+
+    QList<QStandardItem*> items5;
+    item17 = new QStandardItem(QStringLiteral ("Электромагнитная модель"));
+    item18 = new QStandardItem();
+    items5.append(item17);
+    items5.append(item18);
+    model->appendRow(items5);
+    items5.clear();
+    item17->setSelectable(false);
+    item17->setEditable(false);
+    QString w49=item17->text();
+    item17->setToolTip(w49);
+    item18->setSelectable(false);
+    item18->setEditable(false);
+    QFont newFont3("SansSerif", 10, QFont::Bold,false);
+    item17->setFont(newFont3);
+
+    QList<QStandardItem*> items6;
+    item19 = new QStandardItem(QStringLiteral ("Pежим работы двигателя"));
+    item19->setEditable(false);
+    QString w50=item19->text();
+    item19->setToolTip(w50);
+    item20 = new QStandardItem(QStringLiteral ("Выбрать режим"));
+    QString w51=item20->text();
+    item20->setToolTip(w51);
+    items6.append(item19);
+    items6.append(item20);
+    item17->appendRow(items6);
+    items6.clear();
+
+    item21 = new QStandardItem(QStringLiteral ("Время цикла, с:"));
+    item21->setEditable(false);
+    QString w52=item21->text();
+    item21->setToolTip(w52);
+    item22 = new QStandardItem(QStringLiteral ("0"));
+    QString w53=item22->text();
+    item22->setToolTip(w53);
+    items6.append(item21);
+    items6.append(item22);
+    item17->appendRow(items6);
+    items6.clear();
+
+    item23 = new QStandardItem(QStringLiteral ("Время работы, с:"));
+    item23->setEditable(false);
+    QString w54=item23->text();
+    item23->setToolTip(w54);
+    item24 = new QStandardItem(QStringLiteral ("0"));
+    QString w55=item24->text();
+    item24->setToolTip(w55);
+    items6.append(item23);
+    items6.append(item24);
+    item17->appendRow(items6);
+    items6.clear();
+
+    item89 = new QStandardItem(QStringLiteral ("Значение момента нагрузки, Нм:"));
+    item89->setEditable(false);
+    QString w56=item89->text();
+    item89->setToolTip(w56);
+    item90 = new QStandardItem(QStringLiteral ("0"));
+    QString w57=item90->text();
+    item90->setToolTip(w57);
+    items6.append(item89);
+    items6.append(item90);
+    item17->appendRow(items6);
+    items6.clear();
+
+    item91 = new QStandardItem(QStringLiteral ("Выбор системы электропривода"));
+    item91->setEditable(false);
+    QString w58=item91->text();
+    item91->setToolTip(w58);
+    item92 = new QStandardItem(QStringLiteral ("Выбрать режим"));
+    QString w59=item92->text();
+    item92->setToolTip(w59);
+    items6.append(item91);
+    items6.append(item92);
+    item17->appendRow(items6);
+    items6.clear();
+
+    QList<QStandardItem*> items7;
+    item25 = new QStandardItem(QStringLiteral ("Тепловая модель"));
+    item26 = new QStandardItem();
+    items7.append(item25);
+    items7.append(item26);
+    model->appendRow(items7);
+    items7.clear();
+    //item25->setForeground(QBrush(Qt::white));
+    item25->setSelectable(false);
+    item25->setEditable(false);
+    item26->setSelectable(false);
+    item26->setEditable(false);
+    QFont newFont4("SansSerif", 10, QFont::Bold,false);
+    item25->setFont(newFont4);
+
+    QList<QStandardItem*> items8;
+    item27 = new QStandardItem(QStringLiteral ("Условие 7"));
+    item27->setEditable(false);
+    item28 = new QStandardItem(QStringLiteral ("Значение 7"));
+    items8.append(item27);
+    items8.append(item28);
+    item25->appendRow(items8);
+    items8.clear();
+    item29 = new QStandardItem(QStringLiteral ("Условие 8"));
+    item29->setEditable(false);
+    item30 = new QStandardItem(QString ("Значение 8"));
+    items8.append(item29);
+    items8.append(item30);
+    item25->appendRow(items8);
+    items8.clear();
+    item23 = new QStandardItem(QStringLiteral ("Условие 9"));
+    item23->setEditable(false);
+    item107 = new QStandardItem(QStringLiteral ("Значение 9"));
+    items8.append(item23);
+    items8.append(item107);
+    item25->appendRow(items8);
+    items8.clear();
+
+    QList<QStandardItem*> items9;
+    item31 = new QStandardItem(QStringLiteral ("Вентиляционная модель"));
+    item32 = new QStandardItem();
+    items9.append(item31);
+    items9.append(item32);
+    model->appendRow(items9);
+    items9.clear();
+    //item31->setForeground(QBrush(Qt::white));
+    item31->setSelectable(false);
+    item31->setEditable(false);
+    item32->setSelectable(false);
+    item32->setEditable(false);
+    QFont newFont5("SansSerif", 10, QFont::Bold,false);
+    item31->setFont(newFont5);
+
+    QList<QStandardItem*> items10;
+    item33 = new QStandardItem(QStringLiteral ("Условие 10"));
+    item33->setEditable(false);
+    item34 = new QStandardItem(QStringLiteral ("Значение 10"));
+    items10.append(item33);
+    items10.append(item34);
+    item31->appendRow(items10);
+    items10.clear();
+    item35 = new QStandardItem(QStringLiteral ("Условие 11"));
+    item35->setEditable(false);
+    item36 = new QStandardItem(QString ("Значение 11"));
+    items10.append(item35);
+    items10.append(item36);
+    item31->appendRow(items10);
+    items10.clear();
+    item37 = new QStandardItem(QStringLiteral ("Условие 12"));
+    item37->setEditable(false);
+    item38 = new QStandardItem(QStringLiteral ("Значение 12"));
+    items10.append(item37);
+    items10.append(item38);
+    item31->appendRow(items10);
+    items10.clear();
+
+    QList<QStandardItem*> items11;
+    item39 = new QStandardItem(QStringLiteral ("Прогнозирование температур"));
+    item40 = new QStandardItem();
+    items11.append(item39);
+    items11.append(item40);
+    model->appendRow(items11);
+    items11.clear();
+    //item39->setForeground(QBrush(Qt::white));
+    item39->setSelectable(false);
+    item39->setEditable(false);
+    item40->setSelectable(false);
+    item40->setEditable(false);
+    QFont newFont6("SansSerif", 10, QFont::Bold,false);
+    item39->setFont(newFont6);
+
+    QList<QStandardItem*> items12;
+    item41 = new QStandardItem(QStringLiteral ("Условие 13"));
+    item41->setEditable(false);
+    item42 = new QStandardItem(QStringLiteral ("Значение 13"));
+    items12.append(item41);
+    items12.append(item42);
+    item39->appendRow(items12);
+    items12.clear();
+    item43 = new QStandardItem(QStringLiteral ("Условие 14"));
+    item43->setEditable(false);
+    item44 = new QStandardItem(QString ("Значение 14"));
+    items12.append(item43);
+    items12.append(item44);
+    item39->appendRow(items12);
+    items12.clear();
+    item45 = new QStandardItem(QStringLiteral ("Условие 15"));
+    item45->setEditable(false);
+    item46 = new QStandardItem(QStringLiteral ("Значение 15"));
+    items12.append(item45);
+    items12.append(item46);
+    item39->appendRow(items12);
+    items12.clear();
+
+    QList<QStandardItem*> items13;
+    item47 = new QStandardItem(QStringLiteral ("Оценка остаточного теплового ресурса"));
+    item48 = new QStandardItem();
+    items13.append(item47);
+    items13.append(item48);
+    model->appendRow(items13);
+    items13.clear();
+    //item47->setForeground(QBrush(Qt::white));
+    item47->setSelectable(false);
+    item47->setEditable(false);
+    item48->setSelectable(false);
+    item48->setEditable(false);
+    QFont newFont7("SansSerif", 10, QFont::Bold,false);
+    item47->setFont(newFont7);
+
+    QList<QStandardItem*> items14;
+    item49 = new QStandardItem(QStringLiteral ("Условие 16"));
+    item49->setEditable(false);
+    item50 = new QStandardItem(QStringLiteral ("Значение 16"));
+    items14.append(item49);
+    items14.append(item50);
+    item47->appendRow(items14);
+    items14.clear();
+    item51 = new QStandardItem(QStringLiteral ("Условие 17"));
+    item51->setEditable(false);
+    item52 = new QStandardItem(QString ("Значение 17"));
+    items14.append(item51);
+    items14.append(item52);
+    item47->appendRow(items14);
+    items14.clear();
+    item53 = new QStandardItem(QStringLiteral ("Условие 18"));
+    item53->setEditable(false);
+    item54 = new QStandardItem(QStringLiteral ("Значение 18"));
+    items14.append(item53);
+    items14.append(item54);
+    item47->appendRow(items14);
+    items14.clear();
+
+    QList<QStandardItem*> items15;
+    item55 = new QStandardItem(QStringLiteral ("Выходные данные"));
+    item56 = new QStandardItem();
+    items15.append(item55);
+    items15.append(item56);
+    model->appendRow(items15);
+    items15.clear();
+    //item55->setForeground(QBrush(Qt::white));
+    item55->setSelectable(false);
+    item55->setEditable(false);
+    item56->setSelectable(false);
+    item56->setEditable(false);
+    QFont newFont8("SansSerif", 10, QFont::Bold,false);
+    item55->setFont(newFont8);
+
+    QList<QStandardItem*> items16;
+    item57 = new QStandardItem(QStringLiteral ("Условие 19"));
+    item57->setEditable(false);
+    item58 = new QStandardItem(QStringLiteral ("Значение 19"));
+    items16.append(item57);
+    items16.append(item58);
+    item55->appendRow(items16);
+    items16.clear();
+    item59 = new QStandardItem(QStringLiteral ("Условие 20"));
+    item59->setEditable(false);
+    item60 = new QStandardItem(QString ("Значение 20"));
+    items16.append(item59);
+    items16.append(item60);
+    item55->appendRow(items16);
+    items16.clear();
+    item61 = new QStandardItem(QStringLiteral ("Условие 21"));
+    item61->setEditable(false);
+    item62 = new QStandardItem(QStringLiteral ("Значение 21"));
+    items16.append(item61);
+    items16.append(item62);
+    item55->appendRow(items16);
+    items16.clear();
+
+    ui->treeView->setModel(model);
+
+    ui->treeView->header()->resizeSection(0,270);
+    ui->treeView->header()->setSectionResizeMode(0,QHeaderView::Interactive);
+    ui->treeView->header()->setSectionResizeMode(1,QHeaderView::Fixed);
+    ui->treeView->expandAll();
+
+    ButtonColumnDelegate* buttonColumnDelegate = new ButtonColumnDelegate(this); //создание делегата для создания комбобоксов
+    ui->treeView->setItemDelegateForColumn(1, buttonColumnDelegate);
+
+    QPalette p99=ui->treeView->palette();
     p99.setColor(QPalette::Base, QColor(255, 255, 222));
     p99.setColor(QPalette::AlternateBase, QColor(255, 255, 191));
-    ui->treeWidget->setPalette(p99);
-    //ui->treeWidget->hide();  
+    ui->treeView->setPalette(p99);
+
+    ui->tabWidget->setCurrentIndex(0);
+    QString currentTabText = ui->tabWidget->tabText(0);
+    setWindowTitle(currentTabText + "@" + QString("base") + QString(" - ImView"));
+
+    connect(item16->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot);
+    connect(item88->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_2);
+    connect(item80->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_3);
+    connect(item68->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_4);
+
+    connect(buttonColumnDelegate, &ButtonColumnDelegate::projectFileSelected, this, &MainWindow::projectFileSelectedSlot);
+    connect(buttonColumnDelegate, &ButtonColumnDelegate::projectFileSelected_2, this, &MainWindow::projectFileSelectedSlot_2);
+    connect(buttonColumnDelegate, &ButtonColumnDelegate::projectFileSelected_3, this, &MainWindow::projectFileSelectedSlot_3);
+    connect(buttonColumnDelegate, &ButtonColumnDelegate::projectFileSelected_5, this, &MainWindow::projectFileSelectedSlot_5);
+    connect(buttonColumnDelegate, &ButtonColumnDelegate::projectFileSelected_6, this, &MainWindow::projectFileSelectedSlot_6);
+
 }
 
 void MainWindow::closeEvent (QCloseEvent *)
@@ -460,55 +976,264 @@ void MainWindow::on_action_15_triggered()
             screen->geometry()));
 }
 
-/*void MainWindow::on_treeWidget_itemClicked(QTreeWidgetItem *item, int column)
+void MainWindow::modelItemChangedSlot(QStandardItem *item)
 {
-//    if (item == child3)
-//    {
-//        QMessageBox::information(this,"aaa","Расположение проекта!!!");
-//    }
-
-//    currentItem = item;
-//    currentColumn = column;
-//    qDebug()<<item->text(column);
-//    item = ui->treeWidget->currentItem();
-//    QMessageBox::information(this,"aaa",QString::number(column));
-
-//    QModelIndex index = item->treeWidget()->currentIndex();
-//    QString message = QString( "Item at model index row %1, column %2 clicked" ).arg( index.row() ).arg( index.column() );
-//    QMessageBox::information(this,"Info:", message );
-
-    if(item == child2 && column==1)
+    if (item == item16)
     {
-        QComboBox *cmb = new QComboBox(ui->treeWidget);
-        cmb->setStyleSheet("QComboBox { height: 10px;}");
-        cmb->addItem("One");
-        cmb->addItem("Two");
-        cmb->addItem("Three");
-        cmb->addItem("Four");
-        ui->treeWidget->setItemWidget(child2, 1, cmb);
-    }
-}*/
-
-/*bool MainWindow::eventFilter(QObject *obj, QEvent *event)
-
-{
-    if (obj==ui->treeWidget)         // Сначала оцениваем элемент управления
-    {
-        if (event->type()==QEvent::FocusIn)     // Затем оцениваем конкретное событие элемента управления (здесь относится к событию фокуса)
-            {
-                QPalette p=QPalette();
-                p.setColor(QPalette::Base,Qt::green);
-                ui->treeWidget->setPalette(p);
-            }
-        else if (event->type()==QEvent::FocusOut)
+        if (item->checkState() == Qt::Checked)
         {
-             QPalette p=QPalette();
-             p.setColor(QPalette::Base,Qt::white);
-             ui->treeWidget->setPalette(p);
+            item93->setEnabled(true);
+            item94->setEnabled(true);
+            item95->setEnabled(true);
+            item96->setEnabled(true);
+            item97->setEnabled(true);
+            item98->setEnabled(true);
+            item99->setEnabled(true);
+            item100->setEnabled(true);
+            item101->setEnabled(true);
+            item102->setEnabled(true);
+            item103->setEnabled(true);
+            item104->setEnabled(true);
+        }
+        else
+        {
+            item93->setEnabled(false);
+            item94->setEnabled(false);
+            item95->setEnabled(false);
+            item96->setEnabled(false);
+            item97->setEnabled(false);
+            item98->setEnabled(false);
+            item99->setEnabled(false);
+            item100->setEnabled(false);
+            item101->setEnabled(false);
+            item102->setEnabled(false);
+            item103->setEnabled(false);
+            item104->setEnabled(false);
         }
     }
-    return QWidget::eventFilter(obj,event);
-}*/
+}
+
+void MainWindow::projectFileSelectedSlot(QString projectFile)
+{
+    item6->setText(projectFile);
+}
+
+void MainWindow::projectFileSelectedSlot_2(QString projectFile_2)
+{
+    item84->setData(projectFile_2, Qt::DisplayRole);
+    item84->setData(projectFile_2, Qt::UserRole);
+}
+
+void MainWindow::projectFileSelectedSlot_3(QString projectFile_3)
+{
+    item86->setData(projectFile_3, Qt::DisplayRole);
+    item86->setData(projectFile_3, Qt::UserRole);
+}
+
+void MainWindow::projectFileSelectedSlot_4(QString projectFile_4)
+{
+    item86->setData(projectFile_4, Qt::DisplayRole);
+    item86->setData(projectFile_4, Qt::UserRole);
+}
+
+void MainWindow::projectFileSelectedSlot_5(QString projectFile_5)
+{
+    item106->setData(projectFile_5, Qt::DisplayRole);
+    item106->setData(projectFile_5, Qt::UserRole);
+}
+
+void MainWindow::projectFileSelectedSlot_6(QString projectFile_6)
+{
+    item82->setData(projectFile_6, Qt::DisplayRole);
+    item82->setData(projectFile_6, Qt::UserRole);
+}
+
+void MainWindow::modelItemChangedSlot_2(QStandardItem *item)
+{
+    if (item == item88)
+    {
+        if (item->text() == "Чтение данных из файла для идентификации параметров схемы замещения")
+        {
+            item105->setEnabled(true);
+            item106->setEnabled(true);
+        }
+        else
+        {
+            item105->setEnabled(false);
+            item106->setEnabled(false);
+        }
+    }
+}
+
+void MainWindow::modelItemChangedSlot_3(QStandardItem *item)
+{
+    if (item == item80)
+    {
+        if (item->text() == "Чтение данных из файла для наблюдателя скорости")
+        {
+            item81->setEnabled(true);
+            item82->setEnabled(true);
+        }
+        else
+        {
+            item81->setEnabled(false);
+            item82->setEnabled(false);
+        }
+    }
+}
+
+void MainWindow::modelItemChangedSlot_4(QStandardItem *item)
+{
+    if (item == item68)
+    {
+        if (item->checkState() == Qt::Checked)
+        {
+            item68->setToolTip(QStringLiteral ("Вкл"));
+        }
+        else
+        {
+            item68->setToolTip(QStringLiteral ("Выкл"));
+        }
+    }
+    else
+    if (item == item70)
+    {
+        if (item->checkState() == Qt::Checked)
+        {
+            item70->setToolTip(QStringLiteral ("Вкл"));
+        }
+        else
+        {
+            item70->setToolTip(QStringLiteral ("Выкл"));
+        }
+    }
+    else
+    if (item == item72)
+    {
+        if (item->checkState() == Qt::Checked)
+        {
+            item72->setToolTip(QStringLiteral ("Вкл"));
+        }
+        else
+        {
+            item72->setToolTip(QStringLiteral ("Выкл"));
+        }
+    }
+    else
+    if (item == item74)
+    {
+        if (item->checkState() == Qt::Checked)
+        {
+            item74->setToolTip(QStringLiteral ("Вкл"));
+        }
+        else
+        {
+            item74->setToolTip(QStringLiteral ("Выкл"));
+        }
+    }
+    else
+    if (item == item76)
+    {
+        if (item->checkState() == Qt::Checked)
+        {
+            item76->setToolTip(QStringLiteral ("Вкл"));
+        }
+        else
+        {
+            item76->setToolTip(QStringLiteral ("Выкл"));
+        }
+    }
+    else
+    if (item == item78)
+    {
+        if (item->checkState() == Qt::Checked)
+        {
+            item78->setToolTip(QStringLiteral ("Вкл"));
+        }
+        else
+        {
+            item78->setToolTip(QStringLiteral ("Выкл"));
+        }
+    }
+    else
+    if (item == item14)
+    {
+        if (item->checkState() == Qt::Checked)
+        {
+            item14->setToolTip(QStringLiteral ("Вкл"));
+        }
+        else
+        {
+            item14->setToolTip(QStringLiteral ("Выкл"));
+        }
+    }
+    else
+    if (item == item94)
+    {
+        QString w101=item94->text();
+        item94->setToolTip(w101);
+    }
+    else
+    if (item == item96)
+    {
+        QString w102=item96->text();
+        item96->setToolTip(w102);
+    }
+    else
+    if (item == item98)
+    {
+        QString w103=item98->text();
+        item98->setToolTip(w103);
+    }
+    else
+    if (item == item100)
+    {
+        QString w104=item100->text();
+        item100->setToolTip(w104);
+    }
+    else
+    if (item == item102)
+    {
+        QString w105=item102->text();
+        item102->setToolTip(w105);
+    }
+    else
+    if (item == item104)
+    {
+        QString w106=item104->text();
+        item104->setToolTip(w106);
+    }
+    else
+    if (item == item20)
+    {
+        QString w107=item20->text();
+        item20->setToolTip(w107);
+    }
+    else
+    if (item == item22)
+    {
+        QString w108=item22->text();
+        item22->setToolTip(w108);
+    }
+    else
+    if (item == item24)
+    {
+        QString w109=item24->text();
+        item24->setToolTip(w109);
+    }
+    else
+    if (item == item90)
+    {
+        QString w110=item90->text();
+        item90->setToolTip(w110);
+    }
+    else
+    if (item == item92)
+    {
+        QString w111=item92->text();
+        item92->setToolTip(w111);
+    }
+}
 
 
 
