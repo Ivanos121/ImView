@@ -66,6 +66,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->action_21->setEnabled(false);
 
     ui->pushButton_5->setCheckable(true);
+    ui->pushButton_5->setChecked(true);
     QObject::connect(ui->pushButton_5, SIGNAL(clicked(bool)), ui->groupBox, SLOT(setVisible(bool)));
 
     ui->treeView->setSelectionBehavior(QTreeView :: SelectRows); // Выбираем всю строку за раз
