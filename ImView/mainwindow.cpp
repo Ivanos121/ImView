@@ -1,10 +1,14 @@
 #include "ui_mainwindow.h"
 #include "mainwindow.h"
+
 #include <QStyle>
 #include <QDesktopWidget>
 #include <QClipboard>
 #include <QScreen>
 #include <QSpinBox>
+#include <QSplitter>
+#include <QMessageBox>
+#include <QuaZip-Qt5-1.3/quazip/JlCompress.h>
 
 #include "base.h"
 #include "datas.h"
@@ -24,7 +28,14 @@
 #include "ui_vent_model.h"
 #include "ui_vent_tract.h"
 #include "gridlinedelegate.h"
-#include <QSplitter>
+
+#include <QXmlStreamWriter>
+#include <QXmlStreamReader>
+#include <QXmlStreamAttribute>
+#include <QStandardItemModel>
+#include <QStyledItemDelegate>
+#include <QFileDialog>
+#include <QDebug>
 #include <QMessageBox>
 
 Base base;
@@ -53,6 +64,9 @@ MainWindow::MainWindow(QWidget *parent)
     showMaximized();
     ui->action_9->setEnabled(false);
     ui->action_21->setEnabled(false);
+
+    ui->pushButton_5->setCheckable(true);
+    QObject::connect(ui->pushButton_5, SIGNAL(clicked(bool)), ui->groupBox, SLOT(setVisible(bool)));
 
     ui->treeView->setSelectionBehavior(QTreeView :: SelectRows); // Выбираем всю строку за раз
     ui->treeView->setSelectionMode(QTreeView :: SingleSelection); // Одиночный выбор, при этом вся строка над ним является одной строкой меню
@@ -903,7 +917,15 @@ void MainWindow::on_action_22_triggered()
 
 void MainWindow::on_action_23_triggered()
 {
-QDir().mkdir("MyFolder");
+    QScreen *screen = QGuiApplication::primaryScreen();
+    kalibr=new Kalibr(this);
+    kalibr->showMaximized();
+    kalibr->setGeometry(
+    QStyle::alignedRect(
+    Qt::LeftToRight,
+    Qt::AlignCenter,
+    kalibr->size(),
+    screen->geometry()));
 }
 
 AboutDialog::AboutDialog(QWidget *parent) :
@@ -1234,6 +1256,497 @@ void MainWindow::modelItemChangedSlot_4(QStandardItem *item)
         item92->setToolTip(w111);
     }
 }
+
+void MainWindow::on_SaveProgectToFile_clicked()
+{
+    QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
+    QString str = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", "/home/elf/progeqts_QT/treeviewprogect/Out", filter);
+
+    QFile file(QString("/home/elf/progeqts_QT/treeviewprogect/Data/project.xml"));
+    file.open(QIODevice::WriteOnly);
+
+    //Создаем объект, с помощью которого осуществляется запись в файл
+    QXmlStreamWriter xmlWriter(&file);
+    xmlWriter.setAutoFormatting(true);  // Устанавливаем автоформатирование текста
+    xmlWriter.writeStartDocument();     // Запускаем запись в документ
+    xmlWriter.writeStartElement("resources");   // Записываем первый элемент с его именем
+    xmlWriter.writeStartElement("project");  // Записываем тег с именем для первого итема
+
+    xmlWriter.writeStartElement("general_settings");
+
+    xmlWriter.writeStartElement("project_name");
+    xmlWriter.writeAttribute("value", (item4->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("project_path");
+    xmlWriter.writeAttribute("value", (item6->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("project_path_2");
+    xmlWriter.writeAttribute("value", (item84->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("project_path_3");
+    xmlWriter.writeAttribute("value", (item86->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_1");
+    xmlWriter.writeAttribute("value", (item88->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("project_path_4");
+    xmlWriter.writeAttribute("value", (item106->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_2");
+    xmlWriter.writeAttribute("value", (item80->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("project_path_5");
+    xmlWriter.writeAttribute("value", (item82->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("checkbox_1");
+    xmlWriter.writeAttribute("boolean", (item68->checkState()? "true" : "false"));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("checkbox_2");
+    xmlWriter.writeAttribute("boolean", (item70->checkState()? "true" : "false"));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("checkbox_3");
+    xmlWriter.writeAttribute("boolean", (item72->checkState()? "true" : "false"));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("checkbox_4");
+    xmlWriter.writeAttribute("boolean", (item74->checkState()? "true" : "false"));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("checkbox_5");
+    xmlWriter.writeAttribute("boolean", (item76->checkState()? "true" : "false"));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("checkbox_6");
+    xmlWriter.writeAttribute("boolean", (item78->checkState()? "true" : "false"));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("checkbox_7");
+    xmlWriter.writeAttribute("boolean", (item14->checkState()? "true" : "false"));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("checkbox_8");
+    xmlWriter.writeAttribute("boolean", (item16->checkState()? "true" : "false"));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("coeff_1");
+    xmlWriter.writeAttribute("value", (item94->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("coeff_2");
+    xmlWriter.writeAttribute("value", (item96->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("coeff_3");
+    xmlWriter.writeAttribute("value", (item98->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("coeff_4");
+    xmlWriter.writeAttribute("value", (item100->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("coeff_5");
+    xmlWriter.writeAttribute("value", (item102->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("coeff_6");
+    xmlWriter.writeAttribute("value", (item104->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_3");
+    xmlWriter.writeAttribute("value", (item20->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("time_cikle");
+    xmlWriter.writeAttribute("value", (item22->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("time_raboty");
+    xmlWriter.writeAttribute("value", (item24->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("moment");
+    xmlWriter.writeAttribute("value", (item90->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("regim_ep");
+    xmlWriter.writeAttribute("value", (item92->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeEndElement();
+    xmlWriter.writeEndElement();
+    xmlWriter.writeEndElement();
+    xmlWriter.writeEndDocument();
+    file.close();   // Закрываем файл
+
+    JlCompress::compressDir(str, "/home/elf/progeqts_QT/treeviewprogect/Data/");
+}
+
+void MainWindow::on_LoadProgect_clicked()
+{
+    QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
+    QString str = QFileDialog::getOpenFileName(this, "Выбрать имя, под которым сохранить данные", "/home/elf/progeqts_QT/treeviewprogect/Out", filter);
+    //QDir().mkdir("/home/elf/progeqts_QT/treeviewprogect/Data/");
+    JlCompress::extractDir(str,"/home/elf/progeqts_QT/treeviewprogect/Data/");
+    QFile file(QString("/home/elf/progeqts_QT/treeviewprogect/Data/project.xml"));
+    if (!file.open(QFile::ReadOnly | QFile::Text))
+    {
+        QMessageBox::warning(this, "Ошибка файла", "Не удалось открыть файл", QMessageBox::Ok);
+    }
+    else
+    {
+        QXmlStreamReader xmlReader;
+        xmlReader.setDevice(&file);
+        xmlReader.readNext();
+        while(!xmlReader.atEnd())
+        {
+            if(xmlReader.isStartElement())
+            {
+                if(xmlReader.name() == "project_name")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item4->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "project_path")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item6->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "project_path_2")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item84->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "project_path_3")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item86->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "combobox_1")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item88->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "project_path_4")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item106->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "combobox_2")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item80->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "project_path_5")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item82->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "checkbox_1")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "boolean")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            if(attribute_value=="true")
+                            {
+                                item68->setCheckState(Qt::Checked);
+                            }
+                            else
+                            {
+                                item68->setCheckState(Qt::Unchecked);
+                            };
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "checkbox_2")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "boolean")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            if(attribute_value=="true"){
+                            item70->setCheckState(Qt::Checked);}
+                            else {item70->setCheckState(Qt::Unchecked);};
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "checkbox_3")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "boolean")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            if(attribute_value=="true"){
+                            item72->setCheckState(Qt::Checked);}
+                            else {item72->setCheckState(Qt::Unchecked);};
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "checkbox_4")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "boolean")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            if(attribute_value=="true"){
+                            item74->setCheckState(Qt::Checked);}
+                            else {item74->setCheckState(Qt::Unchecked);};
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "checkbox_5")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "boolean")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            if(attribute_value=="true"){
+                            item76->setCheckState(Qt::Checked);}
+                            else {item76->setCheckState(Qt::Unchecked);};
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "checkbox_6")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "boolean")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            if(attribute_value=="true"){
+                            item78->setCheckState(Qt::Checked);}
+                            else {item78->setCheckState(Qt::Unchecked);};
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "checkbox_7")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "boolean")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            if(attribute_value=="true"){
+                            item14->setCheckState(Qt::Checked);}
+                            else {item14->setCheckState(Qt::Unchecked);};
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "checkbox_8")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "boolean")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            if(attribute_value=="true"){
+                            item16->setCheckState(Qt::Checked);}
+                            else {item16->setCheckState(Qt::Unchecked);};
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "coeff_1")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item94->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "coeff_2")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item96->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "coeff_3")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item98->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "coeff_4")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item100->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "coeff_5")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item102->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "coeff_6")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item104->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "combobox_3")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item20->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "time_cikle")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item22->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "time_raboty")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item24->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "moment")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item90->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "regim_ep")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item92->setText(attribute_value);
+                        }
+                    }
+                }
+             }
+        xmlReader.readNext(); // Переходим к следующему элементу файла
+        }
+    file.close(); // Закрываем файл
+    }
+}
+
+void MainWindow::on_PushButton_5_clicked(bool clicked)
+{
+    if(clicked)
+    {
+        ui->groupBox->setVisible(false);
+    }
+}
+
+
+
+
 
 
 

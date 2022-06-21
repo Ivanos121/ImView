@@ -38,6 +38,7 @@ SOURCES += \
     draw_line.cpp \
     draw_poper.cpp \
     electromagn.cpp \
+    graph_nastr.cpp \
     gridlinedelegate.cpp \
     identf.cpp \
     ischodn_dannie.cpp \
@@ -87,6 +88,7 @@ HEADERS += \
     draw_line.h \
     draw_poper.h \
     electromagn.h \
+    graph_nastr.h \
     gridlinedelegate.h \
     identf.h \
     ischodn_dannie.h \
@@ -118,6 +120,7 @@ FORMS += \
     draw_line.ui \
     draw_poper.ui \
     electromagn.ui \
+    graph_nastr.ui \
     identf.ui \
     ischodn_dannie.ui \
     itogs.ui \
@@ -137,6 +140,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 LIBS += -lusb-1.0
+
+LIBS += -lquazip1-qt5
 
 RESOURCES += \
     Images.qrc 

@@ -76,6 +76,7 @@ private slots:
     void on_action_22_triggered();
     void on_action_23_triggered();
     void on_action_15_triggered();
+    void on_PushButton_5_clicked(bool clicked);
 
     void modelItemChangedSlot(QStandardItem *item);
     void modelItemChangedSlot_2(QStandardItem *item);
@@ -87,6 +88,9 @@ private slots:
     void projectFileSelectedSlot_4(QString projectFile_4);
     void projectFileSelectedSlot_5(QString projectFile_5);
     void projectFileSelectedSlot_6(QString projectFile_6);
+    void on_SaveProgectToFile_clicked();
+    void on_LoadProgect_clicked();
+
 public:
     Ui::MainWindow *ui;
     AboutDialog *rsc;

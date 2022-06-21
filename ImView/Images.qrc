@@ -43,6 +43,8 @@
     <qresource prefix="/image">
         <file>../data/img/images/IM_LOGO.png</file>
         <file>../data/img/images/zastavka.png</file>
+        <file>../data/img/icons/labplot-axis-vertical.svg</file>
+        <file>../data/img/icons/labplot-axis-vertical.png</file>
     </qresource>
     <qresource prefix="/databases">
         <file>../data/databases/mydb.db</file>
