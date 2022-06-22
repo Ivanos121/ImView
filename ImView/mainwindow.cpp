@@ -37,6 +37,7 @@
 #include <QFileDialog>
 #include <QDebug>
 #include <QMessageBox>
+#include <QColorDialog>
 
 Base base;
 
@@ -125,7 +126,6 @@ MainWindow::MainWindow(QWidget *parent)
     items1.append(item1);
     items1.append(item2);
     model->appendRow(items1);
-    //item1->setForeground(QBrush(Qt::white));
     item1->setSelectable(false);
     item1->setEditable(false);
     item2->setSelectable(false);
@@ -916,17 +916,102 @@ void MainWindow::on_action_22_triggered()
     screen->geometry()));
 }
 
+Graph_Settings::Graph_Settings(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::graph_Settings)
+{
+    ui->setupUi(this);
+    ui->tableWidget->setRowCount(4); //задание количества строк таблицы
+    ui->tableWidget->setColumnCount(3); //задание количества столбцов
+    QStringList name2; //объявление указателя на тип QStringList
+    name2 << "№" << "Цвет" << "Свойство"; //перечисление заголовков
+    ui->tableWidget->setHorizontalHeaderLabels(name2); //установка заголовков в таблицу
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents); //Устанавливает ограничения на то, как размер заголовка может быть изменен до тех, которые описаны в данном режиме
+    ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget->setSelectionMode(QAbstractItemView :: NoSelection);
+    ui->tableWidget->verticalHeader()->setVisible(false);
+    ui->tableWidget->resizeColumnsToContents();
+    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget->setColumnWidth(0, 100);
+
+    for(int row = 0; row<ui->tableWidget->rowCount(); row++)
+    {
+        for(int column = 0; column<ui->tableWidget->columnCount(); column++)
+        {
+          ui->tableWidget->setItem(row, column, new QTableWidgetItem());
+        }
+      //  ui->tableWidget->item(1, 1)->setBackground(QColor(0,0,255));
+    }
+
+    ui->tableWidget->setItem(0, 2, new QTableWidgetItem("Сопротивление ротора R2, Ом"));
+    ui->tableWidget->setItem(1, 2, new QTableWidgetItem("Индуктивность обмотки статора L1, Гн"));
+    ui->tableWidget->setItem(2, 2, new QTableWidgetItem("Индуктивность обмотки ротора L2, Гн"));
+    ui->tableWidget->setItem(3, 2, new QTableWidgetItem("Индуктивность взаимоиндукции Lm, Гн"));
+
+    for (int i=0; i<4; i++)
+    {
+        if (ui->tableWidget->item(i, 0) != 0)
+        {
+            ui->tableWidget->item(i, 0)->setText(QString("%1").arg(i+1));
+            ui->tableWidget->item(i, 0)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+//    for (int i=0; i<4; i++)
+//    {
+//        if (ui->tableWidget->item(i, 3) != 0)
+//        {
+//            ui->tableWidget->item(i, 3)->setTextAlignment(Qt::AlignCenter);
+//        }
+//    }
+
+    dataLineColors.append(Qt::red);
+    dataLineColors.append(Qt::green);
+    dataLineColors.append(Qt::cyan);
+    dataLineColors.append(Qt::yellow);
+
+//    for (int i = 0; i < dataLineColors.size(); i++)
+//    {
+//        ui->plot->addDataLine(dataLineColors[i], 0);
+//    }
+
+    for (int i = 0; i < dataLineColors.size(); i++)
+    {
+        ui->tableWidget->item(i, 1)->setBackground(dataLineColors[i]);
+    }
+    connect(ui->tableWidget, &QTableWidget::cellClicked,this, &Graph_Settings::setcolorincell);
+
+}
+
+void Graph_Settings::on_pushButton_clicked()
+{
+    close();
+}
+
+void Graph_Settings::setcolorincell(int row, int column)
+{
+    if (column == 1)
+    {
+        row = ui->tableWidget->currentRow();
+        QColor chosenColor = QColorDialog::getColor(); //return the color chosen by user
+        ui->tableWidget->item(row, column)->setBackground(chosenColor);
+//        ui->plot->setDataLineColor(row, chosenColor);
+        dataLineColors[row] = chosenColor;
+        repaint();
+    }
+}
+
 void MainWindow::on_action_23_triggered()
 {
-    QScreen *screen = QGuiApplication::primaryScreen();
-    kalibr=new Kalibr(this);
-    kalibr->showMaximized();
-    kalibr->setGeometry(
+    QScreen *screen2 = QGuiApplication::primaryScreen();
+    graph_Settings=new Graph_Settings(this);
+    graph_Settings->show();
+    graph_Settings->setGeometry(
     QStyle::alignedRect(
     Qt::LeftToRight,
     Qt::AlignCenter,
-    kalibr->size(),
-    screen->geometry()));
+    graph_Settings->size(),
+    screen2->geometry()));
 }
 
 AboutDialog::AboutDialog(QWidget *parent) :

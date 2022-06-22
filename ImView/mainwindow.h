@@ -13,6 +13,7 @@
 #include "ui_about_dialog.h"
 #include "ui_settings.h"
 #include "pushbuttondelegate.h"
+#include "ui_graph_Settings.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -48,6 +49,22 @@ private:
     Ui::settings *ui;
 };
 
+class Graph_Settings : public QDialog
+{
+    Q_OBJECT
+
+public:
+    explicit Graph_Settings(QWidget *parent = nullptr);
+
+private slots:
+    void on_pushButton_clicked();
+    void setcolorincell(int row, int column);
+
+private:
+    Ui::graph_Settings *ui;
+    QVector<QColor> dataLineColors;
+};
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -57,7 +74,6 @@ public:
     ~MainWindow();
 
     void closeEvent (QCloseEvent *event);
-signals:
 
 private slots:
     void on_actionabout_triggered();
@@ -96,6 +112,7 @@ public:
     AboutDialog *rsc;
     Kalibr *kalibr;
     Settings *rsc2;
+    Graph_Settings *graph_Settings;
     QString dataSourceFilename;
 
     QWebEngineView * view;

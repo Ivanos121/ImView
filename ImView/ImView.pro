@@ -38,7 +38,6 @@ SOURCES += \
     draw_line.cpp \
     draw_poper.cpp \
     electromagn.cpp \
-    graph_nastr.cpp \
     gridlinedelegate.cpp \
     identf.cpp \
     ischodn_dannie.cpp \
@@ -88,7 +87,6 @@ HEADERS += \
     draw_line.h \
     draw_poper.h \
     electromagn.h \
-    graph_nastr.h \
     gridlinedelegate.h \
     identf.h \
     ischodn_dannie.h \
@@ -120,7 +118,7 @@ FORMS += \
     draw_line.ui \
     draw_poper.ui \
     electromagn.ui \
-    graph_nastr.ui \
+    graph_Settings.ui \
     identf.ui \
     ischodn_dannie.ui \
     itogs.ui \
