@@ -14,6 +14,7 @@
 #include "datas.h"
 #include "ui_datas.h"
 #include "identf.h"
+#include "ui_identf.h"
 #include "electromagn.h"
 #include "kalibr.h"
 #include "teplovent.h"
@@ -776,6 +777,8 @@ MainWindow::MainWindow(QWidget *parent)
     QString currentTabText = ui->tabWidget->tabText(0);
     setWindowTitle(currentTabText + "@" + QString("base") + QString(" - ImView"));
 
+    graph_Settings = new Graph_Settings(this);
+
     connect(item16->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot);
     connect(item88->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_2);
     connect(item80->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_3);
@@ -970,10 +973,11 @@ Graph_Settings::Graph_Settings(QWidget *parent) :
     dataLineColors.append(Qt::cyan);
     dataLineColors.append(Qt::yellow);
 
-//    for (int i = 0; i < dataLineColors.size(); i++)
-//    {
-//        ui->plot->addDataLine(dataLineColors[i], 0);
-//    }
+    /*for (int i = 0; i < dataLineColors.size(); i++)
+    {
+        MainWindow* mainWnd = (MainWindow*)parent;
+        mainWnd->ui->widget_2->ui->plot->addDataLine(dataLineColors[i], 0);
+    }*/
 
     for (int i = 0; i < dataLineColors.size(); i++)
     {
@@ -1004,7 +1008,6 @@ void Graph_Settings::setcolorincell(int row, int column)
 void MainWindow::on_action_23_triggered()
 {
     QScreen *screen2 = QGuiApplication::primaryScreen();
-    graph_Settings=new Graph_Settings(this);
     graph_Settings->show();
     graph_Settings->setGeometry(
     QStyle::alignedRect(

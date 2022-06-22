@@ -43,49 +43,6 @@ identf::identf(QWidget *parent) :
 
     this->showMaximized();
 
-    ui->tableWidget->setRowCount(4); //задание количества строк таблицы
-    ui->tableWidget->setColumnCount(4); //задание количества столбцов
-    QStringList name2; //объявление указателя на тип QStringList
-    name2 << "№" << "Цвет" << "Свойство" << "Значение"; //перечисление заголовков
-    ui->tableWidget->setHorizontalHeaderLabels(name2); //установка заголовков в таблицу
-    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents); //Устанавливает ограничения на то, как размер заголовка может быть изменен до тех, которые описаны в данном режиме
-    ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
-    ui->tableWidget->setSelectionMode(QAbstractItemView :: NoSelection);
-    ui->tableWidget->verticalHeader()->setVisible(false);
-    ui->tableWidget->resizeColumnsToContents();
-    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->tableWidget->setColumnWidth(0, 100);
-
-    for(int row = 0; row<ui->tableWidget->rowCount(); row++)
-    {
-        for(int column = 0; column<ui->tableWidget->columnCount(); column++)
-        {
-          ui->tableWidget->setItem(row, column, new QTableWidgetItem());
-        }
-      //  ui->tableWidget->item(1, 1)->setBackground(QColor(0,0,255));
-    }
-
-    ui->tableWidget->setItem(0, 2, new QTableWidgetItem("Сопротивление ротора R2, Ом:"));
-    ui->tableWidget->setItem(1, 2, new QTableWidgetItem("Индуктивность обмотки статора L1, Гн:"));
-    ui->tableWidget->setItem(2, 2, new QTableWidgetItem("Индуктивность обмотки ротора L2, Гн:"));
-    ui->tableWidget->setItem(3, 2, new QTableWidgetItem("Индуктивность взаимоиндукции Lm, Гн:"));
-
-    for (int i=0; i<5; i++)
-    {
-        if (ui->tableWidget->item(i, 0) != 0)
-        {
-            ui->tableWidget->item(i, 0)->setText(QString("%1").arg(i+1));
-            ui->tableWidget->item(i, 0)->setTextAlignment(Qt::AlignCenter);
-        }
-    }
-
-    for (int i=0; i<5; i++)
-    {
-        if (ui->tableWidget->item(i, 3) != 0)
-        {
-            ui->tableWidget->item(i, 3)->setTextAlignment(Qt::AlignCenter);
-        }
-    }
     ui->lineEdit_8->setReadOnly(true);
     ui->lineEdit_9->setReadOnly(true);
     ui->lineEdit_10->setReadOnly(true);
@@ -103,22 +60,6 @@ identf::identf(QWidget *parent) :
     ui->lineEdit_16->setAlignment(Qt::AlignCenter);
     ui->lineEdit_17->setAlignment(Qt::AlignCenter);
     ui->lineEdit_18->setAlignment(Qt::AlignCenter);
-
-    dataLineColors.append(Qt::red);
-    dataLineColors.append(Qt::green);
-    dataLineColors.append(Qt::cyan);
-    dataLineColors.append(Qt::yellow);
-
-    for (int i = 0; i < dataLineColors.size(); i++)
-    {
-        ui->plot->addDataLine(dataLineColors[i], 0);
-    }
-
-    for (int i = 0; i < dataLineColors.size(); i++)
-    {
-        ui->tableWidget->item(i, 1)->setBackground(dataLineColors[i]);
-    }
-    connect(ui->tableWidget, &QTableWidget::cellClicked,this, &identf::setcolorincell);
 
     ui->buttonGroup->setId(ui->radioButton,1);
     ui->buttonGroup->setId(ui->radioButton_2,2);
@@ -198,27 +139,7 @@ void identf::realtimeDataSlot()
         ui->lineEdit_11->setText(QString::number(model.R2,'f',3));
         ui->lineEdit_12->setText(QString::number(R1));
 
-        if (ui->tableWidget->item(0, 3) != 0)
-        {
-            ui->tableWidget->item(0, 3)->setText(QString::number(model.R2,'f',3));
-        }
-
-        if (ui->tableWidget->item(1, 3) != 0)
-        {
-            ui->tableWidget->item(1, 3)->setText(QString::number(model.L,'f',3));
-        }
-
-        if (ui->tableWidget->item(2, 3) != 0)
-        {
-            ui->tableWidget->item(2, 3)->setText(QString::number(model.L,'f',3));
-        }
-
-        if (ui->tableWidget->item(3, 3) != 0)
-        {
-            ui->tableWidget->item(3, 3)->setText(QString::number(model.Lm,'f',3));
-        }
-
-     //   printf("%f %f %f\n", model.R2, model.L, model.Lm);
+        //   printf("%f %f %f\n", model.R2, model.L, model.Lm);
 
     }
 }
@@ -254,9 +175,9 @@ void identf::raschet_f()
                ui->lineEdit_13->text().toDouble(),ui->lineEdit_14->text().toDouble(),ui->lineEdit_15->text().toDouble(),
                ui->lineEdit_16->text().toDouble(),ui->lineEdit_17->text().toDouble(),ui->lineEdit_18->text().toDouble());
     ui->plot->clear();
-    for (int i = 0; i < dataLineColors.size(); i++)
+    for (int i = 0; i < wf->graph_Settings->dataLineColors.size(); i++)
     {
-        ui->plot->addDataLine(dataLineColors[i], 0);
+        ui->plot->addDataLine(wf->graph_Settings->dataLineColors[i], 0);
     }
 
     ui->plot->addPoint(0, 0, model.R2);
@@ -287,19 +208,6 @@ void identf::on_pushButton_clicked()
     base.L2 = ui->lineEdit_9->text().toDouble();
     base.Lm = ui->lineEdit_8->text().toDouble();
  }
-
-void identf::setcolorincell(int row, int column)
-{
-    if (column == 1)
-    {
-        row = ui->tableWidget->currentRow();
-        QColor chosenColor = QColorDialog::getColor(); //return the color chosen by user
-        ui->tableWidget->item(row, column)->setBackground(chosenColor);
-        ui->plot->setDataLineColor(row, chosenColor);
-        dataLineColors[row] = chosenColor;
-        repaint();
-    }
-}
 
 void identf::on_radioButton_2_toggled(bool checked)
 {

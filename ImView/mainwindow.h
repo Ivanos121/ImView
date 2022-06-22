@@ -56,13 +56,14 @@ class Graph_Settings : public QDialog
 public:
     explicit Graph_Settings(QWidget *parent = nullptr);
 
+    QVector<QColor> dataLineColors;
+
 private slots:
     void on_pushButton_clicked();
     void setcolorincell(int row, int column);
 
 private:
     Ui::graph_Settings *ui;
-    QVector<QColor> dataLineColors;
 };
 
 class MainWindow : public QMainWindow
