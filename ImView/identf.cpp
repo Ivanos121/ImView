@@ -152,22 +152,26 @@ void identf::raschet_f()
 
     auto uiDatasWindow = wf->ui->widget->ui;
 
-    if(uiDatasWindow->oscNoSpeed->isChecked())
-    {
-        dataSource = new DataSource_file();
-        connect(dataSource, &DataSource::ready, this, &identf::realtimeDataSlot);
-    }
+//    if(uiDatasWindow->oscNoSpeed->isChecked())
+//    {
+//        dataSource = new DataSource_file();
+//        connect(dataSource, &DataSource::ready, this, &identf::realtimeDataSlot);
+//    }
 
-    if(uiDatasWindow->oscWithSpeed->isChecked())
-    {
-        //dataSource = new DataSource();
-        //connect(dataSource, &DataSource::ready, this, &identf::realtimeDataSlot);
-    }
+//    if(uiDatasWindow->oscWithSpeed->isChecked())
+//    {
+//        //dataSource = new DataSource();
+//        //connect(dataSource, &DataSource::ready, this, &identf::realtimeDataSlot);
+//    }
 
-    if(uiDatasWindow->internalDataSource->isChecked())
+    //if(uiDatasWindow->internalDataSource->isChecked())
+    if(wf->item88->isEditable())
     {
+        if (wf->item88->text() == "Внутренний источник данных")
+        {
         dataSource = new DataSource_el(base.P_nom, base.n_nom, base.U_fnom, base.cosf_nom, base.kpd_nom, base.muk, base.n_0);
         connect(dataSource, &DataSource::ready, this, &identf::realtimeDataSlot);
+        }
     }
 
     dataSource->init();

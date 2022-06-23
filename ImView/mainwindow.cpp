@@ -79,6 +79,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->treeView->setRootIsDecorated(true);
     QFont newFontt("DroidSans", 10, QFont::Normal, false);
     ui->treeView->setFont(newFontt);
+    ui->treeView->setBackgroundRole(QPalette :: Dark);
 
     ui->treeView->setExpandsOnDoubleClick(false);
     QObject::connect(ui->treeView, &QTreeView::clicked, [this]() {
@@ -147,42 +148,42 @@ MainWindow::MainWindow(QWidget *parent)
     item1->appendRow(items2);
     items2.clear();
 
-    if(item4->parent())
-    item5 = new QStandardItem(QStringLiteral ("Расположение файла проекта"));
-    item5->setEditable(false);
-    QString w3=item5->text();
-    item5->setToolTip(w3);
-    item6 = new QStandardItem(QStringLiteral ("Выбрать файл"));
-    QString w4=item6->text();
-    item6->setToolTip(w4);
-    items2.append(item5);
-    items2.append(item6);
-    item1->appendRow(items2);
-    items2.clear();
+//    if(item4->parent())
+//    item5 = new QStandardItem(QStringLiteral ("Расположение файла проекта"));
+//    item5->setEditable(false);
+//    QString w3=item5->text();
+//    item5->setToolTip(w3);
+//    item6 = new QStandardItem(QStringLiteral ("Выбрать файл"));
+//    QString w4=item6->text();
+//    item6->setToolTip(w4);
+//    items2.append(item5);
+//    items2.append(item6);
+//    item1->appendRow(items2);
+//    items2.clear();
 
-    item83 = new QStandardItem(QStringLiteral ("Расположение файла базы данных двигателей"));
-    item83->setEditable(false);
-    QString w5=item83->text();
-    item83->setToolTip(w5);
-    item84 = new QStandardItem(QStringLiteral ("Выбрать файл"));
-    QString w6=item84->text();
-    item84->setToolTip(w6);
-    items2.append(item83);
-    items2.append(item84);
-    item1->appendRow(items2);
-    items2.clear();
+//    item83 = new QStandardItem(QStringLiteral ("Расположение файла базы данных двигателей"));
+//    item83->setEditable(false);
+//    QString w5=item83->text();
+//    item83->setToolTip(w5);
+//    item84 = new QStandardItem(QStringLiteral ("Выбрать файл"));
+//    QString w6=item84->text();
+//    item84->setToolTip(w6);
+//    items2.append(item83);
+//    items2.append(item84);
+//    item1->appendRow(items2);
+//    items2.clear();
 
-    item85 = new QStandardItem(QStringLiteral ("Расположение файла базы данных настроек"));
-    item85->setEditable(false);
-    QString w7=item85->text();
-    item85->setToolTip(w7);
-    item86 = new QStandardItem(QStringLiteral ("Выбрать файл"));
-    QString w8=item86->text();
-    item86->setToolTip(w8);
-    items2.append(item85);
-    items2.append(item86);
-    item1->appendRow(items2);
-    items2.clear();
+//    item85 = new QStandardItem(QStringLiteral ("Расположение файла базы данных настроек"));
+//    item85->setEditable(false);
+//    QString w7=item85->text();
+//    item85->setToolTip(w7);
+//    item86 = new QStandardItem(QStringLiteral ("Выбрать файл"));
+//    QString w8=item86->text();
+//    item86->setToolTip(w8);
+//    items2.append(item85);
+//    items2.append(item86);
+//    item1->appendRow(items2);
+//    items2.clear();
 
     item7 = new QStandardItem(QStringLiteral ("Тип эксперимента"));
     item7->setEditable(false);
@@ -856,6 +857,7 @@ void MainWindow::on_action_19_triggered()
 
 void MainWindow::on_action_5_triggered()
 {
+    ui->groupBox->hide();
     QModelIndex myIndex, myIndex2, myIndex3,myIndex4,myIndex5,myIndex6,myIndex7;
     myIndex = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 2, QModelIndex());
     base.P_nom=ui->widget->ui->tableView->model()->data(myIndex).toDouble();
@@ -887,6 +889,11 @@ void MainWindow::on_action_9_triggered()
 
 void MainWindow::on_action_20_triggered()
 {
+    base.R1 = ui->widget_2->ui->lineEdit_12->text().toDouble();
+    base.R2 = ui->widget_2->ui->lineEdit_11->text().toDouble();
+    base.L1 = ui->widget_2->ui->lineEdit_10->text().toDouble();
+    base.L2 = ui->widget_2->ui->lineEdit_9->text().toDouble();
+    base.Lm = ui->widget_2->ui->lineEdit_8->text().toDouble();
     ui->action_20->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
     ui->action_21->setEnabled(true);
     ui->widget_5->ui->widget_4->startTeplo();
@@ -924,10 +931,10 @@ Graph_Settings::Graph_Settings(QWidget *parent) :
     ui(new Ui::graph_Settings)
 {
     ui->setupUi(this);
-    ui->tableWidget->setRowCount(4); //задание количества строк таблицы
-    ui->tableWidget->setColumnCount(3); //задание количества столбцов
+    ui->tableWidget->setRowCount(30); //задание количества строк таблицы
+    ui->tableWidget->setColumnCount(5); //задание количества столбцов
     QStringList name2; //объявление указателя на тип QStringList
-    name2 << "№" << "Цвет" << "Свойство"; //перечисление заголовков
+    name2 << "№" << "Цвет" << "Свойство" << "Смещение" << "Масштаб"; //перечисление заголовков
     ui->tableWidget->setHorizontalHeaderLabels(name2); //установка заголовков в таблицу
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents); //Устанавливает ограничения на то, как размер заголовка может быть изменен до тех, которые описаны в данном режиме
     ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
@@ -943,15 +950,41 @@ Graph_Settings::Graph_Settings(QWidget *parent) :
         {
           ui->tableWidget->setItem(row, column, new QTableWidgetItem());
         }
-      //  ui->tableWidget->item(1, 1)->setBackground(QColor(0,0,255));
     }
 
     ui->tableWidget->setItem(0, 2, new QTableWidgetItem("Сопротивление ротора R2, Ом"));
     ui->tableWidget->setItem(1, 2, new QTableWidgetItem("Индуктивность обмотки статора L1, Гн"));
     ui->tableWidget->setItem(2, 2, new QTableWidgetItem("Индуктивность обмотки ротора L2, Гн"));
     ui->tableWidget->setItem(3, 2, new QTableWidgetItem("Индуктивность взаимоиндукции Lm, Гн"));
+    ui->tableWidget->setItem(4, 2, new QTableWidgetItem("Напряжение фазы А, В"));
+    ui->tableWidget->setItem(5, 2, new QTableWidgetItem("Напряжение фазы B, В"));
+    ui->tableWidget->setItem(6, 2, new QTableWidgetItem("Напряжение фазы C, В"));
+    ui->tableWidget->setItem(7, 2, new QTableWidgetItem("Ток фазы А, А"));
+    ui->tableWidget->setItem(8, 2, new QTableWidgetItem("Ток фазы B, А"));
+    ui->tableWidget->setItem(9, 2, new QTableWidgetItem("Ток фазы C, А"));
+    ui->tableWidget->setItem(10, 2, new QTableWidgetItem("Частота вращения, рад/с"));
+    ui->tableWidget->setItem(11, 2, new QTableWidgetItem("Момент на валу, Н*м"));
+    ui->tableWidget->setItem(12, 2, new QTableWidgetItem("Момент Мс, Н*м"));
+    ui->tableWidget->setItem(13,  2, new QTableWidgetItem("Станина, °C"));
+    ui->tableWidget->setItem(14,  2, new QTableWidgetItem("Подшипниковый узел справа сзади, °C"));
+    ui->tableWidget->setItem(15,  2, new QTableWidgetItem("Лобовая часть слева спереди, °C"));
+    ui->tableWidget->setItem(16,  2, new QTableWidgetItem("Подшипниковый узел слева спереди, °C"));
+    ui->tableWidget->setItem(17,  2, new QTableWidgetItem("Лобовая часть слева сзади, °C"));
+    ui->tableWidget->setItem(18,  2, new QTableWidgetItem("Станина, °C"));
+    ui->tableWidget->setItem(19,  2, new QTableWidgetItem("Лобовая часть справа спереди, °C"));
+    ui->tableWidget->setItem(20,  2, new QTableWidgetItem("Лобовая часть справа сзади, °C"));
+    ui->tableWidget->setItem(21,  2, new QTableWidgetItem("Магнитопровод статора, °C"));
+    ui->tableWidget->setItem(22,  2, new QTableWidgetItem("Подшипниковый узел справа спереди, °C"));
+    ui->tableWidget->setItem(23, 2, new QTableWidgetItem("Подшипниковый узел слева сзади, °C"));
+    ui->tableWidget->setItem(24, 2, new QTableWidgetItem("Ротор сверху, °C"));
+    ui->tableWidget->setItem(25, 2, new QTableWidgetItem("Ротор снизу, °C"));
+    ui->tableWidget->setItem(26, 2, new QTableWidgetItem("Станина слева, °C"));
+    ui->tableWidget->setItem(27, 2, new QTableWidgetItem("Станина справа, °C"));
+    ui->tableWidget->setItem(28, 2, new QTableWidgetItem("Вал, °C"));
+    ui->tableWidget->setItem(29, 2, new QTableWidgetItem("Клеммная коробка, °C"));
 
-    for (int i=0; i<4; i++)
+
+    for (int i=0; i<34; i++)
     {
         if (ui->tableWidget->item(i, 0) != 0)
         {

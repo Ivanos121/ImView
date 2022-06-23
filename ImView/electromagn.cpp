@@ -336,15 +336,28 @@ void electromagn::setcolorincell(int row, int column)
 void electromagn::realtimeDataSlot()
 {
     double a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18;
+
     key = time->elapsed()/1000.0;
 
-    if(ui->radioButton_3->isChecked())
-    {
-        double b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16;
-        for (int i = 0; i < 1000; i++)
+//    if(ui->radioButton_3->isChecked())
+//    {
+//        double b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16;
+//        for (int i = 0; i < 1000; i++)
+//        {
+//            Model_el.rasch();
+//        }
+
+        if(wf->item88->isEditable())
         {
-            Model_el.rasch();
-        }
+            double b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16;
+            if (wf->item88->text() == "Внутренний источник данных")
+            {
+
+                for (int i = 0; i < 1000; i++)
+                {
+                    Model_el.rasch();
+                }
+          }
 
         //Считывание значения времени цикла Тц
 
@@ -1113,81 +1126,94 @@ void electromagn::realtimeDataSlot()
 
 void electromagn::raschet_el()
 {
-    if(ui->radioButton->isChecked())
+//    if(ui->radioButton->isChecked())
+//    {
+//        //БВАС без датчика скорости + наблюдатель скорости
+//        QSettings settings;
+
+//        DataSourceBVAS* dataSourceBVAS = new DataSourceBVAS();
+
+//        dataSourceBVAS->IaZeroLevel = settings.value("calibration/IaZero", 0.0).toDouble();
+//        dataSourceBVAS->IbZeroLevel = settings.value("calibration/IbZero", 0.0).toDouble();
+//        dataSourceBVAS->IcZeroLevel = settings.value("calibration/IcZero", 0.0).toDouble();
+
+//        dataSourceBVAS->UaZeroLevel = settings.value("calibration/UaZero", 0.0).toDouble();
+//        dataSourceBVAS->UbZeroLevel = settings.value("calibration/UbZero", 0.0).toDouble();
+//        dataSourceBVAS->UcZeroLevel = settings.value("calibration/UcZero", 0.0).toDouble();
+
+//        dataSourceBVAS->IaCalibrationCoeff = settings.value("calibration/IaCoeff", 1.0).toDouble();
+//        dataSourceBVAS->IbCalibrationCoeff = settings.value("calibration/IbCoeff", 1.0).toDouble();
+//        dataSourceBVAS->IcCalibrationCoeff = settings.value("calibration/IcCoeff", 1.0).toDouble();
+
+//        dataSourceBVAS->UaCalibrationCoeff = settings.value("calibration/UaCoeff", 1.0).toDouble();
+//        dataSourceBVAS->UbCalibrationCoeff = settings.value("calibration/UbCoeff", 1.0).toDouble();
+//        dataSourceBVAS->UcCalibrationCoeff = settings.value("calibration/UcCoeff", 1.0).toDouble();
+
+//        dataSource = dataSourceBVAS;
+//        nabludatel = &nabludatel_full;
+
+//        dataSource->init();
+//        nabludatel->init(base.R1, base.R2, base.L1, base.L2, base.Lm);
+//        connect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
+//        connect(dataSourceBVAS, &DataSourceBVAS::bvasFailure, this, &electromagn::bvasFailureSlot);
+
+//    }
+
+//    if(ui->radioButton_2->isChecked())
+//    {
+//        //БВАС с датчиком скорости + наблюдатель частично (момента)
+//        //БВАС без датчика скорости + наблюдатель скорости
+//        QSettings settings;
+
+//        DataSourceBVASw* dataSourceBVAS = new DataSourceBVASw();
+
+//        dataSourceBVAS->IaZeroLevel = settings.value("calibration/IaZero", 0.0).toDouble();
+//        dataSourceBVAS->IbZeroLevel = settings.value("calibration/IbZero", 0.0).toDouble();
+//        dataSourceBVAS->IcZeroLevel = settings.value("calibration/IcZero", 0.0).toDouble();
+
+//        dataSourceBVAS->UaZeroLevel = settings.value("calibration/UaZero", 0.0).toDouble();
+//        dataSourceBVAS->UbZeroLevel = settings.value("calibration/UbZero", 0.0).toDouble();
+//        dataSourceBVAS->UcZeroLevel = settings.value("calibration/UcZero", 0.0).toDouble();
+
+//        dataSourceBVAS->IaCalibrationCoeff = settings.value("calibration/IaCoeff", 1.0).toDouble();
+//        dataSourceBVAS->IbCalibrationCoeff = settings.value("calibration/IbCoeff", 1.0).toDouble();
+//        dataSourceBVAS->IcCalibrationCoeff = settings.value("calibration/IcCoeff", 1.0).toDouble();
+
+//        dataSourceBVAS->UaCalibrationCoeff = settings.value("calibration/UaCoeff", 1.0).toDouble();
+//        dataSourceBVAS->UbCalibrationCoeff = settings.value("calibration/UbCoeff", 1.0).toDouble();
+//        dataSourceBVAS->UcCalibrationCoeff = settings.value("calibration/UcCoeff", 1.0).toDouble();
+
+//        dataSource = dataSourceBVAS;
+//        nabludatel = &nabludatel_part;
+
+//        dataSource->init();
+//        nabludatel->init(base.R1, base.R2, base.L1, base.L2, base.Lm);
+//        connect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
+//        connect(dataSourceBVAS, &DataSourceBVASw::bvasFailure, this, &electromagn::bvasFailureSlot);
+
+//    }
+
+//    if(ui->radioButton_3->isChecked())
+//    {
+//        //Модель двигателя
+//        Model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, combo->currentIndex(),
+//                         ui->tableWidget_3->model()->index(3,1).data().toDouble(),
+//                         ui->tableWidget_3->model()->index(2,1).data().toDouble(),
+//                         ui->tableWidget_3->model()->index(4,1).data().toDouble());
+//                         connect(&Model_el, &Model_el::ready, this, &electromagn::realtimeDataSlot);
+
+//    }
+    //radiobutton_3
+    if(wf->item88->isEditable())
     {
-        //БВАС без датчика скорости + наблюдатель скорости
-        QSettings settings;
-
-        DataSourceBVAS* dataSourceBVAS = new DataSourceBVAS();
-
-        dataSourceBVAS->IaZeroLevel = settings.value("calibration/IaZero", 0.0).toDouble();
-        dataSourceBVAS->IbZeroLevel = settings.value("calibration/IbZero", 0.0).toDouble();
-        dataSourceBVAS->IcZeroLevel = settings.value("calibration/IcZero", 0.0).toDouble();
-
-        dataSourceBVAS->UaZeroLevel = settings.value("calibration/UaZero", 0.0).toDouble();
-        dataSourceBVAS->UbZeroLevel = settings.value("calibration/UbZero", 0.0).toDouble();
-        dataSourceBVAS->UcZeroLevel = settings.value("calibration/UcZero", 0.0).toDouble();
-
-        dataSourceBVAS->IaCalibrationCoeff = settings.value("calibration/IaCoeff", 1.0).toDouble();
-        dataSourceBVAS->IbCalibrationCoeff = settings.value("calibration/IbCoeff", 1.0).toDouble();
-        dataSourceBVAS->IcCalibrationCoeff = settings.value("calibration/IcCoeff", 1.0).toDouble();
-
-        dataSourceBVAS->UaCalibrationCoeff = settings.value("calibration/UaCoeff", 1.0).toDouble();
-        dataSourceBVAS->UbCalibrationCoeff = settings.value("calibration/UbCoeff", 1.0).toDouble();
-        dataSourceBVAS->UcCalibrationCoeff = settings.value("calibration/UcCoeff", 1.0).toDouble();
-
-        dataSource = dataSourceBVAS;
-        nabludatel = &nabludatel_full;
-
-        dataSource->init();
-        nabludatel->init(base.R1, base.R2, base.L1, base.L2, base.Lm);
-        connect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
-        connect(dataSourceBVAS, &DataSourceBVAS::bvasFailure, this, &electromagn::bvasFailureSlot);
-
-    }
-
-    if(ui->radioButton_2->isChecked())
-    {
-        //БВАС с датчиком скорости + наблюдатель частично (момента)
-        //БВАС без датчика скорости + наблюдатель скорости
-        QSettings settings;
-
-        DataSourceBVASw* dataSourceBVAS = new DataSourceBVASw();
-
-        dataSourceBVAS->IaZeroLevel = settings.value("calibration/IaZero", 0.0).toDouble();
-        dataSourceBVAS->IbZeroLevel = settings.value("calibration/IbZero", 0.0).toDouble();
-        dataSourceBVAS->IcZeroLevel = settings.value("calibration/IcZero", 0.0).toDouble();
-
-        dataSourceBVAS->UaZeroLevel = settings.value("calibration/UaZero", 0.0).toDouble();
-        dataSourceBVAS->UbZeroLevel = settings.value("calibration/UbZero", 0.0).toDouble();
-        dataSourceBVAS->UcZeroLevel = settings.value("calibration/UcZero", 0.0).toDouble();
-
-        dataSourceBVAS->IaCalibrationCoeff = settings.value("calibration/IaCoeff", 1.0).toDouble();
-        dataSourceBVAS->IbCalibrationCoeff = settings.value("calibration/IbCoeff", 1.0).toDouble();
-        dataSourceBVAS->IcCalibrationCoeff = settings.value("calibration/IcCoeff", 1.0).toDouble();
-
-        dataSourceBVAS->UaCalibrationCoeff = settings.value("calibration/UaCoeff", 1.0).toDouble();
-        dataSourceBVAS->UbCalibrationCoeff = settings.value("calibration/UbCoeff", 1.0).toDouble();
-        dataSourceBVAS->UcCalibrationCoeff = settings.value("calibration/UcCoeff", 1.0).toDouble();
-
-        dataSource = dataSourceBVAS;
-        nabludatel = &nabludatel_part;
-
-        dataSource->init();
-        nabludatel->init(base.R1, base.R2, base.L1, base.L2, base.Lm);
-        connect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
-        connect(dataSourceBVAS, &DataSourceBVASw::bvasFailure, this, &electromagn::bvasFailureSlot);
-
-    }
-
-    if(ui->radioButton_3->isChecked())
-    {
-        //Модель двигателя
-        Model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, combo->currentIndex(),
-                         ui->tableWidget_3->model()->index(3,1).data().toDouble(),
-                         ui->tableWidget_3->model()->index(2,1).data().toDouble(),
-                         ui->tableWidget_3->model()->index(4,1).data().toDouble());
-                         connect(&Model_el, &Model_el::ready, this, &electromagn::realtimeDataSlot);
+        if (wf->item88->text() == "Внутренний источник данных")
+        {
+            Model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, combo->currentIndex(),
+                                     ui->tableWidget_3->model()->index(3,1).data().toDouble(),
+                                     ui->tableWidget_3->model()->index(2,1).data().toDouble(),
+                                     ui->tableWidget_3->model()->index(4,1).data().toDouble());
+                                     connect(&Model_el, &Model_el::ready, this, &electromagn::realtimeDataSlot);
+        }
 
     }
 
@@ -1230,11 +1256,23 @@ void electromagn::stop()
 
     }
 
-    if(ui->radioButton_3->isChecked())
+//    if(ui->radioButton_3->isChecked())
+//    {
+//        Model_el.stop();
+//        disconnect(&Model_el, &Model_el::ready, this, &electromagn::realtimeDataSlot);
+//    }
+
+    if(wf->item88->isEditable())
     {
-        Model_el.stop();
-        disconnect(&Model_el, &Model_el::ready, this, &electromagn::realtimeDataSlot);
+        if (wf->item88->text() == "Внутренний источник данных")
+        {
+                    Model_el.stop();
+                    disconnect(&Model_el, &Model_el::ready, this, &electromagn::realtimeDataSlot);
+        }
+
     }
+
+
 }
 
 void electromagn::on_pushButton_clicked()

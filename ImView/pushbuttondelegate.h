@@ -22,9 +22,9 @@ public:
 
 private slots:
 
-    void btn_clicked();
-    void btn_clicked_2();
-    void btn_clicked_3();
+//    void btn_clicked();
+//    void btn_clicked_2();
+//    void btn_clicked_3();
     void btn_clicked_4();
     void btn_clicked_5();
     void btn_clicked_6();
