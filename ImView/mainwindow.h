@@ -49,22 +49,22 @@ private:
     Ui::settings *ui;
 };
 
-class Graph_Settings : public QDialog
-{
-    Q_OBJECT
+//class Graph_Settings : public QDialog
+//{
+//    Q_OBJECT
 
-public:
-    explicit Graph_Settings(QWidget *parent = nullptr);
+//public:
+//    explicit Graph_Settings(QWidget *parent = nullptr);
 
-    QVector<QColor> dataLineColors;
+//    QVector<QColor> dataLineColors;
 
-private slots:
-    void on_pushButton_clicked();
-    void setcolorincell(int row, int column);
+//private slots:
+//    void on_pushButton_clicked();
+//   // void setcolorincell(int row, int column);
 
-private:
-    Ui::graph_Settings *ui;
-};
+//private:
+//    Ui::graph_Settings *ui;
+//};
 
 class MainWindow : public QMainWindow
 {
@@ -75,6 +75,7 @@ public:
     ~MainWindow();
 
     void closeEvent (QCloseEvent *event);
+    QVector<QColor> dataLineColors;
 
 private slots:
     void on_actionabout_triggered();
@@ -94,6 +95,7 @@ private slots:
     void on_action_23_triggered();
     void on_action_15_triggered();
     void on_PushButton_5_clicked(bool clicked);
+    void setcolorincell(int row, int column);
 
     void modelItemChangedSlot(QStandardItem *item);
     void modelItemChangedSlot_2(QStandardItem *item);
@@ -108,12 +110,14 @@ private slots:
     void on_SaveProgectToFile_clicked();
     void on_LoadProgect_clicked();
 
+    void on_pushButton_5_clicked(bool checked);
+
 public:
     Ui::MainWindow *ui;
     AboutDialog *rsc;
     Kalibr *kalibr;
     Settings *rsc2;
-    Graph_Settings *graph_Settings;
+//    Graph_Settings *graph_Settings;
     QString dataSourceFilename;
 
     QWebEngineView * view;

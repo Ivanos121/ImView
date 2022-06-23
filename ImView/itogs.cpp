@@ -146,16 +146,16 @@ void Itogs::on_pushButton_clicked()
     ui->textEdit->append("Алгоритм проведения испытаний: внутренний источник данных");
     }*/
 
-    MainWindow *mainWin = getMainWindow();
-    if (mainWin->ui->widget->ui->oscNoSpeed->isChecked())
-    {
-       ui->textEdit->append("Алгоритм проведения испытаний: осциллограф");
-    }
+//    MainWindow *mainWin = getMainWindow();
+//    if (mainWin->ui->widget->ui->oscNoSpeed->isChecked())
+//    {
+//       ui->textEdit->append("Алгоритм проведения испытаний: осциллограф");
+//    }
 
-    if (mainWin->ui->widget->ui->oscWithSpeed->isChecked())
-    {
-       ui->textEdit->append("Алгоритм проведения испытаний: внутренний источник данных");
-    }
+//    if (mainWin->ui->widget->ui->oscWithSpeed->isChecked())
+//    {
+//       ui->textEdit->append("Алгоритм проведения испытаний: внутренний источник данных");
+//    }
 
     cursor = ui->textEdit->textCursor();
     textBlockFormat = cursor.blockFormat();

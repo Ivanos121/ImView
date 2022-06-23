@@ -31,6 +31,8 @@
         <file>../data/img/system_icons/media-playback-stop_2.svg</file>
         <file>../data/img/system_icons/system-help.svg</file>
         <file>../data/img/system_icons/view-refresh.svg</file>
+        <file>../data/img/system_icons/go-next.svg</file>
+        <file>../data/img/system_icons/go-previous.svg</file>
     </qresource>
     <qresource prefix="/icons">
         <file>../data/img/icons/IM_16x16.png</file>

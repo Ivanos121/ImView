@@ -179,9 +179,9 @@ void identf::raschet_f()
                ui->lineEdit_13->text().toDouble(),ui->lineEdit_14->text().toDouble(),ui->lineEdit_15->text().toDouble(),
                ui->lineEdit_16->text().toDouble(),ui->lineEdit_17->text().toDouble(),ui->lineEdit_18->text().toDouble());
     ui->plot->clear();
-    for (int i = 0; i < wf->graph_Settings->dataLineColors.size(); i++)
+    for (int i = 0; i < wf->dataLineColors.size(); i++)
     {
-        ui->plot->addDataLine(wf->graph_Settings->dataLineColors[i], 0);
+        ui->plot->addDataLine(wf->dataLineColors[i], 0);
     }
 
     ui->plot->addPoint(0, 0, model.R2);
@@ -249,5 +249,11 @@ void identf::on_pushButton_2_clicked()
     {
         QMessageBox::critical(this, "Ошибка!", "Заполните пустые поля");
     }
+}
+
+
+void identf::on_radioButton_clicked()
+{
+
 }
 

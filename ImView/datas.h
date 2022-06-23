@@ -29,19 +29,19 @@ public slots:
 private slots:
     void on_dannieIdent_clicked();
 
-    void on_oscWithSpeed_toggled(bool checked);
+//    void on_oscWithSpeed_toggled(bool checked);
 
-    void on_oscNoSpeed_toggled(bool checked);
+//    void on_oscNoSpeed_toggled(bool checked);
 
-    void on_internalDataSource_toggled(bool checked);
+//    void on_internalDataSource_toggled(bool checked);
 
   //  void on_pushButton_clicked();
 
-    void on_ReadNabl_toggled(bool checked);
+//    void on_ReadNabl_toggled(bool checked);
 
     void on_saveDannie_clicked();
 
-    void on_radioButton_4_toggled(bool checked);
+//    void on_radioButton_4_toggled(bool checked);
 
 public:
     Ui::datas *ui;

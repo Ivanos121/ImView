@@ -69,7 +69,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->pushButton_5->setCheckable(true);
     ui->pushButton_5->setChecked(true);
-    QObject::connect(ui->pushButton_5, SIGNAL(clicked(bool)), ui->groupBox, SLOT(setVisible(bool)));
+    QObject::connect(ui->pushButton_5, SIGNAL(clicked(bool)), ui->stackedWidget, SLOT(setVisible(bool)));
+    connect(ui->pushButton_5, SIGNAL(clicked(bool)), this, SLOT(on_pushButton_5_clicked(bool)));
+
+    ui->stackedWidget->setCurrentIndex(0);
+
+    connect(ui->action_15, SIGNAL(triggered()), this, SLOT(onButtonClicked()));
+    connect(ui->action_23, SIGNAL(triggered()), this, SLOT(onButtonClicked2()));
 
     ui->treeView->setSelectionBehavior(QTreeView :: SelectRows); // Выбираем всю строку за раз
     ui->treeView->setSelectionMode(QTreeView :: SingleSelection); // Одиночный выбор, при этом вся строка над ним является одной строкой меню
@@ -121,7 +127,7 @@ MainWindow::MainWindow(QWidget *parent)
                                     );
 
     QList<QStandardItem*> items1;
-    item1 = new QStandardItem(QStringLiteral ("Общие настройки проекта"));
+    item1 = new QStandardItem(QStringLiteral ("Общее название сеанса"));
     QString w0=item1->text();
     item1->setToolTip(w0);
     item2 = new QStandardItem();
@@ -136,11 +142,11 @@ MainWindow::MainWindow(QWidget *parent)
     item1->setFont(newFont);
 
     QList<QStandardItem*> items2;
-    item3 = new QStandardItem(QStringLiteral ("Название проекта"));
+    item3 = new QStandardItem(QStringLiteral ("Название сеанса"));
     item3->setEditable(false);
     QString w1=item3->text();
     item3->setToolTip(w1);
-    item4 = new QStandardItem(QStringLiteral ("Имя проекта"));
+    item4 = new QStandardItem(QStringLiteral ("Имя сеанса"));
     QString w2=item4->text();
     item4->setToolTip(w2);
     items2.append(item3);
@@ -778,7 +784,307 @@ MainWindow::MainWindow(QWidget *parent)
     QString currentTabText = ui->tabWidget->tabText(0);
     setWindowTitle(currentTabText + "@" + QString("base") + QString(" - ImView"));
 
-    graph_Settings = new Graph_Settings(this);
+    ui->tableWidget->setRowCount(30); //задание количества строк таблицы
+    ui->tableWidget->setColumnCount(5); //задание количества столбцов
+    QStringList name2; //объявление указателя на тип QStringList
+    name2 << "№" << "Цвет" << "Свойство" << "Смещение" << "Масштаб"; //перечисление заголовков
+    ui->tableWidget->setHorizontalHeaderLabels(name2); //установка заголовков в таблицу
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents); //Устанавливает ограничения на то, как размер заголовка может быть изменен до тех, которые описаны в данном режиме
+    ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget->setSelectionMode(QAbstractItemView :: NoSelection);
+    ui->tableWidget->verticalHeader()->setVisible(false);
+    ui->tableWidget->resizeColumnsToContents();
+    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget->setColumnWidth(0, 100);
+
+    for(int row = 0; row<ui->tableWidget->rowCount(); row++)
+    {
+        for(int column = 0; column<ui->tableWidget->columnCount(); column++)
+        {
+          ui->tableWidget->setItem(row, column, new QTableWidgetItem());
+        }
+    }
+
+    QTableWidgetItem *item251 = new QTableWidgetItem("Item251");
+    item251->setCheckState(Qt::Checked);
+    item251->setText("Сопротивление ротора R2, Ом");
+    ui->tableWidget->setItem(0, 2, item251);
+
+    QTableWidgetItem *item252 = new QTableWidgetItem("Item252");
+    item252->setCheckState(Qt::Checked);
+    item252->setText("Индуктивность обмотки статора L1, Гн");
+    ui->tableWidget->setItem(1, 2, item252);
+
+    QTableWidgetItem *item253 = new QTableWidgetItem("Item253");
+    item253->setCheckState(Qt::Checked);
+    item253->setText("Индуктивность обмотки ротора L2, Гн");
+    ui->tableWidget->setItem(2, 2, item253);
+
+    QTableWidgetItem *item254 = new QTableWidgetItem("Item254");
+    item254->setCheckState(Qt::Checked);
+    item254->setText("Индуктивность взаимоиндукции Lm, Гн");
+    ui->tableWidget->setItem(3, 2, item254);
+
+    QTableWidgetItem *item255 = new QTableWidgetItem("Item255");
+    item255->setCheckState(Qt::Checked);
+    item255->setText("Напряжение фазы А, В");
+    ui->tableWidget->setItem(4, 2, item255);
+
+    QTableWidgetItem *item256 = new QTableWidgetItem("Item256");
+    item256->setCheckState(Qt::Checked);
+    item256->setText("Напряжение фазы B, В");
+    ui->tableWidget->setItem(5, 2, item256);
+
+    QTableWidgetItem *item257 = new QTableWidgetItem("Item257");
+    item257->setCheckState(Qt::Checked);
+    item257->setText("Напряжение фазы C, В");
+    ui->tableWidget->setItem(6, 2, item257);
+
+    QTableWidgetItem *item258 = new QTableWidgetItem("Item258");
+    item258->setCheckState(Qt::Checked);
+    item258->setText("Ток фазы А, А");
+    ui->tableWidget->setItem(7, 2, item258);
+
+    QTableWidgetItem *item259 = new QTableWidgetItem("Item259");
+    item259->setCheckState(Qt::Checked);
+    item259->setText("Ток фазы B, А");
+    ui->tableWidget->setItem(8, 2, item259);
+
+    QTableWidgetItem *item260 = new QTableWidgetItem("Item260");
+    item260->setCheckState(Qt::Checked);
+    item260->setText("Ток фазы C, А");
+    ui->tableWidget->setItem(9, 2, item260);
+
+    QTableWidgetItem *item261 = new QTableWidgetItem("Item261");
+    item261->setCheckState(Qt::Checked);
+    item261->setText("Частота вращения, рад/с");
+    ui->tableWidget->setItem(10, 2, item261);
+
+    QTableWidgetItem *item262 = new QTableWidgetItem("Item262");
+    item262->setCheckState(Qt::Checked);
+    item262->setText("Момент на валу, Н*м");
+    ui->tableWidget->setItem(11, 2, item262);
+
+    QTableWidgetItem *item263 = new QTableWidgetItem("Item263");
+    item263->setCheckState(Qt::Checked);
+    item263->setText("Момент Мс, Н*м");
+    ui->tableWidget->setItem(12, 2, item263);
+
+    QTableWidgetItem *item264 = new QTableWidgetItem("Item264");
+    item264->setCheckState(Qt::Checked);
+    item264->setText("Станина, °C");
+    ui->tableWidget->setItem(13, 2, item264);
+
+    QTableWidgetItem *item265 = new QTableWidgetItem("Item265");
+    item265->setCheckState(Qt::Checked);
+    item265->setText("Подшипниковый узел справа сзади, °C");
+    ui->tableWidget->setItem(14, 2, item265);
+
+    QTableWidgetItem *item266 = new QTableWidgetItem("Item266");
+    item266->setCheckState(Qt::Checked);
+    item266->setText("Лобовая часть слева спереди, °C");
+    ui->tableWidget->setItem(15, 2, item266);
+
+    QTableWidgetItem *item267 = new QTableWidgetItem("Item267");
+    item267->setCheckState(Qt::Checked);
+    item267->setText("Подшипниковый узел слева спереди, °C");
+    ui->tableWidget->setItem(16, 2, item267);
+
+    QTableWidgetItem *item268 = new QTableWidgetItem("Item268");
+    item268->setCheckState(Qt::Checked);
+    item268->setText("Лобовая часть слева сзади, °C");
+    ui->tableWidget->setItem(17, 2, item268);
+
+    QTableWidgetItem *item269 = new QTableWidgetItem("Item269");
+    item269->setCheckState(Qt::Checked);
+    item269->setText("Станина, °C");
+    ui->tableWidget->setItem(18, 2, item269);
+
+    QTableWidgetItem *item270 = new QTableWidgetItem("Item270");
+    item270->setCheckState(Qt::Checked);
+    item270->setText("Лобовая часть справа спереди, °C");
+    ui->tableWidget->setItem(19, 2, item270);
+
+    QTableWidgetItem *item271 = new QTableWidgetItem("Item271");
+    item271->setCheckState(Qt::Checked);
+    item271->setText("Лобовая часть справа сзади, °C");
+    ui->tableWidget->setItem(20, 2, item271);
+
+    QTableWidgetItem *item272 = new QTableWidgetItem("Item272");
+    item272->setCheckState(Qt::Checked);
+    item272->setText("Магнитопровод статора, °C");
+    ui->tableWidget->setItem(21, 2, item272);
+
+    QTableWidgetItem *item273 = new QTableWidgetItem("Item273");
+    item273->setCheckState(Qt::Checked);
+    item273->setText("Подшипниковый узел справа спереди, °C");
+    ui->tableWidget->setItem(22, 2, item273);
+
+    QTableWidgetItem *item274 = new QTableWidgetItem("Item274");
+    item274->setCheckState(Qt::Checked);
+    item274->setText("одшипниковый узел слева сзади, °C");
+    ui->tableWidget->setItem(23, 2, item274);
+
+    QTableWidgetItem *item275 = new QTableWidgetItem("Item275");
+    item275->setCheckState(Qt::Checked);
+    item275->setText("Ротор сверху, °C");
+    ui->tableWidget->setItem(24, 2, item275);
+
+    QTableWidgetItem *item276 = new QTableWidgetItem("Item276");
+    item276->setCheckState(Qt::Checked);
+    item276->setText("Ротор снизу, °C");
+    ui->tableWidget->setItem(25, 2, item276);
+
+    QTableWidgetItem *item277 = new QTableWidgetItem("Item277");
+    item277->setCheckState(Qt::Checked);
+    item277->setText("Станина слева, °C");
+    ui->tableWidget->setItem(26, 2, item277);
+
+    QTableWidgetItem *item278 = new QTableWidgetItem("Item278");
+    item278->setCheckState(Qt::Checked);
+    item278->setText("Станина справа, °C");
+    ui->tableWidget->setItem(27, 2, item278);
+
+
+    QTableWidgetItem *item279 = new QTableWidgetItem("Item279");
+    item279->setCheckState(Qt::Checked);
+    item279->setText("Вал, °C");
+    ui->tableWidget->setItem(28, 2, item279);
+
+    QTableWidgetItem *item280 = new QTableWidgetItem("Item280");
+    item280->setCheckState(Qt::Checked);
+    item280->setText("Клеммная коробка, °C");
+    ui->tableWidget->setItem(29, 2, item280);
+
+    for (int i=0; i<34; i++)
+    {
+        if (ui->tableWidget->item(i, 0) != 0)
+        {
+            ui->tableWidget->item(i, 0)->setText(QString("%1").arg(i+1));
+            ui->tableWidget->item(i, 0)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+
+    for (int i=0; i<34; i++)
+    {
+        if (ui->tableWidget->item(i, 3) != 0)
+        {
+            ui->tableWidget->item(i, 3)->setTextAlignment(Qt::AlignCenter);
+        }
+
+        if (ui->tableWidget->item(i, 4) != 0)
+        {
+            ui->tableWidget->item(i, 4)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+    ui->tableWidget->setItem(0, 3, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(0, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(1, 3, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(1, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(2, 3, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(2, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(3, 3, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(3, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(4, 3, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(4, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(5, 3, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(5, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(6, 3, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(6, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(7, 3, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(7, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(8, 3, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(8, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(9, 3, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(9, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(10, 3, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(10, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(11, 3, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(11, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(12, 3, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(12, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(13, 3, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(13, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(14, 3, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(14, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(15, 3, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(15, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(16, 3, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(16, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(17, 3, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(17, 4, new QTableWidgetItem(QString("%1").arg(0)));
+
+    ui->tableWidget->setItem(18, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(18, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(19, 3, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(19, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(20, 3, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(20, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(21, 3, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(21, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(22, 3, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(22, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(23, 3, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(23, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(24, 3, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(24, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(25, 3, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(25, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(26, 3, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(26, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(27, 3, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(27, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(28, 3, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(28, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(29, 3, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(29, 4, new QTableWidgetItem(QString("%1").arg(0)));
+
+    dataLineColors.append(Qt::red);
+    dataLineColors.append(Qt::green);
+    dataLineColors.append(Qt::cyan);
+    dataLineColors.append(Qt::yellow);
+    dataLineColors.append(Qt::red);
+    dataLineColors.append(Qt::green);
+    dataLineColors.append(Qt::cyan);
+    dataLineColors.append(Qt::yellow);
+    dataLineColors.append(Qt::red);
+    dataLineColors.append(Qt::green);
+    dataLineColors.append(Qt::cyan);
+    dataLineColors.append(Qt::yellow);
+    dataLineColors.append(Qt::yellow);
+    dataLineColors.append(Qt::red);
+    dataLineColors.append(Qt::green);
+    dataLineColors.append(Qt::cyan);
+    dataLineColors.append(Qt::yellow);
+    dataLineColors.append(Qt::red);
+    dataLineColors.append(Qt::green);
+    dataLineColors.append(Qt::cyan);
+    dataLineColors.append(Qt::yellow);
+    dataLineColors.append(Qt::yellow);
+    dataLineColors.append(Qt::red);
+    dataLineColors.append(Qt::green);
+    dataLineColors.append(Qt::cyan);
+    dataLineColors.append(Qt::yellow);
+    dataLineColors.append(Qt::red);
+    dataLineColors.append(Qt::green);
+    dataLineColors.append(Qt::cyan);
+    dataLineColors.append(Qt::yellow);
+
+    /*for (int i = 0; i < dataLineColors.size(); i++)
+    {
+        MainWindow* mainWnd = (MainWindow*)parent;
+        mainWnd->ui->widget_2->ui->plot->addDataLine(dataLineColors[i], 0);
+    }*/
+
+    for (int i = 0; i < dataLineColors.size(); i++)
+    {
+        ui->tableWidget->item(i, 1)->setBackground(dataLineColors[i]);
+    }
+    connect(ui->tableWidget, &QTableWidget::cellClicked,this, &MainWindow::setcolorincell);
+
+//    graph_Settings = new Graph_Settings(this);
 
     connect(item16->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot);
     connect(item88->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_2);
@@ -857,7 +1163,19 @@ void MainWindow::on_action_19_triggered()
 
 void MainWindow::on_action_5_triggered()
 {
-    ui->groupBox->hide();
+//    if ((item88->text() != "Внутренний источник данных")&&
+//        (item88->text() != "Осциллограф")&&(item88->text() != "Чтение данных из файла для идентификации параметров схемы замещения"))
+//    {
+//        QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
+//    }
+//    else
+//    {
+    ui->tabWidget->show();
+    ui->tabWidget->setCurrentIndex( 1 );
+    QPixmap pixmap(":/system_icons/data/img/system_icons/go-previous.svg");
+    QIcon ButtonIcon_1(pixmap);
+    ui->pushButton_5->setIcon(ButtonIcon_1);
+    ui->stackedWidget->hide();
     QModelIndex myIndex, myIndex2, myIndex3,myIndex4,myIndex5,myIndex6,myIndex7;
     myIndex = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 2, QModelIndex());
     base.P_nom=ui->widget->ui->tableView->model()->data(myIndex).toDouble();
@@ -878,6 +1196,9 @@ void MainWindow::on_action_5_triggered()
     ui->action_5->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
     ui->action_9->setEnabled(true);
     ui->widget_2->raschet_f();
+//    }
+
+
 }
 
 void MainWindow::on_action_9_triggered()
@@ -889,6 +1210,12 @@ void MainWindow::on_action_9_triggered()
 
 void MainWindow::on_action_20_triggered()
 {
+    ui->tabWidget->show();
+    ui->tabWidget->setCurrentIndex( 2 );
+    QPixmap pixmap(":/system_icons/data/img/system_icons/go-previous.svg");
+    QIcon ButtonIcon_1(pixmap);
+    ui->pushButton_5->setIcon(ButtonIcon_1);
+    ui->stackedWidget->hide();
     base.R1 = ui->widget_2->ui->lineEdit_12->text().toDouble();
     base.R2 = ui->widget_2->ui->lineEdit_11->text().toDouble();
     base.L1 = ui->widget_2->ui->lineEdit_10->text().toDouble();
@@ -926,72 +1253,72 @@ void MainWindow::on_action_22_triggered()
     screen->geometry()));
 }
 
-Graph_Settings::Graph_Settings(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::graph_Settings)
-{
-    ui->setupUi(this);
-    ui->tableWidget->setRowCount(30); //задание количества строк таблицы
-    ui->tableWidget->setColumnCount(5); //задание количества столбцов
-    QStringList name2; //объявление указателя на тип QStringList
-    name2 << "№" << "Цвет" << "Свойство" << "Смещение" << "Масштаб"; //перечисление заголовков
-    ui->tableWidget->setHorizontalHeaderLabels(name2); //установка заголовков в таблицу
-    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents); //Устанавливает ограничения на то, как размер заголовка может быть изменен до тех, которые описаны в данном режиме
-    ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
-    ui->tableWidget->setSelectionMode(QAbstractItemView :: NoSelection);
-    ui->tableWidget->verticalHeader()->setVisible(false);
-    ui->tableWidget->resizeColumnsToContents();
-    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->tableWidget->setColumnWidth(0, 100);
+//Graph_Settings::Graph_Settings(QWidget *parent) :
+//    QDialog(parent),
+//    ui(new Ui::graph_Settings)
+//{
+//    ui->setupUi(this);
+//    ui->tableWidget->setRowCount(30); //задание количества строк таблицы
+//    ui->tableWidget->setColumnCount(5); //задание количества столбцов
+//    QStringList name2; //объявление указателя на тип QStringList
+//    name2 << "№" << "Цвет" << "Свойство" << "Смещение" << "Масштаб"; //перечисление заголовков
+//    ui->tableWidget->setHorizontalHeaderLabels(name2); //установка заголовков в таблицу
+//    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents); //Устанавливает ограничения на то, как размер заголовка может быть изменен до тех, которые описаны в данном режиме
+//    ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
+//    ui->tableWidget->setSelectionMode(QAbstractItemView :: NoSelection);
+//    ui->tableWidget->verticalHeader()->setVisible(false);
+//    ui->tableWidget->resizeColumnsToContents();
+//    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+//    ui->tableWidget->setColumnWidth(0, 100);
 
-    for(int row = 0; row<ui->tableWidget->rowCount(); row++)
-    {
-        for(int column = 0; column<ui->tableWidget->columnCount(); column++)
-        {
-          ui->tableWidget->setItem(row, column, new QTableWidgetItem());
-        }
-    }
+//    for(int row = 0; row<ui->tableWidget->rowCount(); row++)
+//    {
+//        for(int column = 0; column<ui->tableWidget->columnCount(); column++)
+//        {
+//          ui->tableWidget->setItem(row, column, new QTableWidgetItem());
+//        }
+//    }
 
-    ui->tableWidget->setItem(0, 2, new QTableWidgetItem("Сопротивление ротора R2, Ом"));
-    ui->tableWidget->setItem(1, 2, new QTableWidgetItem("Индуктивность обмотки статора L1, Гн"));
-    ui->tableWidget->setItem(2, 2, new QTableWidgetItem("Индуктивность обмотки ротора L2, Гн"));
-    ui->tableWidget->setItem(3, 2, new QTableWidgetItem("Индуктивность взаимоиндукции Lm, Гн"));
-    ui->tableWidget->setItem(4, 2, new QTableWidgetItem("Напряжение фазы А, В"));
-    ui->tableWidget->setItem(5, 2, new QTableWidgetItem("Напряжение фазы B, В"));
-    ui->tableWidget->setItem(6, 2, new QTableWidgetItem("Напряжение фазы C, В"));
-    ui->tableWidget->setItem(7, 2, new QTableWidgetItem("Ток фазы А, А"));
-    ui->tableWidget->setItem(8, 2, new QTableWidgetItem("Ток фазы B, А"));
-    ui->tableWidget->setItem(9, 2, new QTableWidgetItem("Ток фазы C, А"));
-    ui->tableWidget->setItem(10, 2, new QTableWidgetItem("Частота вращения, рад/с"));
-    ui->tableWidget->setItem(11, 2, new QTableWidgetItem("Момент на валу, Н*м"));
-    ui->tableWidget->setItem(12, 2, new QTableWidgetItem("Момент Мс, Н*м"));
-    ui->tableWidget->setItem(13,  2, new QTableWidgetItem("Станина, °C"));
-    ui->tableWidget->setItem(14,  2, new QTableWidgetItem("Подшипниковый узел справа сзади, °C"));
-    ui->tableWidget->setItem(15,  2, new QTableWidgetItem("Лобовая часть слева спереди, °C"));
-    ui->tableWidget->setItem(16,  2, new QTableWidgetItem("Подшипниковый узел слева спереди, °C"));
-    ui->tableWidget->setItem(17,  2, new QTableWidgetItem("Лобовая часть слева сзади, °C"));
-    ui->tableWidget->setItem(18,  2, new QTableWidgetItem("Станина, °C"));
-    ui->tableWidget->setItem(19,  2, new QTableWidgetItem("Лобовая часть справа спереди, °C"));
-    ui->tableWidget->setItem(20,  2, new QTableWidgetItem("Лобовая часть справа сзади, °C"));
-    ui->tableWidget->setItem(21,  2, new QTableWidgetItem("Магнитопровод статора, °C"));
-    ui->tableWidget->setItem(22,  2, new QTableWidgetItem("Подшипниковый узел справа спереди, °C"));
-    ui->tableWidget->setItem(23, 2, new QTableWidgetItem("Подшипниковый узел слева сзади, °C"));
-    ui->tableWidget->setItem(24, 2, new QTableWidgetItem("Ротор сверху, °C"));
-    ui->tableWidget->setItem(25, 2, new QTableWidgetItem("Ротор снизу, °C"));
-    ui->tableWidget->setItem(26, 2, new QTableWidgetItem("Станина слева, °C"));
-    ui->tableWidget->setItem(27, 2, new QTableWidgetItem("Станина справа, °C"));
-    ui->tableWidget->setItem(28, 2, new QTableWidgetItem("Вал, °C"));
-    ui->tableWidget->setItem(29, 2, new QTableWidgetItem("Клеммная коробка, °C"));
+//    ui->tableWidget->setItem(0, 2, new QTableWidgetItem("Сопротивление ротора R2, Ом"));
+//    ui->tableWidget->setItem(1, 2, new QTableWidgetItem("Индуктивность обмотки статора L1, Гн"));
+//    ui->tableWidget->setItem(2, 2, new QTableWidgetItem("Индуктивность обмотки ротора L2, Гн"));
+//    ui->tableWidget->setItem(3, 2, new QTableWidgetItem("Индуктивность взаимоиндукции Lm, Гн"));
+//    ui->tableWidget->setItem(4, 2, new QTableWidgetItem("Напряжение фазы А, В"));
+//    ui->tableWidget->setItem(5, 2, new QTableWidgetItem("Напряжение фазы B, В"));
+//    ui->tableWidget->setItem(6, 2, new QTableWidgetItem("Напряжение фазы C, В"));
+//    ui->tableWidget->setItem(7, 2, new QTableWidgetItem("Ток фазы А, А"));
+//    ui->tableWidget->setItem(8, 2, new QTableWidgetItem("Ток фазы B, А"));
+//    ui->tableWidget->setItem(9, 2, new QTableWidgetItem("Ток фазы C, А"));
+//    ui->tableWidget->setItem(10, 2, new QTableWidgetItem("Частота вращения, рад/с"));
+//    ui->tableWidget->setItem(11, 2, new QTableWidgetItem("Момент на валу, Н*м"));
+//    ui->tableWidget->setItem(12, 2, new QTableWidgetItem("Момент Мс, Н*м"));
+//    ui->tableWidget->setItem(13,  2, new QTableWidgetItem("Станина, °C"));
+//    ui->tableWidget->setItem(14,  2, new QTableWidgetItem("Подшипниковый узел справа сзади, °C"));
+//    ui->tableWidget->setItem(15,  2, new QTableWidgetItem("Лобовая часть слева спереди, °C"));
+//    ui->tableWidget->setItem(16,  2, new QTableWidgetItem("Подшипниковый узел слева спереди, °C"));
+//    ui->tableWidget->setItem(17,  2, new QTableWidgetItem("Лобовая часть слева сзади, °C"));
+//    ui->tableWidget->setItem(18,  2, new QTableWidgetItem("Станина, °C"));
+//    ui->tableWidget->setItem(19,  2, new QTableWidgetItem("Лобовая часть справа спереди, °C"));
+//    ui->tableWidget->setItem(20,  2, new QTableWidgetItem("Лобовая часть справа сзади, °C"));
+//    ui->tableWidget->setItem(21,  2, new QTableWidgetItem("Магнитопровод статора, °C"));
+//    ui->tableWidget->setItem(22,  2, new QTableWidgetItem("Подшипниковый узел справа спереди, °C"));
+//    ui->tableWidget->setItem(23, 2, new QTableWidgetItem("Подшипниковый узел слева сзади, °C"));
+//    ui->tableWidget->setItem(24, 2, new QTableWidgetItem("Ротор сверху, °C"));
+//    ui->tableWidget->setItem(25, 2, new QTableWidgetItem("Ротор снизу, °C"));
+//    ui->tableWidget->setItem(26, 2, new QTableWidgetItem("Станина слева, °C"));
+//    ui->tableWidget->setItem(27, 2, new QTableWidgetItem("Станина справа, °C"));
+//    ui->tableWidget->setItem(28, 2, new QTableWidgetItem("Вал, °C"));
+//    ui->tableWidget->setItem(29, 2, new QTableWidgetItem("Клеммная коробка, °C"));
 
 
-    for (int i=0; i<34; i++)
-    {
-        if (ui->tableWidget->item(i, 0) != 0)
-        {
-            ui->tableWidget->item(i, 0)->setText(QString("%1").arg(i+1));
-            ui->tableWidget->item(i, 0)->setTextAlignment(Qt::AlignCenter);
-        }
-    }
+//    for (int i=0; i<34; i++)
+//    {
+//        if (ui->tableWidget->item(i, 0) != 0)
+//        {
+//            ui->tableWidget->item(i, 0)->setText(QString("%1").arg(i+1));
+//            ui->tableWidget->item(i, 0)->setTextAlignment(Qt::AlignCenter);
+//        }
+//    }
 
 //    for (int i=0; i<4; i++)
 //    {
@@ -1001,10 +1328,10 @@ Graph_Settings::Graph_Settings(QWidget *parent) :
 //        }
 //    }
 
-    dataLineColors.append(Qt::red);
-    dataLineColors.append(Qt::green);
-    dataLineColors.append(Qt::cyan);
-    dataLineColors.append(Qt::yellow);
+//    dataLineColors.append(Qt::red);
+//    dataLineColors.append(Qt::green);
+//    dataLineColors.append(Qt::cyan);
+//    dataLineColors.append(Qt::yellow);
 
     /*for (int i = 0; i < dataLineColors.size(); i++)
     {
@@ -1012,42 +1339,48 @@ Graph_Settings::Graph_Settings(QWidget *parent) :
         mainWnd->ui->widget_2->ui->plot->addDataLine(dataLineColors[i], 0);
     }*/
 
-    for (int i = 0; i < dataLineColors.size(); i++)
-    {
-        ui->tableWidget->item(i, 1)->setBackground(dataLineColors[i]);
-    }
-    connect(ui->tableWidget, &QTableWidget::cellClicked,this, &Graph_Settings::setcolorincell);
+//    for (int i = 0; i < dataLineColors.size(); i++)
+//    {
+//        ui->tableWidget->item(i, 1)->setBackground(dataLineColors[i]);
+//    }
+//  //  connect(ui->tableWidget, &QTableWidget::cellClicked,this, &Graph_Settings::setcolorincell);
 
-}
+//}
 
-void Graph_Settings::on_pushButton_clicked()
-{
-    close();
-}
+//void Graph_Settings::on_pushButton_clicked()
+//{
+//    close();
+//}
 
-void Graph_Settings::setcolorincell(int row, int column)
-{
-    if (column == 1)
-    {
-        row = ui->tableWidget->currentRow();
-        QColor chosenColor = QColorDialog::getColor(); //return the color chosen by user
-        ui->tableWidget->item(row, column)->setBackground(chosenColor);
-//        ui->plot->setDataLineColor(row, chosenColor);
-        dataLineColors[row] = chosenColor;
-        repaint();
-    }
-}
+//void Graph_Settings::setcolorincell(int row, int column)
+//{
+//    if (column == 1)
+//    {
+//        row = ui->tableWidget->currentRow();
+//        QColor chosenColor = QColorDialog::getColor(); //return the color chosen by user
+//        ui->tableWidget->item(row, column)->setBackground(chosenColor);
+////        ui->plot->setDataLineColor(row, chosenColor);
+//        dataLineColors[row] = chosenColor;
+//        repaint();
+//    }
+//}
 
 void MainWindow::on_action_23_triggered()
 {
-    QScreen *screen2 = QGuiApplication::primaryScreen();
-    graph_Settings->show();
-    graph_Settings->setGeometry(
-    QStyle::alignedRect(
-    Qt::LeftToRight,
-    Qt::AlignCenter,
-    graph_Settings->size(),
-    screen2->geometry()));
+//    QScreen *screen2 = QGuiApplication::primaryScreen();
+//    graph_Settings->show();
+//    graph_Settings->setGeometry(
+//    QStyle::alignedRect(
+//    Qt::LeftToRight,
+//    Qt::AlignCenter,
+//    graph_Settings->size(),
+//    screen2->geometry()));
+
+    QPixmap pixmap(":/system_icons/data/img/system_icons/go-next.svg");
+    QIcon ButtonIcon_2(pixmap);
+    ui->pushButton_5->setIcon(ButtonIcon_2);
+    ui->stackedWidget->show();
+    ui->stackedWidget->setCurrentIndex( 1 );
 }
 
 AboutDialog::AboutDialog(QWidget *parent) :
@@ -1109,15 +1442,20 @@ void Settings::on_listWidget_itemSelectionChanged()
 
 void MainWindow::on_action_15_triggered()
 {
-    QScreen *screen = QGuiApplication::primaryScreen();
-        rsc2= new Settings(this);
-        rsc2->exec();
-        rsc2->setGeometry(
-            QStyle::alignedRect(
-            Qt::LeftToRight,
-            Qt::AlignCenter,
-            rsc2->size(),
-            screen->geometry()));
+//    QScreen *screen = QGuiApplication::primaryScreen();
+//        rsc2= new Settings(this);
+//        rsc2->exec();
+//        rsc2->setGeometry(
+//            QStyle::alignedRect(
+//            Qt::LeftToRight,
+//            Qt::AlignCenter,
+//            rsc2->size(),
+//            screen->geometry()));
+    QPixmap pixmap(":/system_icons//data/img/system_icons/go-next.svg");
+    QIcon ButtonIcon_2(pixmap);
+    ui->pushButton_5->setIcon(ButtonIcon_2);
+    ui->stackedWidget->show();
+    ui->stackedWidget->setCurrentIndex( 0 );
 }
 
 void MainWindow::modelItemChangedSlot(QStandardItem *item)
@@ -1858,11 +2196,32 @@ void MainWindow::on_LoadProgect_clicked()
     }
 }
 
-void MainWindow::on_PushButton_5_clicked(bool clicked)
+void MainWindow::on_PushButton_5_clicked(bool checked)
 {
-    if(clicked)
+    if(checked)
     {
-        ui->groupBox->setVisible(false);
+        QPixmap pixmap(":/system_icons/data/img/system_icons/go-previous.svg");
+        QIcon ButtonIcon_1(pixmap);
+        ui->pushButton_5->setIcon(ButtonIcon_1);
+    }
+    else
+    {
+        QPixmap pixmap(":/system_icons/data/img/system_icons/go-next.svg");
+        QIcon ButtonIcon_2(pixmap);
+        ui->pushButton_5->setIcon(ButtonIcon_2);
+    }
+}
+
+void MainWindow::setcolorincell(int row, int column)
+{
+    if (column == 1)
+    {
+        row = ui->tableWidget->currentRow();
+        QColor chosenColor = QColorDialog::getColor(); //return the color chosen by user
+        ui->tableWidget->item(row, column)->setBackground(chosenColor);
+//        ui->plot->setDataLineColor(row, chosenColor);
+        dataLineColors[row] = chosenColor;
+        repaint();
     }
 }
 
@@ -1871,4 +2230,8 @@ void MainWindow::on_PushButton_5_clicked(bool clicked)
 
 
 
+void MainWindow::on_pushButton_5_clicked(bool checked)
+{
+
+}
 
