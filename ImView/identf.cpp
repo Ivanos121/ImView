@@ -150,28 +150,28 @@ void identf::raschet_f()
     maxR2 = -DBL_MAX;
     middleR2 = 0.0;
 
-    auto uiDatasWindow = wf->ui->widget->ui;
+   // auto uiDatasWindow = wf->ui->widget->ui;
 
-//    if(uiDatasWindow->oscNoSpeed->isChecked())
-//    {
-//        dataSource = new DataSource_file();
-//        connect(dataSource, &DataSource::ready, this, &identf::realtimeDataSlot);
-//    }
-
-//    if(uiDatasWindow->oscWithSpeed->isChecked())
-//    {
-//        //dataSource = new DataSource();
-//        //connect(dataSource, &DataSource::ready, this, &identf::realtimeDataSlot);
-//    }
-
-    //if(uiDatasWindow->internalDataSource->isChecked())
-    if(wf->item88->isEditable())
+    //Режим Осциллограф
+    if(wf->item88->text() == "Осциллограф")
     {
-        if (wf->item88->text() == "Внутренний источник данных")
-        {
+        dataSource = new DataSourceBVAS();
+        connect(dataSource, &DataSource::ready, this, &identf::realtimeDataSlot);
+    }
+
+    //Режим Внутренний источник данных
+    if (wf->item88->text() == "Внутренний источник данных")
+    {
         dataSource = new DataSource_el(base.P_nom, base.n_nom, base.U_fnom, base.cosf_nom, base.kpd_nom, base.muk, base.n_0);
         connect(dataSource, &DataSource::ready, this, &identf::realtimeDataSlot);
-        }
+    }
+
+    if(wf->item88->text() == "Чтение данных из файла для идентификации параметров схемы замещения")
+    {
+        QString dataSourceFileName = wf->item106->text();
+        base.dataSourceFilename = dataSourceFileName;
+        dataSource = new DataSource_file();
+        connect(dataSource, &DataSource::ready, this, &identf::realtimeDataSlot);
     }
 
     dataSource->init();

@@ -347,17 +347,14 @@ void electromagn::realtimeDataSlot()
 //            Model_el.rasch();
 //        }
 
-        if(wf->item88->isEditable())
-        {
-            double b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16;
-            if (wf->item88->text() == "Внутренний источник данных")
-            {
+    double b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16;
+    if (wf->item88->text() == "Внутренний источник данных")
+    {
 
-                for (int i = 0; i < 1000; i++)
-                {
-                    Model_el.rasch();
-                }
-          }
+        for (int i = 0; i < 1000; i++)
+        {
+            Model_el.rasch();
+        }
 
         //Считывание значения времени цикла Тц
 
@@ -770,7 +767,7 @@ void electromagn::realtimeDataSlot()
         }
     }
 
-    if((ui->radioButton->isChecked()) || (ui->radioButton_2->isChecked()) || (ui->radioButton_4->isChecked()))
+    /*if((ui->radioButton->isChecked()) || (ui->radioButton_2->isChecked()) || (ui->radioButton_4->isChecked()))
     {
         nabludatel->rasch(dataSource);
 
@@ -1121,7 +1118,7 @@ void electromagn::realtimeDataSlot()
         ui->plot->addPoint(8, key, a18+a15*nabludatel->get_Mc());
     }
 
-    }
+    }*/
 }
 
 void electromagn::raschet_el()
@@ -1204,20 +1201,16 @@ void electromagn::raschet_el()
 
 //    }
     //radiobutton_3
-    if(wf->item88->isEditable())
+    if (wf->item88->text() == "Внутренний источник данных")
     {
-        if (wf->item88->text() == "Внутренний источник данных")
-        {
-            Model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, combo->currentIndex(),
-                                     ui->tableWidget_3->model()->index(3,1).data().toDouble(),
-                                     ui->tableWidget_3->model()->index(2,1).data().toDouble(),
-                                     ui->tableWidget_3->model()->index(4,1).data().toDouble());
-                                     connect(&Model_el, &Model_el::ready, this, &electromagn::realtimeDataSlot);
-        }
-
+        Model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, combo->currentIndex(),
+                         ui->tableWidget_3->model()->index(3,1).data().toDouble(),
+                         ui->tableWidget_3->model()->index(2,1).data().toDouble(),
+                         ui->tableWidget_3->model()->index(4,1).data().toDouble());
+        connect(&Model_el, &Model_el::ready, this, &electromagn::realtimeDataSlot);
     }
 
-    if(ui->radioButton_4->isChecked())
+    /*if(ui->radioButton_4->isChecked())
     {
         dataSource = new DataSource_file();
 
@@ -1226,7 +1219,7 @@ void electromagn::raschet_el()
         nabludatel->init(base.R1, base.R2, base.L1, base.L2, base.Lm);
         connect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
 
-    }
+    }*/
 
     ui->plot->clear();
     for (int i = 0; i < dataLineColors.size(); i++)
