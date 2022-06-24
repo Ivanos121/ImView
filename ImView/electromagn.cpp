@@ -1201,7 +1201,7 @@ void electromagn::raschet_el()
 
 //    }
     //radiobutton_3
-    if (wf->item88->text() == "Внутренний источник данных")
+    if (wf->item106->text() == "Внутренний источник данных")
     {
         Model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, combo->currentIndex(),
                          ui->tableWidget_3->model()->index(3,1).data().toDouble(),

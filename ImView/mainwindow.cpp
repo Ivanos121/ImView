@@ -70,7 +70,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->pushButton_5->setCheckable(true);
     ui->pushButton_5->setChecked(true);
     QObject::connect(ui->pushButton_5, SIGNAL(clicked(bool)), ui->stackedWidget, SLOT(setVisible(bool)));
-    connect(ui->pushButton_5, SIGNAL(clicked(bool)), this, SLOT(on_pushButton_5_clicked(bool)));
+    connect(ui->pushButton_5, &QPushButton::clicked, this, &MainWindow::on_pushButton_5_clicked);
 
     ui->stackedWidget->setCurrentIndex(0);
 
@@ -1163,40 +1163,39 @@ void MainWindow::on_action_19_triggered()
 
 void MainWindow::on_action_5_triggered()
 {
-//    if ((item88->text() != "Внутренний источник данных")&&
-//        (item88->text() != "Осциллограф")&&(item88->text() != "Чтение данных из файла для идентификации параметров схемы замещения"))
-//    {
-//        QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
-//    }
-//    else
-//    {
-    ui->tabWidget->show();
-    ui->tabWidget->setCurrentIndex( 1 );
-    QPixmap pixmap(":/system_icons/data/img/system_icons/go-previous.svg");
-    QIcon ButtonIcon_1(pixmap);
-    ui->pushButton_5->setIcon(ButtonIcon_1);
-    ui->stackedWidget->hide();
-    QModelIndex myIndex, myIndex2, myIndex3,myIndex4,myIndex5,myIndex6,myIndex7;
-    myIndex = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 2, QModelIndex());
-    base.P_nom=ui->widget->ui->tableView->model()->data(myIndex).toDouble();
-    myIndex2 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 3, QModelIndex());
-    base.n_nom=ui->widget->ui->tableView->model()->data(myIndex2).toDouble();
-    myIndex3 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 4, QModelIndex());
-    base.U_fnom=ui->widget->ui->tableView->model()->data(myIndex3).toDouble();
-    myIndex4 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 5, QModelIndex());
-    base.cosf_nom=ui->widget->ui->tableView->model()->data(myIndex4).toDouble();
-    myIndex5 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 6, QModelIndex());
-    base.kpd_nom=ui->widget->ui->tableView->model()->data(myIndex5).toDouble();
-    myIndex6 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 7, QModelIndex());
-    base.muk=ui->widget->ui->tableView->model()->data(myIndex6).toDouble();
-    myIndex7 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 8, QModelIndex());
-    base.n_0=ui->widget->ui->tableView->model()->data(myIndex7).toDouble();
-//qDebug() << QString("%1").arg(base.P_nom);
+    if (item88->text() == "Выбрать тип эксперимента")
+    {
+        QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
+    }
+    else
+    {
+        ui->tabWidget->show();
+        ui->tabWidget->setCurrentIndex( 1 );
+        QPixmap pixmap(":/system_icons/data/img/system_icons/go-previous.svg");
+        QIcon ButtonIcon_1(pixmap);
+        ui->pushButton_5->setIcon(ButtonIcon_1);
+        ui->stackedWidget->hide();
+        QModelIndex myIndex, myIndex2, myIndex3,myIndex4,myIndex5,myIndex6,myIndex7;
+        myIndex = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 2, QModelIndex());
+        base.P_nom=ui->widget->ui->tableView->model()->data(myIndex).toDouble();
+        myIndex2 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 3, QModelIndex());
+        base.n_nom=ui->widget->ui->tableView->model()->data(myIndex2).toDouble();
+        myIndex3 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 4, QModelIndex());
+        base.U_fnom=ui->widget->ui->tableView->model()->data(myIndex3).toDouble();
+        myIndex4 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 5, QModelIndex());
+        base.cosf_nom=ui->widget->ui->tableView->model()->data(myIndex4).toDouble();
+        myIndex5 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 6, QModelIndex());
+        base.kpd_nom=ui->widget->ui->tableView->model()->data(myIndex5).toDouble();
+        myIndex6 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 7, QModelIndex());
+        base.muk=ui->widget->ui->tableView->model()->data(myIndex6).toDouble();
+        myIndex7 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 8, QModelIndex());
+        base.n_0=ui->widget->ui->tableView->model()->data(myIndex7).toDouble();
+        //qDebug() << QString("%1").arg(base.P_nom);
 
-    ui->action_5->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
-    ui->action_9->setEnabled(true);
-    ui->widget_2->raschet_f();
-//    }
+        ui->action_5->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
+        ui->action_9->setEnabled(true);
+        ui->widget_2->raschet_f();
+    }
 
 
 }
@@ -2196,22 +2195,6 @@ void MainWindow::on_LoadProgect_clicked()
     }
 }
 
-void MainWindow::on_PushButton_5_clicked(bool checked)
-{
-    if(checked)
-    {
-        QPixmap pixmap(":/system_icons/data/img/system_icons/go-previous.svg");
-        QIcon ButtonIcon_1(pixmap);
-        ui->pushButton_5->setIcon(ButtonIcon_1);
-    }
-    else
-    {
-        QPixmap pixmap(":/system_icons/data/img/system_icons/go-next.svg");
-        QIcon ButtonIcon_2(pixmap);
-        ui->pushButton_5->setIcon(ButtonIcon_2);
-    }
-}
-
 void MainWindow::setcolorincell(int row, int column)
 {
     if (column == 1)
@@ -2225,13 +2208,19 @@ void MainWindow::setcolorincell(int row, int column)
     }
 }
 
-
-
-
-
-
 void MainWindow::on_pushButton_5_clicked(bool checked)
 {
-
+    if(checked)
+    {
+        QPixmap pixmap(":/system_icons/data/img/system_icons/go-next.svg");
+        QIcon ButtonIcon_1(pixmap);
+        ui->pushButton_5->setIcon(ButtonIcon_1);
+    }
+    else
+    {
+        QPixmap pixmap(":/system_icons/data/img/system_icons/go-previous.svg");
+        QIcon ButtonIcon_2(pixmap);
+        ui->pushButton_5->setIcon(ButtonIcon_2);
+    }
 }
 
