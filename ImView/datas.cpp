@@ -93,20 +93,20 @@ void datas::on_deleteDannie_clicked()
     }
 }
 
-void datas::on_dannieIdent_clicked()
-{
-    QSettings settings;
-    dataSourceFilename = QFileDialog::getOpenFileName(this,
-                                QString::fromUtf8("Открыть файл"),
+//void datas::on_dannieIdent_clicked()
+//{
+//    QSettings settings;
+//    dataSourceFilename = QFileDialog::getOpenFileName(this,
+//                                QString::fromUtf8("Открыть файл"),
 
-                                settings.value("dataSource/LastPath", "").toString(),
-                                "txt files (*.txt);;All files (*.*)");
+//                                settings.value("dataSource/LastPath", "").toString(),
+//                                "txt files (*.txt);;All files (*.*)");
 
-    if (!dataSourceFilename.isEmpty())
-    {
-        settings.setValue("dataSource/LastPath",  QFileInfo(dataSourceFilename).absoluteDir().absolutePath());
-    }
-}
+//    if (!dataSourceFilename.isEmpty())
+//    {
+//        settings.setValue("dataSource/LastPath",  QFileInfo(dataSourceFilename).absoluteDir().absolutePath());
+//    }
+//}
 
 void datas::on_saveDannie_clicked()
 {
@@ -134,48 +134,9 @@ void datas::on_enterDannie_clicked()
     screen->geometry()));
 }
 
-//void datas::on_oscNoSpeed_toggled(bool checked)
-//{
-//    if (checked)
-//    {
-//       ui->dannieIdent->setEnabled(false);
-//       ui->dannieNabl->setEnabled(false);
-//    }
-//}
 
-//void datas::on_oscWithSpeed_toggled(bool checked)
-//{
-//    if (checked)
-//    {
-//       ui->dannieIdent->setEnabled(true);
-//       ui->dannieNabl->setEnabled(false);
-//    }
-//}
 
-//void datas::on_internalDataSource_toggled(bool checked)
-//{
-//    if (checked)
-//    {
-//       ui->dannieIdent->setEnabled(false);
-//       ui->dannieNabl->setEnabled(false);
-//    }
-//}
 
-//void datas::on_ReadNabl_toggled(bool checked)
-//{
-//    if (checked)
-//    {
-//       ui->dannieIdent->setEnabled(false);
-//       ui->dannieNabl->setEnabled(true);
-//    }
-//}
 
-//void datas::on_radioButton_4_toggled(bool checked)
-//{
-//    if (checked)
-//    {
-//       ui->dannieIdent->setEnabled(false);
-//       ui->dannieNabl->setEnabled(false);
-//    }
-//}
+
 

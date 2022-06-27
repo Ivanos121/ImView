@@ -30,8 +30,6 @@ public:
 public slots:
     void realtimeDataSlot();
     void raschet_f();
-    void on_radioButton_2_toggled(bool checked);
-    void on_radioButton_toggled(bool checked);
 
 public:
     Ui::identf *ui;
@@ -41,13 +39,6 @@ public:
     DataSource *dataSource;
     MainWindow *wf;
     QString dataSourceFilename;
-
-private:
-
-private slots:
-    void on_pushButton_clicked();
-    void on_pushButton_2_clicked();
-    void on_radioButton_clicked();
 };
 
 #endif // IDENTF_H

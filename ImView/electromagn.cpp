@@ -357,25 +357,28 @@ void electromagn::realtimeDataSlot()
         }
 
         //Считывание значения времени цикла Тц
+        Model_el.Tc=wf->item22->text().toDouble();
 
-        if(ui->tableWidget_3->item(1,1)!=0)
-        {
-            Model_el.Tc=ui->tableWidget_3->item(1,1)->text().toDouble();
-        }
+//        if(ui->tableWidget_3->item(1,1)!=0)
+//        {
+//            Model_el.Tc=ui->tableWidget_3->item(1,1)->text().toDouble();
+//        }
 
         //Считывание значения времени работы tp
+        Model_el.tp=wf->item24->text().toDouble();
 
-        if(ui->tableWidget_3->item(2,1)!=0)
-        {
-            Model_el.tp=ui->tableWidget_3->item(2,1)->text().toDouble();
-        }
+        //        if(ui->tableWidget_3->item(2,1)!=0)
+        //        {
+        //            Model_el.tp=ui->tableWidget_3->item(2,1)->text().toDouble();
+        //        }
 
         //Считывание значения времени работы Mc
+        Model_el.Mc=wf->item90->text().toDouble();
 
-        if(ui->tableWidget_3->item(3,1)!=0)
-        {
-            Model_el.Mc_n=ui->tableWidget_3->item(3,1)->text().toDouble();
-        }
+        //        if(ui->tableWidget_3->item(3,1)!=0)
+        //        {
+        //            Model_el.Mc_n=ui->tableWidget_3->item(3,1)->text().toDouble();
+        //        }
 
         //Считывание коэффициента изменения амплитуды напряжения фазы А
 
@@ -1201,13 +1204,24 @@ void electromagn::raschet_el()
 
 //    }
     //radiobutton_3
-    if (wf->item106->text() == "Внутренний источник данных")
+    if (wf->item88->text() == "Внутренний источник данных")
     {
+//        Model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, combo->currentIndex(),
+//                         ui->tableWidget_3->model()->index(3,1).data().toDouble(),
+//                         ui->tableWidget_3->model()->index(2,1).data().toDouble(),
+//                         ui->tableWidget_3->model()->index(4,1).data().toDouble());
         Model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, combo->currentIndex(),
-                         ui->tableWidget_3->model()->index(3,1).data().toDouble(),
-                         ui->tableWidget_3->model()->index(2,1).data().toDouble(),
-                         ui->tableWidget_3->model()->index(4,1).data().toDouble());
+                         Model_el.Tc=wf->item22->text().toDouble(),
+                         Model_el.tp=wf->item24->text().toDouble(),
+                         Model_el.Mc=wf->item90->text().toDouble());
+
         connect(&Model_el, &Model_el::ready, this, &electromagn::realtimeDataSlot);
+
+
+
+
+
+
     }
 
     /*if(ui->radioButton_4->isChecked())

@@ -69,13 +69,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->pushButton_5->setCheckable(true);
     ui->pushButton_5->setChecked(true);
-    QObject::connect(ui->pushButton_5, SIGNAL(clicked(bool)), ui->stackedWidget, SLOT(setVisible(bool)));
+    QObject::connect(ui->pushButton_5, &QPushButton::clicked, ui->stackedWidget, &MainWindow::setVisible);
     connect(ui->pushButton_5, &QPushButton::clicked, this, &MainWindow::on_pushButton_5_clicked);
 
     ui->stackedWidget->setCurrentIndex(0);
 
-    connect(ui->action_15, SIGNAL(triggered()), this, SLOT(onButtonClicked()));
-    connect(ui->action_23, SIGNAL(triggered()), this, SLOT(onButtonClicked2()));
+    connect(ui->action_15, &QAction::triggered, this, &MainWindow::onButtonClicked);
+    connect(ui->action_23, &QAction::triggered, this, &MainWindow::onButtonClicked2);
 
     ui->treeView->setSelectionBehavior(QTreeView :: SelectRows); // Выбираем всю строку за раз
     ui->treeView->setSelectionMode(QTreeView :: SingleSelection); // Одиночный выбор, при этом вся строка над ним является одной строкой меню
@@ -1086,6 +1086,24 @@ MainWindow::MainWindow(QWidget *parent)
 
 //    graph_Settings = new Graph_Settings(this);
 
+    ui->lineEdit_8->setReadOnly(true);
+    ui->lineEdit_9->setReadOnly(true);
+    ui->lineEdit_10->setReadOnly(true);
+    ui->lineEdit_11->setReadOnly(true);
+    ui->lineEdit_12->setReadOnly(true);
+
+    ui->lineEdit_8->setAlignment(Qt::AlignCenter);
+    ui->lineEdit_9->setAlignment(Qt::AlignCenter);
+    ui->lineEdit_10->setAlignment(Qt::AlignCenter);
+    ui->lineEdit_11->setAlignment(Qt::AlignCenter);
+    ui->lineEdit_12->setAlignment(Qt::AlignCenter);
+    ui->lineEdit_13->setAlignment(Qt::AlignCenter);
+    ui->lineEdit_14->setAlignment(Qt::AlignCenter);
+    ui->lineEdit_15->setAlignment(Qt::AlignCenter);
+    ui->lineEdit_16->setAlignment(Qt::AlignCenter);
+    ui->lineEdit_17->setAlignment(Qt::AlignCenter);
+    ui->lineEdit_18->setAlignment(Qt::AlignCenter);
+
     connect(item16->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot);
     connect(item88->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_2);
     connect(item80->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_3);
@@ -1195,6 +1213,7 @@ void MainWindow::on_action_5_triggered()
         ui->action_5->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
         ui->action_9->setEnabled(true);
         ui->widget_2->raschet_f();
+
     }
 
 
@@ -1215,11 +1234,11 @@ void MainWindow::on_action_20_triggered()
     QIcon ButtonIcon_1(pixmap);
     ui->pushButton_5->setIcon(ButtonIcon_1);
     ui->stackedWidget->hide();
-    base.R1 = ui->widget_2->ui->lineEdit_12->text().toDouble();
-    base.R2 = ui->widget_2->ui->lineEdit_11->text().toDouble();
-    base.L1 = ui->widget_2->ui->lineEdit_10->text().toDouble();
-    base.L2 = ui->widget_2->ui->lineEdit_9->text().toDouble();
-    base.Lm = ui->widget_2->ui->lineEdit_8->text().toDouble();
+    base.R1 = ui->lineEdit_12->text().toDouble();
+    base.R2 = ui->lineEdit_11->text().toDouble();
+    base.L1 = ui->lineEdit_10->text().toDouble();
+    base.L2 = ui->lineEdit_9->text().toDouble();
+    base.Lm = ui->lineEdit_8->text().toDouble();
     ui->action_20->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
     ui->action_21->setEnabled(true);
     ui->widget_5->ui->widget_4->startTeplo();
@@ -2222,5 +2241,15 @@ void MainWindow::on_pushButton_5_clicked(bool checked)
         QIcon ButtonIcon_2(pixmap);
         ui->pushButton_5->setIcon(ButtonIcon_2);
     }
+}
+
+void MainWindow::onButtonClicked()
+{
+    ui->stackedWidget->setCurrentIndex( 0 );
+}
+
+void MainWindow::onButtonClicked2()
+{
+    ui->stackedWidget->setCurrentIndex( 1 );
 }
 

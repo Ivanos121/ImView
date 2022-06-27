@@ -31,55 +31,9 @@ identf::identf(QWidget *parent) :
     ui->plot->margin_left = 100;
     ui->plot->reset();
 
-    //dataTimer = new QTimer(this);
     time=new QElapsedTimer();
-    //ui->widget->setMaximumSize(ui->widget->maximumWidth(), ui->widget->maximumHeight());
-
-    // setup a timer that repeatedly calls MainWindow::realtimeDataSlot:
-   //connect(dataTimer, SIGNAL(timeout()), this, SLOT(realtimeDataSlot()));
-
-    //dataSource = new DataSource();
-    //connect(dataSource, &DataSource::ready, this, &identf::realtimeDataSlot);
 
     this->showMaximized();
-
-    ui->lineEdit_8->setReadOnly(true);
-    ui->lineEdit_9->setReadOnly(true);
-    ui->lineEdit_10->setReadOnly(true);
-    ui->lineEdit_11->setReadOnly(true);
-    ui->lineEdit_12->setReadOnly(true);
-
-    ui->lineEdit_8->setAlignment(Qt::AlignCenter);
-    ui->lineEdit_9->setAlignment(Qt::AlignCenter);
-    ui->lineEdit_10->setAlignment(Qt::AlignCenter);
-    ui->lineEdit_11->setAlignment(Qt::AlignCenter);
-    ui->lineEdit_12->setAlignment(Qt::AlignCenter);
-    ui->lineEdit_13->setAlignment(Qt::AlignCenter);
-    ui->lineEdit_14->setAlignment(Qt::AlignCenter);
-    ui->lineEdit_15->setAlignment(Qt::AlignCenter);
-    ui->lineEdit_16->setAlignment(Qt::AlignCenter);
-    ui->lineEdit_17->setAlignment(Qt::AlignCenter);
-    ui->lineEdit_18->setAlignment(Qt::AlignCenter);
-
-    ui->buttonGroup->setId(ui->radioButton,1);
-    ui->buttonGroup->setId(ui->radioButton_2,2);
-
-    if (ui->buttonGroup->checkedId() == 1)
-    {
-        ui->lineEdit_13->setEnabled(false);
-        ui->lineEdit_14->setEnabled(false);
-        ui->lineEdit_15->setEnabled(false);
-        ui->lineEdit_16->setEnabled(false);
-        ui->lineEdit_17->setEnabled(false);
-        ui->lineEdit_18->setEnabled(false);
-    }
-
-    ui->lineEdit_13->setValidator(new QRegExpValidator(QRegExp("^[0-9]{1}.[0-9]{3}$")));
-    ui->lineEdit_14->setValidator(new QRegExpValidator(QRegExp("^[0-9]{1}.[0-9]{3}$")));
-    ui->lineEdit_15->setValidator(new QRegExpValidator(QRegExp("^[0-9]{1}.[0-9]{3}$")));
-    ui->lineEdit_16->setValidator(new QRegExpValidator(QRegExp("^[0-9]{1}.[0-9]{3}$")));
-    ui->lineEdit_17->setValidator(new QRegExpValidator(QRegExp("^[0-9]{1}.[0-9]{3}$")));
-    ui->lineEdit_18->setValidator(new QRegExpValidator(QRegExp("^[0-9]{1}.[0-9]{3}$")));
 }
 
 identf::~identf()
@@ -119,6 +73,8 @@ void identf::realtimeDataSlot()
             wf->ui->action_9->setEnabled(false);
             wf->ui->action_5->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start_2.svg"));
             QMessageBox::information(this, tr("Сообщение"), tr("Расчет окончен!"));
+            wf->ui->stackedWidget->show();
+            wf->ui->stackedWidget->setCurrentIndex( 1 );
        }
        minR2 = DBL_MAX;
        maxR2 = -DBL_MAX;
@@ -133,11 +89,12 @@ void identf::realtimeDataSlot()
         ui->plot->addPoint(2, key, model.L);
         ui->plot->addPoint(3, key, model.Lm);
 
-        ui->lineEdit_8->setText(QString::number(model.Lm,'f',3));
-        ui->lineEdit_9->setText(QString::number(model.L,'f',3));
-        ui->lineEdit_10->setText(QString::number(model.L,'f',3));
-        ui->lineEdit_11->setText(QString::number(model.R2,'f',3));
-        ui->lineEdit_12->setText(QString::number(R1));
+        wf->ui->lineEdit_8->setText(QString::number(model.Lm,'f',3));
+        wf->ui->lineEdit_9->setText(QString::number(model.L,'f',3));
+        wf->ui->lineEdit_10->setText(QString::number(model.L,'f',3));
+        wf->ui->lineEdit_11->setText(QString::number(model.R2,'f',3));
+        wf->ui->lineEdit_12->setText(QString::number(R1));
+
 
         //   printf("%f %f %f\n", model.R2, model.L, model.Lm);
 
@@ -176,8 +133,8 @@ void identf::raschet_f()
 
     dataSource->init();
     model.init(base.P_nom, base.n_nom, base.U_fnom, base.cosf_nom, base.kpd_nom, base.muk, base.n_0,
-               ui->lineEdit_13->text().toDouble(),ui->lineEdit_14->text().toDouble(),ui->lineEdit_15->text().toDouble(),
-               ui->lineEdit_16->text().toDouble(),ui->lineEdit_17->text().toDouble(),ui->lineEdit_18->text().toDouble());
+               wf->ui->lineEdit_13->text().toDouble(),wf->ui->lineEdit_14->text().toDouble(),wf->ui->lineEdit_15->text().toDouble(),
+               wf->ui->lineEdit_16->text().toDouble(),wf->ui->lineEdit_17->text().toDouble(),wf->ui->lineEdit_18->text().toDouble());
     ui->plot->clear();
     for (int i = 0; i < wf->dataLineColors.size(); i++)
     {
@@ -189,71 +146,23 @@ void identf::raschet_f()
     ui->plot->addPoint(2, 0, model.L);
     ui->plot->addPoint(3, 0, model.Lm);
 
-    ui->lineEdit_8->setText(QString::number(model.Lm,'f',3));
-    ui->lineEdit_9->setText(QString::number(model.L,'f',3));
-    ui->lineEdit_10->setText(QString::number(model.L,'f',3));
-    ui->lineEdit_11->setText(QString::number(model.R2,'f',3));
-    ui->lineEdit_12->setText(QString::number(R1));
+//    ui->lineEdit_8->setText(QString::number(model.Lm,'f',3));
+//    ui->lineEdit_9->setText(QString::number(model.L,'f',3));
+//    ui->lineEdit_10->setText(QString::number(model.L,'f',3));
+//    ui->lineEdit_11->setText(QString::number(model.R2,'f',3));
+//    ui->lineEdit_12->setText(QString::number(R1));
 
     time->start();
 }
 
 
-void identf::on_pushButton_clicked()
-{
-    if(ui->lineEdit_12->text().isEmpty() || ui->lineEdit_11->text().isEmpty()
-            || ui->lineEdit_10->text().isEmpty() || ui->lineEdit_9->text().isEmpty() || ui->lineEdit_8->text().isEmpty())
-    {
-        QMessageBox::critical(this, "Ошибка!", "Заполните пустые поля");
-    }
-    base.R1 = ui->lineEdit_12->text().toDouble();
-    base.R2 = ui->lineEdit_11->text().toDouble();
-    base.L1 = ui->lineEdit_10->text().toDouble();
-    base.L2 = ui->lineEdit_9->text().toDouble();
-    base.Lm = ui->lineEdit_8->text().toDouble();
- }
-
-void identf::on_radioButton_2_toggled(bool checked)
-{
-    if (checked)
-    {
-        ui->lineEdit_13->setEnabled(true);
-        ui->lineEdit_14->setEnabled(true);
-        ui->lineEdit_15->setEnabled(true);
-        ui->lineEdit_16->setEnabled(true);
-        ui->lineEdit_17->setEnabled(true);
-        ui->lineEdit_18->setEnabled(true);
-        ui->pushButton_2->setEnabled(true);
-    }
-}
-
-void identf::on_radioButton_toggled(bool checked)
-{
-    if (checked)
-    {
-        ui->lineEdit_13->setEnabled(false);
-        ui->lineEdit_14->setEnabled(false);
-        ui->lineEdit_15->setEnabled(false);
-        ui->lineEdit_16->setEnabled(false);
-        ui->lineEdit_17->setEnabled(false);
-        ui->lineEdit_18->setEnabled(false);
-        ui->pushButton_2->setEnabled(false);
-    }
-}
-
-void identf::on_pushButton_2_clicked()
-{
-    if(ui->lineEdit_13->text().isEmpty() || ui->lineEdit_14->text().isEmpty()
-            || ui->lineEdit_15->text().isEmpty() || ui->lineEdit_16->text().isEmpty() || ui->lineEdit_17->text().isEmpty()
-            || ui->lineEdit_18->text().isEmpty())
-    {
-        QMessageBox::critical(this, "Ошибка!", "Заполните пустые поля");
-    }
-}
 
 
-void identf::on_radioButton_clicked()
-{
 
-}
+
+
+
+
+
+
 
