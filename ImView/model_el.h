@@ -15,9 +15,10 @@ public:
     double p_akt_a, p_akt_b, p_akt_c, p_akt, i_dev_a, i_dev_b, i_dev_c, u_dev_a, u_dev_b, u_dev_c,
     p_poln_a, p_poln_b, p_poln_c, p_poln, p_reakt_a, p_reakt_b, p_reakt_c, p_reakt, cos_f_a,
     cos_f_b, cos_f_c, cos_f;
-    double tp, Tc, Mc_n, S;
+    double tp, Tc, Mc_n;
+    QString S;
     double P1, dPel1,dPct,dPel2,dPmech,dPdob,P2,kpd,cosf, w_0, Pelm;
-    void init_el(double _R1,double _R2, double _L1, double _L2, double _Lm, int _S, double _tp, double _Tc, double _Mc);
+    void init_el(double _R1,double _R2, double _L1, double _L2, double _Lm, QString _S, double _tp, double _Tc, double _Mc);
     void rasch();
 
     void stop();

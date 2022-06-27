@@ -554,7 +554,7 @@ void electromagn::realtimeDataSlot()
 
         //вывод на qcustomPlot момента Mс
 
-        if(ui->tableWidget_3->model()->index(8,2).data(Qt::CheckStateRole)==Qt::Checked)
+        if(ui->tableWidget_5->model()->index(8,2).data(Qt::CheckStateRole)==Qt::Checked)
         {
             ui->plot->addPoint(8, key, Model_el.Mc);
         }
@@ -1210,7 +1210,7 @@ void electromagn::raschet_el()
 //                         ui->tableWidget_3->model()->index(3,1).data().toDouble(),
 //                         ui->tableWidget_3->model()->index(2,1).data().toDouble(),
 //                         ui->tableWidget_3->model()->index(4,1).data().toDouble());
-        Model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, combo->currentIndex(),
+        Model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, wf->item20->text(),
                          Model_el.Tc=wf->item22->text().toDouble(),
                          Model_el.tp=wf->item24->text().toDouble(),
                          Model_el.Mc=wf->item90->text().toDouble());

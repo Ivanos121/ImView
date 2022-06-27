@@ -9,7 +9,7 @@ Model_el::Model_el()
     connect(&timer, &QTimer::timeout, this, &Model_el::timerTimeout);
 }
 
-void Model_el::init_el(double _R1, double _R2, double _L1, double _L2, double _Lm, int _S, double _tp, double _Tc, double _Mc)
+void Model_el::init_el(double _R1, double _R2, double _L1, double _L2, double _Lm, QString _S, double _tp, double _Tc, double _Mc)
 {
 
     double L1 = _L1;
@@ -50,12 +50,12 @@ void Model_el::rasch()
     t=t+Ts;
     double tt=t;
 
-    if(S==0)
+    if(S == "Режим S1")
     {
         Mc = Mc_n;
     }
 
-    if(S==1)
+    if(S == "Режим S2")
     {
         if(tt<=tp)
         {
@@ -67,7 +67,7 @@ void Model_el::rasch()
         }
     }
 
-    if(S==2)
+    if(S == "Режим S3")
     {
         while(tt>Tc)
         {
