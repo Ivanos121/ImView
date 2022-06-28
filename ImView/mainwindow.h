@@ -110,7 +110,7 @@ private slots:
     void projectFileSelectedSlot_6(QString projectFile_6);
     void on_SaveProgectToFile_clicked();
     void on_LoadProgect_clicked();
-
+    void on_item_itemSelectionChanged();
     void on_pushButton_5_clicked(bool checked);
 
 public:

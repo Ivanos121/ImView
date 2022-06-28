@@ -348,7 +348,7 @@ void electromagn::realtimeDataSlot()
 //        }
 
     double b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16;
-    if (wf->item88->text() == "Внутренний источник данных")
+    if(wf->item80->text() == "Внутренний источник данных")
     {
 
         for (int i = 0; i < 1000; i++)
@@ -770,7 +770,7 @@ void electromagn::realtimeDataSlot()
         }
     }
 
-    /*if((ui->radioButton->isChecked()) || (ui->radioButton_2->isChecked()) || (ui->radioButton_4->isChecked()))
+    if(wf->item80->text() == "Чтение данных из файла для наблюдателя скорости")
     {
         nabludatel->rasch(dataSource);
 
@@ -1121,13 +1121,14 @@ void electromagn::realtimeDataSlot()
         ui->plot->addPoint(8, key, a18+a15*nabludatel->get_Mc());
     }
 
-    }*/
+    }
 }
 
 void electromagn::raschet_el()
 {
-//    if(ui->radioButton->isChecked())
-//    {
+    if(wf->item80->text() == "Осциллограф + наблюдатель скорости (без датчика скорости)")
+    {
+        QMessageBox::critical(this, "Ошибка!", "Выбран первый пункт");
 //        //БВАС без датчика скорости + наблюдатель скорости
 //        QSettings settings;
 
@@ -1157,10 +1158,11 @@ void electromagn::raschet_el()
 //        connect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
 //        connect(dataSourceBVAS, &DataSourceBVAS::bvasFailure, this, &electromagn::bvasFailureSlot);
 
-//    }
+    }
 
-//    if(ui->radioButton_2->isChecked())
-//    {
+    if(wf->item80->text() == "Осциллограф + наблюдатель скорости (с датчиком скорости)")
+    {
+        QMessageBox::critical(this, "Ошибка!", "Выбран второй пункт");
 //        //БВАС с датчиком скорости + наблюдатель частично (момента)
 //        //БВАС без датчика скорости + наблюдатель скорости
 //        QSettings settings;
@@ -1191,7 +1193,7 @@ void electromagn::raschet_el()
 //        connect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
 //        connect(dataSourceBVAS, &DataSourceBVASw::bvasFailure, this, &electromagn::bvasFailureSlot);
 
-//    }
+    }
 
 //    if(ui->radioButton_3->isChecked())
 //    {
@@ -1204,36 +1206,29 @@ void electromagn::raschet_el()
 
 //    }
     //radiobutton_3
-    if (wf->item88->text() == "Внутренний источник данных")
+    if (wf->item80->text() == "Внутренний источник данных")
     {
-//        Model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, combo->currentIndex(),
-//                         ui->tableWidget_3->model()->index(3,1).data().toDouble(),
-//                         ui->tableWidget_3->model()->index(2,1).data().toDouble(),
-//                         ui->tableWidget_3->model()->index(4,1).data().toDouble());
+
         Model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, wf->item20->text(),
                          Model_el.Tc=wf->item22->text().toDouble(),
                          Model_el.tp=wf->item24->text().toDouble(),
                          Model_el.Mc=wf->item90->text().toDouble());
 
         connect(&Model_el, &Model_el::ready, this, &electromagn::realtimeDataSlot);
-
-
-
-
-
-
     }
 
-    /*if(ui->radioButton_4->isChecked())
+    if (wf->item80->text() == "Чтение данных из файла для наблюдателя скорости")
     {
+        QString dataSourceFileName = wf->item82->text();
+        base.dataSourceFilename = dataSourceFileName;
         dataSource = new DataSource_file();
-
+        nabludatel = &nabludatel_full;
 
         dataSource->init();
         nabludatel->init(base.R1, base.R2, base.L1, base.L2, base.Lm);
         connect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
 
-    }*/
+    }
 
     ui->plot->clear();
     for (int i = 0; i < dataLineColors.size(); i++)
@@ -1246,40 +1241,21 @@ void electromagn::raschet_el()
 
 void electromagn::stop()
 {
-    count = 0;
-
-    if((ui->radioButton->isChecked()) || (ui->radioButton_4->isChecked()))
+    if (wf->item88->text() == "Внутренний источник данных")
+    {
+        Model_el.stop();
+        disconnect(&Model_el, &Model_el::ready, this, &electromagn::realtimeDataSlot);
+    }
+    else
     {
         if (dataSource != nullptr )
         {
-          dataSource->stop();
-          disconnect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
-          delete dataSource;
+            dataSource->stop();
+            disconnect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
+            delete dataSource;
+            dataSource = nullptr;
         }
     }
-
-    if(ui->radioButton_2->isChecked())
-    {
-
-    }
-
-//    if(ui->radioButton_3->isChecked())
-//    {
-//        Model_el.stop();
-//        disconnect(&Model_el, &Model_el::ready, this, &electromagn::realtimeDataSlot);
-//    }
-
-    if(wf->item88->isEditable())
-    {
-        if (wf->item88->text() == "Внутренний источник данных")
-        {
-                    Model_el.stop();
-                    disconnect(&Model_el, &Model_el::ready, this, &electromagn::realtimeDataSlot);
-        }
-
-    }
-
-
 }
 
 void electromagn::on_pushButton_clicked()
@@ -1336,40 +1312,40 @@ void electromagn::on_pushButton_2_clicked()
 }
 
 
-void electromagn::on_radioButton_toggled(bool checked)
-{
-    if (checked)
-    {
-       ui->pushButton_2->setEnabled(false);
-    }
-}
+//void electromagn::on_radioButton_toggled(bool checked)
+//{
+//    if (checked)
+//    {
+//       ui->pushButton_2->setEnabled(false);
+//    }
+//}
 
 
-void electromagn::on_radioButton_2_toggled(bool checked)
-{
-    if (checked)
-    {
-       ui->pushButton_2->setEnabled(false);
-    }
-}
+//void electromagn::on_radioButton_2_toggled(bool checked)
+//{
+//    if (checked)
+//    {
+//       ui->pushButton_2->setEnabled(false);
+//    }
+//}
 
 
-void electromagn::on_radioButton_3_toggled(bool checked)
-{
-    if (checked)
-    {
-       ui->pushButton_2->setEnabled(false);
-    }
-}
+//void electromagn::on_radioButton_3_toggled(bool checked)
+//{
+//    if (checked)
+//    {
+//       ui->pushButton_2->setEnabled(false);
+//    }
+//}
 
 
-void electromagn::on_radioButton_4_toggled(bool checked)
-{
-    if (checked)
-    {
-       ui->pushButton_2->setEnabled(true);
-    }
-}
+//void electromagn::on_radioButton_4_toggled(bool checked)
+//{
+//    if (checked)
+//    {
+//       ui->pushButton_2->setEnabled(true);
+//    }
+//}
 
 
 void electromagn::on_radioButton_4_clicked()

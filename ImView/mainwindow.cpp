@@ -9,6 +9,15 @@
 #include <QSplitter>
 #include <QMessageBox>
 #include <QuaZip-Qt5-1.3/quazip/JlCompress.h>
+#include <QXmlStreamWriter>
+#include <QXmlStreamReader>
+#include <QXmlStreamAttribute>
+#include <QStandardItemModel>
+#include <QStyledItemDelegate>
+#include <QFileDialog>
+#include <QDebug>
+#include <QMessageBox>
+#include <QColorDialog>
 
 #include "base.h"
 #include "datas.h"
@@ -29,16 +38,6 @@
 #include "ui_vent_model.h"
 #include "ui_vent_tract.h"
 #include "gridlinedelegate.h"
-
-#include <QXmlStreamWriter>
-#include <QXmlStreamReader>
-#include <QXmlStreamAttribute>
-#include <QStandardItemModel>
-#include <QStyledItemDelegate>
-#include <QFileDialog>
-#include <QDebug>
-#include <QMessageBox>
-#include <QColorDialog>
 
 Base base;
 
@@ -1114,6 +1113,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(buttonColumnDelegate, &ButtonColumnDelegate::projectFileSelected_3, this, &MainWindow::projectFileSelectedSlot_3);
     connect(buttonColumnDelegate, &ButtonColumnDelegate::projectFileSelected_5, this, &MainWindow::projectFileSelectedSlot_5);
     connect(buttonColumnDelegate, &ButtonColumnDelegate::projectFileSelected_6, this, &MainWindow::projectFileSelectedSlot_6);
+
+    //connect(item88, &QTreeView::clicked, this, &MainWindow::on_item_itemSelectionChanged);
+    //QObject::connect(ui->pushButton_5, &QPushButton::clicked, ui->stackedWidget, &MainWindow::setVisible);
 
 }
 
@@ -2253,3 +2255,8 @@ void MainWindow::onButtonClicked2()
     ui->stackedWidget->setCurrentIndex( 1 );
 }
 
+void MainWindow::on_item_itemSelectionChanged()
+{
+    QString w11=item88->text();
+    item88->setToolTip(w11);
+}

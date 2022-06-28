@@ -24,7 +24,6 @@ public:
     explicit electromagn(QWidget *parent = nullptr);
     ~electromagn();
     double key;
-    int count = 0;
     MainWindow *wf;
 
     void stop();
@@ -39,13 +38,13 @@ private slots:
 
     void on_pushButton_2_clicked();
 
-    void on_radioButton_toggled(bool checked);
+//    void on_radioButton_toggled(bool checked);
 
-    void on_radioButton_2_toggled(bool checked);
+//    void on_radioButton_2_toggled(bool checked);
 
-    void on_radioButton_3_toggled(bool checked);
+//    void on_radioButton_3_toggled(bool checked);
 
-    void on_radioButton_4_toggled(bool checked);
+//    void on_radioButton_4_toggled(bool checked);
 
     void on_radioButton_4_clicked();
 
