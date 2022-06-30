@@ -163,7 +163,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QGridLayout" name="gridLayout_6">
@@ -238,6 +238,9 @@
             <width>16777215</width>
             <height>16777215</height>
            </size>
+          </property>
+          <property name="toolTipDuration">
+           <number>-3</number>
           </property>
           <property name="alternatingRowColors">
            <bool>true</bool>

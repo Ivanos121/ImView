@@ -809,6 +809,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ButtonColumnDelegate* buttonColumnDelegate = new ButtonColumnDelegate(this); //создание делегата для создания комбобоксов
     ui->treeView->setItemDelegateForColumn(1, buttonColumnDelegate);
+//    ui->treeView->setItemDelegate( new ButtonColumnDelegate( ui->treeView ) );
 
     QPalette p99=ui->treeView->palette();
     p99.setColor(QPalette::Base, QColor(255, 255, 222));
@@ -1775,8 +1776,8 @@ void MainWindow::modelItemChangedSlot_4(QStandardItem *item)
 
 void MainWindow::on_SaveProgectToFile_clicked()
 {
-    //QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
-    QString filter = "Файл конфигурации проекта (*.xml);;Все файлы (*.*)";
+    QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
+    //QString filter = "Файл конфигурации проекта (*.xml);;Все файлы (*.*)";
     QString str = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", "/home/elf/ImView/data", filter);
 
     QFile file(QString("/home/elf/ImView/data/project.xml"));
@@ -1917,15 +1918,16 @@ void MainWindow::on_SaveProgectToFile_clicked()
     xmlWriter.writeEndDocument();
     file.close();   // Закрываем файл
 
-    //JlCompress::compressDir(str, "/home/elf/ImView/data/");
+    JlCompress::compressDir(str, "/home/elf/ImView/data/");
 }
 
 void MainWindow::on_LoadProgect_clicked()
 {
     QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
-    QString str = QFileDialog::getOpenFileName(this, "Выбрать имя, под которым сохранить данные", "/home/elf/progeqts_QT/treeviewprogect/Out", filter);
-    JlCompress::extractDir(str,"/home/elf/ImView/data/");
-    QFile file(QString("/home/elf/ImView/data/project.xml"));
+    QString str = QFileDialog::getOpenFileName(this, "Выбрать имя, под которым сохранить данные", "/home/elf/ImView/data", filter);
+    QDir().mkdir("/tmp/imview");
+    JlCompress::extractDir(str,"/tmp/imview");
+    QFile file(QString("/tmp/imview/project.xml"));
     if (!file.open(QFile::ReadOnly | QFile::Text))
     {
         QMessageBox::warning(this, "Ошибка файла", "Не удалось открыть файл", QMessageBox::Ok);
@@ -2337,3 +2339,9 @@ void MainWindow::on_item_itemSelectionChanged()
     QString w11=item88->text();
     item88->setToolTip(w11);
 }
+
+//void MainWindow::closeEvent(QCloseEvent *event)  // show prompt when user wants to close app
+//{
+//    QDir dir("/tmp/imview");
+//    dir.removeRecursively();
+//}

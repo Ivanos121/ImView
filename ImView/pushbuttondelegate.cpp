@@ -8,6 +8,8 @@
 #include <QSpinBox>
 #include <QFileDialog>
 #include <QDoubleSpinBox>
+#include <QHelpEvent>
+#include <QToolTip>
 #include "qabstractitemview.h"
 #include "qcombobox.h"
 
@@ -618,3 +620,28 @@ void ButtonColumnDelegate::btn_clicked_6()
     }
 }
 
+bool ButtonColumnDelegate::helpEvent( QHelpEvent* e, QAbstractItemView* view,
+                                      const QStyleOptionViewItem& option, const QModelIndex& index )
+{
+    if (!e || !view)
+    return false;
+    if (e->type() == QEvent::ToolTip)
+    {
+        QRect rect = view->visualRect(index);
+        QSize size = sizeHint( option, index);
+        if (rect.width() < size.width())
+        {
+            QVariant tooltip = index.data(Qt::DisplayRole);
+            if (tooltip.canConvert<QString>()) {
+                QString src=tooltip.toString();
+                QToolTip::showText( e->globalPos(), QString("<div>%1</div>").arg(src.toHtmlEscaped()), view);
+                return true;
+            }
+        }
+        if (!QStyledItemDelegate::helpEvent( e, view, option, index))
+            QToolTip::hideText();
+        return true;
+    }
+
+    return QStyledItemDelegate::helpEvent( e, view, option, index);
+}

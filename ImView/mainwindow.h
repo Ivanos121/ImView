@@ -109,9 +109,10 @@ private slots:
     void projectFileSelectedSlot_5(QString projectFile_5);
     void projectFileSelectedSlot_6(QString projectFile_6);
     void on_SaveProgectToFile_clicked();
-    void on_LoadProgect_clicked();
     void on_item_itemSelectionChanged();
     void on_pushButton_5_clicked(bool checked);
+    void on_LoadProgect_clicked();
+//    void closeEvent(QCloseEvent *event);
 
 public:
     Ui::MainWindow *ui;
@@ -120,6 +121,8 @@ public:
     Settings *rsc2;
 //    Graph_Settings *graph_Settings;
     QString dataSourceFilename;
+
+
 
     QWebEngineView * view;
 

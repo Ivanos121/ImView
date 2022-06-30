@@ -20,11 +20,13 @@ public:
     //void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
     void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const;
 
+public slots:
+
+    bool helpEvent( QHelpEvent* e, QAbstractItemView* view, const QStyleOptionViewItem& option,
+        const QModelIndex& index );
+
 private slots:
 
-//    void btn_clicked();
-//    void btn_clicked_2();
-//    void btn_clicked_3();
     void btn_clicked_4();
     void btn_clicked_5();
     void btn_clicked_6();
