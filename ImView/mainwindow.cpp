@@ -153,43 +153,6 @@ MainWindow::MainWindow(QWidget *parent)
     item1->appendRow(items2);
     items2.clear();
 
-//    if(item4->parent())
-//    item5 = new QStandardItem(QStringLiteral ("Расположение файла проекта"));
-//    item5->setEditable(false);
-//    QString w3=item5->text();
-//    item5->setToolTip(w3);
-//    item6 = new QStandardItem(QStringLiteral ("Выбрать файл"));
-//    QString w4=item6->text();
-//    item6->setToolTip(w4);
-//    items2.append(item5);
-//    items2.append(item6);
-//    item1->appendRow(items2);
-//    items2.clear();
-
-//    item83 = new QStandardItem(QStringLiteral ("Расположение файла базы данных двигателей"));
-//    item83->setEditable(false);
-//    QString w5=item83->text();
-//    item83->setToolTip(w5);
-//    item84 = new QStandardItem(QStringLiteral ("Выбрать файл"));
-//    QString w6=item84->text();
-//    item84->setToolTip(w6);
-//    items2.append(item83);
-//    items2.append(item84);
-//    item1->appendRow(items2);
-//    items2.clear();
-
-//    item85 = new QStandardItem(QStringLiteral ("Расположение файла базы данных настроек"));
-//    item85->setEditable(false);
-//    QString w7=item85->text();
-//    item85->setToolTip(w7);
-//    item86 = new QStandardItem(QStringLiteral ("Выбрать файл"));
-//    QString w8=item86->text();
-//    item86->setToolTip(w8);
-//    items2.append(item85);
-//    items2.append(item86);
-//    item1->appendRow(items2);
-//    items2.clear();
-
     item7 = new QStandardItem(QStringLiteral ("Тип эксперимента"));
     item7->setEditable(false);
     QString w9=item7->text();
@@ -282,6 +245,18 @@ MainWindow::MainWindow(QWidget *parent)
     item65->appendRow(items2);
     items2.clear();
 
+    item108 = new QStandardItem(QStringLiteral ("Режим сохранения"));
+    item108->setEditable(false);
+    QString w60=item108->text();
+    item108->setToolTip(w60);
+    item109 = new QStandardItem(QStringLiteral ("Указать режим"));
+    QString w61=item109->text();
+    item109->setToolTip(w61);
+    items2.append(item108);
+    items2.append(item109);
+    item65->appendRow(items2);
+    items2.clear();
+
     item69 = new QStandardItem(QStringLiteral ("Данные электромагнитных процессов"));
     item69->setEditable(false);
     QString w21=item69->text();
@@ -292,6 +267,18 @@ MainWindow::MainWindow(QWidget *parent)
     item70->setToolTip(QStringLiteral ("Выкл"));
     items2.append(item69);
     items2.append(item70);
+    item65->appendRow(items2);
+    items2.clear();
+
+    item110 = new QStandardItem(QStringLiteral ("Режим сохранения"));
+    item110->setEditable(false);
+    QString w62=item110->text();
+    item110->setToolTip(w62);
+    item111 = new QStandardItem(QStringLiteral ("Указать режим"));
+    QString w63=item111->text();
+    item111->setToolTip(w63);
+    items2.append(item110);
+    items2.append(item111);
     item65->appendRow(items2);
     items2.clear();
 
@@ -308,6 +295,18 @@ MainWindow::MainWindow(QWidget *parent)
     item65->appendRow(items2);
     items2.clear();
 
+    item112 = new QStandardItem(QStringLiteral ("Режим сохранения"));
+    item112->setEditable(false);
+    QString w64=item112->text();
+    item112->setToolTip(w64);
+    item113 = new QStandardItem(QStringLiteral ("Указать режим"));
+    QString w65=item113->text();
+    item113->setToolTip(w65);
+    items2.append(item112);
+    items2.append(item113);
+    item65->appendRow(items2);
+    items2.clear();
+
     item73 = new QStandardItem(QStringLiteral ("Данные вентиляционных процессов"));
     item73->setEditable(false);
     QString w25=item73->text();
@@ -318,6 +317,18 @@ MainWindow::MainWindow(QWidget *parent)
     item74->setToolTip(QStringLiteral ("Выкл"));
     items2.append(item73);
     items2.append(item74);
+    item65->appendRow(items2);
+    items2.clear();
+
+    item114 = new QStandardItem(QStringLiteral ("Режим сохранения"));
+    item114->setEditable(false);
+    QString w66=item114->text();
+    item114->setToolTip(w66);
+    item115 = new QStandardItem(QStringLiteral ("Указать режим"));
+    QString w67=item115->text();
+    item115->setToolTip(w67);
+    items2.append(item114);
+    items2.append(item115);
     item65->appendRow(items2);
     items2.clear();
 
@@ -334,6 +345,18 @@ MainWindow::MainWindow(QWidget *parent)
     item65->appendRow(items2);
     items2.clear();
 
+    item116 = new QStandardItem(QStringLiteral ("Режим сохранения"));
+    item116->setEditable(false);
+    QString w68=item116->text();
+    item116->setToolTip(w68);
+    item117 = new QStandardItem(QStringLiteral ("Указать режим"));
+    QString w69=item117->text();
+    item117->setToolTip(w69);
+    items2.append(item116);
+    items2.append(item117);
+    item65->appendRow(items2);
+    items2.clear();
+
     item77 = new QStandardItem(QStringLiteral ("Данные остаточного теплового ресурса"));
     item77->setEditable(false);
     QString w29=item77->text();
@@ -344,6 +367,18 @@ MainWindow::MainWindow(QWidget *parent)
     item78->setToolTip(QStringLiteral ("Выкл"));
     items2.append(item77);
     items2.append(item78);
+    item65->appendRow(items2);
+    items2.clear();
+
+    item118 = new QStandardItem(QStringLiteral ("Режим сохранения"));
+    item118->setEditable(false);
+    QString w70=item118->text();
+    item118->setToolTip(w70);
+    item119 = new QStandardItem(QStringLiteral ("Указать режим"));
+    QString w71=item119->text();
+    item119->setToolTip(w71);
+    items2.append(item118);
+    items2.append(item119);
     item65->appendRow(items2);
     items2.clear();
 
@@ -365,47 +400,47 @@ MainWindow::MainWindow(QWidget *parent)
     QFont newFont2("SansSerif", 10, QFont::Bold,false);
     item9->setFont(newFont2);
 
-    QList<QStandardItem*> items4;
-    item11 = new QStandardItem(QStringLiteral ("Настройки поправочных коэффициентов"));
-    item11->setEditable(false);
-    QFont newFont12("SansSerif", 10, QFont::Bold,false);
-    item11->setFont(newFont12);
-    QString w33=item11->text();
-    item11->setToolTip(w33);
-    item12 = new QStandardItem();
-    item12->setEditable(false);
-    QString w34=item12->text();
-    item12->setToolTip(w34);
-    items4.append(item11);
-    items4.append(item12);
-    item9->appendRow(items4);
-    items4.clear();
+//    QList<QStandardItem*> items4;
+//    item11 = new QStandardItem(QStringLiteral ("Настройки поправочных коэффициентов"));
+//    item11->setEditable(false);
+//    QFont newFont12("SansSerif", 10, QFont::Bold,false);
+//    item11->setFont(newFont12);
+//    QString w33=item11->text();
+//    item11->setToolTip(w33);
+//    item12 = new QStandardItem();
+//    item12->setEditable(false);
+//    QString w34=item12->text();
+//    item12->setToolTip(w34);
+//    items4.append(item11);
+//    items4.append(item12);
+//    item9->appendRow(items4);
+//    items4.clear();
 
-    item13 = new QStandardItem(QStringLiteral ("Автоматический режим"));
+    QList<QStandardItem*> items4;
+    item13 = new QStandardItem(QStringLiteral ("Режим расчета"));
     item13->setEditable(false);
     QString w35=item13->text();
     item13->setToolTip(w35);
-    item14 = new QStandardItem();
-    item14->setEditable(false);
-    item14->setCheckable(true);
-    item14->setToolTip(QStringLiteral ("Выкл"));
+    item14 = new QStandardItem(QStringLiteral ("Выберите режим"));
+    QString w73=item14->text();
+    item14->setToolTip(w73);
     items4.append(item13);
     items4.append(item14);
-    item11->appendRow(items4);
+    item9->appendRow(items4);
     items4.clear();
 
-    item15 = new QStandardItem(QStringLiteral ("Ручной режим"));
-    item15->setEditable(false);
-    QString w36=item15->text();
-    item15->setToolTip(w36);
-    item16 = new QStandardItem();
-    item16->setEditable(false);
-    item16->setCheckable(true);
-    item16->setToolTip(QStringLiteral ("Выкл"));
-    items4.append(item15);
-    items4.append(item16);
-    item11->appendRow(items4);
-    items4.clear();
+//    item15 = new QStandardItem(QStringLiteral ("Ручной режим"));
+//    item15->setEditable(false);
+//    QString w36=item15->text();
+//    item15->setToolTip(w36);
+//    item16 = new QStandardItem();
+//    item16->setEditable(false);
+//    item16->setCheckable(true);
+//    item16->setToolTip(QStringLiteral ("Выкл"));
+//    items4.append(item15);
+//    items4.append(item16);
+//    item11->appendRow(items4);
+//    items4.clear();
 
     item93 = new QStandardItem(QStringLiteral ("Настроечный коэффициент gd="));
     item93->setEditable(false);
@@ -419,7 +454,7 @@ MainWindow::MainWindow(QWidget *parent)
     item94->setToolTip(w38);
     items4.append(item93);
     items4.append(item94);
-    item15->appendRow(items4);
+    item9->appendRow(items4);
     items4.clear();
 
     item95 = new QStandardItem(QStringLiteral ("Настроечный коэффициент ki="));
@@ -434,7 +469,7 @@ MainWindow::MainWindow(QWidget *parent)
     item96->setToolTip(w40);
     items4.append(item95);
     items4.append(item96);
-    item15->appendRow(items4);
+    item9->appendRow(items4);
     items4.clear();
 
     item97 = new QStandardItem(QStringLiteral ("Настроечный коэффициент gb="));
@@ -449,7 +484,7 @@ MainWindow::MainWindow(QWidget *parent)
     item98->setToolTip(w42);
     items4.append(item97);
     items4.append(item98);
-    item15->appendRow(items4);
+    item9->appendRow(items4);
     items4.clear();
 
     item99 = new QStandardItem(QStringLiteral ("Настроечный коэффициент kpsi="));
@@ -464,7 +499,7 @@ MainWindow::MainWindow(QWidget *parent)
     item100->setToolTip(w44);
     items4.append(item99);
     items4.append(item100);
-    item15->appendRow(items4);
+    item9->appendRow(items4);
     items4.clear();
 
     item101 = new QStandardItem(QStringLiteral ("Настроечный коэффициент gp="));
@@ -479,7 +514,7 @@ MainWindow::MainWindow(QWidget *parent)
     item102->setToolTip(w46);
     items4.append(item101);
     items4.append(item102);
-    item15->appendRow(items4);
+    item9->appendRow(items4);
     items4.clear();
 
     item103 = new QStandardItem(QStringLiteral ("Настроечный коэффициент gpsi="));
@@ -494,7 +529,7 @@ MainWindow::MainWindow(QWidget *parent)
     item104->setToolTip(w48);
     items4.append(item103);
     items4.append(item104);
-    item15->appendRow(items4);
+    item9->appendRow(items4);
     items4.clear();
 
     QList<QStandardItem*> items5;
@@ -590,179 +625,180 @@ MainWindow::MainWindow(QWidget *parent)
     item25->setFont(newFont4);
 
     QList<QStandardItem*> items8;
-    item27 = new QStandardItem(QStringLiteral ("Условие 7"));
+    item27 = new QStandardItem(QStringLiteral ("Начальное значение температуры, °C"));
     item27->setEditable(false);
-    item28 = new QStandardItem(QStringLiteral ("Значение 7"));
+    item28 = new QStandardItem(QStringLiteral ("Введите значение"));
     items8.append(item27);
     items8.append(item28);
     item25->appendRow(items8);
     items8.clear();
-    item29 = new QStandardItem(QStringLiteral ("Условие 8"));
-    item29->setEditable(false);
-    item30 = new QStandardItem(QString ("Значение 8"));
-    items8.append(item29);
-    items8.append(item30);
-    item25->appendRow(items8);
-    items8.clear();
-    item23 = new QStandardItem(QStringLiteral ("Условие 9"));
-    item23->setEditable(false);
-    item107 = new QStandardItem(QStringLiteral ("Значение 9"));
-    items8.append(item23);
-    items8.append(item107);
-    item25->appendRow(items8);
-    items8.clear();
 
-    QList<QStandardItem*> items9;
-    item31 = new QStandardItem(QStringLiteral ("Вентиляционная модель"));
-    item32 = new QStandardItem();
-    items9.append(item31);
-    items9.append(item32);
-    model->appendRow(items9);
-    items9.clear();
-    //item31->setForeground(QBrush(Qt::white));
-    item31->setSelectable(false);
-    item31->setEditable(false);
-    item32->setSelectable(false);
-    item32->setEditable(false);
-    QFont newFont5("SansSerif", 10, QFont::Bold,false);
-    item31->setFont(newFont5);
+//    item29 = new QStandardItem(QStringLiteral ("Условие 8"));
+//    item29->setEditable(false);
+//    item30 = new QStandardItem(QString ("Значение 8"));
+//    items8.append(item29);
+//    items8.append(item30);
+//    item25->appendRow(items8);
+//    items8.clear();
+//    item23 = new QStandardItem(QStringLiteral ("Условие 9"));
+//    item23->setEditable(false);
+//    item107 = new QStandardItem(QStringLiteral ("Значение 9"));
+//    items8.append(item23);
+//    items8.append(item107);
+//    item25->appendRow(items8);
+//    items8.clear();
 
-    QList<QStandardItem*> items10;
-    item33 = new QStandardItem(QStringLiteral ("Условие 10"));
-    item33->setEditable(false);
-    item34 = new QStandardItem(QStringLiteral ("Значение 10"));
-    items10.append(item33);
-    items10.append(item34);
-    item31->appendRow(items10);
-    items10.clear();
-    item35 = new QStandardItem(QStringLiteral ("Условие 11"));
-    item35->setEditable(false);
-    item36 = new QStandardItem(QString ("Значение 11"));
-    items10.append(item35);
-    items10.append(item36);
-    item31->appendRow(items10);
-    items10.clear();
-    item37 = new QStandardItem(QStringLiteral ("Условие 12"));
-    item37->setEditable(false);
-    item38 = new QStandardItem(QStringLiteral ("Значение 12"));
-    items10.append(item37);
-    items10.append(item38);
-    item31->appendRow(items10);
-    items10.clear();
+//    QList<QStandardItem*> items9;
+//    item31 = new QStandardItem(QStringLiteral ("Вентиляционная модель"));
+//    item32 = new QStandardItem();
+//    items9.append(item31);
+//    items9.append(item32);
+//    model->appendRow(items9);
+//    items9.clear();
+//    //item31->setForeground(QBrush(Qt::white));
+//    item31->setSelectable(false);
+//    item31->setEditable(false);
+//    item32->setSelectable(false);
+//    item32->setEditable(false);
+//    QFont newFont5("SansSerif", 10, QFont::Bold,false);
+//    item31->setFont(newFont5);
 
-    QList<QStandardItem*> items11;
-    item39 = new QStandardItem(QStringLiteral ("Прогнозирование температур"));
-    item40 = new QStandardItem();
-    items11.append(item39);
-    items11.append(item40);
-    model->appendRow(items11);
-    items11.clear();
-    //item39->setForeground(QBrush(Qt::white));
-    item39->setSelectable(false);
-    item39->setEditable(false);
-    item40->setSelectable(false);
-    item40->setEditable(false);
-    QFont newFont6("SansSerif", 10, QFont::Bold,false);
-    item39->setFont(newFont6);
+//    QList<QStandardItem*> items10;
+//    item33 = new QStandardItem(QStringLiteral ("Условие 10"));
+//    item33->setEditable(false);
+//    item34 = new QStandardItem(QStringLiteral ("Значение 10"));
+//    items10.append(item33);
+//    items10.append(item34);
+//    item31->appendRow(items10);
+//    items10.clear();
+//    item35 = new QStandardItem(QStringLiteral ("Условие 11"));
+//    item35->setEditable(false);
+//    item36 = new QStandardItem(QString ("Значение 11"));
+//    items10.append(item35);
+//    items10.append(item36);
+//    item31->appendRow(items10);
+//    items10.clear();
+//    item37 = new QStandardItem(QStringLiteral ("Условие 12"));
+//    item37->setEditable(false);
+//    item38 = new QStandardItem(QStringLiteral ("Значение 12"));
+//    items10.append(item37);
+//    items10.append(item38);
+//    item31->appendRow(items10);
+//    items10.clear();
 
-    QList<QStandardItem*> items12;
-    item41 = new QStandardItem(QStringLiteral ("Условие 13"));
-    item41->setEditable(false);
-    item42 = new QStandardItem(QStringLiteral ("Значение 13"));
-    items12.append(item41);
-    items12.append(item42);
-    item39->appendRow(items12);
-    items12.clear();
-    item43 = new QStandardItem(QStringLiteral ("Условие 14"));
-    item43->setEditable(false);
-    item44 = new QStandardItem(QString ("Значение 14"));
-    items12.append(item43);
-    items12.append(item44);
-    item39->appendRow(items12);
-    items12.clear();
-    item45 = new QStandardItem(QStringLiteral ("Условие 15"));
-    item45->setEditable(false);
-    item46 = new QStandardItem(QStringLiteral ("Значение 15"));
-    items12.append(item45);
-    items12.append(item46);
-    item39->appendRow(items12);
-    items12.clear();
+//    QList<QStandardItem*> items11;
+//    item39 = new QStandardItem(QStringLiteral ("Прогнозирование температур"));
+//    item40 = new QStandardItem();
+//    items11.append(item39);
+//    items11.append(item40);
+//    model->appendRow(items11);
+//    items11.clear();
+//    //item39->setForeground(QBrush(Qt::white));
+//    item39->setSelectable(false);
+//    item39->setEditable(false);
+//    item40->setSelectable(false);
+//    item40->setEditable(false);
+//    QFont newFont6("SansSerif", 10, QFont::Bold,false);
+//    item39->setFont(newFont6);
 
-    QList<QStandardItem*> items13;
-    item47 = new QStandardItem(QStringLiteral ("Оценка остаточного теплового ресурса"));
-    item48 = new QStandardItem();
-    items13.append(item47);
-    items13.append(item48);
-    model->appendRow(items13);
-    items13.clear();
-    //item47->setForeground(QBrush(Qt::white));
-    item47->setSelectable(false);
-    item47->setEditable(false);
-    item48->setSelectable(false);
-    item48->setEditable(false);
-    QFont newFont7("SansSerif", 10, QFont::Bold,false);
-    item47->setFont(newFont7);
+//    QList<QStandardItem*> items12;
+//    item41 = new QStandardItem(QStringLiteral ("Условие 13"));
+//    item41->setEditable(false);
+//    item42 = new QStandardItem(QStringLiteral ("Значение 13"));
+//    items12.append(item41);
+//    items12.append(item42);
+//    item39->appendRow(items12);
+//    items12.clear();
+//    item43 = new QStandardItem(QStringLiteral ("Условие 14"));
+//    item43->setEditable(false);
+//    item44 = new QStandardItem(QString ("Значение 14"));
+//    items12.append(item43);
+//    items12.append(item44);
+//    item39->appendRow(items12);
+//    items12.clear();
+//    item45 = new QStandardItem(QStringLiteral ("Условие 15"));
+//    item45->setEditable(false);
+//    item46 = new QStandardItem(QStringLiteral ("Значение 15"));
+//    items12.append(item45);
+//    items12.append(item46);
+//    item39->appendRow(items12);
+//    items12.clear();
 
-    QList<QStandardItem*> items14;
-    item49 = new QStandardItem(QStringLiteral ("Условие 16"));
-    item49->setEditable(false);
-    item50 = new QStandardItem(QStringLiteral ("Значение 16"));
-    items14.append(item49);
-    items14.append(item50);
-    item47->appendRow(items14);
-    items14.clear();
-    item51 = new QStandardItem(QStringLiteral ("Условие 17"));
-    item51->setEditable(false);
-    item52 = new QStandardItem(QString ("Значение 17"));
-    items14.append(item51);
-    items14.append(item52);
-    item47->appendRow(items14);
-    items14.clear();
-    item53 = new QStandardItem(QStringLiteral ("Условие 18"));
-    item53->setEditable(false);
-    item54 = new QStandardItem(QStringLiteral ("Значение 18"));
-    items14.append(item53);
-    items14.append(item54);
-    item47->appendRow(items14);
-    items14.clear();
+//    QList<QStandardItem*> items13;
+//    item47 = new QStandardItem(QStringLiteral ("Оценка остаточного теплового ресурса"));
+//    item48 = new QStandardItem();
+//    items13.append(item47);
+//    items13.append(item48);
+//    model->appendRow(items13);
+//    items13.clear();
+//    //item47->setForeground(QBrush(Qt::white));
+//    item47->setSelectable(false);
+//    item47->setEditable(false);
+//    item48->setSelectable(false);
+//    item48->setEditable(false);
+//    QFont newFont7("SansSerif", 10, QFont::Bold,false);
+//    item47->setFont(newFont7);
 
-    QList<QStandardItem*> items15;
-    item55 = new QStandardItem(QStringLiteral ("Выходные данные"));
-    item56 = new QStandardItem();
-    items15.append(item55);
-    items15.append(item56);
-    model->appendRow(items15);
-    items15.clear();
-    //item55->setForeground(QBrush(Qt::white));
-    item55->setSelectable(false);
-    item55->setEditable(false);
-    item56->setSelectable(false);
-    item56->setEditable(false);
-    QFont newFont8("SansSerif", 10, QFont::Bold,false);
-    item55->setFont(newFont8);
+//    QList<QStandardItem*> items14;
+//    item49 = new QStandardItem(QStringLiteral ("Условие 16"));
+//    item49->setEditable(false);
+//    item50 = new QStandardItem(QStringLiteral ("Значение 16"));
+//    items14.append(item49);
+//    items14.append(item50);
+//    item47->appendRow(items14);
+//    items14.clear();
+//    item51 = new QStandardItem(QStringLiteral ("Условие 17"));
+//    item51->setEditable(false);
+//    item52 = new QStandardItem(QString ("Значение 17"));
+//    items14.append(item51);
+//    items14.append(item52);
+//    item47->appendRow(items14);
+//    items14.clear();
+//    item53 = new QStandardItem(QStringLiteral ("Условие 18"));
+//    item53->setEditable(false);
+//    item54 = new QStandardItem(QStringLiteral ("Значение 18"));
+//    items14.append(item53);
+//    items14.append(item54);
+//    item47->appendRow(items14);
+//    items14.clear();
 
-    QList<QStandardItem*> items16;
-    item57 = new QStandardItem(QStringLiteral ("Условие 19"));
-    item57->setEditable(false);
-    item58 = new QStandardItem(QStringLiteral ("Значение 19"));
-    items16.append(item57);
-    items16.append(item58);
-    item55->appendRow(items16);
-    items16.clear();
-    item59 = new QStandardItem(QStringLiteral ("Условие 20"));
-    item59->setEditable(false);
-    item60 = new QStandardItem(QString ("Значение 20"));
-    items16.append(item59);
-    items16.append(item60);
-    item55->appendRow(items16);
-    items16.clear();
-    item61 = new QStandardItem(QStringLiteral ("Условие 21"));
-    item61->setEditable(false);
-    item62 = new QStandardItem(QStringLiteral ("Значение 21"));
-    items16.append(item61);
-    items16.append(item62);
-    item55->appendRow(items16);
-    items16.clear();
+//    QList<QStandardItem*> items15;
+//    item55 = new QStandardItem(QStringLiteral ("Выходные данные"));
+//    item56 = new QStandardItem();
+//    items15.append(item55);
+//    items15.append(item56);
+//    model->appendRow(items15);
+//    items15.clear();
+//    //item55->setForeground(QBrush(Qt::white));
+//    item55->setSelectable(false);
+//    item55->setEditable(false);
+//    item56->setSelectable(false);
+//    item56->setEditable(false);
+//    QFont newFont8("SansSerif", 10, QFont::Bold,false);
+//    item55->setFont(newFont8);
+
+//    QList<QStandardItem*> items16;
+//    item57 = new QStandardItem(QStringLiteral ("Условие 19"));
+//    item57->setEditable(false);
+//    item58 = new QStandardItem(QStringLiteral ("Значение 19"));
+//    items16.append(item57);
+//    items16.append(item58);
+//    item55->appendRow(items16);
+//    items16.clear();
+//    item59 = new QStandardItem(QStringLiteral ("Условие 20"));
+//    item59->setEditable(false);
+//    item60 = new QStandardItem(QString ("Значение 20"));
+//    items16.append(item59);
+//    items16.append(item60);
+//    item55->appendRow(items16);
+//    items16.clear();
+//    item61 = new QStandardItem(QStringLiteral ("Условие 21"));
+//    item61->setEditable(false);
+//    item62 = new QStandardItem(QStringLiteral ("Значение 21"));
+//    items16.append(item61);
+//    items16.append(item62);
+//    item55->appendRow(items16);
+//    items16.clear();
 
     ui->treeView->setModel(model);
 
@@ -1103,7 +1139,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->lineEdit_17->setAlignment(Qt::AlignCenter);
     ui->lineEdit_18->setAlignment(Qt::AlignCenter);
 
-    connect(item16->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot);
+    connect(item14->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot);
     connect(item88->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_2);
     connect(item80->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_3);
     connect(item68->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_4);
@@ -1480,9 +1516,9 @@ void MainWindow::on_action_15_triggered()
 
 void MainWindow::modelItemChangedSlot(QStandardItem *item)
 {
-    if (item == item16)
+    if (item == item14)
     {
-        if (item->checkState() == Qt::Checked)
+        if (item->text() == "Ручной")
         {
             item93->setEnabled(true);
             item94->setEnabled(true);
@@ -1739,10 +1775,11 @@ void MainWindow::modelItemChangedSlot_4(QStandardItem *item)
 
 void MainWindow::on_SaveProgectToFile_clicked()
 {
-    QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
-    QString str = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", "/home/elf/progeqts_QT/treeviewprogect/Out", filter);
+    //QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
+    QString filter = "Файл конфигурации проекта (*.xml);;Все файлы (*.*)";
+    QString str = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", "/home/elf/ImView/data", filter);
 
-    QFile file(QString("/home/elf/progeqts_QT/treeviewprogect/Data/project.xml"));
+    QFile file(QString("/home/elf/ImView/data/project.xml"));
     file.open(QIODevice::WriteOnly);
 
     //Создаем объект, с помощью которого осуществляется запись в файл
@@ -1758,23 +1795,11 @@ void MainWindow::on_SaveProgectToFile_clicked()
     xmlWriter.writeAttribute("value", (item4->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("project_path");
-    xmlWriter.writeAttribute("value", (item6->text()));
-    xmlWriter.writeEndElement();
-
-    xmlWriter.writeStartElement("project_path_2");
-    xmlWriter.writeAttribute("value", (item84->text()));
-    xmlWriter.writeEndElement();
-
-    xmlWriter.writeStartElement("project_path_3");
-    xmlWriter.writeAttribute("value", (item86->text()));
-    xmlWriter.writeEndElement();
-
     xmlWriter.writeStartElement("combobox_1");
     xmlWriter.writeAttribute("value", (item88->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("project_path_4");
+    xmlWriter.writeStartElement("project_path");
     xmlWriter.writeAttribute("value", (item106->text()));
     xmlWriter.writeEndElement();
 
@@ -1782,7 +1807,7 @@ void MainWindow::on_SaveProgectToFile_clicked()
     xmlWriter.writeAttribute("value", (item80->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("project_path_5");
+    xmlWriter.writeStartElement("project_path_2");
     xmlWriter.writeAttribute("value", (item82->text()));
     xmlWriter.writeEndElement();
 
@@ -1790,32 +1815,52 @@ void MainWindow::on_SaveProgectToFile_clicked()
     xmlWriter.writeAttribute("boolean", (item68->checkState()? "true" : "false"));
     xmlWriter.writeEndElement();
 
+    xmlWriter.writeStartElement("combobox_3");
+    xmlWriter.writeAttribute("value", (item109->text()));
+    xmlWriter.writeEndElement();
+
     xmlWriter.writeStartElement("checkbox_2");
     xmlWriter.writeAttribute("boolean", (item70->checkState()? "true" : "false"));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_4");
+    xmlWriter.writeAttribute("value", (item111->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("checkbox_3");
     xmlWriter.writeAttribute("boolean", (item72->checkState()? "true" : "false"));
     xmlWriter.writeEndElement();
 
+    xmlWriter.writeStartElement("combobox_5");
+    xmlWriter.writeAttribute("value", (item113->text()));
+    xmlWriter.writeEndElement();
+
     xmlWriter.writeStartElement("checkbox_4");
     xmlWriter.writeAttribute("boolean", (item74->checkState()? "true" : "false"));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_6");
+    xmlWriter.writeAttribute("value", (item115->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("checkbox_5");
     xmlWriter.writeAttribute("boolean", (item76->checkState()? "true" : "false"));
     xmlWriter.writeEndElement();
 
+    xmlWriter.writeStartElement("combobox_7");
+    xmlWriter.writeAttribute("value", (item117->text()));
+    xmlWriter.writeEndElement();
+
     xmlWriter.writeStartElement("checkbox_6");
     xmlWriter.writeAttribute("boolean", (item78->checkState()? "true" : "false"));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("checkbox_7");
-    xmlWriter.writeAttribute("boolean", (item14->checkState()? "true" : "false"));
+    xmlWriter.writeStartElement("combobox_8");
+    xmlWriter.writeAttribute("value", (item119->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("checkbox_8");
-    xmlWriter.writeAttribute("boolean", (item16->checkState()? "true" : "false"));
+    xmlWriter.writeStartElement("combobox_9");
+    xmlWriter.writeAttribute("value", (item14->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("coeff_1");
@@ -1842,7 +1887,7 @@ void MainWindow::on_SaveProgectToFile_clicked()
     xmlWriter.writeAttribute("value", (item104->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_3");
+    xmlWriter.writeStartElement("combobox_10");
     xmlWriter.writeAttribute("value", (item20->text()));
     xmlWriter.writeEndElement();
 
@@ -1858,8 +1903,12 @@ void MainWindow::on_SaveProgectToFile_clicked()
     xmlWriter.writeAttribute("value", (item90->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("regim_ep");
+    xmlWriter.writeStartElement("combobox_11");
     xmlWriter.writeAttribute("value", (item92->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("start_temp");
+    xmlWriter.writeAttribute("value", (item28->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeEndElement();
@@ -1868,16 +1917,15 @@ void MainWindow::on_SaveProgectToFile_clicked()
     xmlWriter.writeEndDocument();
     file.close();   // Закрываем файл
 
-    JlCompress::compressDir(str, "/home/elf/progeqts_QT/treeviewprogect/Data/");
+    //JlCompress::compressDir(str, "/home/elf/ImView/data/");
 }
 
 void MainWindow::on_LoadProgect_clicked()
 {
     QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
     QString str = QFileDialog::getOpenFileName(this, "Выбрать имя, под которым сохранить данные", "/home/elf/progeqts_QT/treeviewprogect/Out", filter);
-    //QDir().mkdir("/home/elf/progeqts_QT/treeviewprogect/Data/");
-    JlCompress::extractDir(str,"/home/elf/progeqts_QT/treeviewprogect/Data/");
-    QFile file(QString("/home/elf/progeqts_QT/treeviewprogect/Data/project.xml"));
+    JlCompress::extractDir(str,"/home/elf/ImView/data/");
+    QFile file(QString("/home/elf/ImView/data/project.xml"));
     if (!file.open(QFile::ReadOnly | QFile::Text))
     {
         QMessageBox::warning(this, "Ошибка файла", "Не удалось открыть файл", QMessageBox::Ok);
@@ -1902,39 +1950,6 @@ void MainWindow::on_LoadProgect_clicked()
                         }
                     }
                 }
-                else if(xmlReader.name() == "project_path")
-                {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                    {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            item6->setText(attribute_value);
-                        }
-                    }
-                }
-                else if(xmlReader.name() == "project_path_2")
-                {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                    {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            item84->setText(attribute_value);
-                        }
-                    }
-                }
-                else if(xmlReader.name() == "project_path_3")
-                {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                    {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            item86->setText(attribute_value);
-                        }
-                    }
-                }
                 else if(xmlReader.name() == "combobox_1")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
@@ -1946,7 +1961,7 @@ void MainWindow::on_LoadProgect_clicked()
                         }
                     }
                 }
-                else if(xmlReader.name() == "project_path_4")
+                else if(xmlReader.name() == "project_path")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -1968,7 +1983,7 @@ void MainWindow::on_LoadProgect_clicked()
                         }
                     }
                 }
-                else if(xmlReader.name() == "project_path_5")
+                else if(xmlReader.name() == "project_path_2")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -1997,6 +2012,17 @@ void MainWindow::on_LoadProgect_clicked()
                         }
                     }
                 }
+                else if(xmlReader.name() == "combobox_3")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item109->setText(attribute_value);
+                        }
+                    }
+                }
                 else if(xmlReader.name() == "checkbox_2")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
@@ -2005,8 +2031,19 @@ void MainWindow::on_LoadProgect_clicked()
                         {
                             QString attribute_value = attr.value().toString();
                             if(attribute_value=="true"){
-                            item70->setCheckState(Qt::Checked);}
+                                item70->setCheckState(Qt::Checked);}
                             else {item70->setCheckState(Qt::Unchecked);};
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "combobox_4")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item111->setText(attribute_value);
                         }
                     }
                 }
@@ -2023,6 +2060,17 @@ void MainWindow::on_LoadProgect_clicked()
                         }
                     }
                 }
+                else if(xmlReader.name() == "combobox_5")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item113->setText(attribute_value);
+                        }
+                    }
+                }
                 else if(xmlReader.name() == "checkbox_4")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
@@ -2033,6 +2081,17 @@ void MainWindow::on_LoadProgect_clicked()
                             if(attribute_value=="true"){
                             item74->setCheckState(Qt::Checked);}
                             else {item74->setCheckState(Qt::Unchecked);};
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "combobox_6")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item115->setText(attribute_value);
                         }
                     }
                 }
@@ -2049,6 +2108,17 @@ void MainWindow::on_LoadProgect_clicked()
                         }
                     }
                 }
+                else if(xmlReader.name() == "combobox_7")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item117->setText(attribute_value);
+                        }
+                    }
+                }
                 else if(xmlReader.name() == "checkbox_6")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
@@ -2062,29 +2132,25 @@ void MainWindow::on_LoadProgect_clicked()
                         }
                     }
                 }
-                else if(xmlReader.name() == "checkbox_7")
+                else if(xmlReader.name() == "combobox_8")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
-                        if (attr.name().toString() == "boolean")
+                        if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            if(attribute_value=="true"){
-                            item14->setCheckState(Qt::Checked);}
-                            else {item14->setCheckState(Qt::Unchecked);};
+                            item119->setText(attribute_value);
                         }
                     }
                 }
-                else if(xmlReader.name() == "checkbox_8")
+                else if(xmlReader.name() == "combobox_9")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
-                        if (attr.name().toString() == "boolean")
+                        if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            if(attribute_value=="true"){
-                            item16->setCheckState(Qt::Checked);}
-                            else {item16->setCheckState(Qt::Unchecked);};
+                            item14->setText(attribute_value);
                         }
                     }
                 }
@@ -2154,7 +2220,7 @@ void MainWindow::on_LoadProgect_clicked()
                         }
                     }
                 }
-                else if(xmlReader.name() == "combobox_3")
+                else if(xmlReader.name() == "combobox_10")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -2198,7 +2264,7 @@ void MainWindow::on_LoadProgect_clicked()
                         }
                     }
                 }
-                else if(xmlReader.name() == "regim_ep")
+                else if(xmlReader.name() == "combobox_11")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -2206,6 +2272,17 @@ void MainWindow::on_LoadProgect_clicked()
                         {
                             QString attribute_value = attr.value().toString();
                             item92->setText(attribute_value);
+                        }
+                    }
+                }
+                if(xmlReader.name() == "start_temp")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item28->setText(attribute_value);
                         }
                     }
                 }

@@ -141,6 +141,7 @@ public:
     QStandardItem *item89, *item90, *item91, *item92, *item93, *item94, *item95, *item96;
     QStandardItem *item97, *item98, *item99, *item100, *item101, *item102, *item103, *item104;
     QStandardItem *item105, *item106, *item107, *item108, *item109, *item110, *item111, *item112;
+    QStandardItem *item113, *item114, *item115, *item116, *item117, *item118, *item119, *item120;
 };
 
 #endif // MAINWINDOW_H
