@@ -75,6 +75,7 @@ public:
     ~MainWindow();
 
     void closeEvent (QCloseEvent *event);
+    void LoadProject(QString str);
     QVector<QColor> dataLineColors;
 
 private slots:
@@ -112,7 +113,6 @@ private slots:
     void on_item_itemSelectionChanged();
     void on_pushButton_5_clicked(bool checked);
     void on_LoadProgect_clicked();
-//    void closeEvent(QCloseEvent *event);
 
 public:
     Ui::MainWindow *ui;

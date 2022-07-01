@@ -1159,6 +1159,8 @@ MainWindow::MainWindow(QWidget *parent)
 void MainWindow::closeEvent (QCloseEvent *)
 {
     ui->widget_3->stop();
+    QDir dir("/tmp/imview");
+    dir.removeRecursively();
 }
 
 MainWindow::~MainWindow()
@@ -1925,6 +1927,11 @@ void MainWindow::on_LoadProgect_clicked()
 {
     QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
     QString str = QFileDialog::getOpenFileName(this, "Выбрать имя, под которым сохранить данные", "/home/elf/ImView/data", filter);
+    LoadProject(str);
+}
+
+void MainWindow::LoadProject(QString str)
+{
     QDir().mkdir("/tmp/imview");
     JlCompress::extractDir(str,"/tmp/imview");
     QFile file(QString("/tmp/imview/project.xml"));
@@ -2339,9 +2346,3 @@ void MainWindow::on_item_itemSelectionChanged()
     QString w11=item88->text();
     item88->setToolTip(w11);
 }
-
-//void MainWindow::closeEvent(QCloseEvent *event)  // show prompt when user wants to close app
-//{
-//    QDir dir("/tmp/imview");
-//    dir.removeRecursively();
-//}
