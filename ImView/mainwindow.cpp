@@ -18,8 +18,11 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QColorDialog>
+#include <iostream>
+#include <fstream>
 
 #include "base.h"
+#include "model.h"
 #include "datas.h"
 #include "ui_datas.h"
 #include "identf.h"
@@ -40,6 +43,7 @@
 #include "gridlinedelegate.h"
 
 Base base;
+Model modelss;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -1150,10 +1154,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(buttonColumnDelegate, &ButtonColumnDelegate::projectFileSelected_3, this, &MainWindow::projectFileSelectedSlot_3);
     connect(buttonColumnDelegate, &ButtonColumnDelegate::projectFileSelected_5, this, &MainWindow::projectFileSelectedSlot_5);
     connect(buttonColumnDelegate, &ButtonColumnDelegate::projectFileSelected_6, this, &MainWindow::projectFileSelectedSlot_6);
-
-    //connect(item88, &QTreeView::clicked, this, &MainWindow::on_item_itemSelectionChanged);
-    //QObject::connect(ui->pushButton_5, &QPushButton::clicked, ui->stackedWidget, &MainWindow::setVisible);
-
 }
 
 void MainWindow::closeEvent (QCloseEvent *)
@@ -1249,15 +1249,60 @@ void MainWindow::on_action_5_triggered()
         base.muk=ui->widget->ui->tableView->model()->data(myIndex6).toDouble();
         myIndex7 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 8, QModelIndex());
         base.n_0=ui->widget->ui->tableView->model()->data(myIndex7).toDouble();
-        //qDebug() << QString("%1").arg(base.P_nom);
 
         ui->action_5->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
         ui->action_9->setEnabled(true);
         ui->widget_2->raschet_f();
 
+        if(item68->checkState() == Qt::Checked)
+        {
+        //создание папки текущего сеанса
+        //QString fileName;
+        QDir dir("/home/elf/ImView/Output");
+        QDateTime currentDateTime = QDateTime::currentDateTime();
+        QTime currentTime = currentDateTime.time();
+        QDate currentDate = currentDateTime.date();
+
+        fileName= QString ("%1""%2""%3").arg("Сеанс ").arg(currentTime.toString("hh:mm:ss ").toUtf8().data()).
+                arg(currentDate.toString("dd.MM.yyyy").toUtf8().data());
+        dir.mkdir(fileName);
+
+        //создание файла сохранений идентификации параметров схемы замещения
+        std::ofstream fout;
+        QFile File("/home/elf/ImView/build-ImView-Desktop-Debug/result_identf.csv");
+        fout.open("result_identf.csv",std::ios::out | std::ios::app);
+        fout << std::endl << "Начало измерений " << currentDate.toString("dd.MM.yyyy").toUtf8().data() << std::endl;
+        fout << std::endl;
+
+        fout << "Канал №1" << " - " << "Активное сопротивление фазы ротора" << std::endl;
+        fout << "Канал №2" << " - " << "Индуктивность фазы статора" << std::endl;
+        fout << "Канал №3" << " - " << "Индуктивность фазы ротора" << std::endl;
+        fout << "Канал №2" << " - " << "Индуктивность взаимоиндукции" << std::endl;
+
+        fout << std::endl;
+
+        fout << "Время;";
+
+        for (int i=0; i<4; i++)
+        {
+               fout << QString("Канал №%1").arg(i+1).toUtf8().data() << ";";
+                //fout << modelss.R2 << modelss.L << modelss.L << modelss.Lm;
+        }
+
+        fout << std::endl;
+
+        fout.close();
     }
+    QString src = "/home/elf/ImView/build-ImView-Desktop-Debug";
+    QString filename = "result_identf.csv";
+    QFile file(filename);
+    QString setpath = "/home/elf/ImView/Output";
+    file.copy(src+QDir::separator()+filename, setpath+QDir::separator()+fileName+QDir::separator()+filename);
 
-
+    QString dbFile = src+QDir::separator()+filename;
+    QFile ffile (dbFile);
+    ffile.remove();
+    }
 }
 
 void MainWindow::on_action_9_triggered()
@@ -1284,6 +1329,51 @@ void MainWindow::on_action_20_triggered()
     ui->action_21->setEnabled(true);
     ui->widget_5->ui->widget_4->startTeplo();
     ui->widget_3->raschet_el();
+
+    //создание файла сохранений идентификации параметров схемы замещения
+    std::ofstream fout;
+    QDateTime currentDateTime = QDateTime::currentDateTime();
+    QDate currentDate = currentDateTime.date();
+    QFile File("/home/elf/ImView/build-ImView-Desktop-Debug/result_electromagn.csv");
+    fout.open("result_electromagn.csv",std::ios::out | std::ios::app);
+    fout << std::endl << "Начало измерений " << currentDate.toString("dd.MM.yyyy").toUtf8().data() << std::endl;
+    fout << std::endl;
+
+    fout << "Канал №1" << " - " << "Напряжение фазы А, В" << std::endl;
+    fout << "Канал №2" << " - " << "Напряжение фазы В, В" << std::endl;
+    fout << "Канал №3" << " - " << "Напряжение фазы С, В" << std::endl;
+    fout << "Канал №4" << " - " << "Ток фазы А, В" << std::endl;
+    fout << "Канал №5" << " - " << "Ток фазы В, В" << std::endl;
+    fout << "Канал №6" << " - " << "Ток фазы С, В" << std::endl;
+    fout << "Канал №7" << " - " << "Частота вращения, рад/с" << std::endl;
+    fout << "Канал №8" << " - " << "Момент на валу, Н*м" << std::endl;
+    fout << "Канал №9" << " - " << "Момент Мс, Н*м" << std::endl;
+
+    fout << std::endl;
+
+    fout << "Время;";
+
+    for (int i=0; i<10; i++)
+    {
+        if(item70->checkState() == Qt::Checked)
+        {
+            fout << QString("Канал №%1").arg(i+1).toUtf8().data() << ";";
+        }
+    }
+
+    fout << std::endl;
+
+    fout.close();
+
+    QString src2 = "/home/elf/ImView/build-ImView-Desktop-Debug";
+    QString filename2 = "result_electromagn.csv";
+    QFile file(filename2);
+    QString setpath2 = "/home/elf/ImView/Output";
+    file.copy(src2+QDir::separator()+filename2, setpath2+QDir::separator()+fileName+QDir::separator()+filename2);
+
+    QString dbFile2 = src2+QDir::separator()+filename2;
+    QFile ffile2 (dbFile2);
+    ffile2.remove();
 }
 
 void MainWindow::on_action_21_triggered()

@@ -39,6 +39,7 @@ public:
     DataSource *dataSource;
     MainWindow *wf;
     QString dataSourceFilename;
+    Model model;
 };
 
 #endif // IDENTF_H
