@@ -74,7 +74,7 @@ void identf::realtimeDataSlot()
             wf->ui->action_5->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start_2.svg"));
             QMessageBox::information(this, tr("Сообщение"), tr("Расчет окончен!"));
             wf->ui->stackedWidget->show();
-            wf->ui->stackedWidget->setCurrentIndex( 1 );
+            wf->ui->stackedWidget->setCurrentIndex(2);
        }
        minR2 = DBL_MAX;
        maxR2 = -DBL_MAX;

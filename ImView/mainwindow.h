@@ -98,6 +98,8 @@ private slots:
     void setcolorincell(int row, int column);
     void onButtonClicked();
     void onButtonClicked2();
+    void on_action_24_triggered();
+    void on_action_25_triggered();
 
     void modelItemChangedSlot(QStandardItem *item);
     void modelItemChangedSlot_2(QStandardItem *item);

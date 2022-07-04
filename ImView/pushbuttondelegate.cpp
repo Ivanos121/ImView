@@ -61,48 +61,48 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         connect(btn,SIGNAL(clicked()), this, SLOT(btn_clicked_6()));
         return btn;
     }
-    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 1))
-    {
-        QComboBox *editor = new QComboBox(parent);
-        editor->insertItem(0, "Сохранение данных в картинку");
-        editor->insertItem(1, "Сохранение данных в файл данных");
-        return editor;
-    }
-    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 3))
-    {
-        QComboBox *editor = new QComboBox(parent);
-        editor->insertItem(0, "Сохранение данных в картинку");
-        editor->insertItem(1, "Сохранение данных в файл данных");
-        return editor;
-    }
-    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 5))
-    {
-        QComboBox *editor = new QComboBox(parent);
-        editor->insertItem(0, "Сохранение данных в картинку");
-        editor->insertItem(1, "Сохранение данных в файл данных");
-        return editor;
-    }
-    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 7))
-    {
-        QComboBox *editor = new QComboBox(parent);
-        editor->insertItem(0, "Сохранение данных в картинку");
-        editor->insertItem(1, "Сохранение данных в файл данных");
-        return editor;
-    }
-    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 9))
-    {
-        QComboBox *editor = new QComboBox(parent);
-        editor->insertItem(0, "Сохранение данных в картинку");
-        editor->insertItem(1, "Сохранение данных в файл данных");
-        return editor;
-    }
-    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 11))
-    {
-        QComboBox *editor = new QComboBox(parent);
-        editor->insertItem(0, "Сохранение данных в картинку");
-        editor->insertItem(1, "Сохранение данных в файл данных");
-        return editor;
-    }
+//    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 1))
+//    {
+//        QComboBox *editor = new QComboBox(parent);
+//        editor->insertItem(0, "Сохранение данных в картинку");
+//        editor->insertItem(1, "Сохранение данных в файл данных");
+//        return editor;
+//    }
+//    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 3))
+//    {
+//        QComboBox *editor = new QComboBox(parent);
+//        editor->insertItem(0, "Сохранение данных в картинку");
+//        editor->insertItem(1, "Сохранение данных в файл данных");
+//        return editor;
+//    }
+//    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 5))
+//    {
+//        QComboBox *editor = new QComboBox(parent);
+//        editor->insertItem(0, "Сохранение данных в картинку");
+//        editor->insertItem(1, "Сохранение данных в файл данных");
+//        return editor;
+//    }
+//    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 7))
+//    {
+//        QComboBox *editor = new QComboBox(parent);
+//        editor->insertItem(0, "Сохранение данных в картинку");
+//        editor->insertItem(1, "Сохранение данных в файл данных");
+//        return editor;
+//    }
+//    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 9))
+//    {
+//        QComboBox *editor = new QComboBox(parent);
+//        editor->insertItem(0, "Сохранение данных в картинку");
+//        editor->insertItem(1, "Сохранение данных в файл данных");
+//        return editor;
+//    }
+//    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 11))
+//    {
+//        QComboBox *editor = new QComboBox(parent);
+//        editor->insertItem(0, "Сохранение данных в картинку");
+//        editor->insertItem(1, "Сохранение данных в файл данных");
+//        return editor;
+//    }
     else if ((index.parent().row() == 1) && (index.row() == 0))
     {
         QComboBox *editor = new QComboBox(parent);

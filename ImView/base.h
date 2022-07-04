@@ -19,6 +19,7 @@ struct Base
     double Lm;
     QString dataSourceFilename;
     QString identfFilename;
+    QString electromagnFilename;
     QString name;
     double i_a;
     double u_a;

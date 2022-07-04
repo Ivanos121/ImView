@@ -8,6 +8,8 @@
 #include "datasource_file.h"
 #include "ui_mainwindow.h"
 
+#include <iostream>
+#include <fstream>
 #include <QLinearGradient>
 #include <QMessageBox>
 #include <QColorDialog>
@@ -36,144 +38,144 @@ electromagn::electromagn(QWidget *parent) :
 
     this->showMaximized();
 
-    //Заполнение таблицы результатов
-    ui->tableWidget->setRowCount(24);
-    ui->tableWidget->setColumnCount(2);
-    QStringList name;
-    name << "Сигнал" << "Величина";
-    ui->tableWidget->setHorizontalHeaderLabels(name);
-    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    ui->tableWidget->verticalHeader()->setVisible(true);
-    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->tableWidget->setSelectionBehavior(QAbstractItemView :: SelectRows);
-    ui->tableWidget->setSelectionMode(QAbstractItemView :: SingleSelection);
+//    //Заполнение таблицы результатов
+//    ui->tableWidget->setRowCount(24);
+//    ui->tableWidget->setColumnCount(2);
+//    QStringList name;
+//    name << "Сигнал" << "Величина";
+//    ui->tableWidget->setHorizontalHeaderLabels(name);
+//    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+//    ui->tableWidget->verticalHeader()->setVisible(true);
+//    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+//    ui->tableWidget->setSelectionBehavior(QAbstractItemView :: SelectRows);
+//    ui->tableWidget->setSelectionMode(QAbstractItemView :: SingleSelection);
 
-    ui->tableWidget->setItem(0, 0, new QTableWidgetItem("Ток фазы А, А"));
-    ui->tableWidget->setItem(1, 0, new QTableWidgetItem("Напряжение фазы А, В"));
-    ui->tableWidget->setItem(2, 0, new QTableWidgetItem("Активная мошность фазы А, Вт"));
-    ui->tableWidget->setItem(3, 0, new QTableWidgetItem("Реактивная мошность фазы А, ВА"));
-    ui->tableWidget->setItem(4, 0, new QTableWidgetItem("Полная мошность фазы А, ВАР"));
-    ui->tableWidget->setItem(5, 0, new QTableWidgetItem("Коэффициент мощности фазы А"));
-    ui->tableWidget->setItem(6, 0, new QTableWidgetItem("Ток фазы В, А"));
-    ui->tableWidget->setItem(7, 0, new QTableWidgetItem("Напряжение фазы В, В"));
-    ui->tableWidget->setItem(8, 0, new QTableWidgetItem("Активная мошность фазы В, Вт"));
-    ui->tableWidget->setItem(9, 0, new QTableWidgetItem("Реактивная мошность фазы В, ВА"));
-    ui->tableWidget->setItem(10, 0, new QTableWidgetItem("Полная мошность фазы В, ВАР"));
-    ui->tableWidget->setItem(11, 0, new QTableWidgetItem("Коэффициент мощности фазы В"));
-    ui->tableWidget->setItem(12, 0, new QTableWidgetItem("Ток фазы С, А"));
-    ui->tableWidget->setItem(13, 0, new QTableWidgetItem("Напряжение фазы С, В"));
-    ui->tableWidget->setItem(14, 0, new QTableWidgetItem("Активная мошность фазы С, Вт"));
-    ui->tableWidget->setItem(15, 0, new QTableWidgetItem("Реактивная мошность фазы С, ВА"));
-    ui->tableWidget->setItem(16, 0, new QTableWidgetItem("Полная мошность фазы С, ВАР"));
-    ui->tableWidget->setItem(17, 0, new QTableWidgetItem("Коэффициент мощности фазы С"));
-    ui->tableWidget->setItem(18, 0, new QTableWidgetItem("трехфазная активная мошность, Вт"));
-    ui->tableWidget->setItem(19, 0, new QTableWidgetItem("Трехфазная реактивная мошность, ВА"));
-    ui->tableWidget->setItem(20, 0, new QTableWidgetItem("Трехфазная полная мошность, ВАР"));
-    ui->tableWidget->setItem(21, 0, new QTableWidgetItem("Коэффициент мощности"));
-    ui->tableWidget->setItem(22, 0, new QTableWidgetItem("Скорость вращения ротора, рад/с"));
-    ui->tableWidget->setItem(23, 0, new QTableWidgetItem("Момент, Н*м"));
-    ui->tableWidget->setItem(0, 1, new QTableWidgetItem());
-    ui->tableWidget->setItem(1, 1, new QTableWidgetItem());
-    ui->tableWidget->setItem(2, 1, new QTableWidgetItem());
-    ui->tableWidget->setItem(3, 1, new QTableWidgetItem());
-    ui->tableWidget->setItem(4, 1, new QTableWidgetItem());
-    ui->tableWidget->setItem(5, 1, new QTableWidgetItem());
-    ui->tableWidget->setItem(6, 1, new QTableWidgetItem());
-    ui->tableWidget->setItem(7, 1, new QTableWidgetItem());
-    ui->tableWidget->setItem(8, 1, new QTableWidgetItem());
-    ui->tableWidget->setItem(9, 1, new QTableWidgetItem());
-    ui->tableWidget->setItem(10, 1, new QTableWidgetItem());
-    ui->tableWidget->setItem(11, 1, new QTableWidgetItem());
-    ui->tableWidget->setItem(12, 1, new QTableWidgetItem());
-    ui->tableWidget->setItem(13, 1, new QTableWidgetItem());
-    ui->tableWidget->setItem(14, 1, new QTableWidgetItem());
-    ui->tableWidget->setItem(15, 1, new QTableWidgetItem());
-    ui->tableWidget->setItem(16, 1, new QTableWidgetItem());
-    ui->tableWidget->setItem(17, 1, new QTableWidgetItem());
-    ui->tableWidget->setItem(18, 1, new QTableWidgetItem());
-    ui->tableWidget->setItem(19, 1, new QTableWidgetItem());
-    ui->tableWidget->setItem(20, 1, new QTableWidgetItem());
-    ui->tableWidget->setItem(21, 1, new QTableWidgetItem());
-    ui->tableWidget->setItem(22, 1, new QTableWidgetItem());
-    ui->tableWidget->setItem(23, 1, new QTableWidgetItem());
+//    ui->tableWidget->setItem(0, 0, new QTableWidgetItem("Ток фазы А, А"));
+//    ui->tableWidget->setItem(1, 0, new QTableWidgetItem("Напряжение фазы А, В"));
+//    ui->tableWidget->setItem(2, 0, new QTableWidgetItem("Активная мошность фазы А, Вт"));
+//    ui->tableWidget->setItem(3, 0, new QTableWidgetItem("Реактивная мошность фазы А, ВА"));
+//    ui->tableWidget->setItem(4, 0, new QTableWidgetItem("Полная мошность фазы А, ВАР"));
+//    ui->tableWidget->setItem(5, 0, new QTableWidgetItem("Коэффициент мощности фазы А"));
+//    ui->tableWidget->setItem(6, 0, new QTableWidgetItem("Ток фазы В, А"));
+//    ui->tableWidget->setItem(7, 0, new QTableWidgetItem("Напряжение фазы В, В"));
+//    ui->tableWidget->setItem(8, 0, new QTableWidgetItem("Активная мошность фазы В, Вт"));
+//    ui->tableWidget->setItem(9, 0, new QTableWidgetItem("Реактивная мошность фазы В, ВА"));
+//    ui->tableWidget->setItem(10, 0, new QTableWidgetItem("Полная мошность фазы В, ВАР"));
+//    ui->tableWidget->setItem(11, 0, new QTableWidgetItem("Коэффициент мощности фазы В"));
+//    ui->tableWidget->setItem(12, 0, new QTableWidgetItem("Ток фазы С, А"));
+//    ui->tableWidget->setItem(13, 0, new QTableWidgetItem("Напряжение фазы С, В"));
+//    ui->tableWidget->setItem(14, 0, new QTableWidgetItem("Активная мошность фазы С, Вт"));
+//    ui->tableWidget->setItem(15, 0, new QTableWidgetItem("Реактивная мошность фазы С, ВА"));
+//    ui->tableWidget->setItem(16, 0, new QTableWidgetItem("Полная мошность фазы С, ВАР"));
+//    ui->tableWidget->setItem(17, 0, new QTableWidgetItem("Коэффициент мощности фазы С"));
+//    ui->tableWidget->setItem(18, 0, new QTableWidgetItem("трехфазная активная мошность, Вт"));
+//    ui->tableWidget->setItem(19, 0, new QTableWidgetItem("Трехфазная реактивная мошность, ВА"));
+//    ui->tableWidget->setItem(20, 0, new QTableWidgetItem("Трехфазная полная мошность, ВАР"));
+//    ui->tableWidget->setItem(21, 0, new QTableWidgetItem("Коэффициент мощности"));
+//    ui->tableWidget->setItem(22, 0, new QTableWidgetItem("Скорость вращения ротора, рад/с"));
+//    ui->tableWidget->setItem(23, 0, new QTableWidgetItem("Момент, Н*м"));
+//    ui->tableWidget->setItem(0, 1, new QTableWidgetItem());
+//    ui->tableWidget->setItem(1, 1, new QTableWidgetItem());
+//    ui->tableWidget->setItem(2, 1, new QTableWidgetItem());
+//    ui->tableWidget->setItem(3, 1, new QTableWidgetItem());
+//    ui->tableWidget->setItem(4, 1, new QTableWidgetItem());
+//    ui->tableWidget->setItem(5, 1, new QTableWidgetItem());
+//    ui->tableWidget->setItem(6, 1, new QTableWidgetItem());
+//    ui->tableWidget->setItem(7, 1, new QTableWidgetItem());
+//    ui->tableWidget->setItem(8, 1, new QTableWidgetItem());
+//    ui->tableWidget->setItem(9, 1, new QTableWidgetItem());
+//    ui->tableWidget->setItem(10, 1, new QTableWidgetItem());
+//    ui->tableWidget->setItem(11, 1, new QTableWidgetItem());
+//    ui->tableWidget->setItem(12, 1, new QTableWidgetItem());
+//    ui->tableWidget->setItem(13, 1, new QTableWidgetItem());
+//    ui->tableWidget->setItem(14, 1, new QTableWidgetItem());
+//    ui->tableWidget->setItem(15, 1, new QTableWidgetItem());
+//    ui->tableWidget->setItem(16, 1, new QTableWidgetItem());
+//    ui->tableWidget->setItem(17, 1, new QTableWidgetItem());
+//    ui->tableWidget->setItem(18, 1, new QTableWidgetItem());
+//    ui->tableWidget->setItem(19, 1, new QTableWidgetItem());
+//    ui->tableWidget->setItem(20, 1, new QTableWidgetItem());
+//    ui->tableWidget->setItem(21, 1, new QTableWidgetItem());
+//    ui->tableWidget->setItem(22, 1, new QTableWidgetItem());
+//    ui->tableWidget->setItem(23, 1, new QTableWidgetItem());
 
-    QPalette p99=ui->tableWidget->palette();
-    p99.setColor(QPalette::Base, QColor(225, 255, 255));
-    p99.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
-    ui->tableWidget->setPalette(p99);
+//    QPalette p99=ui->tableWidget->palette();
+//    p99.setColor(QPalette::Base, QColor(225, 255, 255));
+//    p99.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
+//    ui->tableWidget->setPalette(p99);
 
-    //вставка таблицы Настройки внутренней модели таблицы tableWidget_3
-    ui->tableWidget_3->setRowCount(30);
-    ui->tableWidget_3->setColumnCount(2);
-    QStringList name3;
-    name3 << "Свойство" << "Значение";
-    ui->tableWidget_3->setHorizontalHeaderLabels(name);
-    ui->tableWidget_3->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    ui->tableWidget_3->setSelectionBehavior(QAbstractItemView :: SelectRows);
-    ui->tableWidget_3->setSelectionMode(QAbstractItemView :: SingleSelection);
-    ui->tableWidget_3->verticalHeader()->setVisible(true);
+//    //вставка таблицы Настройки внутренней модели таблицы tableWidget_3
+//    ui->tableWidget_3->setRowCount(30);
+//    ui->tableWidget_3->setColumnCount(2);
+//    QStringList name3;
+//    name3 << "Свойство" << "Значение";
+//    ui->tableWidget_3->setHorizontalHeaderLabels(name);
+//    ui->tableWidget_3->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+//    ui->tableWidget_3->setSelectionBehavior(QAbstractItemView :: SelectRows);
+//    ui->tableWidget_3->setSelectionMode(QAbstractItemView :: SingleSelection);
+//    ui->tableWidget_3->verticalHeader()->setVisible(true);
 
-    //вставка комбобокса Режим работы АД таблицы tableWidget_3
-    ui->tableWidget_3->setCellWidget(0,1,combo);
-    ui->tableWidget_3->setItem(0, 0, new QTableWidgetItem("Режим работы двигателя"));
-    ui->tableWidget_3->setItem(1, 0, new QTableWidgetItem("Время цикла, с"));
-    ui->tableWidget_3->setItem(2, 0, new QTableWidgetItem("Время работы, с"));
-    ui->tableWidget_3->setItem(3, 0, new QTableWidgetItem("Значение момента Мс, Н*м"));
-    ui->tableWidget_3->setItem(4, 0, new QTableWidgetItem("Выбор системы электропривода"));
-    combo->addItem("Режим S1");
-    combo->addItem("Режим S2");
-    combo->addItem("Режим S3");
-    combo->addItem("Режим S4");
-    combo->addItem("Режим S6");
+//    //вставка комбобокса Режим работы АД таблицы tableWidget_3
+//    ui->tableWidget_3->setCellWidget(0,1,combo);
+//    ui->tableWidget_3->setItem(0, 0, new QTableWidgetItem("Режим работы двигателя"));
+//    ui->tableWidget_3->setItem(1, 0, new QTableWidgetItem("Время цикла, с"));
+//    ui->tableWidget_3->setItem(2, 0, new QTableWidgetItem("Время работы, с"));
+//    ui->tableWidget_3->setItem(3, 0, new QTableWidgetItem("Значение момента Мс, Н*м"));
+//    ui->tableWidget_3->setItem(4, 0, new QTableWidgetItem("Выбор системы электропривода"));
+//    combo->addItem("Режим S1");
+//    combo->addItem("Режим S2");
+//    combo->addItem("Режим S3");
+//    combo->addItem("Режим S4");
+//    combo->addItem("Режим S6");
 
-    //вставка комбобокса Выбор системы электропривода таблицы tableWidget_3
-    ui->tableWidget_3->setCellWidget(4,1,combo2);
-    combo2->addItem("Прямой пуск");
-    combo2->addItem("Система ТРН-АД");
-    combo2->addItem("Система ПЧ-АД");
+//    //вставка комбобокса Выбор системы электропривода таблицы tableWidget_3
+//    ui->tableWidget_3->setCellWidget(4,1,combo2);
+//    combo2->addItem("Прямой пуск");
+//    combo2->addItem("Система ТРН-АД");
+//    combo2->addItem("Система ПЧ-АД");
 
-    //цветовая палитра таблицы tableWidget_3
-    QPalette p2=ui->tableWidget_3->palette();
-    p2.setColor(QPalette::Base, QColor(199, 255, 255));
-    p2.setColor(QPalette::AlternateBase, QColor(230, 255, 255));
-    ui->tableWidget_3->setPalette(p2);
+//    //цветовая палитра таблицы tableWidget_3
+//    QPalette p2=ui->tableWidget_3->palette();
+//    p2.setColor(QPalette::Base, QColor(199, 255, 255));
+//    p2.setColor(QPalette::AlternateBase, QColor(230, 255, 255));
+//    ui->tableWidget_3->setPalette(p2);
 
 
-    //вставка таблицы Энергетические характеристики таблицы tableWidget_4
-    ui->tableWidget_4->setRowCount(30);
-    ui->tableWidget_4->setColumnCount(2);
-    QStringList name4;
-    name3 << "Свойство" << "Значение";
-    ui->tableWidget_4->setHorizontalHeaderLabels(name);
-    ui->tableWidget_4->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    ui->tableWidget_4->setSelectionBehavior(QAbstractItemView :: SelectRows);
-    ui->tableWidget_4->setSelectionMode(QAbstractItemView :: SingleSelection);
-    ui->tableWidget_4->verticalHeader()->setVisible(true);
+//    //вставка таблицы Энергетические характеристики таблицы tableWidget_4
+//    ui->tableWidget_4->setRowCount(30);
+//    ui->tableWidget_4->setColumnCount(2);
+//    QStringList name4;
+//    name3 << "Свойство" << "Значение";
+//    ui->tableWidget_4->setHorizontalHeaderLabels(name);
+//    ui->tableWidget_4->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+//    ui->tableWidget_4->setSelectionBehavior(QAbstractItemView :: SelectRows);
+//    ui->tableWidget_4->setSelectionMode(QAbstractItemView :: SingleSelection);
+//    ui->tableWidget_4->verticalHeader()->setVisible(true);
 
-    //Заполнение полей левой части таблицы для пояснения чекбоксов таблицы tableWidget_3
-    ui->tableWidget_4->setItem(0, 0, new QTableWidgetItem("Потребляемая двигателем мощность P1, Вт"));
-    ui->tableWidget_4->setItem(1, 0, new QTableWidgetItem("Потери в обмотке статора dPel1, Вт"));
-    ui->tableWidget_4->setItem(2, 0, new QTableWidgetItem("Потери в стали dPct, Вт"));
-    ui->tableWidget_4->setItem(3, 0, new QTableWidgetItem("Потери в обмотке ротора dPel2, Вт"));
-    ui->tableWidget_4->setItem(4, 0, new QTableWidgetItem("Добавочные потери dPdob, Вт"));
-    ui->tableWidget_4->setItem(5, 0, new QTableWidgetItem("Механические потери dPmech, Вт"));
-    ui->tableWidget_4->setItem(6, 0, new QTableWidgetItem("Механическая мощность на валу двигателя P2, Вт"));
-    ui->tableWidget_4->setItem(7, 0, new QTableWidgetItem("Коэффициент полезного действия"));
-    ui->tableWidget_4->setItem(8, 0, new QTableWidgetItem("Коэффициент мощности"));
-    ui->tableWidget_4->setItem(0, 1, new QTableWidgetItem());
-    ui->tableWidget_4->setItem(1, 1, new QTableWidgetItem());
-    ui->tableWidget_4->setItem(2, 1, new QTableWidgetItem());
-    ui->tableWidget_4->setItem(3, 1, new QTableWidgetItem());
-    ui->tableWidget_4->setItem(4, 1, new QTableWidgetItem());
-    ui->tableWidget_4->setItem(5, 1, new QTableWidgetItem());
-    ui->tableWidget_4->setItem(6, 1, new QTableWidgetItem());
-    ui->tableWidget_4->setItem(7, 1, new QTableWidgetItem());
-    ui->tableWidget_4->setItem(8, 1, new QTableWidgetItem());
+//    //Заполнение полей левой части таблицы для пояснения чекбоксов таблицы tableWidget_3
+//    ui->tableWidget_4->setItem(0, 0, new QTableWidgetItem("Потребляемая двигателем мощность P1, Вт"));
+//    ui->tableWidget_4->setItem(1, 0, new QTableWidgetItem("Потери в обмотке статора dPel1, Вт"));
+//    ui->tableWidget_4->setItem(2, 0, new QTableWidgetItem("Потери в стали dPct, Вт"));
+//    ui->tableWidget_4->setItem(3, 0, new QTableWidgetItem("Потери в обмотке ротора dPel2, Вт"));
+//    ui->tableWidget_4->setItem(4, 0, new QTableWidgetItem("Добавочные потери dPdob, Вт"));
+//    ui->tableWidget_4->setItem(5, 0, new QTableWidgetItem("Механические потери dPmech, Вт"));
+//    ui->tableWidget_4->setItem(6, 0, new QTableWidgetItem("Механическая мощность на валу двигателя P2, Вт"));
+//    ui->tableWidget_4->setItem(7, 0, new QTableWidgetItem("Коэффициент полезного действия"));
+//    ui->tableWidget_4->setItem(8, 0, new QTableWidgetItem("Коэффициент мощности"));
+//    ui->tableWidget_4->setItem(0, 1, new QTableWidgetItem());
+//    ui->tableWidget_4->setItem(1, 1, new QTableWidgetItem());
+//    ui->tableWidget_4->setItem(2, 1, new QTableWidgetItem());
+//    ui->tableWidget_4->setItem(3, 1, new QTableWidgetItem());
+//    ui->tableWidget_4->setItem(4, 1, new QTableWidgetItem());
+//    ui->tableWidget_4->setItem(5, 1, new QTableWidgetItem());
+//    ui->tableWidget_4->setItem(6, 1, new QTableWidgetItem());
+//    ui->tableWidget_4->setItem(7, 1, new QTableWidgetItem());
+//    ui->tableWidget_4->setItem(8, 1, new QTableWidgetItem());
 
-    QPalette p3=ui->tableWidget_4->palette();
-    p3.setColor(QPalette::Base, QColor(255, 255, 191));
-    p3.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
-    ui->tableWidget_4->setPalette(p3);
+//    QPalette p3=ui->tableWidget_4->palette();
+//    p3.setColor(QPalette::Base, QColor(255, 255, 191));
+//    p3.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
+//    ui->tableWidget_4->setPalette(p3);
 
     ui->tableWidget_5->setRowCount(9); //задание количества строк таблицы
     ui->tableWidget_5->setColumnCount(6); //задание количества столбцов
@@ -770,6 +772,22 @@ void electromagn::realtimeDataSlot()
         }
     }
 
+    std::ofstream fout;
+    fout.open(QString(base.electromagnFilename).toStdString(),std::ios::out | std::ios::app);
+    fout << QString("%1").arg(key).toStdString() << ";";
+    fout << QString("%1").arg(Model_el.u_dev_a).toStdString() << ";";
+    fout << QString("%1").arg(Model_el.u_dev_b).toStdString() << ";";
+    fout << QString("%1").arg(Model_el.u_dev_c).toStdString() << ";";
+    fout << QString("%1").arg(Model_el.i_dev_a).toStdString() << ";";
+    fout << QString("%1").arg(Model_el.i_dev_b).toStdString() << ";";
+    fout << QString("%1").arg(Model_el.i_dev_c).toStdString() << ";";
+    fout << QString("%1").arg(Model_el.omega).toStdString() << ";";
+    fout << QString("%1").arg(Model_el.M).toStdString() << ";";
+    fout << QString("%1").arg(Model_el.Mc).toStdString() << ";";
+    fout << std::endl;
+    fout.close();
+
+
     if(wf->item80->text() == "Чтение данных из файла для наблюдателя скорости")
     {
         nabludatel->rasch(dataSource);
@@ -1227,7 +1245,6 @@ void electromagn::raschet_el()
         dataSource->init();
         nabludatel->init(base.R1, base.R2, base.L1, base.L2, base.Lm);
         connect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
-
     }
 
     ui->plot->clear();

@@ -15,129 +15,6 @@
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout_2">
-     <item>
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Станина</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_4">
-       <property name="text">
-        <string>Подшипниковый узел справа сзади</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_5">
-       <property name="text">
-        <string>Лобовая часть слева спереди</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_6">
-       <property name="text">
-        <string>Подшипниковый узел слева спереди</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_7">
-       <property name="text">
-        <string>Лобовая часть слева спереди</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_8">
-       <property name="text">
-        <string>Станина</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_9">
-       <property name="text">
-        <string>Лобовая часть справа спереди</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_10">
-       <property name="text">
-        <string>Лобовая часть справа сзади</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_11">
-       <property name="text">
-        <string>Магнитопровод статора</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_12">
-       <property name="text">
-        <string>Подшипниковый узел справа спереди</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_13">
-       <property name="text">
-        <string>Подшипниковый узел слева сзади</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_14">
-       <property name="text">
-        <string>Ротор сверху</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>Ротор снизу</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_17">
-       <property name="text">
-        <string>Станина слева</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_18">
-       <property name="text">
-        <string>Станина справа</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_19">
-       <property name="text">
-        <string>Вал</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_20">
-       <property name="text">
-        <string>Клеммная коробка</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
     <widget class="Plot" name="plot" native="true">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -153,7 +30,7 @@
      </property>
      <property name="maximumSize">
       <size>
-       <width>551</width>
+       <width>16777215</width>
        <height>16777215</height>
       </size>
      </property>

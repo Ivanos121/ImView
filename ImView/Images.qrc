@@ -47,6 +47,10 @@
         <file>../data/img/images/zastavka.png</file>
         <file>../data/img/icons/labplot-axis-vertical.svg</file>
         <file>../data/img/icons/labplot-axis-vertical.png</file>
+        <file>../data/img/icons/map-flat.png</file>
+        <file>../data/img/icons/map-flat.svg</file>
+        <file>../data/img/icons/labplot-xy-interpolation-curve.png</file>
+        <file>../data/img/icons/labplot-xy-interpolation-curve.svg</file>
     </qresource>
     <qresource prefix="/databases">
         <file>../data/databases/mydb.db</file>

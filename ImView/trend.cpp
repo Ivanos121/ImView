@@ -44,24 +44,24 @@ trend::trend(QWidget *parent) :
 
     connect(&timer, &QTimer::timeout, this, &trend::on_timerTimeout);
 
-    //Первоначальная цветовая настройка лейблов
-    ui->label->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
-    ui->label_4->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
-    ui->label_5->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
-    ui->label_6->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
-    ui->label_7->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
-    ui->label_8->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
-    ui->label_9->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
-    ui->label_10->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
-    ui->label_11->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
-    ui->label_12->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
-    ui->label_13->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
-    ui->label_14->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
-    ui->label_2->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
-    ui->label_17->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
-    ui->label_18->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
-    ui->label_19->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
-    ui->label_20->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
+//    //Первоначальная цветовая настройка лейблов
+//    ui->label->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
+//    ui->label_4->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
+//    ui->label_5->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
+//    ui->label_6->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
+//    ui->label_7->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
+//    ui->label_8->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
+//    ui->label_9->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
+//    ui->label_10->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
+//    ui->label_11->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
+//    ui->label_12->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
+//    ui->label_13->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
+//    ui->label_14->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
+//    ui->label_2->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
+//    ui->label_17->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
+//    ui->label_18->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
+//    ui->label_19->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
+//    ui->label_20->setStyleSheet(QString("background-color: hsl(235, 100%, 30%)"));
 
 
     ui->tableWidget->setRowCount(17);
@@ -919,56 +919,56 @@ void trend::on_timerTimeout()
 
    // Расчет значений цветов
 
-    int color_0 = 225 - (y_0 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
-    ui->label->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_0));
+   int color_0 = 225 - (y_0 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
+//    ui->label->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_0));
 
     int color_1 = 225 - (y_1 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
-    ui->label_4->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_1));
+//    ui->label_4->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_1));
 
     int color_2 = 225 - (y_2 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
-    ui->label_5->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_2));
+//    ui->label_5->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_2));
 
-    int color_3 = 225 - (y_3 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
-    ui->label_6->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_3));
+   int color_3 = 225 - (y_3 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
+//    ui->label_6->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_3));
 
     int color_4 = 225 - (y_4 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
-    ui->label_7->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_4));
+//    ui->label_7->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_4));
 
     int color_5 = 225 - (y_5 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
-    ui->label_8->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_5));
+//    ui->label_8->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_5));
 
     int color_6 = 225 - (y_6 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
-    ui->label_9->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_6));
+//    ui->label_9->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_6));
 
     int color_7 = 225 - (y_7 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
-    ui->label_10->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_7));
+//    ui->label_10->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_7));
 
     int color_8 = 225 - (y_8 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
-    ui->label_11->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_8));
+//    ui->label_11->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_8));
 
     int color_9 = 225 - (y_9 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
-    ui->label_12->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_9));
+//    ui->label_12->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_9));
 
     int color_10 = 225 - (y_10 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
-    ui->label_13->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_10));
+//    ui->label_13->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_10));
 
     int color_11 = 225 - (y_11 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
-    ui->label_14->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_11));
+//    ui->label_14->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_11));
 
     int color_12 = 225 - (y_12 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
-    ui->label_2->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_12));
+//    ui->label_2->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_12));
 
     int color_13 = 225 - (y_13 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
-    ui->label_17->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_13));
+//    ui->label_17->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_13));
 
-    int color_14 = 225 - (y_14 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
-    ui->label_18->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_14));
+   int color_14 = 225 - (y_14 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
+//    ui->label_18->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_14));
 
     int color_15 = 225 - (y_15 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
-    ui->label_19->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_15));
+//    ui->label_19->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_15));
 
     int color_16 = 225 - (y_16 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
-    ui->label_20->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_16));
+//    ui->label_20->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_16));
 
 
     //Отрисовка draw_line
