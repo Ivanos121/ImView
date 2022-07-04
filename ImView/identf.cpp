@@ -89,6 +89,20 @@ void identf::realtimeDataSlot()
         ui->plot->addPoint(2, key, model.L);
         ui->plot->addPoint(3, key, model.Lm);
 
+        std::ofstream fout;
+
+        fout.open(QString(base.identfFilename).toStdString(),std::ios::out | std::ios::app);
+
+        fout << QString("%1").arg(key).toStdString() << ";";
+        fout << QString("%1").arg(model.R2).toStdString() << ";";
+        fout << QString("%1").arg(model.L).toStdString() << ";";
+        fout << QString("%1").arg(model.L).toStdString() << ";";
+        fout << QString("%1").arg(model.Lm).toStdString() << ";";
+
+        fout << std::endl;
+
+        fout.close();
+
         wf->ui->lineEdit_8->setText(QString::number(model.Lm,'f',3));
         wf->ui->lineEdit_9->setText(QString::number(model.L,'f',3));
         wf->ui->lineEdit_10->setText(QString::number(model.L,'f',3));
@@ -146,11 +160,19 @@ void identf::raschet_f()
     ui->plot->addPoint(2, 0, model.L);
     ui->plot->addPoint(3, 0, model.Lm);
 
-//    ui->lineEdit_8->setText(QString::number(model.Lm,'f',3));
-//    ui->lineEdit_9->setText(QString::number(model.L,'f',3));
-//    ui->lineEdit_10->setText(QString::number(model.L,'f',3));
-//    ui->lineEdit_11->setText(QString::number(model.R2,'f',3));
-//    ui->lineEdit_12->setText(QString::number(R1));
+    std::ofstream fout;
+
+    fout.open(QString(base.identfFilename).toStdString(),std::ios::out | std::ios::app);
+
+    fout << QString("%1").arg(key).toStdString() << ";";
+    fout << QString("%1").arg(model.R2).toStdString() << ";";
+    fout << QString("%1").arg(model.L).toStdString() << ";";
+    fout << QString("%1").arg(model.L).toStdString() << ";";
+    fout << QString("%1").arg(model.Lm).toStdString() << ";";
+
+    fout << std::endl;
+
+    fout.close();
 
     time->start();
 }

@@ -121,7 +121,7 @@ public:
     Settings *rsc2;
 //    Graph_Settings *graph_Settings;
     QString dataSourceFilename;
-QString fileName;
+QString dirName;
 
 
     QWebEngineView * view;

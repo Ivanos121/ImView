@@ -18,6 +18,7 @@ struct Base
     double L2;
     double Lm;
     QString dataSourceFilename;
+    QString identfFilename;
     QString name;
     double i_a;
     double u_a;

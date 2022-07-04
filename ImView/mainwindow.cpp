@@ -1252,56 +1252,52 @@ void MainWindow::on_action_5_triggered()
 
         ui->action_5->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
         ui->action_9->setEnabled(true);
-        ui->widget_2->raschet_f();
 
-        if(item68->checkState() == Qt::Checked)
-        {
         //создание папки текущего сеанса
-        //QString fileName;
-        QDir dir("/home/elf/ImView/Output");
         QDateTime currentDateTime = QDateTime::currentDateTime();
         QTime currentTime = currentDateTime.time();
         QDate currentDate = currentDateTime.date();
 
-        fileName= QString ("%1""%2""%3").arg("Сеанс ").arg(currentTime.toString("hh:mm:ss ").toUtf8().data()).
+        QString setpath = "/home/elf/ImView/Output";
+        QDir dir(setpath);
+
+        dirName= QString ("%1""%2""%3").arg("Сеанс ").arg(currentTime.toString("hh:mm:ss ").toUtf8().data()).
                 arg(currentDate.toString("dd.MM.yyyy").toUtf8().data());
-        dir.mkdir(fileName);
+        dir.mkdir(dirName);
 
-        //создание файла сохранений идентификации параметров схемы замещения
-        std::ofstream fout;
-        QFile File("/home/elf/ImView/build-ImView-Desktop-Debug/result_identf.csv");
-        fout.open("result_identf.csv",std::ios::out | std::ios::app);
-        fout << std::endl << "Начало измерений " << currentDate.toString("dd.MM.yyyy").toUtf8().data() << std::endl;
-        fout << std::endl;
-
-        fout << "Канал №1" << " - " << "Активное сопротивление фазы ротора" << std::endl;
-        fout << "Канал №2" << " - " << "Индуктивность фазы статора" << std::endl;
-        fout << "Канал №3" << " - " << "Индуктивность фазы ротора" << std::endl;
-        fout << "Канал №2" << " - " << "Индуктивность взаимоиндукции" << std::endl;
-
-        fout << std::endl;
-
-        fout << "Время;";
-
-        for (int i=0; i<4; i++)
+        if(item68->checkState() == Qt::Checked)
         {
-               fout << QString("Канал №%1").arg(i+1).toUtf8().data() << ";";
+            QString filename = "result_identf.csv";
+            //создание файла сохранений идентификации параметров схемы замещения
+            std::ofstream fout;
+
+            base.identfFilename = setpath+QDir::separator()+dirName+QDir::separator()+filename;
+
+            fout.open(QString(base.identfFilename).toStdString(),std::ios::out | std::ios::app);
+            fout << std::endl << "Начало измерений " << currentDate.toString("dd.MM.yyyy").toUtf8().data() << std::endl;
+            fout << std::endl;
+
+            fout << "Канал №1" << " - " << "Активное сопротивление фазы ротора" << std::endl;
+            fout << "Канал №2" << " - " << "Индуктивность фазы статора" << std::endl;
+            fout << "Канал №3" << " - " << "Индуктивность фазы ротора" << std::endl;
+            fout << "Канал №2" << " - " << "Индуктивность взаимоиндукции" << std::endl;
+
+            fout << std::endl;
+
+            fout << "Время;";
+
+            for (int i=0; i<4; i++)
+            {
+                fout << QString("Канал №%1").arg(i+1).toUtf8().data() << ";";
                 //fout << modelss.R2 << modelss.L << modelss.L << modelss.Lm;
+            }
+
+            fout << std::endl;
+
+            fout.close();
         }
 
-        fout << std::endl;
-
-        fout.close();
-    }
-    QString src = "/home/elf/ImView/build-ImView-Desktop-Debug";
-    QString filename = "result_identf.csv";
-    QFile file(filename);
-    QString setpath = "/home/elf/ImView/Output";
-    file.copy(src+QDir::separator()+filename, setpath+QDir::separator()+fileName+QDir::separator()+filename);
-
-    QString dbFile = src+QDir::separator()+filename;
-    QFile ffile (dbFile);
-    ffile.remove();
+        ui->widget_2->raschet_f();
     }
 }
 
@@ -1369,7 +1365,7 @@ void MainWindow::on_action_20_triggered()
     QString filename2 = "result_electromagn.csv";
     QFile file(filename2);
     QString setpath2 = "/home/elf/ImView/Output";
-    file.copy(src2+QDir::separator()+filename2, setpath2+QDir::separator()+fileName+QDir::separator()+filename2);
+    file.copy(src2+QDir::separator()+filename2, setpath2+QDir::separator()+dirName+QDir::separator()+filename2);
 
     QString dbFile2 = src2+QDir::separator()+filename2;
     QFile ffile2 (dbFile2);
@@ -1529,7 +1525,7 @@ void MainWindow::on_action_23_triggered()
     QIcon ButtonIcon_2(pixmap);
     ui->pushButton_5->setIcon(ButtonIcon_2);
     ui->stackedWidget->show();
-    ui->stackedWidget->setCurrentIndex( 1 );
+    ui->stackedWidget->setCurrentIndex( 2 );
 }
 
 AboutDialog::AboutDialog(QWidget *parent) :

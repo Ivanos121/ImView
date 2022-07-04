@@ -624,19 +624,14 @@ bool ButtonColumnDelegate::helpEvent( QHelpEvent* e, QAbstractItemView* view,
                                       const QStyleOptionViewItem& option, const QModelIndex& index )
 {
     if (!e || !view)
-    return false;
+        return false;
     if (e->type() == QEvent::ToolTip)
     {
-        QRect rect = view->visualRect(index);
-        QSize size = sizeHint( option, index);
-        if (rect.width() < size.width())
-        {
-            QVariant tooltip = index.data(Qt::DisplayRole);
-            if (tooltip.canConvert<QString>()) {
-                QString src=tooltip.toString();
-                QToolTip::showText( e->globalPos(), QString("<div>%1</div>").arg(src.toHtmlEscaped()), view);
-                return true;
-            }
+        QVariant tooltip = index.data(Qt::DisplayRole);
+        if (tooltip.canConvert<QString>()) {
+            QString src=tooltip.toString();
+            QToolTip::showText( e->globalPos(), QString("<div>%1</div>").arg(src.toHtmlEscaped()), view);
+            return true;
         }
         if (!QStyledItemDelegate::helpEvent( e, view, option, index))
             QToolTip::hideText();
