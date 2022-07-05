@@ -562,214 +562,214 @@ void electromagn::realtimeDataSlot()
         }
 
         //Занесение итоговых данных в таблицу
-        if (ui->tableWidget->item(0, 1) != 0)
+        if (wf->ui->tableWidget_2->item(0, 1) != 0)
         {
-            ui->tableWidget->item(0, 1)->setText(QString::number(Model_el.i_dev_a,'f',3));
+            wf->ui->tableWidget_2->item(0, 1)->setText(QString::number(Model_el.i_dev_a,'f',3));
         }
 
-        if (ui->tableWidget->item(1, 1) != 0)
+        if (wf->ui->tableWidget_2->item(1, 1) != 0)
         {
-            ui->tableWidget->item(1, 1)->setText(QString::number(Model_el.u_dev_a,'f',3));
+            wf->ui->tableWidget_2->item(1, 1)->setText(QString::number(Model_el.u_dev_a,'f',3));
         }
 
-        if (ui->tableWidget->item(2, 1) != 0)
+        if (wf->ui->tableWidget_2->item(2, 1) != 0)
         {
-            ui->tableWidget->item(2, 1)->setText(QString::number(Model_el.p_akt_a,'f',3));
+            wf->ui->tableWidget_2->item(2, 1)->setText(QString::number(Model_el.p_akt_a,'f',3));
         }
 
-        if (ui->tableWidget->item(3, 1) != 0)
+        if (wf->ui->tableWidget_2->item(3, 1) != 0)
         {
-            ui->tableWidget->item(3, 1)->setText(QString::number(Model_el.p_reakt_a,'f',3));
+            wf->ui->tableWidget_2->item(3, 1)->setText(QString::number(Model_el.p_reakt_a,'f',3));
         }
 
-        if (ui->tableWidget->item(4, 1) != 0)
+        if (wf->ui->tableWidget_2->item(4, 1) != 0)
         {
-            ui->tableWidget->item(4, 1)->setText(QString::number(Model_el.p_poln_a,'f',3));
+            wf->ui->tableWidget_2->item(4, 1)->setText(QString::number(Model_el.p_poln_a,'f',3));
         }
 
-        if (ui->tableWidget->item(5, 1) != 0)
+        if (wf->ui->tableWidget_2->item(5, 1) != 0)
         {
-            ui->tableWidget->item(5, 1)->setText(QString::number(Model_el.cos_f_a,'f',3));
+            wf->ui->tableWidget_2->item(5, 1)->setText(QString::number(Model_el.cos_f_a,'f',3));
         }
 
-        if (ui->tableWidget->item(6, 1) != 0)
+        if (wf->ui->tableWidget_2->item(6, 1) != 0)
         {
-            ui->tableWidget->item(6, 1)->setText(QString::number(Model_el.i_dev_b,'f',3));
+            wf->ui->tableWidget_2->item(6, 1)->setText(QString::number(Model_el.i_dev_b,'f',3));
         }
 
-        if (ui->tableWidget->item(7, 1) != 0)
+        if (wf->ui->tableWidget_2->item(7, 1) != 0)
         {
-            ui->tableWidget->item(7, 1)->setText(QString::number(Model_el.u_dev_b,'f',3));
+            wf->ui->tableWidget_2->item(7, 1)->setText(QString::number(Model_el.u_dev_b,'f',3));
         }
 
-        if (ui->tableWidget->item(8, 1) != 0)
+        if (wf->ui->tableWidget_2->item(8, 1) != 0)
         {
-            ui->tableWidget->item(8, 1)->setText(QString::number(Model_el.p_akt_b,'f',3));
+            wf->ui->tableWidget_2->item(8, 1)->setText(QString::number(Model_el.p_akt_b,'f',3));
         }
 
-        if (ui->tableWidget->item(9, 1) != 0)
+        if (wf->ui->tableWidget_2->item(9, 1) != 0)
         {
-            ui->tableWidget->item(9, 1)->setText(QString::number(Model_el.p_reakt_b,'f',3));
+            wf->ui->tableWidget_2->item(9, 1)->setText(QString::number(Model_el.p_reakt_b,'f',3));
         }
 
-        if (ui->tableWidget->item(10, 1) != 0)
+        if (wf->ui->tableWidget_2->item(10, 1) != 0)
         {
-            ui->tableWidget->item(10, 1)->setText(QString::number(Model_el.p_poln_b,'f',3));
+            wf->ui->tableWidget_2->item(10, 1)->setText(QString::number(Model_el.p_poln_b,'f',3));
         }
 
-        if (ui->tableWidget->item(11, 1) != 0)
+        if (wf->ui->tableWidget_2->item(11, 1) != 0)
         {
-            ui->tableWidget->item(11, 1)->setText(QString::number(Model_el.cos_f_b,'f',3));
+            wf->ui->tableWidget_2->item(11, 1)->setText(QString::number(Model_el.cos_f_b,'f',3));
         }
 
-        if (ui->tableWidget->item(12, 1) != 0)
+        if (wf->ui->tableWidget_2->item(12, 1) != 0)
         {
-            ui->tableWidget->item(12, 1)->setText(QString::number(Model_el.i_dev_c,'f',3));
+            wf->ui->tableWidget_2->item(12, 1)->setText(QString::number(Model_el.i_dev_c,'f',3));
         }
 
-        if (ui->tableWidget->item(13, 1) != 0)
+        if (wf->ui->tableWidget_2->item(13, 1) != 0)
         {
-            ui->tableWidget->item(13, 1)->setText(QString::number(Model_el.u_dev_c,'f',3));
+            wf->ui->tableWidget_2->item(13, 1)->setText(QString::number(Model_el.u_dev_c,'f',3));
         }
 
-        if (ui->tableWidget->item(14, 1) != 0)
+        if (wf->ui->tableWidget_2->item(14, 1) != 0)
         {
-            ui->tableWidget->item(14, 1)->setText(QString::number(Model_el.p_akt_c,'f',3));
+            wf->ui->tableWidget_2->item(14, 1)->setText(QString::number(Model_el.p_akt_c,'f',3));
         }
 
-        if (ui->tableWidget->item(15, 1) != 0)
+        if (wf->ui->tableWidget_2->item(15, 1) != 0)
         {
-            ui->tableWidget->item(15, 1)->setText(QString::number(Model_el.p_reakt_c,'f',3));
+            wf->ui->tableWidget_2->item(15, 1)->setText(QString::number(Model_el.p_reakt_c,'f',3));
         }
 
-        if (ui->tableWidget->item(16, 1) != 0)
+        if (wf->ui->tableWidget_2->item(16, 1) != 0)
         {
-            ui->tableWidget->item(16, 1)->setText(QString::number(Model_el.p_poln_c,'f',3));
+            wf->ui->tableWidget_2->item(16, 1)->setText(QString::number(Model_el.p_poln_c,'f',3));
         }
 
-        if (ui->tableWidget->item(17, 1) != 0)
+        if (wf->ui->tableWidget_2->item(17, 1) != 0)
         {
-            ui->tableWidget->item(17, 1)->setText(QString::number(Model_el.cos_f_c,'f',3));
+            wf->ui->tableWidget_2->item(17, 1)->setText(QString::number(Model_el.cos_f_c,'f',3));
         }
 
-        if (ui->tableWidget->item(18, 1) != 0)
+        if (wf->ui->tableWidget_2->item(18, 1) != 0)
         {
-            ui->tableWidget->item(18, 1)->setText(QString::number(Model_el.p_akt,'f',3));
+            wf->ui->tableWidget_2->item(18, 1)->setText(QString::number(Model_el.p_akt,'f',3));
         }
 
-        if (ui->tableWidget->item(19, 1) != 0)
+        if (wf->ui->tableWidget_2->item(19, 1) != 0)
         {
-            ui->tableWidget->item(19, 1)->setText(QString::number(Model_el.p_reakt,'f',3));
+            wf->ui->tableWidget_2->item(19, 1)->setText(QString::number(Model_el.p_reakt,'f',3));
         }
 
-        if (ui->tableWidget->item(20, 1) != 0)
+        if (wf->ui->tableWidget_2->item(20, 1) != 0)
         {
-            ui->tableWidget->item(20, 1)->setText(QString::number(Model_el.p_poln,'f',3));
+            wf->ui->tableWidget_2->item(20, 1)->setText(QString::number(Model_el.p_poln,'f',3));
         }
 
-        if (ui->tableWidget->item(21, 1) != 0)
+        if (wf->ui->tableWidget_2->item(21, 1) != 0)
         {
-            ui->tableWidget->item(21, 1)->setText(QString::number(Model_el.cos_f,'f',3));
+            wf->ui->tableWidget_2->item(21, 1)->setText(QString::number(Model_el.cos_f,'f',3));
         }
 
-        if (ui->tableWidget->item(22, 1) != 0)
+        if (wf->ui->tableWidget_2->item(22, 1) != 0)
         {
-            ui->tableWidget->item(22, 1)->setText(QString::number(Model_el.omega,'f',3));
+            wf->ui->tableWidget_2->item(22, 1)->setText(QString::number(Model_el.omega,'f',3));
         }
-        if (ui->tableWidget->item(23, 1) != 0)
+        if (wf->ui->tableWidget_2->item(23, 1) != 0)
         {
-            ui->tableWidget->item(23, 1)->setText(QString::number(Model_el.M,'f',3));
-        }
-
-        if (ui->tableWidget_4->item(0, 1) != 0)
-        {
-            ui->tableWidget_4->item(0, 1)->setText(QString::number(Model_el.P1,'f',3));
+            wf->ui->tableWidget_2->item(23, 1)->setText(QString::number(Model_el.M,'f',3));
         }
 
-        if (ui->tableWidget_4->item(1, 1) != 0)
+        if (wf->ui->tableWidget_4->item(0, 1) != 0)
         {
-            ui->tableWidget_4->item(1, 1)->setText(QString::number(Model_el.dPel1,'f',3));
+            wf->ui->tableWidget_4->item(0, 1)->setText(QString::number(Model_el.P1,'f',3));
         }
 
-        if (ui->tableWidget_4->item(2, 1) != 0)
+        if (wf->ui->tableWidget_4->item(1, 1) != 0)
         {
-            ui->tableWidget_4->item(2, 1)->setText(QString::number(Model_el.dPct,'f',3));
+            wf->ui->tableWidget_4->item(1, 1)->setText(QString::number(Model_el.dPel1,'f',3));
         }
 
-        if (ui->tableWidget_4->item(3, 1) != 0)
+        if (wf->ui->tableWidget_4->item(2, 1) != 0)
         {
-            ui->tableWidget_4->item(3, 1)->setText(QString::number(Model_el.dPel2,'f',3));
+            wf->ui->tableWidget_4->item(2, 1)->setText(QString::number(Model_el.dPct,'f',3));
         }
 
-        if (ui->tableWidget_4->item(4, 1) != 0)
+        if (wf->ui->tableWidget_4->item(3, 1) != 0)
         {
-            ui->tableWidget_4->item(4, 1)->setText(QString::number(Model_el.dPdob,'f',3));
+            wf->ui->tableWidget_4->item(3, 1)->setText(QString::number(Model_el.dPel2,'f',3));
         }
 
-        if (ui->tableWidget_4->item(5, 1) != 0)
+        if (wf->ui->tableWidget_4->item(4, 1) != 0)
         {
-            ui->tableWidget_4->item(5, 1)->setText(QString::number(Model_el.dPmech,'f',3));
+            wf->ui->tableWidget_4->item(4, 1)->setText(QString::number(Model_el.dPdob,'f',3));
         }
 
-        if (ui->tableWidget_4->item(6, 1) != 0)
+        if (wf->ui->tableWidget_4->item(5, 1) != 0)
         {
-            ui->tableWidget_4->item(6, 1)->setText(QString::number(Model_el.P2,'f',3));
+            wf->ui->tableWidget_4->item(5, 1)->setText(QString::number(Model_el.dPmech,'f',3));
         }
 
-        if (ui->tableWidget_4->item(7, 1) != 0)
+        if (wf->ui->tableWidget_4->item(6, 1) != 0)
         {
-            ui->tableWidget_4->item(7, 1)->setText(QString::number(Model_el.kpd,'f',3));
+            wf->ui->tableWidget_4->item(6, 1)->setText(QString::number(Model_el.P2,'f',3));
         }
 
-        if (ui->tableWidget_4->item(8, 1) != 0)
+        if (wf->ui->tableWidget_4->item(7, 1) != 0)
         {
-            ui->tableWidget_4->item(8, 1)->setText(QString::number(Model_el.cos_f,'f',3));
+            wf->ui->tableWidget_4->item(7, 1)->setText(QString::number(Model_el.kpd,'f',3));
         }
 
-        if (ui->tableWidget_5->item(0, 3) != 0)
+        if (wf->ui->tableWidget_4->item(8, 1) != 0)
         {
-            ui->tableWidget_5->item(0, 3)->setText(QString::number(Model_el.u_dev_a,'f',3));
+            wf->ui->tableWidget_4->item(8, 1)->setText(QString::number(Model_el.cos_f,'f',3));
         }
 
-        if (ui->tableWidget_5->item(1, 3) != 0)
-        {
-            ui->tableWidget_5->item(1, 3)->setText(QString::number(Model_el.u_dev_b,'f',3));
-        }
+//        if (wf->ui->tableWidget_5->item(0, 3) != 0)
+//        {
+//            wf->ui->tableWidget_5->item(0, 3)->setText(QString::number(Model_el.u_dev_a,'f',3));
+//        }
 
-        if (ui->tableWidget_5->item(2, 3) != 0)
-        {
-            ui->tableWidget_5->item(2, 3)->setText(QString::number(Model_el.u_dev_c,'f',3));
-        }
+//        if (wf->ui->tableWidget_5->item(1, 3) != 0)
+//        {
+//            wf->ui->tableWidget_5->item(1, 3)->setText(QString::number(Model_el.u_dev_b,'f',3));
+//        }
 
-        if (ui->tableWidget_5->item(3, 3) != 0)
-        {
-            ui->tableWidget_5->item(3, 3)->setText(QString::number(Model_el.i_dev_a,'f',3));
-        }
+//        if (wf->ui->tableWidget_5->item(2, 3) != 0)
+//        {
+//            wf->ui->tableWidget_5->item(2, 3)->setText(QString::number(Model_el.u_dev_c,'f',3));
+//        }
 
-        if (ui->tableWidget_5->item(4, 3) != 0)
-        {
-            ui->tableWidget_5->item(4, 3)->setText(QString::number(Model_el.i_dev_b,'f',3));
-        }
+//        if (ui->tableWidget_5->item(3, 3) != 0)
+//        {
+//            ui->tableWidget_5->item(3, 3)->setText(QString::number(Model_el.i_dev_a,'f',3));
+//        }
 
-        if (ui->tableWidget_5->item(5, 3) != 0)
-        {
-            ui->tableWidget_5->item(5, 3)->setText(QString::number(Model_el.i_dev_c,'f',3));
-        }
+//        if (ui->tableWidget_5->item(4, 3) != 0)
+//        {
+//            ui->tableWidget_5->item(4, 3)->setText(QString::number(Model_el.i_dev_b,'f',3));
+//        }
 
-        if (ui->tableWidget_5->item(6, 3) != 0)
-        {
-            ui->tableWidget_5->item(6, 3)->setText(QString::number(Model_el.omega,'f',3));
-        }
+//        if (ui->tableWidget_5->item(5, 3) != 0)
+//        {
+//            ui->tableWidget_5->item(5, 3)->setText(QString::number(Model_el.i_dev_c,'f',3));
+//        }
 
-        if (ui->tableWidget_5->item(7, 3) != 0)
-        {
-            ui->tableWidget_5->item(7, 3)->setText(QString::number(Model_el.M,'f',3));
-        }
+//        if (ui->tableWidget_5->item(6, 3) != 0)
+//        {
+//            ui->tableWidget_5->item(6, 3)->setText(QString::number(Model_el.omega,'f',3));
+//        }
 
-        if (ui->tableWidget_5->item(8, 3) != 0)
-        {
-            ui->tableWidget_5->item(8, 3)->setText(QString::number(Model_el.Mc,'f',3));
-        }
+//        if (ui->tableWidget_5->item(7, 3) != 0)
+//        {
+//            ui->tableWidget_5->item(7, 3)->setText(QString::number(Model_el.M,'f',3));
+//        }
+
+//        if (ui->tableWidget_5->item(8, 3) != 0)
+//        {
+//            ui->tableWidget_5->item(8, 3)->setText(QString::number(Model_el.Mc,'f',3));
+//        }
     }
 
     std::ofstream fout;
@@ -888,164 +888,165 @@ void electromagn::realtimeDataSlot()
     }
 
     //Занесение итоговых данных в таблицу
-    if (ui->tableWidget->item(0, 1) != 0)
+    if (wf->ui->tableWidget_2->item(0, 1) != 0)
     {
-        ui->tableWidget->item(0, 1)->setText(QString("%1").arg(nabludatel->get_i_dev_a()));
+        wf->ui->tableWidget_2->item(0, 1)->setText(QString("%1").arg(nabludatel->get_i_dev_a()));
     }
 
-    if (ui->tableWidget->item(1, 1) != 0)
+    if (wf->ui->tableWidget_2->item(1, 1) != 0)
     {
-        ui->tableWidget->item(1, 1)->setText(QString("%1").arg(nabludatel->get_u_dev_a()));
+        wf->ui->tableWidget_2->item(1, 1)->setText(QString("%1").arg(nabludatel->get_u_dev_a()));
     }
 
-    if (ui->tableWidget->item(2, 1) != 0)
+    if (wf->ui->tableWidget_2->item(2, 1) != 0)
     {
-        ui->tableWidget->item(2, 1)->setText(QString("%1").arg(nabludatel->get_p_akt_a()));
+        wf->ui->tableWidget_2->item(2, 1)->setText(QString("%1").arg(nabludatel->get_p_akt_a()));
     }
 
-    if (ui->tableWidget->item(3, 1) != 0)
+    if (wf->ui->tableWidget_2->item(3, 1) != 0)
     {
-        ui->tableWidget->item(3, 1)->setText(QString("%1").arg(nabludatel->get_p_reakt_a()));
+        wf->ui->tableWidget_2->item(3, 1)->setText(QString("%1").arg(nabludatel->get_p_reakt_a()));
     }
 
-    if (ui->tableWidget->item(4, 1) != 0)
+    if (wf->ui->tableWidget_2->item(4, 1) != 0)
     {
-        ui->tableWidget->item(4, 1)->setText(QString("%1").arg(nabludatel->get_p_poln_a()));
+        wf->ui->tableWidget_2->item(4, 1)->setText(QString("%1").arg(nabludatel->get_p_poln_a()));
     }
 
-    if (ui->tableWidget->item(5, 1) != 0)
+    if (wf->ui->tableWidget_2->item(5, 1) != 0)
     {
-        ui->tableWidget->item(5, 1)->setText(QString("%1").arg(nabludatel->get_cos_f_a()));
+        wf->ui->tableWidget_2->item(5, 1)->setText(QString("%1").arg(nabludatel->get_cos_f_a()));
     }
 
-    if (ui->tableWidget->item(6, 1) != 0)
+    if (wf->ui->tableWidget_2->item(6, 1) != 0)
     {
-        ui->tableWidget->item(6, 1)->setText(QString("%1").arg(nabludatel->get_i_dev_b()));
+        wf->ui->tableWidget_2->item(6, 1)->setText(QString("%1").arg(nabludatel->get_i_dev_b()));
     }
 
-    if (ui->tableWidget->item(7, 1) != 0)
+    if (wf->ui->tableWidget_2->item(7, 1) != 0)
     {
-        ui->tableWidget->item(7, 1)->setText(QString("%1").arg(nabludatel->get_u_dev_b()));
-    }
-    if (ui->tableWidget->item(8, 1) != 0)
-    {
-        ui->tableWidget->item(8, 1)->setText(QString("%1").arg(nabludatel->get_p_akt_b()));
+        wf->ui->tableWidget_2->item(7, 1)->setText(QString("%1").arg(nabludatel->get_u_dev_b()));
     }
 
-    if (ui->tableWidget->item(9, 1) != 0)
-    {
-        ui->tableWidget->item(9, 1)->setText(QString("%1").arg(nabludatel->get_p_reakt_b()));
-    }
+//    if (ui->tableWidget->item(8, 1) != 0)
+//    {
+//        ui->tableWidget->item(8, 1)->setText(QString("%1").arg(nabludatel->get_p_akt_b()));
+//    }
 
-    if (ui->tableWidget->item(10, 1) != 0)
-    {
-        ui->tableWidget->item(10, 1)->setText(QString("%1").arg(nabludatel->get_p_poln_b()));
-    }
+//    if (ui->tableWidget->item(9, 1) != 0)
+//    {
+//        ui->tableWidget->item(9, 1)->setText(QString("%1").arg(nabludatel->get_p_reakt_b()));
+//    }
 
-    if (ui->tableWidget->item(11, 1) != 0)
-    {
-        ui->tableWidget->item(11, 1)->setText(QString("%1").arg(nabludatel->get_cos_f_b()));
-    }
+//    if (ui->tableWidget->item(10, 1) != 0)
+//    {
+//        ui->tableWidget->item(10, 1)->setText(QString("%1").arg(nabludatel->get_p_poln_b()));
+//    }
 
-    if (ui->tableWidget->item(12, 1) != 0)
-    {
-        ui->tableWidget->item(12, 1)->setText(QString("%1").arg(nabludatel->get_i_dev_c()));
-    }
+//    if (ui->tableWidget->item(11, 1) != 0)
+//    {
+//        ui->tableWidget->item(11, 1)->setText(QString("%1").arg(nabludatel->get_cos_f_b()));
+//    }
 
-    if (ui->tableWidget->item(13, 1) != 0)
-    {
-        ui->tableWidget->item(13, 1)->setText(QString("%1").arg(nabludatel->get_u_dev_c()));
-    }
+//    if (ui->tableWidget->item(12, 1) != 0)
+//    {
+//        ui->tableWidget->item(12, 1)->setText(QString("%1").arg(nabludatel->get_i_dev_c()));
+//    }
 
-    if (ui->tableWidget->item(14, 1) != 0)
-    {
-        ui->tableWidget->item(14, 1)->setText(QString("%1").arg(nabludatel->get_p_akt_c()));
-    }
+//    if (ui->tableWidget->item(13, 1) != 0)
+//    {
+//        ui->tableWidget->item(13, 1)->setText(QString("%1").arg(nabludatel->get_u_dev_c()));
+//    }
 
-    if (ui->tableWidget->item(15, 1) != 0)
-    {
-        ui->tableWidget->item(15, 1)->setText(QString("%1").arg(nabludatel->get_p_reakt_c()));
-    }
+//    if (ui->tableWidget->item(14, 1) != 0)
+//    {
+//        ui->tableWidget->item(14, 1)->setText(QString("%1").arg(nabludatel->get_p_akt_c()));
+//    }
 
-    if (ui->tableWidget->item(16, 1) != 0)
-    {
-        ui->tableWidget->item(16, 1)->setText(QString("%1").arg(nabludatel->get_p_poln_c()));
-    }
+//    if (ui->tableWidget->item(15, 1) != 0)
+//    {
+//        ui->tableWidget->item(15, 1)->setText(QString("%1").arg(nabludatel->get_p_reakt_c()));
+//    }
 
-    if (ui->tableWidget->item(17, 1) != 0)
-    {
-        ui->tableWidget->item(17, 1)->setText(QString("%1").arg(nabludatel->get_cos_f_c()));
-    }
+//    if (ui->tableWidget->item(16, 1) != 0)
+//    {
+//        ui->tableWidget->item(16, 1)->setText(QString("%1").arg(nabludatel->get_p_poln_c()));
+//    }
 
-    if (ui->tableWidget->item(18, 1) != 0)
-    {
-        ui->tableWidget->item(18, 1)->setText(QString("%1").arg(nabludatel->get_p_akt()));
-    }
+//    if (ui->tableWidget->item(17, 1) != 0)
+//    {
+//        ui->tableWidget->item(17, 1)->setText(QString("%1").arg(nabludatel->get_cos_f_c()));
+//    }
 
-    if (ui->tableWidget->item(19, 1) != 0)
-    {
-        ui->tableWidget->item(19, 1)->setText(QString("%1").arg(nabludatel->get_p_reakt()));
-    }
-    if (ui->tableWidget->item(20, 1) != 0)
-    {
-        ui->tableWidget->item(20, 1)->setText(QString("%1").arg(nabludatel->get_p_poln()));
-    }
-    if (ui->tableWidget->item(21, 1) != 0)
-    {
-        ui->tableWidget->item(21, 1)->setText(QString("%1").arg(nabludatel->get_cos_f()));
-    }
-    if (ui->tableWidget->item(22, 1) != 0)
-    {
-        ui->tableWidget->item(22, 1)->setText(QString("%1").arg(nabludatel->get_w_sr()));
-    }
-    if (ui->tableWidget->item(23, 1) != 0)
-    {
-        ui->tableWidget->item(23, 1)->setText(QString("%1").arg(nabludatel->get_M_sr()));
-    }
-    if (ui->tableWidget_4->item(0, 1) != 0)
-    {
-        ui->tableWidget_4->item(0, 1)->setText(QString::number(nabludatel->get_P1(),'f',3));
-    }
+//    if (ui->tableWidget->item(18, 1) != 0)
+//    {
+//        ui->tableWidget->item(18, 1)->setText(QString("%1").arg(nabludatel->get_p_akt()));
+//    }
 
-    if (ui->tableWidget_4->item(1, 1) != 0)
-    {
-        ui->tableWidget_4->item(1, 1)->setText(QString::number(nabludatel->get_dPel1(),'f',3));
-    }
+//    if (ui->tableWidget->item(19, 1) != 0)
+//    {
+//        ui->tableWidget->item(19, 1)->setText(QString("%1").arg(nabludatel->get_p_reakt()));
+//    }
+//    if (ui->tableWidget->item(20, 1) != 0)
+//    {
+//        ui->tableWidget->item(20, 1)->setText(QString("%1").arg(nabludatel->get_p_poln()));
+//    }
+//    if (ui->tableWidget->item(21, 1) != 0)
+//    {
+//        ui->tableWidget->item(21, 1)->setText(QString("%1").arg(nabludatel->get_cos_f()));
+//    }
+//    if (ui->tableWidget->item(22, 1) != 0)
+//    {
+//        ui->tableWidget->item(22, 1)->setText(QString("%1").arg(nabludatel->get_w_sr()));
+//    }
+//    if (ui->tableWidget->item(23, 1) != 0)
+//    {
+//        ui->tableWidget->item(23, 1)->setText(QString("%1").arg(nabludatel->get_M_sr()));
+//    }
+//    if (ui->tableWidget_4->item(0, 1) != 0)
+//    {
+//        ui->tableWidget_4->item(0, 1)->setText(QString::number(nabludatel->get_P1(),'f',3));
+//    }
 
-    if (ui->tableWidget_4->item(2, 1) != 0)
-    {
-        ui->tableWidget_4->item(2, 1)->setText(QString::number(nabludatel->get_dPct(),'f',3));
-    }
+//    if (ui->tableWidget_4->item(1, 1) != 0)
+//    {
+//        ui->tableWidget_4->item(1, 1)->setText(QString::number(nabludatel->get_dPel1(),'f',3));
+//    }
 
-    if (ui->tableWidget_4->item(3, 1) != 0)
-    {
-        ui->tableWidget_4->item(3, 1)->setText(QString::number(nabludatel->get_dPel2(),'f',3));
-    }
+//    if (ui->tableWidget_4->item(2, 1) != 0)
+//    {
+//        ui->tableWidget_4->item(2, 1)->setText(QString::number(nabludatel->get_dPct(),'f',3));
+//    }
 
-    if (ui->tableWidget_4->item(4, 1) != 0)
-    {
-        ui->tableWidget_4->item(4, 1)->setText(QString::number(nabludatel->get_dPdob(),'f',3));
-    }
+//    if (ui->tableWidget_4->item(3, 1) != 0)
+//    {
+//        ui->tableWidget_4->item(3, 1)->setText(QString::number(nabludatel->get_dPel2(),'f',3));
+//    }
 
-    if (ui->tableWidget_4->item(5, 1) != 0)
-    {
-        ui->tableWidget_4->item(5, 1)->setText(QString::number(nabludatel->get_dPmech(),'f',3));
-    }
+//    if (ui->tableWidget_4->item(4, 1) != 0)
+//    {
+//        ui->tableWidget_4->item(4, 1)->setText(QString::number(nabludatel->get_dPdob(),'f',3));
+//    }
 
-    if (ui->tableWidget_4->item(6, 1) != 0)
-    {
-        ui->tableWidget_4->item(6, 1)->setText(QString::number(nabludatel->get_P2(),'f',3));
-    }
+//    if (ui->tableWidget_4->item(5, 1) != 0)
+//    {
+//        ui->tableWidget_4->item(5, 1)->setText(QString::number(nabludatel->get_dPmech(),'f',3));
+//    }
 
-    if (ui->tableWidget_4->item(7, 1) != 0)
-    {
-        ui->tableWidget_4->item(7, 1)->setText(QString::number(nabludatel->get_kpd(),'f',3));
-    }
+//    if (ui->tableWidget_4->item(6, 1) != 0)
+//    {
+//        ui->tableWidget_4->item(6, 1)->setText(QString::number(nabludatel->get_P2(),'f',3));
+//    }
 
-    if (ui->tableWidget_4->item(8, 1) != 0)
-    {
-        ui->tableWidget_4->item(8, 1)->setText(QString::number(nabludatel->get_cos_f(),'f',3));
-    }
+//    if (ui->tableWidget_4->item(7, 1) != 0)
+//    {
+//        ui->tableWidget_4->item(7, 1)->setText(QString::number(nabludatel->get_kpd(),'f',3));
+//    }
+
+//    if (ui->tableWidget_4->item(8, 1) != 0)
+//    {
+//        ui->tableWidget_4->item(8, 1)->setText(QString::number(nabludatel->get_cos_f(),'f',3));
+//    }
 
     if (ui->tableWidget_5->item(0, 3) != 0)
     {
@@ -1277,31 +1278,31 @@ void electromagn::stop()
 
 void electromagn::on_pushButton_clicked()
 {
-    base.i_a=ui->tableWidget->item(0,1)->text().toDouble();
-    base.u_a=ui->tableWidget->item(1,1)->text().toDouble();
-    base.p_akt_a=ui->tableWidget->item(2,1)->text().toDouble();
-    base.p_react_a=ui->tableWidget->item(3,1)->text().toDouble();
-    base.p_poln_a=ui->tableWidget->item(4,1)->text().toDouble();
-    base.cosf_a=ui->tableWidget->item(5,1)->text().toDouble();
+    base.i_a=wf->ui->tableWidget_2->item(0,1)->text().toDouble();
+    base.u_a=wf->ui->tableWidget_2->item(1,1)->text().toDouble();
+    base.p_akt_a=wf->ui->tableWidget_2->item(2,1)->text().toDouble();
+    base.p_react_a=wf->ui->tableWidget_2->item(3,1)->text().toDouble();
+    base.p_poln_a=wf->ui->tableWidget_2->item(4,1)->text().toDouble();
+    base.cosf_a=wf->ui->tableWidget_2->item(5,1)->text().toDouble();
 
-    base.i_b=ui->tableWidget->item(6,1)->text().toDouble();
-    base.u_b=ui->tableWidget->item(7,1)->text().toDouble();
-    base.p_akt_b=ui->tableWidget->item(8,1)->text().toDouble();
-    base.p_react_b=ui->tableWidget->item(9,1)->text().toDouble();
-    base.p_poln_b=ui->tableWidget->item(10,1)->text().toDouble();
-    base.cosf_b=ui->tableWidget->item(11,1)->text().toDouble();
+    base.i_b=wf->ui->tableWidget_2->item(6,1)->text().toDouble();
+    base.u_b=wf->ui->tableWidget_2->item(7,1)->text().toDouble();
+    base.p_akt_b=wf->ui->tableWidget_2->item(8,1)->text().toDouble();
+    base.p_react_b=wf->ui->tableWidget_2->item(9,1)->text().toDouble();
+    base.p_poln_b=wf->ui->tableWidget_2->item(10,1)->text().toDouble();
+    base.cosf_b=wf->ui->tableWidget_2->item(11,1)->text().toDouble();
 
-    base.i_c=ui->tableWidget->item(12,1)->text().toDouble();
-    base.u_c=ui->tableWidget->item(13,1)->text().toDouble();
-    base.p_akt_c=ui->tableWidget->item(14,1)->text().toDouble();
-    base.p_react_c=ui->tableWidget->item(15,1)->text().toDouble();
-    base.p_poln_c=ui->tableWidget->item(16,1)->text().toDouble();
-    base.cosf_c=ui->tableWidget->item(17,1)->text().toDouble();
+    base.i_c=wf->ui->tableWidget_2->item(12,1)->text().toDouble();
+    base.u_c=wf->ui->tableWidget_2->item(13,1)->text().toDouble();
+    base.p_akt_c=wf->ui->tableWidget_2->item(14,1)->text().toDouble();
+    base.p_react_c=wf->ui->tableWidget_2->item(15,1)->text().toDouble();
+    base.p_poln_c=wf->ui->tableWidget_2->item(16,1)->text().toDouble();
+    base.cosf_c=wf->ui->tableWidget_2->item(17,1)->text().toDouble();
 
-    base.p_akt=ui->tableWidget->item(18,1)->text().toDouble();
-    base.p_react=ui->tableWidget->item(19,1)->text().toDouble();
-    base.p_poln=ui->tableWidget->item(20,1)->text().toDouble();
-    base.cosf=ui->tableWidget->item(21,1)->text().toDouble();
+    base.p_akt=wf->ui->tableWidget_2->item(18,1)->text().toDouble();
+    base.p_react=wf->ui->tableWidget_2->item(19,1)->text().toDouble();
+    base.p_poln=wf->ui->tableWidget_2->item(20,1)->text().toDouble();
+    base.cosf=wf->ui->tableWidget_2->item(21,1)->text().toDouble();
 }
 
 void electromagn::addDataLines()
@@ -1326,54 +1327,6 @@ void electromagn::on_pushButton_2_clicked()
 
                                 settings.value("dataSource/LastPath", "").toString(),
                                 "txt files (*.txt);;All files (*.*)");
-}
-
-
-//void electromagn::on_radioButton_toggled(bool checked)
-//{
-//    if (checked)
-//    {
-//       ui->pushButton_2->setEnabled(false);
-//    }
-//}
-
-
-//void electromagn::on_radioButton_2_toggled(bool checked)
-//{
-//    if (checked)
-//    {
-//       ui->pushButton_2->setEnabled(false);
-//    }
-//}
-
-
-//void electromagn::on_radioButton_3_toggled(bool checked)
-//{
-//    if (checked)
-//    {
-//       ui->pushButton_2->setEnabled(false);
-//    }
-//}
-
-
-//void electromagn::on_radioButton_4_toggled(bool checked)
-//{
-//    if (checked)
-//    {
-//       ui->pushButton_2->setEnabled(true);
-//    }
-//}
-
-
-void electromagn::on_radioButton_4_clicked()
-{
-
-}
-
-
-void electromagn::on_radioButton_3_clicked()
-{
-
 }
 
 void electromagn::bvasFailureSlot()

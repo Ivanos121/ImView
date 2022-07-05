@@ -66,6 +66,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_5->ui->widget_5->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
     ui->widget_6->ui->widget->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
 
+
     showMaximized();
     ui->action_9->setEnabled(false);
     ui->action_21->setEnabled(false);
@@ -103,7 +104,11 @@ MainWindow::MainWindow(QWidget *parent)
     model->setHorizontalHeaderLabels (QStringList () << QStringLiteral ("Наименование") << QStringLiteral ("Свойство")); // Установить заголовок столбца
     ui->treeView->header()->setDefaultAlignment(Qt::AlignCenter);
 
-        ui->treeView->setStyleSheet("*::item{"
+        ui->treeView->setStyleSheet(
+                            "*{"
+                            "background: rgb(255, 255, 222);"
+                            "}"
+                            "*::item{"
                             "    border-top-width: 0px;"
                             "    border-right-width: 1px;"
                             "    border-bottom-width: 1px;"
@@ -120,12 +125,12 @@ MainWindow::MainWindow(QWidget *parent)
                                     "::branch:has-children:!has-siblings:closed,"
                                     "::branch:closed:has-children:has-siblings {"
                                     "        border-image: none;"
-                                    "        image: url(branch-closed.png);"
+                                    "        image: url(:/image/data/img/icons/branch-closed.png);"
                                     "}"
                                     "::branch:open:has-children:!has-siblings,"
                                     "::branch:open:has-children:has-siblings  {"
                                    "        border-image: none;"
-                                    "        image: url(branch-open.png);"
+                                    "        image: url(:/image/data/img/icons/branch-open.png);"
                                     "}"
                                     );
 

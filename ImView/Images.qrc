@@ -51,6 +51,9 @@
         <file>../data/img/icons/map-flat.svg</file>
         <file>../data/img/icons/labplot-xy-interpolation-curve.png</file>
         <file>../data/img/icons/labplot-xy-interpolation-curve.svg</file>
+        <file>../data/img/icons/branch-open.png</file>
+        <file>../data/img/icons/branch-closed.png</file>
+        <file>../data/img/images/tepl_schem_zam.svg</file>
     </qresource>
     <qresource prefix="/databases">
         <file>../data/databases/mydb.db</file>
