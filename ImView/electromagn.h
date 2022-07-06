@@ -25,21 +25,21 @@ public:
     ~electromagn();
     double key;
     MainWindow *wf;
+    Ui::electromagn *ui;
 
     void stop();
 
 public slots:
     void realtimeDataSlot();
-    void raschet_el(); 
+    void raschet_el();
+    void setcolorincell(int row, int column);
 
 private slots:
     void on_pushButton_clicked();
-    void setcolorincell(int row, int column);
     void on_pushButton_2_clicked();
     void bvasFailureSlot();
 
 private:
-    Ui::electromagn *ui;
     QElapsedTimer *time;
     NabludatelBase *nabludatel;
     Nabludatel nabludatel_full;

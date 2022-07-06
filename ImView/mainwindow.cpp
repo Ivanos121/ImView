@@ -31,6 +31,7 @@
 #include "kalibr.h"
 #include "teplovent.h"
 #include "ui_teplovent.h"
+#include "ui_electromagn.h"
 #include "ui_draw_line.h"
 #include "ui_draw_poper.h"
 #include "ui_teplschem.h"
@@ -50,6 +51,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
     ui->widget_2->wf=this;
     ui->widget_3->wf=this;
     ui->widget_5->wf=this;
@@ -1087,7 +1089,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget->setItem(29, 4, new QTableWidgetItem(QString("%1").arg(0)));
 
     //Заполнение таблицы результатов
-    ui->tableWidget_2->setRowCount(24);
+    ui->tableWidget_2->setRowCount(25);
     ui->tableWidget_2->setColumnCount(2);
     QStringList name_2;
     name_2 << "Сигнал" << "Величина";
@@ -1146,6 +1148,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget_2->setItem(21, 1, new QTableWidgetItem());
     ui->tableWidget_2->setItem(22, 1, new QTableWidgetItem());
     ui->tableWidget_2->setItem(23, 1, new QTableWidgetItem());
+    ui->tableWidget_2->setItem(24, 1, new QTableWidgetItem());
 
     QPalette p100=ui->tableWidget->palette();
     p100.setColor(QPalette::Base, QColor(225, 255, 255));
@@ -1198,39 +1201,34 @@ MainWindow::MainWindow(QWidget *parent)
     dataLineColors.append(Qt::cyan);
     dataLineColors.append(Qt::yellow);
     dataLineColors.append(Qt::red);
-    dataLineColors.append(Qt::green);
-    dataLineColors.append(Qt::cyan);
-    dataLineColors.append(Qt::yellow);
-    dataLineColors.append(Qt::yellow);
-    dataLineColors.append(Qt::red);
-    dataLineColors.append(Qt::green);
-    dataLineColors.append(Qt::cyan);
-    dataLineColors.append(Qt::yellow);
-    dataLineColors.append(Qt::red);
-    dataLineColors.append(Qt::green);
-    dataLineColors.append(Qt::cyan);
-    dataLineColors.append(Qt::yellow);
-    dataLineColors.append(Qt::yellow);
-    dataLineColors.append(Qt::red);
-    dataLineColors.append(Qt::green);
-    dataLineColors.append(Qt::cyan);
-    dataLineColors.append(Qt::yellow);
-    dataLineColors.append(Qt::red);
-    dataLineColors.append(Qt::green);
-    dataLineColors.append(Qt::cyan);
-    dataLineColors.append(Qt::yellow);
-
-    /*for (int i = 0; i < dataLineColors.size(); i++)
-    {
-        MainWindow* mainWnd = (MainWindow*)parent;
-        mainWnd->ui->widget_2->ui->plot->addDataLine(dataLineColors[i], 0);
-    }*/
+//    dataLineColors.append(Qt::green);
+//    dataLineColors.append(Qt::cyan);
+//    dataLineColors.append(Qt::yellow);
+//    dataLineColors.append(Qt::yellow);
+//    dataLineColors.append(Qt::red);
+//    dataLineColors.append(Qt::green);
+//    dataLineColors.append(Qt::cyan);
+//    dataLineColors.append(Qt::yellow);
+//    dataLineColors.append(Qt::red);
+//    dataLineColors.append(Qt::green);
+//    dataLineColors.append(Qt::cyan);
+//    dataLineColors.append(Qt::yellow);
+//    dataLineColors.append(Qt::yellow);
+//    dataLineColors.append(Qt::red);
+//    dataLineColors.append(Qt::green);
+//    dataLineColors.append(Qt::cyan);
+//    dataLineColors.append(Qt::yellow);
+//    dataLineColors.append(Qt::red);
+//    dataLineColors.append(Qt::green);
+//    dataLineColors.append(Qt::cyan);
+//    dataLineColors.append(Qt::yellow);
 
     for (int i = 0; i < dataLineColors.size(); i++)
     {
-        ui->tableWidget->item(i, 1)->setBackground(dataLineColors[i]);
+        ui->tableWidget->item(i+4, 1)->setBackground(dataLineColors[i]);
     }
-    connect(ui->tableWidget, &QTableWidget::cellClicked,this, &MainWindow::setcolorincell);
+
+    connect(ui->tableWidget, &QTableWidget::cellClicked,ui->widget_3, &electromagn::setcolorincell);
 
 //    graph_Settings = new Graph_Settings(this);
 
@@ -2490,11 +2488,13 @@ void MainWindow::setcolorincell(int row, int column)
 {
     if (column == 1)
     {
-        row = ui->tableWidget->currentRow();
-        QColor chosenColor = QColorDialog::getColor(); //return the color chosen by user
-        ui->tableWidget->item(row, column)->setBackground(chosenColor);
-//        ui->plot->setDataLineColor(row, chosenColor);
-        dataLineColors[row] = chosenColor;
+        for(row=4;row<13;row++)
+        {
+            row = ui->tableWidget->currentRow();
+            QColor chosenColor = QColorDialog::getColor(); //return the color chosen by user
+            ui->tableWidget->item(row, column)->setBackground(chosenColor);
+            dataLineColors[row] = chosenColor;
+        }
         repaint();
     }
 }
@@ -2525,11 +2525,11 @@ void MainWindow::onButtonClicked2()
     ui->stackedWidget->setCurrentIndex( 1 );
 }
 
-void MainWindow::on_item_itemSelectionChanged()
-{
-    QString w11=item88->text();
-    item88->setToolTip(w11);
-}
+//void MainWindow::on_item_itemSelectionChanged()
+//{
+//    QString w11=item88->text();
+//    item88->setToolTip(w11);
+//}
 
 void MainWindow::on_action_24_triggered()
 {

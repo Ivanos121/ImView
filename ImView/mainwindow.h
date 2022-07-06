@@ -49,23 +49,6 @@ private:
     Ui::settings *ui;
 };
 
-//class Graph_Settings : public QDialog
-//{
-//    Q_OBJECT
-
-//public:
-//    explicit Graph_Settings(QWidget *parent = nullptr);
-
-//    QVector<QColor> dataLineColors;
-
-//private slots:
-//    void on_pushButton_clicked();
-//   // void setcolorincell(int row, int column);
-
-//private:
-//    Ui::graph_Settings *ui;
-//};
-
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -112,7 +95,7 @@ private slots:
     void projectFileSelectedSlot_5(QString projectFile_5);
     void projectFileSelectedSlot_6(QString projectFile_6);
     void on_SaveProgectToFile_clicked();
-    void on_item_itemSelectionChanged();
+//    void on_item_itemSelectionChanged();
     void on_pushButton_5_clicked(bool checked);
     void on_LoadProgect_clicked();
 
@@ -121,9 +104,8 @@ public:
     AboutDialog *rsc;
     Kalibr *kalibr;
     Settings *rsc2;
-//    Graph_Settings *graph_Settings;
     QString dataSourceFilename;
-QString dirName;
+    QString dirName;
 
 
     QWebEngineView * view;
