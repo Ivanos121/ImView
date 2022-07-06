@@ -255,7 +255,6 @@ void electromagn::realtimeDataSlot()
         if(wf->ui->tableWidget->model()->index(5,2).data(Qt::CheckStateRole)==Qt::Checked)
         {
             ui->plot->addPoint(1, key, b5+b2*(Model_el.u_dev_b));
-
         }
 
         //вывод на qcustomPlot графика напряжения Uc после преобразования 2 в 3
@@ -933,7 +932,8 @@ void electromagn::raschet_el()
 //                         connect(&Model_el, &Model_el::ready, this, &electromagn::realtimeDataSlot);
 
 //    }
-    //radiobutton_3
+
+    //Внутренний источник данных
     if (wf->item80->text() == "Внутренний источник данных")
     {
 
@@ -962,7 +962,6 @@ void electromagn::raschet_el()
     {
         ui->plot->addDataLine(dataLineColors[i], 0);
     }
-   // addDataLines();
     time->start();
 }
 

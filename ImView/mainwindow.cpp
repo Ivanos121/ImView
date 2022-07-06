@@ -1418,7 +1418,7 @@ void MainWindow::on_action_9_triggered()
 void MainWindow::on_action_20_triggered()
 {
     ui->tabWidget->show();
-    ui->tabWidget->setCurrentIndex( 2 );
+    ui->tabWidget->setCurrentIndex(2);
     QPixmap pixmap(":/system_icons/data/img/system_icons/go-previous.svg");
     QIcon ButtonIcon_1(pixmap);
     ui->pushButton_5->setIcon(ButtonIcon_1);
@@ -1430,7 +1430,6 @@ void MainWindow::on_action_20_triggered()
     base.Lm = ui->lineEdit_8->text().toDouble();
     ui->action_20->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
     ui->action_21->setEnabled(true);
-    ui->widget_5->ui->widget_4->startTeplo();
 
     if(item70->checkState() == Qt::Checked)
     {
@@ -1473,6 +1472,7 @@ void MainWindow::on_action_20_triggered()
         fout.close();
     }
     ui->widget_3->raschet_el();
+    ui->widget_5->ui->widget_4->startTeplo();
 }
 
 void MainWindow::on_action_21_triggered()
