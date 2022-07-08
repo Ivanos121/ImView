@@ -1026,67 +1026,67 @@ MainWindow::MainWindow(QWidget *parent)
         }
     }
 
-    ui->tableWidget->setItem(0, 3, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(0, 4, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(1, 3, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(1, 4, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(2, 3, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(2, 4, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(3, 3, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(3, 4, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(4, 3, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(4, 4, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(5, 3, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(5, 4, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(6, 3, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(6, 4, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(7, 3, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(7, 4, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(8, 3, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(8, 4, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(9, 3, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(9, 4, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(10, 3, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(10, 4, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(11, 3, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(11, 4, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(12, 3, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(12, 4, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(13, 3, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(13, 4, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(14, 3, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(14, 4, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(15, 3, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(15, 4, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(16, 3, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(16, 4, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(17, 3, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(17, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(0, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(0, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(1, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(1, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(2, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(2, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(3, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(3, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(4, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(4, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(5, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(5, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(6, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(6, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(7, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(7, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(8, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(8, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(9, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(9, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(10, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(10, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(11, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(11, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(12, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(12, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(13, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(13, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(14, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(14, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(15, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(15, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(16, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(16, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(17, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(17, 4, new QTableWidgetItem(QString("%1").arg(1)));
 
     ui->tableWidget->setItem(18, 3, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(18, 4, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(19, 3, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(19, 4, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(20, 3, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(20, 4, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(21, 3, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(21, 4, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(22, 3, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(22, 4, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(23, 3, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(23, 4, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(24, 3, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(24, 4, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(25, 3, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(25, 4, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(26, 3, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(26, 4, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(27, 3, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(27, 4, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(28, 3, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(28, 4, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(29, 3, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(29, 4, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(18, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(19, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(19, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(20, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(20, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(21, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(21, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(22, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(22, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(23, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(23, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(24, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(24, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(25, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(25, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(26, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(26, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(27, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(27, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(28, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(28, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(29, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(29, 4, new QTableWidgetItem(QString("%1").arg(1)));
 
     //Заполнение таблицы результатов
     ui->tableWidget_2->setRowCount(25);
@@ -1471,6 +1471,14 @@ void MainWindow::on_action_20_triggered()
 
         fout.close();
     }
+
+    ui->widget_3->ui->plot->clear();
+
+    for (int i = 0; i < dataLineColors.size(); i++)
+    {
+        ui->widget_3->ui->plot->addDataLine(dataLineColors[i], 0);
+    }
+
     ui->widget_3->raschet_el();
     ui->widget_5->ui->widget_4->startTeplo();
 }

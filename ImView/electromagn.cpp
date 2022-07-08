@@ -957,11 +957,11 @@ void electromagn::raschet_el()
         connect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
     }
 
-    ui->plot->clear();
+    /*ui->plot->clear();
     for (int i = 0; i < dataLineColors.size(); i++)
     {
         ui->plot->addDataLine(dataLineColors[i], 0);
-    }
+    }*/
     time->start();
 }
 

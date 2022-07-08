@@ -19,6 +19,13 @@ teplschem::~teplschem()
 
 void teplschem::on_checkBox_toggled(bool checked)
 {
-
+    if (checked)
+    {
+        ui->webEngineView->page()->runJavaScript(QString("$('#text255').show();"));
+    }
+    else
+    {
+        ui->webEngineView->page()->runJavaScript(QString("$('#text255').hide();"));
+    }
 }
 
