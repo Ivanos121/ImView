@@ -22,9 +22,7 @@ public:
     void retrievElements(QDomElement root, QString tag, QString att);
 
 public slots:
-
-
-private slots:
+    void on_checkBox_toggled(bool checked);
 
 
 public:

@@ -17,5 +17,8 @@ teplschem::~teplschem()
     delete ui;
 }
 
+void teplschem::on_checkBox_toggled(bool checked)
+{
 
+}
 
