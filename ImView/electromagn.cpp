@@ -67,20 +67,6 @@ electromagn::~electromagn()
     delete ui;
 }
 
-void electromagn::setcolorincell(int row, int column)
-{
-    if (column == 1)
-    {
-        for(row=4;row<13;row++){
-            row = wf->ui->tableWidget->currentRow();
-            QColor chosenColor = QColorDialog::getColor(); //return the color chosen by user
-            wf->ui->tableWidget->item(row, column)->setBackground(chosenColor);
-            ui->plot->setDataLineColor(row, chosenColor);
-            dataLineColors[row] = chosenColor;}
-        repaint();
-    }
-}
-
 void electromagn::realtimeDataSlot()
 {
     double a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18;

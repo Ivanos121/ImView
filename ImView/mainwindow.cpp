@@ -1353,6 +1353,7 @@ MainWindow::MainWindow(QWidget *parent)
     dataLineColors.append(Qt::green);
     dataLineColors.append(Qt::cyan);
     dataLineColors.append(Qt::yellow);
+    dataLineColors.append(Qt::red);
 //    dataLineColors.append(Qt::red);
 //    dataLineColors.append(Qt::green);
 //    dataLineColors.append(Qt::cyan);
@@ -1381,7 +1382,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->tableWidget->item(i+4, 1)->setBackground(dataLineColors[i]);
     }
 
-    connect(ui->tableWidget, &QTableWidget::cellClicked,ui->widget_3, &electromagn::setcolorincell);
+    connect(ui->tableWidget, &QTableWidget::cellClicked,this, &MainWindow::setcolorincell);
 
 //    graph_Settings = new Graph_Settings(this);
 
@@ -2649,21 +2650,6 @@ void MainWindow::LoadProject(QString str)
     }
 }
 
-void MainWindow::setcolorincell(int row, int column)
-{
-    if (column == 1)
-    {
-        for(row=4;row<13;row++)
-        {
-            row = ui->tableWidget->currentRow();
-            QColor chosenColor = QColorDialog::getColor(); //return the color chosen by user
-            ui->tableWidget->item(row, column)->setBackground(chosenColor);
-            dataLineColors[row] = chosenColor;
-        }
-        repaint();
-    }
-}
-
 void MainWindow::on_pushButton_5_clicked(bool checked)
 {
     if(checked)
@@ -2731,7 +2717,7 @@ void MainWindow::tabClicked()
     if(ui->tabWidget->currentIndex()==3)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(4);
+        ui->stackedWidget->setCurrentIndex(5);
     }
 }
 
@@ -2756,5 +2742,17 @@ void MainWindow::tabClicked_2()
     {
         ui->stackedWidget->show();
         ui->stackedWidget->setCurrentIndex(7);
+    }
+}
+
+void MainWindow::setcolorincell(int row, int column)
+{
+    if ((column == 1) && (row >= 4) && (row <= 12))
+    {
+            QColor chosenColor = QColorDialog::getColor(); //return the color chosen by user
+            ui->tableWidget->item(row, column)->setBackground(chosenColor);
+            ui->widget_3->ui->plot->setDataLineColor(row - 4, chosenColor);
+            dataLineColors[row - 4] = chosenColor;
+        repaint();
     }
 }

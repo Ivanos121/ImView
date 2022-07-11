@@ -818,7 +818,7 @@ void Trend::on_timerTimeout()
 
     if (wf->ui->tableWidget_3->item(12, 2) != 0)
     {
-        wf->ui->tableWidget_3->item(12, 3)->setText(QString("%1").arg(QString::number(b12+a12*y_12,'f',1)));
+        wf->ui->tableWidget_3->item(12, 2)->setText(QString("%1").arg(QString::number(b12+a12*y_12,'f',1)));
         wf->ui->tableWidget_3->item(12, 2)->setTextAlignment(Qt::AlignCenter);
     }
 

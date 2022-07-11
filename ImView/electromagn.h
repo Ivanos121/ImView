@@ -32,7 +32,6 @@ public:
 public slots:
     void realtimeDataSlot();
     void raschet_el();
-    void setcolorincell(int row, int column);
     void on_pushButton_clicked();
     void on_pushButton_2_clicked();
     void bvasFailureSlot();
@@ -45,7 +44,6 @@ private:
     DataSource* dataSource;
     QComboBox* combo = new QComboBox();
     QComboBox* combo2 = new QComboBox();
-    QVector<QColor> dataLineColors;
 
     void addDataLines();
 
