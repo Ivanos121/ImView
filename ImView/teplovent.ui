@@ -17,7 +17,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -49,7 +49,7 @@
       </attribute>
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
-        <widget class="trend" name="widget_4" native="true"/>
+        <widget class="Trend" name="widget_4" native="true"/>
        </item>
       </layout>
      </widget>
@@ -91,15 +91,15 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>trend</class>
-   <extends>QWidget</extends>
-   <header location="global">trend.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>draw_poper</class>
    <extends>QWidget</extends>
    <header>draw_poper.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Trend</class>
+   <extends>QWidget</extends>
+   <header>trend.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

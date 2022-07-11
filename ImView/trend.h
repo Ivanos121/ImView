@@ -11,20 +11,24 @@
 #include "mainwindow.h"
 
 namespace Ui {
-class trend;
+class Trend;
 }
 
-class trend : public QWidget
+class Trend : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit trend(QWidget *parent = nullptr);
-    ~trend();
+    explicit Trend(QWidget *parent = nullptr);
+    ~Trend();
 
     MainWindow *wf;
     void startTeplo();
     void stopTeplo();
+    double y_0,y_1,y_2,y_3,y_4,y_5,y_6,y_7,y_8,y_9,y_10,y_11,y_12,y_13,y_14,y_15,y_16;
+    Trend *trend;
+
+
 
 private slots:
     void on_timerTimeout();
@@ -32,7 +36,7 @@ private slots:
 
 
 private:
-    Ui::trend *ui;
+    Ui::Trend *ui;
     QDomDocument doc,doc3,doc4;
     QTimer timer;
     double t;

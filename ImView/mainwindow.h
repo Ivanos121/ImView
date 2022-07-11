@@ -83,6 +83,8 @@ private slots:
     void onButtonClicked2();
     void on_action_24_triggered();
     void on_action_25_triggered();
+    void tabClicked();
+    void tabClicked_2();
 
     void modelItemChangedSlot(QStandardItem *item);
     void modelItemChangedSlot_2(QStandardItem *item);

@@ -1062,7 +1062,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget->setItem(16, 4, new QTableWidgetItem(QString("%1").arg(1)));
     ui->tableWidget->setItem(17, 3, new QTableWidgetItem(QString("%1").arg(0)));
     ui->tableWidget->setItem(17, 4, new QTableWidgetItem(QString("%1").arg(1)));
-
     ui->tableWidget->setItem(18, 3, new QTableWidgetItem(QString("%1").arg(0)));
     ui->tableWidget->setItem(18, 4, new QTableWidgetItem(QString("%1").arg(1)));
     ui->tableWidget->setItem(19, 3, new QTableWidgetItem(QString("%1").arg(0)));
@@ -1155,6 +1154,60 @@ MainWindow::MainWindow(QWidget *parent)
     p100.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
     ui->tableWidget_2->setPalette(p100);
 
+    //вставка таблицы тепловые характеристики
+    ui->tableWidget_3->setRowCount(17);
+    ui->tableWidget_3->setColumnCount(3);
+    QStringList name;
+    name << " № " << "Сигнал" << "Величина";
+    ui->tableWidget_3->setHorizontalHeaderLabels(name);
+    ui->tableWidget_3->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->tableWidget_3->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_3->verticalHeader()->setVisible(false);
+    ui->tableWidget_3->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget_3->setSelectionBehavior(QAbstractItemView :: SelectRows);
+    ui->tableWidget_3->setSelectionMode(QAbstractItemView :: SingleSelection);
+    ui->tableWidget_3->setColumnWidth(0, 100);
+
+    for(int row = 0; row<ui->tableWidget->rowCount(); row++)
+    {
+        for(int column = 0; column<ui->tableWidget_3->columnCount(); column++)
+        {
+            ui->tableWidget_3->setItem(row, column, new QTableWidgetItem());
+
+        }
+    }
+
+    for (int i=0; i<17; i++)
+    {
+        if (ui->tableWidget_3->item(i, 0) != 0)
+        {
+            ui->tableWidget_3->item(i, 0)->setText(QString("%1").arg(i+1));
+            ui->tableWidget_3->item(i, 0)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+    ui->tableWidget_3->setItem(0,  1, new QTableWidgetItem("Станина, °C"));
+    ui->tableWidget_3->setItem(1,  1, new QTableWidgetItem("Подшипниковый узел справа сзади, °C"));
+    ui->tableWidget_3->setItem(2,  1, new QTableWidgetItem("Лобовая часть слева спереди, °C"));
+    ui->tableWidget_3->setItem(3,  1, new QTableWidgetItem("Подшипниковый узел слева спереди, °C"));
+    ui->tableWidget_3->setItem(4,  1, new QTableWidgetItem("Лобовая часть слева сзади, °C"));
+    ui->tableWidget_3->setItem(5,  1, new QTableWidgetItem("Станина, °C"));
+    ui->tableWidget_3->setItem(6,  1, new QTableWidgetItem("Лобовая часть справа спереди, °C"));
+    ui->tableWidget_3->setItem(7,  1, new QTableWidgetItem("Лобовая часть справа сзади, °C"));
+    ui->tableWidget_3->setItem(8,  1, new QTableWidgetItem("Магнитопровод статора, °C"));
+    ui->tableWidget_3->setItem(9,  1, new QTableWidgetItem("Подшипниковый узел справа спереди, °C"));
+    ui->tableWidget_3->setItem(10, 1, new QTableWidgetItem("Подшипниковый узел слева сзади, °C"));
+    ui->tableWidget_3->setItem(11, 1, new QTableWidgetItem("Ротор сверху, °C"));
+    ui->tableWidget_3->setItem(12, 1, new QTableWidgetItem("Ротор снизу, °C"));
+    ui->tableWidget_3->setItem(13, 1, new QTableWidgetItem("Станина слева, °C"));
+    ui->tableWidget_3->setItem(14, 1, new QTableWidgetItem("Станина справа, °C"));
+    ui->tableWidget_3->setItem(15, 1, new QTableWidgetItem("Вал, °C"));
+    ui->tableWidget_3->setItem(16, 1, new QTableWidgetItem("Клеммная коробка, °C"));
+
+    QPalette p102=ui->tableWidget_3->palette();
+    p102.setColor(QPalette::Base, QColor(225, 255, 255));
+    p102.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
+    ui->tableWidget_3->setPalette(p102);
 
     //вставка таблицы Энергетические характеристики таблицы tableWidget_4
     ui->tableWidget_4->setRowCount(30);
@@ -1192,6 +1245,106 @@ MainWindow::MainWindow(QWidget *parent)
     p3.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
     ui->tableWidget_4->setPalette(p3);
 
+    ui->tableWidget_5->setRowCount(17);
+    ui->tableWidget_5->setColumnCount(3);
+    QStringList name_5;
+    name_5 << " № " << "Сигнал" << "Величина";
+    ui->tableWidget_5->setHorizontalHeaderLabels(name);
+    ui->tableWidget_5->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->tableWidget_5->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_5->verticalHeader()->setVisible(false);
+    ui->tableWidget_5->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget_5->setSelectionBehavior(QAbstractItemView :: SelectRows);
+    ui->tableWidget_5->setSelectionMode(QAbstractItemView :: SingleSelection);
+    ui->tableWidget_5->setColumnWidth(0, 100);
+
+    for(int row = 0; row<ui->tableWidget_5->rowCount(); row++)
+    {
+        for(int column = 0; column<ui->tableWidget_5->columnCount(); column++)
+        {
+            ui->tableWidget_5->setItem(row, column, new QTableWidgetItem());
+
+        }
+    }
+
+    for (int i=0; i<17; i++)
+    {
+        if (ui->tableWidget_5->item(i, 0) != 0)
+        {
+            ui->tableWidget_5->item(i, 0)->setText(QString("%1").arg(i+1));
+            ui->tableWidget_5->item(i, 0)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+    ui->tableWidget_5->setItem(0,  1, new QTableWidgetItem("Станина, °C"));
+    ui->tableWidget_5->setItem(1,  1, new QTableWidgetItem("Подшипниковый узел справа сзади, °C"));
+    ui->tableWidget_5->setItem(2,  1, new QTableWidgetItem("Лобовая часть слева спереди, °C"));
+    ui->tableWidget_5->setItem(3,  1, new QTableWidgetItem("Подшипниковый узел слева спереди, °C"));
+    ui->tableWidget_5->setItem(4,  1, new QTableWidgetItem("Лобовая часть слева сзади, °C"));
+    ui->tableWidget_5->setItem(5,  1, new QTableWidgetItem("Станина, °C"));
+    ui->tableWidget_5->setItem(6,  1, new QTableWidgetItem("Лобовая часть справа спереди, °C"));
+    ui->tableWidget_5->setItem(7,  1, new QTableWidgetItem("Лобовая часть справа сзади, °C"));
+    ui->tableWidget_5->setItem(8,  1, new QTableWidgetItem("Магнитопровод статора, °C"));
+    ui->tableWidget_5->setItem(9,  1, new QTableWidgetItem("Подшипниковый узел справа спереди, °C"));
+    ui->tableWidget_5->setItem(10, 1, new QTableWidgetItem("Подшипниковый узел слева сзади, °C"));
+    ui->tableWidget_5->setItem(11, 1, new QTableWidgetItem("Ротор сверху, °C"));
+    ui->tableWidget_5->setItem(12, 1, new QTableWidgetItem("Ротор снизу, °C"));
+    ui->tableWidget_5->setItem(13, 1, new QTableWidgetItem("Станина слева, °C"));
+    ui->tableWidget_5->setItem(14, 1, new QTableWidgetItem("Станина справа, °C"));
+    ui->tableWidget_5->setItem(15, 1, new QTableWidgetItem("Вал, °C"));
+    ui->tableWidget_5->setItem(16, 1, new QTableWidgetItem("Клеммная коробка, °C"));
+
+    QPalette p105=ui->tableWidget_5->palette();
+    p105.setColor(QPalette::Base, QColor(225, 255, 255));
+    p105.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
+    ui->tableWidget_5->setPalette(p105);
+
+    ui->tableWidget_6->setRowCount(8);
+    ui->tableWidget_6->setColumnCount(3);
+    QStringList name_6;
+    name_6 << " № " << "Сигнал" << "Величина";
+    ui->tableWidget_6->setHorizontalHeaderLabels(name_6);
+    ui->tableWidget_6->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->tableWidget_6->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_6->verticalHeader()->setVisible(false);
+    ui->tableWidget_6->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget_6->setSelectionBehavior(QAbstractItemView :: SelectRows);
+    ui->tableWidget_6->setSelectionMode(QAbstractItemView :: SingleSelection);
+    ui->tableWidget_6->setColumnWidth(0, 100);
+    ui->tableWidget_6->setColumnWidth(1, 400);
+
+    for(int row = 0; row<ui->tableWidget_6->rowCount(); row++)
+    {
+        for(int column = 0; column<ui->tableWidget_6->columnCount(); column++)
+        {
+            ui->tableWidget_6->setItem(row, column, new QTableWidgetItem());
+
+        }
+    }
+
+    for (int i=0; i<8; i++)
+    {
+        if (ui->tableWidget_6->item(i, 0) != 0)
+        {
+            ui->tableWidget_6->item(i, 0)->setText(QString("%1").arg(i+1));
+            ui->tableWidget_6->item(i, 0)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+    ui->tableWidget_6->setItem(0, 1, new QTableWidgetItem("Ротор слева, °C"));
+    ui->tableWidget_6->setItem(1, 1, new QTableWidgetItem("Ротор справа, °C"));
+    ui->tableWidget_6->setItem(2, 1, new QTableWidgetItem("Станина слева, °C"));
+    ui->tableWidget_6->setItem(3, 1, new QTableWidgetItem("Станина справа, °C"));
+    ui->tableWidget_6->setItem(4, 1, new QTableWidgetItem("Вал, °C"));
+    ui->tableWidget_6->setItem(5, 1, new QTableWidgetItem("Клеммная коробка, °C"));
+    ui->tableWidget_6->setItem(6, 1, new QTableWidgetItem("Магнитопровод статора слева, °C"));
+    ui->tableWidget_6->setItem(7, 1, new QTableWidgetItem("Магнитопровод статора справа, °C"));
+
+    QPalette p106=ui->tableWidget_6->palette();
+    p106.setColor(QPalette::Base, QColor(225, 255, 255));
+    p106.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
+    ui->tableWidget_6->setPalette(p106);
+
     dataLineColors.append(Qt::red);
     dataLineColors.append(Qt::green);
     dataLineColors.append(Qt::cyan);
@@ -1200,7 +1353,7 @@ MainWindow::MainWindow(QWidget *parent)
     dataLineColors.append(Qt::green);
     dataLineColors.append(Qt::cyan);
     dataLineColors.append(Qt::yellow);
-    dataLineColors.append(Qt::red);
+//    dataLineColors.append(Qt::red);
 //    dataLineColors.append(Qt::green);
 //    dataLineColors.append(Qt::cyan);
 //    dataLineColors.append(Qt::yellow);
@@ -1260,6 +1413,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(buttonColumnDelegate, &ButtonColumnDelegate::projectFileSelected_3, this, &MainWindow::projectFileSelectedSlot_3);
     connect(buttonColumnDelegate, &ButtonColumnDelegate::projectFileSelected_5, this, &MainWindow::projectFileSelectedSlot_5);
     connect(buttonColumnDelegate, &ButtonColumnDelegate::projectFileSelected_6, this, &MainWindow::projectFileSelectedSlot_6);
+
+    connect(ui->tabWidget, &QTabWidget::currentChanged, this,&MainWindow::tabClicked);
+    connect(ui->widget_5->ui->tabWidget, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_2);
+
 }
 
 void MainWindow::closeEvent (QCloseEvent *)
@@ -1419,10 +1576,12 @@ void MainWindow::on_action_20_triggered()
 {
     ui->tabWidget->show();
     ui->tabWidget->setCurrentIndex(2);
+    ui->stackedWidget->show();
+    ui->stackedWidget->setCurrentIndex(3);
     QPixmap pixmap(":/system_icons/data/img/system_icons/go-previous.svg");
     QIcon ButtonIcon_1(pixmap);
     ui->pushButton_5->setIcon(ButtonIcon_1);
-    ui->stackedWidget->hide();
+    //ui->stackedWidget->hide();
     base.R1 = ui->lineEdit_12->text().toDouble();
     base.R2 = ui->lineEdit_11->text().toDouble();
     base.L1 = ui->lineEdit_10->text().toDouble();
@@ -1489,8 +1648,6 @@ void MainWindow::on_action_21_triggered()
     ui->action_21->setEnabled(false);
     ui->widget_5->ui->widget_4->stopTeplo();
     ui->widget_3->stop();
-    ui->stackedWidget->show();
-    ui->stackedWidget->setCurrentIndex(3);
 }
 
 void MainWindow::on_tabWidget_currentChanged(int)
@@ -2552,4 +2709,52 @@ void MainWindow::on_action_25_triggered()
 {
     ui->stackedWidget->show();
     ui->stackedWidget->setCurrentIndex( 2 );
+}
+
+void MainWindow::tabClicked()
+{
+    if(ui->tabWidget->currentIndex()==0)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(0);
+    }
+    if(ui->tabWidget->currentIndex()==1)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(2);
+    }
+    if(ui->tabWidget->currentIndex()==2)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(3);
+    }
+    if(ui->tabWidget->currentIndex()==3)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(4);
+    }
+}
+
+void MainWindow::tabClicked_2()
+{
+    if(ui->widget_5->ui->tabWidget->currentIndex()==1)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(4);
+    }
+    if(ui->widget_5->ui->tabWidget->currentIndex() == 2)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(5);
+    }
+    if(ui->widget_5->ui->tabWidget->currentIndex() == 3)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(6);
+    }
+    if(ui->widget_5->ui->tabWidget->currentIndex() == 4)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(7);
+    }
 }

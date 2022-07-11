@@ -6,6 +6,7 @@ teplovent::teplovent(QWidget *parent) :
     ui(new Ui::teplovent)
 {
     ui->setupUi(this);
+
 }
 
 teplovent::~teplovent()

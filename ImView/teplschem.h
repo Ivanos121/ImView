@@ -1,6 +1,7 @@
 #ifndef TEPLSCHEM_H
 #define TEPLSCHEM_H
 
+#include "trend.h"
 #include <QWidget>
 #include <QList>
 #include <QGraphicsTextItem>
@@ -23,12 +24,15 @@ public:
 
 public slots:
     void on_checkBox_toggled(bool checked);
+    void on_checkBox_2_toggled(bool checked);
 
 
 public:
     Ui::teplschem *ui;
     QDomDocument doc;
     QTimer timer;
+    Trend trend;
+    MainWindow *wf;
 };
 
 #endif // TEPLSCHEM_H
