@@ -36,6 +36,7 @@
 #include "ui_draw_poper.h"
 #include "ui_teplschem.h"
 #include "ui_vent_model.h"
+#include "ui_trend.h"
 #include "ui_vent_izm.h"
 #include "ui_datas.h"
 #include "vent_model.h"
@@ -1354,37 +1355,34 @@ MainWindow::MainWindow(QWidget *parent)
     dataLineColors.append(Qt::cyan);
     dataLineColors.append(Qt::yellow);
     dataLineColors.append(Qt::red);
-//    dataLineColors.append(Qt::red);
-//    dataLineColors.append(Qt::green);
-//    dataLineColors.append(Qt::cyan);
-//    dataLineColors.append(Qt::yellow);
-//    dataLineColors.append(Qt::yellow);
-//    dataLineColors.append(Qt::red);
-//    dataLineColors.append(Qt::green);
-//    dataLineColors.append(Qt::cyan);
-//    dataLineColors.append(Qt::yellow);
-//    dataLineColors.append(Qt::red);
-//    dataLineColors.append(Qt::green);
-//    dataLineColors.append(Qt::cyan);
-//    dataLineColors.append(Qt::yellow);
-//    dataLineColors.append(Qt::yellow);
-//    dataLineColors.append(Qt::red);
-//    dataLineColors.append(Qt::green);
-//    dataLineColors.append(Qt::cyan);
-//    dataLineColors.append(Qt::yellow);
-//    dataLineColors.append(Qt::red);
-//    dataLineColors.append(Qt::green);
-//    dataLineColors.append(Qt::cyan);
-//    dataLineColors.append(Qt::yellow);
+    dataLineColors.append(Qt::red);
+    dataLineColors.append(Qt::green);
+    dataLineColors.append(Qt::cyan);
+    dataLineColors.append(Qt::yellow);
+    dataLineColors.append(Qt::yellow);
+    dataLineColors.append(Qt::red);
+    dataLineColors.append(Qt::green);
+    dataLineColors.append(Qt::cyan);
+    dataLineColors.append(Qt::yellow);
+    dataLineColors.append(Qt::red);
+    dataLineColors.append(Qt::green);
+    dataLineColors.append(Qt::cyan);
+    dataLineColors.append(Qt::yellow);
+    dataLineColors.append(Qt::yellow);
+    dataLineColors.append(Qt::red);
+    dataLineColors.append(Qt::green);
+    dataLineColors.append(Qt::cyan);
+    dataLineColors.append(Qt::yellow);
+    dataLineColors.append(Qt::red);
+    dataLineColors.append(Qt::green);
+    dataLineColors.append(Qt::yellow);
 
     for (int i = 0; i < dataLineColors.size(); i++)
     {
-        ui->tableWidget->item(i+4, 1)->setBackground(dataLineColors[i]);
+        ui->tableWidget->item(i, 1)->setBackground(dataLineColors[i]);
     }
 
     connect(ui->tableWidget, &QTableWidget::cellClicked,this, &MainWindow::setcolorincell);
-
-//    graph_Settings = new Graph_Settings(this);
 
     ui->lineEdit_8->setReadOnly(true);
     ui->lineEdit_9->setReadOnly(true);
@@ -1435,14 +1433,14 @@ MainWindow::~MainWindow()
 void MainWindow::on_actionabout_triggered()
 {
     QScreen *screen = QGuiApplication::primaryScreen();
-        rsc= new AboutDialog(this);
-        rsc->exec();
-        rsc->setGeometry(
-            QStyle::alignedRect(
-            Qt::LeftToRight,
-            Qt::AlignCenter,
-            rsc->size(),
-            screen->geometry()));
+    rsc= new AboutDialog(this);
+    rsc->exec();
+    rsc->setGeometry(
+                QStyle::alignedRect(
+                    Qt::LeftToRight,
+                    Qt::AlignCenter,
+                    rsc->size(),
+                    screen->geometry()));
 }
 
 void MainWindow::on_actionExit_triggered()
@@ -1562,6 +1560,50 @@ void MainWindow::on_action_5_triggered()
             fout.close();
         }
 
+        if(item70->checkState() == Qt::Checked)
+        {
+            QString filename = "result_tepl.csv";
+            //создание файла сохранений идентификации параметров схемы замещения
+            std::ofstream fout;
+
+            base.teplFilename = setpath+QDir::separator()+dirName+QDir::separator()+filename;
+
+            fout.open(QString(base.teplFilename).toStdString(),std::ios::out | std::ios::app);
+            fout << std::endl << "Начало измерений " << currentTime.toString("hh:mm:ss ").toUtf8().data() <<
+                    currentDate.toString("dd.MM.yyyy").toUtf8().data() << std::endl;
+            fout << std::endl;
+
+            fout << "Канал №1"  << " - " << "Cтанина" << std::endl;
+            fout << "Канал №2"  << " - " << "Подшипниковый узел справа сзади" << std::endl;
+            fout << "Канал №3"  << " - " << "Лобовая часть слева спереди" << std::endl;
+            fout << "Канал №4"  << " - " << "Подшипниковый узел слева спереди" << std::endl;
+            fout << "Канал №5"  << " - " << "Подшипниковый узел слева спереди" << std::endl;
+            fout << "Канал №6"  << " - " << "Лобовая часть слева сзади" << std::endl;
+            fout << "Канал №7"  << " - " << "Лобовая часть справа спереди" << std::endl;
+            fout << "Канал №8"  << " - " << "Лобовая часть справа сзади" << std::endl;
+            fout << "Канал №9"  << " - " << "Магнитопровод статора" << std::endl;
+            fout << "Канал №10" << " - " << "Подшипниковый узел справа спереди" << std::endl;
+            fout << "Канал №11" << " - " << "Подшипниковый узел слева сзади" << std::endl;
+            fout << "Канал №12" << " - " << "Ротор сверху" << std::endl;
+            fout << "Канал №13" << " - " << "Ротор снизу" << std::endl;
+            fout << "Канал №14" << " - " << "Станина слева" << std::endl;
+            fout << "Канал №15" << " - " << "Станина слева" << std::endl;
+            fout << "Канал №16" << " - " << "Вал" << std::endl;
+            fout << "Канал №17" << " - " << "Клеммная коробка" << std::endl;
+
+            fout << std::endl;
+
+            fout << "Время;";
+
+            for (int i=0; i<17; i++)
+            {
+                fout << QString("Канал №%1").arg(i+1).toUtf8().data() << ";";
+            }
+
+            fout << std::endl;
+
+            fout.close();
+        }
         ui->widget_2->raschet_f();
     }
 }
@@ -2166,49 +2208,25 @@ void MainWindow::on_SaveProgectToFile_clicked()
     xmlWriter.writeAttribute("boolean", (item68->checkState()? "true" : "false"));
     xmlWriter.writeEndElement();
 
-//    xmlWriter.writeStartElement("combobox_3");
-//    xmlWriter.writeAttribute("value", (item109->text()));
-//    xmlWriter.writeEndElement();
-
     xmlWriter.writeStartElement("checkbox_2");
     xmlWriter.writeAttribute("boolean", (item70->checkState()? "true" : "false"));
     xmlWriter.writeEndElement();
-
-//    xmlWriter.writeStartElement("combobox_4");
-//    xmlWriter.writeAttribute("value", (item111->text()));
-//    xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("checkbox_3");
     xmlWriter.writeAttribute("boolean", (item72->checkState()? "true" : "false"));
     xmlWriter.writeEndElement();
 
-//    xmlWriter.writeStartElement("combobox_5");
-//    xmlWriter.writeAttribute("value", (item113->text()));
-//    xmlWriter.writeEndElement();
-
     xmlWriter.writeStartElement("checkbox_4");
     xmlWriter.writeAttribute("boolean", (item74->checkState()? "true" : "false"));
     xmlWriter.writeEndElement();
-
-//    xmlWriter.writeStartElement("combobox_6");
-//    xmlWriter.writeAttribute("value", (item115->text()));
-//    xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("checkbox_5");
     xmlWriter.writeAttribute("boolean", (item76->checkState()? "true" : "false"));
     xmlWriter.writeEndElement();
 
-//    xmlWriter.writeStartElement("combobox_7");
-//    xmlWriter.writeAttribute("value", (item117->text()));
-//    xmlWriter.writeEndElement();
-
     xmlWriter.writeStartElement("checkbox_6");
     xmlWriter.writeAttribute("boolean", (item78->checkState()? "true" : "false"));
     xmlWriter.writeEndElement();
-
-//    xmlWriter.writeStartElement("combobox_8");
-//    xmlWriter.writeAttribute("value", (item119->text()));
-//    xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_3");
     xmlWriter.writeAttribute("value", (item14->text()));
@@ -2747,12 +2765,31 @@ void MainWindow::tabClicked_2()
 
 void MainWindow::setcolorincell(int row, int column)
 {
+    if ((column == 1) && (row >= 0) && (row <= 3))
+    {
+        //identf
+        QColor chosenColor = QColorDialog::getColor(); //return the color chosen by user
+        ui->tableWidget->item(row, column)->setBackground(chosenColor);
+        ui->widget_2->ui->plot->setDataLineColor(row, chosenColor);
+        dataLineColors[row] = chosenColor;
+        repaint();
+    }
     if ((column == 1) && (row >= 4) && (row <= 12))
     {
-            QColor chosenColor = QColorDialog::getColor(); //return the color chosen by user
-            ui->tableWidget->item(row, column)->setBackground(chosenColor);
-            ui->widget_3->ui->plot->setDataLineColor(row - 4, chosenColor);
-            dataLineColors[row - 4] = chosenColor;
+        //electromagn
+        QColor chosenColor = QColorDialog::getColor(); //return the color chosen by user
+        ui->tableWidget->item(row, column)->setBackground(chosenColor);
+        ui->widget_3->ui->plot->setDataLineColor(row - 4, chosenColor);
+        dataLineColors[row - 4] = chosenColor;
+        repaint();
+    }
+    if ((column == 1) && (row >= 13) && (row <= 29))
+    {
+        //trend
+        QColor chosenColor = QColorDialog::getColor(); //return the color chosen by user
+        ui->tableWidget->item(row, column)->setBackground(chosenColor);
+        ui->widget_5->ui->widget_4->ui->plot->setDataLineColor(row - 13, chosenColor);
+        dataLineColors[row - 13] = chosenColor;
         repaint();
     }
 }

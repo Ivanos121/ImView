@@ -2,6 +2,8 @@
 #include "ui_teplschem.h"
 #include "ui_trend.h"
 
+#include <iostream>
+#include <fstream>
 #include "cmath"
 #include "plot.h"
 #include <math.h>
@@ -98,208 +100,208 @@ Trend::Trend(QWidget *parent) :
 //    p99.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
 //    ui->tableWidget->setPalette(p99);
 
-    ui->tableWidget_2->setRowCount(17); //задание количества строк таблицы
-    ui->tableWidget_2->setColumnCount(6); //задание количества столбцов
-    QStringList name5; //объявление указателя на тип QStringList
-    name5 << "№" << "Цвет" << "Свойство" << "Значение" << "Масштабирование" << "Смещение"; //перечисление заголовков
-    ui->tableWidget_2->setHorizontalHeaderLabels(name5); //установка заголовков в таблицу
-    ui->tableWidget_2->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents); //Устанавливает ограничения на то, как размер заголовка может быть изменен до тех, которые описаны в данном режиме
-    ui->tableWidget_2->horizontalHeader()->setStretchLastSection(true);
-    ui->tableWidget_2->setSelectionBehavior(QAbstractItemView :: SelectRows);
-    ui->tableWidget_2->setSelectionMode(QAbstractItemView :: SingleSelection);
-    ui->tableWidget_2->verticalHeader()->setVisible(false);
-    ui->tableWidget_2->resizeColumnsToContents();
-    // ui->tableWidget_5->setEditTriggers(QAbstractItemView::AnyKeyPressed);
-    ui->tableWidget_2->setColumnWidth(0, 100);
+//    ui->tableWidget_2->setRowCount(17); //задание количества строк таблицы
+//    ui->tableWidget_2->setColumnCount(6); //задание количества столбцов
+//    QStringList name5; //объявление указателя на тип QStringList
+//    name5 << "№" << "Цвет" << "Свойство" << "Значение" << "Масштабирование" << "Смещение"; //перечисление заголовков
+//    ui->tableWidget_2->setHorizontalHeaderLabels(name5); //установка заголовков в таблицу
+//    ui->tableWidget_2->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents); //Устанавливает ограничения на то, как размер заголовка может быть изменен до тех, которые описаны в данном режиме
+//    ui->tableWidget_2->horizontalHeader()->setStretchLastSection(true);
+//    ui->tableWidget_2->setSelectionBehavior(QAbstractItemView :: SelectRows);
+//    ui->tableWidget_2->setSelectionMode(QAbstractItemView :: SingleSelection);
+//    ui->tableWidget_2->verticalHeader()->setVisible(false);
+//    ui->tableWidget_2->resizeColumnsToContents();
+//    // ui->tableWidget_5->setEditTriggers(QAbstractItemView::AnyKeyPressed);
+//    ui->tableWidget_2->setColumnWidth(0, 100);
 
-    for(int row = 0; row<ui->tableWidget_2->rowCount(); row++)
-    {
-        for(int column = 0; column<ui->tableWidget_2->columnCount(); column++)
-        {
-            ui->tableWidget_2->setItem(row, column, new QTableWidgetItem());
+//    for(int row = 0; row<ui->tableWidget_2->rowCount(); row++)
+//    {
+//        for(int column = 0; column<ui->tableWidget_2->columnCount(); column++)
+//        {
+//            ui->tableWidget_2->setItem(row, column, new QTableWidgetItem());
 
-        }
-    }
+//        }
+//    }
 
-    for (int i=0; i<17; i++)
-    {
-        if (ui->tableWidget_2->item(i, 0) != 0)
-        {
-            ui->tableWidget_2->item(i, 0)->setText(QString("%1").arg(i+1));
-            ui->tableWidget_2->item(i, 0)->setTextAlignment(Qt::AlignCenter);
-        }
-        if (ui->tableWidget_2->item(i, 3) != 0)
-        {
-            ui->tableWidget_2->item(i, 3)->setTextAlignment(Qt::AlignCenter);
-            ui->tableWidget_2->item(i, 3)->setTextAlignment(Qt::AlignCenter);
-        }
+//    for (int i=0; i<17; i++)
+//    {
+//        if (ui->tableWidget_2->item(i, 0) != 0)
+//        {
+//            ui->tableWidget_2->item(i, 0)->setText(QString("%1").arg(i+1));
+//            ui->tableWidget_2->item(i, 0)->setTextAlignment(Qt::AlignCenter);
+//        }
+//        if (ui->tableWidget_2->item(i, 3) != 0)
+//        {
+//            ui->tableWidget_2->item(i, 3)->setTextAlignment(Qt::AlignCenter);
+//            ui->tableWidget_2->item(i, 3)->setTextAlignment(Qt::AlignCenter);
+//        }
 
-        if (ui->tableWidget_2->item(i, 4) != 0)
-        {
-            ui->tableWidget_2->item(i, 4)->setTextAlignment(Qt::AlignCenter);
-        }
+//        if (ui->tableWidget_2->item(i, 4) != 0)
+//        {
+//            ui->tableWidget_2->item(i, 4)->setTextAlignment(Qt::AlignCenter);
+//        }
 
-        if (ui->tableWidget_2->item(i, 5) != 0)
-        {
-            ui->tableWidget_2->item(i, 5)->setTextAlignment(Qt::AlignCenter);
-        }
-    }
+//        if (ui->tableWidget_2->item(i, 5) != 0)
+//        {
+//            ui->tableWidget_2->item(i, 5)->setTextAlignment(Qt::AlignCenter);
+//        }
+//    }
 
-    ui->tableWidget_2->item(0, 2)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->item(0, 2)->setTextAlignment(Qt::AlignCenter);
 
-    QTableWidgetItem *item51 = new QTableWidgetItem("Item51");
-    item51->setCheckState(Qt::Checked);
-    item51->setText("Станина, °C:");
-    ui->tableWidget_2->setItem(0, 2, item51);
+//    QTableWidgetItem *item51 = new QTableWidgetItem("Item51");
+//    item51->setCheckState(Qt::Checked);
+//    item51->setText("Станина, °C:");
+//    ui->tableWidget_2->setItem(0, 2, item51);
 
-    QTableWidgetItem *item52 = new QTableWidgetItem("Item52");
-    item52->setCheckState(Qt::Checked);
-    item52->setText("Подшипниковый узел справа сзади, °C:");
-    ui->tableWidget_2->setItem(1, 2, item52);
+//    QTableWidgetItem *item52 = new QTableWidgetItem("Item52");
+//    item52->setCheckState(Qt::Checked);
+//    item52->setText("Подшипниковый узел справа сзади, °C:");
+//    ui->tableWidget_2->setItem(1, 2, item52);
 
-    QTableWidgetItem *item53 = new QTableWidgetItem("Item53");
-    item53->setCheckState(Qt::Checked);
-    item53->setText("Лобовая часть слева спереди, °C:");
-    ui->tableWidget_2->setItem(2, 2, item53);
+//    QTableWidgetItem *item53 = new QTableWidgetItem("Item53");
+//    item53->setCheckState(Qt::Checked);
+//    item53->setText("Лобовая часть слева спереди, °C:");
+//    ui->tableWidget_2->setItem(2, 2, item53);
 
-    QTableWidgetItem *item54 = new QTableWidgetItem("Item54");
-    item54->setCheckState(Qt::Checked);
-    item54->setText("Подшипниковый узел слева спереди, °C:");
-    ui->tableWidget_2->setItem(3, 2, item54);
+//    QTableWidgetItem *item54 = new QTableWidgetItem("Item54");
+//    item54->setCheckState(Qt::Checked);
+//    item54->setText("Подшипниковый узел слева спереди, °C:");
+//    ui->tableWidget_2->setItem(3, 2, item54);
 
-    QTableWidgetItem *item55 = new QTableWidgetItem("Item55");
-    item55->setCheckState(Qt::Checked);
-    item55->setText("Лобовая часть слева сзади, °C:");
-    ui->tableWidget_2->setItem(4, 2, item55);
+//    QTableWidgetItem *item55 = new QTableWidgetItem("Item55");
+//    item55->setCheckState(Qt::Checked);
+//    item55->setText("Лобовая часть слева сзади, °C:");
+//    ui->tableWidget_2->setItem(4, 2, item55);
 
-    QTableWidgetItem *item56 = new QTableWidgetItem("Item56");
-    item56->setCheckState(Qt::Checked);
-    item56->setText("Станина, °C:");
-    ui->tableWidget_2->setItem(5, 2, item56);
+//    QTableWidgetItem *item56 = new QTableWidgetItem("Item56");
+//    item56->setCheckState(Qt::Checked);
+//    item56->setText("Станина, °C:");
+//    ui->tableWidget_2->setItem(5, 2, item56);
 
-    QTableWidgetItem *item57 = new QTableWidgetItem("Item57");
-    item57->setCheckState(Qt::Checked);
-    item57->setText("Лобовая часть справа спереди, °C:");
-    ui->tableWidget_2->setItem(6, 2, item57);
+//    QTableWidgetItem *item57 = new QTableWidgetItem("Item57");
+//    item57->setCheckState(Qt::Checked);
+//    item57->setText("Лобовая часть справа спереди, °C:");
+//    ui->tableWidget_2->setItem(6, 2, item57);
 
-    QTableWidgetItem *item58 = new QTableWidgetItem("Item58");
-    item58->setCheckState(Qt::Checked);
-    item58->setText("Лобовая часть справа сзади, °C:");
-    ui->tableWidget_2->setItem(7, 2, item58);
+//    QTableWidgetItem *item58 = new QTableWidgetItem("Item58");
+//    item58->setCheckState(Qt::Checked);
+//    item58->setText("Лобовая часть справа сзади, °C:");
+//    ui->tableWidget_2->setItem(7, 2, item58);
 
-    QTableWidgetItem *item59 = new QTableWidgetItem("Item59");
-    item59->setCheckState(Qt::Checked);
-    item59->setText("Магнитопровод статора, °C:");
-    ui->tableWidget_2->setItem(8, 2, item59);
+//    QTableWidgetItem *item59 = new QTableWidgetItem("Item59");
+//    item59->setCheckState(Qt::Checked);
+//    item59->setText("Магнитопровод статора, °C:");
+//    ui->tableWidget_2->setItem(8, 2, item59);
 
-    QTableWidgetItem *item60 = new QTableWidgetItem("Item60");
-    item60->setCheckState(Qt::Checked);
-    item60->setText("Подшипниковый узел справа спереди, °C:");
-    ui->tableWidget_2->setItem(9, 2, item60);
+//    QTableWidgetItem *item60 = new QTableWidgetItem("Item60");
+//    item60->setCheckState(Qt::Checked);
+//    item60->setText("Подшипниковый узел справа спереди, °C:");
+//    ui->tableWidget_2->setItem(9, 2, item60);
 
-    QTableWidgetItem *item61 = new QTableWidgetItem("Item61");
-    item61->setCheckState(Qt::Checked);
-    item61->setText("Подшипниковый узел слева сзади, °C:");
-    ui->tableWidget_2->setItem(10, 2, item61);
+//    QTableWidgetItem *item61 = new QTableWidgetItem("Item61");
+//    item61->setCheckState(Qt::Checked);
+//    item61->setText("Подшипниковый узел слева сзади, °C:");
+//    ui->tableWidget_2->setItem(10, 2, item61);
 
-    QTableWidgetItem *item62 = new QTableWidgetItem("Item62");
-    item62->setCheckState(Qt::Checked);
-    item62->setText("Ротор сверху, °C:");
-    ui->tableWidget_2->setItem(11, 2, item62);
+//    QTableWidgetItem *item62 = new QTableWidgetItem("Item62");
+//    item62->setCheckState(Qt::Checked);
+//    item62->setText("Ротор сверху, °C:");
+//    ui->tableWidget_2->setItem(11, 2, item62);
 
-    QTableWidgetItem *item63 = new QTableWidgetItem("Item63");
-    item63->setCheckState(Qt::Checked);
-    item63->setText("Ротор снизу, °C:");
-    ui->tableWidget_2->setItem(12, 2, item63);
+//    QTableWidgetItem *item63 = new QTableWidgetItem("Item63");
+//    item63->setCheckState(Qt::Checked);
+//    item63->setText("Ротор снизу, °C:");
+//    ui->tableWidget_2->setItem(12, 2, item63);
 
-    QTableWidgetItem *item64 = new QTableWidgetItem("Item64");
-    item64->setCheckState(Qt::Checked);
-    item64->setText("Станина слева, °C:");
-    ui->tableWidget_2->setItem(13, 2, item64);
+//    QTableWidgetItem *item64 = new QTableWidgetItem("Item64");
+//    item64->setCheckState(Qt::Checked);
+//    item64->setText("Станина слева, °C:");
+//    ui->tableWidget_2->setItem(13, 2, item64);
 
-    QTableWidgetItem *item65 = new QTableWidgetItem("Item65");
-    item65->setCheckState(Qt::Checked);
-    item65->setText("Станина справа, °C:");
-    ui->tableWidget_2->setItem(14, 2, item65);
+//    QTableWidgetItem *item65 = new QTableWidgetItem("Item65");
+//    item65->setCheckState(Qt::Checked);
+//    item65->setText("Станина справа, °C:");
+//    ui->tableWidget_2->setItem(14, 2, item65);
 
-    QTableWidgetItem *item66 = new QTableWidgetItem("Item66");
-    item66->setCheckState(Qt::Checked);
-    item66->setText("Станина справа, °C:");
-    ui->tableWidget_2->setItem(15, 2, item66);
+//    QTableWidgetItem *item66 = new QTableWidgetItem("Item66");
+//    item66->setCheckState(Qt::Checked);
+//    item66->setText("Станина справа, °C:");
+//    ui->tableWidget_2->setItem(15, 2, item66);
 
-    QTableWidgetItem *item67 = new QTableWidgetItem("Item67");
-    item67->setCheckState(Qt::Checked);
-    item67->setText("Клеммная коробка, °C:");
-    ui->tableWidget_2->setItem(16, 2, item67);
+//    QTableWidgetItem *item67 = new QTableWidgetItem("Item67");
+//    item67->setCheckState(Qt::Checked);
+//    item67->setText("Клеммная коробка, °C:");
+//    ui->tableWidget_2->setItem(16, 2, item67);
 
-    ui->tableWidget_2->setItem(0, 4, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget_2->item(0,4)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(0, 5, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget_2->item(0,5)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(1, 4, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget_2->item(1,4)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(1, 5, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget_2->item(1,5)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(2, 4, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget_2->item(2,4)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(2, 5, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget_2->item(2,5)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(3, 4, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget_2->item(3,4)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(3, 5, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget_2->item(3,5)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(4, 4, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget_2->item(4,4)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(4, 5, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget_2->item(4,5)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(5, 4, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget_2->item(5,4)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(5, 5, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget_2->item(5,5)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(6, 4, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget_2->item(6,4)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(6, 5, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget_2->item(6,5)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(7, 4, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget_2->item(7,4)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(7, 5, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget_2->item(7,5)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(8, 4, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget_2->item(8,4)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(8, 5, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget_2->item(8,5)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(9, 4, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget_2->item(9,4)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(9, 5, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget_2->item(9,5)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(10, 4, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget_2->item(10,4)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(10, 5, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget_2->item(10,5)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(11, 4, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget_2->item(11,4)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(11, 5, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget_2->item(11,5)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(12, 4, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget_2->item(12,4)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(12, 5, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget_2->item(12,5)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(13, 4, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget_2->item(13,4)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(13, 5, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget_2->item(13,5)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(14, 4, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget_2->item(14,4)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(14, 5, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget_2->item(14,5)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(15, 4, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget_2->item(15,4)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(15, 5, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget_2->item(15,5)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(16, 4, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget_2->item(16,4)->setTextAlignment(Qt::AlignCenter);
-    ui->tableWidget_2->setItem(16, 5, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget_2->item(16,5)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(0, 4, new QTableWidgetItem(QString("%1").arg(1)));
+//    ui->tableWidget_2->item(0,4)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(0, 5, new QTableWidgetItem(QString("%1").arg(0)));
+//    ui->tableWidget_2->item(0,5)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(1, 4, new QTableWidgetItem(QString("%1").arg(1)));
+//    ui->tableWidget_2->item(1,4)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(1, 5, new QTableWidgetItem(QString("%1").arg(0)));
+//    ui->tableWidget_2->item(1,5)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(2, 4, new QTableWidgetItem(QString("%1").arg(1)));
+//    ui->tableWidget_2->item(2,4)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(2, 5, new QTableWidgetItem(QString("%1").arg(0)));
+//    ui->tableWidget_2->item(2,5)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(3, 4, new QTableWidgetItem(QString("%1").arg(1)));
+//    ui->tableWidget_2->item(3,4)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(3, 5, new QTableWidgetItem(QString("%1").arg(0)));
+//    ui->tableWidget_2->item(3,5)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(4, 4, new QTableWidgetItem(QString("%1").arg(1)));
+//    ui->tableWidget_2->item(4,4)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(4, 5, new QTableWidgetItem(QString("%1").arg(0)));
+//    ui->tableWidget_2->item(4,5)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(5, 4, new QTableWidgetItem(QString("%1").arg(1)));
+//    ui->tableWidget_2->item(5,4)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(5, 5, new QTableWidgetItem(QString("%1").arg(0)));
+//    ui->tableWidget_2->item(5,5)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(6, 4, new QTableWidgetItem(QString("%1").arg(1)));
+//    ui->tableWidget_2->item(6,4)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(6, 5, new QTableWidgetItem(QString("%1").arg(0)));
+//    ui->tableWidget_2->item(6,5)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(7, 4, new QTableWidgetItem(QString("%1").arg(1)));
+//    ui->tableWidget_2->item(7,4)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(7, 5, new QTableWidgetItem(QString("%1").arg(0)));
+//    ui->tableWidget_2->item(7,5)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(8, 4, new QTableWidgetItem(QString("%1").arg(1)));
+//    ui->tableWidget_2->item(8,4)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(8, 5, new QTableWidgetItem(QString("%1").arg(0)));
+//    ui->tableWidget_2->item(8,5)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(9, 4, new QTableWidgetItem(QString("%1").arg(1)));
+//    ui->tableWidget_2->item(9,4)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(9, 5, new QTableWidgetItem(QString("%1").arg(0)));
+//    ui->tableWidget_2->item(9,5)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(10, 4, new QTableWidgetItem(QString("%1").arg(1)));
+//    ui->tableWidget_2->item(10,4)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(10, 5, new QTableWidgetItem(QString("%1").arg(0)));
+//    ui->tableWidget_2->item(10,5)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(11, 4, new QTableWidgetItem(QString("%1").arg(1)));
+//    ui->tableWidget_2->item(11,4)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(11, 5, new QTableWidgetItem(QString("%1").arg(0)));
+//    ui->tableWidget_2->item(11,5)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(12, 4, new QTableWidgetItem(QString("%1").arg(1)));
+//    ui->tableWidget_2->item(12,4)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(12, 5, new QTableWidgetItem(QString("%1").arg(0)));
+//    ui->tableWidget_2->item(12,5)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(13, 4, new QTableWidgetItem(QString("%1").arg(1)));
+//    ui->tableWidget_2->item(13,4)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(13, 5, new QTableWidgetItem(QString("%1").arg(0)));
+//    ui->tableWidget_2->item(13,5)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(14, 4, new QTableWidgetItem(QString("%1").arg(1)));
+//    ui->tableWidget_2->item(14,4)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(14, 5, new QTableWidgetItem(QString("%1").arg(0)));
+//    ui->tableWidget_2->item(14,5)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(15, 4, new QTableWidgetItem(QString("%1").arg(1)));
+//    ui->tableWidget_2->item(15,4)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(15, 5, new QTableWidgetItem(QString("%1").arg(0)));
+//    ui->tableWidget_2->item(15,5)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(16, 4, new QTableWidgetItem(QString("%1").arg(1)));
+//    ui->tableWidget_2->item(16,4)->setTextAlignment(Qt::AlignCenter);
+//    ui->tableWidget_2->setItem(16, 5, new QTableWidgetItem(QString("%1").arg(0)));
+//    ui->tableWidget_2->item(16,5)->setTextAlignment(Qt::AlignCenter);
 
     dataLineColors.append(Qt::red);
     dataLineColors.append(Qt::green);
@@ -324,25 +326,25 @@ Trend::Trend(QWidget *parent) :
         ui->plot->addDataLine(dataLineColors[i], 0);
     }
 
-    for (int i = 0; i < dataLineColors.size(); i++)
-    {
-        ui->tableWidget_2->item(i, 1)->setBackground(dataLineColors[i]);
-    }
-    connect(ui->tableWidget_2, &QTableWidget::cellClicked,this, &Trend::setcolorincell);
+//    for (int i = 0; i < dataLineColors.size(); i++)
+//    {
+//        ui->tableWidget_2->item(i, 1)->setBackground(dataLineColors[i]);
+//    }
+//    connect(ui->tableWidget_2, &QTableWidget::cellClicked,this, &Trend::setcolorincell);
  }
 
-void Trend::setcolorincell(int row, int column)
-{
-    if (column == 1)
-    {
-        row = ui->tableWidget_2->currentRow();
-        QColor chosenColor = QColorDialog::getColor(); //return the color chosen by user
-        ui->tableWidget_2->item(row, column)->setBackground(chosenColor);
-        ui->plot->setDataLineColor(row, chosenColor);
-        dataLineColors[row] = chosenColor;
-        repaint();
-    }
-}
+//void Trend::setcolorincell(int row, int column)
+//{
+//    if (column == 1)
+//    {
+//        row = ui->tableWidget_2->currentRow();
+//        QColor chosenColor = QColorDialog::getColor(); //return the color chosen by user
+//        ui->tableWidget_2->item(row, column)->setBackground(chosenColor);
+//        ui->plot->setDataLineColor(row, chosenColor);
+//        dataLineColors[row] = chosenColor;
+//        repaint();
+//    }
+//}
 
 Trend::~Trend()
 {
@@ -351,23 +353,23 @@ Trend::~Trend()
 
 void Trend::startTeplo()
 {
-    y_0=20*(1-exp(-t/20))+ui->lineEdit->text().toDouble();//станина
-    y_1=54*(1-exp(-t/20))+ui->lineEdit->text().toDouble();//Подшипниковый узел справа сзади
-    y_2=120*(1-exp(-t/25))+ui->lineEdit->text().toDouble();//Лобовая часть слева спереди
-    y_3=56*(1-exp(-t/25))+ui->lineEdit->text().toDouble();//Подшипниковый узел слева спереди
-    y_4=120*(1-exp(-t/25))+ui->lineEdit->text().toDouble();//Лобовая часть слева сзади
-    y_5=90*(1-exp(-t/25))+ui->lineEdit->text().toDouble();//станина
-    y_6=120*(1-exp(-t/25))+ui->lineEdit->text().toDouble();//Лобовая часть справа спереди
-    y_7=120*(1-exp(-t/25))+ui->lineEdit->text().toDouble();//Лобовая часть справа сзади
-    y_8=90*(1-exp(-t/25))+ui->lineEdit->text().toDouble();//Магнитопровод статора
-    y_9=60*(1-exp(-t/20))+ui->lineEdit->text().toDouble();//Подшипниковый узел справа спереди
-    y_10=56*(1-exp(-t/20))+ui->lineEdit->text().toDouble();//Подшипниковый узел слева сзади
-    y_11=80*(1-exp(-t/20))+ui->lineEdit->text().toDouble();//Ротор сверху
-    y_12=80*(1-exp(-t/20))+ui->lineEdit->text().toDouble();//Ротор снизу
-    y_13=40*(1-exp(-t/20))+ui->lineEdit->text().toDouble();//Станина слева
-    y_14=40*(1-exp(-t/20))+ui->lineEdit->text().toDouble();//Станина слева
-    y_15=60*(1-exp(-t/20))+ui->lineEdit->text().toDouble();//Вал
-    y_16=50*(1-exp(-t/20))+ui->lineEdit->text().toDouble();//Клеммная коробка
+    y_0=20*(1-exp(-t/20)) +wf->item28->text().toDouble();//станина
+    y_1=54*(1-exp(-t/20)) +wf->item28->text().toDouble();//Подшипниковый узел справа сзади
+    y_2=120*(1-exp(-t/25))+wf->item28->text().toDouble();//Лобовая часть слева спереди
+    y_3=56*(1-exp(-t/25)) +wf->item28->text().toDouble();//Подшипниковый узел слева спереди
+    y_4=120*(1-exp(-t/25))+wf->item28->text().toDouble();//Лобовая часть слева сзади
+    y_5=90*(1-exp(-t/25)) +wf->item28->text().toDouble();//станина
+    y_6=120*(1-exp(-t/25))+wf->item28->text().toDouble();//Лобовая часть справа спереди
+    y_7=120*(1-exp(-t/25))+wf->item28->text().toDouble();//Лобовая часть справа сзади
+    y_8=90*(1-exp(-t/25)) +wf->item28->text().toDouble();//Магнитопровод статора
+    y_9=60*(1-exp(-t/20)) +wf->item28->text().toDouble();//Подшипниковый узел справа спереди
+    y_10=56*(1-exp(-t/20))+wf->item28->text().toDouble();//Подшипниковый узел слева сзади
+    y_11=80*(1-exp(-t/20))+wf->item28->text().toDouble();//Ротор сверху
+    y_12=80*(1-exp(-t/20))+wf->item28->text().toDouble();//Ротор снизу
+    y_13=40*(1-exp(-t/20))+wf->item28->text().toDouble();//Станина слева
+    y_14=40*(1-exp(-t/20))+wf->item28->text().toDouble();//Станина слева
+    y_15=60*(1-exp(-t/20))+wf->item28->text().toDouble();//Вал
+    y_16=50*(1-exp(-t/20))+wf->item28->text().toDouble();//Клеммная коробка
 
     ui->plot->addPoint(0, t, y_0);
     ui->plot->addPoint(1, t, y_1);
@@ -394,7 +396,31 @@ void Trend::startTeplo()
     wf->ui->widget_6->ui->widget->ui->verticalSlider->setValue(50);
     wf->ui->widget_6->ui->widget->ui->verticalSlider_2->setValue(20);
 
-   // ui->label_4->setText(QString("%1 moment").arg(moment, 0, 'f', 1));
+    std::ofstream fout;
+
+    fout.open(QString(base.teplFilename).toStdString(),std::ios::out | std::ios::app);
+
+    fout << QString("%1").arg(t).toStdString() << ";";
+    fout << QString("%1").arg(y_0).toStdString() << ";";
+    fout << QString("%1").arg(y_1).toStdString() << ";";
+    fout << QString("%1").arg(y_2).toStdString() << ";";
+    fout << QString("%1").arg(y_3).toStdString() << ";";
+    fout << QString("%1").arg(y_4).toStdString() << ";";
+    fout << QString("%1").arg(y_5).toStdString() << ";";
+    fout << QString("%1").arg(y_6).toStdString() << ";";
+    fout << QString("%1").arg(y_7).toStdString() << ";";
+    fout << QString("%1").arg(y_8).toStdString() << ";";
+    fout << QString("%1").arg(y_9).toStdString() << ";";
+    fout << QString("%1").arg(y_10).toStdString() << ";";
+    fout << QString("%1").arg(y_11).toStdString() << ";";
+    fout << QString("%1").arg(y_12).toStdString() << ";";
+    fout << QString("%1").arg(y_13).toStdString() << ";";
+    fout << QString("%1").arg(y_14).toStdString() << ";";
+    fout << QString("%1").arg(y_15).toStdString() << ";";
+    fout << QString("%1").arg(y_16).toStdString() << ";";
+
+    fout << std::endl;
+    fout.close();
 }
 
 
@@ -405,23 +431,23 @@ void Trend::stopTeplo()
 
 void Trend::on_timerTimeout()
 {
-    y_0=20*(1-exp(-t/20))+ui->lineEdit->text().toDouble();
-    y_1=54*(1-exp(-t/20))+ui->lineEdit->text().toDouble();
-    y_2=120*(1-exp(-t/25))+ui->lineEdit->text().toDouble();
-    y_3=56*(1-exp(-t/25))+ui->lineEdit->text().toDouble();
-    y_4=120*(1-exp(-t/25))+ui->lineEdit->text().toDouble();
-    y_5=90*(1-exp(-t/25))+ui->lineEdit->text().toDouble();
-    y_6=120*(1-exp(-t/25))+ui->lineEdit->text().toDouble();
-    y_7=120*(1-exp(-t/25))+ui->lineEdit->text().toDouble();
-    y_8=90*(1-exp(-t/25))+ui->lineEdit->text().toDouble();
-    y_9=60*(1-exp(-t/25))+ui->lineEdit->text().toDouble();
-    y_10=56*(1-exp(-t/25))+ui->lineEdit->text().toDouble();
-    y_11=80*(1-exp(-t/20))+ui->lineEdit->text().toDouble();
-    y_12=80*(1-exp(-t/20))+ui->lineEdit->text().toDouble();
-    y_13=40*(1-exp(-t/20))+ui->lineEdit->text().toDouble();
-    y_14=40*(1-exp(-t/20))+ui->lineEdit->text().toDouble();
-    y_15=60*(1-exp(-t/20))+ui->lineEdit->text().toDouble();
-    y_16=50*(1-exp(-t/20))+ui->lineEdit->text().toDouble();
+    y_0=20*(1-exp(-t/20)) +wf->item28->text().toDouble();
+    y_1=54*(1-exp(-t/20)) +wf->item28->text().toDouble();
+    y_2=120*(1-exp(-t/25))+wf->item28->text().toDouble();
+    y_3=56*(1-exp(-t/25)) +wf->item28->text().toDouble();
+    y_4=120*(1-exp(-t/25))+wf->item28->text().toDouble();
+    y_5=90*(1-exp(-t/25)) +wf->item28->text().toDouble();
+    y_6=120*(1-exp(-t/25))+wf->item28->text().toDouble();
+    y_7=120*(1-exp(-t/25))+wf->item28->text().toDouble();
+    y_8=90*(1-exp(-t/25)) +wf->item28->text().toDouble();
+    y_9=60*(1-exp(-t/25)) +wf->item28->text().toDouble();
+    y_10=56*(1-exp(-t/25))+wf->item28->text().toDouble();
+    y_11=80*(1-exp(-t/20))+wf->item28->text().toDouble();
+    y_12=80*(1-exp(-t/20))+wf->item28->text().toDouble();
+    y_13=40*(1-exp(-t/20))+wf->item28->text().toDouble();
+    y_14=40*(1-exp(-t/20))+wf->item28->text().toDouble();
+    y_15=60*(1-exp(-t/20))+wf->item28->text().toDouble();
+    y_16=50*(1-exp(-t/20))+wf->item28->text().toDouble();
 
     w_0=314;
     w_w=147;
@@ -847,159 +873,159 @@ void Trend::on_timerTimeout()
     }
 
 
-    if (ui->tableWidget->item(0, 2) != 0)
-    {
-        ui->tableWidget->item(0, 2)->setText(QString("%1").arg(QString::number(b0+a0*y_0,'f',1)));
-        ui->tableWidget->item(0, 2)->setTextAlignment(Qt::AlignCenter);
-    }
+//    if (ui->tableWidget->item(0, 2) != 0)
+//    {
+//        ui->tableWidget->item(0, 2)->setText(QString("%1").arg(QString::number(b0+a0*y_0,'f',1)));
+//        ui->tableWidget->item(0, 2)->setTextAlignment(Qt::AlignCenter);
+//    }
 
-    if (ui->tableWidget->item(1, 2) != 0)
-    {
-        ui->tableWidget->item(1, 2)->setText(QString("%1").arg(QString::number(b1+a1*y_1,'f',1)));
-        ui->tableWidget->item(1, 2)->setTextAlignment(Qt::AlignCenter);
-    }
+//    if (ui->tableWidget->item(1, 2) != 0)
+//    {
+//        ui->tableWidget->item(1, 2)->setText(QString("%1").arg(QString::number(b1+a1*y_1,'f',1)));
+//        ui->tableWidget->item(1, 2)->setTextAlignment(Qt::AlignCenter);
+//    }
 
-    if (ui->tableWidget->item(2, 2) != 0)
-    {
-        ui->tableWidget->item(2, 2)->setText(QString("%1").arg(QString::number(b2+a2*y_2,'f',1)));
-        ui->tableWidget->item(2, 2)->setTextAlignment(Qt::AlignCenter);
-    }
+//    if (ui->tableWidget->item(2, 2) != 0)
+//    {
+//        ui->tableWidget->item(2, 2)->setText(QString("%1").arg(QString::number(b2+a2*y_2,'f',1)));
+//        ui->tableWidget->item(2, 2)->setTextAlignment(Qt::AlignCenter);
+//    }
 
-    if (ui->tableWidget->item(3, 2) != 0)
-    {
-        ui->tableWidget->item(3, 2)->setText(QString("%1").arg(QString::number(b3+a3*y_3,'f',1)));
-        ui->tableWidget->item(3, 2)->setTextAlignment(Qt::AlignCenter);
-    }
+//    if (ui->tableWidget->item(3, 2) != 0)
+//    {
+//        ui->tableWidget->item(3, 2)->setText(QString("%1").arg(QString::number(b3+a3*y_3,'f',1)));
+//        ui->tableWidget->item(3, 2)->setTextAlignment(Qt::AlignCenter);
+//    }
 
-    if (ui->tableWidget->item(4, 2) != 0)
-    {
-        ui->tableWidget->item(4, 2)->setText(QString("%1").arg(QString::number(b4+a4*y_4,'f',1)));
-        ui->tableWidget->item(4, 2)->setTextAlignment(Qt::AlignCenter);
-    }
+//    if (ui->tableWidget->item(4, 2) != 0)
+//    {
+//        ui->tableWidget->item(4, 2)->setText(QString("%1").arg(QString::number(b4+a4*y_4,'f',1)));
+//        ui->tableWidget->item(4, 2)->setTextAlignment(Qt::AlignCenter);
+//    }
 
-    if (ui->tableWidget->item(5, 2) != 0)
-    {
-        ui->tableWidget->item(5, 2)->setText(QString("%1").arg(QString::number(b5+a5*y_5,'f',1)));
-        ui->tableWidget->item(5, 2)->setTextAlignment(Qt::AlignCenter);
-    }
+//    if (ui->tableWidget->item(5, 2) != 0)
+//    {
+//        ui->tableWidget->item(5, 2)->setText(QString("%1").arg(QString::number(b5+a5*y_5,'f',1)));
+//        ui->tableWidget->item(5, 2)->setTextAlignment(Qt::AlignCenter);
+//    }
 
-    if (ui->tableWidget->item(6, 2) != 0)
-    {
-        ui->tableWidget->item(6, 2)->setText(QString("%1").arg(QString::number(b6+a6*y_6,'f',1)));
-        ui->tableWidget->item(6, 2)->setTextAlignment(Qt::AlignCenter);
-    }
+//    if (ui->tableWidget->item(6, 2) != 0)
+//    {
+//        ui->tableWidget->item(6, 2)->setText(QString("%1").arg(QString::number(b6+a6*y_6,'f',1)));
+//        ui->tableWidget->item(6, 2)->setTextAlignment(Qt::AlignCenter);
+//    }
 
-    if (ui->tableWidget->item(7, 2) != 0)
-    {
-        ui->tableWidget->item(7, 2)->setText(QString("%1").arg(QString::number(b7+a7*y_7,'f',1)));
-        ui->tableWidget->item(7, 2)->setTextAlignment(Qt::AlignCenter);
-    }
+//    if (ui->tableWidget->item(7, 2) != 0)
+//    {
+//        ui->tableWidget->item(7, 2)->setText(QString("%1").arg(QString::number(b7+a7*y_7,'f',1)));
+//        ui->tableWidget->item(7, 2)->setTextAlignment(Qt::AlignCenter);
+//    }
 
-    if (ui->tableWidget->item(8, 2) != 0)
-    {
-        ui->tableWidget->item(8, 2)->setText(QString("%1").arg(QString::number(b8+a8*y_8,'f',1)));
-        ui->tableWidget->item(8, 2)->setTextAlignment(Qt::AlignCenter);
-    }
+//    if (ui->tableWidget->item(8, 2) != 0)
+//    {
+//        ui->tableWidget->item(8, 2)->setText(QString("%1").arg(QString::number(b8+a8*y_8,'f',1)));
+//        ui->tableWidget->item(8, 2)->setTextAlignment(Qt::AlignCenter);
+//    }
 
-    if (ui->tableWidget->item(9, 2) != 0)
-    {
-        ui->tableWidget->item(9, 2)->setText(QString("%1").arg(QString::number(b9+a9*y_9,'f',1)));
-        ui->tableWidget->item(9, 2)->setTextAlignment(Qt::AlignCenter);
-    }
+//    if (ui->tableWidget->item(9, 2) != 0)
+//    {
+//        ui->tableWidget->item(9, 2)->setText(QString("%1").arg(QString::number(b9+a9*y_9,'f',1)));
+//        ui->tableWidget->item(9, 2)->setTextAlignment(Qt::AlignCenter);
+//    }
 
-    if (ui->tableWidget->item(10, 2) != 0)
-    {
-        ui->tableWidget->item(10, 2)->setText(QString("%1").arg(QString::number(b10+a10*y_10,'f',1)));
-        ui->tableWidget->item(10, 2)->setTextAlignment(Qt::AlignCenter);
-    }
+//    if (ui->tableWidget->item(10, 2) != 0)
+//    {
+//        ui->tableWidget->item(10, 2)->setText(QString("%1").arg(QString::number(b10+a10*y_10,'f',1)));
+//        ui->tableWidget->item(10, 2)->setTextAlignment(Qt::AlignCenter);
+//    }
 
-    if (ui->tableWidget->item(11, 2) != 0)
-    {
-        ui->tableWidget->item(11, 2)->setText(QString("%1").arg(QString::number(b11+a11*y_11,'f',1)));
-        ui->tableWidget->item(11, 2)->setTextAlignment(Qt::AlignCenter);
-    }
+//    if (ui->tableWidget->item(11, 2) != 0)
+//    {
+//        ui->tableWidget->item(11, 2)->setText(QString("%1").arg(QString::number(b11+a11*y_11,'f',1)));
+//        ui->tableWidget->item(11, 2)->setTextAlignment(Qt::AlignCenter);
+//    }
 
-    if (ui->tableWidget->item(12, 2) != 0)
-    {
-        ui->tableWidget->item(12, 2)->setText(QString("%1").arg(QString::number(b12+a12*y_12,'f',1)));
-        ui->tableWidget->item(12, 2)->setTextAlignment(Qt::AlignCenter);
-    }
+//    if (ui->tableWidget->item(12, 2) != 0)
+//    {
+//        ui->tableWidget->item(12, 2)->setText(QString("%1").arg(QString::number(b12+a12*y_12,'f',1)));
+//        ui->tableWidget->item(12, 2)->setTextAlignment(Qt::AlignCenter);
+//    }
 
-    if (ui->tableWidget->item(13, 2) != 0)
-    {
-        ui->tableWidget->item(13, 2)->setText(QString("%1").arg(QString::number(b13+a13*y_13,'f',1)));
-        ui->tableWidget->item(13, 2)->setTextAlignment(Qt::AlignCenter);
-    }
+//    if (ui->tableWidget->item(13, 2) != 0)
+//    {
+//        ui->tableWidget->item(13, 2)->setText(QString("%1").arg(QString::number(b13+a13*y_13,'f',1)));
+//        ui->tableWidget->item(13, 2)->setTextAlignment(Qt::AlignCenter);
+//    }
 
-    if (ui->tableWidget->item(14, 2) != 0)
-    {
-        ui->tableWidget->item(14, 2)->setText(QString("%1").arg(QString::number(b14+a14*y_14,'f',1)));
-        ui->tableWidget->item(14, 2)->setTextAlignment(Qt::AlignCenter);
-    }
+//    if (ui->tableWidget->item(14, 2) != 0)
+//    {
+//        ui->tableWidget->item(14, 2)->setText(QString("%1").arg(QString::number(b14+a14*y_14,'f',1)));
+//        ui->tableWidget->item(14, 2)->setTextAlignment(Qt::AlignCenter);
+//    }
 
-    if (ui->tableWidget->item(15, 2) != 0)
-    {
-        ui->tableWidget->item(15, 2)->setText(QString("%1").arg(QString::number(b15+a15*y_15,'f',1)));
-        ui->tableWidget->item(15, 2)->setTextAlignment(Qt::AlignCenter);
-    }
+//    if (ui->tableWidget->item(15, 2) != 0)
+//    {
+//        ui->tableWidget->item(15, 2)->setText(QString("%1").arg(QString::number(b15+a15*y_15,'f',1)));
+//        ui->tableWidget->item(15, 2)->setTextAlignment(Qt::AlignCenter);
+//    }
 
-    if (ui->tableWidget->item(16, 2) != 0)
-    {
-        ui->tableWidget->item(16, 2)->setText(QString("%1").arg(QString::number(b16+a16*y_16,'f',1)));
-        ui->tableWidget->item(16, 2)->setTextAlignment(Qt::AlignCenter);
-    }
+//    if (ui->tableWidget->item(16, 2) != 0)
+//    {
+//        ui->tableWidget->item(16, 2)->setText(QString("%1").arg(QString::number(b16+a16*y_16,'f',1)));
+//        ui->tableWidget->item(16, 2)->setTextAlignment(Qt::AlignCenter);
+//    }
 
    // Расчет значений цветов
 
-   int color_0 = 225 - (y_0 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
+   int color_0 = 225 - (y_0 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
 //    ui->label->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_0));
 
-    int color_1 = 225 - (y_1 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
+    int color_1 = 225 - (y_1 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
 //    ui->label_4->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_1));
 
-    int color_2 = 225 - (y_2 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
+    int color_2 = 225 - (y_2 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
 //    ui->label_5->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_2));
 
-   int color_3 = 225 - (y_3 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
+   int color_3 = 225 - (y_3 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
 //    ui->label_6->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_3));
 
-    int color_4 = 225 - (y_4 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
+    int color_4 = 225 - (y_4 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
 //    ui->label_7->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_4));
 
-    int color_5 = 225 - (y_5 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
+    int color_5 = 225 - (y_5 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
 //    ui->label_8->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_5));
 
-    int color_6 = 225 - (y_6 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
+    int color_6 = 225 - (y_6 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
 //    ui->label_9->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_6));
 
-    int color_7 = 225 - (y_7 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
+    int color_7 = 225 - (y_7 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
 //    ui->label_10->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_7));
 
-    int color_8 = 225 - (y_8 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
+    int color_8 = 225 - (y_8 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
 //    ui->label_11->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_8));
 
-    int color_9 = 225 - (y_9 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
+    int color_9 = 225 - (y_9 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
 //    ui->label_12->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_9));
 
-    int color_10 = 225 - (y_10 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
+    int color_10 = 225 - (y_10 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
 //    ui->label_13->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_10));
 
-    int color_11 = 225 - (y_11 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
+    int color_11 = 225 - (y_11 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
 //    ui->label_14->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_11));
 
-    int color_12 = 225 - (y_12 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
+    int color_12 = 225 - (y_12 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
 //    ui->label_2->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_12));
 
-    int color_13 = 225 - (y_13 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
+    int color_13 = 225 - (y_13 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
 //    ui->label_17->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_13));
 
-   int color_14 = 225 - (y_14 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
+   int color_14 = 225 - (y_14 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
 //    ui->label_18->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_14));
 
-    int color_15 = 225 - (y_15 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
+    int color_15 = 225 - (y_15 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
 //    ui->label_19->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_15));
 
-    int color_16 = 225 - (y_16 - ui->lineEdit->text().toDouble()) / (140.0 - ui->lineEdit->text().toDouble()) * 220.0;
+    int color_16 = 225 - (y_16 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
 //    ui->label_20->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_16));
 
 
@@ -1239,7 +1265,7 @@ void Trend::on_timerTimeout()
                 max=y_16;
             }
 
-            double miny=ui->lineEdit->text().toDouble();
+            double miny=wf->item28->text().toDouble();
            //double miny=20.0;
             double h=(max-miny)/9;
             double shag1=miny+h;

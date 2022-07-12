@@ -60,6 +60,7 @@ public:
     void closeEvent (QCloseEvent *event);
     void LoadProject(QString str);
     QVector<QColor> dataLineColors;
+    void setcolorincell(int row, int column);
 
 private slots:
     void on_actionabout_triggered();
@@ -78,7 +79,6 @@ private slots:
     void on_action_22_triggered();
     void on_action_23_triggered();
     void on_action_15_triggered();
-    void setcolorincell(int row, int column);
     void onButtonClicked();
     void onButtonClicked2();
     void on_action_24_triggered();
@@ -108,7 +108,6 @@ public:
     Settings *rsc2;
     QString dataSourceFilename;
     QString dirName;
-
 
     QWebEngineView * view;
 

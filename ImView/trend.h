@@ -22,6 +22,8 @@ public:
     explicit Trend(QWidget *parent = nullptr);
     ~Trend();
 
+    Ui::Trend *ui;
+
     MainWindow *wf;
     void startTeplo();
     void stopTeplo();
@@ -32,11 +34,11 @@ public:
 
 private slots:
     void on_timerTimeout();
-    void setcolorincell(int row, int column);
+//    void setcolorincell(int row, int column);
 
 
 private:
-    Ui::Trend *ui;
+
     QDomDocument doc,doc3,doc4;
     QTimer timer;
     double t;

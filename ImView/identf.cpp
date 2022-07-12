@@ -32,7 +32,6 @@ identf::identf(QWidget *parent) :
     ui->plot->reset();
 
     time=new QElapsedTimer();
-
     this->showMaximized();
 }
 
@@ -150,6 +149,7 @@ void identf::raschet_f()
                wf->ui->lineEdit_13->text().toDouble(),wf->ui->lineEdit_14->text().toDouble(),wf->ui->lineEdit_15->text().toDouble(),
                wf->ui->lineEdit_16->text().toDouble(),wf->ui->lineEdit_17->text().toDouble(),wf->ui->lineEdit_18->text().toDouble());
     ui->plot->clear();
+
     for (int i = 0; i < wf->dataLineColors.size(); i++)
     {
         ui->plot->addDataLine(wf->dataLineColors[i], 0);

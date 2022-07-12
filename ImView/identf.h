@@ -40,6 +40,7 @@ public:
     MainWindow *wf;
     QString dataSourceFilename;
     Model model;
+    QVector<QColor> dataLineColors;
 };
 
 #endif // IDENTF_H
