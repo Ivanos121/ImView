@@ -23,8 +23,10 @@ public:
     void retrievElements(QDomElement root, QString tag, QString att);
 
 public slots:
-    void on_checkBox_toggled(bool checked);
-    void on_checkBox_2_toggled(bool checked);
+    void on_radioButton_toggled(bool checked);
+    void on_radioButton_2_toggled(bool checked);
+    void on_radioButton_3_toggled(bool checked);
+    void on_radioButton_4_toggled(bool checked);
 
 
 public:
