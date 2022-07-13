@@ -163,7 +163,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>8</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QGridLayout" name="gridLayout_6">
@@ -835,85 +835,20 @@
        </layout>
       </widget>
       <widget class="QWidget" name="page_8">
-       <widget class="QRadioButton" name="radioButton_8">
-        <property name="geometry">
-         <rect>
-          <x>21</x>
-          <y>413</y>
-          <width>169</width>
-          <height>24</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Падение температуры</string>
-        </property>
-       </widget>
-       <widget class="QRadioButton" name="radioButton_6">
-        <property name="geometry">
-         <rect>
-          <x>21</x>
-          <y>353</y>
-          <width>88</width>
-          <height>24</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Значение</string>
-        </property>
-       </widget>
-       <widget class="QRadioButton" name="radioButton_7">
-        <property name="geometry">
-         <rect>
-          <x>21</x>
-          <y>383</y>
-          <width>163</width>
-          <height>24</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Мощность рассеяния</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_7">
-        <property name="geometry">
-         <rect>
-          <x>21</x>
-          <y>291</y>
-          <width>47</width>
-          <height>26</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:700;&quot;&gt;Узлы&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-       <widget class="QRadioButton" name="radioButton_5">
-        <property name="geometry">
-         <rect>
-          <x>21</x>
-          <y>323</y>
-          <width>112</width>
-          <height>24</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Обозначение</string>
-        </property>
-       </widget>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>30</x>
           <y>30</y>
-          <width>235</width>
+          <width>252</width>
           <height>148</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_10">
          <item>
-          <widget class="QLabel" name="label_9">
+          <widget class="QLabel" name="label_7">
            <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:700;&quot;&gt;Тепловые проводимости&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:700;&quot;&gt;Узлы&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
           </widget>
          </item>
@@ -942,6 +877,53 @@
           <widget class="QRadioButton" name="radioButton_4">
            <property name="text">
             <string>Мощность рассеяния</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>290</y>
+          <width>252</width>
+          <height>148</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_8">
+         <item>
+          <widget class="QLabel" name="label_9">
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:700;&quot;&gt;Тепловые проводимости&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_5">
+           <property name="text">
+            <string>Обозначение</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_6">
+           <property name="text">
+            <string>Значение</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_7">
+           <property name="text">
+            <string>Мощность рассеяния</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_8">
+           <property name="text">
+            <string>Падение температуры</string>
            </property>
           </widget>
          </item>
@@ -1055,6 +1037,47 @@
          </widget>
         </item>
        </layout>
+      </widget>
+      <widget class="QWidget" name="page_9">
+       <widget class="QPushButton" name="pushButton_3">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>70</y>
+          <width>80</width>
+          <height>26</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Загрузить</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_6">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>110</y>
+          <width>80</width>
+          <height>26</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Сохранить</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_7">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>150</y>
+          <width>80</width>
+          <height>26</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Расчет</string>
+        </property>
+       </widget>
       </widget>
      </widget>
     </item>

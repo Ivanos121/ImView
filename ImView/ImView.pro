@@ -28,6 +28,7 @@ SOURCES += \
     comboboxerrorarchivedelegate.cpp \
     comboboxmodbusdelegate.cpp \
     comboboxvardelegate.cpp \
+    customhelpdelegate.cpp \
     datas.cpp \
     datasource.cpp \
     datasource_el.cpp \
@@ -55,6 +56,7 @@ SOURCES += \
     plot.cpp \
     pushbuttondelegate.cpp \
     settings.cpp \
+    tepl_dannie.cpp \
     teplovent.cpp \
     teplschem.cpp \
     trend.cpp \
@@ -64,6 +66,7 @@ SOURCES += \
     zerocorrector.cpp
 
 HEADERS += \
+    Base_tepl.h \
     archiverchannel.h \
     base.h \
     bvasthread.h \
@@ -77,6 +80,7 @@ HEADERS += \
     comboboxmodbusdelegate.h \
     comboboxvardelegate.h \
     crc.h \
+    customhelpdelegate.h \
     datas.h \
     datasource.h \
     datasource_el.h \
@@ -104,6 +108,7 @@ HEADERS += \
     plot.h \
     pushbuttondelegate.h \
     settings.h \
+    tepl_dannie.h \
     teplovent.h \
     teplschem.h \
     trend.h \
@@ -125,6 +130,7 @@ FORMS += \
     kalibr.ui \
     mainwindow.ui \
     settings.ui \
+    tepl_dannie.ui \
     teplovent.ui \
     teplschem.ui \
     trend.ui \

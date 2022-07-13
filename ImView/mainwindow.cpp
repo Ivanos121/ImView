@@ -2741,7 +2741,12 @@ void MainWindow::tabClicked()
 
 void MainWindow::tabClicked_2()
 {
-    if(ui->widget_5->ui->tabWidget->currentIndex()==1)
+    if(ui->widget_5->ui->tabWidget->currentIndex() == 0)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(8);
+    }
+    if(ui->widget_5->ui->tabWidget->currentIndex() == 1)
     {
         ui->stackedWidget->show();
         ui->stackedWidget->setCurrentIndex(4);
@@ -2799,7 +2804,18 @@ void MainWindow::on_radioButton_toggled(bool checked)
     if (checked)
     {
         ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4878').text('θ₀');"));
-
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4530').text('θ₀');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4716').text('θ₀');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4882').text('θ₀');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4690').text('θ₀');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4538').text('θ₀');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4808').text('θ₀');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4558-8').text('θ₀2');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4558').text('θ₀с');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4606').text('θ₀4');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4622').text('θ₀5');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4626').text('θ₀р');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4646').text('θ₀в');"));
     }
     else
     {
@@ -2813,6 +2829,18 @@ void MainWindow::on_radioButton_2_toggled(bool checked)
     if (checked)
     {
         ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4878').text('%1 °C');").arg(100.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4530').text('%1 °C');").arg(120.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4716').text('%1 °C');").arg(150.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4882').text('%1 °C');").arg(120.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4690').text('%1 °C');").arg(100.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4538').text('%1 °C');").arg(80.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4808').text('%1 °C');").arg(50.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4558-8').text('%1 °C');").arg(120.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4558').text('%1 °C');").arg(150.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4606').text('%1 °C');").arg(120.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4622').text('%1 °C');").arg(80.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4626').text('%1 °C');").arg(140.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4646').text('%1 °C');").arg(120.00, 0, 'f', 2));
     }
     else
     {
@@ -2825,6 +2853,18 @@ void MainWindow::on_radioButton_3_toggled(bool checked)
     if (checked)
     {
         ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4878').text('%1 Дж');").arg(2000.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4530').text('%1 Дж');").arg(1500.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4716').text('%1 Дж');").arg(500.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4882').text('%1 Дж');").arg(800.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4690').text('%1 Дж');").arg(400.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4538').text('%1 Дж');").arg(400.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4808').text('%1 Дж');").arg(400.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4558-8').text('%1 Дж');").arg(1500.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4558').text('%1 Дж');").arg(500.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4606').text('%1 Дж');").arg(800.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4622').text('%1 Дж');").arg(400.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4626').text('%1 Дж');").arg(500.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4646').text('%1 Дж');").arg(200.00, 0, 'f', 2));
     }
     else
     {
@@ -2837,6 +2877,122 @@ void MainWindow::on_radioButton_4_toggled(bool checked)
     if (checked)
     {
         ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4878').text('%1 Вт');").arg(300.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4530').text('%1 Вт');").arg(200.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4716').text('%1 Вт');").arg(100.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4882').text('%1 Вт');").arg(800.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4690').text('%1 Вт');").arg(500.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4538').text('%1 Вт');").arg(600.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4808').text('%1 Вт');").arg(880.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4558-8').text('%1 Вт');").arg(200.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4558').text('%1 Вт');").arg(100.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4606').text('%1 Вт');").arg(900.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4622').text('%1 Вт');").arg(600.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4626').text('%1 Вт');").arg(200.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4646').text('%1 Вт');").arg(100.00, 0, 'f', 2));
+    }
+    else
+    {
+
+    }
+}
+
+void MainWindow::on_radioButton_5_toggled(bool checked)
+{
+    if (checked)
+    {
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4870').text('λ₀10');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4574').text('λ₀30');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4846').text('λ₀k0');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4772').text('λ₀50');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4812').text('λ₀3k');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4704').text('λ₀21');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4582').text('λ₀c3');"));
+
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4728').text('λ₀c2');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4764').text('λ₀c4');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4756').text('λ₀45');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4830').text('λ₀p2');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4736').text('λ₀pc');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4744').text('λ₀pв');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4752').text('λ₀в5');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4900').text('λ₀р5');"));
+    }
+    else
+    {
+
+    }
+
+}
+
+void MainWindow::on_radioButton_6_toggled(bool checked)
+{
+    if (checked)
+    {
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4870').text('%1 °C');").arg(100.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4574').text('%1 °C');").arg(120.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4846').text('%1 °C');").arg(150.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4772').text('%1 °C');").arg(120.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4812').text('%1 °C');").arg(100.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4704').text('%1 °C');").arg(80.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4582').text('%1 °C');").arg(50.00, 0, 'f', 2));
+
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4728').text('%1 °C');").arg(120.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4764').text('%1 °C');").arg(150.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4756').text('%1 °C');").arg(120.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4830').text('%1 °C');").arg(80.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4736').text('%1 °C');").arg(140.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4744').text('%1 °C');").arg(120.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4752').text('%1 °C');").arg(140.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4900').text('%1 °C');").arg(120.00, 0, 'f', 2));
+
+    }
+    else
+    {
+
+    }
+}
+
+void MainWindow::on_radioButton_7_toggled(bool checked)
+{
+    if (checked)
+    {
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4878').text('%1 Дж');").arg(2000.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4530').text('%1 Дж');").arg(1500.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4716').text('%1 Дж');").arg(500.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4882').text('%1 Дж');").arg(800.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4690').text('%1 Дж');").arg(400.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4538').text('%1 Дж');").arg(400.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4808').text('%1 Дж');").arg(400.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4558-8').text('%1 Дж');").arg(1500.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4558').text('%1 Дж');").arg(500.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4606').text('%1 Дж');").arg(800.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4622').text('%1 Дж');").arg(400.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4626').text('%1 Дж');").arg(500.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4646').text('%1 Дж');").arg(200.00, 0, 'f', 2));
+    }
+    else
+    {
+
+    }
+}
+
+void MainWindow::on_radioButton_8_toggled(bool checked)
+{
+    if (checked)
+    {
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4878').text('%1 Вт');").arg(300.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4530').text('%1 Вт');").arg(200.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4716').text('%1 Вт');").arg(100.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4882').text('%1 Вт');").arg(800.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4690').text('%1 Вт');").arg(500.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4538').text('%1 Вт');").arg(600.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4808').text('%1 Вт');").arg(880.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4558-8').text('%1 Вт');").arg(200.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4558').text('%1 Вт');").arg(100.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4606').text('%1 Вт');").arg(900.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4622').text('%1 Вт');").arg(600.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4626').text('%1 Вт');").arg(200.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4646').text('%1 Вт');").arg(100.00, 0, 'f', 2));
     }
     else
     {

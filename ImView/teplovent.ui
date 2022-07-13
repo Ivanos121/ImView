@@ -17,7 +17,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -25,11 +25,7 @@
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="0">
-        <widget class="QPushButton" name="pushButton">
-         <property name="text">
-          <string>PushButton</string>
-         </property>
-        </widget>
+        <widget class="Tepl_dannie" name="widget_2" native="true"/>
        </item>
       </layout>
      </widget>
@@ -79,15 +75,15 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>draw_line</class>
-   <extends>QWidget</extends>
-   <header>draw_line.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>teplschem</class>
    <extends>QWidget</extends>
    <header>teplschem.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>draw_line</class>
+   <extends>QWidget</extends>
+   <header>draw_line.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
@@ -100,6 +96,12 @@
    <class>Trend</class>
    <extends>QWidget</extends>
    <header>trend.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Tepl_dannie</class>
+   <extends>QWidget</extends>
+   <header>tepl_dannie.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
