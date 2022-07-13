@@ -101,6 +101,11 @@ private slots:
     void on_pushButton_5_clicked(bool checked);
     void on_LoadProgect_clicked();
 
+    void on_radioButton_toggled(bool checked);
+    void on_radioButton_2_toggled(bool checked);
+    void on_radioButton_3_toggled(bool checked);
+    void on_radioButton_4_toggled(bool checked);
+
 public:
     Ui::MainWindow *ui;
     AboutDialog *rsc;

@@ -2793,3 +2793,53 @@ void MainWindow::setcolorincell(int row, int column)
         repaint();
     }
 }
+
+void MainWindow::on_radioButton_toggled(bool checked)
+{
+    if (checked)
+    {
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4878').text('θ₀');"));
+
+    }
+    else
+    {
+
+    }
+
+}
+
+void MainWindow::on_radioButton_2_toggled(bool checked)
+{
+    if (checked)
+    {
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4878').text('%1 °C');").arg(100.00, 0, 'f', 2));
+    }
+    else
+    {
+
+    }
+}
+
+void MainWindow::on_radioButton_3_toggled(bool checked)
+{
+    if (checked)
+    {
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4878').text('%1 Дж');").arg(2000.00, 0, 'f', 2));
+    }
+    else
+    {
+
+    }
+}
+
+void MainWindow::on_radioButton_4_toggled(bool checked)
+{
+    if (checked)
+    {
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4878').text('%1 Вт');").arg(300.00, 0, 'f', 2));
+    }
+    else
+    {
+
+    }
+}

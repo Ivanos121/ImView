@@ -19,11 +19,11 @@ teplschem::~teplschem()
     delete ui;
 }
 
-void teplschem::on_radioButton_toggled(bool checked)
-{
-    if (checked)
-    {
-        ui->webEngineView->page()->runJavaScript(QString("$('#text4878').text('%1 °C');").arg(100.00, 0, 'f', 2));
+//void teplschem::on_radioButton_toggled(bool checked)
+//{
+//    if (checked)
+//    {
+//        ui->webEngineView->page()->runJavaScript(QString("$('#text4878').text('%1 °C');").arg(100.00, 0, 'f', 2));
 //        ui->webEngineView->page()->runJavaScript(QString("$('#text255').show();"));
 //        ui->webEngineView->page()->runJavaScript(QString("$('#text205').show();"));
 //        ui->webEngineView->page()->runJavaScript(QString("$('#text345').show();"));
@@ -48,9 +48,9 @@ void teplschem::on_radioButton_toggled(bool checked)
 //        ui->webEngineView->page()->runJavaScript(QString("$('#text225').show();"));
 //        ui->webEngineView->page()->runJavaScript(QString("$('#text307').show();"));
 //        ui->webEngineView->page()->runJavaScript(QString("$('#text229').show();"));
-    }
-    else
-    {
+//    }
+//    else
+//    {
 //        ui->webEngineView->page()->runJavaScript(QString("$('#text255').hide();"));
 //        ui->webEngineView->page()->runJavaScript(QString("$('#text205').hide();"));
 //        ui->webEngineView->page()->runJavaScript(QString("$('#text345').hide();"));
@@ -75,43 +75,43 @@ void teplschem::on_radioButton_toggled(bool checked)
 //        ui->webEngineView->page()->runJavaScript(QString("$('#text225').hide();"));
 //        ui->webEngineView->page()->runJavaScript(QString("$('#text307').hide();"));
 //        ui->webEngineView->page()->runJavaScript(QString("$('#text229').hide();"));
-    }
+//    }
 
-}
+//}
 
-void teplschem::on_radioButton_2_toggled(bool checked)
-{
-    if (checked)
-    {
-        ui->webEngineView->page()->runJavaScript(QString("$('#text4878').text('%1 °C');").arg(100.00, 0, 'f', 2));
-    }
-    else
-    {
+//void teplschem::on_radioButton_2_toggled(bool checked)
+//{
+//    if (checked)
+//    {
+//        ui->webEngineView->page()->runJavaScript(QString("$('#text4878').text('%1 °C');").arg(100.00, 0, 'f', 2));
+//    }
+//    else
+//    {
 
-    }
-}
+//    }
+//}
 
-void teplschem::on_radioButton_3_toggled(bool checked)
-{
-    if (checked)
-    {
-        ui->webEngineView->page()->runJavaScript(QString("$('#text4878').text('%1 Дж');").arg(2000.00, 0, 'f', 2));
-    }
-    else
-    {
+//void teplschem::on_radioButton_3_toggled(bool checked)
+//{
+//    if (checked)
+//    {
+//        ui->webEngineView->page()->runJavaScript(QString("$('#text4878').text('%1 Дж');").arg(2000.00, 0, 'f', 2));
+//    }
+//    else
+//    {
 
-    }
-}
+//    }
+//}
 
-void teplschem::on_radioButton_4_toggled(bool checked)
-{
-    if (checked)
-    {
-        ui->webEngineView->page()->runJavaScript(QString("$('#text4878').text('%1 Вт');").arg(300.00, 0, 'f', 2));
-    }
-    else
-    {
+//void teplschem::on_radioButton_4_toggled(bool checked)
+//{
+//    if (checked)
+//    {
+//        ui->webEngineView->page()->runJavaScript(QString("$('#text4878').text('%1 Вт');").arg(300.00, 0, 'f', 2));
+//    }
+//    else
+//    {
 
-    }
-}
+//    }
+//}
 
