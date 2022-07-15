@@ -63,7 +63,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_5->ui->widget->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/ax_var/ax_var_2.html").absoluteFilePath()));
     ui->widget_5->ui->widget_5->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/rad_var/rad_var_2.html").absoluteFilePath()));
     ui->widget_6->ui->widget_2->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_tract/vent_tract.html").absoluteFilePath()));
-    ui->widget_5->ui->widget_3->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/tepl_schen_zam/tepl_tract.html").absoluteFilePath()));
+    ui->widget_5->ui->widget_3->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/tepl_schen_zam/tepl_tract_2.html").absoluteFilePath()));
 
     ui->widget_5->ui->widget->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
     ui->widget_5->ui->widget_5->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
@@ -2803,8 +2803,8 @@ void MainWindow::on_radioButton_toggled(bool checked)
 {
     if (checked)
     {
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4878').text('θ₀');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4530').text('θ₀');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text362').text('θ₀');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text174-3').text('θ₀');"));
         ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4716').text('θ₀');"));
         ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4882').text('θ₀');"));
         ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4690').text('θ₀');"));
@@ -2828,8 +2828,8 @@ void MainWindow::on_radioButton_2_toggled(bool checked)
 {
     if (checked)
     {
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4878').text('%1 °C');").arg(100.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4530').text('%1 °C');").arg(120.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text362').text('%1 °C');").arg(100.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text174-3').text('%1 °C');").arg(120.00, 0, 'f', 2));
         ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4716').text('%1 °C');").arg(150.00, 0, 'f', 2));
         ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4882').text('%1 °C');").arg(120.00, 0, 'f', 2));
         ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4690').text('%1 °C');").arg(100.00, 0, 'f', 2));
@@ -2852,8 +2852,8 @@ void MainWindow::on_radioButton_3_toggled(bool checked)
 {
     if (checked)
     {
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4878').text('%1 Дж');").arg(2000.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4530').text('%1 Дж');").arg(1500.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text362').text('%1 Дж');").arg(2000.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text174-3').text('%1 Дж');").arg(1500.00, 0, 'f', 2));
         ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4716').text('%1 Дж');").arg(500.00, 0, 'f', 2));
         ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4882').text('%1 Дж');").arg(800.00, 0, 'f', 2));
         ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4690').text('%1 Дж');").arg(400.00, 0, 'f', 2));
@@ -2876,8 +2876,8 @@ void MainWindow::on_radioButton_4_toggled(bool checked)
 {
     if (checked)
     {
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4878').text('%1 Вт');").arg(300.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4530').text('%1 Вт');").arg(200.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text362').text('%1 Вт');").arg(300.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text174-3').text('%1 Вт');").arg(200.00, 0, 'f', 2));
         ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4716').text('%1 Вт');").arg(100.00, 0, 'f', 2));
         ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4882').text('%1 Вт');").arg(800.00, 0, 'f', 2));
         ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4690').text('%1 Вт');").arg(500.00, 0, 'f', 2));
