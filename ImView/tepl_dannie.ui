@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>773</width>
+    <width>961</width>
     <height>477</height>
    </rect>
   </property>
@@ -43,7 +43,11 @@
     </widget>
    </item>
    <item row="1" column="3">
-    <widget class="QTableWidget" name="tableWidget_3"/>
+    <widget class="QTableWidget" name="tableWidget_3">
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
    <item row="0" column="3">
     <widget class="QLabel" name="label_3">

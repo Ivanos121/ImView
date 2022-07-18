@@ -155,10 +155,10 @@ void identf::raschet_f()
         ui->plot->addDataLine(wf->dataLineColors[i], 0);
     }
 
-    ui->plot->addPoint(0, 0, model.R2);
-    ui->plot->addPoint(1, 0, model.L);
-    ui->plot->addPoint(2, 0, model.L);
-    ui->plot->addPoint(3, 0, model.Lm);
+    ui->plot->addPoint(0, key, model.R2);
+    ui->plot->addPoint(1, key, model.L);
+    ui->plot->addPoint(2, key, model.L);
+    ui->plot->addPoint(3, key, model.Lm);
 
     std::ofstream fout;
 
