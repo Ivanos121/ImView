@@ -180,9 +180,60 @@ Tepl_dannie::Tepl_dannie(QWidget *parent) :
     p5.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
     ui->tableWidget_2->setPalette(p5);
 
+    //Сохдание и заполнение таблицы проводимостей
+    ui->tableWidget_3->setRowCount(76);
+    ui->tableWidget_3->setColumnCount(2);
+    QStringList name_3;
+    name_3 << "Свойство" << "Значение";
+    ui->tableWidget_3->setHorizontalHeaderLabels(name_2);
+    ui->tableWidget_3->horizontalHeader()->setSectionResizeMode(0,QHeaderView::Stretch);
+    ui->tableWidget_3->setSelectionBehavior(QAbstractItemView :: SelectRows);
+    ui->tableWidget_3->setSelectionMode(QAbstractItemView :: SingleSelection);
+    ui->tableWidget_3->verticalHeader()->setVisible(true);
+    ui->tableWidget_3->setColumnWidth(1, 100);
+    for(int row = 0; row<ui->tableWidget_3->rowCount(); row++)
+    {
+        for(int column = 0; column<ui->tableWidget_3->columnCount(); column++)
+        {
+            ui->tableWidget_3->setItem(row, column, new QTableWidgetItem());
+        }
+    }
+
+    ui->tableWidget_3->item(0,0)->setText("Общая тепловая проводимость между сердечником статора и станиной");
+    ui->tableWidget_3->item(1,0)->setText("Количеcтво пар полюсов");
+    ui->tableWidget_3->item(2,0)->setText("Высота оси вращения, м");
+    ui->tableWidget_3->item(3,0)->setText("Диаметр станины у основания ребер, м");
+    ui->tableWidget_3->item(4,0)->setText("Длина свисающей части станины со стороны привода, м");
+    ui->tableWidget_3->item(5,0)->setText("Длина свисающей части станины со стороны вентилятора, м");
+    ui->tableWidget_3->item(6,0)->setText("Зазор между диффузором и механическим щитом в месте крепления, м");
+    ui->tableWidget_3->item(7,0)->setText("Количество ребер станины");
+    ui->tableWidget_3->item(8,0)->setText("Высота ребра станины, м");
+    ui->tableWidget_3->item(9,0)->setText("Толщина ребра станины, м");
+    ui->tableWidget_3->item(10,0)->setText("Внешний диаметр вентилятора, м");
+
+    //запрет редактирования первого столбца
+    for(int row = 0; row<ui->tableWidget_3->rowCount(); row++)
+    {
+        if (ui->tableWidget_3->item(row,0) != 0)
+        {
+            ui->tableWidget_3->item(row,0)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+        if (ui->tableWidget_3->item(row,1) != 0)
+        {
+            ui->tableWidget_3->item(row,1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+            ui->tableWidget_3->item(row,1)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+    QPalette p4=ui->tableWidget_3->palette();
+    p4.setColor(QPalette::Base, QColor(255, 255, 191));
+    p4.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
+    ui->tableWidget_3->setPalette(p4);
+
     CustomHelpDelegate* customHelpDelegate = new CustomHelpDelegate(this); //создание делегата для создания комбобоксов
     ui->tableWidget->setItemDelegateForColumn(0, customHelpDelegate);
     ui->tableWidget_2->setItemDelegateForColumn(0, customHelpDelegate);
+    ui->tableWidget_3->setItemDelegateForColumn(0, customHelpDelegate);
 }
 
 Tepl_dannie::~Tepl_dannie()

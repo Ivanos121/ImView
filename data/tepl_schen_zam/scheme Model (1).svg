@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html style="height: 100%">
-<head>
-  <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
-</head>
-<body style="height: 100%;margin: 0">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
 <svg
    version="1.1"
    id="svg815"
@@ -883,6 +880,3 @@
        x="40.958031"
        y="3.00635" /></flowRegion><flowPara
      id="flowPara1461" /></flowRoot></g></svg>
-
-</body>
-</html>

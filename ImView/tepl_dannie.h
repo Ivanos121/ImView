@@ -16,11 +16,12 @@ public:
     explicit Tepl_dannie(QWidget *parent = nullptr);
     ~Tepl_dannie();
 
+    Ui::Tepl_dannie *ui;
 
     void on_tableWidget_cellChanged(int row, int column);
 
 private:
-    Ui::Tepl_dannie *ui;
+
     Base_tepl base_tepl;
 };
 

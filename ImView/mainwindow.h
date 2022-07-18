@@ -97,9 +97,11 @@ private slots:
     void projectFileSelectedSlot_5(QString projectFile_5);
     void projectFileSelectedSlot_6(QString projectFile_6);
     void on_SaveProgectToFile_clicked();
-//    void on_item_itemSelectionChanged();
     void on_pushButton_5_clicked(bool checked);
     void on_LoadProgect_clicked();
+    void on_save_tepl_dannie_clicked();
+    void on_load_tepl_dannie_clicked();
+    void LoadTeplDannie(QString str);
 
     void on_radioButton_toggled(bool checked);
     void on_radioButton_2_toggled(bool checked);

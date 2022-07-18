@@ -30,6 +30,8 @@
 #include "electromagn.h"
 #include "kalibr.h"
 #include "teplovent.h"
+#include "tepl_dannie.h"
+#include "ui_tepl_dannie.h"
 #include "ui_teplovent.h"
 #include "ui_electromagn.h"
 #include "ui_draw_line.h"
@@ -63,7 +65,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_5->ui->widget->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/ax_var/ax_var_2.html").absoluteFilePath()));
     ui->widget_5->ui->widget_5->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/rad_var/rad_var_2.html").absoluteFilePath()));
     ui->widget_6->ui->widget_2->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_tract/vent_tract.html").absoluteFilePath()));
-    ui->widget_5->ui->widget_3->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/tepl_schen_zam/tepl_tract_2.html").absoluteFilePath()));
+    ui->widget_5->ui->widget_3->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/tepl_schen_zam/tepl_tract.html").absoluteFilePath()));
 
     ui->widget_5->ui->widget->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
     ui->widget_5->ui->widget_5->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
@@ -2387,17 +2389,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-//                else if(xmlReader.name() == "combobox_3")
-//                {
-//                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-//                    {
-//                        if (attr.name().toString() == "value")
-//                        {
-//                            QString attribute_value = attr.value().toString();
-//                            item109->setText(attribute_value);
-//                        }
-//                    }
-//                }
+
                 else if(xmlReader.name() == "checkbox_2")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
@@ -2411,17 +2403,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-//                else if(xmlReader.name() == "combobox_4")
-//                {
-//                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-//                    {
-//                        if (attr.name().toString() == "value")
-//                        {
-//                            QString attribute_value = attr.value().toString();
-//                            item111->setText(attribute_value);
-//                        }
-//                    }
-//                }
+
                 else if(xmlReader.name() == "checkbox_3")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
@@ -2435,17 +2417,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-//                else if(xmlReader.name() == "combobox_5")
-//                {
-//                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-//                    {
-//                        if (attr.name().toString() == "value")
-//                        {
-//                            QString attribute_value = attr.value().toString();
-//                            item113->setText(attribute_value);
-//                        }
-//                    }
-//                }
+
                 else if(xmlReader.name() == "checkbox_4")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
@@ -2459,17 +2431,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-//                else if(xmlReader.name() == "combobox_6")
-//                {
-//                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-//                    {
-//                        if (attr.name().toString() == "value")
-//                        {
-//                            QString attribute_value = attr.value().toString();
-//                            item115->setText(attribute_value);
-//                        }
-//                    }
-//                }
+
                 else if(xmlReader.name() == "checkbox_5")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
@@ -2483,17 +2445,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-//                else if(xmlReader.name() == "combobox_7")
-//                {
-//                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-//                    {
-//                        if (attr.name().toString() == "value")
-//                        {
-//                            QString attribute_value = attr.value().toString();
-//                            item117->setText(attribute_value);
-//                        }
-//                    }
-//                }
+
                 else if(xmlReader.name() == "checkbox_6")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
@@ -2507,17 +2459,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-//                else if(xmlReader.name() == "combobox_8")
-//                {
-//                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-//                    {
-//                        if (attr.name().toString() == "value")
-//                        {
-//                            QString attribute_value = attr.value().toString();
-//                            item119->setText(attribute_value);
-//                        }
-//                    }
-//                }
+
                 else if(xmlReader.name() == "combobox_3")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
@@ -2744,7 +2686,7 @@ void MainWindow::tabClicked_2()
     if(ui->widget_5->ui->tabWidget->currentIndex() == 0)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(8);
+        ui->stackedWidget->setCurrentIndex(9);
     }
     if(ui->widget_5->ui->tabWidget->currentIndex() == 1)
     {
@@ -2803,19 +2745,19 @@ void MainWindow::on_radioButton_toggled(bool checked)
 {
     if (checked)
     {
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text362').text('θ₀');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text174-3').text('θ₀');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4716').text('θ₀');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4882').text('θ₀');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4690').text('θ₀');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4538').text('θ₀');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4808').text('θ₀');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4558-8').text('θ₀2');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4558').text('θ₀с');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4606').text('θ₀4');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4622').text('θ₀5');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4626').text('θ₀р');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4646').text('θ₀в');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1231').text('θ₀');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text827').text('θ₀');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1037').text('θ₀');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1239').text('θ₀');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1007').text('θ₁');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1361').text('θ₂');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text839').text('θ₃');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1145').text('θₖ');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text863').text('θс');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text919').text('θ₄');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text939').text('θ₅');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text971').text('θв');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text947').text('θₚ');"));
     }
     else
     {
@@ -2828,19 +2770,19 @@ void MainWindow::on_radioButton_2_toggled(bool checked)
 {
     if (checked)
     {
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text362').text('%1 °C');").arg(100.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text174-3').text('%1 °C');").arg(120.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4716').text('%1 °C');").arg(150.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4882').text('%1 °C');").arg(120.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4690').text('%1 °C');").arg(100.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4538').text('%1 °C');").arg(80.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4808').text('%1 °C');").arg(50.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4558-8').text('%1 °C');").arg(120.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4558').text('%1 °C');").arg(150.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4606').text('%1 °C');").arg(120.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4622').text('%1 °C');").arg(80.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4626').text('%1 °C');").arg(140.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4646').text('%1 °C');").arg(120.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1231').text('%1 °C');").arg(100.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text827').text('%1 °C');").arg(120.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1037').text('%1 °C');").arg(150.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1239').text('%1 °C');").arg(120.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1007').text('%1 °C');").arg(100.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1361').text('%1 °C');").arg(80.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text839').text('%1 °C');").arg(50.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1145').text('%1 °C');").arg(120.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text863').text('%1 °C');").arg(150.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text919').text('%1 °C');").arg(120.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text939').text('%1 °C');").arg(80.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text971').text('%1 °C');").arg(140.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text947').text('%1 °C');").arg(120.00, 0, 'f', 2));
     }
     else
     {
@@ -2852,19 +2794,19 @@ void MainWindow::on_radioButton_3_toggled(bool checked)
 {
     if (checked)
     {
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text362').text('%1 Дж');").arg(2000.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text174-3').text('%1 Дж');").arg(1500.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4716').text('%1 Дж');").arg(500.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4882').text('%1 Дж');").arg(800.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4690').text('%1 Дж');").arg(400.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4538').text('%1 Дж');").arg(400.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4808').text('%1 Дж');").arg(400.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4558-8').text('%1 Дж');").arg(1500.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4558').text('%1 Дж');").arg(500.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4606').text('%1 Дж');").arg(800.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4622').text('%1 Дж');").arg(400.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4626').text('%1 Дж');").arg(500.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4646').text('%1 Дж');").arg(200.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1231').text('%1 Дж');").arg(2000.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text827').text('%1 Дж');").arg(1500.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1037').text('%1 Дж');").arg(500.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1239').text('%1 Дж');").arg(800.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1007').text('%1 Дж');").arg(400.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1361').text('%1 Дж');").arg(400.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text839').text('%1 Дж');").arg(400.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1145').text('%1 Дж');").arg(1500.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text863').text('%1 Дж');").arg(500.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text919').text('%1 Дж');").arg(800.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text939').text('%1 Дж');").arg(400.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text971').text('%1 Дж');").arg(500.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text947').text('%1 Дж');").arg(200.00, 0, 'f', 2));
     }
     else
     {
@@ -2876,19 +2818,19 @@ void MainWindow::on_radioButton_4_toggled(bool checked)
 {
     if (checked)
     {
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text362').text('%1 Вт');").arg(300.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text174-3').text('%1 Вт');").arg(200.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4716').text('%1 Вт');").arg(100.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4882').text('%1 Вт');").arg(800.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4690').text('%1 Вт');").arg(500.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4538').text('%1 Вт');").arg(600.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4808').text('%1 Вт');").arg(880.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4558-8').text('%1 Вт');").arg(200.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4558').text('%1 Вт');").arg(100.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4606').text('%1 Вт');").arg(900.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4622').text('%1 Вт');").arg(600.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4626').text('%1 Вт');").arg(200.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4646').text('%1 Вт');").arg(100.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1231').text('%1 Вт');").arg(300.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text827').text('%1 Вт');").arg(200.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1037').text('%1 Вт');").arg(100.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1239').text('%1 Вт');").arg(800.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1007').text('%1 Вт');").arg(500.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1361').text('%1 Вт');").arg(600.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text839').text('%1 Вт');").arg(880.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1145').text('%1 Вт');").arg(200.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text863').text('%1 Вт');").arg(100.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text919').text('%1 Вт');").arg(900.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text939').text('%1 Вт');").arg(600.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text971').text('%1 Вт');").arg(200.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text947').text('%1 Вт');").arg(100.00, 0, 'f', 2));
     }
     else
     {
@@ -2900,22 +2842,22 @@ void MainWindow::on_radioButton_5_toggled(bool checked)
 {
     if (checked)
     {
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4870').text('λ₀10');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4574').text('λ₀30');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4846').text('λ₀k0');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4772').text('λ₀50');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4812').text('λ₀3k');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4704').text('λ₀21');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4582').text('λ₀c3');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1223').text('λ₁₀');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text883').text('λ₃₀');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1195').text('λₖ₀');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1113').text('λ₅₀');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1153').text('λ₃ₖ');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1025').text('λ₂₁');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1053').text('λс₂');"));
 
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4728').text('λ₀c2');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4764').text('λ₀c4');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4756').text('λ₀45');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4830').text('λ₀p2');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4736').text('λ₀pc');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4744').text('λ₀pв');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4752').text('λ₀в5');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4900').text('λ₀р5');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text891').text('λс₂');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1101').text('λс₄');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1093').text('λ₄₅');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1065').text('λₚ₂');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1073').text('λₚв');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1081').text('λв₅');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1253').text('λₚ₅');"));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1171').text('λₚ₅');"));
     }
     else
     {
@@ -2928,23 +2870,21 @@ void MainWindow::on_radioButton_6_toggled(bool checked)
 {
     if (checked)
     {
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4870').text('%1 °C');").arg(100.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4574').text('%1 °C');").arg(120.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4846').text('%1 °C');").arg(150.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4772').text('%1 °C');").arg(120.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4812').text('%1 °C');").arg(100.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4704').text('%1 °C');").arg(80.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4582').text('%1 °C');").arg(50.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1223').text('%1 °C');").arg(100.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text883').text('%1 °C');").arg(120.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1195').text('%1 °C');").arg(150.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1113').text('%1 °C');").arg(120.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1153').text('%1 °C');").arg(100.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1025').text('%1 °C');").arg(80.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1053').text('%1 °C');").arg(50.00, 0, 'f', 2));
 
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4728').text('%1 °C');").arg(120.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4764').text('%1 °C');").arg(150.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4756').text('%1 °C');").arg(120.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4830').text('%1 °C');").arg(80.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4736').text('%1 °C');").arg(140.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4744').text('%1 °C');").arg(120.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4752').text('%1 °C');").arg(140.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4900').text('%1 °C');").arg(120.00, 0, 'f', 2));
-
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text891').text('%1 °C');").arg(120.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1101').text('%1 °C');").arg(150.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1093').text('%1 °C');").arg(120.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1065').text('%1 °C');").arg(80.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1073').text('%1 °C');").arg(140.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1253').text('%1 °C');").arg(120.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1171').text('%1 °C');").arg(140.00, 0, 'f', 2));
     }
     else
     {
@@ -2956,19 +2896,22 @@ void MainWindow::on_radioButton_7_toggled(bool checked)
 {
     if (checked)
     {
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4878').text('%1 Дж');").arg(2000.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4530').text('%1 Дж');").arg(1500.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4716').text('%1 Дж');").arg(500.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4882').text('%1 Дж');").arg(800.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4690').text('%1 Дж');").arg(400.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4538').text('%1 Дж');").arg(400.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4808').text('%1 Дж');").arg(400.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4558-8').text('%1 Дж');").arg(1500.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4558').text('%1 Дж');").arg(500.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4606').text('%1 Дж');").arg(800.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4622').text('%1 Дж');").arg(400.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4626').text('%1 Дж');").arg(500.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4646').text('%1 Дж');").arg(200.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1223').text('%1 Дж');").arg(2000.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text883').text('%1 Дж');").arg(1500.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1195').text('%1 Дж');").arg(500.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1113').text('%1 Дж');").arg(800.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1153').text('%1 Дж');").arg(400.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1025').text('%1 Дж');").arg(400.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1053').text('%1 Дж');").arg(400.00, 0, 'f', 2));
+
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text891').text('%1 Дж');").arg(1500.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1101').text('%1 Дж');").arg(500.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1093').text('%1 Дж');").arg(800.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1065').text('%1 Дж');").arg(400.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1073').text('%1 Дж');").arg(500.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1081').text('%1 Дж');").arg(200.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1253').text('%1 Дж');").arg(200.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1171').text('%1 Дж');").arg(200.00, 0, 'f', 2));
     }
     else
     {
@@ -2980,22 +2923,1234 @@ void MainWindow::on_radioButton_8_toggled(bool checked)
 {
     if (checked)
     {
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4878').text('%1 Вт');").arg(300.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4530').text('%1 Вт');").arg(200.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4716').text('%1 Вт');").arg(100.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4882').text('%1 Вт');").arg(800.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4690').text('%1 Вт');").arg(500.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4538').text('%1 Вт');").arg(600.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4808').text('%1 Вт');").arg(880.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4558-8').text('%1 Вт');").arg(200.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4558').text('%1 Вт');").arg(100.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4606').text('%1 Вт');").arg(900.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4622').text('%1 Вт');").arg(600.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4626').text('%1 Вт');").arg(200.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text4646').text('%1 Вт');").arg(100.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1223').text('%1 Вт');").arg(300.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text883').text('%1 Вт');").arg(200.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1195').text('%1 Вт');").arg(100.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1113').text('%1 Вт');").arg(800.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1153').text('%1 Вт');").arg(500.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1025').text('%1 Вт');").arg(600.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1053').text('%1 Вт');").arg(880.00, 0, 'f', 2));
+
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text891').text('%1 Вт');").arg(200.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1101').text('%1 Вт');").arg(100.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1093').text('%1 Вт');").arg(900.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1065').text('%1 Вт');").arg(600.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1073').text('%1 Вт');").arg(200.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1081').text('%1 Вт');").arg(100.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1253').text('%1 Вт');").arg(100.00, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1171').text('%1 Вт');").arg(100.00, 0, 'f', 2));
+
     }
     else
     {
 
     }
 }
+
+void MainWindow::on_save_tepl_dannie_clicked()
+{
+    QString filter = "Файл конфигурации тепловых данных (*.xml);;Все файлы (*.*)";
+    QString str = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", "/home/elf/ImView/data", filter);
+
+    QFile file(QString("/home/elf/ImView/data/tepl.xml"));
+    file.open(QIODevice::WriteOnly);
+
+    //Создаем объект, с помощью которого осуществляется запись в файл
+    QXmlStreamWriter xmlWriter(&file);
+    xmlWriter.setAutoFormatting(true);  // Устанавливаем автоформатирование текста
+    xmlWriter.writeStartDocument();     // Запускаем запись в документ
+    xmlWriter.writeStartElement("resources");   // Записываем первый элемент с его именем
+    xmlWriter.writeStartElement("tepl_dannie");  // Записываем тег с именем для первого итема
+
+    xmlWriter.writeStartElement("general_settings");
+
+    xmlWriter.writeStartElement("sinxr_scorost");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(0,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("kol-vo_par_polusov");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(1,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("visota_osi_rotora");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(2,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("diametr_staniny_v_osnovanii_reber");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(3,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("dlina_staniny_so_storony_privoda");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(4,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("dlina_staniny_so_storony_ventilatora");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(5,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("zazor_megdu_diffuzorom_i_schitom");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(6,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("kolichestvo_reber_staniny");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(7,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("visota_rebra_staniny");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(8,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("tolschina_rebra_staniny");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(9,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("vneshny_diametr_ventilatora");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(10,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("vneshny_diametr_serdechnika_statora");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(11,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("vnutrenny_diametr_serdechnika_statora");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(12,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("dlina_paza");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(13,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("chislo_pazov_statora");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(14,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("koef-t_shtrichovki");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(15,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("bolshaya_shirina_paza");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(16,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("menshaya_shirina_paza");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(17,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("visota_paza");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(18,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("shirina_slica");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(19,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("visota_zubca");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(20,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("shirina_zubca");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(21,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("kol-vo_vitkov_v_obmotke_statore");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(22,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("chislo_parallelnych_vetvey");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(23,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("srednaja_dlina_obmotki");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(24,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("dlina_vileta_lobovoi_chasti_obmotki");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(25,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("koef-t_propitki_obmotki");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(26,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("tolshina_okraski_obmotki_v_lobovoi_chasty");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(27,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("tolschina_pazovoi_izolacii");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(28,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("vneshniy_diametr_rotora");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(29,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("chislo_pazov_rotora");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(30,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("shirina_korotkozamakauchego_kolca");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(31,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("shirina_korotkozamakauchego_kolca");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(32,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("shirina_lopatki_rotora");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(33,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("visota_lopatki_rotora");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(34,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("kol-vo_lopatok_rotora");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(35,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("koef-t_kachestva_lopatki");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(36,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("tolschina_zazora_megdu_statorom_i_rotorom");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(37,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("kinematicheskaja_vaskost_rotora");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(38,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("chtlyaja_temperatura_obmotki");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(39,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("koeff-t_teploprovodnosty_rotora");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(40,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("koeff-t_teploprovodnosty_medi");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(41,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("koeff-t_teploprovodnosty_alumimia");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(42,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("koeff-t_teploprovodnosty_stali_statora");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(43,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("diametr_provoda_bez_izolacii");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(44,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("diametr_izolirovannogo_provoda");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(45,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("koefficient_propitki_obmotki");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(46,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("koef-t_teploprovodnosty_propitochnogo_sostava");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(47,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("koef-t_teploprovodnosty_izolacii_provodnikov");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(48,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("vneshnid_diametr_lobovoi_chasti");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(49,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("koeff-t_teploprovodnosti_okraski_obmotki_v_lobovoi_chasti");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(50,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("koef-t_teploprovodnosty_izolacii_provodnikov");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(51,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("tolshina_vozdushnych_prosloek");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(52,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("visota_zubca");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(53,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("srednaja_shirina_zubca");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(54,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("diametr_okrugnosti_kasatelnoi_k_dnu_pazov");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(55,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("bolshaja_shirina_paza");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(56,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("menshaja_shirina_paza");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(57,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("visota_paza");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(58,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("koef-t_kachestva_lopatki_rotora");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(59,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("shag_reber_staniny");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(60,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("chislo_faz_statora");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(61,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("kol-vo_elementarnych_provodnikov");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(62,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("plotnost_medi");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(63,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("udelnaja_teploemkost_medi_obmotki_statora");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(64,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("plotnost_stali");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(65,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("udelnaja_teploemkost_medi_stali");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(66,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("udelnaje_soprotivlenie_medi");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(67,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("poleznaja_mochnost");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(68,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("napragenie_pitanija");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(69,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("koefficient_poleznogo_deistvia");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(70,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("koefficient_mochnosti");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(71,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("udelnaje_soprotivlenie_aluminia");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(72,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("srednij_diametr_korotkozamykauchego_kolca");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(73,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("obmotochny_koefficient_obmotki_statora");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(74,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("koefficient_ckosa_pazov");
+    xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(75,1)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeEndElement();
+    xmlWriter.writeEndElement();
+    xmlWriter.writeEndElement();
+    xmlWriter.writeEndDocument();
+    file.close();   // Закрываем файл
+
+    //JlCompress::compressDir(str, "/home/elf/ImView/data/");
+}
+
+void MainWindow::on_load_tepl_dannie_clicked()
+{
+    QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
+    QString str = QFileDialog::getOpenFileName(this, "Выбрать имя, под которым сохранить данные", "/home/elf/ImView/data", filter);
+    LoadTeplDannie(str);
+}
+
+void MainWindow::LoadTeplDannie(QString str)
+{
+//    QDir().mkdir("/tmp/imview");
+//    JlCompress::extractDir(str,"/tmp/imview");
+
+
+    QFile file(str);
+    if (!file.open(QFile::ReadOnly | QFile::Text))
+    {
+        QMessageBox::warning(this, "Ошибка файла", "Не удалось открыть файл", QMessageBox::Ok);
+    }
+    else
+    {
+        QXmlStreamReader xmlReader;
+        xmlReader.setDevice(&file);
+        xmlReader.readNext();
+        while(!xmlReader.atEnd())
+        {
+            if(xmlReader.isStartElement())
+            {
+                if(xmlReader.name() == "sinxr_scorost")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(0,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "kol-vo_par_polusov")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(1,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "visota_osi_rotora")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(2,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "diametr_staniny_v_osnovanii_reber")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(3,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "dlina_staniny_so_storony_privoda")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(4,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "dlina_staniny_so_storony_ventilatora")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(5,1)->setText(attribute_value);
+                        }
+                    }
+                }
+
+                else if(xmlReader.name() == "zazor_megdu_diffuzorom_i_schitom")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(6,1)->setText(attribute_value);
+                        }
+                    }
+                }
+
+                else if(xmlReader.name() == "kolichestvo_reber_staniny")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(7,1)->setText(attribute_value);
+                        }
+                    }
+                }
+
+                else if(xmlReader.name() == "visota_rebra_staniny")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(8,1)->setText(attribute_value);
+                        }
+                    }
+                }
+
+                else if(xmlReader.name() == "tolschina_rebra_staniny")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(9,1)->setText(attribute_value);
+                        }
+                    }
+                }
+
+                else if(xmlReader.name() == "vneshny_diametr_ventilatora")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(10,1)->setText(attribute_value);
+                        }
+                    }
+                }
+
+                else if(xmlReader.name() == "vneshny_diametr_serdechnika_statora")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(11,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "vnutrenny_diametr_serdechnika_statora")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(12,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "dlina_paza")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(13,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "chislo_pazov_statora")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(14,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "koef-t_shtrichovki")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(15,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "bolshaya_shirina_paza")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(16,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "menshaya_shirina_paza")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(17,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "visota_paza")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(18,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "shirina_slica")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(19,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "visota_zubca")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(20,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "shirina_zubca")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(21,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "kol-vo_vitkov_v_obmotke_statore")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(22,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "chislo_parallelnych_vetvey")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(23,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "srednaja_dlina_obmotki")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(24,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "dlina_vileta_lobovoi_chasti_obmotki")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(25,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "koef-t_propitki_obmotki")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(26,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "tolshina_okraski_obmotki_v_lobovoi_chasty")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(27,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "tolschina_pazovoi_izolacii")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(28,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "vneshniy_diametr_rotora")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(29,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "chislo_pazov_rotora")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(30,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "shirina_korotkozamakauchego_kolca")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(31,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "visota_korotkozamakauchego_kolca")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(32,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "shirina_lopatki_rotora")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(33,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "visota_lopatki_rotora")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(34,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "kol-vo_lopatok_rotora")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(35,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "koef-t_kachestva_lopatki")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(36,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "tolschina_zazora_megdu_statorom_i_rotorom")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(37,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "kinematicheskaja_vaskost_rotora")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(38,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "chtlyaja_temperatura_obmotki")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(39,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "koeff-t_teploprovodnosty_rotora")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(40,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "koeff-t_teploprovodnosty_medi")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(41,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "koeff-t_teploprovodnosty_alumimia")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(42,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "koeff-t_teploprovodnosty_stali_statora")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(43,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "diametr_provoda_bez_izolacii")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(44,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "diametr_izolirovannogo_provoda")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(45,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "koefficient_propitki_obmotki")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(46,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "koef-t_teploprovodnosty_propitochnogo_sostava")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(47,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "koef-t_teploprovodnosty_izolacii_provodnikov")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(48,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "vneshnid_diametr_lobovoi_chasti")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(49,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "koeff-t_teploprovodnosti_okraski_obmotki_v_lobovoi_chasti")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(50,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "koef-t_teploprovodnosty_izolacii_provodnikov")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(51,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "tolshina_vozdushnych_prosloek")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(52,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "visota_zubca")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(53,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "srednaja_shirina_zubca")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(54,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "diametr_okrugnosti_kasatelnoi_k_dnu_pazov")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(55,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "bolshaja_shirina_paza")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(56,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "menshaja_shirina_paza")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(57,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "visota_paza")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(58,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "koef-t_kachestva_lopatki_rotora")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(59,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "shag_reber_staniny")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(60,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "chislo_faz_statora")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(61,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "kol-vo_elementarnych_provodnikov")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(62,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "plotnost_medi")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(63,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "udelnaja_teploemkost_medi_obmotki_statora")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(64,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "plotnost_stali")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(65,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "udelnaja_teploemkost_medi_stali")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(66,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "udelnaje_soprotivlenie_medi")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(67,1)->setText(attribute_value);
+                        }
+                    }
+                }
+            else if(xmlReader.name() == "poleznaja_mochnost")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                {
+                    if (attr.name().toString() == "value")
+                    {
+                        QString attribute_value = attr.value().toString();
+                        ui->widget_5->ui->widget_2->ui->tableWidget->item(68,1)->setText(attribute_value);
+                    }
+                }
+            }
+            else if(xmlReader.name() == "napragenie_pitanija")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                {
+                    if (attr.name().toString() == "value")
+                    {
+                        QString attribute_value = attr.value().toString();
+                        ui->widget_5->ui->widget_2->ui->tableWidget->item(69,1)->setText(attribute_value);
+                    }
+                }
+            }
+            else if(xmlReader.name() == "koefficient_poleznogo_deistvia")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                {
+                    if (attr.name().toString() == "value")
+                    {
+                        QString attribute_value = attr.value().toString();
+                        ui->widget_5->ui->widget_2->ui->tableWidget->item(70,1)->setText(attribute_value);
+                    }
+                }
+            }
+            else if(xmlReader.name() == "koefficient_mochnosti")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                {
+                    if (attr.name().toString() == "value")
+                    {
+                        QString attribute_value = attr.value().toString();
+                        ui->widget_5->ui->widget_2->ui->tableWidget->item(71,1)->setText(attribute_value);
+                    }
+                }
+            }
+            else if(xmlReader.name() == "udelnaje_soprotivlenie_aluminia")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                {
+                    if (attr.name().toString() == "value")
+                    {
+                        QString attribute_value = attr.value().toString();
+                        ui->widget_5->ui->widget_2->ui->tableWidget->item(72,1)->setText(attribute_value);
+                    }
+                }
+            }
+            else if(xmlReader.name() == "srednij_diametr_korotkozamykauchego_kolca")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                {
+                    if (attr.name().toString() == "value")
+                    {
+                        QString attribute_value = attr.value().toString();
+                        ui->widget_5->ui->widget_2->ui->tableWidget->item(73,1)->setText(attribute_value);
+                    }
+                }
+            }
+            else if(xmlReader.name() == "obmotochny_koefficient_obmotki_statora")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                {
+                    if (attr.name().toString() == "value")
+                    {
+                        QString attribute_value = attr.value().toString();
+                        ui->widget_5->ui->widget_2->ui->tableWidget->item(74,1)->setText(attribute_value);
+                    }
+                }
+            }
+            else if(xmlReader.name() == "koefficient_ckosa_pazov")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                {
+                    if (attr.name().toString() == "value")
+                    {
+                        QString attribute_value = attr.value().toString();
+                        ui->widget_5->ui->widget_2->ui->tableWidget->item(75,1)->setText(attribute_value);
+                    }
+                }
+            }
+        }
+        xmlReader.readNext(); // Переходим к следующему элементу файла
+     }
+        file.close(); // Закрываем файл
+  }
+}
+
+

@@ -163,7 +163,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>8</number>
+       <number>9</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QGridLayout" name="gridLayout_6">
@@ -840,7 +840,7 @@
          <rect>
           <x>30</x>
           <y>30</y>
-          <width>252</width>
+          <width>271</width>
           <height>148</height>
          </rect>
         </property>
@@ -887,7 +887,7 @@
          <rect>
           <x>20</x>
           <y>290</y>
-          <width>252</width>
+          <width>281</width>
           <height>148</height>
          </rect>
         </property>
@@ -930,6 +930,7 @@
         </layout>
        </widget>
       </widget>
+      <widget class="QWidget" name="page_10"/>
       <widget class="QWidget" name="page_5">
        <layout class="QVBoxLayout" name="verticalLayout_5">
         <item>
@@ -1039,7 +1040,7 @@
        </layout>
       </widget>
       <widget class="QWidget" name="page_9">
-       <widget class="QPushButton" name="pushButton_3">
+       <widget class="QPushButton" name="load_tepl_dannie">
         <property name="geometry">
          <rect>
           <x>60</x>
@@ -1052,7 +1053,10 @@
          <string>Загрузить</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_6">
+       <widget class="QPushButton" name="save_tepl_dannie">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>60</x>
