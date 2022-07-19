@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <tepl_dannie>
+    <project>
         <general_settings>
             <project_name value="Имя сеанса"/>
             <combobox_1 value="Выбрать тип эксперимента"/>
@@ -27,5 +27,5 @@
             <combobox_5 value="Выбрать режим"/>
             <start_temp value="Введите значение"/>
         </general_settings>
-    </tepl_dannie>
+    </project>
 </resources>

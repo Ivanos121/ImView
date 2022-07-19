@@ -20,6 +20,7 @@
 #include <QColorDialog>
 #include <iostream>
 #include <fstream>
+#include <cmath>
 
 #include "base.h"
 #include "model.h"
@@ -2952,7 +2953,8 @@ void MainWindow::on_save_tepl_dannie_clicked()
     QString filter = "Файл конфигурации тепловых данных (*.xml);;Все файлы (*.*)";
     QString str = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", "/home/elf/ImView/data", filter);
 
-    QFile file(QString("/home/elf/ImView/data/tepl.xml"));
+   // QFile file(QString("/home/elf/ImView/data/tepl.xml"));
+    QFile file(str);
     file.open(QIODevice::WriteOnly);
 
     //Создаем объект, с помощью которого осуществляется запись в файл
@@ -3092,7 +3094,7 @@ void MainWindow::on_save_tepl_dannie_clicked()
     xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(31,1)->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("shirina_korotkozamakauchego_kolca");
+    xmlWriter.writeStartElement("visota_korotkozamakauchego_kolca");
     xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(32,1)->text()));
     xmlWriter.writeEndElement();
 
@@ -3164,11 +3166,11 @@ void MainWindow::on_save_tepl_dannie_clicked()
     xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(49,1)->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("koeff-t_teploprovodnosti_okraski_obmotki_v_lobovoi_chasti");
+    xmlWriter.writeStartElement("koefft_teploprovodnosti_okraski_obmotki_v_lobovoi_chasti");
     xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(50,1)->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("koef-t_teploprovodnosty_izolacii_provodnikov");
+    xmlWriter.writeStartElement("koefft_teploprovodnosty_izolacii_provodnikov_2");
     xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(51,1)->text()));
     xmlWriter.writeEndElement();
 
@@ -3176,7 +3178,7 @@ void MainWindow::on_save_tepl_dannie_clicked()
     xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(52,1)->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("visota_zubca");
+    xmlWriter.writeStartElement("visota_zubca_3");
     xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(53,1)->text()));
     xmlWriter.writeEndElement();
 
@@ -3196,7 +3198,7 @@ void MainWindow::on_save_tepl_dannie_clicked()
     xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(57,1)->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("visota_paza");
+    xmlWriter.writeStartElement("visota_paza_2");
     xmlWriter.writeAttribute("value", (ui->widget_5->ui->widget_2->ui->tableWidget->item(58,1)->text()));
     xmlWriter.writeEndElement();
 
@@ -3279,7 +3281,7 @@ void MainWindow::on_save_tepl_dannie_clicked()
 
 void MainWindow::on_load_tepl_dannie_clicked()
 {
-    QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
+    QString filter = "Файл конфигурации тепловых данных (*.xml);;Все файлы (*.*)";
     QString str = QFileDialog::getOpenFileName(this, "Выбрать имя, под которым сохранить данные", "/home/elf/ImView/data", filter);
     LoadTeplDannie(str);
 }
@@ -3860,7 +3862,7 @@ void MainWindow::LoadTeplDannie(QString str)
                         }
                     }
                 }
-                else if(xmlReader.name() == "koeff-t_teploprovodnosti_okraski_obmotki_v_lobovoi_chasti")
+                else if(xmlReader.name() == "koefft_teploprovodnosti_okraski_obmotki_v_lobovoi_chasti")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -3868,10 +3870,11 @@ void MainWindow::LoadTeplDannie(QString str)
                         {
                             QString attribute_value = attr.value().toString();
                             ui->widget_5->ui->widget_2->ui->tableWidget->item(50,1)->setText(attribute_value);
+                            qDebug() << attribute_value;
                         }
                     }
                 }
-                else if(xmlReader.name() == "koef-t_teploprovodnosty_izolacii_provodnikov")
+                else if(xmlReader.name() == "koefft_teploprovodnosty_izolacii_provodnikov_2")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -3879,6 +3882,7 @@ void MainWindow::LoadTeplDannie(QString str)
                         {
                             QString attribute_value = attr.value().toString();
                             ui->widget_5->ui->widget_2->ui->tableWidget->item(51,1)->setText(attribute_value);
+                            qDebug() << attribute_value;
                         }
                     }
                 }
@@ -3893,7 +3897,7 @@ void MainWindow::LoadTeplDannie(QString str)
                         }
                     }
                 }
-                else if(xmlReader.name() == "visota_zubca")
+                else if(xmlReader.name() == "visota_zubca_3")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -3948,7 +3952,7 @@ void MainWindow::LoadTeplDannie(QString str)
                         }
                     }
                 }
-                else if(xmlReader.name() == "visota_paza")
+                else if(xmlReader.name() == "visota_paza_2")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -4153,4 +4157,122 @@ void MainWindow::LoadTeplDannie(QString str)
   }
 }
 
+void MainWindow::on_tepl_result_clicked()
+{
+    double L_a1;
+    //ввод данных
+    base_tepl.n0      = ui->widget_5->ui->widget_2->ui->tableWidget->item(0,1)->text().toDouble();
+    base_tepl.pn      = ui->widget_5->ui->widget_2->ui->tableWidget->item(1,1)->text().toDouble();
+    base_tepl.h       = ui->widget_5->ui->widget_2->ui->tableWidget->item(2,1)->text().toDouble();
+    base_tepl.D_c     = ui->widget_5->ui->widget_2->ui->tableWidget->item(3,1)->text().toDouble();
+    base_tepl.l_sv_pr = ui->widget_5->ui->widget_2->ui->tableWidget->item(4,1)->text().toDouble();
+    base_tepl.l_cvv   = ui->widget_5->ui->widget_2->ui->tableWidget->item(5,1)->text().toDouble();
+    base_tepl.sig_pr  = ui->widget_5->ui->widget_2->ui->tableWidget->item(6,1)->text().toDouble();
+    base_tepl.z_c     = ui->widget_5->ui->widget_2->ui->tableWidget->item(7,1)->text().toDouble();
+    base_tepl.h_c     = ui->widget_5->ui->widget_2->ui->tableWidget->item(8,1)->text().toDouble();
+    base_tepl.sig_p   = ui->widget_5->ui->widget_2->ui->tableWidget->item(9,1)->text().toDouble();
 
+    base_tepl.D_vent  = ui->widget_5->ui->widget_2->ui->tableWidget->item(10,1)->text().toDouble();
+    base_tepl.D_a     = ui->widget_5->ui->widget_2->ui->tableWidget->item(11,1)->text().toDouble();
+    base_tepl.D       = ui->widget_5->ui->widget_2->ui->tableWidget->item(12,1)->text().toDouble();
+    base_tepl.l_p     = ui->widget_5->ui->widget_2->ui->tableWidget->item(13,1)->text().toDouble();
+    base_tepl.Z_1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(14,1)->text().toDouble();
+    base_tepl.k_sh    = ui->widget_5->ui->widget_2->ui->tableWidget->item(15,1)->text().toDouble();
+    base_tepl.b1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(16,1)->text().toDouble();
+    base_tepl.b2      = ui->widget_5->ui->widget_2->ui->tableWidget->item(17,1)->text().toDouble();
+    base_tepl.h_p     = ui->widget_5->ui->widget_2->ui->tableWidget->item(18,1)->text().toDouble();
+    base_tepl.k_z     = ui->widget_5->ui->widget_2->ui->tableWidget->item(19,1)->text().toDouble();
+
+    base_tepl.h_sl1   = ui->widget_5->ui->widget_2->ui->tableWidget->item(20,1)->text().toDouble();
+    base_tepl.b_sl1   = ui->widget_5->ui->widget_2->ui->tableWidget->item(21,1)->text().toDouble();
+    base_tepl.h_z1    = ui->widget_5->ui->widget_2->ui->tableWidget->item(22,1)->text().toDouble();
+    base_tepl.b_z     = ui->widget_5->ui->widget_2->ui->tableWidget->item(23,1)->text().toDouble();
+    base_tepl.w_i     = ui->widget_5->ui->widget_2->ui->tableWidget->item(24,1)->text().toDouble();
+    base_tepl.a       = ui->widget_5->ui->widget_2->ui->tableWidget->item(25,1)->text().toDouble();
+    base_tepl.l_sr    = ui->widget_5->ui->widget_2->ui->tableWidget->item(26,1)->text().toDouble();
+    base_tepl.l_lr    = ui->widget_5->ui->widget_2->ui->tableWidget->item(27,1)->text().toDouble();
+    base_tepl.k_p     = ui->widget_5->ui->widget_2->ui->tableWidget->item(28,1)->text().toDouble();
+    base_tepl.sig_okr = ui->widget_5->ui->widget_2->ui->tableWidget->item(29,1)->text().toDouble();
+
+    base_tepl.sig_ip  = ui->widget_5->ui->widget_2->ui->tableWidget->item(30,1)->text().toDouble();
+    base_tepl.D_rot   = ui->widget_5->ui->widget_2->ui->tableWidget->item(31,1)->text().toDouble();
+    base_tepl.Z_2     = ui->widget_5->ui->widget_2->ui->tableWidget->item(32,1)->text().toDouble();
+    base_tepl.b_k     = ui->widget_5->ui->widget_2->ui->tableWidget->item(33,1)->text().toDouble();
+    base_tepl.a_k     = ui->widget_5->ui->widget_2->ui->tableWidget->item(34,1)->text().toDouble();
+    base_tepl.a_l     = ui->widget_5->ui->widget_2->ui->tableWidget->item(35,1)->text().toDouble();
+    base_tepl.b_l     = ui->widget_5->ui->widget_2->ui->tableWidget->item(36,1)->text().toDouble();
+    base_tepl.z_l     = ui->widget_5->ui->widget_2->ui->tableWidget->item(37,1)->text().toDouble();
+    base_tepl.n_l     = ui->widget_5->ui->widget_2->ui->tableWidget->item(38,1)->text().toDouble();
+    base_tepl.sig     = ui->widget_5->ui->widget_2->ui->tableWidget->item(39,1)->text().toDouble();
+
+    base_tepl.nu      = ui->widget_5->ui->widget_2->ui->tableWidget->item(40,1)->text().toDouble();
+    base_tepl.t_cp    = ui->widget_5->ui->widget_2->ui->tableWidget->item(41,1)->text().toDouble();
+    base_tepl.lb_b    = ui->widget_5->ui->widget_2->ui->tableWidget->item(42,1)->text().toDouble();
+    base_tepl.lb_m    = ui->widget_5->ui->widget_2->ui->tableWidget->item(43,1)->text().toDouble();
+    base_tepl.lb_a    = ui->widget_5->ui->widget_2->ui->tableWidget->item(44,1)->text().toDouble();
+    base_tepl.lb_c    = ui->widget_5->ui->widget_2->ui->tableWidget->item(45,1)->text().toDouble();
+    base_tepl.d_b_iz  = ui->widget_5->ui->widget_2->ui->tableWidget->item(46,1)->text().toDouble();
+    base_tepl.d_iz    = ui->widget_5->ui->widget_2->ui->tableWidget->item(47,1)->text().toDouble();
+    base_tepl.k_pr    = ui->widget_5->ui->widget_2->ui->tableWidget->item(48,1)->text().toDouble();
+    base_tepl.lb_p    = ui->widget_5->ui->widget_2->ui->tableWidget->item(49,1)->text().toDouble();
+
+    base_tepl.nu         = ui->widget_5->ui->widget_2->ui->tableWidget->item(50,1)->text().toDouble();
+    base_tepl.t_cp       = ui->widget_5->ui->widget_2->ui->tableWidget->item(51,1)->text().toDouble();
+    base_tepl.lb_b       = ui->widget_5->ui->widget_2->ui->tableWidget->item(52,1)->text().toDouble();
+    base_tepl.lb_m       = ui->widget_5->ui->widget_2->ui->tableWidget->item(53,1)->text().toDouble();
+    base_tepl.lb_a       = ui->widget_5->ui->widget_2->ui->tableWidget->item(54,1)->text().toDouble();
+    base_tepl.lb_c       = ui->widget_5->ui->widget_2->ui->tableWidget->item(55,1)->text().toDouble();
+    base_tepl.d_b_iz     = ui->widget_5->ui->widget_2->ui->tableWidget->item(56,1)->text().toDouble();
+    base_tepl.d_iz       = ui->widget_5->ui->widget_2->ui->tableWidget->item(57,1)->text().toDouble();
+    base_tepl.k_pr       = ui->widget_5->ui->widget_2->ui->tableWidget->item(58,1)->text().toDouble();
+    base_tepl.lb_p       = ui->widget_5->ui->widget_2->ui->tableWidget->item(59,1)->text().toDouble();
+
+    base_tepl.lp_iz      = ui->widget_5->ui->widget_2->ui->tableWidget->item(60,1)->text().toDouble();
+    base_tepl.D_vlch     = ui->widget_5->ui->widget_2->ui->tableWidget->item(61,1)->text().toDouble();
+    base_tepl.lb_okr     = ui->widget_5->ui->widget_2->ui->tableWidget->item(62,1)->text().toDouble();
+    base_tepl.lb_ip      = ui->widget_5->ui->widget_2->ui->tableWidget->item(63,1)->text().toDouble();
+    base_tepl.sig_vp     = ui->widget_5->ui->widget_2->ui->tableWidget->item(64,1)->text().toDouble();
+    base_tepl.h_z2       = ui->widget_5->ui->widget_2->ui->tableWidget->item(65,1)->text().toDouble();
+    base_tepl.b_z2       = ui->widget_5->ui->widget_2->ui->tableWidget->item(66,1)->text().toDouble();
+    base_tepl.D_dp       = ui->widget_5->ui->widget_2->ui->tableWidget->item(67,1)->text().toDouble();
+    base_tepl.d          = ui->widget_5->ui->widget_2->ui->tableWidget->item(68,1)->text().toDouble();
+    base_tepl.d1         = ui->widget_5->ui->widget_2->ui->tableWidget->item(69,1)->text().toDouble();
+
+    base_tepl.P2         = ui->widget_5->ui->widget_2->ui->tableWidget->item(70,1)->text().toDouble();
+    base_tepl.U1         = ui->widget_5->ui->widget_2->ui->tableWidget->item(71,1)->text().toDouble();
+    base_tepl.n_u        = ui->widget_5->ui->widget_2->ui->tableWidget->item(72,1)->text().toDouble();
+    base_tepl.cos_f      = ui->widget_5->ui->widget_2->ui->tableWidget->item(73,1)->text().toDouble();
+    base_tepl.ro_al      = ui->widget_5->ui->widget_2->ui->tableWidget->item(74,1)->text().toDouble();
+    base_tepl.D_kzk      = ui->widget_5->ui->widget_2->ui->tableWidget->item(75,1)->text().toDouble();
+
+
+    //Расчет данных
+    //общая тепловая проводимость между сердечником статора и станиной
+//    L_a1 = M_PI*l_1*
+//    L_d1 = 1/(1/((L_a1)+(1/L_da1)+(1/L_st)));
+
+
+    //вывод данных
+    double teta_0,teta_1,teta_2,teta_3,teta_4,teta_5,teta_k,teta_c,teta_p, teta_v;
+    teta_0=20;
+    teta_1=20;
+    teta_2=20;
+    teta_3=20;
+    teta_4=20;
+    teta_5=20;
+    teta_k=20;
+    teta_c=20;
+    teta_p=20;
+    teta_v=20;
+    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(0,1)->setText(QString::number(teta_0,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(1,1)->setText(QString::number(teta_1,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(2,1)->setText(QString::number(teta_2,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(3,1)->setText(QString::number(teta_3,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(4,1)->setText(QString::number(teta_4,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(5,1)->setText(QString::number(teta_5,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(6,1)->setText(QString::number(teta_k,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(7,1)->setText(QString::number(teta_c,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(8,1)->setText(QString::number(teta_p,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(9,1)->setText(QString::number(teta_v,'f',3));
+
+}

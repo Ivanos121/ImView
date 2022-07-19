@@ -5,7 +5,7 @@
 
 struct Base_tepl
 {
-double n;
+double n0;
 double pn;
 double h;
 double D_c;

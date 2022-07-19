@@ -252,7 +252,7 @@ void Tepl_dannie::on_tableWidget_cellChanged(int row, int column)
         switch(row)
         {
             case 0:
-                base_tepl.n=p;
+                base_tepl.n0=p;
             break;
 
             case 1:

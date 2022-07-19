@@ -9,6 +9,7 @@
 #include <QTreeWidgetItem>
 #include <QStandardItem>
 #include "itogs.h"
+#include "Base_tepl.h"
 
 #include "ui_about_dialog.h"
 #include "ui_settings.h"
@@ -102,6 +103,7 @@ private slots:
     void on_save_tepl_dannie_clicked();
     void on_load_tepl_dannie_clicked();
     void LoadTeplDannie(QString str);
+    void on_tepl_result_clicked();
 
     void on_radioButton_toggled(bool checked);
     void on_radioButton_2_toggled(bool checked);
@@ -119,6 +121,7 @@ public:
     Settings *rsc2;
     QString dataSourceFilename;
     QString dirName;
+    Base_tepl base_tepl;
 
     QWebEngineView * view;
 

@@ -1069,7 +1069,7 @@
          <string>Сохранить</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_7">
+       <widget class="QPushButton" name="tepl_result">
         <property name="geometry">
          <rect>
           <x>60</x>
