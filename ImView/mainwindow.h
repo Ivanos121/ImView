@@ -9,12 +9,13 @@
 #include <QTreeWidgetItem>
 #include <QStandardItem>
 #include "itogs.h"
-#include "Base_tepl.h"
 
 #include "ui_about_dialog.h"
 #include "ui_settings.h"
 #include "pushbuttondelegate.h"
 #include "ui_graph_Settings.h"
+
+#include "base_tepl.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -121,7 +122,6 @@ public:
     Settings *rsc2;
     QString dataSourceFilename;
     QString dirName;
-    Base_tepl base_tepl;
 
     QWebEngineView * view;
 

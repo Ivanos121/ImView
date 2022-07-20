@@ -391,36 +391,8 @@ void Trend::startTeplo()
 
     timer.start(1000);
 
-    t += 10.0;
-
     wf->ui->widget_6->ui->widget->ui->verticalSlider->setValue(50);
     wf->ui->widget_6->ui->widget->ui->verticalSlider_2->setValue(20);
-
-    std::ofstream fout;
-
-    fout.open(QString(base.teplFilename).toStdString(),std::ios::out | std::ios::app);
-
-    fout << QString("%1").arg(t).toStdString() << ";";
-    fout << QString("%1").arg(y_0).toStdString() << ";";
-    fout << QString("%1").arg(y_1).toStdString() << ";";
-    fout << QString("%1").arg(y_2).toStdString() << ";";
-    fout << QString("%1").arg(y_3).toStdString() << ";";
-    fout << QString("%1").arg(y_4).toStdString() << ";";
-    fout << QString("%1").arg(y_5).toStdString() << ";";
-    fout << QString("%1").arg(y_6).toStdString() << ";";
-    fout << QString("%1").arg(y_7).toStdString() << ";";
-    fout << QString("%1").arg(y_8).toStdString() << ";";
-    fout << QString("%1").arg(y_9).toStdString() << ";";
-    fout << QString("%1").arg(y_10).toStdString() << ";";
-    fout << QString("%1").arg(y_11).toStdString() << ";";
-    fout << QString("%1").arg(y_12).toStdString() << ";";
-    fout << QString("%1").arg(y_13).toStdString() << ";";
-    fout << QString("%1").arg(y_14).toStdString() << ";";
-    fout << QString("%1").arg(y_15).toStdString() << ";";
-    fout << QString("%1").arg(y_16).toStdString() << ";";
-
-    fout << std::endl;
-    fout.close();
 }
 
 
@@ -455,6 +427,32 @@ void Trend::on_timerTimeout()
     s_k=0.1;
     s_s=(w_0-w_w)/w_0;
     M_M=M_k*2/(s_s/s_k+s_k/s_s);
+
+    std::ofstream fout;
+
+    fout.open(QString(base.teplFilename).toStdString(),std::ios::out | std::ios::app);
+
+    fout << QString("%1").arg(t).toStdString() << ";";
+    fout << QString("%1").arg(y_0).toStdString() << ";";
+    fout << QString("%1").arg(y_1).toStdString() << ";";
+    fout << QString("%1").arg(y_2).toStdString() << ";";
+    fout << QString("%1").arg(y_3).toStdString() << ";";
+    fout << QString("%1").arg(y_4).toStdString() << ";";
+    fout << QString("%1").arg(y_5).toStdString() << ";";
+    fout << QString("%1").arg(y_6).toStdString() << ";";
+    fout << QString("%1").arg(y_7).toStdString() << ";";
+    fout << QString("%1").arg(y_8).toStdString() << ";";
+    fout << QString("%1").arg(y_9).toStdString() << ";";
+    fout << QString("%1").arg(y_10).toStdString() << ";";
+    fout << QString("%1").arg(y_11).toStdString() << ";";
+    fout << QString("%1").arg(y_12).toStdString() << ";";
+    fout << QString("%1").arg(y_13).toStdString() << ";";
+    fout << QString("%1").arg(y_14).toStdString() << ";";
+    fout << QString("%1").arg(y_15).toStdString() << ";";
+    fout << QString("%1").arg(y_16).toStdString() << ";";
+
+    fout << std::endl;
+    fout.close();
 
 
     //Отображение данных в tableWidget_5 Draw Line

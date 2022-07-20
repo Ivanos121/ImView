@@ -1,7 +1,6 @@
 #ifndef BASE_TEPL_H
 #define BASE_TEPL_H
 
-#include <QString>
 
 struct Base_tepl
 {
@@ -91,5 +90,7 @@ double D_kzk;
 double k_obm;
 double k_sk;
 };
-extern Base_tepl *base_tepl;
+
+extern Base_tepl base_tepl;
+
 #endif // BASE_TEPL_H

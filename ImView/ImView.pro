@@ -66,9 +66,9 @@ SOURCES += \
     zerocorrector.cpp
 
 HEADERS += \
-    Base_tepl.h \
     archiverchannel.h \
     base.h \
+    base_tepl.h \
     bvasthread.h \
     bvas.h \
     checkboxdelegate.h \
@@ -145,7 +145,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 LIBS += -lusb-1.0
 
-LIBS += -lquazip1-qt5
+LIBS += -lquazip1-qt5 -lgsl -lgslcblas
 
 RESOURCES += \
     Images.qrc 

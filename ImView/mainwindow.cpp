@@ -48,6 +48,7 @@
 #include "gridlinedelegate.h"
 
 Base base;
+Base_tepl base_tepl;
 Model modelss;
 double teta_0,teta_1,teta_2,teta_3,teta_4,teta_5,teta_k,teta_c,teta_p, teta_v;
 double lambda_10, lambda_21, lambda_c2,lambda_p2,lambda_30,lambda_c3,lambda_p3,lambda_3k,lambda_c4,lambda_pb,lambda_p5,
@@ -102,8 +103,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->treeView->setBackgroundRole(QPalette :: Dark);
 
     ui->treeView->setExpandsOnDoubleClick(false);
-    QObject::connect(ui->treeView, &QTreeView::clicked, [this]() {
-        if (ui->treeView->isExpanded(ui->treeView->currentIndex())) {
+    QObject::connect(ui->treeView, &QTreeView::clicked, [this]()
+    {
+        if (ui->treeView->isExpanded(ui->treeView->currentIndex()))
+        {
             ui->treeView->collapse(ui->treeView->currentIndex());
         }else{
             ui->treeView->expand(ui->treeView->currentIndex());
@@ -1466,50 +1469,50 @@ void MainWindow::on_action_5_triggered()
             fout.close();
         }
 
-        if(item70->checkState() == Qt::Checked)
-        {
-            QString filename = "result_tepl.csv";
-            //создание файла сохранений идентификации параметров схемы замещения
-            std::ofstream fout;
+//        if(item70->checkState() == Qt::Checked)
+//        {
+//            QString filename = "result_tepl.csv";
+//            //создание файла сохранений идентификации параметров схемы замещения
+//            std::ofstream fout;
 
-            base.teplFilename = setpath+QDir::separator()+dirName+QDir::separator()+filename;
+//            base.teplFilename = setpath+QDir::separator()+dirName+QDir::separator()+filename;
 
-            fout.open(QString(base.teplFilename).toStdString(),std::ios::out | std::ios::app);
-            fout << std::endl << "Начало измерений " << currentTime.toString("hh:mm:ss ").toUtf8().data() <<
-                    currentDate.toString("dd.MM.yyyy").toUtf8().data() << std::endl;
-            fout << std::endl;
+//            fout.open(QString(base.teplFilename).toStdString(),std::ios::out | std::ios::app);
+//            fout << std::endl << "Начало измерений " << currentTime.toString("hh:mm:ss ").toUtf8().data() <<
+//                    currentDate.toString("dd.MM.yyyy").toUtf8().data() << std::endl;
+//            fout << std::endl;
 
-            fout << "Канал №1"  << " - " << "Cтанина" << std::endl;
-            fout << "Канал №2"  << " - " << "Подшипниковый узел справа сзади" << std::endl;
-            fout << "Канал №3"  << " - " << "Лобовая часть слева спереди" << std::endl;
-            fout << "Канал №4"  << " - " << "Подшипниковый узел слева спереди" << std::endl;
-            fout << "Канал №5"  << " - " << "Подшипниковый узел слева спереди" << std::endl;
-            fout << "Канал №6"  << " - " << "Лобовая часть слева сзади" << std::endl;
-            fout << "Канал №7"  << " - " << "Лобовая часть справа спереди" << std::endl;
-            fout << "Канал №8"  << " - " << "Лобовая часть справа сзади" << std::endl;
-            fout << "Канал №9"  << " - " << "Магнитопровод статора" << std::endl;
-            fout << "Канал №10" << " - " << "Подшипниковый узел справа спереди" << std::endl;
-            fout << "Канал №11" << " - " << "Подшипниковый узел слева сзади" << std::endl;
-            fout << "Канал №12" << " - " << "Ротор сверху" << std::endl;
-            fout << "Канал №13" << " - " << "Ротор снизу" << std::endl;
-            fout << "Канал №14" << " - " << "Станина слева" << std::endl;
-            fout << "Канал №15" << " - " << "Станина слева" << std::endl;
-            fout << "Канал №16" << " - " << "Вал" << std::endl;
-            fout << "Канал №17" << " - " << "Клеммная коробка" << std::endl;
+//            fout << "Канал №1"  << " - " << "Cтанина" << std::endl;
+//            fout << "Канал №2"  << " - " << "Подшипниковый узел справа сзади" << std::endl;
+//            fout << "Канал №3"  << " - " << "Лобовая часть слева спереди" << std::endl;
+//            fout << "Канал №4"  << " - " << "Подшипниковый узел слева спереди" << std::endl;
+//            fout << "Канал №5"  << " - " << "Подшипниковый узел слева спереди" << std::endl;
+//            fout << "Канал №6"  << " - " << "Лобовая часть слева сзади" << std::endl;
+//            fout << "Канал №7"  << " - " << "Лобовая часть справа спереди" << std::endl;
+//            fout << "Канал №8"  << " - " << "Лобовая часть справа сзади" << std::endl;
+//            fout << "Канал №9"  << " - " << "Магнитопровод статора" << std::endl;
+//            fout << "Канал №10" << " - " << "Подшипниковый узел справа спереди" << std::endl;
+//            fout << "Канал №11" << " - " << "Подшипниковый узел слева сзади" << std::endl;
+//            fout << "Канал №12" << " - " << "Ротор сверху" << std::endl;
+//            fout << "Канал №13" << " - " << "Ротор снизу" << std::endl;
+//            fout << "Канал №14" << " - " << "Станина слева" << std::endl;
+//            fout << "Канал №15" << " - " << "Станина слева" << std::endl;
+//            fout << "Канал №16" << " - " << "Вал" << std::endl;
+//            fout << "Канал №17" << " - " << "Клеммная коробка" << std::endl;
 
-            fout << std::endl;
+//            fout << std::endl;
 
-            fout << "Время;";
+//            fout << "Время;";
 
-            for (int i=0; i<17; i++)
-            {
-                fout << QString("Канал №%1").arg(i+1).toUtf8().data() << ";";
-            }
+//            for (int i=0; i<17; i++)
+//            {
+//                fout << QString("Канал №%1").arg(i+1).toUtf8().data() << ";";
+//            }
 
-            fout << std::endl;
+//            fout << std::endl;
 
-            fout.close();
-        }
+//            fout.close();
+//        }
         ui->widget_2->raschet_f();
     }
 }
@@ -1571,6 +1574,57 @@ void MainWindow::on_action_20_triggered()
         fout << "Время;";
 
         for (int i=0; i<9; i++)
+        {
+            fout << QString("Канал №%1").arg(i+1).toUtf8().data() << ";";
+        }
+
+        fout << std::endl;
+
+        fout.close();
+    }
+
+    if(item70->checkState() == Qt::Checked)
+    {
+        QDateTime currentDateTime = QDateTime::currentDateTime();
+        QTime currentTime = currentDateTime.time();
+        QDate currentDate = currentDateTime.date();
+        QString setpath = "/home/elf/ImView/Output";
+        QDir dir(setpath);
+        QString filename = "result_tepl.csv";
+
+        //создание файла сохранений идентификации параметров схемы замещения
+        std::ofstream fout;
+
+        base.teplFilename = setpath+QDir::separator()+dirName+QDir::separator()+filename;
+
+        fout.open(QString(base.teplFilename).toStdString(),std::ios::out | std::ios::app);
+        fout << std::endl << "Начало измерений " << currentTime.toString("hh:mm:ss ").toUtf8().data() <<
+                currentDate.toString("dd.MM.yyyy").toUtf8().data() << std::endl;
+        fout << std::endl;
+
+        fout << "Канал №1"  << " - " << "Cтанина" << std::endl;
+        fout << "Канал №2"  << " - " << "Подшипниковый узел справа сзади" << std::endl;
+        fout << "Канал №3"  << " - " << "Лобовая часть слева спереди" << std::endl;
+        fout << "Канал №4"  << " - " << "Подшипниковый узел слева спереди" << std::endl;
+        fout << "Канал №5"  << " - " << "Подшипниковый узел слева спереди" << std::endl;
+        fout << "Канал №6"  << " - " << "Лобовая часть слева сзади" << std::endl;
+        fout << "Канал №7"  << " - " << "Лобовая часть справа спереди" << std::endl;
+        fout << "Канал №8"  << " - " << "Лобовая часть справа сзади" << std::endl;
+        fout << "Канал №9"  << " - " << "Магнитопровод статора" << std::endl;
+        fout << "Канал №10" << " - " << "Подшипниковый узел справа спереди" << std::endl;
+        fout << "Канал №11" << " - " << "Подшипниковый узел слева сзади" << std::endl;
+        fout << "Канал №12" << " - " << "Ротор сверху" << std::endl;
+        fout << "Канал №13" << " - " << "Ротор снизу" << std::endl;
+        fout << "Канал №14" << " - " << "Станина слева" << std::endl;
+        fout << "Канал №15" << " - " << "Станина слева" << std::endl;
+        fout << "Канал №16" << " - " << "Вал" << std::endl;
+        fout << "Канал №17" << " - " << "Клеммная коробка" << std::endl;
+
+        fout << std::endl;
+
+        fout << "Время;";
+
+        for (int i=0; i<17; i++)
         {
             fout << QString("Канал №%1").arg(i+1).toUtf8().data() << ";";
         }
