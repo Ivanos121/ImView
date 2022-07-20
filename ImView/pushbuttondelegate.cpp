@@ -61,48 +61,6 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         connect(btn,SIGNAL(clicked()), this, SLOT(btn_clicked_6()));
         return btn;
     }
-//    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 1))
-//    {
-//        QComboBox *editor = new QComboBox(parent);
-//        editor->insertItem(0, "Сохранение данных в картинку");
-//        editor->insertItem(1, "Сохранение данных в файл данных");
-//        return editor;
-//    }
-//    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 3))
-//    {
-//        QComboBox *editor = new QComboBox(parent);
-//        editor->insertItem(0, "Сохранение данных в картинку");
-//        editor->insertItem(1, "Сохранение данных в файл данных");
-//        return editor;
-//    }
-//    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 5))
-//    {
-//        QComboBox *editor = new QComboBox(parent);
-//        editor->insertItem(0, "Сохранение данных в картинку");
-//        editor->insertItem(1, "Сохранение данных в файл данных");
-//        return editor;
-//    }
-//    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 7))
-//    {
-//        QComboBox *editor = new QComboBox(parent);
-//        editor->insertItem(0, "Сохранение данных в картинку");
-//        editor->insertItem(1, "Сохранение данных в файл данных");
-//        return editor;
-//    }
-//    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 9))
-//    {
-//        QComboBox *editor = new QComboBox(parent);
-//        editor->insertItem(0, "Сохранение данных в картинку");
-//        editor->insertItem(1, "Сохранение данных в файл данных");
-//        return editor;
-//    }
-//    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 11))
-//    {
-//        QComboBox *editor = new QComboBox(parent);
-//        editor->insertItem(0, "Сохранение данных в картинку");
-//        editor->insertItem(1, "Сохранение данных в файл данных");
-//        return editor;
-//    }
     else if ((index.parent().row() == 1) && (index.row() == 0))
     {
         QComboBox *editor = new QComboBox(parent);
@@ -215,6 +173,14 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         editor->insertItem(0, "Статика (упрощенный вариант)");
         editor->insertItem(1, "Статика (полный вариант)");
         editor->insertItem(2, "Динамика");
+        return editor;
+    }
+    else if ((index.parent().row() == 3) && (index.row() == 2))
+    {
+        QDoubleSpinBox *editor = new QDoubleSpinBox(parent);
+        editor->setFrame(false);
+        editor->setMinimum(0);
+        editor->setMaximum(100);
         return editor;
     }
     else
@@ -449,7 +415,13 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
         int width=comboBox->minimumSizeHint().width();
         comboBox->view()->setMinimumWidth(width);
     }
-    else
+    else if ((index.parent().row() == 3) && (index.row() == 2))
+    {
+        double value = index.model()->data(index, Qt::EditRole).toDouble();
+        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
+        spinBox->setValue(value);
+    }
+        else
     {
         QStyledItemDelegate::setEditorData(editor, index);
     }
@@ -609,7 +581,14 @@ void ButtonColumnDelegate::setModelData(QWidget *editor, QAbstractItemModel *mod
         QString value = comboBox->currentText();
         model->setData(index, value);
     }
-    else {
+    else if ((index.parent().row() == 3) && (index.row() == 2))
+    {
+        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
+        spinBox->interpretText();
+        double value = spinBox->value();
+        model->setData(index, value, Qt::EditRole);
+    }
+        else {
         QStyledItemDelegate::setModelData(editor, model, index);
     }
 }

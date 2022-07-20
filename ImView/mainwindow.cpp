@@ -561,13 +561,13 @@ MainWindow::MainWindow(QWidget *parent)
     items8.append(item30);
     item25->appendRow(items8);
     items8.clear();
-//    item23 = new QStandardItem(QStringLiteral ("Условие 9"));
-//    item23->setEditable(false);
-//    item107 = new QStandardItem(QStringLiteral ("Значение 9"));
-//    items8.append(item23);
-//    items8.append(item107);
-//    item25->appendRow(items8);
-//    items8.clear();
+    item23 = new QStandardItem(QStringLiteral ("Шаг выбора точек"));
+    item23->setEditable(false);
+    item107 = new QStandardItem(QStringLiteral ("Введите значение"));
+    items8.append(item23);
+    items8.append(item107);
+    item25->appendRow(items8);
+    items8.clear();
 
 //    QList<QStandardItem*> items9;
 //    item31 = new QStandardItem(QStringLiteral ("Вентиляционная модель"));

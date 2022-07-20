@@ -3,7 +3,25 @@
 <head>
   <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
 </head>
+<script>
+jQuery(function($) {
+    var currentMousePos = { x: -1, y: -1 };
+    $(document).mousemove(function(event) {
+        currentMousePos.x = event.pageX;
+        currentMousePos.y = event.pageY;
+    });
+
+   $('#g1301').click(function (event) {
+     $('#tooltip').css('top', currentMousePos.y+20);
+     $('#tooltip').css('left', currentMousePos.x+10);
+     $('#tooltip').text('Привет!');
+     $('#tooltip').show();
+   });
+});
+</script>
 <body style="height: 100%;margin: 0">
+<div id="tooltip" style="position: fixed;background-color: white; padding: 5px; border: 1px solid black;">
+</div>
 <svg
    version="1.1"
    id="svg815"
