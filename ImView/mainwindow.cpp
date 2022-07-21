@@ -74,7 +74,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget->wf=this;
 
     ui->widget_5->ui->widget->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/ax_var/ax_var_2.html").absoluteFilePath()));
-    ui->widget_5->ui->widget_5->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/rad_var/rad_var_2.html").absoluteFilePath()));
+    ui->widget_5->ui->widget_5->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/rad_var/rad_var.html").absoluteFilePath()));
     ui->widget_6->ui->widget_2->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_tract/vent_tract.html").absoluteFilePath()));
     ui->widget_5->ui->widget_3->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/tepl_schen_zam/tepl_tract.html").absoluteFilePath()));
 
@@ -4237,26 +4237,22 @@ void MainWindow::on_tepl_result_clicked()
 
     gsl_linalg_LU_solve (&m.matrix, p, &b.vector, x);
 
-    printf ("x = \n");
+    //ВЫВОД ДАННЫХ В ТАБЛИЦЫ
 
-    gsl_vector_fprintf (stdout, x, "%g");
+    //вывод температур в таблицу
+    teta_0=gsl_vector_get(x, 0);
+    teta_1=gsl_vector_get(x, 1);
+    teta_2=gsl_vector_get(x, 2);
+    teta_3=gsl_vector_get(x, 3);
+    //teta_4=gsl_vector_get(x, 4);
+    //teta_5=gsl_vector_get(x, 5);
+    //teta_k=gsl_vector_get(x, 6);
+    //teta_c=gsl_vector_get(x, 7);
+    //teta_p=gsl_vector_get(x, 8);
+    //teta_v=gsl_vector_get(x, 9);
 
     gsl_permutation_free (p);
     gsl_vector_free (x);
-
-
-    //вывод данных в таблицы
-
-    teta_0=20;
-    teta_1=20;
-    teta_2=20;
-    teta_3=20;
-    teta_4=20;
-    teta_5=20;
-    teta_k=20;
-    teta_c=20;
-    teta_p=20;
-    teta_v=20;
 
     ui->widget_5->ui->widget_2->ui->tableWidget_3->item(0,1)->setText(QString::number(teta_0,'f',3));
     ui->widget_5->ui->widget_2->ui->tableWidget_3->item(1,1)->setText(QString::number(teta_1,'f',3));
@@ -4269,6 +4265,7 @@ void MainWindow::on_tepl_result_clicked()
     ui->widget_5->ui->widget_2->ui->tableWidget_3->item(8,1)->setText(QString::number(teta_p,'f',3));
     ui->widget_5->ui->widget_2->ui->tableWidget_3->item(9,1)->setText(QString::number(teta_v,'f',3));
 
+    //вывод тепловых проводимостей в таблицу
     lambda_10=0.034;
     lambda_21=0.35;
     lambda_c2=0.23;
@@ -4284,7 +4281,6 @@ void MainWindow::on_tepl_result_clicked()
     lambda_45=0.56;
     lambda_50=0.93;
     lambda_b5=0.043;
-
 
     ui->widget_5->ui->widget_2->ui->tableWidget_2->item(0,1)->setText(QString::number(lambda_10,'f',3));
     ui->widget_5->ui->widget_2->ui->tableWidget_2->item(1,1)->setText(QString::number(lambda_21,'f',3));
@@ -4302,6 +4298,7 @@ void MainWindow::on_tepl_result_clicked()
     ui->widget_5->ui->widget_2->ui->tableWidget_2->item(13,1)->setText(QString::number(lambda_50,'f',3));
     ui->widget_5->ui->widget_2->ui->tableWidget_2->item(14,1)->setText(QString::number(lambda_b5,'f',3));
 
+    //вывод тоеплоемкостей в таблицу
     C_0=0.034;
     C_1=0.35;
     C_2=0.23;
