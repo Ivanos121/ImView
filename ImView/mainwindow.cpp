@@ -18,6 +18,10 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QColorDialog>
+#include <gsl/gsl_linalg.h>
+#include <gsl/gsl_matrix_double.h>
+#include <gsl/gsl_permutation.h>
+#include <gsl/gsl_vector_double.h>
 #include <iostream>
 #include <fstream>
 #include <cmath>
@@ -53,6 +57,7 @@ Model modelss;
 double teta_0,teta_1,teta_2,teta_3,teta_4,teta_5,teta_k,teta_c,teta_p, teta_v;
 double lambda_10, lambda_21, lambda_c2,lambda_p2,lambda_30,lambda_c3,lambda_p3,lambda_3k,lambda_c4,lambda_pb,lambda_p5,
 lambda_k0,lambda_45,lambda_50,lambda_b5;
+double C_0,C_1,C_2,C_3,C_4,C_5,C_k,C_c,C_p,C_v;
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -4204,13 +4209,43 @@ void MainWindow::on_tepl_result_clicked()
     base_tepl.D_kzk   = ui->widget_5->ui->widget_2->ui->tableWidget->item(75,1)->text().toDouble();
 
 
-    //Расчет данных
+    //Расчет тепловых проводимостей
     //общая тепловая проводимость между сердечником статора и станиной
 //    L_a1 = M_PI*l_1*
 //    L_d1 = 1/(1/((L_a1)+(1/L_da1)+(1/L_st)));
 
+    //Решение СЛАУ
 
-    //вывод данных
+    double a_data[] = { 0.18, 0.60, 0.57, 0.96,
+                        0.41, 0.24, 0.99, 0.58,
+                        0.14, 0.30, 0.97, 0.66,
+                        0.51, 0.13, 0.19, 0.85 };
+
+    double b_data[] = { 1.0, 2.0, 3.0, 4.0 };
+
+    gsl_matrix_view m = gsl_matrix_view_array (a_data, 4, 4);
+
+    gsl_vector_view b = gsl_vector_view_array (b_data, 4);
+
+    gsl_vector *x = gsl_vector_alloc (4);
+
+    int s;
+
+    gsl_permutation * p = gsl_permutation_alloc (4);
+
+    gsl_linalg_LU_decomp (&m.matrix, p, &s);
+
+    gsl_linalg_LU_solve (&m.matrix, p, &b.vector, x);
+
+    printf ("x = \n");
+
+    gsl_vector_fprintf (stdout, x, "%g");
+
+    gsl_permutation_free (p);
+    gsl_vector_free (x);
+
+
+    //вывод данных в таблицы
 
     teta_0=20;
     teta_1=20;
@@ -4222,6 +4257,7 @@ void MainWindow::on_tepl_result_clicked()
     teta_c=20;
     teta_p=20;
     teta_v=20;
+
     ui->widget_5->ui->widget_2->ui->tableWidget_3->item(0,1)->setText(QString::number(teta_0,'f',3));
     ui->widget_5->ui->widget_2->ui->tableWidget_3->item(1,1)->setText(QString::number(teta_1,'f',3));
     ui->widget_5->ui->widget_2->ui->tableWidget_3->item(2,1)->setText(QString::number(teta_2,'f',3));
@@ -4265,5 +4301,28 @@ void MainWindow::on_tepl_result_clicked()
     ui->widget_5->ui->widget_2->ui->tableWidget_2->item(12,1)->setText(QString::number(lambda_45,'f',3));
     ui->widget_5->ui->widget_2->ui->tableWidget_2->item(13,1)->setText(QString::number(lambda_50,'f',3));
     ui->widget_5->ui->widget_2->ui->tableWidget_2->item(14,1)->setText(QString::number(lambda_b5,'f',3));
+
+    C_0=0.034;
+    C_1=0.35;
+    C_2=0.23;
+    C_3=0.021;
+    C_4=0.034;
+    C_5=0.067;
+    C_k=0.067;
+    C_c=0.67;
+    C_p=0.56;
+    C_v=0.059;
+
+    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(0,1)->setText(QString::number(C_0,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(1,1)->setText(QString::number(C_1,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(2,1)->setText(QString::number(C_2,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(3,1)->setText(QString::number(C_3,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(4,1)->setText(QString::number(C_4,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(5,1)->setText(QString::number(C_5,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(6,1)->setText(QString::number(C_k,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(7,1)->setText(QString::number(C_c,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(8,1)->setText(QString::number(C_p,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(9,1)->setText(QString::number(C_v,'f',3));
+
 
 }
