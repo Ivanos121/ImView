@@ -124,17 +124,17 @@ Tepl_dannie::Tepl_dannie(QWidget *parent) :
         }
     }
 
-    QPalette p3=ui->tableWidget->palette();
-    p3.setColor(QPalette::Base, QColor(255, 255, 191));
-    p3.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
-    ui->tableWidget->setPalette(p3);
+    QPalette p=ui->tableWidget->palette();
+    p.setColor(QPalette::Base, QColor(255, 255, 191));
+    p.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
+    ui->tableWidget->setPalette(p);
     connect(ui->tableWidget, &QTableWidget::cellChanged, this, &Tepl_dannie::on_tableWidget_cellChanged);
 
     //Сохдание и заполнение таблицы проводимостей
     ui->tableWidget_2->setRowCount(76);
-    ui->tableWidget_2->setColumnCount(2);
+    ui->tableWidget_2->setColumnCount(3);
     QStringList name_2;
-    name_2 << "Свойство" << "Значение";
+    name_2 << "Свойство" << "Обозначение" << "Значение";
     ui->tableWidget_2->setHorizontalHeaderLabels(name_2);
     ui->tableWidget_2->horizontalHeader()->setSectionResizeMode(0,QHeaderView::Stretch);
     ui->tableWidget_2->setSelectionBehavior(QAbstractItemView :: SelectRows);
@@ -149,17 +149,37 @@ Tepl_dannie::Tepl_dannie(QWidget *parent) :
         }
     }
 
-    ui->tableWidget_2->item(0,0)->setText("Общая тепловая проводимость между сердечником статора и станиной");
-    ui->tableWidget_2->item(1,0)->setText("Количеcтво пар полюсов");
-    ui->tableWidget_2->item(2,0)->setText("Высота оси вращения, м");
-    ui->tableWidget_2->item(3,0)->setText("Диаметр станины у основания ребер, м");
-    ui->tableWidget_2->item(4,0)->setText("Длина свисающей части станины со стороны привода, м");
-    ui->tableWidget_2->item(5,0)->setText("Длина свисающей части станины со стороны вентилятора, м");
-    ui->tableWidget_2->item(6,0)->setText("Зазор между диффузором и механическим щитом в месте крепления, м");
-    ui->tableWidget_2->item(7,0)->setText("Количество ребер станины");
-    ui->tableWidget_2->item(8,0)->setText("Высота ребра станины, м");
-    ui->tableWidget_2->item(9,0)->setText("Толщина ребра станины, м");
-    ui->tableWidget_2->item(10,0)->setText("Внешний диаметр вентилятора, м");
+    ui->tableWidget_2->item(0,0)->setText("Тепловая проводимость между станиной и окружающей средой со стороны выступающей части вала");
+    ui->tableWidget_2->item(1,0)->setText("Тепловая проводимость между подшипниковым щитом и воздушной зоной со стороны выступающей части вала");
+    ui->tableWidget_2->item(2,0)->setText("Тепловая проводимость между обмоткой статора и воздушной зоной со стороны выступающей части вала");
+    ui->tableWidget_2->item(3,0)->setText("Тепловая проводимость между обмоткой ротора и воздушной зоной со стороны выступающей части вала");
+    ui->tableWidget_2->item(4,0)->setText("Тепловая проводимость между станиной и окружающей средой в зоне клеммной коробки");
+    ui->tableWidget_2->item(5,0)->setText("Тепловая проводимость между обмоткой статора и станиной в зоне клеммной коробки");
+    ui->tableWidget_2->item(6,0)->setText("Тепловая проводимость между обмоткой ротора и обмоткой статора в зоне клеммной коробки");
+    ui->tableWidget_2->item(7,0)->setText("Тепловая проводимость между обмоткой статора и воздушной зоной со стороны вентиляторного узла");
+    ui->tableWidget_2->item(8,0)->setText("Тепловая проводимость между обмоткой ротора и воздушной зоной со стороны вентиляторного узла");
+    ui->tableWidget_2->item(9,0)->setText("Тепловая проводимость между обмоткой ротора и воздушной зоной со стороны вентиляторного узла");
+    ui->tableWidget_2->item(10,0)->setText("Тепловая проводимость между обмоткой ротора и вспомогательным ротором");
+    ui->tableWidget_2->item(11,0)->setText("Тепловая проводимость между клеммной коробкой и воздушной зоной со стороны вентиляторного узла");
+    ui->tableWidget_2->item(12,0)->setText("Тепловая проводимость между вентиляторным узлом и воздушной зоной со стороны вентиляторного узла");
+    ui->tableWidget_2->item(13,0)->setText("Тепловая проводимость между вентиляторным узлом и окружающей средой");
+    ui->tableWidget_2->item(14,0)->setText("Тепловая проводимость между вспомогательным ротором и вентиляторным узлом");
+
+    ui->tableWidget_2->item(0,1)->setText("λ₁₀");
+    ui->tableWidget_2->item(1,1)->setText("λ₂₁");
+    ui->tableWidget_2->item(2,1)->setText("λс₂");
+    ui->tableWidget_2->item(3,1)->setText("λₚ₅");
+    ui->tableWidget_2->item(4,1)->setText("λ₃₀");
+    ui->tableWidget_2->item(5,1)->setText("λс₃");
+    ui->tableWidget_2->item(6,1)->setText("λₚс");
+    ui->tableWidget_2->item(7,1)->setText("λ₃ₖ");
+    ui->tableWidget_2->item(8,1)->setText("λс₄");
+    ui->tableWidget_2->item(9,1)->setText("λₚв");
+    ui->tableWidget_2->item(10,1)->setText("λₚ₅");
+    ui->tableWidget_2->item(11,1)->setText("λₖ₀");
+    ui->tableWidget_2->item(12,1)->setText("λ₄₅");
+    ui->tableWidget_2->item(13,1)->setText("λ₅₀");
+    ui->tableWidget_2->item(14,1)->setText("λв₅");
 
     //запрет редактирования первого столбца
     for(int row = 0; row<ui->tableWidget_2->rowCount(); row++)
@@ -173,19 +193,24 @@ Tepl_dannie::Tepl_dannie(QWidget *parent) :
             ui->tableWidget_2->item(row,1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
             ui->tableWidget_2->item(row,1)->setTextAlignment(Qt::AlignCenter);
         }
+        if (ui->tableWidget_2->item(row,2) != 0)
+        {
+            ui->tableWidget_2->item(row,2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled|Qt::ItemIsEditable);
+            ui->tableWidget_2->item(row,2)->setTextAlignment(Qt::AlignCenter);
+        }
     }
 
-    QPalette p5=ui->tableWidget_2->palette();
-    p5.setColor(QPalette::Base, QColor(255, 255, 191));
-    p5.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
-    ui->tableWidget_2->setPalette(p5);
+    QPalette p2=ui->tableWidget_2->palette();
+    p2.setColor(QPalette::Base, QColor(255, 255, 191));
+    p2.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
+    ui->tableWidget_2->setPalette(p2);
 
     //Сохдание и заполнение таблицы проводимостей
-    ui->tableWidget_3->setRowCount(76);
-    ui->tableWidget_3->setColumnCount(2);
+    ui->tableWidget_3->setRowCount(10);
+    ui->tableWidget_3->setColumnCount(3);
     QStringList name_3;
-    name_3 << "Свойство" << "Значение";
-    ui->tableWidget_3->setHorizontalHeaderLabels(name_2);
+    name_3 << "Свойство" << "Обозначение" << "Значение";
+    ui->tableWidget_3->setHorizontalHeaderLabels(name_3);
     ui->tableWidget_3->horizontalHeader()->setSectionResizeMode(0,QHeaderView::Stretch);
     ui->tableWidget_3->setSelectionBehavior(QAbstractItemView :: SelectRows);
     ui->tableWidget_3->setSelectionMode(QAbstractItemView :: SingleSelection);
@@ -210,6 +235,18 @@ Tepl_dannie::Tepl_dannie(QWidget *parent) :
     ui->tableWidget_3->item(8,0)->setText("Температура в обмотке ротора");
     ui->tableWidget_3->item(9,0)->setText("Температура в обмотке вспомогательного ротора");
 
+    ui->tableWidget_3->item(0,1)->setText("θ₀");
+    ui->tableWidget_3->item(1,1)->setText("θ₁");
+    ui->tableWidget_3->item(2,1)->setText("θ₂");
+    ui->tableWidget_3->item(3,1)->setText("θ₃");
+    ui->tableWidget_3->item(4,1)->setText("θ₄");
+    ui->tableWidget_3->item(5,1)->setText("θ₅");
+    ui->tableWidget_3->item(6,1)->setText("θₖ");
+    ui->tableWidget_3->item(7,1)->setText("θс");
+    ui->tableWidget_3->item(8,1)->setText("θₚ");
+    ui->tableWidget_3->item(9,1)->setText("θв");
+
+
     //запрет редактирования первого столбца
     for(int row = 0; row<ui->tableWidget_3->rowCount(); row++)
     {
@@ -222,25 +259,31 @@ Tepl_dannie::Tepl_dannie(QWidget *parent) :
             ui->tableWidget_3->item(row,1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
             ui->tableWidget_3->item(row,1)->setTextAlignment(Qt::AlignCenter);
         }
+        if (ui->tableWidget_3->item(row,2) != 0)
+        {
+            ui->tableWidget_3->item(row,2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+            ui->tableWidget_3->item(row,2)->setTextAlignment(Qt::AlignCenter);
+        }
     }
 
-    QPalette p4=ui->tableWidget_3->palette();
-    p4.setColor(QPalette::Base, QColor(255, 255, 191));
-    p4.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
-    ui->tableWidget_3->setPalette(p4);
+    QPalette p3=ui->tableWidget_3->palette();
+    p3.setColor(QPalette::Base, QColor(255, 255, 191));
+    p3.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
+    ui->tableWidget_3->setPalette(p3);
 
 
     //Сохдание и заполнение таблицы проводимостей
-    ui->tableWidget_4->setRowCount(16);
-    ui->tableWidget_4->setColumnCount(2);
+    ui->tableWidget_4->setRowCount(10);
+    ui->tableWidget_4->setColumnCount(3);
     QStringList name_4;
-    name_4 << "Свойство" << "Значение";
-    ui->tableWidget_4->setHorizontalHeaderLabels(name_2);
+    name_4 << "Свойство" << "Обозначение" << "Значение";
+    ui->tableWidget_4->setHorizontalHeaderLabels(name_4);
     ui->tableWidget_4->horizontalHeader()->setSectionResizeMode(0,QHeaderView::Stretch);
     ui->tableWidget_4->setSelectionBehavior(QAbstractItemView :: SelectRows);
     ui->tableWidget_4->setSelectionMode(QAbstractItemView :: SingleSelection);
     ui->tableWidget_4->verticalHeader()->setVisible(true);
     ui->tableWidget_4->setColumnWidth(1, 100);
+
     for(int row = 0; row<ui->tableWidget_4->rowCount(); row++)
     {
         for(int column = 0; column<ui->tableWidget_4->columnCount(); column++)
@@ -260,6 +303,17 @@ Tepl_dannie::Tepl_dannie(QWidget *parent) :
     ui->tableWidget_4->item(8,0)->setText("Температура в обмотке ротора");
     ui->tableWidget_4->item(9,0)->setText("Температура в обмотке вспомогательного ротора");
 
+    ui->tableWidget_4->item(0,1)->setText("C₀");
+    ui->tableWidget_4->item(1,1)->setText("C₁");
+    ui->tableWidget_4->item(2,1)->setText("C₂");
+    ui->tableWidget_4->item(3,1)->setText("C₃");
+    ui->tableWidget_4->item(4,1)->setText("C₄");
+    ui->tableWidget_4->item(5,1)->setText("C₅");
+    ui->tableWidget_4->item(6,1)->setText("Cₖ");
+    ui->tableWidget_4->item(7,1)->setText("Cс");
+    ui->tableWidget_4->item(8,1)->setText("Cₚ");
+    ui->tableWidget_4->item(9,1)->setText("Cв");
+
     //запрет редактирования первого столбца
     for(int row = 0; row<ui->tableWidget_4->rowCount(); row++)
     {
@@ -272,12 +326,17 @@ Tepl_dannie::Tepl_dannie(QWidget *parent) :
             ui->tableWidget_4->item(row,1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
             ui->tableWidget_4->item(row,1)->setTextAlignment(Qt::AlignCenter);
         }
+        if (ui->tableWidget_4->item(row,2) != 0)
+        {
+            ui->tableWidget_4->item(row,2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+            ui->tableWidget_4->item(row,2)->setTextAlignment(Qt::AlignCenter);
+        }
     }
 
-    QPalette p55=ui->tableWidget_4->palette();
-    p55.setColor(QPalette::Base, QColor(255, 255, 191));
-    p55.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
-    ui->tableWidget_4->setPalette(p55);
+    QPalette p4=ui->tableWidget_4->palette();
+    p4.setColor(QPalette::Base, QColor(255, 255, 191));
+    p4.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
+    ui->tableWidget_4->setPalette(p4);
 
     CustomHelpDelegate* customHelpDelegate = new CustomHelpDelegate(this); //создание делегата для создания комбобоксов
     ui->tableWidget->setItemDelegateForColumn(0, customHelpDelegate);

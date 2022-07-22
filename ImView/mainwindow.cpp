@@ -4244,26 +4244,26 @@ void MainWindow::on_tepl_result_clicked()
     teta_1=gsl_vector_get(x, 1);
     teta_2=gsl_vector_get(x, 2);
     teta_3=gsl_vector_get(x, 3);
-    //teta_4=gsl_vector_get(x, 4);
-    //teta_5=gsl_vector_get(x, 5);
-    //teta_k=gsl_vector_get(x, 6);
-    //teta_c=gsl_vector_get(x, 7);
-    //teta_p=gsl_vector_get(x, 8);
-    //teta_v=gsl_vector_get(x, 9);
+    teta_4=gsl_vector_get(x, 0);
+    teta_5=gsl_vector_get(x, 1);
+    teta_k=gsl_vector_get(x, 2);
+    teta_c=gsl_vector_get(x, 3);
+    teta_p=gsl_vector_get(x, 0);
+    teta_v=gsl_vector_get(x, 1);
 
     gsl_permutation_free (p);
     gsl_vector_free (x);
 
-    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(0,1)->setText(QString::number(teta_0,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(1,1)->setText(QString::number(teta_1,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(2,1)->setText(QString::number(teta_2,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(3,1)->setText(QString::number(teta_3,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(4,1)->setText(QString::number(teta_4,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(5,1)->setText(QString::number(teta_5,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(6,1)->setText(QString::number(teta_k,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(7,1)->setText(QString::number(teta_c,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(8,1)->setText(QString::number(teta_p,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(9,1)->setText(QString::number(teta_v,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(0,2)->setText(QString::number(teta_0,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(1,2)->setText(QString::number(teta_1,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(2,2)->setText(QString::number(teta_2,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(3,2)->setText(QString::number(teta_3,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(4,2)->setText(QString::number(teta_4,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(5,2)->setText(QString::number(teta_5,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(6,2)->setText(QString::number(teta_k,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(7,2)->setText(QString::number(teta_c,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(8,2)->setText(QString::number(teta_p,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_3->item(9,2)->setText(QString::number(teta_v,'f',3));
 
     //вывод тепловых проводимостей в таблицу
     lambda_10=0.034;
@@ -4282,21 +4282,21 @@ void MainWindow::on_tepl_result_clicked()
     lambda_50=0.93;
     lambda_b5=0.043;
 
-    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(0,1)->setText(QString::number(lambda_10,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(1,1)->setText(QString::number(lambda_21,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(2,1)->setText(QString::number(lambda_c2,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(3,1)->setText(QString::number(lambda_p2,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(4,1)->setText(QString::number(lambda_30,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(5,1)->setText(QString::number(lambda_c3,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(6,1)->setText(QString::number(lambda_p3,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(7,1)->setText(QString::number(lambda_3k,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(8,1)->setText(QString::number(lambda_c4,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(9,1)->setText(QString::number(lambda_pb,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(10,1)->setText(QString::number(lambda_p5,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(11,1)->setText(QString::number(lambda_k0,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(12,1)->setText(QString::number(lambda_45,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(13,1)->setText(QString::number(lambda_50,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(14,1)->setText(QString::number(lambda_b5,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(0,2)->setText(QString::number(lambda_10,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(1,2)->setText(QString::number(lambda_21,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(2,2)->setText(QString::number(lambda_c2,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(3,2)->setText(QString::number(lambda_p2,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(4,2)->setText(QString::number(lambda_30,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(5,2)->setText(QString::number(lambda_c3,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(6,2)->setText(QString::number(lambda_p3,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(7,2)->setText(QString::number(lambda_3k,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(8,2)->setText(QString::number(lambda_c4,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(9,2)->setText(QString::number(lambda_pb,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(10,2)->setText(QString::number(lambda_p5,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(11,2)->setText(QString::number(lambda_k0,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(12,2)->setText(QString::number(lambda_45,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(13,2)->setText(QString::number(lambda_50,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_2->item(14,2)->setText(QString::number(lambda_b5,'f',3));
 
     //вывод тоеплоемкостей в таблицу
     C_0=0.034;
@@ -4310,16 +4310,16 @@ void MainWindow::on_tepl_result_clicked()
     C_p=0.56;
     C_v=0.059;
 
-    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(0,1)->setText(QString::number(C_0,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(1,1)->setText(QString::number(C_1,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(2,1)->setText(QString::number(C_2,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(3,1)->setText(QString::number(C_3,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(4,1)->setText(QString::number(C_4,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(5,1)->setText(QString::number(C_5,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(6,1)->setText(QString::number(C_k,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(7,1)->setText(QString::number(C_c,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(8,1)->setText(QString::number(C_p,'f',3));
-    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(9,1)->setText(QString::number(C_v,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(0,2)->setText(QString::number(C_0,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(1,2)->setText(QString::number(C_1,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(2,2)->setText(QString::number(C_2,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(3,2)->setText(QString::number(C_3,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(4,2)->setText(QString::number(C_4,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(5,2)->setText(QString::number(C_5,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(6,2)->setText(QString::number(C_k,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(7,2)->setText(QString::number(C_c,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(8,2)->setText(QString::number(C_p,'f',3));
+    ui->widget_5->ui->widget_2->ui->tableWidget_4->item(9,2)->setText(QString::number(C_v,'f',3));
 
 
 }
