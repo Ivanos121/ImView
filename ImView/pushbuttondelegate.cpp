@@ -170,9 +170,10 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
     else if ((index.parent().row() == 3) && (index.row() == 1))
     {
         QComboBox *editor = new QComboBox(parent);
-        editor->insertItem(0, "Статика (упрощенный вариант)");
-        editor->insertItem(1, "Статика (полный вариант)");
-        editor->insertItem(2, "Динамика");
+        editor->insertItem(0, "Статика (статор)");
+        editor->insertItem(1, "Статика (упрощенный вариант)");
+        editor->insertItem(2, "Статика (полный вариант)");
+        editor->insertItem(3, "Динамика");
         return editor;
     }
     else if ((index.parent().row() == 3) && (index.row() == 2))
@@ -406,12 +407,14 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
     {
         QString value = index.model()->data(index, Qt::DisplayRole).toString();
         QComboBox *comboBox = static_cast<QComboBox*>(editor);
-        if(value == "Статика (упрощенный вариант)")
+        if(value == "Статика (статор)")
             comboBox->setCurrentIndex(0);
-        else if(value == "Статика (полный вариант)")
+        if(value == "Статика (упрощенный вариант)")
             comboBox->setCurrentIndex(1);
-        else if(value == "Динамика")
+        else if(value == "Статика (полный вариант)")
             comboBox->setCurrentIndex(2);
+        else if(value == "Динамика")
+            comboBox->setCurrentIndex(3);
         int width=comboBox->minimumSizeHint().width();
         comboBox->view()->setMinimumWidth(width);
     }
