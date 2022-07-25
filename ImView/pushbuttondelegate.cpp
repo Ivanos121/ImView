@@ -173,7 +173,8 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         editor->insertItem(0, "Статика (статор)");
         editor->insertItem(1, "Статика (упрощенный вариант)");
         editor->insertItem(2, "Статика (полный вариант)");
-        editor->insertItem(3, "Динамика");
+        editor->insertItem(3, "Динамика (расчет)");
+        editor->insertItem(4, "Динамика (эксперимент)");
         return editor;
     }
     else if ((index.parent().row() == 3) && (index.row() == 2))
@@ -413,8 +414,10 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
             comboBox->setCurrentIndex(1);
         else if(value == "Статика (полный вариант)")
             comboBox->setCurrentIndex(2);
-        else if(value == "Динамика")
+        else if(value == "Динамика (расчет)")
             comboBox->setCurrentIndex(3);
+        else if(value == "Динамика (эксперимент)")
+            comboBox->setCurrentIndex(4);
         int width=comboBox->minimumSizeHint().width();
         comboBox->view()->setMinimumWidth(width);
     }

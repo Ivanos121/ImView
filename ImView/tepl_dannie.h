@@ -17,8 +17,6 @@ public:
     ~Tepl_dannie();
 
     Ui::Tepl_dannie *ui;
-
-    void on_tableWidget_cellChanged(int row, int column);
 };
 
 #endif // TEPL_DANNIE_H

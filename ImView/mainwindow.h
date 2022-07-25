@@ -115,6 +115,8 @@ private slots:
     void on_radioButton_6_toggled(bool checked);
     void on_radioButton_7_toggled(bool checked);
     void on_radioButton_8_toggled(bool checked);
+    void on_radioButton_9_toggled(bool checked);
+    void on_radioButton_10_toggled(bool checked);
 
     void on_save_electromagn_graph_file_clicked();
 
@@ -122,7 +124,7 @@ private slots:
 
     void on_save_tepl_graph_file_clicked();
 
-    void on_radioButton_9_toggled(bool checked);
+
 
 public:
     Ui::MainWindow *ui;

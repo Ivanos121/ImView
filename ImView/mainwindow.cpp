@@ -58,7 +58,8 @@ Model modelss;
 double teta_0,teta_1,teta_2,teta_3,teta_4,teta_5,teta_k,teta_c,teta_p, teta_v, teta_z, teta_l_1, teta_l_2, teta_pp;
 double lambda_10, lambda_21, lambda_c2,lambda_p2,lambda_30,lambda_c3,lambda_p3,lambda_3k,lambda_c4,lambda_pb,lambda_p5,
 lambda_k0,lambda_45,lambda_50,lambda_b5,lambda_pz, lambda_zc, lambda_pc, lambda_ppz, lambda_lc, lambda_l4, lambda_pl, lambda_lp;
-double C_0,C_1,C_2,C_3,C_4,C_5,C_k,C_c,C_p,C_v;
+double C_0,C_1,C_2,C_3,C_4,C_5,C_k,C_c,C_p,C_v,C_z,C_pp,C_l_1,C_l_2;
+double P_0,P_1,P_2,P_3,P_4,P_5,P_c,P_k,P_p,P_z,P_pp,P_l_1,P_l_2,P_v;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -2773,36 +2774,34 @@ void MainWindow::on_radioButton_toggled(bool checked)
         {
             if (checked)
             {
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1115').text('θₚ');"));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text931').text('θz');"));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text851').text('θ₃');"));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text867').text('θc');"));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text975').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">л</tspan>');"));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text943').text('θп');"));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1011').text('θл');"));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1065').text('θс');"));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1097').text('θ₄');"));
-                QMessageBox::information(this, "вариант 2!", "Статика (статор)");
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1115').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">p</tspan>');"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text931').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">z</tspan>');"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text851').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">3</tspan>');"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text867').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">c</tspan>');"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text975').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">л1</tspan>');"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text943').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">п</tspan>');"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1011').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">л2</tspan>');"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1065').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">с</tspan>');"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1097').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">4</tspan>');"));
             }
         }
         else if (item30->text() == "Статика (упрощенный вариант)")
         {
             if (checked)
             {
-                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1231').text('θ₀');"));
-                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text827').text('θ₀');"));
-                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1037').text('θ₀');"));
-                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1239').text('θ₀');"));
-                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1007').text('θ₁');"));
-                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1361').text('θ₂');"));
-                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text839').text('θ₃');"));
-                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1145').text('θₖ');"));
-                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text863').text('θс');"));
-                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text919').text('θ₄');"));
-                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text939').text('θ₅');"));
-                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text971').text('θв');"));
-                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text947').text('θₚ');"));
-                QMessageBox::information(this, "вариант 2!", "Статика (упрощенный вариант)");
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1231').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">0</tspan>');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text827').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">0</tspan>');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1037').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">0</tspan>');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1239').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">0</tspan>');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1007').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">1</tspan>');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1361').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">2</tspan>');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text839').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">3</tspan>');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1145').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">к</tspan>');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text863').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">с</tspan>');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text919').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">4</tspan>');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text939').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">5</tspan>');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text971').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">в</tspan>');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text947').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">р</tspan>');"));
            }
         }
         else if (item30->text() == "Статика (полный вариант)")
@@ -2810,13 +2809,6 @@ void MainWindow::on_radioButton_toggled(bool checked)
             if (checked)
             {
                 QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
-            }
-        }
-        else if (item30->text() == "Динамика")
-        {
-            if (checked)
-            {
-                QMessageBox::information(this, "вариант 4!", "динамика");
             }
         }
     }
@@ -2843,7 +2835,7 @@ void MainWindow::on_radioButton_2_toggled(bool checked)
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1011' ).text('%1 °C');").arg(teta_3, 0, 'f', 2));
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1065').text('%1 °C');").arg(teta_4, 0, 'f', 2));
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1097' ).text('%1 °C');").arg(teta_5, 0, 'f', 2));
-            }
+             }
         }
         if (item30->text() == "Статика (упрощенный вариант)")
         {
@@ -2862,7 +2854,6 @@ void MainWindow::on_radioButton_2_toggled(bool checked)
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text939' ).text('%1 °C');").arg(teta_c, 0, 'f', 2));
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text971' ).text('%1 °C');").arg(teta_p, 0, 'f', 2));
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text947' ).text('%1 °C');").arg(teta_v, 0, 'f', 2));
-                QMessageBox::information(this, "вариант 2!", "Статика (упрощенный вариант)");
             }
         }
         else if (item30->text() == "Статика (полный вариант)")
@@ -2870,13 +2861,6 @@ void MainWindow::on_radioButton_2_toggled(bool checked)
             if (checked)
             {
                 QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
-            }
-        }
-        else if (item30->text() == "Динамика")
-        {
-            if (checked)
-            {
-                QMessageBox::information(this, "вариант 4!", "динамика");
             }
         }
     }
@@ -2894,35 +2878,55 @@ void MainWindow::on_radioButton_3_toggled(bool checked)
         {
             if (checked)
             {
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1115').text('%1 Дж');").arg(2000.00, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text931').text('%1 Дж');").arg(1500.00, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text851').text('%1 Дж');").arg(500.00, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text867').text('%1 Дж');").arg(800.00, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text975').text('%1 Дж');").arg(400.00, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text943').text('%1 Дж');").arg(400.00, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1011').text('%1 Дж');").arg(400.00, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1065').text('%1 Дж');").arg(1500.00, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1097').text('%1 Дж');").arg(500.00, 0, 'f', 2));
-             }
+                C_2=0.034;
+                C_3=0.35;
+                C_4=0.23;
+                C_c=0.034;
+                C_p=0.067;
+                C_z=0.067;
+                C_pp=0.67;
+                C_l_1=0.56;
+                C_l_2=0.059;
+
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1115').text('%1 Дж/К');").arg(C_2, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text931').text('%1 Дж/К');").arg(C_3, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text851').text('%1 Дж/К');").arg(C_4, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text867').text('%1 Дж/К');").arg(C_c, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text975').text('%1 Дж/К');").arg(C_p, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text943').text('%1 Дж/К');").arg(C_z, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1011').text('%1 Дж/К');").arg(C_pp, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1065').text('%1 Дж/К');").arg(C_l_1, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1097').text('%1 Дж/К');").arg(C_l_2, 0, 'f', 2));
+            }
         }
         if (item30->text() == "Статика (упрощенный вариант)")
         {
     if (checked)
     {
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1231').text('%1 Дж');").arg(2000.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text827').text('%1 Дж');").arg(1500.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1037').text('%1 Дж');").arg(500.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1239').text('%1 Дж');").arg(800.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1007').text('%1 Дж');").arg(400.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1361').text('%1 Дж');").arg(400.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text839').text('%1 Дж');").arg(400.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1145').text('%1 Дж');").arg(1500.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text863').text('%1 Дж');").arg(500.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text919').text('%1 Дж');").arg(800.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text939').text('%1 Дж');").arg(400.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text971').text('%1 Дж');").arg(500.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text947').text('%1 Дж');").arg(200.00, 0, 'f', 2));
-        QMessageBox::information(this, "вариант 2!", "Статика (упрощенный вариант)");
+        C_0=0.034;
+        C_1=0.35;
+        C_2=0.23;
+        C_3=0.021;
+        C_4=0.034;
+        C_5=0.067;
+        C_k=0.067;
+        C_c=0.67;
+        C_p=0.56;
+        C_v=0.059;
+
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1231').text('%1 Дж/К');").arg(C_0, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text827').text('%1 Дж/К');").arg(C_0, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1037').text('%1 Дж/К');").arg(C_0, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1239').text('%1 Дж/К');").arg(C_0, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1007').text('%1 Дж/К');").arg(C_1, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1361').text('%1 Дж/К');").arg(C_2, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text839').text('%1 Дж/К');").arg(C_3, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1145').text('%1 Дж/К');").arg(C_4, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text863').text('%1 Дж/К');").arg(C_5, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text919').text('%1 Дж/К');").arg(C_k, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text939').text('%1 Дж/К');").arg(C_c, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text971').text('%1 Дж/К');").arg(C_p, 0, 'f', 2));
+        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text947').text('%1 Дж/К');").arg(C_v, 0, 'f', 2));
     }
         }
         else if (item30->text() == "Статика (полный вариант)")
@@ -2930,13 +2934,6 @@ void MainWindow::on_radioButton_3_toggled(bool checked)
             if (checked)
             {
                 QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
-            }
-        }
-        else if (item30->text() == "Динамика")
-        {
-            if (checked)
-            {
-                QMessageBox::information(this, "вариант 4!", "динамика");
             }
         }
     }
@@ -2954,21 +2951,57 @@ void MainWindow::on_radioButton_4_toggled(bool checked)
         {
             if (checked)
             {
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1115').text('%1 Вт');").arg(300.00, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text931').text('%1 Вт');").arg(200.00, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text851').text('%1 Вт');").arg(100.00, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text867').text('%1 Вт');").arg(800.00, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text975').text('%1 Вт');").arg(500.00, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text943').text('%1 Вт');").arg(600.00, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1011').text('%1 Вт');").arg(880.00, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1065').text('%1 Вт');").arg(200.00, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1097').text('%1 Вт');").arg(100.00, 0, 'f', 2));
+                P_2=0.034;
+                P_3=0.35;
+                P_4=0.23;
+                P_c=0.034;
+                P_p=0.067;
+                P_z=0.067;
+                P_pp=0.67;
+                P_l_1=0.56;
+                P_l_2=0.059;
+
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1115').text('%1 Вт');").arg(P_2, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text931').text('%1 Вт');").arg(P_3, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text851').text('%1 Вт');").arg(P_4, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text867').text('%1 Вт');").arg(P_c, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text975').text('%1 Вт');").arg(P_p, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text943').text('%1 Вт');").arg(P_z, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1011').text('%1 Вт');").arg(P_pp, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1065').text('%1 Вт');").arg(P_l_1, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1097').text('%1 Вт');").arg(P_l_2, 0, 'f', 2));
             }
         }
         if (item30->text() == "Статика (упрощенный вариант)")
         {
             if (checked)
             {
+                P_0=0.034;
+                P_1=0.35;
+                P_2=0.23;
+                P_3=0.021;
+                P_4=0.034;
+                P_5=0.067;
+                P_k=0.067;
+                P_c=0.67;
+                P_p=0.56;
+                P_v=0.059;
+
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1231').text('%1 Вт');").arg(P_0, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text827'). text('%1 Вт');").arg(P_0, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1037').text('%1 Вт');").arg(P_0, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1239').text('%1 Вт');").arg(P_0, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1007').text('%1 Вт');").arg(P_1, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1361').text('%1 Вт');").arg(P_2, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text839'). text('%1 Вт');").arg(P_3, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1145').text('%1 Вт');").arg(P_4, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text863'). text('%1 Вт');").arg(P_5, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text919'). text('%1 Вт');").arg(P_k, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text939'). text('%1 Вт');").arg(P_c, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text971'). text('%1 Вт');").arg(P_p, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text947'). text('%1 Вт');").arg(P_v, 0, 'f', 2));
+
+
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1231').text('%1 Вт');").arg(300.00, 0, 'f', 2));
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text827').text('%1 Вт');").arg(200.00, 0, 'f', 2));
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1037').text('%1 Вт');").arg(100.00, 0, 'f', 2));
@@ -2982,7 +3015,6 @@ void MainWindow::on_radioButton_4_toggled(bool checked)
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text939').text('%1 Вт');").arg(600.00, 0, 'f', 2));
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text971').text('%1 Вт');").arg(200.00, 0, 'f', 2));
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text947').text('%1 Вт');").arg(100.00, 0, 'f', 2));
-                QMessageBox::information(this, "вариант 2!", "Статика (упрощенный вариант)");
             }
         }
         else if (item30->text() == "Статика (полный вариант)")
@@ -2990,13 +3022,6 @@ void MainWindow::on_radioButton_4_toggled(bool checked)
             if (checked)
             {
                 QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
-            }
-        }
-        else if (item30->text() == "Динамика")
-        {
-            if (checked)
-            {
-                QMessageBox::information(this, "вариант 4!", "динамика");
             }
         }
     }
@@ -3014,38 +3039,36 @@ void MainWindow::on_radioButton_5_toggled(bool checked)
         {
             if (checked)
             {
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1131').text('λpz');"));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text891').text('λzc');"));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text843').text('λc3');"));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text915').text('λпс');"));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text993').text('λпz');"));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1053').text('λлс');"));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1085').text('λл4');"));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text967').text('λпл');"));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1029').text('λлп');"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1131').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">zр</tspan>');"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text891').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">zc</tspan>');"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text843').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">c3</tspan>');"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text915').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">пс</tspan>');"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text993').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">пz</tspan>');"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1053').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">л2с</tspan>');"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1085').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">л14</tspan>');"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text967').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">пл1</tspan>');"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1029').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">пл2</tspan>');"));
             }
         }
         else if (item30->text() == "Статика (упрощенный вариант)")
         {
             if (checked)
             {
-                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1223').text('λ₁₀');"));
-                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text883').text('λ₃₀');"));
-                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1195').text('λₖ₀');"));
-                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1113').text('λ₅₀');"));
-                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1153').text('λ₃ₖ');"));
-                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1025').text('λ₂₁');"));
-                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1053').text('λс₂');"));
-
-                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text891').text('λс₂');"));
-                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1101').text('λс₄');"));
-                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1093').text('λ₄₅');"));
-                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1065').text('λₚ₂');"));
-                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1073').text('λₚв');"));
-                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1081').text('λв₅');"));
-                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1253').text('λₚ₅');"));
-                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1171').text('λₚ₅');"));
-                QMessageBox::information(this, "вариант 2!", "Статика (упрощенный вариант)");
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1223').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">10</tspan>');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text883').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">30</tspan>');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1195').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">к0</tspan>');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1113').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">50</tspan>');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1153').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">3к</tspan>');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1025').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">21</tspan>');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1053').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">с2</tspan>');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text891').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">с2</tspan>');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1101').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">с4</tspan>');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1093').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">45</tspan>');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1065').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">р2</tspan>');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1073').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">рв</tspan>');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1081').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">в5</tspan>');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1253').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">р5</tspan>');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1171').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">р5</tspan>');"));
             }
         }
         else if (item30->text() == "Статика (полный вариант)")
@@ -3053,13 +3076,6 @@ void MainWindow::on_radioButton_5_toggled(bool checked)
             if (checked)
             {
                 QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
-            }
-        }
-        else if (item30->text() == "Динамика")
-        {
-            if (checked)
-            {
-                QMessageBox::information(this, "вариант 4!", "динамика");
             }
         }
     }
@@ -3108,7 +3124,6 @@ void MainWindow::on_radioButton_6_toggled(bool checked)
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1253').text('%1 Вт/°C');").arg(lambda_45, 0, 'f', 2));
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1171').text('%1 Вт/°C');").arg(lambda_50, 0, 'f', 2));
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1081').text('%1 Вт/°C');").arg(lambda_b5, 0, 'f', 2));
-                QMessageBox::information(this, "вариант 2!", "Статика (упрощенный вариант)");
             }
         }
         else if (item30->text() == "Статика (полный вариант)")
@@ -3116,13 +3131,6 @@ void MainWindow::on_radioButton_6_toggled(bool checked)
             if (checked)
             {
                 QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
-            }
-        }
-        else if (item30->text() == "Динамика")
-        {
-            if (checked)
-            {
-                QMessageBox::information(this, "вариант 4!", "динамика");
             }
         }
     }
@@ -3171,7 +3179,6 @@ void MainWindow::on_radioButton_7_toggled(bool checked)
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1081').text('%1 Дж');").arg(200.00, 0, 'f', 2));
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1253').text('%1 Дж');").arg(200.00, 0, 'f', 2));
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1171').text('%1 Дж');").arg(200.00, 0, 'f', 2));
-                QMessageBox::information(this, "вариант 2!", "Статика (упрощенный вариант)");
             }
         }
         else if (item30->text() == "Статика (полный вариант)")
@@ -3179,13 +3186,6 @@ void MainWindow::on_radioButton_7_toggled(bool checked)
             if (checked)
             {
                 QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
-            }
-        }
-        else if (item30->text() == "Динамика")
-        {
-            if (checked)
-            {
-                QMessageBox::information(this, "вариант 4!", "динамика");
             }
         }
     }
@@ -3219,7 +3219,6 @@ void MainWindow::on_radioButton_8_toggled(bool checked)
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1081').text('%1 Вт');").arg(100.00, 0, 'f', 2));
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1253').text('%1 Вт');").arg(100.00, 0, 'f', 2));
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1171').text('%1 Вт');").arg(100.00, 0, 'f', 2));
-                QMessageBox::information(this, "вариант 2!", "Статика (упрощенный вариант)");
             }
         }
         else if (item30->text() == "Статика (полный вариант)")
@@ -3229,11 +3228,175 @@ void MainWindow::on_radioButton_8_toggled(bool checked)
                 QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
             }
         }
-        else if (item30->text() == "Динамика")
+    }
+}
+
+void MainWindow::on_radioButton_9_toggled(bool checked)
+{
+    if (item30->text() == "Выберите режим")
+    {
+        QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
+    }
+    else
+    {
+        if (item30->text() == "Статика (статор)")
         {
             if (checked)
             {
-                QMessageBox::information(this, "вариант 4!", "динамика");
+                //ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1131').hide();"));
+
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1115').hide();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text931').hide();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text851').hide();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text867').hide();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text975').hide();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text943').hide();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1011').hide();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1065').hide();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1097').hide();"));
+            }
+            else
+            {
+                //ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1131').show();"));
+
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1115').show();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text931').show();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text851').show();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text867').show();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text975').show();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text943').show();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1011').show();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1065').show();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1097').show();"));
+
+            }
+        }
+        else if (item30->text() == "Статика (упрощенный вариант)")
+        {
+            if (checked)
+            {
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1231').hide();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text827').hide();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1037').hide();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1239').hide();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1007').hide();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1361').hide();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text839').hide();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1145').hide();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text863').hide();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text919').hide();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text939').hide();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text971').hide();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text947').hide();"));
+            }
+            else
+            {
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1231').show();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text827').show();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1037').show();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1239').show();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1007').show();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1361').show();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text839').show();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1145').show();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text863').show();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text919').show();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text939').show();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text971').show();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text947').show();"));
+            }
+        }
+        else if (item30->text() == "Статика (полный вариант)")
+        {
+            if (checked)
+            {
+                QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
+            }
+        }
+    }
+}
+
+void MainWindow::on_radioButton_10_toggled(bool checked)
+{
+    if (item30->text() == "Выберите режим")
+    {
+        QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
+    }
+    else
+    {
+        if (item30->text() == "Статика (статор)")
+        {
+            if (checked)
+            {
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1131').hide();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text891').hide();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text843').hide();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text915').hide();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text993').hide();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1053').hide();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1085').hide();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text967').hide();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1029').hide();"));
+            }
+            else
+            {
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1131').show();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text891').show();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text843').show();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text915').show();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text993').show();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1053').show();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1085').show();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text967').show();"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1029').show();"));
+            }
+        }
+        else if (item30->text() == "Статика (упрощенный вариант)")
+        {
+            if (checked)
+            {
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1223').hide();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text883').hide();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1195').hide();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1113').hide();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1153').hide();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1025').hide();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1053').hide();"));
+
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text891').hide();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1101').hide();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1093').hide();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1065').hide();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1073').hide();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1081').hide();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1253').hide();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1171').hide();"));
+            }
+            else
+            {
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1223').show();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text883').show();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1195').show();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1113').show();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1153').show();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1025').show();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1053').show();"));
+
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text891').show();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1101').show();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1093').show();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1065').show();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1073').show();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1081').show();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1253').show();"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1171').show();"));
+            }
+        }
+        else if (item30->text() == "Статика (полный вариант)")
+        {
+            if (checked)
+            {
+                QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
             }
         }
     }
@@ -4558,17 +4721,11 @@ void MainWindow::on_tepl_result_clicked()
             double b_data[] = { 1.0, 2.0, 3.0, 4.0 };
 
             gsl_matrix_view m = gsl_matrix_view_array (a_data, 4, 4);
-
             gsl_vector_view b = gsl_vector_view_array (b_data, 4);
-
             gsl_vector *x = gsl_vector_alloc (4);
-
             int s;
-
             gsl_permutation * p = gsl_permutation_alloc (4);
-
             gsl_linalg_LU_decomp (&m.matrix, p, &s);
-
             gsl_linalg_LU_solve (&m.matrix, p, &b.vector, x);
 
             //ВЫВОД ДАННЫХ В ТАБЛИЦЫ
@@ -4619,29 +4776,25 @@ void MainWindow::on_tepl_result_clicked()
             ui->widget_5->ui->widget_2->ui->tableWidget_2->item(8,2)->setText(QString::number(lambda_lp,'f',3));
 
             //вывод тоеплоемкостей в таблицу
-            C_0=0.034;
-            C_1=0.35;
-            C_2=0.23;
-            C_3=0.021;
-            C_4=0.034;
-            C_5=0.067;
-            C_k=0.067;
-            C_c=0.67;
-            C_p=0.56;
-            C_v=0.059;
+            C_2=0.034;
+            C_3=0.35;
+            C_4=0.23;
+            C_c=0.034;
+            C_p=0.067;
+            C_z=0.067;
+            C_pp=0.67;
+            C_l_1=0.56;
+            C_l_2=0.059;
 
-            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(0,2)->setText(QString::number(C_0,'f',3));
-            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(1,2)->setText(QString::number(C_1,'f',3));
-            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(2,2)->setText(QString::number(C_2,'f',3));
-            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(3,2)->setText(QString::number(C_3,'f',3));
-            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(4,2)->setText(QString::number(C_4,'f',3));
-            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(5,2)->setText(QString::number(C_5,'f',3));
-            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(6,2)->setText(QString::number(C_k,'f',3));
-            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(7,2)->setText(QString::number(C_c,'f',3));
-            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(8,2)->setText(QString::number(C_p,'f',3));
-            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(9,2)->setText(QString::number(C_v,'f',3));
-
-            QMessageBox::information(this, "вариант 2!", "Статика (статор)");
+            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(0,2)->setText(QString::number(C_2,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(1,2)->setText(QString::number(C_3,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(2,2)->setText(QString::number(C_4,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(3,2)->setText(QString::number(C_c,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(4,2)->setText(QString::number(C_p,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(5,2)->setText(QString::number(C_z,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(6,2)->setText(QString::number(C_pp,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(7,2)->setText(QString::number(C_l_1,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(8,2)->setText(QString::number(C_l_2,'f',3));
         }
 
         if (item30->text() == "Статика (упрощенный вариант)")
@@ -4850,12 +5003,7 @@ void MainWindow::on_tepl_result_clicked()
         {
             QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
         }
-        if (item30->text() == "Динамика")
-        {
-            QMessageBox::information(this, "вариант 4!", "динамика");
-        }
     }
-
 }
 
 void MainWindow::on_save_electromagn_graph_file_clicked()
@@ -4910,49 +5058,4 @@ void MainWindow::on_save_tepl_graph_file_clicked()
     ui->widget_5->ui->widget_4->ui->plot->grab().save(fileName);
 }
 
-
-void MainWindow::on_radioButton_9_toggled(bool checked)
-{
-    if (item30->text() == "Выберите режим")
-    {
-        QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
-    }
-    else
-    {
-        if (item30->text() == "Статика (статор)")
-        {
-            if (checked)
-            {
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1131').hide();"));
-
-            }
-            else
-            {
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1131').show();"));
-
-            }
-        }
-        else if (item30->text() == "Статика (упрощенный вариант)")
-        {
-            if (checked)
-            {
-                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1223').text('%1 Дж');").arg(2000.00, 0, 'f', 2));
-                            }
-        }
-        else if (item30->text() == "Статика (полный вариант)")
-        {
-            if (checked)
-            {
-                QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
-            }
-        }
-        else if (item30->text() == "Динамика")
-        {
-            if (checked)
-            {
-                QMessageBox::information(this, "вариант 4!", "динамика");
-            }
-        }
-    }
-}
 
