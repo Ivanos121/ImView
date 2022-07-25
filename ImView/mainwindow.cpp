@@ -1,3 +1,4 @@
+#include "qimagewriter.h"
 #include "ui_mainwindow.h"
 #include "mainwindow.h"
 
@@ -54,11 +55,10 @@
 Base base;
 Base_tepl base_tepl;
 Model modelss;
-double teta_0,teta_1,teta_2,teta_3,teta_4,teta_5,teta_k,teta_c,teta_p, teta_v;
+double teta_0,teta_1,teta_2,teta_3,teta_4,teta_5,teta_k,teta_c,teta_p, teta_v, teta_z, teta_l_1, teta_l_2, teta_pp;
 double lambda_10, lambda_21, lambda_c2,lambda_p2,lambda_30,lambda_c3,lambda_p3,lambda_3k,lambda_c4,lambda_pb,lambda_p5,
-lambda_k0,lambda_45,lambda_50,lambda_b5;
+lambda_k0,lambda_45,lambda_50,lambda_b5,lambda_pz, lambda_zc, lambda_pc, lambda_ppz, lambda_lc, lambda_l4, lambda_pl, lambda_lp;
 double C_0,C_1,C_2,C_3,C_4,C_5,C_k,C_c,C_p,C_v;
-
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -1331,6 +1331,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->tabWidget, &QTabWidget::currentChanged, this,&MainWindow::tabClicked);
     connect(ui->widget_5->ui->tabWidget, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_2);
+    connect(ui->widget_5->ui->tabWidget_2, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_3);
 
 }
 
@@ -2247,6 +2248,14 @@ void MainWindow::on_SaveProgectToFile_clicked()
     xmlWriter.writeAttribute("value", (item28->text()));
     xmlWriter.writeEndElement();
 
+    xmlWriter.writeStartElement("combobox_6");
+    xmlWriter.writeAttribute("value", (item30->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("time_step");
+    xmlWriter.writeAttribute("value", (item107->text()));
+    xmlWriter.writeEndElement();
+
     xmlWriter.writeEndElement();
     xmlWriter.writeEndElement();
     xmlWriter.writeEndElement();
@@ -2568,10 +2577,32 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-             }
-        xmlReader.readNext(); // Переходим к следующему элементу файла
+                else if(xmlReader.name() == "combobox_6")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item30->setText(attribute_value);
+                        }
+                    }
+                }
+                if(xmlReader.name() == "time_step")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item107->setText(attribute_value);
+                        }
+                    }
+                }
+            }
+            xmlReader.readNext(); // Переходим к следующему элементу файла
         }
-    file.close(); // Закрываем файл
+        file.close(); // Закрываем файл
     }
 }
 
@@ -2661,17 +2692,36 @@ void MainWindow::tabClicked_2()
     if(ui->widget_5->ui->tabWidget->currentIndex() == 2)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(5);
+        ui->stackedWidget->setCurrentIndex(6);
     }
     if(ui->widget_5->ui->tabWidget->currentIndex() == 3)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(6);
+        ui->stackedWidget->setCurrentIndex(8);
     }
     if(ui->widget_5->ui->tabWidget->currentIndex() == 4)
     {
         ui->stackedWidget->show();
         ui->stackedWidget->setCurrentIndex(7);
+    }
+}
+
+void MainWindow::tabClicked_3()
+{
+    if(ui->widget_5->ui->tabWidget_2->currentIndex() == 0)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(9);
+    }
+    if(ui->widget_5->ui->tabWidget_2->currentIndex() == 1)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(4);
+    }
+    if(ui->widget_5->ui->tabWidget_2->currentIndex() == 2)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(4);
     }
 }
 
@@ -2949,111 +2999,238 @@ void MainWindow::on_radioButton_4_toggled(bool checked)
 
 void MainWindow::on_radioButton_5_toggled(bool checked)
 {
-    if (checked)
+    if (item30->text() == "Выберите режим")
     {
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1223').text('λ₁₀');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text883').text('λ₃₀');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1195').text('λₖ₀');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1113').text('λ₅₀');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1153').text('λ₃ₖ');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1025').text('λ₂₁');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1053').text('λс₂');"));
-
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text891').text('λс₂');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1101').text('λс₄');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1093').text('λ₄₅');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1065').text('λₚ₂');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1073').text('λₚв');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1081').text('λв₅');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1253').text('λₚ₅');"));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1171').text('λₚ₅');"));
+        QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
     }
     else
     {
+        if (item30->text() == "Статика (статор)")
+        {
+            if (checked)
+            {
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1131').text('λpz');"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text891').text('λzc');"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text843').text('λc3');"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text915').text('λпс');"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text993').text('λпz');"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1053').text('λлс');"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1085').text('λл4');"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text967').text('λпл');"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1029').text('λлп');"));
+            }
+        }
+        else if (item30->text() == "Статика (упрощенный вариант)")
+        {
+            if (checked)
+            {
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1223').text('λ₁₀');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text883').text('λ₃₀');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1195').text('λₖ₀');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1113').text('λ₅₀');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1153').text('λ₃ₖ');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1025').text('λ₂₁');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1053').text('λс₂');"));
 
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text891').text('λс₂');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1101').text('λс₄');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1093').text('λ₄₅');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1065').text('λₚ₂');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1073').text('λₚв');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1081').text('λв₅');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1253').text('λₚ₅');"));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1171').text('λₚ₅');"));
+                QMessageBox::information(this, "вариант 2!", "Статика (упрощенный вариант)");
+            }
+        }
+        else if (item30->text() == "Статика (полный вариант)")
+        {
+            if (checked)
+            {
+                QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
+            }
+        }
+        else if (item30->text() == "Динамика")
+        {
+            if (checked)
+            {
+                QMessageBox::information(this, "вариант 4!", "динамика");
+            }
+        }
     }
-
 }
 
 void MainWindow::on_radioButton_6_toggled(bool checked)
 {
-    if (checked)
+    if (item30->text() == "Выберите режим")
     {
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1223').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text883' ).text('%1 Вт/°C');").arg(lambda_21, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1195').text('%1 Вт/°C');").arg(lambda_c2, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1113').text('%1 Вт/°C');").arg(lambda_p2, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1153').text('%1 Вт/°C');").arg(lambda_30, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1025').text('%1 Вт/°C');").arg(lambda_c3, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1053').text('%1 Вт/°C');").arg(lambda_p3, 0, 'f', 2));
-
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text891' ).text('%1 Вт/°C');").arg(lambda_3k, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1101').text('%1 Вт/°C');").arg(lambda_c4, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1093').text('%1 Вт/°C');").arg(lambda_pb, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1065').text('%1 Вт/°C');").arg(lambda_p5, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1073').text('%1 Вт/°C');").arg(lambda_k0, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1253').text('%1 Вт/°C');").arg(lambda_45, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1171').text('%1 Вт/°C');").arg(lambda_50, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1081').text('%1 Вт/°C');").arg(lambda_b5, 0, 'f', 2));
+        QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
     }
     else
     {
+        if (item30->text() == "Статика (статор)")
+        {
+            if (checked)
+            {
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1131').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text891').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text843').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text915').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text993').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1053').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1085').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text967').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1029').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
+            }
+        }
+        else if (item30->text() == "Статика (упрощенный вариант)")
+        {
+            if (checked)
+            {
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1223').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text883' ).text('%1 Вт/°C');").arg(lambda_21, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1195').text('%1 Вт/°C');").arg(lambda_c2, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1113').text('%1 Вт/°C');").arg(lambda_p2, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1153').text('%1 Вт/°C');").arg(lambda_30, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1025').text('%1 Вт/°C');").arg(lambda_c3, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1053').text('%1 Вт/°C');").arg(lambda_p3, 0, 'f', 2));
 
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text891' ).text('%1 Вт/°C');").arg(lambda_3k, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1101').text('%1 Вт/°C');").arg(lambda_c4, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1093').text('%1 Вт/°C');").arg(lambda_pb, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1065').text('%1 Вт/°C');").arg(lambda_p5, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1073').text('%1 Вт/°C');").arg(lambda_k0, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1253').text('%1 Вт/°C');").arg(lambda_45, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1171').text('%1 Вт/°C');").arg(lambda_50, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1081').text('%1 Вт/°C');").arg(lambda_b5, 0, 'f', 2));
+                QMessageBox::information(this, "вариант 2!", "Статика (упрощенный вариант)");
+            }
+        }
+        else if (item30->text() == "Статика (полный вариант)")
+        {
+            if (checked)
+            {
+                QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
+            }
+        }
+        else if (item30->text() == "Динамика")
+        {
+            if (checked)
+            {
+                QMessageBox::information(this, "вариант 4!", "динамика");
+            }
+        }
     }
 }
 
 void MainWindow::on_radioButton_7_toggled(bool checked)
 {
-    if (checked)
+    if (item30->text() == "Выберите режим")
     {
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1223').text('%1 Дж');").arg(2000.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text883').text('%1 Дж');").arg(1500.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1195').text('%1 Дж');").arg(500.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1113').text('%1 Дж');").arg(800.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1153').text('%1 Дж');").arg(400.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1025').text('%1 Дж');").arg(400.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1053').text('%1 Дж');").arg(400.00, 0, 'f', 2));
-
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text891').text('%1 Дж');").arg(1500.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1101').text('%1 Дж');").arg(500.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1093').text('%1 Дж');").arg(800.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1065').text('%1 Дж');").arg(400.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1073').text('%1 Дж');").arg(500.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1081').text('%1 Дж');").arg(200.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1253').text('%1 Дж');").arg(200.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1171').text('%1 Дж');").arg(200.00, 0, 'f', 2));
+        QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
     }
     else
     {
+        if (item30->text() == "Статика (статор)")
+        {
+            if (checked)
+            {
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1131').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text891').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text843').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text915').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text993').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1053').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1085').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text967').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1029').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
+            }
+        }
+        else if (item30->text() == "Статика (упрощенный вариант)")
+        {
+            if (checked)
+            {
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1223').text('%1 Дж');").arg(2000.00, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text883').text('%1 Дж');").arg(1500.00, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1195').text('%1 Дж');").arg(500.00, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1113').text('%1 Дж');").arg(800.00, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1153').text('%1 Дж');").arg(400.00, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1025').text('%1 Дж');").arg(400.00, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1053').text('%1 Дж');").arg(400.00, 0, 'f', 2));
 
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text891').text('%1 Дж');").arg(1500.00, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1101').text('%1 Дж');").arg(500.00, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1093').text('%1 Дж');").arg(800.00, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1065').text('%1 Дж');").arg(400.00, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1073').text('%1 Дж');").arg(500.00, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1081').text('%1 Дж');").arg(200.00, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1253').text('%1 Дж');").arg(200.00, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1171').text('%1 Дж');").arg(200.00, 0, 'f', 2));
+                QMessageBox::information(this, "вариант 2!", "Статика (упрощенный вариант)");
+            }
+        }
+        else if (item30->text() == "Статика (полный вариант)")
+        {
+            if (checked)
+            {
+                QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
+            }
+        }
+        else if (item30->text() == "Динамика")
+        {
+            if (checked)
+            {
+                QMessageBox::information(this, "вариант 4!", "динамика");
+            }
+        }
     }
 }
 
 void MainWindow::on_radioButton_8_toggled(bool checked)
 {
-    if (checked)
+    if (item30->text() == "Выберите режим")
     {
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1223').text('%1 Вт');").arg(300.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text883').text('%1 Вт');").arg(200.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1195').text('%1 Вт');").arg(100.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1113').text('%1 Вт');").arg(800.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1153').text('%1 Вт');").arg(500.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1025').text('%1 Вт');").arg(600.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1053').text('%1 Вт');").arg(880.00, 0, 'f', 2));
-
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text891').text('%1 Вт');").arg(200.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1101').text('%1 Вт');").arg(100.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1093').text('%1 Вт');").arg(900.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1065').text('%1 Вт');").arg(600.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1073').text('%1 Вт');").arg(200.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1081').text('%1 Вт');").arg(100.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1253').text('%1 Вт');").arg(100.00, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1171').text('%1 Вт');").arg(100.00, 0, 'f', 2));
-
+        QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
     }
     else
     {
+        if (item30->text() == "Статика (статор)")
+        {
+            if (checked)
+            {
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1223').text('%1 Вт');").arg(300.00, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text883').text('%1 Вт');").arg(200.00, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1195').text('%1 Вт');").arg(100.00, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1113').text('%1 Вт');").arg(800.00, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1153').text('%1 Вт');").arg(500.00, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1025').text('%1 Вт');").arg(600.00, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1053').text('%1 Вт');").arg(880.00, 0, 'f', 2));
 
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text891').text('%1 Вт');").arg(200.00, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1101').text('%1 Вт');").arg(100.00, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1093').text('%1 Вт');").arg(900.00, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1065').text('%1 Вт');").arg(600.00, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1073').text('%1 Вт');").arg(200.00, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1081').text('%1 Вт');").arg(100.00, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1253').text('%1 Вт');").arg(100.00, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1171').text('%1 Вт');").arg(100.00, 0, 'f', 2));
+                QMessageBox::information(this, "вариант 2!", "Статика (упрощенный вариант)");
+            }
+        }
+        else if (item30->text() == "Статика (полный вариант)")
+        {
+            if (checked)
+            {
+                QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
+            }
+        }
+        else if (item30->text() == "Динамика")
+        {
+            if (checked)
+            {
+                QMessageBox::information(this, "вариант 4!", "динамика");
+            }
+        }
     }
 }
 
@@ -4276,12 +4453,194 @@ void MainWindow::on_tepl_result_clicked()
     {
         if (item30->text() == "Статика (статор)")
         {
+            base_tepl.n0      = ui->widget_5->ui->widget_2->ui->tableWidget->item(0,1)->text().toDouble();
+            base_tepl.pn      = ui->widget_5->ui->widget_2->ui->tableWidget->item(1,1)->text().toDouble();
+            base_tepl.h       = ui->widget_5->ui->widget_2->ui->tableWidget->item(2,1)->text().toDouble();
+            base_tepl.D_c     = ui->widget_5->ui->widget_2->ui->tableWidget->item(3,1)->text().toDouble();
+            base_tepl.l_sv_pr = ui->widget_5->ui->widget_2->ui->tableWidget->item(4,1)->text().toDouble();
+            base_tepl.l_cvv   = ui->widget_5->ui->widget_2->ui->tableWidget->item(5,1)->text().toDouble();
+            base_tepl.sig_pr  = ui->widget_5->ui->widget_2->ui->tableWidget->item(6,1)->text().toDouble();
+            base_tepl.z_c     = ui->widget_5->ui->widget_2->ui->tableWidget->item(7,1)->text().toDouble();
+            base_tepl.h_c     = ui->widget_5->ui->widget_2->ui->tableWidget->item(8,1)->text().toDouble();
+            base_tepl.sig_p   = ui->widget_5->ui->widget_2->ui->tableWidget->item(9,1)->text().toDouble();
+
+            base_tepl.D_vent  = ui->widget_5->ui->widget_2->ui->tableWidget->item(10,1)->text().toDouble();
+            base_tepl.D_a     = ui->widget_5->ui->widget_2->ui->tableWidget->item(11,1)->text().toDouble();
+            base_tepl.D       = ui->widget_5->ui->widget_2->ui->tableWidget->item(12,1)->text().toDouble();
+            base_tepl.l_p     = ui->widget_5->ui->widget_2->ui->tableWidget->item(13,1)->text().toDouble();
+            base_tepl.Z_1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(14,1)->text().toDouble();
+            base_tepl.k_sh    = ui->widget_5->ui->widget_2->ui->tableWidget->item(15,1)->text().toDouble();
+            base_tepl.b1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(16,1)->text().toDouble();
+            base_tepl.b2      = ui->widget_5->ui->widget_2->ui->tableWidget->item(17,1)->text().toDouble();
+            base_tepl.h_p     = ui->widget_5->ui->widget_2->ui->tableWidget->item(18,1)->text().toDouble();
+            base_tepl.k_z     = ui->widget_5->ui->widget_2->ui->tableWidget->item(19,1)->text().toDouble();
+
+            base_tepl.h_sl1   = ui->widget_5->ui->widget_2->ui->tableWidget->item(20,1)->text().toDouble();
+            base_tepl.b_sl1   = ui->widget_5->ui->widget_2->ui->tableWidget->item(21,1)->text().toDouble();
+            base_tepl.h_z1    = ui->widget_5->ui->widget_2->ui->tableWidget->item(22,1)->text().toDouble();
+            base_tepl.b_z     = ui->widget_5->ui->widget_2->ui->tableWidget->item(23,1)->text().toDouble();
+            base_tepl.w_i     = ui->widget_5->ui->widget_2->ui->tableWidget->item(24,1)->text().toDouble();
+            base_tepl.a       = ui->widget_5->ui->widget_2->ui->tableWidget->item(25,1)->text().toDouble();
+            base_tepl.l_sr    = ui->widget_5->ui->widget_2->ui->tableWidget->item(26,1)->text().toDouble();
+            base_tepl.l_lr    = ui->widget_5->ui->widget_2->ui->tableWidget->item(27,1)->text().toDouble();
+            base_tepl.k_p     = ui->widget_5->ui->widget_2->ui->tableWidget->item(28,1)->text().toDouble();
+            base_tepl.sig_okr = ui->widget_5->ui->widget_2->ui->tableWidget->item(29,1)->text().toDouble();
+
+            base_tepl.sig_ip  = ui->widget_5->ui->widget_2->ui->tableWidget->item(30,1)->text().toDouble();
+            base_tepl.D_rot   = ui->widget_5->ui->widget_2->ui->tableWidget->item(31,1)->text().toDouble();
+            base_tepl.Z_2     = ui->widget_5->ui->widget_2->ui->tableWidget->item(32,1)->text().toDouble();
+            base_tepl.b_k     = ui->widget_5->ui->widget_2->ui->tableWidget->item(33,1)->text().toDouble();
+            base_tepl.a_k     = ui->widget_5->ui->widget_2->ui->tableWidget->item(34,1)->text().toDouble();
+            base_tepl.a_l     = ui->widget_5->ui->widget_2->ui->tableWidget->item(35,1)->text().toDouble();
+            base_tepl.b_l     = ui->widget_5->ui->widget_2->ui->tableWidget->item(36,1)->text().toDouble();
+            base_tepl.z_l     = ui->widget_5->ui->widget_2->ui->tableWidget->item(37,1)->text().toDouble();
+            base_tepl.n_l     = ui->widget_5->ui->widget_2->ui->tableWidget->item(38,1)->text().toDouble();
+            base_tepl.sig     = ui->widget_5->ui->widget_2->ui->tableWidget->item(39,1)->text().toDouble();
+
+            base_tepl.nu      = ui->widget_5->ui->widget_2->ui->tableWidget->item(40,1)->text().toDouble();
+            base_tepl.t_cp    = ui->widget_5->ui->widget_2->ui->tableWidget->item(41,1)->text().toDouble();
+            base_tepl.lb_b    = ui->widget_5->ui->widget_2->ui->tableWidget->item(42,1)->text().toDouble();
+            base_tepl.lb_m    = ui->widget_5->ui->widget_2->ui->tableWidget->item(43,1)->text().toDouble();
+            base_tepl.lb_a    = ui->widget_5->ui->widget_2->ui->tableWidget->item(44,1)->text().toDouble();
+            base_tepl.lb_c    = ui->widget_5->ui->widget_2->ui->tableWidget->item(45,1)->text().toDouble();
+            base_tepl.d_b_iz  = ui->widget_5->ui->widget_2->ui->tableWidget->item(46,1)->text().toDouble();
+            base_tepl.d_iz    = ui->widget_5->ui->widget_2->ui->tableWidget->item(47,1)->text().toDouble();
+            base_tepl.k_pr    = ui->widget_5->ui->widget_2->ui->tableWidget->item(48,1)->text().toDouble();
+            base_tepl.lb_p    = ui->widget_5->ui->widget_2->ui->tableWidget->item(49,1)->text().toDouble();
+
+            base_tepl.nu      = ui->widget_5->ui->widget_2->ui->tableWidget->item(50,1)->text().toDouble();
+            base_tepl.t_cp    = ui->widget_5->ui->widget_2->ui->tableWidget->item(51,1)->text().toDouble();
+            base_tepl.lb_b    = ui->widget_5->ui->widget_2->ui->tableWidget->item(52,1)->text().toDouble();
+            base_tepl.lb_m    = ui->widget_5->ui->widget_2->ui->tableWidget->item(53,1)->text().toDouble();
+            base_tepl.lb_a    = ui->widget_5->ui->widget_2->ui->tableWidget->item(54,1)->text().toDouble();
+            base_tepl.lb_c    = ui->widget_5->ui->widget_2->ui->tableWidget->item(55,1)->text().toDouble();
+            base_tepl.d_b_iz  = ui->widget_5->ui->widget_2->ui->tableWidget->item(56,1)->text().toDouble();
+            base_tepl.d_iz    = ui->widget_5->ui->widget_2->ui->tableWidget->item(57,1)->text().toDouble();
+            base_tepl.k_pr    = ui->widget_5->ui->widget_2->ui->tableWidget->item(58,1)->text().toDouble();
+            base_tepl.lb_p    = ui->widget_5->ui->widget_2->ui->tableWidget->item(59,1)->text().toDouble();
+
+            base_tepl.lp_iz   = ui->widget_5->ui->widget_2->ui->tableWidget->item(60,1)->text().toDouble();
+            base_tepl.D_vlch  = ui->widget_5->ui->widget_2->ui->tableWidget->item(61,1)->text().toDouble();
+            base_tepl.lb_okr  = ui->widget_5->ui->widget_2->ui->tableWidget->item(62,1)->text().toDouble();
+            base_tepl.lb_ip   = ui->widget_5->ui->widget_2->ui->tableWidget->item(63,1)->text().toDouble();
+            base_tepl.sig_vp  = ui->widget_5->ui->widget_2->ui->tableWidget->item(64,1)->text().toDouble();
+            base_tepl.h_z2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(65,1)->text().toDouble();
+            base_tepl.b_z2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(66,1)->text().toDouble();
+            base_tepl.D_dp    = ui->widget_5->ui->widget_2->ui->tableWidget->item(67,1)->text().toDouble();
+            base_tepl.d       = ui->widget_5->ui->widget_2->ui->tableWidget->item(68,1)->text().toDouble();
+            base_tepl.d1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(69,1)->text().toDouble();
+
+            base_tepl.P2      = ui->widget_5->ui->widget_2->ui->tableWidget->item(70,1)->text().toDouble();
+            base_tepl.U1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(71,1)->text().toDouble();
+            base_tepl.n_u     = ui->widget_5->ui->widget_2->ui->tableWidget->item(72,1)->text().toDouble();
+            base_tepl.cos_f   = ui->widget_5->ui->widget_2->ui->tableWidget->item(73,1)->text().toDouble();
+            base_tepl.ro_al   = ui->widget_5->ui->widget_2->ui->tableWidget->item(74,1)->text().toDouble();
+            base_tepl.D_kzk   = ui->widget_5->ui->widget_2->ui->tableWidget->item(75,1)->text().toDouble();
+
+
+            //Расчет тепловых проводимостей
+            //общая тепловая проводимость между сердечником статора и станиной
+            //    L_a1 = M_PI*l_1*
+            //    L_d1 = 1/(1/((L_a1)+(1/L_da1)+(1/L_st)));
+
+            //Решение СЛАУ
+
+            double a_data[] = { 0.18, 0.60, 0.57, 0.96,
+                                0.41, 0.24, 0.99, 0.58,
+                                0.14, 0.30, 0.97, 0.66,
+                                0.51, 0.13, 0.19, 0.85 };
+
+            double b_data[] = { 1.0, 2.0, 3.0, 4.0 };
+
+            gsl_matrix_view m = gsl_matrix_view_array (a_data, 4, 4);
+
+            gsl_vector_view b = gsl_vector_view_array (b_data, 4);
+
+            gsl_vector *x = gsl_vector_alloc (4);
+
+            int s;
+
+            gsl_permutation * p = gsl_permutation_alloc (4);
+
+            gsl_linalg_LU_decomp (&m.matrix, p, &s);
+
+            gsl_linalg_LU_solve (&m.matrix, p, &b.vector, x);
+
+            //ВЫВОД ДАННЫХ В ТАБЛИЦЫ
+
+            //вывод температур в таблицу
+            teta_2=gsl_vector_get(x, 0);
+            teta_3=gsl_vector_get(x, 1);
+            teta_4=gsl_vector_get(x, 2);
+            teta_c=gsl_vector_get(x, 3);
+            teta_p=gsl_vector_get(x, 0);
+            teta_z=gsl_vector_get(x, 1);
+            teta_pp=gsl_vector_get(x, 2);
+            teta_l_1=gsl_vector_get(x, 3);
+            teta_l_2=gsl_vector_get(x, 0);
+
+            gsl_permutation_free (p);
+            gsl_vector_free (x);
+
+            ui->widget_5->ui->widget_2->ui->tableWidget_3->item(0,2)->setText(QString::number(teta_2,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_3->item(1,2)->setText(QString::number(teta_3,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_3->item(2,2)->setText(QString::number(teta_4,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_3->item(3,2)->setText(QString::number(teta_c,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_3->item(4,2)->setText(QString::number(teta_p,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_3->item(5,2)->setText(QString::number(teta_z,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_3->item(6,2)->setText(QString::number(teta_pp,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_3->item(7,2)->setText(QString::number(teta_l_1,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_3->item(8,2)->setText(QString::number(teta_l_2,'f',3));
+
+            //вывод тепловых проводимостей в таблицу
+            lambda_pz=0.034;
+            lambda_zc=0.35;
+            lambda_c3=0.23;
+            lambda_pc=0.021;
+            lambda_ppz=0.034;
+            lambda_lc=0.067;
+            lambda_l4=0.067;
+            lambda_pl=0.67;
+            lambda_lp=0.56;
+
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(0,2)->setText(QString::number(lambda_pz,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(1,2)->setText(QString::number(lambda_zc,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(2,2)->setText(QString::number(lambda_c3,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(3,2)->setText(QString::number(lambda_pc,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(4,2)->setText(QString::number(lambda_ppz,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(5,2)->setText(QString::number(lambda_lc,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(6,2)->setText(QString::number(lambda_l4,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(7,2)->setText(QString::number(lambda_pl,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(8,2)->setText(QString::number(lambda_lp,'f',3));
+
+            //вывод тоеплоемкостей в таблицу
+            C_0=0.034;
+            C_1=0.35;
+            C_2=0.23;
+            C_3=0.021;
+            C_4=0.034;
+            C_5=0.067;
+            C_k=0.067;
+            C_c=0.67;
+            C_p=0.56;
+            C_v=0.059;
+
+            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(0,2)->setText(QString::number(C_0,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(1,2)->setText(QString::number(C_1,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(2,2)->setText(QString::number(C_2,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(3,2)->setText(QString::number(C_3,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(4,2)->setText(QString::number(C_4,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(5,2)->setText(QString::number(C_5,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(6,2)->setText(QString::number(C_k,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(7,2)->setText(QString::number(C_c,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(8,2)->setText(QString::number(C_p,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(9,2)->setText(QString::number(C_v,'f',3));
+
             QMessageBox::information(this, "вариант 2!", "Статика (статор)");
         }
 
         if (item30->text() == "Статика (упрощенный вариант)")
         {
-            double L_a1;
             //ввод данных
             base_tepl.n0      = ui->widget_5->ui->widget_2->ui->tableWidget->item(0,1)->text().toDouble();
             base_tepl.pn      = ui->widget_5->ui->widget_2->ui->tableWidget->item(1,1)->text().toDouble();
@@ -4493,3 +4852,102 @@ void MainWindow::on_tepl_result_clicked()
     }
 
 }
+
+void MainWindow::on_save_electromagn_graph_file_clicked()
+{
+    QString filters;
+    foreach(QByteArray byte, QImageWriter::supportedImageFormats())
+    {
+        QString format = byte;
+        filters += QString("%1 (%2)\n")
+                .arg(format.toUpper())
+                .arg("*." + format);
+    }
+
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save as..."), "img.png", filters);
+    if (fileName.isEmpty() || fileName.isNull())
+        return;
+
+    ui->widget_2->ui->plot->grab().save(fileName);
+}
+
+
+void MainWindow::on_save_electromagn2_file_clicked()
+{
+    QString filters;
+    foreach(QByteArray byte, QImageWriter::supportedImageFormats())
+    {
+        QString format = byte;
+        filters += QString("%1 (%2)\n").arg(format.toUpper()).arg("*." + format);
+    }
+
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save as..."), "img.png", filters);
+    if (fileName.isEmpty() || fileName.isNull())
+        return;
+
+    ui->widget_3->ui->plot->grab().save(fileName);
+}
+
+
+void MainWindow::on_save_tepl_graph_file_clicked()
+{
+    QString filters;
+    foreach(QByteArray byte, QImageWriter::supportedImageFormats())
+    {
+        QString format = byte;
+        filters += QString("%1 (%2)\n").arg(format.toUpper()).arg("*." + format);
+    }
+
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save as..."), "img.png", filters);
+    if (fileName.isEmpty() || fileName.isNull())
+        return;
+
+    ui->widget_5->ui->widget_4->ui->plot->grab().save(fileName);
+}
+
+
+void MainWindow::on_radioButton_9_clicked(bool checked)
+{
+    if (item30->text() == "Выберите режим")
+    {
+        QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
+    }
+    else
+    {
+        if (item30->text() == "Статика (статор)")
+        {
+            if (checked)
+            {
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1131').text('%1 Вт/°C').hide();").arg(lambda_10, 0, 'f', 2));
+
+            }
+            else
+            {
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1131').text('%1 Вт/°C').show();").arg(lambda_10, 0, 'f', 2));
+
+            }
+        }
+        else if (item30->text() == "Статика (упрощенный вариант)")
+        {
+            if (checked)
+            {
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1223').text('%1 Дж');").arg(2000.00, 0, 'f', 2));
+                            }
+        }
+        else if (item30->text() == "Статика (полный вариант)")
+        {
+            if (checked)
+            {
+                QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
+            }
+        }
+        else if (item30->text() == "Динамика")
+        {
+            if (checked)
+            {
+                QMessageBox::information(this, "вариант 4!", "динамика");
+            }
+        }
+    }
+}
+

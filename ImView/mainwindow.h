@@ -87,6 +87,7 @@ private slots:
     void on_action_25_triggered();
     void tabClicked();
     void tabClicked_2();
+    void tabClicked_3();
 
     void modelItemChangedSlot(QStandardItem *item);
     void modelItemChangedSlot_2(QStandardItem *item);
@@ -114,6 +115,14 @@ private slots:
     void on_radioButton_6_toggled(bool checked);
     void on_radioButton_7_toggled(bool checked);
     void on_radioButton_8_toggled(bool checked);
+
+    void on_save_electromagn_graph_file_clicked();
+
+    void on_save_electromagn2_file_clicked();
+
+    void on_save_tepl_graph_file_clicked();
+
+    void on_radioButton_9_clicked(bool checked);
 
 public:
     Ui::MainWindow *ui;
