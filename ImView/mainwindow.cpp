@@ -1318,6 +1318,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->lineEdit_17->setAlignment(Qt::AlignCenter);
     ui->lineEdit_18->setAlignment(Qt::AlignCenter);
 
+    ui->tabWidget->setCurrentIndex(0);
+    ui->widget_5->ui->tabWidget->setCurrentIndex(0);
+    ui->widget_5->ui->tabWidget_2->setCurrentIndex(0);
+
+
     connect(item14->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot);
     connect(item88->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_2);
     connect(item80->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_3);
@@ -2673,7 +2678,7 @@ void MainWindow::tabClicked()
     if(ui->tabWidget->currentIndex()==3)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(9);
+        tabClicked_2();
     }
 }
 
@@ -2772,7 +2777,7 @@ void MainWindow::on_radioButton_toggled(bool checked)
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text931').text('θz');"));
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text851').text('θ₃');"));
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text867').text('θc');"));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text975').text('θл');"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text975').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">л</tspan>');"));
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text943').text('θп');"));
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1011').text('θл');"));
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1065').text('θс');"));
@@ -4906,7 +4911,7 @@ void MainWindow::on_save_tepl_graph_file_clicked()
 }
 
 
-void MainWindow::on_radioButton_9_clicked(bool checked)
+void MainWindow::on_radioButton_9_toggled(bool checked)
 {
     if (item30->text() == "Выберите режим")
     {
@@ -4918,12 +4923,12 @@ void MainWindow::on_radioButton_9_clicked(bool checked)
         {
             if (checked)
             {
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1131').text('%1 Вт/°C').hide();").arg(lambda_10, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1131').hide();"));
 
             }
             else
             {
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1131').text('%1 Вт/°C').show();").arg(lambda_10, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1131').show();"));
 
             }
         }

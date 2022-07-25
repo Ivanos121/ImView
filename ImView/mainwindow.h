@@ -122,7 +122,7 @@ private slots:
 
     void on_save_tepl_graph_file_clicked();
 
-    void on_radioButton_9_clicked(bool checked);
+    void on_radioButton_9_toggled(bool checked);
 
 public:
     Ui::MainWindow *ui;
