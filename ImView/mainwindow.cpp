@@ -58,9 +58,11 @@ Model modelss;
 double teta_0,teta_1,teta_2,teta_3,teta_4,teta_5,teta_k,teta_c,teta_p, teta_v, teta_z, teta_l_1, teta_l_2, teta_pp;
 double lambda_10, lambda_21, lambda_c2,lambda_p2,lambda_30,lambda_c3,lambda_p3,lambda_3k,lambda_c4,lambda_pb,lambda_p5,
 lambda_k0,lambda_45,lambda_50,lambda_b5,lambda_pz, lambda_zc, lambda_pc, lambda_ppz, lambda_lc, lambda_l4, lambda_pl, lambda_lp,
-lambda_zp,lambda_пс,lambda_пz,lambda_л2с,lambda_л14,lambda_пл1,lambda_рл2;
+lambda_zp,lambda_pс,lambda_л2с,lambda_л14,lambda_пл1,lambda_рл2,lambda_l22,lambda_l14,lambda_pl1,lambda_pl2;
 double C_0,C_1,C_2,C_3,C_4,C_5,C_k,C_c,C_p,C_v,C_z,C_pp,C_l_1,C_l_2;
 double P_0,P_1,P_2,P_3,P_4,P_5,P_c,P_k,P_p,P_z,P_pp,P_l_1,P_l_2,P_v;
+double dP_zp,dP_zc,dP_c3,dP_pс,dP_pz,dP_l22,dP_l14,dP_pl1,dP_pl2;
+double d_teta_zp,d_teta_zc,d_teta_c3,d_teta_pc,d_teta_pz,d_teta_l22,d_teta_l14,d_teta_pl1,d_teta_pl2;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -2661,7 +2663,7 @@ void MainWindow::on_radioButton_toggled(bool checked)
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text975').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">л1</tspan>');"));
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text943').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">п</tspan>');"));
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1011').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">л2</tspan>');"));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1065').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">с</tspan>');"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1065').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">2</tspan>');"));
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1097').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">4</tspan>');"));
             }
         }
@@ -2706,15 +2708,25 @@ void MainWindow::on_radioButton_2_toggled(bool checked)
         {
             if (checked)
             {
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1115').text('%1 °C');").arg(teta_0,0,'f',3));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text931' ).text('%1 °C');").arg(teta_0, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text851').text('%1 °C');").arg(teta_0, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text867').text('%1 °C');").arg(teta_0, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text975').text('%1 °C');").arg(teta_1, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text943').text('%1 °C');").arg(teta_2, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1011' ).text('%1 °C');").arg(teta_3, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1065').text('%1 °C');").arg(teta_4, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1097' ).text('%1 °C');").arg(teta_5, 0, 'f', 2));
+//                teta_p=20;
+//                teta_z=50;
+//                teta_3=70;
+//                teta_c=76;
+//                teta_l_1=120;
+//                teta_pp=80;
+//                teta_l_2=120;
+//                teta_2=60;
+//                teta_4=40;
+
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1115').text('%1 °C');").arg(teta_p,0,'f',2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text931' ).text('%1 °C');").arg(teta_z, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text851').text('%1 °C');").arg(teta_3, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text867').text('%1 °C');").arg(teta_c, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text975').text('%1 °C');").arg(teta_l_1, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text943').text('%1 °C');").arg(teta_pp, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1011' ).text('%1 °C');").arg(teta_l_2, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1065').text('%1 °C');").arg(teta_2, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1097' ).text('%1 °C');").arg(teta_4, 0, 'f', 2));
              }
         }
         if (item30->text() == "Статика (упрощенный вариант)")
@@ -2757,26 +2769,26 @@ void MainWindow::on_radioButton_3_toggled(bool checked)
         if (item30->text() == "Статика (статор)")
         {
             if (checked)
-            {
-                C_2=0.034;
-                C_3=0.35;
-                C_4=0.23;
-                C_c=0.034;
-                C_p=0.067;
-                C_z=0.067;
-                C_pp=0.67;
-                C_l_1=0.56;
-                C_l_2=0.059;
+            {               
+//                C_p=0.034;
+//                C_z=0.35;
+//                C_3=0.23;
+//                C_c=0.034;
+//                C_l_1=0.067;
+//                C_pp=0.067;
+//                C_l_2=0.67;
+//                C_4=0.56;
+//                C_4=0.059;
 
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1115').text('%1 Дж/К');").arg(C_2, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text931').text('%1 Дж/К');").arg(C_3, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text851').text('%1 Дж/К');").arg(C_4, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1115').text('%1 Дж/К');").arg(C_p, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text931').text('%1 Дж/К');").arg(C_z, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text851').text('%1 Дж/К');").arg(C_3, 0, 'f', 2));
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text867').text('%1 Дж/К');").arg(C_c, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text975').text('%1 Дж/К');").arg(C_p, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text943').text('%1 Дж/К');").arg(C_z, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1011').text('%1 Дж/К');").arg(C_pp, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1065').text('%1 Дж/К');").arg(C_l_1, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1097').text('%1 Дж/К');").arg(C_l_2, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text975').text('%1 Дж/К');").arg(C_l_1, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text943').text('%1 Дж/К');").arg(C_pp, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1011').text('%1 Дж/К');").arg(C_l_2, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1065').text('%1 Дж/К');").arg(C_2, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1097').text('%1 Дж/К');").arg(C_4, 0, 'f', 2));
             }
         }
         if (item30->text() == "Статика (упрощенный вариант)")
@@ -2831,25 +2843,25 @@ void MainWindow::on_radioButton_4_toggled(bool checked)
         {
             if (checked)
             {
-                P_2=20;
-                P_3=100;
-                P_4=120;
-                P_c=502;
-                P_p=67;
-                P_z=76;
-                P_pp=120;
-                P_l_1=56;
-                P_l_2=59;
+//                P_p=20;
+//                P_z=100;
+//                P_3=120;
+//                P_c=502;
+//                P_l_1=67;
+//                P_pp=76;
+//                P_l_2=120;
+//                P_2=56;
+//                P_4=59;
 
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1115').text('%1 Вт');").arg(P_2, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text931').text('%1 Вт');").arg(P_3, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text851').text('%1 Вт');").arg(P_4, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1115').text('%1 Вт');").arg(P_p, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text931').text('%1 Вт');").arg(P_z, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text851').text('%1 Вт');").arg(P_3, 0, 'f', 2));
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text867').text('%1 Вт');").arg(P_c, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text975').text('%1 Вт');").arg(P_p, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text943').text('%1 Вт');").arg(P_z, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1011').text('%1 Вт');").arg(P_pp, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1065').text('%1 Вт');").arg(P_l_1, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1097').text('%1 Вт');").arg(P_l_2, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text975').text('%1 Вт');").arg(P_l_1, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text943').text('%1 Вт');").arg(P_pp, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1011').text('%1 Вт');").arg(P_l_2, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1065').text('%1 Вт');").arg(P_2, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1097').text('%1 Вт');").arg(P_4, 0, 'f', 2));
             }
         }
         if (item30->text() == "Статика (упрощенный вариант)")
@@ -2895,12 +2907,22 @@ void MainWindow::on_radioButton_5_toggled(bool checked)
         {
             if (checked)
             {
+//                lambda_zp=0.034;
+//                lambda_zc=0.35;
+//                lambda_c3=0.23;
+//                lambda_pc=0.021;
+//                lambda_pz=0.034;
+//                lambda_l2c=0.067;
+//                lambda_l14=0.067;
+//                lambda_pl1=0.67;
+//                lambda_pl2=0.56;
+
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1131').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">zр</tspan>');"));
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text891').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">zc</tspan>');"));
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text843').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">c3</tspan>');"));
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text915').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">пс</tspan>');"));
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text993').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">пz</tspan>');"));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1053').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">л2с</tspan>');"));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1053').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">л22</tspan>');"));
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1085').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">л14</tspan>');"));
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text967').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">пл1</tspan>');"));
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1029').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">пл2</tspan>');"));
@@ -2949,25 +2971,25 @@ void MainWindow::on_radioButton_6_toggled(bool checked)
         {
             if (checked)
             {
-                lambda_zp=0.05;
-                lambda_zc=0.004;
-                lambda_c3=0.23;
-                lambda_пс=0.45;
-                lambda_пz=0.012;
-                lambda_л2с=0.34;
-                lambda_л14=0.56;
-                lambda_пл1=0.056;
-                lambda_рл2=0.076;
+//                lambda_zp=0.034;
+//                lambda_zc=0.35;
+//                lambda_c3=0.23;
+//                lambda_pc=0.021;
+//                lambda_pz=0.034;
+//                lambda_l22=0.067;
+//                lambda_l14=0.067;
+//                lambda_pl1=0.67;
+//                lambda_pl2=0.56;
 
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1131').text('%1 Вт/°C');").arg(lambda_zp, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text891'). text('%1 Вт/°C');").arg(lambda_zc, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text843'). text('%1 Вт/°C');").arg(lambda_c3, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text915'). text('%1 Вт/°C');").arg(lambda_пс, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text993'). text('%1 Вт/°C');").arg(lambda_пz, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1053').text('%1 Вт/°C');").arg(lambda_л2с, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1085').text('%1 Вт/°C');").arg(lambda_л14, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text967'). text('%1 Вт/°C');").arg(lambda_пл1, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1029').text('%1 Вт/°C');").arg(lambda_рл2, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1131').text('%1 Вт/°C');").arg(lambda_zp, 0, 'f', 3));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text891'). text('%1 Вт/°C');").arg(lambda_zc, 0, 'f', 3));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text843'). text('%1 Вт/°C');").arg(lambda_c3, 0, 'f', 3));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text915'). text('%1 Вт/°C');").arg(lambda_pс, 0, 'f', 3));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text993'). text('%1 Вт/°C');").arg(lambda_pz, 0, 'f', 3));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1053').text('%1 Вт/°C');").arg(lambda_l22, 0, 'f', 3));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1085').text('%1 Вт/°C');").arg(lambda_l14, 0, 'f', 3));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text967'). text('%1 Вт/°C');").arg(lambda_pl1, 0, 'f', 3));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1029').text('%1 Вт/°C');").arg(lambda_pl2, 0, 'f', 3));
             }
         }
         else if (item30->text() == "Статика (упрощенный вариант)")
@@ -3014,15 +3036,25 @@ void MainWindow::on_radioButton_7_toggled(bool checked)
         {
             if (checked)
             {
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1131').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text891').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text843').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text915').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text993').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1053').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1085').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text967').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1029').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
+//                dP_zp=100;
+//                dP_zc=220;
+//                dP_c3=230;
+//                dP_pс=450;
+//                dP_pz=120;
+//                dP_l22=340;
+//                dP_l14=560;
+//                dP_pl1=506;
+//                dP_pl2=760;
+
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1131').text('%1 Вт');").arg(dP_zp, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text891').text('%1 Вт);").arg(dP_zc, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text843').text('%1 Вт');").arg(dP_c3, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text915').text('%1 Вт');").arg(dP_pс, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text993').text('%1 Вт');").arg(dP_pz, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1053').text('%1 Вт');").arg(dP_l22, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1085').text('%1 Вт');").arg(dP_l14, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text967').text('%1 Вт');").arg(dP_pl1, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1029').text('%1 Вт');").arg(dP_pl2, 0, 'f', 2));
             }
         }
         else if (item30->text() == "Статика (упрощенный вариант)")
@@ -3069,15 +3101,25 @@ void MainWindow::on_radioButton_8_toggled(bool checked)
         {
             if (checked)
             {
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1131').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text891').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text843').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text915').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text993').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1053').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1085').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text967').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
-                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1029').text('%1 Вт/°C');").arg(lambda_10, 0, 'f', 2));
+//                d_teta_zp=10;
+//                d_teta_zc=5;
+//                d_teta_c3=20;
+//                d_teta_pc=30;
+//                d_teta_pz=15;
+//                d_teta_l22=10;
+//                d_teta_l14=5;
+//                d_teta_pl1=35;
+//                d_teta_pl2=35;
+
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1131').text('%1 °C');").arg(d_teta_zp, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text891').text('%1 °C');").arg(d_teta_zc, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text843').text('%1 °C');").arg(d_teta_c3, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text915').text('%1 °C');").arg(d_teta_pc, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text993').text('%1 °C');").arg(d_teta_pz, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1053').text('%1 °C');").arg(d_teta_l22, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1085').text('%1 °C');").arg(d_teta_l14, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text967').text('%1 °C');").arg(d_teta_pl1, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1029').text('%1 °C');").arg(d_teta_pl2, 0, 'f', 2));
             }
         }
         if (item30->text() == "Статика (упрощенный вариант)")
@@ -4502,6 +4544,8 @@ void MainWindow::on_tepl_result_clicked()
     {
         if (item30->text() == "Статика (статор)")
         {
+            //СЧИТЫВАНИЕ ИСХОДНЫХ ДАННЫХ
+
             base_tepl.n0      = ui->widget_5->ui->widget_2->ui->tableWidget->item(0,1)->text().toDouble();
             base_tepl.pn      = ui->widget_5->ui->widget_2->ui->tableWidget->item(1,1)->text().toDouble();
             base_tepl.h       = ui->widget_5->ui->widget_2->ui->tableWidget->item(2,1)->text().toDouble();
@@ -4586,6 +4630,7 @@ void MainWindow::on_tepl_result_clicked()
             base_tepl.ro_al   = ui->widget_5->ui->widget_2->ui->tableWidget->item(74,1)->text().toDouble();
             base_tepl.D_kzk   = ui->widget_5->ui->widget_2->ui->tableWidget->item(75,1)->text().toDouble();
 
+            //РАСЧЕТ ДАННЫХ
 
             //Расчет тепловых проводимостей
             //общая тепловая проводимость между сердечником статора и станиной
@@ -4609,6 +4654,8 @@ void MainWindow::on_tepl_result_clicked()
             gsl_linalg_LU_decomp (&m.matrix, p, &s);
             gsl_linalg_LU_solve (&m.matrix, p, &b.vector, x);
 
+
+
             //ВЫВОД ДАННЫХ В ТАБЛИЦЫ
 
             //вывод температур в таблицу
@@ -4625,57 +4672,137 @@ void MainWindow::on_tepl_result_clicked()
             gsl_permutation_free (p);
             gsl_vector_free (x);
 
-            ui->widget_5->ui->widget_2->ui->tableWidget_3->item(0,2)->setText(QString::number(teta_2,'f',3));
-            ui->widget_5->ui->widget_2->ui->tableWidget_3->item(1,2)->setText(QString::number(teta_3,'f',3));
-            ui->widget_5->ui->widget_2->ui->tableWidget_3->item(2,2)->setText(QString::number(teta_4,'f',3));
-            ui->widget_5->ui->widget_2->ui->tableWidget_3->item(3,2)->setText(QString::number(teta_c,'f',3));
-            ui->widget_5->ui->widget_2->ui->tableWidget_3->item(4,2)->setText(QString::number(teta_p,'f',3));
-            ui->widget_5->ui->widget_2->ui->tableWidget_3->item(5,2)->setText(QString::number(teta_z,'f',3));
-            ui->widget_5->ui->widget_2->ui->tableWidget_3->item(6,2)->setText(QString::number(teta_pp,'f',3));
-            ui->widget_5->ui->widget_2->ui->tableWidget_3->item(7,2)->setText(QString::number(teta_l_1,'f',3));
-            ui->widget_5->ui->widget_2->ui->tableWidget_3->item(8,2)->setText(QString::number(teta_l_2,'f',3));
+            //Расчет температур
+            teta_p=20;
+            teta_z=50;
+            teta_3=70;
+            teta_c=76;
+            teta_l_1=120;
+            teta_pp=80;
+            teta_l_2=120;
+            teta_2=60;
+            teta_4=40;
 
-            //вывод тепловых проводимостей в таблицу
-            lambda_pz=0.034;
+            //Вывод температур в таблицу
+            ui->widget_5->ui->widget_2->ui->tableWidget_3->item(0,2)->setText(QString::number(teta_p,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_3->item(1,2)->setText(QString::number(teta_z,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_3->item(2,2)->setText(QString::number(teta_3,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_3->item(3,2)->setText(QString::number(teta_c,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_3->item(4,2)->setText(QString::number(teta_l_1,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_3->item(5,2)->setText(QString::number(teta_pp,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_3->item(6,2)->setText(QString::number(teta_l_2,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_3->item(7,2)->setText(QString::number(teta_2,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_3->item(8,2)->setText(QString::number(teta_4,'f',3));
+
+            //Расчет тепловых проводимостей
+            lambda_zp=0.034;
             lambda_zc=0.35;
             lambda_c3=0.23;
             lambda_pc=0.021;
-            lambda_ppz=0.034;
-            lambda_lc=0.067;
-            lambda_l4=0.067;
-            lambda_pl=0.67;
-            lambda_lp=0.56;
+            lambda_pz=0.034;
+            lambda_l22=0.067;
+            lambda_l14=0.067;
+            lambda_pl1=0.67;
+            lambda_pl2=0.56;
 
-            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(0,2)->setText(QString::number(lambda_pz,'f',3));
+            //Вывод тепловых проводимостей в таблицу
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(0,2)->setText(QString::number(lambda_zp,'f',3));
             ui->widget_5->ui->widget_2->ui->tableWidget_2->item(1,2)->setText(QString::number(lambda_zc,'f',3));
             ui->widget_5->ui->widget_2->ui->tableWidget_2->item(2,2)->setText(QString::number(lambda_c3,'f',3));
             ui->widget_5->ui->widget_2->ui->tableWidget_2->item(3,2)->setText(QString::number(lambda_pc,'f',3));
-            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(4,2)->setText(QString::number(lambda_ppz,'f',3));
-            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(5,2)->setText(QString::number(lambda_lc,'f',3));
-            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(6,2)->setText(QString::number(lambda_l4,'f',3));
-            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(7,2)->setText(QString::number(lambda_pl,'f',3));
-            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(8,2)->setText(QString::number(lambda_lp,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(4,2)->setText(QString::number(lambda_pz,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(5,2)->setText(QString::number(lambda_l22,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(6,2)->setText(QString::number(lambda_l14,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(7,2)->setText(QString::number(lambda_pl1,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(8,2)->setText(QString::number(lambda_pl2,'f',3));
 
-            //вывод тоеплоемкостей в таблицу
-            C_2=0.034;
-            C_3=0.35;
-            C_4=0.23;
+            //Расчет мощности рассеяния
+            P_p=20;
+            P_z=100;
+            P_3=120;
+            P_c=502;
+            P_l_1=67;
+            P_pp=76;
+            P_l_2=120;
+            P_2=56;
+            P_4=59;
+
+            //Вывод тепловых проводимостей в таблицу
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(9,2)->setText(QString::number(P_p,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(10,2)->setText(QString::number(P_z,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(11,2)->setText(QString::number(P_3,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(12,2)->setText(QString::number(P_c,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(13,2)->setText(QString::number(P_l_1,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(14,2)->setText(QString::number(P_pp,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(15,2)->setText(QString::number(P_l_2,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(16,2)->setText(QString::number(P_2,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(17,2)->setText(QString::number(P_4,'f',3));
+
+            //Расчет топлоемкостей
+            C_p=0.034;
+            C_z=0.35;
+            C_3=0.23;
             C_c=0.034;
-            C_p=0.067;
-            C_z=0.067;
-            C_pp=0.67;
-            C_l_1=0.56;
-            C_l_2=0.059;
+            C_l_1=0.067;
+            C_pp=0.067;
+            C_l_2=0.67;
+            C_2=0.56;
+            C_4=0.059;
 
-            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(0,2)->setText(QString::number(C_2,'f',3));
-            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(1,2)->setText(QString::number(C_3,'f',3));
-            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(2,2)->setText(QString::number(C_4,'f',3));
+            //Вывод тоеплоемкостей в таблицу
+            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(0,2)->setText(QString::number(C_p,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(1,2)->setText(QString::number(C_z,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(2,2)->setText(QString::number(C_3,'f',3));
             ui->widget_5->ui->widget_2->ui->tableWidget_4->item(3,2)->setText(QString::number(C_c,'f',3));
-            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(4,2)->setText(QString::number(C_p,'f',3));
-            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(5,2)->setText(QString::number(C_z,'f',3));
-            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(6,2)->setText(QString::number(C_pp,'f',3));
-            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(7,2)->setText(QString::number(C_l_1,'f',3));
-            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(8,2)->setText(QString::number(C_l_2,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(4,2)->setText(QString::number(C_l_1,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(5,2)->setText(QString::number(C_pp,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(6,2)->setText(QString::number(C_l_2,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(7,2)->setText(QString::number(C_2,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_4->item(8,2)->setText(QString::number(C_4,'f',3));
+
+            //Расчет мощностей рассеяния
+            dP_zp=100;
+            dP_zc=220;
+            dP_c3=230;
+            dP_pс=450;
+            dP_pz=120;
+            dP_l22=340;
+            dP_l14=560;
+            dP_pl1=506;
+            dP_pl2=760;
+
+            //Вывод мощностей рассеяния в таблицу
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(18,2)->setText(QString::number(dP_zp,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(19,2)->setText(QString::number(dP_zc,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(20,2)->setText(QString::number(dP_c3,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(21,2)->setText(QString::number(dP_pс,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(22,2)->setText(QString::number(dP_pz,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(23,2)->setText(QString::number(dP_l22,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(24,2)->setText(QString::number(dP_l14,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(25,2)->setText(QString::number(dP_pl1,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(26,2)->setText(QString::number(dP_pl2,'f',3));
+
+            //Расчет превышений температуры
+            d_teta_zp=10;
+            d_teta_zc=5;
+            d_teta_c3=20;
+            d_teta_pc=30;
+            d_teta_pz=15;
+            d_teta_l22=10;
+            d_teta_l14=5;
+            d_teta_pl1=35;
+            d_teta_pl2=35;
+
+            //Вывод превышений температуры в таблицу
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(27,2)->setText(QString::number(d_teta_zp,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(28,2)->setText(QString::number(d_teta_zc,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(29,2)->setText(QString::number(d_teta_c3,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(30,2)->setText(QString::number(d_teta_pc,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(31,2)->setText(QString::number(d_teta_pz,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(32,2)->setText(QString::number(d_teta_l22,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(33,2)->setText(QString::number(d_teta_l14,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(34,2)->setText(QString::number(d_teta_pl1,'f',3));
+            ui->widget_5->ui->widget_2->ui->tableWidget_2->item(35,2)->setText(QString::number(d_teta_pl2,'f',3));
         }
 
         if (item30->text() == "Статика (упрощенный вариант)")
