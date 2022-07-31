@@ -10,12 +10,14 @@
 #include <QStandardItem>
 #include "itogs.h"
 
+#include "qundostack.h"
 #include "ui_about_dialog.h"
 #include "ui_settings.h"
 #include "pushbuttondelegate.h"
 #include "ui_graph_Settings.h"
 
 #include "base_tepl.h"
+#include <QProgressBar>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -88,6 +90,7 @@ private slots:
     void tabClicked();
     void tabClicked_2();
     void tabClicked_3();
+    void itemEdit();
 
     void modelItemChangedSlot(QStandardItem *item);
     void modelItemChangedSlot_2(QStandardItem *item);
@@ -106,6 +109,7 @@ private slots:
     void on_load_tepl_dannie_clicked();
     void LoadTeplDannie(QString str);
     void on_tepl_result_clicked();
+    void createUndoStackAndActions();
 
     void on_radioButton_toggled(bool checked);
     void on_radioButton_2_toggled(bool checked);
@@ -134,6 +138,10 @@ public:
     QString dataSourceFilename;
     QString dirName;
 
+    QUndoStack *undoStack;
+    QAction *undoAction;
+    QAction *redoAction;
+    QProgressBar *progress;
     QWebEngineView * view;
 
     QTreeWidgetItem *treeItem, *child3, *child, *child2;

@@ -8,16 +8,15 @@ Tepl_dannie::Tepl_dannie(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->tableWidget->setRowCount(76);
-    ui->tableWidget->setColumnCount(2);
+    ui->tableWidget->setColumnCount(6);
     QStringList name;
-    name << "Свойство" << "Значение" ;
+    name << "Свойство" << "Значение" << "Свойство" << "Значение"<< "Свойство" << "Значение";
     ui->tableWidget->setHorizontalHeaderLabels(name);
-    ui->tableWidget->horizontalHeader()->setSectionResizeMode(0,QHeaderView::Stretch);
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableWidget->setSelectionBehavior(QAbstractItemView :: SelectRows);
     ui->tableWidget->setSelectionMode(QAbstractItemView :: SingleSelection);
     ui->tableWidget->verticalHeader()->setVisible(true);
-    ui->tableWidget->setColumnWidth(1, 100);
-    ui->tableWidget->setColumnWidth(2, 100);
+    ui->tableWidget->resizeColumnsToContents();
     for(int row = 0; row<ui->tableWidget->rowCount(); row++)
     {
         for(int column = 0; column<ui->tableWidget->columnCount(); column++)
@@ -119,8 +118,25 @@ Tepl_dannie::Tepl_dannie(QWidget *parent) :
         if (ui->tableWidget->item(row,1) != 0)
         {
             ui->tableWidget->item(row,1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled|Qt::ItemIsEditable);
-            ui->tableWidget->item(row,1)->setTextAlignment(Qt::AlignCenter);
-           // ui->tableWidget->item(row,2)->setTextAlignment(Qt::AlignCenter);
+            ui->tableWidget->item(row,1)->setTextAlignment(Qt::AlignCenter);            
+        }
+        if (ui->tableWidget->item(row,2) != 0)
+        {
+            ui->tableWidget->item(row,2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+        if (ui->tableWidget->item(row,3) != 0)
+        {
+            ui->tableWidget->item(row,3)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled|Qt::ItemIsEditable);
+            ui->tableWidget->item(row,3)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget->item(row,4) != 0)
+        {
+            ui->tableWidget->item(row,4)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+        if (ui->tableWidget->item(row,5) != 0)
+        {
+            ui->tableWidget->item(row,5)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled|Qt::ItemIsEditable);
+            ui->tableWidget->item(row,5)->setTextAlignment(Qt::AlignCenter);
         }
     }
 
@@ -129,219 +145,8 @@ Tepl_dannie::Tepl_dannie(QWidget *parent) :
     p.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
     ui->tableWidget->setPalette(p);
 
-    //Сохдание и заполнение таблицы проводимостей
-    ui->tableWidget_2->setRowCount(76);
-    ui->tableWidget_2->setColumnCount(3);
-    QStringList name_2;
-    name_2 << "Свойство" << "Обозначение" << "Значение";
-    ui->tableWidget_2->setHorizontalHeaderLabels(name_2);
-    ui->tableWidget_2->horizontalHeader()->setSectionResizeMode(0,QHeaderView::Stretch);
-    ui->tableWidget_2->setSelectionBehavior(QAbstractItemView :: SelectRows);
-    ui->tableWidget_2->setSelectionMode(QAbstractItemView :: SingleSelection);
-    ui->tableWidget_2->verticalHeader()->setVisible(true);
-    ui->tableWidget_2->setColumnWidth(1, 100);
-    for(int row = 0; row<ui->tableWidget_2->rowCount(); row++)
-    {
-        for(int column = 0; column<ui->tableWidget_2->columnCount(); column++)
-        {
-            ui->tableWidget_2->setItem(row, column, new QTableWidgetItem());
-        }
-    }
-
-    ui->tableWidget_2->item(0,0)->setText("Тепловая проводимость между станиной и окружающей средой со стороны выступающей части вала");
-    ui->tableWidget_2->item(1,0)->setText("Тепловая проводимость между подшипниковым щитом и воздушной зоной со стороны выступающей части вала");
-    ui->tableWidget_2->item(2,0)->setText("Тепловая проводимость между обмоткой статора и воздушной зоной со стороны выступающей части вала");
-    ui->tableWidget_2->item(3,0)->setText("Тепловая проводимость между обмоткой ротора и воздушной зоной со стороны выступающей части вала");
-    ui->tableWidget_2->item(4,0)->setText("Тепловая проводимость между станиной и окружающей средой в зоне клеммной коробки");
-    ui->tableWidget_2->item(5,0)->setText("Тепловая проводимость между обмоткой статора и станиной в зоне клеммной коробки");
-    ui->tableWidget_2->item(6,0)->setText("Тепловая проводимость между обмоткой ротора и обмоткой статора в зоне клеммной коробки");
-    ui->tableWidget_2->item(7,0)->setText("Тепловая проводимость между обмоткой статора и воздушной зоной со стороны вентиляторного узла");
-    ui->tableWidget_2->item(8,0)->setText("Тепловая проводимость между обмоткой ротора и воздушной зоной со стороны вентиляторного узла");
-    ui->tableWidget_2->item(9,0)->setText("Тепловая проводимость между обмоткой ротора и воздушной зоной со стороны вентиляторного узла");
-    ui->tableWidget_2->item(10,0)->setText("Тепловая проводимость между обмоткой ротора и вспомогательным ротором");
-    ui->tableWidget_2->item(11,0)->setText("Тепловая проводимость между клеммной коробкой и воздушной зоной со стороны вентиляторного узла");
-    ui->tableWidget_2->item(12,0)->setText("Тепловая проводимость между вентиляторным узлом и воздушной зоной со стороны вентиляторного узла");
-    ui->tableWidget_2->item(13,0)->setText("Тепловая проводимость между вентиляторным узлом и окружающей средой");
-    ui->tableWidget_2->item(14,0)->setText("Тепловая проводимость между вспомогательным ротором и вентиляторным узлом");
-
-    ui->tableWidget_2->item(0,1)->setText("λ₁₀");
-    ui->tableWidget_2->item(1,1)->setText("λ₂₁");
-    ui->tableWidget_2->item(2,1)->setText("λс₂");
-    ui->tableWidget_2->item(3,1)->setText("λₚ₅");
-    ui->tableWidget_2->item(4,1)->setText("λ₃₀");
-    ui->tableWidget_2->item(5,1)->setText("λс₃");
-    ui->tableWidget_2->item(6,1)->setText("λₚс");
-    ui->tableWidget_2->item(7,1)->setText("λ₃ₖ");
-    ui->tableWidget_2->item(8,1)->setText("λс₄");
-    ui->tableWidget_2->item(9,1)->setText("λₚв");
-    ui->tableWidget_2->item(10,1)->setText("λₚ₅");
-    ui->tableWidget_2->item(11,1)->setText("λₖ₀");
-    ui->tableWidget_2->item(12,1)->setText("λ₄₅");
-    ui->tableWidget_2->item(13,1)->setText("λ₅₀");
-    ui->tableWidget_2->item(14,1)->setText("λв₅");
-
-    //запрет редактирования первого столбца
-    for(int row = 0; row<ui->tableWidget_2->rowCount(); row++)
-    {
-        if (ui->tableWidget_2->item(row,0) != 0)
-        {
-            ui->tableWidget_2->item(row,0)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-        }
-        if (ui->tableWidget_2->item(row,1) != 0)
-        {
-            ui->tableWidget_2->item(row,1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-            ui->tableWidget_2->item(row,1)->setTextAlignment(Qt::AlignCenter);
-        }
-        if (ui->tableWidget_2->item(row,2) != 0)
-        {
-            ui->tableWidget_2->item(row,2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled|Qt::ItemIsEditable);
-            ui->tableWidget_2->item(row,2)->setTextAlignment(Qt::AlignCenter);
-        }
-    }
-
-    QPalette p2=ui->tableWidget_2->palette();
-    p2.setColor(QPalette::Base, QColor(255, 255, 191));
-    p2.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
-    ui->tableWidget_2->setPalette(p2);
-
-    //Сохдание и заполнение таблицы проводимостей
-    ui->tableWidget_3->setRowCount(10);
-    ui->tableWidget_3->setColumnCount(3);
-    QStringList name_3;
-    name_3 << "Свойство" << "Обозначение" << "Значение";
-    ui->tableWidget_3->setHorizontalHeaderLabels(name_3);
-    ui->tableWidget_3->horizontalHeader()->setSectionResizeMode(0,QHeaderView::Stretch);
-    ui->tableWidget_3->setSelectionBehavior(QAbstractItemView :: SelectRows);
-    ui->tableWidget_3->setSelectionMode(QAbstractItemView :: SingleSelection);
-    ui->tableWidget_3->verticalHeader()->setVisible(true);
-    ui->tableWidget_3->setColumnWidth(1, 100);
-    for(int row = 0; row<ui->tableWidget_3->rowCount(); row++)
-    {
-        for(int column = 0; column<ui->tableWidget_3->columnCount(); column++)
-        {
-            ui->tableWidget_3->setItem(row, column, new QTableWidgetItem());
-        }
-    }
-
-    ui->tableWidget_3->item(0,0)->setText("Температура окружающей среды");
-    ui->tableWidget_3->item(1,0)->setText("Температура подшипникового щита со стороны выступающего конца вала");
-    ui->tableWidget_3->item(2,0)->setText("Температура воздуха в закрытой зоне внутри двигателя со стороны выступающего конца вала");
-    ui->tableWidget_3->item(3,0)->setText("Температура станины");
-    ui->tableWidget_3->item(4,0)->setText("Температура воздуха в закрытой зоне внутри двигателя со стороны вентиляторного узла");
-    ui->tableWidget_3->item(5,0)->setText("Температура воздуха в зоне вентиляторного узла");
-    ui->tableWidget_3->item(6,0)->setText("Температура в клеммной коробке");
-    ui->tableWidget_3->item(7,0)->setText("Температура в обмотке статора");
-    ui->tableWidget_3->item(8,0)->setText("Температура в обмотке ротора");
-    ui->tableWidget_3->item(9,0)->setText("Температура в обмотке вспомогательного ротора");
-
-    ui->tableWidget_3->item(0,1)->setText("θ₀");
-    ui->tableWidget_3->item(1,1)->setText("θ₁");
-    ui->tableWidget_3->item(2,1)->setText("θ₂");
-    ui->tableWidget_3->item(3,1)->setText("θ₃");
-    ui->tableWidget_3->item(4,1)->setText("θ₄");
-    ui->tableWidget_3->item(5,1)->setText("θ₅");
-    ui->tableWidget_3->item(6,1)->setText("θₖ");
-    ui->tableWidget_3->item(7,1)->setText("θс");
-    ui->tableWidget_3->item(8,1)->setText("θₚ");
-    ui->tableWidget_3->item(9,1)->setText("θв");
-
-
-    //запрет редактирования первого столбца
-    for(int row = 0; row<ui->tableWidget_3->rowCount(); row++)
-    {
-        if (ui->tableWidget_3->item(row,0) != 0)
-        {
-            ui->tableWidget_3->item(row,0)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-        }
-        if (ui->tableWidget_3->item(row,1) != 0)
-        {
-            ui->tableWidget_3->item(row,1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-            ui->tableWidget_3->item(row,1)->setTextAlignment(Qt::AlignCenter);
-        }
-        if (ui->tableWidget_3->item(row,2) != 0)
-        {
-            ui->tableWidget_3->item(row,2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-            ui->tableWidget_3->item(row,2)->setTextAlignment(Qt::AlignCenter);
-        }
-    }
-
-    QPalette p3=ui->tableWidget_3->palette();
-    p3.setColor(QPalette::Base, QColor(255, 255, 191));
-    p3.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
-    ui->tableWidget_3->setPalette(p3);
-
-
-    //Сохдание и заполнение таблицы проводимостей
-    ui->tableWidget_4->setRowCount(10);
-    ui->tableWidget_4->setColumnCount(3);
-    QStringList name_4;
-    name_4 << "Свойство" << "Обозначение" << "Значение";
-    ui->tableWidget_4->setHorizontalHeaderLabels(name_4);
-    ui->tableWidget_4->horizontalHeader()->setSectionResizeMode(0,QHeaderView::Stretch);
-    ui->tableWidget_4->setSelectionBehavior(QAbstractItemView :: SelectRows);
-    ui->tableWidget_4->setSelectionMode(QAbstractItemView :: SingleSelection);
-    ui->tableWidget_4->verticalHeader()->setVisible(true);
-    ui->tableWidget_4->setColumnWidth(1, 100);
-
-    for(int row = 0; row<ui->tableWidget_4->rowCount(); row++)
-    {
-        for(int column = 0; column<ui->tableWidget_4->columnCount(); column++)
-        {
-            ui->tableWidget_4->setItem(row, column, new QTableWidgetItem());
-        }
-    }
-
-    ui->tableWidget_4->item(0,0)->setText("Температура окружающей среды");
-    ui->tableWidget_4->item(1,0)->setText("Температура подшипникового щита со стороны выступающего конца вала");
-    ui->tableWidget_4->item(2,0)->setText("Температура воздуха в закрытой зоне внутри двигателя со стороны выступающего конца вала");
-    ui->tableWidget_4->item(3,0)->setText("Температура станины");
-    ui->tableWidget_4->item(4,0)->setText("Температура воздуха в закрытой зоне внутри двигателя со стороны вентиляторного узла");
-    ui->tableWidget_4->item(5,0)->setText("Температура воздуха в зоне вентиляторного узла");
-    ui->tableWidget_4->item(6,0)->setText("Температура в клеммной коробке");
-    ui->tableWidget_4->item(7,0)->setText("Температура в обмотке статора");
-    ui->tableWidget_4->item(8,0)->setText("Температура в обмотке ротора");
-    ui->tableWidget_4->item(9,0)->setText("Температура в обмотке вспомогательного ротора");
-
-    ui->tableWidget_4->item(0,1)->setText("C₀");
-    ui->tableWidget_4->item(1,1)->setText("C₁");
-    ui->tableWidget_4->item(2,1)->setText("C₂");
-    ui->tableWidget_4->item(3,1)->setText("C₃");
-    ui->tableWidget_4->item(4,1)->setText("C₄");
-    ui->tableWidget_4->item(5,1)->setText("C₅");
-    ui->tableWidget_4->item(6,1)->setText("Cₖ");
-    ui->tableWidget_4->item(7,1)->setText("Cс");
-    ui->tableWidget_4->item(8,1)->setText("Cₚ");
-    ui->tableWidget_4->item(9,1)->setText("Cв");
-
-    //запрет редактирования первого столбца
-    for(int row = 0; row<ui->tableWidget_4->rowCount(); row++)
-    {
-        if (ui->tableWidget_4->item(row,0) != 0)
-        {
-            ui->tableWidget_4->item(row,0)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-        }
-        if (ui->tableWidget_4->item(row,1) != 0)
-        {
-            ui->tableWidget_4->item(row,1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-            ui->tableWidget_4->item(row,1)->setTextAlignment(Qt::AlignCenter);
-        }
-        if (ui->tableWidget_4->item(row,2) != 0)
-        {
-            ui->tableWidget_4->item(row,2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-            ui->tableWidget_4->item(row,2)->setTextAlignment(Qt::AlignCenter);
-        }
-    }
-
-    QPalette p4=ui->tableWidget_4->palette();
-    p4.setColor(QPalette::Base, QColor(255, 255, 191));
-    p4.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
-    ui->tableWidget_4->setPalette(p4);
-
     CustomHelpDelegate* customHelpDelegate = new CustomHelpDelegate(this); //создание делегата для создания комбобоксов
     ui->tableWidget->setItemDelegateForColumn(0, customHelpDelegate);
-    ui->tableWidget_2->setItemDelegateForColumn(0, customHelpDelegate);
-    ui->tableWidget_3->setItemDelegateForColumn(0, customHelpDelegate);
-    ui->tableWidget_4->setItemDelegateForColumn(0, customHelpDelegate);
 }
 
 Tepl_dannie::~Tepl_dannie()
