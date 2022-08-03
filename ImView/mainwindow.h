@@ -143,6 +143,7 @@ public:
     QAction *redoAction;
     QProgressBar *progress;
     QWebEngineView * view;
+    QLabel *statusbar_label, *statusbar_label_2, *statusbar_label_3, *statusbar_label_4;
 
     QTreeWidgetItem *treeItem, *child3, *child, *child2;
     QTreeWidgetItem *currentItem;

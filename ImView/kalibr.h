@@ -86,6 +86,8 @@ private slots:
     void on_ReadPribor_clicked();
     void on_WritePribor_clicked();
 
+    void on_SearchPort_2_clicked();
+
 protected:
     void showEvent(QShowEvent *event);
     void closeEvent(QCloseEvent *e);

@@ -19,6 +19,7 @@
 #include "archiverchannel.h"
 #include "align.h"
 #include "modell.h"
+#include "ui_mainwindow.h"
 
 
 static bool header_added = false;
@@ -32,7 +33,7 @@ Kalibr::Kalibr(QWidget *parent) :
 {
     ui->setupUi(this);
     open_sdb();
-    ui->label_14->setPixmap(QPixmap(":/new/prefix1/img/IM_24_red.png"));
+    ui->label_14->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
     ui->label_15->setText("  Связи нет");
     ui->label_39->setText("Загрузите файл");
     QString currentTabText = ui->tabWidget->tabText(0);
@@ -174,6 +175,36 @@ void Kalibr::open_sdb()
     ui->comboBox_6->addItem(QLatin1String("None"), QSerialPort::NoFlowControl);
     ui->comboBox_6->addItem(QLatin1String("RTS/CTS"), QSerialPort::HardwareControl);
     ui->comboBox_6->addItem(QLatin1String("XON/XOFF"), QSerialPort::SoftwareControl);
+
+
+    ui->comboBox_9->addItem(QLatin1String("9600"), QSerialPort::Baud9600);
+    ui->comboBox_9->addItem(QLatin1String("19200"), QSerialPort::Baud19200);
+    ui->comboBox_9->addItem(QLatin1String("38400"), QSerialPort::Baud38400);
+    ui->comboBox_9->addItem(QLatin1String("115200"), QSerialPort::Baud115200);
+    ui->comboBox_9->addItem(QLatin1String("Custom"));
+    ui->comboBox_9->setCurrentIndex(3);
+   // fill data bits
+    ui->comboBox_11->addItem(QLatin1String("5"), QSerialPort::Data5);
+    ui->comboBox_11->addItem(QLatin1String("6"), QSerialPort::Data6);
+    ui->comboBox_11->addItem(QLatin1String("7"), QSerialPort::Data7);
+    ui->comboBox_11->addItem(QLatin1String("8"), QSerialPort::Data8);
+    ui->comboBox_11->setCurrentIndex(3);
+   // fill parity
+    ui->comboBox_7->addItem(QLatin1String("None"), QSerialPort::NoParity);
+    ui->comboBox_7->addItem(QLatin1String("Even"), QSerialPort::EvenParity);
+    ui->comboBox_7->addItem(QLatin1String("Odd"), QSerialPort::OddParity);
+    ui->comboBox_7->addItem(QLatin1String("Mark"), QSerialPort::MarkParity);
+    ui->comboBox_7->addItem(QLatin1String("Space"), QSerialPort::SpaceParity);
+   // fill stop bits
+    ui->comboBox_8->addItem(QLatin1String("1"), QSerialPort::OneStop);
+    ui->comboBox_8->addItem(QLatin1String("2"), QSerialPort::TwoStop);
+    #ifdef Q_OS_WIN
+        ui->comboBox_5->addItem(QLatin1String("1.5"), QSerialPort::OneAndHalfStop);
+    #endif
+   // fill flow control
+    ui->comboBox_12->addItem(QLatin1String("None"), QSerialPort::NoFlowControl);
+    ui->comboBox_12->addItem(QLatin1String("RTS/CTS"), QSerialPort::HardwareControl);
+    ui->comboBox_12->addItem(QLatin1String("XON/XOFF"), QSerialPort::SoftwareControl);
 
     connect(modell, &QSqlTableModel::dataChanged,this, &Kalibr::selectRows);
 
@@ -358,7 +389,7 @@ uint CRC16_2(QByteArray buf, int len)
 void Kalibr::stopGetData()
 {
     timer.stop();
-    ui->label_14->setPixmap(QPixmap(":/new/prefix1/img/IM_24_red"));
+    ui->label_14->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
     ui->label_15->setText("  Связи нет");
 }
 
@@ -617,7 +648,7 @@ void Kalibr::timerTimeout()
 
 
         ui->label_14->clear();
-        ui->label_14->setPixmap(QPixmap(":/new/prefix1/img/IM_24_blue.png"));
+        ui->label_14->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_blue.png"));
         ui->label_15->setText("  Связь установлена");
 
         delete port;
@@ -1337,6 +1368,9 @@ void Kalibr::on_EnterPort_clicked()
 {
     if (ui->EnterPort->isChecked())
     {
+//        wf->label->clear();
+//        ui->label->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_blue.png"));
+//        ui->label2->setText("  Связь установлена");
         copyChannelNamesToTableWidget();
         timer.start(1000);
         std::ofstream fout;
@@ -1373,7 +1407,7 @@ void Kalibr::on_EnterPort_clicked()
     else
     {
         timer.stop();
-        ui->label_14->setPixmap(QPixmap(":/new/prefix1/img/IM_24_red"));
+        ui->label_14->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
         ui->label_15->setText("  Связи нет");
     }
 }
@@ -2042,5 +2076,20 @@ void Kalibr::on_WritePribor_clicked()
 
     QMessageBox::information(this, "Завершено", "Запись данных завершена!");
     progress->setVisible(false);
+}
+
+
+void Kalibr::on_SearchPort_2_clicked()
+{
+    ui->comboBox_10->clear();
+    foreach (const QSerialPortInfo &info, QSerialPortInfo::availablePorts())
+        {
+          ui->comboBox_10->addItem(info.portName());
+          ui->comboBox_10->addItem("ttyMP0");
+          ui->comboBox_10->addItem("ttyMP1");
+          ui->comboBox_10->addItem("ttyDUMMY");
+          ui->comboBox_10->setCurrentIndex(1);
+        }
+
 }
 

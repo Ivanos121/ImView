@@ -27,6 +27,7 @@
 #include <fstream>
 #include <cmath>
 #include <QUndoCommand>
+#include <QPixmap>
 
 #include "base.h"
 #include "model.h"
@@ -1399,12 +1400,28 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_5->ui->tabWidget->setCurrentIndex(0);
     ui->widget_5->ui->tabWidget_2->setCurrentIndex(0);
 
-    progress = new QProgressBar(ui->statusbar);
-    progress->setVisible(false);
-    ui->statusbar->addWidget(progress,1);
-    progress->setTextVisible(false);
-    setStyleSheet("QProgressBar {border: 2px solid grey;height: 15px} QProgressBar::chunk {background-color: #55FF55;width: 20px}");
+//    GeneralInfo = new QLabel("[General Info]");
+//    GeneralInfo->setAlignment(Qt::AlignCenter);
+//    statusBar()->addPermanentWidget(GeneralInfo, 1);
+//    MeshInfo = new QLabel("");
+//    MeshInfo->setAlignment(Qt::AlignCenter);
+//    statusBar()->addPermanentWidget(MeshInfo, 1);
+//    statusBar()->setStyleSheet(QString("margin-right: 0px; padding: 6px;"));
+    statusbar_label = new QLabel;
+    statusbar_label->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red.png"));
+    statusbar_label->setAlignment(Qt::AlignTop);
+    ui->statusbar->addWidget(statusbar_label);
+    QLabel *label2 = new QLabel("подключения БВАСа нет");
+    label2->setAlignment(Qt::AlignTop);
+    ui->statusbar->addWidget(label2);
 
+    QLabel *label3 = new QLabel("");
+    label3->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red.png"));
+    label3->setAlignment(Qt::AlignTop);
+    ui->statusbar->addWidget(label3);
+    QLabel *label4 = new QLabel("подключения БВАСа нет");
+    label4->setAlignment(Qt::AlignTop);
+    ui->statusbar->addWidget(label4);
 
     QObject::connect(ui->treeView, &QAbstractItemView::activated,this, &MainWindow::itemEdit);
 
