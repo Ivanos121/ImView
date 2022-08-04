@@ -19,6 +19,8 @@
 #include "datasourcebvas.h"
 #include "modell.h"
 
+class MainWindow;
+
 namespace Ui {
 class Kalibr;
 }
@@ -125,6 +127,8 @@ private:
     QStatusBar *statusbar;
 
     qint64 startTime;
+
+    MainWindow *wf;
 
     QSerialPort* openArchiverPort();
     void stopGetData();

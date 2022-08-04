@@ -19,7 +19,7 @@
 #include "archiverchannel.h"
 #include "align.h"
 #include "modell.h"
-#include "ui_mainwindow.h"
+#include "mainwindow.h"
 
 
 static bool header_added = false;
@@ -31,6 +31,7 @@ Kalibr::Kalibr(QWidget *parent) :
     , deleteRowBackgroundColor(255,0,0)
     , ui(new Ui::Kalibr)
 {
+    wf = (MainWindow*)parent;
     ui->setupUi(this);
     open_sdb();
     ui->label_14->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
@@ -1368,9 +1369,9 @@ void Kalibr::on_EnterPort_clicked()
 {
     if (ui->EnterPort->isChecked())
     {
-//        wf->label->clear();
-//        ui->label->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_blue.png"));
-//        ui->label2->setText("  Связь установлена");
+        wf->statusbar_label->clear();
+        wf->statusbar_label->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_blue.png"));
+        wf->statusbar_label_2->setText("  Связь установлена");
         copyChannelNamesToTableWidget();
         timer.start(1000);
         std::ofstream fout;
@@ -1409,6 +1410,9 @@ void Kalibr::on_EnterPort_clicked()
         timer.stop();
         ui->label_14->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
         ui->label_15->setText("  Связи нет");
+        wf->statusbar_label->clear();
+        wf->statusbar_label->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red.png"));
+        wf->statusbar_label_2->setText("  Связи нет");
     }
 }
 

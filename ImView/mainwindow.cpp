@@ -1411,9 +1411,9 @@ MainWindow::MainWindow(QWidget *parent)
     statusbar_label->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red.png"));
     statusbar_label->setAlignment(Qt::AlignTop);
     ui->statusbar->addWidget(statusbar_label);
-    QLabel *label2 = new QLabel("подключения БВАСа нет");
-    label2->setAlignment(Qt::AlignTop);
-    ui->statusbar->addWidget(label2);
+    statusbar_label_2 = new QLabel("подключения БВАСа нет");
+    statusbar_label_2->setAlignment(Qt::AlignTop);
+    ui->statusbar->addWidget(statusbar_label_2);
 
     QLabel *label3 = new QLabel("");
     label3->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red.png"));
@@ -1439,6 +1439,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->tabWidget, &QTabWidget::currentChanged, this,&MainWindow::tabClicked);
     connect(ui->widget_5->ui->tabWidget, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_2);
     connect(ui->widget_5->ui->tabWidget_2, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_3);
+    connect(ui->widget_6->ui->tabWidget, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_4);
 }
 
 void MainWindow::itemEdit()
@@ -2639,7 +2640,12 @@ void MainWindow::tabClicked()
     if(ui->tabWidget->currentIndex()==3)
     {
         ui->stackedWidget->show();
-        tabClicked_2();
+        ui->stackedWidget->setCurrentIndex(9);
+    }
+    if(ui->tabWidget->currentIndex()==4)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(5);
     }
 }
 
@@ -2683,6 +2689,25 @@ void MainWindow::tabClicked_3()
     {
         ui->stackedWidget->show();
         ui->stackedWidget->setCurrentIndex(4);
+    }
+    if(ui->widget_5->ui->tabWidget_2->currentIndex() == 1)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(4);
+    }
+    if(ui->widget_5->ui->tabWidget_2->currentIndex() == 2)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(4);
+    }
+}
+
+void MainWindow::tabClicked_4()
+{
+    if(ui->widget_6->ui->tabWidget->currentIndex() == 0)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(5);
     }
     if(ui->widget_5->ui->tabWidget_2->currentIndex() == 1)
     {
