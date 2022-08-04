@@ -163,7 +163,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>9</number>
+       <number>11</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QGridLayout" name="gridLayout_6">
@@ -960,6 +960,9 @@
       </widget>
       <widget class="QWidget" name="page_10">
        <layout class="QGridLayout" name="gridLayout_11">
+        <item row="1" column="0">
+         <widget class="QTableWidget" name="tableWidget_7"/>
+        </item>
         <item row="0" column="0">
          <widget class="QLabel" name="label_8">
           <property name="text">
@@ -967,8 +970,19 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QTableWidget" name="tableWidget_7"/>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="pushButton_3">
+          <property name="text">
+           <string>Загрузить</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QPushButton" name="pushButton_6">
+          <property name="text">
+           <string>Сохранить</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -1133,6 +1147,95 @@
          <bool>false</bool>
         </property>
        </widget>
+      </widget>
+      <widget class="QWidget" name="page_11">
+       <widget class="QWidget" name="layoutWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>60</y>
+          <width>365</width>
+          <height>178</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_11">
+         <item>
+          <widget class="QLabel" name="label_23">
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:700;&quot;&gt;Аэродинамические проводимости&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_11">
+           <property name="text">
+            <string>Обозначение</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_12">
+           <property name="text">
+            <string>Значение</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_13">
+           <property name="text">
+            <string>Емкость рассеяния</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_14">
+           <property name="text">
+            <string>Мощность рассеяния</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_15">
+           <property name="text">
+            <string>Скрыть элементы</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_12">
+       <layout class="QGridLayout" name="gridLayout_14">
+        <item row="2" column="0">
+         <widget class="QTableWidget" name="tableWidget_8">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>500</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_24">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Результаты измерений&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>

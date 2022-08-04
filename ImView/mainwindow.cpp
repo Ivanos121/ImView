@@ -590,43 +590,42 @@ MainWindow::MainWindow(QWidget *parent)
     item25->appendRow(items8);
     items8.clear();
 
-//    QList<QStandardItem*> items9;
-//    item31 = new QStandardItem(QStringLiteral ("Вентиляционная модель"));
-//    item32 = new QStandardItem();
-//    items9.append(item31);
-//    items9.append(item32);
-//    model->appendRow(items9);
-//    items9.clear();
-//    //item31->setForeground(QBrush(Qt::white));
-//    item31->setSelectable(false);
-//    item31->setEditable(false);
-//    item32->setSelectable(false);
-//    item32->setEditable(false);
-//    QFont newFont5("SansSerif", 10, QFont::Bold,false);
-//    item31->setFont(newFont5);
+    QList<QStandardItem*> items9;
+    item31 = new QStandardItem(QStringLiteral ("Вентиляционная модель"));
+    item32 = new QStandardItem();
+    items9.append(item31);
+    items9.append(item32);
+    model->appendRow(items9);
+    items9.clear();
+    item31->setSelectable(false);
+    item31->setEditable(false);
+    item32->setSelectable(false);
+    item32->setEditable(false);
+    QFont newFont5("SansSerif", 10, QFont::Bold,false);
+    item31->setFont(newFont5);
 
-//    QList<QStandardItem*> items10;
-//    item33 = new QStandardItem(QStringLiteral ("Условие 10"));
-//    item33->setEditable(false);
-//    item34 = new QStandardItem(QStringLiteral ("Значение 10"));
-//    items10.append(item33);
-//    items10.append(item34);
-//    item31->appendRow(items10);
-//    items10.clear();
-//    item35 = new QStandardItem(QStringLiteral ("Условие 11"));
-//    item35->setEditable(false);
-//    item36 = new QStandardItem(QString ("Значение 11"));
-//    items10.append(item35);
-//    items10.append(item36);
-//    item31->appendRow(items10);
-//    items10.clear();
-//    item37 = new QStandardItem(QStringLiteral ("Условие 12"));
-//    item37->setEditable(false);
-//    item38 = new QStandardItem(QStringLiteral ("Значение 12"));
-//    items10.append(item37);
-//    items10.append(item38);
-//    item31->appendRow(items10);
-//    items10.clear();
+    QList<QStandardItem*> items10;
+    item33 = new QStandardItem(QStringLiteral ("Вентиляционный режим"));
+    item33->setEditable(false);
+    item34 = new QStandardItem(QStringLiteral ("Выберите режим"));
+    items10.append(item33);
+    items10.append(item34);
+    item31->appendRow(items10);
+    items10.clear();
+    item35 = new QStandardItem(QStringLiteral ("Условие 11"));
+    item35->setEditable(false);
+    item36 = new QStandardItem(QString ("Значение 11"));
+    items10.append(item35);
+    items10.append(item36);
+    item31->appendRow(items10);
+    items10.clear();
+    item37 = new QStandardItem(QStringLiteral ("Условие 12"));
+    item37->setEditable(false);
+    item38 = new QStandardItem(QStringLiteral ("Значение 12"));
+    items10.append(item37);
+    items10.append(item38);
+    item31->appendRow(items10);
+    items10.clear();
 
 //    QList<QStandardItem*> items11;
 //    item39 = new QStandardItem(QStringLiteral ("Прогнозирование температур"));
@@ -1276,6 +1275,100 @@ MainWindow::MainWindow(QWidget *parent)
     p106.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
     ui->tableWidget_6->setPalette(p106);
 
+
+    ui->tableWidget_7->setRowCount(8);
+    ui->tableWidget_7->setColumnCount(3);
+    QStringList name_7;
+    name_7 << " № " << "Сигнал" << "Величина";
+    ui->tableWidget_7->setHorizontalHeaderLabels(name_7);
+    ui->tableWidget_7->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->tableWidget_7->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_7->verticalHeader()->setVisible(false);
+    ui->tableWidget_7->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget_7->setSelectionBehavior(QAbstractItemView :: SelectRows);
+    ui->tableWidget_7->setSelectionMode(QAbstractItemView :: SingleSelection);
+    ui->tableWidget_7->setColumnWidth(0, 100);
+    ui->tableWidget_7->setColumnWidth(1, 400);
+
+    for(int row = 0; row<ui->tableWidget_7->rowCount(); row++)
+    {
+        for(int column = 0; column<ui->tableWidget_7->columnCount(); column++)
+        {
+            ui->tableWidget_7->setItem(row, column, new QTableWidgetItem());
+
+        }
+    }
+
+    for (int i=0; i<8; i++)
+    {
+        if (ui->tableWidget_7->item(i, 0) != 0)
+        {
+            ui->tableWidget_7->item(i, 0)->setText(QString("%1").arg(i+1));
+            ui->tableWidget_7->item(i, 0)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+    ui->tableWidget_7->setItem(0, 1, new QTableWidgetItem("Ротор слева, °C"));
+    ui->tableWidget_7->setItem(1, 1, new QTableWidgetItem("Ротор справа, °C"));
+    ui->tableWidget_7->setItem(2, 1, new QTableWidgetItem("Станина слева, °C"));
+    ui->tableWidget_7->setItem(3, 1, new QTableWidgetItem("Станина справа, °C"));
+    ui->tableWidget_7->setItem(4, 1, new QTableWidgetItem("Вал, °C"));
+    ui->tableWidget_7->setItem(5, 1, new QTableWidgetItem("Клеммная коробка, °C"));
+    ui->tableWidget_7->setItem(6, 1, new QTableWidgetItem("Магнитопровод статора слева, °C"));
+    ui->tableWidget_7->setItem(7, 1, new QTableWidgetItem("Магнитопровод статора справа, °C"));
+
+    QPalette p107=ui->tableWidget_7->palette();
+    p107.setColor(QPalette::Base, QColor(225, 255, 255));
+    p107.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
+    ui->tableWidget_7->setPalette(p106);
+
+    ui->tableWidget_8->setRowCount(8);
+    ui->tableWidget_8->setColumnCount(3);
+    QStringList name_8;
+    name_8 << " № " << "Сигнал" << "Величина";
+    ui->tableWidget_8->setHorizontalHeaderLabels(name_8);
+    ui->tableWidget_8->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->tableWidget_8->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_8->verticalHeader()->setVisible(false);
+    ui->tableWidget_8->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget_8->setSelectionBehavior(QAbstractItemView :: SelectRows);
+    ui->tableWidget_8->setSelectionMode(QAbstractItemView :: SingleSelection);
+    ui->tableWidget_8->setColumnWidth(0, 100);
+    ui->tableWidget_8->setColumnWidth(1, 400);
+
+    for(int row = 0; row<ui->tableWidget_8->rowCount(); row++)
+    {
+        for(int column = 0; column<ui->tableWidget_8->columnCount(); column++)
+        {
+            ui->tableWidget_8->setItem(row, column, new QTableWidgetItem());
+
+        }
+    }
+
+    for (int i=0; i<8; i++)
+    {
+        if (ui->tableWidget_8->item(i, 0) != 0)
+        {
+            ui->tableWidget_8->item(i, 0)->setText(QString("%1").arg(i+1));
+            ui->tableWidget_8->item(i, 0)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+    ui->tableWidget_8->setItem(0, 1, new QTableWidgetItem("Ротор слева, °C"));
+    ui->tableWidget_8->setItem(1, 1, new QTableWidgetItem("Ротор справа, °C"));
+    ui->tableWidget_8->setItem(2, 1, new QTableWidgetItem("Станина слева, °C"));
+    ui->tableWidget_8->setItem(3, 1, new QTableWidgetItem("Станина справа, °C"));
+    ui->tableWidget_8->setItem(4, 1, new QTableWidgetItem("Вал, °C"));
+    ui->tableWidget_8->setItem(5, 1, new QTableWidgetItem("Клеммная коробка, °C"));
+    ui->tableWidget_8->setItem(6, 1, new QTableWidgetItem("Магнитопровод статора слева, °C"));
+    ui->tableWidget_8->setItem(7, 1, new QTableWidgetItem("Магнитопровод статора справа, °C"));
+
+    QPalette p108=ui->tableWidget_8->palette();
+    p108.setColor(QPalette::Base, QColor(225, 255, 255));
+    p108.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
+    ui->tableWidget_8->setPalette(p108);
+
+
     dataLineColors.append(Qt::red);
     dataLineColors.append(Qt::green);
     dataLineColors.append(Qt::cyan);
@@ -1399,6 +1492,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tabWidget->setCurrentIndex(0);
     ui->widget_5->ui->tabWidget->setCurrentIndex(0);
     ui->widget_5->ui->tabWidget_2->setCurrentIndex(0);
+    ui->widget_6->ui->tabWidget->setCurrentIndex(0);
 
 //    GeneralInfo = new QLabel("[General Info]");
 //    GeneralInfo->setAlignment(Qt::AlignCenter);
@@ -2709,15 +2803,20 @@ void MainWindow::tabClicked_4()
         ui->stackedWidget->show();
         ui->stackedWidget->setCurrentIndex(5);
     }
-    if(ui->widget_5->ui->tabWidget_2->currentIndex() == 1)
+    if(ui->widget_6->ui->tabWidget->currentIndex() == 1)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(4);
+        ui->stackedWidget->setCurrentIndex(10);
     }
-    if(ui->widget_5->ui->tabWidget_2->currentIndex() == 2)
+    if(ui->widget_6->ui->tabWidget->currentIndex() == 2)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(4);
+        ui->stackedWidget->setCurrentIndex(11);
+    }
+    if(ui->widget_6->ui->tabWidget->currentIndex() == 3)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(12);
     }
 }
 

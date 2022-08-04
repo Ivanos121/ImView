@@ -185,6 +185,14 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         editor->setMaximum(100);
         return editor;
     }
+    else if ((index.parent().row() == 4) && (index.row() == 0))
+    {
+        QComboBox *editor = new QComboBox(parent);
+        editor->insertItem(0, "Статика");
+        editor->insertItem(1, "Динамика (расчет)");
+        editor->insertItem(2, "Динамика (эксперимент)");
+        return editor;
+    }
     else
     {
         return QStyledItemDelegate::createEditor(parent, option, index);
@@ -427,6 +435,19 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
         QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
         spinBox->setValue(value);
     }
+    else if ((index.parent().row() == 4) && (index.row() == 0))
+    {
+        QString value = index.model()->data(index, Qt::DisplayRole).toString();
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);
+        if(value == "Статика (статор)")
+            comboBox->setCurrentIndex(0);
+        else if(value == "Динамика (расчет)")
+            comboBox->setCurrentIndex(1);
+        else if(value == "Динамика (эксперимент)")
+            comboBox->setCurrentIndex(2);
+        int width=comboBox->minimumSizeHint().width();
+        comboBox->view()->setMinimumWidth(width);
+    }
         else
     {
         QStyledItemDelegate::setEditorData(editor, index);
@@ -594,12 +615,16 @@ void ButtonColumnDelegate::setModelData(QWidget *editor, QAbstractItemModel *mod
         double value = spinBox->value();
         model->setData(index, value, Qt::EditRole);
     }
+    else if ((index.parent().row() == 4) && (index.row() == 0))
+    {
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);
+        QString value = comboBox->currentText();
+        model->setData(index, value);
+    }
         else {
         QStyledItemDelegate::setModelData(editor, model, index);
     }
 }
-
-
 
 void ButtonColumnDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
