@@ -35,7 +35,10 @@ SOURCES += \
     datasource_file.cpp \
     datasourcebvas.cpp \
     datasourcebvasw.cpp \
+    datasourcedigitosc.cpp \
     device.cpp \
+    devicedigitosc.cpp \
+    digitoscthread.cpp \
     draw_line.cpp \
     draw_poper.cpp \
     electromagn.cpp \
@@ -87,7 +90,10 @@ HEADERS += \
     datasource_file.h \
     datasourcebvas.h \
     datasourcebvasw.h \
+    datasourcedigitosc.h \
     device.h \
+    devicedigitosc.h \
+    digitoscthread.h \
     draw_line.h \
     draw_poper.h \
     electromagn.h \

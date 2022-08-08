@@ -3,6 +3,16 @@
 
 #include <QString>
 
+struct DigitOscParams
+{
+    QString portName;
+    int speed;
+    int data;
+    int parity;
+    int stopBits;
+    int flowControl;
+};
+
 struct Base
 {
     double P_nom;
@@ -44,6 +54,7 @@ struct Base
     double p_react;
     double p_poln;
     double cosf;
+    DigitOscParams digitOscParams;
 
 };
 

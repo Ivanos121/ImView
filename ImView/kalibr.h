@@ -90,6 +90,8 @@ private slots:
 
     void on_SearchPort_2_clicked();
 
+    void on_EnterPort_2_clicked();
+
 protected:
     void showEvent(QShowEvent *event);
     void closeEvent(QCloseEvent *e);

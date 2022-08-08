@@ -2097,3 +2097,14 @@ void Kalibr::on_SearchPort_2_clicked()
 
 }
 
+
+void Kalibr::on_EnterPort_2_clicked()
+{
+    base.digitOscParams.portName = ui->comboBox_10->currentText();
+    base.digitOscParams.speed = ui->comboBox_9->currentText().toInt();
+    base.digitOscParams.data = ui->comboBox_11->currentText().toInt();
+    base.digitOscParams.parity = ui->comboBox_7->currentText().toInt();
+    base.digitOscParams.stopBits = ui->comboBox_8->currentText().toInt();
+    base.digitOscParams.flowControl = ui->comboBox_12->currentText().toInt();
+}
+
