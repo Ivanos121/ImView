@@ -20,16 +20,17 @@
 #include "align.h"
 #include "modell.h"
 #include "mainwindow.h"
+#include "datasourcedigitosc.h"
 
 
 static bool header_added = false;
 
 Kalibr::Kalibr(QWidget *parent) :
     QDialog(parent)
-    , disabledCellBackgroundColor(180, 180, 180)
-    , changedColumnBackgroundColor(144,238,144)
-    , deleteRowBackgroundColor(255,0,0)
-    , ui(new Ui::Kalibr)
+  , disabledCellBackgroundColor(180, 180, 180)
+  , changedColumnBackgroundColor(144,238,144)
+  , deleteRowBackgroundColor(255,0,0)
+  , ui(new Ui::Kalibr)
 {
     wf = (MainWindow*)parent;
     ui->setupUi(this);
@@ -38,61 +39,21 @@ Kalibr::Kalibr(QWidget *parent) :
     QString currentTabText = ui->tabWidget->tabText(0);
     setWindowTitle(currentTabText + "@" + QString("base") + QString(" - IM View"));
 
-    QString myText = "Настройки соединения архиватора МСД200";
-    QFont newFont("DroidSans", 12, QFont::Bold,false);
-    QString templateString = "<p style=\"line-height:%1%\">%2<p>";
-    int myPercentage = 80;
-    QString targetText = templateString.arg(myPercentage).arg(myText);
-    ui->label_7->setWordWrap(true);
-    ui->label_7->setFont(newFont);
-    ui->label_7->setAlignment(Qt::AlignCenter);
-    ui->label_7->setText(targetText);
     ui->label_38->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
     //ui->label_55->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
 
-    QString myText2 = "Настройки соединения осциллографа osc";
-    QFont newFont2("DroidSans", 12, QFont::Bold,false);
-    QString templateString2 = "<p style=\"line-height:%1%\">%2<p>";
-    int myPercentage2 = 80;
-    QString targetText2 = templateString2.arg(myPercentage2).arg(myText2);
-    ui->label_40->setWordWrap(true);
-    ui->label_40->setFont(newFont2);
-    ui->label_40->setAlignment(Qt::AlignCenter);
-    ui->label_40->setText(targetText2);
     ui->label_56->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
 
-    QString myText3 = "Настройки соединения изменения момента";
-    QFont newFont3("DroidSans", 12, QFont::Bold,false);
-    QString templateString3 = "<p style=\"line-height:%1%\">%2<p>";
-    int myPercentage3 = 80;
-    QString targetText3 = templateString3.arg(myPercentage3).arg(myText3);
-    ui->label_47->setWordWrap(true);
-    ui->label_47->setFont(newFont3);
-    ui->label_47->setAlignment(Qt::AlignCenter);
-    ui->label_47->setText(targetText3);
     ui->label_58->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
 
-    QString myText4 = "Настройки соединения ПЛК";
-    QFont newFont4("DroidSans", 12, QFont::Bold,false);
-    QString templateString4 = "<p style=\"line-height:%1%\">%2<p>";
-    int myPercentage4 = 80;
-    QString targetText4 = templateString4.arg(myPercentage4).arg(myText4);
-    ui->label_54->setWordWrap(true);
-    ui->label_54->setFont(newFont4);
-    ui->label_54->setAlignment(Qt::AlignCenter);
-    ui->label_54->setText(targetText4);
     ui->label_60->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
 
-    QString myText5 = "Настройки каналов архиватора МСД-200";
-    QFont newFont5("DroidSans", 12, QFont::Bold,false);
-    QString templateString5 = "<p style=\"line-height:%1%\">%2<p>";
-    int myPercentage5 = 80;
-    QString targetText5 = templateString5.arg(myPercentage5).arg(myText5);
-    ui->label_16->setWordWrap(true);
-    ui->label_16->setFont(newFont5);
-    ui->label_16->setAlignment(Qt::AlignCenter);
-    ui->label_16->setText(targetText5);
-   // ui->label_55->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
+    // ui->label_55->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
+
+    //Настройки выбора осцилолографа для калибровки
+    ui->comboBox_19->addItem(QStringLiteral("БВАСv1"));
+    ui->comboBox_19->addItem(QStringLiteral("БВАСv2"));
+
 
     connect(&timer, &QTimer::timeout, this, &Kalibr::timerTimeout);
 
@@ -209,25 +170,25 @@ void Kalibr::open_sdb()
     ui->comboBox_2->addItem(QLatin1String("115200"), QSerialPort::Baud115200);
     ui->comboBox_2->addItem(QLatin1String("Custom"));
     ui->comboBox_2->setCurrentIndex(3);
-   // fill data bits
+    // fill data bits
     ui->comboBox_3->addItem(QLatin1String("5"), QSerialPort::Data5);
     ui->comboBox_3->addItem(QLatin1String("6"), QSerialPort::Data6);
     ui->comboBox_3->addItem(QLatin1String("7"), QSerialPort::Data7);
     ui->comboBox_3->addItem(QLatin1String("8"), QSerialPort::Data8);
     ui->comboBox_3->setCurrentIndex(3);
-   // fill parity
+    // fill parity
     ui->comboBox_4->addItem(QLatin1String("None"), QSerialPort::NoParity);
     ui->comboBox_4->addItem(QLatin1String("Even"), QSerialPort::EvenParity);
     ui->comboBox_4->addItem(QLatin1String("Odd"), QSerialPort::OddParity);
     ui->comboBox_4->addItem(QLatin1String("Mark"), QSerialPort::MarkParity);
     ui->comboBox_4->addItem(QLatin1String("Space"), QSerialPort::SpaceParity);
-   // fill stop bits
+    // fill stop bits
     ui->comboBox_5->addItem(QLatin1String("1"), QSerialPort::OneStop);
     ui->comboBox_5->addItem(QLatin1String("2"), QSerialPort::TwoStop);
-    #ifdef Q_OS_WIN
-        ui->comboBox_5->addItem(QLatin1String("1.5"), QSerialPort::OneAndHalfStop);
-    #endif
-   // fill flow control
+#ifdef Q_OS_WIN
+    ui->comboBox_5->addItem(QLatin1String("1.5"), QSerialPort::OneAndHalfStop);
+#endif
+    // fill flow control
     ui->comboBox_6->addItem(QLatin1String("None"), QSerialPort::NoFlowControl);
     ui->comboBox_6->addItem(QLatin1String("RTS/CTS"), QSerialPort::HardwareControl);
     ui->comboBox_6->addItem(QLatin1String("XON/XOFF"), QSerialPort::SoftwareControl);
@@ -239,25 +200,25 @@ void Kalibr::open_sdb()
     ui->comboBox_9->addItem(QLatin1String("115200"), QSerialPort::Baud115200);
     ui->comboBox_9->addItem(QLatin1String("Custom"));
     ui->comboBox_9->setCurrentIndex(3);
-   // fill data bits
+    // fill data bits
     ui->comboBox_11->addItem(QLatin1String("5"), QSerialPort::Data5);
     ui->comboBox_11->addItem(QLatin1String("6"), QSerialPort::Data6);
     ui->comboBox_11->addItem(QLatin1String("7"), QSerialPort::Data7);
     ui->comboBox_11->addItem(QLatin1String("8"), QSerialPort::Data8);
     ui->comboBox_11->setCurrentIndex(3);
-   // fill parity
+    // fill parity
     ui->comboBox_7->addItem(QLatin1String("None"), QSerialPort::NoParity);
     ui->comboBox_7->addItem(QLatin1String("Even"), QSerialPort::EvenParity);
     ui->comboBox_7->addItem(QLatin1String("Odd"), QSerialPort::OddParity);
     ui->comboBox_7->addItem(QLatin1String("Mark"), QSerialPort::MarkParity);
     ui->comboBox_7->addItem(QLatin1String("Space"), QSerialPort::SpaceParity);
-   // fill stop bits
+    // fill stop bits
     ui->comboBox_8->addItem(QLatin1String("1"), QSerialPort::OneStop);
     ui->comboBox_8->addItem(QLatin1String("2"), QSerialPort::TwoStop);
-    #ifdef Q_OS_WIN
-        ui->comboBox_5->addItem(QLatin1String("1.5"), QSerialPort::OneAndHalfStop);
-    #endif
-   // fill flow control
+#ifdef Q_OS_WIN
+    ui->comboBox_5->addItem(QLatin1String("1.5"), QSerialPort::OneAndHalfStop);
+#endif
+    // fill flow control
     ui->comboBox_12->addItem(QLatin1String("None"), QSerialPort::NoFlowControl);
     ui->comboBox_12->addItem(QLatin1String("RTS/CTS"), QSerialPort::HardwareControl);
     ui->comboBox_12->addItem(QLatin1String("XON/XOFF"), QSerialPort::SoftwareControl);
@@ -269,30 +230,28 @@ void Kalibr::open_sdb()
     ui->comboBox_15->addItem(QLatin1String("115200"), QSerialPort::Baud115200);
     ui->comboBox_15->addItem(QLatin1String("Custom"));
     ui->comboBox_15->setCurrentIndex(3);
-   // fill data bits
+    // fill data bits
     ui->comboBox_17->addItem(QLatin1String("5"), QSerialPort::Data5);
     ui->comboBox_17->addItem(QLatin1String("6"), QSerialPort::Data6);
     ui->comboBox_17->addItem(QLatin1String("7"), QSerialPort::Data7);
     ui->comboBox_17->addItem(QLatin1String("8"), QSerialPort::Data8);
     ui->comboBox_17->setCurrentIndex(3);
-   // fill parity
+    // fill parity
     ui->comboBox_13->addItem(QLatin1String("None"), QSerialPort::NoParity);
     ui->comboBox_13->addItem(QLatin1String("Even"), QSerialPort::EvenParity);
     ui->comboBox_13->addItem(QLatin1String("Odd"), QSerialPort::OddParity);
     ui->comboBox_13->addItem(QLatin1String("Mark"), QSerialPort::MarkParity);
     ui->comboBox_13->addItem(QLatin1String("Space"), QSerialPort::SpaceParity);
-   // fill stop bits
+    // fill stop bits
     ui->comboBox_14->addItem(QLatin1String("1"), QSerialPort::OneStop);
     ui->comboBox_14->addItem(QLatin1String("2"), QSerialPort::TwoStop);
-    #ifdef Q_OS_WIN
-        ui->comboBox_5->addItem(QLatin1String("1.5"), QSerialPort::OneAndHalfStop);
-    #endif
-   // fill flow control
+#ifdef Q_OS_WIN
+    ui->comboBox_5->addItem(QLatin1String("1.5"), QSerialPort::OneAndHalfStop);
+#endif
+    // fill flow control
     ui->comboBox_18->addItem(QLatin1String("None"), QSerialPort::NoFlowControl);
     ui->comboBox_18->addItem(QLatin1String("RTS/CTS"), QSerialPort::HardwareControl);
     ui->comboBox_18->addItem(QLatin1String("XON/XOFF"), QSerialPort::SoftwareControl);
-
-    ui->comboBox_22->addItem(QLatin1String("631"));
 
     connect(modell, &QSqlTableModel::dataChanged,this, &Kalibr::selectRows);
 
@@ -305,43 +264,43 @@ void Kalibr::open_sdb()
     setStyleSheet("QProgressBar {border: 2px solid grey;height: 15px} QProgressBar::chunk {background-color: #55FF55;width: 20px}");
 
     //настройка таблицы вывода данных
-       ui->tableWidget->setRowCount(32); //задание количества строк таблицы
-       ui->tableWidget->setColumnCount(6); //задание количества столбцов
-       QStringList name; //объявление указателя на тип QStringList
-       name << "№" << "Свойство" << "Значение" << "№" << "Свойство" << "Значение"; //перечисление заголовков
-       ui->tableWidget->setHorizontalHeaderLabels(name); //установка заголовков в таблицу
-       ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch); //Устанавливает ограничения на то, как размер заголовка может быть изменен до тех, которые описаны в данном режиме
-       ui->tableWidget->setSelectionMode(QAbstractItemView :: NoSelection);
-       ui->tableWidget->verticalHeader()->setVisible(false);
-       ui->tableWidget->resizeColumnsToContents();
-       ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget->setRowCount(32); //задание количества строк таблицы
+    ui->tableWidget->setColumnCount(6); //задание количества столбцов
+    QStringList name; //объявление указателя на тип QStringList
+    name << "№" << "Свойство" << "Значение" << "№" << "Свойство" << "Значение"; //перечисление заголовков
+    ui->tableWidget->setHorizontalHeaderLabels(name); //установка заголовков в таблицу
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch); //Устанавливает ограничения на то, как размер заголовка может быть изменен до тех, которые описаны в данном режиме
+    ui->tableWidget->setSelectionMode(QAbstractItemView :: NoSelection);
+    ui->tableWidget->verticalHeader()->setVisible(false);
+    ui->tableWidget->resizeColumnsToContents();
+    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
-       for(int row = 0; row<ui->tableWidget->rowCount(); row++)
-       {
-           for(int column = 0; column<ui->tableWidget->columnCount(); column++)
-           {
-             ui->tableWidget->setItem(row, column, new QTableWidgetItem());
-           }
-       }
+    for(int row = 0; row<ui->tableWidget->rowCount(); row++)
+    {
+        for(int column = 0; column<ui->tableWidget->columnCount(); column++)
+        {
+            ui->tableWidget->setItem(row, column, new QTableWidgetItem());
+        }
+    }
 
-        copyChannelNamesToTableWidget();
+    copyChannelNamesToTableWidget();
 
-       for (int i=0; i<32; i++)
-       {
-              if (ui->tableWidget->item(i, 0) != 0)
-               {
-                    ui->tableWidget->item(i, 0)->setText(QString("%1").arg(i+1));
-                    ui->tableWidget->item(i, 0)->setTextAlignment(Qt::AlignCenter);
-               }
-       }
-       for (int i=32; i<64; i++)
-       {
-              if (ui->tableWidget->item(i-32, 3) != 0)
-               {
-                    ui->tableWidget->item(i-32, 3)->setText(QString("%1").arg(i+1));
-                    ui->tableWidget->item(i-32, 3)->setTextAlignment(Qt::AlignCenter);
-               }
-       }
+    for (int i=0; i<32; i++)
+    {
+        if (ui->tableWidget->item(i, 0) != 0)
+        {
+            ui->tableWidget->item(i, 0)->setText(QString("%1").arg(i+1));
+            ui->tableWidget->item(i, 0)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+    for (int i=32; i<64; i++)
+    {
+        if (ui->tableWidget->item(i-32, 3) != 0)
+        {
+            ui->tableWidget->item(i-32, 3)->setText(QString("%1").arg(i+1));
+            ui->tableWidget->item(i-32, 3)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
 
 }
 
@@ -405,80 +364,80 @@ void Kalibr::onCheckBoxHeaderClick2()
 
 uint16_t CRC16 (QByteArray nData, int wLength)
 {
-static const uint16_t wCRCTable[] = {
-   0X0000, 0XC0C1, 0XC181, 0X0140, 0XC301, 0X03C0, 0X0280, 0XC241,
-   0XC601, 0X06C0, 0X0780, 0XC741, 0X0500, 0XC5C1, 0XC481, 0X0440,
-   0XCC01, 0X0CC0, 0X0D80, 0XCD41, 0X0F00, 0XCFC1, 0XCE81, 0X0E40,
-   0X0A00, 0XCAC1, 0XCB81, 0X0B40, 0XC901, 0X09C0, 0X0880, 0XC841,
-   0XD801, 0X18C0, 0X1980, 0XD941, 0X1B00, 0XDBC1, 0XDA81, 0X1A40,
-   0X1E00, 0XDEC1, 0XDF81, 0X1F40, 0XDD01, 0X1DC0, 0X1C80, 0XDC41,
-   0X1400, 0XD4C1, 0XD581, 0X1540, 0XD701, 0X17C0, 0X1680, 0XD641,
-   0XD201, 0X12C0, 0X1380, 0XD341, 0X1100, 0XD1C1, 0XD081, 0X1040,
-   0XF001, 0X30C0, 0X3180, 0XF141, 0X3300, 0XF3C1, 0XF281, 0X3240,
-   0X3600, 0XF6C1, 0XF781, 0X3740, 0XF501, 0X35C0, 0X3480, 0XF441,
-   0X3C00, 0XFCC1, 0XFD81, 0X3D40, 0XFF01, 0X3FC0, 0X3E80, 0XFE41,
-   0XFA01, 0X3AC0, 0X3B80, 0XFB41, 0X3900, 0XF9C1, 0XF881, 0X3840,
-   0X2800, 0XE8C1, 0XE981, 0X2940, 0XEB01, 0X2BC0, 0X2A80, 0XEA41,
-   0XEE01, 0X2EC0, 0X2F80, 0XEF41, 0X2D00, 0XEDC1, 0XEC81, 0X2C40,
-   0XE401, 0X24C0, 0X2580, 0XE541, 0X2700, 0XE7C1, 0XE681, 0X2640,
-   0X2200, 0XE2C1, 0XE381, 0X2340, 0XE101, 0X21C0, 0X2080, 0XE041,
-   0XA001, 0X60C0, 0X6180, 0XA141, 0X6300, 0XA3C1, 0XA281, 0X6240,
-   0X6600, 0XA6C1, 0XA781, 0X6740, 0XA501, 0X65C0, 0X6480, 0XA441,
-   0X6C00, 0XACC1, 0XAD81, 0X6D40, 0XAF01, 0X6FC0, 0X6E80, 0XAE41,
-   0XAA01, 0X6AC0, 0X6B80, 0XAB41, 0X6900, 0XA9C1, 0XA881, 0X6840,
-   0X7800, 0XB8C1, 0XB981, 0X7940, 0XBB01, 0X7BC0, 0X7A80, 0XBA41,
-   0XBE01, 0X7EC0, 0X7F80, 0XBF41, 0X7D00, 0XBDC1, 0XBC81, 0X7C40,
-   0XB401, 0X74C0, 0X7580, 0XB541, 0X7700, 0XB7C1, 0XB681, 0X7640,
-   0X7200, 0XB2C1, 0XB381, 0X7340, 0XB101, 0X71C0, 0X7080, 0XB041,
-   0X5000, 0X90C1, 0X9181, 0X5140, 0X9301, 0X53C0, 0X5280, 0X9241,
-   0X9601, 0X56C0, 0X5780, 0X9741, 0X5500, 0X95C1, 0X9481, 0X5440,
-   0X9C01, 0X5CC0, 0X5D80, 0X9D41, 0X5F00, 0X9FC1, 0X9E81, 0X5E40,
-   0X5A00, 0X9AC1, 0X9B81, 0X5B40, 0X9901, 0X59C0, 0X5880, 0X9841,
-   0X8801, 0X48C0, 0X4980, 0X8941, 0X4B00, 0X8BC1, 0X8A81, 0X4A40,
-   0X4E00, 0X8EC1, 0X8F81, 0X4F40, 0X8D01, 0X4DC0, 0X4C80, 0X8C41,
-   0X4400, 0X84C1, 0X8581, 0X4540, 0X8701, 0X47C0, 0X4680, 0X8641,
-   0X8201, 0X42C0, 0X4380, 0X8341, 0X4100, 0X81C1, 0X8081, 0X4040 };
+    static const uint16_t wCRCTable[] = {
+        0X0000, 0XC0C1, 0XC181, 0X0140, 0XC301, 0X03C0, 0X0280, 0XC241,
+        0XC601, 0X06C0, 0X0780, 0XC741, 0X0500, 0XC5C1, 0XC481, 0X0440,
+        0XCC01, 0X0CC0, 0X0D80, 0XCD41, 0X0F00, 0XCFC1, 0XCE81, 0X0E40,
+        0X0A00, 0XCAC1, 0XCB81, 0X0B40, 0XC901, 0X09C0, 0X0880, 0XC841,
+        0XD801, 0X18C0, 0X1980, 0XD941, 0X1B00, 0XDBC1, 0XDA81, 0X1A40,
+        0X1E00, 0XDEC1, 0XDF81, 0X1F40, 0XDD01, 0X1DC0, 0X1C80, 0XDC41,
+        0X1400, 0XD4C1, 0XD581, 0X1540, 0XD701, 0X17C0, 0X1680, 0XD641,
+        0XD201, 0X12C0, 0X1380, 0XD341, 0X1100, 0XD1C1, 0XD081, 0X1040,
+        0XF001, 0X30C0, 0X3180, 0XF141, 0X3300, 0XF3C1, 0XF281, 0X3240,
+        0X3600, 0XF6C1, 0XF781, 0X3740, 0XF501, 0X35C0, 0X3480, 0XF441,
+        0X3C00, 0XFCC1, 0XFD81, 0X3D40, 0XFF01, 0X3FC0, 0X3E80, 0XFE41,
+        0XFA01, 0X3AC0, 0X3B80, 0XFB41, 0X3900, 0XF9C1, 0XF881, 0X3840,
+        0X2800, 0XE8C1, 0XE981, 0X2940, 0XEB01, 0X2BC0, 0X2A80, 0XEA41,
+        0XEE01, 0X2EC0, 0X2F80, 0XEF41, 0X2D00, 0XEDC1, 0XEC81, 0X2C40,
+        0XE401, 0X24C0, 0X2580, 0XE541, 0X2700, 0XE7C1, 0XE681, 0X2640,
+        0X2200, 0XE2C1, 0XE381, 0X2340, 0XE101, 0X21C0, 0X2080, 0XE041,
+        0XA001, 0X60C0, 0X6180, 0XA141, 0X6300, 0XA3C1, 0XA281, 0X6240,
+        0X6600, 0XA6C1, 0XA781, 0X6740, 0XA501, 0X65C0, 0X6480, 0XA441,
+        0X6C00, 0XACC1, 0XAD81, 0X6D40, 0XAF01, 0X6FC0, 0X6E80, 0XAE41,
+        0XAA01, 0X6AC0, 0X6B80, 0XAB41, 0X6900, 0XA9C1, 0XA881, 0X6840,
+        0X7800, 0XB8C1, 0XB981, 0X7940, 0XBB01, 0X7BC0, 0X7A80, 0XBA41,
+        0XBE01, 0X7EC0, 0X7F80, 0XBF41, 0X7D00, 0XBDC1, 0XBC81, 0X7C40,
+        0XB401, 0X74C0, 0X7580, 0XB541, 0X7700, 0XB7C1, 0XB681, 0X7640,
+        0X7200, 0XB2C1, 0XB381, 0X7340, 0XB101, 0X71C0, 0X7080, 0XB041,
+        0X5000, 0X90C1, 0X9181, 0X5140, 0X9301, 0X53C0, 0X5280, 0X9241,
+        0X9601, 0X56C0, 0X5780, 0X9741, 0X5500, 0X95C1, 0X9481, 0X5440,
+        0X9C01, 0X5CC0, 0X5D80, 0X9D41, 0X5F00, 0X9FC1, 0X9E81, 0X5E40,
+        0X5A00, 0X9AC1, 0X9B81, 0X5B40, 0X9901, 0X59C0, 0X5880, 0X9841,
+        0X8801, 0X48C0, 0X4980, 0X8941, 0X4B00, 0X8BC1, 0X8A81, 0X4A40,
+        0X4E00, 0X8EC1, 0X8F81, 0X4F40, 0X8D01, 0X4DC0, 0X4C80, 0X8C41,
+        0X4400, 0X84C1, 0X8581, 0X4540, 0X8701, 0X47C0, 0X4680, 0X8641,
+        0X8201, 0X42C0, 0X4380, 0X8341, 0X4100, 0X81C1, 0X8081, 0X4040 };
 
-uint8_t nTemp;
-uint16_t wCRCWord = 0xFFFF;
-int index = 0;
+    uint8_t nTemp;
+    uint16_t wCRCWord = 0xFFFF;
+    int index = 0;
 
-   while (wLength--)
-   {
-      nTemp = nData[index] ^ wCRCWord;
-      wCRCWord >>= 8;
-      wCRCWord  ^= wCRCTable[nTemp];
-      index++;
-   }
-   return wCRCWord;
+    while (wLength--)
+    {
+        nTemp = nData[index] ^ wCRCWord;
+        wCRCWord >>= 8;
+        wCRCWord  ^= wCRCTable[nTemp];
+        index++;
+    }
+    return wCRCWord;
 }
 
 uint CRC16_2(QByteArray buf, int len)
 {
-  uint crc = 0xFFFF;
+    uint crc = 0xFFFF;
 
-  for (int pos = 0; pos < len; pos++)
-  {
-    crc ^= (uint)buf[pos];          // XOR byte into least sig. byte of crc
+    for (int pos = 0; pos < len; pos++)
+    {
+        crc ^= (uint)buf[pos];          // XOR byte into least sig. byte of crc
 
-    for (int i = 8; i != 0; i--) {    // Loop over each bit
-      if ((crc & 0x0001) != 0) {      // If the LSB is set
-        crc >>= 1;                    // Shift right and XOR 0xA001
-        crc ^= 0xA001;
-      }
-      else                            // Else LSB is not set
-        crc >>= 1;                    // Just shift right
+        for (int i = 8; i != 0; i--) {    // Loop over each bit
+            if ((crc & 0x0001) != 0) {      // If the LSB is set
+                crc >>= 1;                    // Shift right and XOR 0xA001
+                crc ^= 0xA001;
+            }
+            else                            // Else LSB is not set
+                crc >>= 1;                    // Just shift right
+        }
     }
-  }
-  // Note, this number has low and high bytes swapped, so use it accordingly (or swap bytes)
-  return crc;
+    // Note, this number has low and high bytes swapped, so use it accordingly (or swap bytes)
+    return crc;
 }
 
 void Kalibr::stopGetData()
 {
     timer.stop();
-//    ui->label_14->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
-//    ui->label_15->setText("  Связи нет");
+    //    ui->label_14->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
+    //    ui->label_15->setText("  Связи нет");
 }
 
 void Kalibr::timerTimeout()
@@ -487,259 +446,259 @@ void Kalibr::timerTimeout()
     buf.resize(9);
     uint16_t  crc; //контрольная сумма
 
-        buf[0]=0x38; //адрес устройства
-        buf[1]=0x03; //код команды(чтение регистров)
-        buf[2]=0x20; //старший байт адреса начального регистра
-        buf[3]=0x00; //младший байт адреса начального регистра
-        buf[4]=0x00; //старший байт количества регистров для чтения
-        buf[5]=0x78; //младший байт количества регистров для чтения
-        crc = CRC16_2(buf, 6); //считаем сумму - считаем сумму по заполненому
-        qDebug() << crc;
-        buf[6]=crc & 0x00FF; //сташий байт crc
-        buf[7]=(crc & 0xFF00) >> 8; //младший байт crc
-        buf[8]=0x00;
+    buf[0]=0x38; //адрес устройства
+    buf[1]=0x03; //код команды(чтение регистров)
+    buf[2]=0x20; //старший байт адреса начального регистра
+    buf[3]=0x00; //младший байт адреса начального регистра
+    buf[4]=0x00; //старший байт количества регистров для чтения
+    buf[5]=0x78; //младший байт количества регистров для чтения
+    crc = CRC16_2(buf, 6); //считаем сумму - считаем сумму по заполненому
+    qDebug() << crc;
+    buf[6]=crc & 0x00FF; //сташий байт crc
+    buf[7]=(crc & 0xFF00) >> 8; //младший байт crc
+    buf[8]=0x00;
 
-        QSerialPort *port = openArchiverPort();
+    QSerialPort *port = openArchiverPort();
 
-        if (port == nullptr)
+    if (port == nullptr)
+    {
+        timer.stop();
+        ui->EnterPort->setChecked(false);
+        return;
+    }
+
+    port->write(buf, buf.length());
+    port->waitForBytesWritten(100);
+    port->flush();
+    //qDebug() << "Tx: "<< buf.toHex();
+    int answerLength = 0;
+    QByteArray answer;
+    do
+    {
+        if (!port->waitForReadyRead(100))
         {
-            timer.stop();
-            ui->EnterPort->setChecked(false);
+            stopGetData();
+            port->close();
             return;
         }
+        QByteArray ansBuf = port->readAll();
 
-        port->write(buf, buf.length());
-        port->waitForBytesWritten(100);
-        port->flush();
-        //qDebug() << "Tx: "<< buf.toHex();
-        int answerLength = 0;
-        QByteArray answer;
-        do
+        if (answerLength == 0)
         {
-            if (!port->waitForReadyRead(100))
-            {
-                stopGetData();
-                port->close();
-                return;
-            }
-            QByteArray ansBuf = port->readAll();
-
-            if (answerLength == 0)
-            {
-                answerLength = (uint8_t)ansBuf[2] - ansBuf.length() + 3 + 2;
-                //qDebug() << "total: " << (uint8_t)ansBuf[2];
-                answer.append(ansBuf.remove(0,3));
-            }
-            else
-            {
-                answerLength -= ansBuf.length();
-                answer.append(ansBuf);
-            }
-        } while (answerLength != 0);
-        uint16_t answer_crc = answer[answer.length() - 1] << 8 + answer[answer.length() - 2];
-        answer.remove(240, answer.length() - 1);
-
-        port->flush();
-
-        buf[0]=0x38; //адрес устройства
-        buf[1]=0x03; //код команды(чтение регистров)
-        buf[2]=0x20; //старший байт адреса начального регистра
-        buf[3]=0x78; //младший байт адреса начального регистра
-        buf[4]=0x00; //старший байт количества регистров для чтения
-        buf[5]=0x48; //младший байт количества регистров для чтения
-        crc = CRC16_2(buf, 6); //считаем сумму - считаем сумму по заполненому
-        qDebug() << crc;
-        buf[6]=crc & 0x00FF; //сташий байт crc
-        buf[7]=(crc & 0xFF00) >> 8; //младший байт crc
-        buf[8]=0x00;
-
-        port->write(buf, buf.length());
-        port->waitForBytesWritten(100);
-        port->flush();
-        //qDebug() << "Tx: "<< buf.toHex();
-        answerLength = 0;
-
-        do
-        {
-            if (!port->waitForReadyRead(100))
-            {
-                stopGetData();
-                port->close();
-                return;
-            }
-            QByteArray ansBuf = port->readAll();
-
-            if (answerLength == 0)
-            {
-                answerLength = (uint8_t)ansBuf[2] - ansBuf.length() + 3 + 2;
-                //qDebug() << "total: " << (uint8_t)ansBuf[2];
-                answer.append(ansBuf.remove(0,3));
-            }
-            else
-            {
-                answerLength -= ansBuf.length();
-                answer.append(ansBuf);
-            }
-        } while (answerLength != 0);
-        answer_crc = answer[answer.length() - 1] << 8 + answer[answer.length() - 2];
-        answer.remove(384, answer.length() - 1);
-
-        //qDebug() << "reseived bytes: " << answer.length();
-        //qDebug() << "Rx: " << answer.toHex();
-        port->close();
-
-        QVector<ArchiverChannel> archiverChannels(64);
-
-        for (int i = 0; i < archiverChannels.size(); i++)
-        {
-            archiverChannels[i].rawStatus = (((uint8_t)answer[i*3*2]) << 8) + (uint8_t)answer[i*3*2+1];
-            archiverChannels[i].rawValue = (((uint8_t)answer[i*3*2+2]) << 24) +
-                    ((uint8_t)answer[i*3*2+3] << 16) +
-                    ((uint8_t)answer[i*3*2+4] << 8) +
-                    (uint8_t)answer[i*3*2+5];
+            answerLength = (uint8_t)ansBuf[2] - ansBuf.length() + 3 + 2;
+            //qDebug() << "total: " << (uint8_t)ansBuf[2];
+            answer.append(ansBuf.remove(0,3));
         }
+        else
+        {
+            answerLength -= ansBuf.length();
+            answer.append(ansBuf);
+        }
+    } while (answerLength != 0);
+    uint16_t answer_crc = answer[answer.length() - 1] << 8 + answer[answer.length() - 2];
+    answer.remove(240, answer.length() - 1);
 
-        QDateTime currentDateTime = QDateTime::currentDateTime();
-                QTime currentTime = currentDateTime.time();
+    port->flush();
 
-                QString key = currentTime.toString("hh:mm:ss");
+    buf[0]=0x38; //адрес устройства
+    buf[1]=0x03; //код команды(чтение регистров)
+    buf[2]=0x20; //старший байт адреса начального регистра
+    buf[3]=0x78; //младший байт адреса начального регистра
+    buf[4]=0x00; //старший байт количества регистров для чтения
+    buf[5]=0x48; //младший байт количества регистров для чтения
+    crc = CRC16_2(buf, 6); //считаем сумму - считаем сумму по заполненому
+    qDebug() << crc;
+    buf[6]=crc & 0x00FF; //сташий байт crc
+    buf[7]=(crc & 0xFF00) >> 8; //младший байт crc
+    buf[8]=0x00;
 
-                std::ofstream fout;
-                fout.open("result.csv",std::ios::out | std::ios::app);
-                fout << key.toUtf8().data();
-                fout.close();
+    port->write(buf, buf.length());
+    port->waitForBytesWritten(100);
+    port->flush();
+    //qDebug() << "Tx: "<< buf.toHex();
+    answerLength = 0;
 
-                for (int i=0; i<32; i++)
+    do
+    {
+        if (!port->waitForReadyRead(100))
+        {
+            stopGetData();
+            port->close();
+            return;
+        }
+        QByteArray ansBuf = port->readAll();
+
+        if (answerLength == 0)
+        {
+            answerLength = (uint8_t)ansBuf[2] - ansBuf.length() + 3 + 2;
+            //qDebug() << "total: " << (uint8_t)ansBuf[2];
+            answer.append(ansBuf.remove(0,3));
+        }
+        else
+        {
+            answerLength -= ansBuf.length();
+            answer.append(ansBuf);
+        }
+    } while (answerLength != 0);
+    answer_crc = answer[answer.length() - 1] << 8 + answer[answer.length() - 2];
+    answer.remove(384, answer.length() - 1);
+
+    //qDebug() << "reseived bytes: " << answer.length();
+    //qDebug() << "Rx: " << answer.toHex();
+    port->close();
+
+    QVector<ArchiverChannel> archiverChannels(64);
+
+    for (int i = 0; i < archiverChannels.size(); i++)
+    {
+        archiverChannels[i].rawStatus = (((uint8_t)answer[i*3*2]) << 8) + (uint8_t)answer[i*3*2+1];
+        archiverChannels[i].rawValue = (((uint8_t)answer[i*3*2+2]) << 24) +
+                ((uint8_t)answer[i*3*2+3] << 16) +
+                ((uint8_t)answer[i*3*2+4] << 8) +
+                (uint8_t)answer[i*3*2+5];
+    }
+
+    QDateTime currentDateTime = QDateTime::currentDateTime();
+    QTime currentTime = currentDateTime.time();
+
+    QString key = currentTime.toString("hh:mm:ss");
+
+    std::ofstream fout;
+    fout.open("result.csv",std::ios::out | std::ios::app);
+    fout << key.toUtf8().data();
+    fout.close();
+
+    for (int i=0; i<32; i++)
+    {
+        if(ui->tableView->model()->index(i,1).data(Qt::CheckStateRole)==Qt::Checked)
+        {
+
+            //запись результата в таблицу
+            if (ui->tableWidget->item(i, 2) != 0)
+            {
+                int k=ui->tableView->model()->data(ui->tableView->model()->index(i, 8) ).toInt();
+                uint32_t rawBEValue = archiverChannels[i].rawValue;
+                //qDebug() << i << "=" << archiverChannels[i].rawValue;
+
+                QString value = ui->tableView->model()->data(ui->tableView->model()->index(i, 7) ).toString();
+
+                if(value == "INT16(Little-endian)")
+                {}
+                else if(value == "WORD16(Little-endian)")
+                {}
+                else if(value == "LONGINT32(Little-endian)")
                 {
-                    if(ui->tableView->model()->index(i,1).data(Qt::CheckStateRole)==Qt::Checked)
-                    {
-
-                        //запись результата в таблицу
-                        if (ui->tableWidget->item(i, 2) != 0)
-                        {
-                            int k=ui->tableView->model()->data(ui->tableView->model()->index(i, 8) ).toInt();
-                            uint32_t rawBEValue = archiverChannels[i].rawValue;
-                            //qDebug() << i << "=" << archiverChannels[i].rawValue;
-
-                            QString value = ui->tableView->model()->data(ui->tableView->model()->index(i, 7) ).toString();
-
-                            if(value == "INT16(Little-endian)")
-                            {}
-                            else if(value == "WORD16(Little-endian)")
-                            {}
-                            else if(value == "LONGINT32(Little-endian)")
-                            {
-                                ui->tableWidget->item(i, 2)->setText(QString("%1").arg(QString::number((double)rawBEValue / pow(10,k), 'f', k)));
-                            }
-                            else if(value == "DWORD32(Little-endian)")
-                            {}
-                            else if(value == "FLOAT32(Little-endian)")
-                            {
-                                RawAndFloat convertedValue;
-                                convertedValue.rawValue = rawBEValue;
-                                ui->tableWidget->item(i, 2)->setText(QString("%1").arg(QString::number(convertedValue.floatValue, 'f', k)));
-                            }
-                            else if(value == "INT16(Big-endian)")
-                            {}
-                            else if(value == "WORD16(Big-endian)")
-                            {}
-                            else if(value == "LONGINT32(Big-endian)")
-                            {}
-                            else if(value == "DWORD32(Big-endian)")
-                            {}
-                            else if(value == "FLOAT32(Big-endian)")
-                            {}
-                            else if(value == "LONGINT32(Middle-endian)")
-                            {}
-                            else if(value == "DWORD32(Middle-endian)")
-                            {}
-                            else if(value == "FLOAT32(Middle-endian)")
-                            {}
-
-                            ui->tableWidget->item(i, 2)->setTextAlignment(Qt::AlignCenter);
-                        }
-
-                        uint32_t rawBEValue = archiverChannels[i].rawValue;
-                        RawAndFloat convertedValue;
-                        convertedValue.rawValue = rawBEValue;
-
-                        std::ofstream fout;
-                        fout.open("result.csv",std::ios::out | std::ios::app);
-                        fout << ";" << convertedValue.floatValue;
-                        fout.close();
-
-                    }
+                    ui->tableWidget->item(i, 2)->setText(QString("%1").arg(QString::number((double)rawBEValue / pow(10,k), 'f', k)));
                 }
-
-                for (int i=32; i<64; i++)
+                else if(value == "DWORD32(Little-endian)")
+                {}
+                else if(value == "FLOAT32(Little-endian)")
                 {
-                    if(ui->tableView->model()->index(i,1).data(Qt::CheckStateRole)==Qt::Checked)
-                    {
-                        //запись результата в таблицу
-                        if (ui->tableWidget->item(i-32, 5) != 0)
-                       {
-                           int k2=ui->tableView->model()->data(ui->tableView->model()->index(i, 8) ).toInt();
-                           uint32_t rawBEValue2 = archiverChannels[i].rawValue;
-                           QString value2 = ui->tableView->model()->data(ui->tableView->model()->index(i, 7) ).toString();
-        //
-                        if(value2 == "INT16(Little-endian)")
-                                            {}
-                                            else if(value2 == "WORD16(Little-endian)")
-                                            {}
-                                            else if(value2 == "LONGINT32(Little-endian)")
-                                            {
-                                                ui->tableWidget->item(i-32, 5)->setText(QString("%1").arg(QString::number((double)rawBEValue2 / pow(10,k2), 'f', k2)));
-                                            }
-                                            else if(value2 == "DWORD32(Little-endian)")
-                                            {}
-                                            else if(value2 == "FLOAT32(Little-endian)")
-                                            {
-                                                RawAndFloat convertedValue;
-                                                convertedValue.rawValue = rawBEValue2;
-                                                ui->tableWidget->item(i-32, 5)->setText(QString("%1").arg(QString::number(convertedValue.floatValue, 'f', k2)));
-                                            }
-                                            else if(value2 == "INT16(Big-endian)")
-                                            {}
-                                            else if(value2 == "WORD16(Big-endian)")
-                                            {}
-                                            else if(value2 == "LONGINT32(Big-endian)")
-                                            {}
-                                            else if(value2 == "DWORD32(Big-endian)")
-                                            {}
-                                            else if(value2 == "FLOAT32(Big-endian)")
-                                            {}
-                                            else if(value2 == "LONGINT32(Middle-endian)")
-                                            {}
-                                            else if(value2 == "DWORD32(Middle-endian)")
-                                            {}
-                                            else if(value2 == "FLOAT32(Middle-endian)")
-                                            {}
-                        ui->tableWidget->item(i-32, 5)->setTextAlignment(Qt::AlignCenter);
-                        }
-
-                        uint32_t rawBEValue = archiverChannels[i].rawValue;
-                        RawAndFloat convertedValue;
-                        convertedValue.rawValue = rawBEValue;
-
-                        std::ofstream fout;
-                        fout.open("result.csv",std::ios::out | std::ios::app);
-                        fout << ";" << convertedValue.floatValue;
-                        fout.close();
-
-                    }
+                    RawAndFloat convertedValue;
+                    convertedValue.rawValue = rawBEValue;
+                    ui->tableWidget->item(i, 2)->setText(QString("%1").arg(QString::number(convertedValue.floatValue, 'f', k)));
                 }
+                else if(value == "INT16(Big-endian)")
+                {}
+                else if(value == "WORD16(Big-endian)")
+                {}
+                else if(value == "LONGINT32(Big-endian)")
+                {}
+                else if(value == "DWORD32(Big-endian)")
+                {}
+                else if(value == "FLOAT32(Big-endian)")
+                {}
+                else if(value == "LONGINT32(Middle-endian)")
+                {}
+                else if(value == "DWORD32(Middle-endian)")
+                {}
+                else if(value == "FLOAT32(Middle-endian)")
+                {}
 
-                fout.open("result.csv",std::ios::out | std::ios::app);
-                fout << std::endl;
-                fout.close();
+                ui->tableWidget->item(i, 2)->setTextAlignment(Qt::AlignCenter);
+            }
+
+            uint32_t rawBEValue = archiverChannels[i].rawValue;
+            RawAndFloat convertedValue;
+            convertedValue.rawValue = rawBEValue;
+
+            std::ofstream fout;
+            fout.open("result.csv",std::ios::out | std::ios::app);
+            fout << ";" << convertedValue.floatValue;
+            fout.close();
+
+        }
+    }
+
+    for (int i=32; i<64; i++)
+    {
+        if(ui->tableView->model()->index(i,1).data(Qt::CheckStateRole)==Qt::Checked)
+        {
+            //запись результата в таблицу
+            if (ui->tableWidget->item(i-32, 5) != 0)
+            {
+                int k2=ui->tableView->model()->data(ui->tableView->model()->index(i, 8) ).toInt();
+                uint32_t rawBEValue2 = archiverChannels[i].rawValue;
+                QString value2 = ui->tableView->model()->data(ui->tableView->model()->index(i, 7) ).toString();
+                //
+                if(value2 == "INT16(Little-endian)")
+                {}
+                else if(value2 == "WORD16(Little-endian)")
+                {}
+                else if(value2 == "LONGINT32(Little-endian)")
+                {
+                    ui->tableWidget->item(i-32, 5)->setText(QString("%1").arg(QString::number((double)rawBEValue2 / pow(10,k2), 'f', k2)));
+                }
+                else if(value2 == "DWORD32(Little-endian)")
+                {}
+                else if(value2 == "FLOAT32(Little-endian)")
+                {
+                    RawAndFloat convertedValue;
+                    convertedValue.rawValue = rawBEValue2;
+                    ui->tableWidget->item(i-32, 5)->setText(QString("%1").arg(QString::number(convertedValue.floatValue, 'f', k2)));
+                }
+                else if(value2 == "INT16(Big-endian)")
+                {}
+                else if(value2 == "WORD16(Big-endian)")
+                {}
+                else if(value2 == "LONGINT32(Big-endian)")
+                {}
+                else if(value2 == "DWORD32(Big-endian)")
+                {}
+                else if(value2 == "FLOAT32(Big-endian)")
+                {}
+                else if(value2 == "LONGINT32(Middle-endian)")
+                {}
+                else if(value2 == "DWORD32(Middle-endian)")
+                {}
+                else if(value2 == "FLOAT32(Middle-endian)")
+                {}
+                ui->tableWidget->item(i-32, 5)->setTextAlignment(Qt::AlignCenter);
+            }
+
+            uint32_t rawBEValue = archiverChannels[i].rawValue;
+            RawAndFloat convertedValue;
+            convertedValue.rawValue = rawBEValue;
+
+            std::ofstream fout;
+            fout.open("result.csv",std::ios::out | std::ios::app);
+            fout << ";" << convertedValue.floatValue;
+            fout.close();
+
+        }
+    }
+
+    fout.open("result.csv",std::ios::out | std::ios::app);
+    fout << std::endl;
+    fout.close();
 
 
 
-//        ui->label_14->clear();
-//        ui->label_14->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_blue.png"));
-//        ui->label_15->setText("  Связь установлена");
+    //        ui->label_14->clear();
+    //        ui->label_14->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_blue.png"));
+    //        ui->label_15->setText("  Связь установлена");
 
-        delete port;
+    delete port;
 }
 
 QSerialPort* Kalibr::openArchiverPort()
@@ -748,62 +707,62 @@ QSerialPort* Kalibr::openArchiverPort()
     port->setBaudRate(ui->comboBox_2->currentText().toInt());
     switch (ui->comboBox_3->currentIndex())
     {
-        case 0:
-           port->setDataBits(QSerialPort::Data5);
+    case 0:
+        port->setDataBits(QSerialPort::Data5);
         break;
-        case 1:
-           port->setDataBits(QSerialPort::Data6);
+    case 1:
+        port->setDataBits(QSerialPort::Data6);
         break;
-        case 2:
-           port->setDataBits(QSerialPort::Data7);
+    case 2:
+        port->setDataBits(QSerialPort::Data7);
         break;
-        case 3:
-           port->setDataBits(QSerialPort::Data8);
+    case 3:
+        port->setDataBits(QSerialPort::Data8);
         break;
     }
 
     switch (ui->comboBox_4->currentIndex())
     {
-        case 0:
-           port->setParity(QSerialPort::NoParity);
+    case 0:
+        port->setParity(QSerialPort::NoParity);
         break;
-        case 1:
-           port->setParity(QSerialPort::EvenParity);
+    case 1:
+        port->setParity(QSerialPort::EvenParity);
         break;
-        case 2:
-           port->setParity(QSerialPort::OddParity);
+    case 2:
+        port->setParity(QSerialPort::OddParity);
         break;
-        case 3:
-           port->setParity(QSerialPort::MarkParity);
+    case 3:
+        port->setParity(QSerialPort::MarkParity);
         break;
-        case 4:
-           port->setParity(QSerialPort::SpaceParity);
+    case 4:
+        port->setParity(QSerialPort::SpaceParity);
         break;
     }
 
     switch (ui->comboBox_5->currentIndex())
     {
-        case 0:
-           port->setStopBits(QSerialPort::OneStop);
+    case 0:
+        port->setStopBits(QSerialPort::OneStop);
         break;
-        case 1:
-           port->setStopBits(QSerialPort::TwoStop);
+    case 1:
+        port->setStopBits(QSerialPort::TwoStop);
         break;
-        case 2:
-           port->setStopBits(QSerialPort::OneAndHalfStop);
+    case 2:
+        port->setStopBits(QSerialPort::OneAndHalfStop);
         break;
     }
 
     switch (ui->comboBox_6->currentIndex())
     {
-        case 0:
-           port->setFlowControl(QSerialPort::NoFlowControl);
+    case 0:
+        port->setFlowControl(QSerialPort::NoFlowControl);
         break;
-        case 1:
-           port->setFlowControl(QSerialPort::HardwareControl);
+    case 1:
+        port->setFlowControl(QSerialPort::HardwareControl);
         break;
-        case 2:
-           port->setFlowControl(QSerialPort::SoftwareControl);
+    case 2:
+        port->setFlowControl(QSerialPort::SoftwareControl);
         break;
     }
 
@@ -820,34 +779,44 @@ QSerialPort* Kalibr::openArchiverPort()
 
 void Kalibr::showEvent(QShowEvent *)
 {
-//    QSettings settings;
+        QSettings settings;
 
-//    dataSourceBVAS.IaZeroLevel = settings.value("calibration/IaZero", 0.0).toDouble();
-//    dataSourceBVAS.IbZeroLevel = settings.value("calibration/IbZero", 0.0).toDouble();
-//    dataSourceBVAS.IcZeroLevel = settings.value("calibration/IcZero", 0.0).toDouble();
+        if (ui->comboBox_19->currentText() == "БВАСv1")
+        {
+            dataSource = new DataSourceBVAS();
+        }
 
-//    dataSourceBVAS.UaZeroLevel = settings.value("calibration/UaZero", 0.0).toDouble();
-//    dataSourceBVAS.UbZeroLevel = settings.value("calibration/UbZero", 0.0).toDouble();
-//    dataSourceBVAS.UcZeroLevel = settings.value("calibration/UcZero", 0.0).toDouble();
+        if (ui->comboBox_19->currentText() == "БВАСv2")
+        {
+            dataSource = new DataSourceDigitOsc();
+        }
 
-//    dataSourceBVAS.IaCalibrationCoeff = settings.value("calibration/IaCoeff", 1.0).toDouble();
-//    dataSourceBVAS.IbCalibrationCoeff = settings.value("calibration/IbCoeff", 1.0).toDouble();
-//    dataSourceBVAS.IcCalibrationCoeff = settings.value("calibration/IcCoeff", 1.0).toDouble();
+        dataSource->setIaZeroLevel(settings.value("calibration/IaZero", 0.0).toDouble());
+        dataSource->setIbZeroLevel(settings.value("calibration/IbZero", 0.0).toDouble());
+        dataSource->setIcZeroLevel(settings.value("calibration/IcZero", 0.0).toDouble());
 
-//    dataSourceBVAS.UaCalibrationCoeff = settings.value("calibration/UaCoeff", 1.0).toDouble();
-//    dataSourceBVAS.UbCalibrationCoeff = settings.value("calibration/UbCoeff", 1.0).toDouble();
-//    dataSourceBVAS.UcCalibrationCoeff = settings.value("calibration/UcCoeff", 1.0).toDouble();
+        dataSource->setUaZeroLevel(settings.value("calibration/UaZero", 0.0).toDouble());
+        dataSource->setUbZeroLevel(settings.value("calibration/UbZero", 0.0).toDouble());
+        dataSource->setUcZeroLevel(settings.value("calibration/UcZero", 0.0).toDouble());
 
-//    ui->lineEditZeroIa->setText(QString("%1").arg(dataSourceBVAS.IaZeroLevel));
-//    ui->lineEditZeroIb->setText(QString("%1").arg(dataSourceBVAS.IbZeroLevel));
-//    ui->lineEditZeroIc->setText(QString("%1").arg(dataSourceBVAS.IcZeroLevel));
+        dataSource->setIaCalibrationCoeff(settings.value("calibration/IaCoeff", 1.0).toDouble());
+        dataSource->setIbCalibrationCoeff(settings.value("calibration/IbCoeff", 1.0).toDouble());
+        dataSource->setIcCalibrationCoeff(settings.value("calibration/IcCoeff", 1.0).toDouble());
 
-//    ui->lineEditZeroUa->setText(QString("%1").arg(dataSourceBVAS.UaZeroLevel));
-//    ui->lineEditZeroUb->setText(QString("%1").arg(dataSourceBVAS.UbZeroLevel));
-//    ui->lineEditZeroUc->setText(QString("%1").arg(dataSourceBVAS.UcZeroLevel));
+        dataSource->setUaCalibrationCoeff(settings.value("calibration/UaCoeff", 1.0).toDouble());
+        dataSource->setUbCalibrationCoeff(settings.value("calibration/UbCoeff", 1.0).toDouble());
+        dataSource->setUcCalibrationCoeff(settings.value("calibration/UcCoeff", 1.0).toDouble());
 
-//    dataSourceBVAS.init();
-//    connect(&dataSourceBVAS, &DataSourceBVAS::ready, this, &Kalibr::bvasSlot);
+        ui->lineEditZeroIa->setText(settings.value("calibration/IaZero", 0.0).toString());
+        ui->lineEditZeroIb->setText(settings.value("calibration/IbZero", 0.0).toString());
+        ui->lineEditZeroIc->setText(settings.value("calibration/IcZero", 0.0).toString());
+
+        ui->lineEditZeroUa->setText(settings.value("calibration/UaZero", 0.0).toString());
+        ui->lineEditZeroUb->setText(settings.value("calibration/UbZero", 0.0).toString());
+        ui->lineEditZeroUc->setText(settings.value("calibration/UcZero", 0.0).toString());
+
+        dataSource->init();
+        connect(dataSource, &DataSource::ready, this, &Kalibr::bvasSlot);
 }
 
 void Kalibr::selectRows()
@@ -860,46 +829,46 @@ void Kalibr::setDisabledCells()
 {
     //НАСТРОЙКА ЦВЕТНОСТИ РТУ
     if(sdb.isOpen()){
-    for (int i=0; i<64; i++)
-    {
-        QString valuee = ui->tableView->model()->data(ui->tableView->model()->index(i, 4) ).toString();
-        if(valuee == "RTU")
+        for (int i=0; i<64; i++)
         {
-            disabledCells << QPoint(i, 10) << QPoint(i, 14) << QPoint(i, 15) << QPoint(i, 16)
-                          << QPoint(i, 17) << QPoint(i, 18) << QPoint(i, 19) << QPoint(i, 20);
+            QString valuee = ui->tableView->model()->data(ui->tableView->model()->index(i, 4) ).toString();
+            if(valuee == "RTU")
+            {
+                disabledCells << QPoint(i, 10) << QPoint(i, 14) << QPoint(i, 15) << QPoint(i, 16)
+                              << QPoint(i, 17) << QPoint(i, 18) << QPoint(i, 19) << QPoint(i, 20);
+            }
+            else if(valuee == "ASCII")
+            {
+                disabledCells << QPoint(i, 10) << QPoint(i, 14) << QPoint(i, 15) << QPoint(i, 16)
+                              << QPoint(i, 17) << QPoint(i, 18) << QPoint(i, 19) << QPoint(i, 20);
+            }
+            else if(valuee == "ОВЕН")
+            {
+                disabledCells << QPoint(i, 10) << QPoint(i, 11) << QPoint(i, 12) << QPoint(i, 13)
+                              << QPoint(i, 17) << QPoint(i, 18) << QPoint(i, 19) << QPoint(i, 20);
+            }
+            else if(valuee == "Токовый вход 1")
+            {
+                disabledCells << QPoint(i, 5)  << QPoint(i, 6)  << QPoint(i, 7)  << QPoint(i, 11) << QPoint(i, 12)
+                              << QPoint(i, 13) << QPoint(i, 14) << QPoint(i, 15) << QPoint(i, 16);
+            }
+            else if(valuee == "Токовый вход 2")
+            {
+                disabledCells << QPoint(i, 5)  << QPoint(i, 6)  << QPoint(i, 7)  << QPoint(i, 11) << QPoint(i, 12)
+                              << QPoint(i, 13) << QPoint(i, 14) << QPoint(i, 15) << QPoint(i, 16);
+            }
+            else if(valuee == "Токовый вход 3")
+            {
+                disabledCells << QPoint(i, 5)  << QPoint(i, 6)  << QPoint(i, 7)  << QPoint(i, 11) << QPoint(i, 12)
+                              << QPoint(i, 13) << QPoint(i, 14) << QPoint(i, 15) << QPoint(i, 16);
+            }
+            else if(valuee == "Токовый вход 4")
+            {
+                disabledCells << QPoint(i, 5)  << QPoint(i, 6)  << QPoint(i, 7)  << QPoint(i, 11) << QPoint(i, 12)
+                              << QPoint(i, 13) << QPoint(i, 14) << QPoint(i, 15) << QPoint(i, 16);
+            }
         }
-        else if(valuee == "ASCII")
-        {
-            disabledCells << QPoint(i, 10) << QPoint(i, 14) << QPoint(i, 15) << QPoint(i, 16)
-                          << QPoint(i, 17) << QPoint(i, 18) << QPoint(i, 19) << QPoint(i, 20);
-        }
-        else if(valuee == "ОВЕН")
-        {
-            disabledCells << QPoint(i, 10) << QPoint(i, 11) << QPoint(i, 12) << QPoint(i, 13)
-                          << QPoint(i, 17) << QPoint(i, 18) << QPoint(i, 19) << QPoint(i, 20);
-        }
-        else if(valuee == "Токовый вход 1")
-        {
-            disabledCells << QPoint(i, 5)  << QPoint(i, 6)  << QPoint(i, 7)  << QPoint(i, 11) << QPoint(i, 12)
-                          << QPoint(i, 13) << QPoint(i, 14) << QPoint(i, 15) << QPoint(i, 16);
-        }
-        else if(valuee == "Токовый вход 2")
-        {
-            disabledCells << QPoint(i, 5)  << QPoint(i, 6)  << QPoint(i, 7)  << QPoint(i, 11) << QPoint(i, 12)
-                          << QPoint(i, 13) << QPoint(i, 14) << QPoint(i, 15) << QPoint(i, 16);
-        }
-        else if(valuee == "Токовый вход 3")
-        {
-            disabledCells << QPoint(i, 5)  << QPoint(i, 6)  << QPoint(i, 7)  << QPoint(i, 11) << QPoint(i, 12)
-                          << QPoint(i, 13) << QPoint(i, 14) << QPoint(i, 15) << QPoint(i, 16);
-        }
-        else if(valuee == "Токовый вход 4")
-        {
-            disabledCells << QPoint(i, 5)  << QPoint(i, 6)  << QPoint(i, 7)  << QPoint(i, 11) << QPoint(i, 12)
-                          << QPoint(i, 13) << QPoint(i, 14) << QPoint(i, 15) << QPoint(i, 16);
-        }
-     }
-  }
+    }
 }
 
 void Kalibr::bvasSlot()
@@ -920,19 +889,19 @@ void Kalibr::bvasSlot()
 
     for (int i=0; i<BUF_SIZE; i++)
     {
-        i_dev_a += pow(dataSourceBVAS.getIa()[i],2);
-        i_dev_b += pow(dataSourceBVAS.getIb()[i],2);
-        i_dev_c += pow(dataSourceBVAS.getIc()[i],2);
-        u_dev_a += pow(dataSourceBVAS.getUa()[i],2);
-        u_dev_b += pow(dataSourceBVAS.getUb()[i],2);
-        u_dev_c += pow(dataSourceBVAS.getUc()[i],2);
+        i_dev_a += pow(dataSource->getIa()[i],2);
+        i_dev_b += pow(dataSource->getIb()[i],2);
+        i_dev_c += pow(dataSource->getIc()[i],2);
+        u_dev_a += pow(dataSource->getUa()[i],2);
+        u_dev_b += pow(dataSource->getUb()[i],2);
+        u_dev_c += pow(dataSource->getUc()[i],2);
 
-        i_zero_a += dataSourceBVAS.getIa()[i];
-        i_zero_b += dataSourceBVAS.getIb()[i];
-        i_zero_c += dataSourceBVAS.getIc()[i];
-        u_zero_a += dataSourceBVAS.getUa()[i];
-        u_zero_b += dataSourceBVAS.getUb()[i];
-        u_zero_c += dataSourceBVAS.getUc()[i];
+        i_zero_a += dataSource->getIa()[i];
+        i_zero_b += dataSource->getIb()[i];
+        i_zero_c += dataSource->getIc()[i];
+        u_zero_a += dataSource->getUa()[i];
+        u_zero_b += dataSource->getUb()[i];
+        u_zero_c += dataSource->getUc()[i];
     }
 
     //Расчет действующих значений токов
@@ -969,68 +938,68 @@ void Kalibr::bvasSlot()
 
 void Kalibr::on_pushButtonZeroApplyIa_clicked()
 {
-    ui->lineEditZeroIa->setText(QString("%1").arg(i_zero_a + dataSourceBVAS.IaZeroLevel));
-    dataSourceBVAS.IaZeroLevel += i_zero_a;
+    ui->lineEditZeroIa->setText(QString("%1").arg(i_zero_a + dataSource->getIaZeroLevel()));
+    dataSource->setIaZeroLevel(dataSource->getIaZeroLevel() + i_zero_a);
 }
 
 void Kalibr::on_pushButtonZeroApplyIb_clicked()
 {
-    ui->lineEditZeroIb->setText(QString("%1").arg(i_zero_b + dataSourceBVAS.IbZeroLevel));
-    dataSourceBVAS.IbZeroLevel += i_zero_b;
+    ui->lineEditZeroIb->setText(QString("%1").arg(i_zero_b + dataSource->getIbZeroLevel()));
+    dataSource->setIbZeroLevel(dataSource->getIbZeroLevel() + i_zero_b);
 }
 
 void Kalibr::on_pushButtonZeroApplyIc_clicked()
 {
-    ui->lineEditZeroIc->setText(QString("%1").arg(i_zero_c + dataSourceBVAS.IcZeroLevel));
-    dataSourceBVAS.IcZeroLevel += i_zero_c;
+    ui->lineEditZeroIc->setText(QString("%1").arg(i_zero_c + dataSource->getIcZeroLevel()));
+    dataSource->setIcZeroLevel(dataSource->getIcZeroLevel() + i_zero_c);
 }
 
 void Kalibr::on_pushButtonZeroApplyUa_clicked()
 {
-    ui->lineEditZeroUa->setText(QString("%1").arg(u_zero_a + dataSourceBVAS.UaZeroLevel));
-    dataSourceBVAS.UaZeroLevel += u_zero_a;
+    ui->lineEditZeroUa->setText(QString("%1").arg(u_zero_a + dataSource->getUaZeroLevel()));
+    dataSource->setUaZeroLevel(dataSource->getUaZeroLevel() + u_zero_a);
 }
 
 void Kalibr::on_pushButtonZeroApplyUb_clicked()
 {
-    ui->lineEditZeroUb->setText(QString("%1").arg(u_zero_b + dataSourceBVAS.UbZeroLevel));
-    dataSourceBVAS.UbZeroLevel += u_zero_b;
+    ui->lineEditZeroUb->setText(QString("%1").arg(u_zero_b + dataSource->getUbZeroLevel()));
+    dataSource->setUbZeroLevel(dataSource->getUbZeroLevel() + u_zero_b);
 }
 
 void Kalibr::on_pushButtonZeroApplyUc_clicked()
 {
-    ui->lineEditZeroUc->setText(QString("%1").arg(u_zero_c + dataSourceBVAS.UcZeroLevel));
-    dataSourceBVAS.UcZeroLevel += u_zero_c;
+    ui->lineEditZeroUc->setText(QString("%1").arg(u_zero_c + dataSource->getUcZeroLevel()));
+    dataSource->setUcZeroLevel(dataSource->getUcZeroLevel() + u_zero_c);
 }
 
 void Kalibr::on_pushButtonValueApplyIa_clicked()
 {
-    dataSourceBVAS.IaCalibrationCoeff *= ui->lineEditValueIa->text().toDouble() / i_dev_a;
+    dataSource->setIaCalibrationCoeff(dataSource->getIaCalibrationCoeff() * ui->lineEditValueIa->text().toDouble() / i_dev_a);
 }
 
 void Kalibr::on_pushButtonValueApplyIb_clicked()
 {
-    dataSourceBVAS.IbCalibrationCoeff *= ui->lineEditValueIb->text().toDouble() / i_dev_b;
+    dataSource->setIbCalibrationCoeff(dataSource->getIbCalibrationCoeff() * ui->lineEditValueIb->text().toDouble() / i_dev_b);
 }
 
 void Kalibr::on_pushButtonValueApplyIc_clicked()
 {
-    dataSourceBVAS.IcCalibrationCoeff *= ui->lineEditValueIc->text().toDouble() / i_dev_c;
+    dataSource->setIcCalibrationCoeff(dataSource->getIcCalibrationCoeff() * ui->lineEditValueIc->text().toDouble() / i_dev_c);
 }
 
 void Kalibr::on_pushButtonValueApplyUa_clicked()
 {
-    dataSourceBVAS.UaCalibrationCoeff *= ui->lineEditValueUa->text().toDouble() / u_dev_a;
+    dataSource->setUaCalibrationCoeff(dataSource->getUaCalibrationCoeff() * ui->lineEditValueUa->text().toDouble() / u_dev_a);
 }
 
 void Kalibr::on_pushButtonValueApplyUb_clicked()
 {
-    dataSourceBVAS.UbCalibrationCoeff *= ui->lineEditValueUb->text().toDouble() / u_dev_b;
+    dataSource->setUbCalibrationCoeff(dataSource->getUbCalibrationCoeff() * ui->lineEditValueUb->text().toDouble() / u_dev_b);
 }
 
 void Kalibr::on_pushButtonValueApplyUc_clicked()
 {
-    dataSourceBVAS.UcCalibrationCoeff *= ui->lineEditValueUc->text().toDouble() / u_dev_c;
+    dataSource->setUcCalibrationCoeff(dataSource->getUcCalibrationCoeff() * ui->lineEditValueUc->text().toDouble() / u_dev_c);
 }
 
 void Kalibr::on_pushButtonClose_clicked()
@@ -1040,7 +1009,8 @@ void Kalibr::on_pushButtonClose_clicked()
 
 void Kalibr::closeEvent(QCloseEvent *event)
 {
-    dataSourceBVAS.stop();
+    dataSource->stop();
+    delete dataSource;
     if(isChanged)
     {
         switch (QMessageBox::question(this, "Сохранить документ?", "Сохранить?", QMessageBox::Yes | QMessageBox::No |  QMessageBox::Cancel))
@@ -1055,7 +1025,7 @@ void Kalibr::closeEvent(QCloseEvent *event)
         case QMessageBox::No:
             event->accept();
         default:
-          break;
+            break;
         }
     }
     else
@@ -1067,21 +1037,21 @@ void Kalibr::closeEvent(QCloseEvent *event)
 void Kalibr::on_pushButtonAccept_clicked()
 {
     QSettings settings;
-    settings.setValue("calibration/IaZero", dataSourceBVAS.IaZeroLevel);
-    settings.setValue("calibration/IbZero", dataSourceBVAS.IbZeroLevel);
-    settings.setValue("calibration/IcZero", dataSourceBVAS.IcZeroLevel);
+    settings.setValue("calibration/IaZero", dataSource->getIaZeroLevel());
+    settings.setValue("calibration/IbZero", dataSource->getIbZeroLevel());
+    settings.setValue("calibration/IcZero", dataSource->getIcZeroLevel());
 
-    settings.setValue("calibration/UaZero", dataSourceBVAS.UaZeroLevel);
-    settings.setValue("calibration/UbZero", dataSourceBVAS.UbZeroLevel);
-    settings.setValue("calibration/UcZero", dataSourceBVAS.UcZeroLevel);
+    settings.setValue("calibration/UaZero", dataSource->getUaZeroLevel());
+    settings.setValue("calibration/UbZero", dataSource->getUbZeroLevel());
+    settings.setValue("calibration/UcZero", dataSource->getUcZeroLevel());
 
-    settings.setValue("calibration/IaCoeff", dataSourceBVAS.IaCalibrationCoeff);
-    settings.setValue("calibration/IbCoeff", dataSourceBVAS.IbCalibrationCoeff);
-    settings.setValue("calibration/IcCoeff", dataSourceBVAS.IcCalibrationCoeff);
+    settings.setValue("calibration/IaCoeff", dataSource->getIaCalibrationCoeff());
+    settings.setValue("calibration/IbCoeff", dataSource->getIbCalibrationCoeff());
+    settings.setValue("calibration/IcCoeff", dataSource->getIcCalibrationCoeff());
 
-    settings.setValue("calibration/UaCoeff", dataSourceBVAS.UaCalibrationCoeff);
-    settings.setValue("calibration/UbCoeff", dataSourceBVAS.UbCalibrationCoeff);
-    settings.setValue("calibration/UcCoeff", dataSourceBVAS.UcCalibrationCoeff);
+    settings.setValue("calibration/UaCoeff", dataSource->getUaCalibrationCoeff());
+    settings.setValue("calibration/UbCoeff", dataSource->getUbCalibrationCoeff());
+    settings.setValue("calibration/UcCoeff", dataSource->getUcCalibrationCoeff());
 }
 
 void Kalibr::on_OpenFile_clicked()
@@ -1093,16 +1063,16 @@ void Kalibr::on_OpenFile_clicked()
 
 void Kalibr::loadFile(const QString &fileName)
 {
-     open_sdb();
-     setCurrentFile(fileName);
-     QFileInfo fi(fileName);
-     QString base = fi.baseName();
-     //ui->label_39->setText(base);
-     int index = ui->tabWidget->currentIndex();
-     QString currentTabText = ui->tabWidget->tabText(index);
-     setWindowTitle(currentTabText + "@" + QString(base) + QString(" - IM View"));
+    open_sdb();
+    setCurrentFile(fileName);
+    QFileInfo fi(fileName);
+    QString base = fi.baseName();
+    //ui->label_39->setText(base);
+    int index = ui->tabWidget->currentIndex();
+    QString currentTabText = ui->tabWidget->tabText(index);
+    setWindowTitle(currentTabText + "@" + QString(base) + QString(" - IM View"));
 
-     connect(ui->tableView->model(), SIGNAL(dataChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDataChanged(const QModelIndex&, const QModelIndex&)));
+    connect(ui->tableView->model(), SIGNAL(dataChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDataChanged(const QModelIndex&, const QModelIndex&)));
 }
 
 void Kalibr::setCurrentFile(const QString &fileName)
@@ -1115,7 +1085,7 @@ void Kalibr::setCurrentFile(const QString &fileName)
     files.removeAll(fileName);
     files.prepend(fileName);
     while (files.size() > MaxRecentFiles)
-    files.removeLast();
+        files.removeLast();
 
     settings.setValue("recentFileList", files);
 
@@ -1128,37 +1098,37 @@ void Kalibr::setCurrentFile(const QString &fileName)
 
 void Kalibr::updateRecentFileActions()
 {
-//    QSettings settings("BRU", "konfiguretor");
-//    QStringList files = settings.value("recentFileList").toStringList();
+    //    QSettings settings("BRU", "konfiguretor");
+    //    QStringList files = settings.value("recentFileList").toStringList();
 
-//    int numRecentFiles = qMin(files.size(), (int)MaxRecentFiles);
+    //    int numRecentFiles = qMin(files.size(), (int)MaxRecentFiles);
 
-//    for (int i = 0; i < numRecentFiles; ++i) {
-//        QString text = tr("&%1 %2").arg(i + 1).arg(strippedName(files[i]));
-//        recentFileActs[i]->setText(text);
-//        recentFileActs[i]->setData(files[i]);
-//        recentFileActs[i]->setVisible(true);
-//    }
-//    for (int j = numRecentFiles; j < MaxRecentFiles; ++j)
-//        recentFileActs[j]->setVisible(false);
+    //    for (int i = 0; i < numRecentFiles; ++i) {
+    //        QString text = tr("&%1 %2").arg(i + 1).arg(strippedName(files[i]));
+    //        recentFileActs[i]->setText(text);
+    //        recentFileActs[i]->setData(files[i]);
+    //        recentFileActs[i]->setVisible(true);
+    //    }
+    //    for (int j = numRecentFiles; j < MaxRecentFiles; ++j)
+    //        recentFileActs[j]->setVisible(false);
 
-//    separatorAct->setVisible(numRecentFiles > 0);
+    //    separatorAct->setVisible(numRecentFiles > 0);
 }
 
 
 void Kalibr::on_CreateFile_clicked()
 {
     QString first="netdb_base.db";
-        QString filter = "Файл конфигурации прибора (*.db);;Все файлы (*.*)";
-        fileName = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", QDir::homePath(), filter);
-        QFile::copy(first,fileName);
+    QString filter = "Файл конфигурации прибора (*.db);;Все файлы (*.*)";
+    fileName = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", QDir::homePath(), filter);
+    QFile::copy(first,fileName);
 
-        open_sdb();
-        int index = ui->tabWidget->currentIndex();
-        QString currentTabText = ui->tabWidget->tabText(index);
-        QFileInfo fi(fileName);
-        QString base = fi.baseName();
-        setWindowTitle(currentTabText + "@" + base + QString(" - IM View"));
+    open_sdb();
+    int index = ui->tabWidget->currentIndex();
+    QString currentTabText = ui->tabWidget->tabText(index);
+    QFileInfo fi(fileName);
+    QString base = fi.baseName();
+    setWindowTitle(currentTabText + "@" + base + QString(" - IM View"));
 
     //    //инициализация базы данных sqlite3
     //     sdb = QSqlDatabase::addDatabase("QSQLITE"); //объявление базы данных sqlite3
@@ -1172,17 +1142,17 @@ void Kalibr::on_CreateFile_clicked()
     //     ui->tableView->setModel(model); //Устанавливает модель для представления
     //     ui->tableView->hideColumn(0); //скрытие столбца id
 
-         setCurrentFile(fileName);
-         QFileInfo fi2(fileName);
-         QString base2 = fi2.baseName();
-         //ui->label_39->setText(base);
-         int index2 = ui->tabWidget->currentIndex();
-         QString currentTabText2 = ui->tabWidget->tabText(index2);
-         setWindowTitle(currentTabText2 + "@" + QString(base2) + QString(" - IM View"));
+    setCurrentFile(fileName);
+    QFileInfo fi2(fileName);
+    QString base2 = fi2.baseName();
+    //ui->label_39->setText(base);
+    int index2 = ui->tabWidget->currentIndex();
+    QString currentTabText2 = ui->tabWidget->tabText(index2);
+    setWindowTitle(currentTabText2 + "@" + QString(base2) + QString(" - IM View"));
 
-         connect(ui->tableView->model(), &QSqlTableModel::dataChanged, this, &Kalibr::onDataChanged);
-         connect(modell, &QSqlTableModel::dataChanged,this, &Kalibr::selectRows);
-         setDisabledCells();
+    connect(ui->tableView->model(), &QSqlTableModel::dataChanged, this, &Kalibr::onDataChanged);
+    connect(modell, &QSqlTableModel::dataChanged,this, &Kalibr::selectRows);
+    setDisabledCells();
 }
 
 void Kalibr::onDataChanged(const QModelIndex&, const QModelIndex&)
@@ -1199,22 +1169,22 @@ void Kalibr::onDataChanged(const QModelIndex&, const QModelIndex&)
 void Kalibr::on_SaveFile_clicked()
 {
     modell->database().transaction();
-        if(modell->submitAll())
-            modell->database().commit();
-        else
-            modell->database().rollback();
+    if(modell->submitAll())
+        modell->database().commit();
+    else
+        modell->database().rollback();
 
-        changedRows.clear();
-        disabledCells.clear();
-        deleteRows.clear();
-        setDisabledCells();
+    changedRows.clear();
+    disabledCells.clear();
+    deleteRows.clear();
+    setDisabledCells();
 
-        QFileInfo fi(fileName);
-        QString base = fi.baseName();
-        int index = ui->tabWidget->currentIndex();
-        QString currentTabText = ui->tabWidget->tabText(index);
-        setWindowTitle(currentTabText + "@" + base + QString(" - IM View"));
-        isChanged = false;
+    QFileInfo fi(fileName);
+    QString base = fi.baseName();
+    int index = ui->tabWidget->currentIndex();
+    QString currentTabText = ui->tabWidget->tabText(index);
+    setWindowTitle(currentTabText + "@" + base + QString(" - IM View"));
+    isChanged = false;
 }
 
 void Kalibr::closeAllBase_Yes()
@@ -1268,41 +1238,41 @@ void Kalibr::Save()
 void Kalibr::on_CloseFile_clicked()
 {
     if(isChanged)
+    {
+        switch (QMessageBox::question(this, "Сохранить документ?", "Сохранить изменения перед закрытием  файла?", QMessageBox::Yes | QMessageBox::No |  QMessageBox::Cancel))
         {
-            switch (QMessageBox::question(this, "Сохранить документ?", "Сохранить изменения перед закрытием  файла?", QMessageBox::Yes | QMessageBox::No |  QMessageBox::Cancel))
-            {
-            case QMessageBox::Yes:
-                Save();
-                sdb.close();
-                QSqlDatabase::removeDatabase(fileName);
-                modell->clear();
-                closeAllBase_Yes();
-                break;
-            case QMessageBox::Cancel:
-                closeAllBase_Otmena();
-                qDebug() << "bla bla bla";
-                break;
-            case QMessageBox::No:
-                sdb.close();
-                QSqlDatabase::removeDatabase(fileName);
-                modell->clear();
-                isChanged=false;
-                closeAllBase_No();
-                break;
-            default:
-              break;
-            }
-        }
-        else
-        {
+        case QMessageBox::Yes:
+            Save();
             sdb.close();
             QSqlDatabase::removeDatabase(fileName);
             modell->clear();
-            //ui->label_39->setText("Загрузите файл конфигурации прибора");
-            ui->tabWidget->setCurrentIndex(0);
-            QString currentTabText = ui->tabWidget->tabText(0);
-            setWindowTitle(currentTabText + "@" + QString("base") + QString(" - IM View"));
+            closeAllBase_Yes();
+            break;
+        case QMessageBox::Cancel:
+            closeAllBase_Otmena();
+            qDebug() << "bla bla bla";
+            break;
+        case QMessageBox::No:
+            sdb.close();
+            QSqlDatabase::removeDatabase(fileName);
+            modell->clear();
+            isChanged=false;
+            closeAllBase_No();
+            break;
+        default:
+            break;
         }
+    }
+    else
+    {
+        sdb.close();
+        QSqlDatabase::removeDatabase(fileName);
+        modell->clear();
+        //ui->label_39->setText("Загрузите файл конфигурации прибора");
+        ui->tabWidget->setCurrentIndex(0);
+        QString currentTabText = ui->tabWidget->tabText(0);
+        setWindowTitle(currentTabText + "@" + QString("base") + QString(" - IM View"));
+    }
 }
 
 
@@ -1321,18 +1291,18 @@ void Kalibr::on_AddRow_clicked()
         ui->tableView->model()->setData(myIndex, myData); //тадам-с!
     }
 
-     onDataChanged(QModelIndex(), QModelIndex());
+    onDataChanged(QModelIndex(), QModelIndex());
 }
 
 
 void Kalibr::on_RemoveRow_clicked()
 {
     int selectRow = ui->tableView->currentIndex().row();
-        if (selectRow >=0)
-        {
-            deleteRows.insert(selectRow);
-            modell->removeRow(selectRow);
-        }
+    if (selectRow >=0)
+    {
+        deleteRows.insert(selectRow);
+        modell->removeRow(selectRow);
+    }
 }
 
 void Kalibr::on_printSetup_clicked()
@@ -1371,12 +1341,12 @@ void Kalibr::printTable(QPrinter *printer, bool isPreview)
     out <<  "<html>\n"
             "<head>\n"
             "<meta Content=\"Text/html; charset=Windows-1251\">\n"
-            <<  QString("<title>%1</title>\n").arg(fileName)
-            <<  "</head>\n"
-            "<body bgcolor=#ffffff link=#5000A0>\n"
-            "<table border=1 cellspacing=0 cellpadding=2>\n";
+         <<  QString("<title>%1</title>\n").arg(fileName)
+          <<  "</head>\n"
+              "<body bgcolor=#ffffff link=#5000A0>\n"
+              "<table border=1 cellspacing=0 cellpadding=2>\n";
 
-        // headers
+    // headers
     out << "<thead><tr bgcolor=#f0f0f0>";
     for (int column = 0; column < columnCount; column++)
         if (!ui->tableView->isColumnHidden(column))
@@ -1388,16 +1358,16 @@ void Kalibr::printTable(QPrinter *printer, bool isPreview)
     for (int row = 0; row < rowCount; row++)
     {
         out << "<tr>";
-            for (int column = 0; column < columnCount; column++)
+        for (int column = 0; column < columnCount; column++)
+        {
+            if (!ui->tableView->isColumnHidden(column))
             {
-                if (!ui->tableView->isColumnHidden(column))
-                {
-                    QString data = ui->tableView->model()->data(ui->tableView->model()->index(row, column)).toString().simplified();
-                    out << QString("<td bkcolor=0>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
-                }
+                QString data = ui->tableView->model()->data(ui->tableView->model()->index(row, column)).toString().simplified();
+                out << QString("<td bkcolor=0>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
             }
-            out << "</tr>\n";
         }
+        out << "</tr>\n";
+    }
     out <<  "</table>\n"
             "</body>\n"
             "</html>\n";
@@ -1442,13 +1412,13 @@ void Kalibr::on_SearchPort_clicked()
 {
     ui->comboBox->clear();
     foreach (const QSerialPortInfo &info, QSerialPortInfo::availablePorts())
-        {
-          ui->comboBox->addItem(info.portName());
-          ui->comboBox->addItem("ttyMP0");
-          ui->comboBox->addItem("ttyMP1");
-          ui->comboBox->addItem("ttyDUMMY");
-          ui->comboBox->setCurrentIndex(1);
-        }
+    {
+        ui->comboBox->addItem(info.portName());
+        ui->comboBox->addItem("ttyMP0");
+        ui->comboBox->addItem("ttyMP1");
+        ui->comboBox->addItem("ttyDUMMY");
+        ui->comboBox->setCurrentIndex(1);
+    }
 }
 
 
@@ -1495,8 +1465,8 @@ void Kalibr::on_EnterPort_clicked()
     else
     {
         timer.stop();
-//        ui->label_14->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
-//        ui->label_15->setText("  Связи нет");
+        //        ui->label_14->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
+        //        ui->label_15->setText("  Связи нет");
         wf->statusbar_label->clear();
         wf->statusbar_label->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red.png"));
         wf->statusbar_label_2->setText("  Связи нет");
@@ -1663,26 +1633,26 @@ void Kalibr::on_ReadPribor_clicked()
         switch (protocolCode)
         {
         case 0:
-           protocolName = "RTU";
-        break;
+            protocolName = "RTU";
+            break;
         case 1:
             protocolName = "ASCII";
-        break;
+            break;
         case 2:
             protocolName = "ОВЕН";
-        break;
+            break;
         case 3:
             protocolName = "Токовый вход 1";
-        break;
+            break;
         case 4:
             protocolName = "Токовый вход 2";
-        break;
+            break;
         case 5:
             protocolName = "Токовый вход 3";
-        break;
+            break;
         case 6:
             protocolName = "Токовый вход 4";
-        break;
+            break;
         }
 
         // Если канал токовый - применить его настройки
@@ -1725,43 +1695,43 @@ void Kalibr::on_ReadPribor_clicked()
         {
         case 0:
             dataTypeStr = "INT16(Little-endian)";
-        break;
+            break;
         case 1:
             dataTypeStr = "WORD16(Little-endian)";
-        break;
+            break;
         case 2:
             dataTypeStr = "LONGINT32(Little-endian)";
-        break;
+            break;
         case 3:
             dataTypeStr = "DWORD32(Little-endian)";
-        break;
+            break;
         case 4:
             dataTypeStr = "FLOAT32(Little-endian)";
-        break;
+            break;
         case 5:
             dataTypeStr = "INT16(Big-endian)";
-        break;
+            break;
         case 6:
             dataTypeStr = "WORD16(Big-endian)";
-        break;
+            break;
         case 7:
             dataTypeStr = "LONGINT32(Big-endian)";
-        break;
+            break;
         case 8:
             dataTypeStr = "DWORD32(Big-endian)";
-        break;
+            break;
         case 9:
             dataTypeStr = "FLOAT32(Big-endian)";
-        break;
+            break;
         case 10:
             dataTypeStr = "LONGINT32(Middle-endian)";
-        break;
+            break;
         case 11:
             dataTypeStr = "DWORD32(Middle-endian)";
-        break;
+            break;
         case 12:
             dataTypeStr = "FLOAT32(Middle-endian)";
-        break;
+            break;
         }
 
         ui->tableView->model()->setData(ui->tableView->model()->index(i, 7), dataTypeStr);
@@ -1775,10 +1745,10 @@ void Kalibr::on_ReadPribor_clicked()
         {
         case 0:
             errorArchiveStr = "выкл";
-        break;
+            break;
         case 1:
             errorArchiveStr = "вкл";
-        break;
+            break;
         }
 
         ui->tableView->model()->setData(ui->tableView->model()->index(i, 9), errorArchiveStr);
@@ -2085,8 +2055,8 @@ void Kalibr::on_WritePribor_clicked()
             }
         } while (answerLength != 0);
 
-         QThread::msleep(100);
-         qDebug() << "End channel " << i;
+        QThread::msleep(100);
+        qDebug() << "End channel " << i;
     }
 
     // Запись настроек токовых каналов
@@ -2174,13 +2144,13 @@ void Kalibr::on_SearchPort_2_clicked()
 {
     ui->comboBox_10->clear();
     foreach (const QSerialPortInfo &info, QSerialPortInfo::availablePorts())
-        {
-          ui->comboBox_10->addItem(info.portName());
-          ui->comboBox_10->addItem("ttyMP0");
-          ui->comboBox_10->addItem("ttyMP1");
-          ui->comboBox_10->addItem("ttyDUMMY");
-          ui->comboBox_10->setCurrentIndex(1);
-        }
+    {
+        ui->comboBox_10->addItem(info.portName());
+        ui->comboBox_10->addItem("ttyMP0");
+        ui->comboBox_10->addItem("ttyMP1");
+        ui->comboBox_10->addItem("ttyDUMMY");
+        ui->comboBox_10->setCurrentIndex(1);
+    }
 
 }
 
@@ -2212,7 +2182,7 @@ void Kalibr::on_EnterPort_3_clicked()
 {
     base.digitMomentParams.portName = ui->comboBox_16->currentText();
     base.digitMomentParams.speed = ui->comboBox_15->currentText().toInt();
-    base.digitOscParams.data = ui->comboBox_17->currentText().toInt();
+    base.digitMomentParams.data = ui->comboBox_17->currentText().toInt();
     base.digitMomentParams.parity = ui->comboBox_13->currentText().toInt();
     base.digitMomentParams.stopBits = ui->comboBox_14->currentText().toInt();
     base.digitMomentParams.flowControl = ui->comboBox_18->currentText().toInt();
@@ -2227,7 +2197,7 @@ void Kalibr::initClient()
             client->abort();
         }else if(client->state()==QAbstractSocket::UnconnectedState){
             const QHostAddress address=QHostAddress(ui->lineEdit->text());
-            const unsigned short port=ui->comboBox_22->currentText().toUShort();
+            const unsigned short port=ui->lineEdit_3->text().toUShort();
             client->connectToHost(address,port);
         }else{
             ui->lineEdit_2->setText("It is not ConnectedState or UnconnectedState");
@@ -2238,14 +2208,14 @@ void Kalibr::initClient()
     connect(client,&QTcpSocket::connected,[this]{
         ui->EnterPort_4->setText("Disconnect");
         ui->lineEdit->setEnabled(false);
-        ui->comboBox_22->setEnabled(false);
+        ui->lineEdit_3->setEnabled(false);
         ui->label_60->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_blue"));
         updateState();
     });
     connect(client,&QTcpSocket::disconnected,[this]{
         ui->EnterPort_4->setText("Connect");
         ui->lineEdit->setEnabled(true);
-        ui->comboBox_22->setEnabled(true);
+        ui->lineEdit_3->setEnabled(true);
         ui->label_60->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
         updateState();
     });
@@ -2264,32 +2234,25 @@ void Kalibr::initClient()
             return;
         const QString recv_text=QString::fromUtf8(client->readAll());
         ui->lineEdit_2->setText(QString("[%1:%2]")
-                             .arg(client->peerAddress().toString())
-                             .arg(client->peerPort()));
+                                .arg(client->peerAddress().toString())
+                                .arg(client->peerPort()));
         ui->lineEdit_2->setText(recv_text);
     });
 
-#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
-    connect(client, static_cast<void(QAbstractSocket::*)(QAbstractSocket::SocketError)>(&QAbstractSocket::error),
-            [this](QAbstractSocket::SocketError){
-        ui->textRecv->append("Socket Error:"+client->errorString());
-    });
-#else
-    connect(client,&QAbstractSocket::errorOccurred,[this](QAbstractSocket::SocketError){
-        ui->lineEdit_2->setText("Socket Error:"+client->errorString());
-    });
-#endif
+    /*connect(client,&QAbstractSocket::errorOccurred,[this](QAbstractSocket::SocketError){
+        ui->label_14->setText("Socket Error:"+client->errorString());
+    });*/
 }
 
 void Kalibr::updateState()
 {
-    if(client->state()==QAbstractSocket::ConnectedState){
-        setWindowTitle(QString("Client[%1:%2]")
+    /*if(client->state()==QAbstractSocket::ConnectedState){
+        ui->label_14->setText(QString("Client[%1:%2]")
                        .arg(client->localAddress().toString())
                        .arg(client->localPort()));
     }else{
-        setWindowTitle("Client");
-    }
+        ui->label_14->setText("Client");
+    }*/
 }
 
 

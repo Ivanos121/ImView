@@ -1,5 +1,6 @@
 #include <QSerialPort>
 #include "devicedigitosc.h"
+#include "base.h"
 
 DeviceDigitOsc::DeviceDigitOsc(QObject *parent)
     : QObject{parent}
@@ -10,8 +11,7 @@ DeviceDigitOsc::DeviceDigitOsc(QObject *parent)
 int DeviceDigitOsc::init()
 {
     serialPort = new QSerialPort();
-    const QString serialPortName = "/dev/ttyACM0";
-    serialPort->setPortName(serialPortName);
+    serialPort->setPortName(base.digitOscParams.portName);
 
     if (!serialPort->open(QIODevice::ReadWrite))
     {
@@ -19,7 +19,7 @@ int DeviceDigitOsc::init()
         return 1;
     }
 
-    serialPort->setBaudRate(QSerialPort::Baud115200);
+    serialPort->setBaudRate(base.digitOscParams.speed);
     serialPort->setDataBits(QSerialPort::Data8);
     serialPort->setParity(QSerialPort::NoParity);
     serialPort->setStopBits(QSerialPort::OneStop);

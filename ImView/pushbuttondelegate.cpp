@@ -44,10 +44,12 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
     {
         //выбор режима работы программы
         QComboBox *editor = new QComboBox(parent);
-        editor->insertItem(0, "Осциллограф + наблюдатель скорости (без датчика скорости)");
-        editor->insertItem(1, "Осциллограф + наблюдатель скорости (с датчиком скорости)");
-        editor->insertItem(2, "Внутренний источник данных");
-        editor->insertItem(3, "Чтение данных из файла для наблюдателя скорости");
+        editor->insertItem(0, "БВАСv1  + наблюдатель скорости (без датчика скорости)");
+        editor->insertItem(1, "БВАСv1 + наблюдатель скорости (с датчиком скорости)");
+        editor->insertItem(2, "БВАСv2 + наблюдатель скорости (без датчика скорости)");
+        editor->insertItem(3, "БВАСv2 + наблюдатель скорости (с датчиком скорости)");
+        editor->insertItem(4, "Внутренний источник данных");
+        editor->insertItem(5, "Чтение данных из файла для наблюдателя скорости");
         return editor;
     }
     else if ((index.parent().parent().row() == 0) && (index.parent().row() == 1) && (index.row() == 3))
@@ -226,9 +228,13 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
         QString value = index.model()->data(index, Qt::DisplayRole).toString();
         QComboBox *comboBox = static_cast<QComboBox*>(editor);
         //comboBox->addItem(value);
-        if(value == "Осциллограф + наблюдатель скорости (без датчика скорости)")
+        if(value == "БВАСv1 + наблюдатель скорости (без датчика скорости)")
             comboBox->setCurrentIndex(0);
-        else if(value == "Осциллограф + наблюдатель скорости (с датчиком скорости)")
+        else if(value == "БВАСv1 + наблюдатель скорости (с датчиком скорости)")
+            comboBox->setCurrentIndex(1);
+        if(value == "БВАСv2 + наблюдатель скорости (без датчика скорости)")
+            comboBox->setCurrentIndex(0);
+        else if(value == "БВАСv2 + наблюдатель скорости (с датчиком скорости)")
             comboBox->setCurrentIndex(1);
         else if(value == "Внутренний источник данных")
             comboBox->setCurrentIndex(2);

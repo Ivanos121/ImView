@@ -6,6 +6,7 @@
 #include "nabludatel_part.h"
 #include "plot.h"
 #include "datasource_file.h"
+#include "datasourcedigitosc.h"
 #include "ui_mainwindow.h"
 
 #include <iostream>
@@ -73,14 +74,6 @@ void electromagn::realtimeDataSlot()
     double b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16,b17,b18;
 
     key = time->elapsed()/1000.0;
-
-//    if(ui->radioButton_3->isChecked())
-//    {
-//        double b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16;
-//        for (int i = 0; i < 1000; i++)
-//        {
-//            Model_el.rasch();
-//        }
 
     //Внутренний источник данных
 
@@ -269,7 +262,7 @@ void electromagn::realtimeDataSlot()
         if(wf->ui->tableWidget->model()->index(9,2).data(Qt::CheckStateRole)==Qt::Checked)
         {
             ui->plot->addPoint(5, key, b12+b9*(Model_el.i_dev_c));
-       }
+        }
 
         //вывод на qcustomPlot графика скорости omega
 
@@ -464,460 +457,492 @@ void electromagn::realtimeDataSlot()
             wf->ui->tableWidget_4->item(8, 1)->setText(QString::number(Model_el.cos_f,'f',3));
         }
 
+        std::ofstream fout;
+        fout.open(QString(base.electromagnFilename).toStdString(),std::ios::out | std::ios::app);
+        fout << QString("%1").arg(key).toStdString() << ";";
+        fout << QString("%1").arg(Model_el.u_dev_a).toStdString() << ";";
+        fout << QString("%1").arg(Model_el.u_dev_b).toStdString() << ";";
+        fout << QString("%1").arg(Model_el.u_dev_c).toStdString() << ";";
+        fout << QString("%1").arg(Model_el.i_dev_a).toStdString() << ";";
+        fout << QString("%1").arg(Model_el.i_dev_b).toStdString() << ";";
+        fout << QString("%1").arg(Model_el.i_dev_c).toStdString() << ";";
+        fout << QString("%1").arg(Model_el.omega).toStdString() << ";";
+        fout << QString("%1").arg(Model_el.M).toStdString() << ";";
+        fout << QString("%1").arg(Model_el.Mc).toStdString() << ";";
+        fout << std::endl;
+        fout.close();
+
     }
-
-    std::ofstream fout;
-    fout.open(QString(base.electromagnFilename).toStdString(),std::ios::out | std::ios::app);
-    fout << QString("%1").arg(key).toStdString() << ";";
-    fout << QString("%1").arg(Model_el.u_dev_a).toStdString() << ";";
-    fout << QString("%1").arg(Model_el.u_dev_b).toStdString() << ";";
-    fout << QString("%1").arg(Model_el.u_dev_c).toStdString() << ";";
-    fout << QString("%1").arg(Model_el.i_dev_a).toStdString() << ";";
-    fout << QString("%1").arg(Model_el.i_dev_b).toStdString() << ";";
-    fout << QString("%1").arg(Model_el.i_dev_c).toStdString() << ";";
-    fout << QString("%1").arg(Model_el.omega).toStdString() << ";";
-    fout << QString("%1").arg(Model_el.M).toStdString() << ";";
-    fout << QString("%1").arg(Model_el.Mc).toStdString() << ";";
-    fout << std::endl;
-    fout.close();
-
-
-    if(wf->item80->text() == "Чтение данных из файла для наблюдателя скорости")
+    else
     {
         nabludatel->rasch(dataSource);
 
-//        //Считывание коэффициента изменения амплитуды напряжения фазы А
-//        a1=ui->tableWidget_5->item(0,4)->text().toDouble();
+        //Считывание коэффициента изменения амплитуды напряжения фазы А
 
-//        //Считывание коэффициента изменения амплитуды напряжения фазы В
-//        a2=ui->tableWidget_5->item(1,4)->text().toDouble();
+        if(wf->ui->tableWidget->item(4,4)!=0)
+        {
+            b1=wf->ui->tableWidget->item(4,4)->text().toDouble();
+        }
 
-//        //Считывание коэффициента изменения амплитуды напряжения фазы С
-//        a3=ui->tableWidget_5->item(2,4)->text().toDouble();
+        //Считывание коэффициента изменения амплитуды напряжения фазы В
 
-//        //Считывание коэффициента смещения напряжения фазы А
-//        a4=ui->tableWidget_5->item(0,5)->text().toDouble();
+        if(wf->ui->tableWidget->item(5,4)!=0)
+        {
+            b2=wf->ui->tableWidget->item(5,4)->text().toDouble();
+        }
 
-//        //Считывание коэффициента смещения напряжения фазы В
-//        a5=ui->tableWidget_5->item(1,5)->text().toDouble();
+        //Считывание коэффициента изменения амплитуды напряжения фазы С
 
-//        //Считывание коэффициента смещения напряжения фазы С
-//        a6=ui->tableWidget_5->item(2,5)->text().toDouble();
+        if(wf->ui->tableWidget->item(6,4)!=0)
+        {
+            b3=wf->ui->tableWidget->item(6,4)->text().toDouble();
+        }
 
-//        //Считывание коэффициента изменения амплитуды тока фазы А
-//        a7=ui->tableWidget_5->item(3,4)->text().toDouble();
+        //Считывание коэффициента смещения напряжения фазы А
 
-//        //Считывание коэффициента изменения амплитуды тока фазы В
-//        a8=ui->tableWidget_5->item(4,4)->text().toDouble();
+        if(wf->ui->tableWidget->item(4,3)!=0)
+        {
+            b4=wf->ui->tableWidget->item(4,3)->text().toDouble();
+        }
 
-//        //Считывание коэффициента изменения амплитуды тока фазы С
-//        a9=ui->tableWidget_5->item(5,4)->text().toDouble();
+        //Считывание коэффициента смещения напряжения фазы В
 
-//        //Считывание коэффициента смещения тока фазы А
-//        a10=ui->tableWidget_5->item(3,5)->text().toDouble();
+        if(wf->ui->tableWidget->item(5,3)!=0)
+        {
+            b5=wf->ui->tableWidget->item(5,3)->text().toDouble();
+        }
 
-//        //Считывание коэффициента смещения тока фазы В
-//        a11=ui->tableWidget_5->item(4,5)->text().toDouble();
+        //Считывание коэффициента смещения напряжения фазы С
 
-//        //Считывание коэффициента смещения тока фазы С
-//        a12=ui->tableWidget_5->item(5,5)->text().toDouble();
+        if(wf->ui->tableWidget->item(6,3)!=0)
+        {
+            b6=wf->ui->tableWidget->item(6,3)->text().toDouble();
+        }
 
-//        //Считывание коэффициента изменения амплитуды частоты вращения
-//        a13=ui->tableWidget_5->item(6,4)->text().toDouble();
+        //Считывание коэффициента изменения амплитуды тока фазы А
 
-//        //Считывание коэффициента изменения амплитуды электромагнитного момента M
-//        a14=ui->tableWidget_5->item(7,4)->text().toDouble();
+        if(wf->ui->tableWidget->item(7,4)!=0)
+        {
+            b7=wf->ui->tableWidget->item(7,4)->text().toDouble();
+        }
 
-//        //Считывание коэффициента изменения амплитуды момента Mc
-//        a15=ui->tableWidget_5->item(8,4)->text().toDouble();
+        //Считывание коэффициента изменения амплитуды тока фазы В
 
-//        //Считывание коэффициента смещения частоты вращения
-//        a16=ui->tableWidget_5->item(6,5)->text().toDouble();
+        if(wf->ui->tableWidget->item(8,4)!=0)
+        {
+            b8=wf->ui->tableWidget->item(8,4)->text().toDouble();
+        }
 
-//        //Считывание коэффициента смещения электромагнитного момента M
-//        a17=ui->tableWidget_5->item(7,5)->text().toDouble();
-
-//        //Считывание коэффициента смещения момента Mc
-//        a18=ui->tableWidget_5->item(8,5)->text().toDouble();
-
-
-//    if(ui->tableWidget_5->model()->index(0,2).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(0, key, a4+a1*nabludatel->get_u_dev_a());
-//    }
-
-//    if(ui->tableWidget_5->model()->index(1,2).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(1, key, a5+a2*nabludatel->get_u_dev_b());
-//    }
-
-//    if(ui->tableWidget_5->model()->index(2,2).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(2, key, a6+a3*nabludatel->get_u_dev_c());
-//    }
-
-//    if(ui->tableWidget_5->model()->index(3,2).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(3, key, a10+a7*nabludatel->get_i_dev_a());
-//    }
-
-//    if(ui->tableWidget_5->model()->index(4,2).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(4, key, a11+a8*nabludatel->get_i_dev_b());
-//    }
-
-//    if(ui->tableWidget_5->model()->index(5,2).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(5, key, a12+a9*nabludatel->get_i_dev_c());
-//    }
-
-//    if(ui->tableWidget_5->model()->index(6,2).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(6, key, nabludatel->get_w_sr());
-//    }
-
-//    if(ui->tableWidget_5->model()->index(7,2).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(7, key, nabludatel->get_M_sr());
-//    }
-
-    //Занесение итоговых данных в таблицу
-    if (wf->ui->tableWidget_2->item(0, 1) != 0)
-    {
-        wf->ui->tableWidget_2->item(0, 1)->setText(QString("%1").arg(nabludatel->get_i_dev_a()));
-    }
-
-    if (wf->ui->tableWidget_2->item(1, 1) != 0)
-    {
-        wf->ui->tableWidget_2->item(1, 1)->setText(QString("%1").arg(nabludatel->get_u_dev_a()));
-    }
-
-    if (wf->ui->tableWidget_2->item(2, 1) != 0)
-    {
-        wf->ui->tableWidget_2->item(2, 1)->setText(QString("%1").arg(nabludatel->get_p_akt_a()));
-    }
-
-    if (wf->ui->tableWidget_2->item(3, 1) != 0)
-    {
-        wf->ui->tableWidget_2->item(3, 1)->setText(QString("%1").arg(nabludatel->get_p_reakt_a()));
-    }
-
-    if (wf->ui->tableWidget_2->item(4, 1) != 0)
-    {
-        wf->ui->tableWidget_2->item(4, 1)->setText(QString("%1").arg(nabludatel->get_p_poln_a()));
-    }
-
-    if (wf->ui->tableWidget_2->item(5, 1) != 0)
-    {
-        wf->ui->tableWidget_2->item(5, 1)->setText(QString("%1").arg(nabludatel->get_cos_f_a()));
-    }
-
-    if (wf->ui->tableWidget_2->item(6, 1) != 0)
-    {
-        wf->ui->tableWidget_2->item(6, 1)->setText(QString("%1").arg(nabludatel->get_i_dev_b()));
-    }
-
-    if (wf->ui->tableWidget_2->item(7, 1) != 0)
-    {
-        wf->ui->tableWidget_2->item(7, 1)->setText(QString("%1").arg(nabludatel->get_u_dev_b()));
-    }
-
-//    if (ui->tableWidget->item(8, 1) != 0)
-//    {
-//        ui->tableWidget->item(8, 1)->setText(QString("%1").arg(nabludatel->get_p_akt_b()));
-//    }
-
-//    if (ui->tableWidget->item(9, 1) != 0)
-//    {
-//        ui->tableWidget->item(9, 1)->setText(QString("%1").arg(nabludatel->get_p_reakt_b()));
-//    }
-
-//    if (ui->tableWidget->item(10, 1) != 0)
-//    {
-//        ui->tableWidget->item(10, 1)->setText(QString("%1").arg(nabludatel->get_p_poln_b()));
-//    }
-
-//    if (ui->tableWidget->item(11, 1) != 0)
-//    {
-//        ui->tableWidget->item(11, 1)->setText(QString("%1").arg(nabludatel->get_cos_f_b()));
-//    }
-
-//    if (ui->tableWidget->item(12, 1) != 0)
-//    {
-//        ui->tableWidget->item(12, 1)->setText(QString("%1").arg(nabludatel->get_i_dev_c()));
-//    }
-
-//    if (ui->tableWidget->item(13, 1) != 0)
-//    {
-//        ui->tableWidget->item(13, 1)->setText(QString("%1").arg(nabludatel->get_u_dev_c()));
-//    }
-
-//    if (ui->tableWidget->item(14, 1) != 0)
-//    {
-//        ui->tableWidget->item(14, 1)->setText(QString("%1").arg(nabludatel->get_p_akt_c()));
-//    }
-
-//    if (ui->tableWidget->item(15, 1) != 0)
-//    {
-//        ui->tableWidget->item(15, 1)->setText(QString("%1").arg(nabludatel->get_p_reakt_c()));
-//    }
-
-//    if (ui->tableWidget->item(16, 1) != 0)
-//    {
-//        ui->tableWidget->item(16, 1)->setText(QString("%1").arg(nabludatel->get_p_poln_c()));
-//    }
-
-//    if (ui->tableWidget->item(17, 1) != 0)
-//    {
-//        ui->tableWidget->item(17, 1)->setText(QString("%1").arg(nabludatel->get_cos_f_c()));
-//    }
-
-//    if (ui->tableWidget->item(18, 1) != 0)
-//    {
-//        ui->tableWidget->item(18, 1)->setText(QString("%1").arg(nabludatel->get_p_akt()));
-//    }
-
-//    if (ui->tableWidget->item(19, 1) != 0)
-//    {
-//        ui->tableWidget->item(19, 1)->setText(QString("%1").arg(nabludatel->get_p_reakt()));
-//    }
-//    if (ui->tableWidget->item(20, 1) != 0)
-//    {
-//        ui->tableWidget->item(20, 1)->setText(QString("%1").arg(nabludatel->get_p_poln()));
-//    }
-//    if (ui->tableWidget->item(21, 1) != 0)
-//    {
-//        ui->tableWidget->item(21, 1)->setText(QString("%1").arg(nabludatel->get_cos_f()));
-//    }
-//    if (ui->tableWidget->item(22, 1) != 0)
-//    {
-//        ui->tableWidget->item(22, 1)->setText(QString("%1").arg(nabludatel->get_w_sr()));
-//    }
-//    if (ui->tableWidget->item(23, 1) != 0)
-//    {
-//        ui->tableWidget->item(23, 1)->setText(QString("%1").arg(nabludatel->get_M_sr()));
-//    }
-//    if (ui->tableWidget_4->item(0, 1) != 0)
-//    {
-//        ui->tableWidget_4->item(0, 1)->setText(QString::number(nabludatel->get_P1(),'f',3));
-//    }
-
-//    if (ui->tableWidget_4->item(1, 1) != 0)
-//    {
-//        ui->tableWidget_4->item(1, 1)->setText(QString::number(nabludatel->get_dPel1(),'f',3));
-//    }
-
-//    if (ui->tableWidget_4->item(2, 1) != 0)
-//    {
-//        ui->tableWidget_4->item(2, 1)->setText(QString::number(nabludatel->get_dPct(),'f',3));
-//    }
-
-//    if (ui->tableWidget_4->item(3, 1) != 0)
-//    {
-//        ui->tableWidget_4->item(3, 1)->setText(QString::number(nabludatel->get_dPel2(),'f',3));
-//    }
-
-//    if (ui->tableWidget_4->item(4, 1) != 0)
-//    {
-//        ui->tableWidget_4->item(4, 1)->setText(QString::number(nabludatel->get_dPdob(),'f',3));
-//    }
-
-//    if (ui->tableWidget_4->item(5, 1) != 0)
-//    {
-//        ui->tableWidget_4->item(5, 1)->setText(QString::number(nabludatel->get_dPmech(),'f',3));
-//    }
-
-//    if (ui->tableWidget_4->item(6, 1) != 0)
-//    {
-//        ui->tableWidget_4->item(6, 1)->setText(QString::number(nabludatel->get_P2(),'f',3));
-//    }
-
-//    if (ui->tableWidget_4->item(7, 1) != 0)
-//    {
-//        ui->tableWidget_4->item(7, 1)->setText(QString::number(nabludatel->get_kpd(),'f',3));
-//    }
-
-//    if (ui->tableWidget_4->item(8, 1) != 0)
-//    {
-//        ui->tableWidget_4->item(8, 1)->setText(QString::number(nabludatel->get_cos_f(),'f',3));
-//    }
-
-//    if (ui->tableWidget_5->item(0, 3) != 0)
-//    {
-//        ui->tableWidget_5->item(0, 3)->setText(QString::number(nabludatel->get_u_dev_a(),'f',3));
-//    }
-
-//    if (ui->tableWidget_5->item(1, 3) != 0)
-//    {
-//        ui->tableWidget_5->item(1, 3)->setText(QString::number(nabludatel->get_u_dev_b(),'f',3));
-//    }
-
-//    if (ui->tableWidget_5->item(2, 3) != 0)
-//    {
-//        ui->tableWidget_5->item(2, 3)->setText(QString::number(nabludatel->get_u_dev_c(),'f',3));
-//    }
-
-//    if (ui->tableWidget_5->item(3, 3) != 0)
-//    {
-//        ui->tableWidget_5->item(3, 3)->setText(QString::number(nabludatel->get_i_dev_a(),'f',3));
-//    }
-
-//    if (ui->tableWidget_5->item(4, 3) != 0)
-//    {
-//        ui->tableWidget_5->item(4, 3)->setText(QString::number(nabludatel->get_i_dev_b(),'f',3));
-//    }
-
-//    if (ui->tableWidget_5->item(5, 3) != 0)
-//    {
-//        ui->tableWidget_5->item(5, 3)->setText(QString::number(nabludatel->get_i_dev_c(),'f',3));
-//    }
-
-//    if (ui->tableWidget_5->item(6, 3) != 0)
-//    {
-//        ui->tableWidget_5->item(6, 3)->setText(QString::number(nabludatel->get_w_sr(),'f',3));
-//    }
-
-//    if (ui->tableWidget_5->item(7, 3) != 0)
-//    {
-//        ui->tableWidget_5->item(7, 3)->setText(QString::number(nabludatel->get_M_sr(),'f',3));
-//    }
-
-//    if (ui->tableWidget_5->item(8, 3) != 0)
-//    {
-//        ui->tableWidget_5->item(8, 3)->setText(QString::number(nabludatel->get_Mc(),'f',3));
-//    }
-
-    //вывод графиков на экран plot
-
-    if(wf->ui->tableWidget->model()->index(0,2).data(Qt::CheckStateRole)==Qt::Checked)
-    {
-        ui->plot->addPoint(0, key, a4+a1*nabludatel->get_u_dev_a());
-    }
-
-//    if(ui->tableWidget_5->model()->index(1,2).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(1, key, a5+a2*nabludatel->get_u_dev_b());
-//    }
-
-//    if(ui->tableWidget_5->model()->index(2,2).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(2, key, a6+a3*nabludatel->get_u_dev_c());
-//    }
-
-//    if(ui->tableWidget_5->model()->index(3,2).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(3, key, a10+a7*nabludatel->get_i_dev_a());
-//    }
-
-//    if(ui->tableWidget_5->model()->index(4,2).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(4, key, a11+a8*nabludatel->get_i_dev_b());
-//    }
-
-//    if(ui->tableWidget_5->model()->index(5,2).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(5, key, a12+a9*nabludatel->get_i_dev_c());
-//    }
-
-//    if(ui->tableWidget_5->model()->index(6,2).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(6, key, a16+a13*nabludatel->get_w_sr());
-//    }
-
-//    if(ui->tableWidget_5->model()->index(7,2).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(7, key, a17+a14*nabludatel->get_M_sr());
-//    }
-
-//    if(ui->tableWidget_5->model()->index(8,2).data(Qt::CheckStateRole)==Qt::Checked)
-//    {
-//        ui->plot->addPoint(8, key, a18+a15*nabludatel->get_Mc());
-//    }
+        //Считывание коэффициента изменения амплитуды тока фазы С
 
+        if(wf->ui->tableWidget->item(9,4)!=0)
+        {
+            b9=wf->ui->tableWidget->item(9,4)->text().toDouble();
+        }
+
+        //Считывание коэффициента смещения тока фазы А
+
+        if(wf->ui->tableWidget->item(7,3)!=0)
+        {
+            b10=wf->ui->tableWidget->item(7,3)->text().toDouble();
+        }
+
+        //Считывание коэффициента смещения тока фазы В
+
+        if(wf->ui->tableWidget->item(8,3)!=0)
+        {
+            b11=wf->ui->tableWidget->item(8,3)->text().toDouble();
+        }
+
+        //Считывание коэффициента смещения тока фазы С
+
+        if(wf->ui->tableWidget->item(9,3)!=0)
+        {
+            b12=wf->ui->tableWidget->item(9,3)->text().toDouble();
+        }
+
+        //Считывание коэффициента изменения амплитуды скорости вращения
+
+        if(wf->ui->tableWidget->item(10,4)!=0)
+        {
+            b13=wf->ui->tableWidget->item(10,4)->text().toDouble();
+        }
+
+        //Считывание коэффициента изменения амплитуды момента на валу
+
+        if(wf->ui->tableWidget->item(11,4)!=0)
+        {
+            b14=wf->ui->tableWidget->item(11,4)->text().toDouble();
+        }
+
+        //Считывание коэффициента изменения амплитуды момента Mc
+
+        if(wf->ui->tableWidget->item(12,4)!=0)
+        {
+            b17=wf->ui->tableWidget->item(12,4)->text().toDouble();
+        }
+
+        //Считывание коэффициента смещения скорости вращения
+
+        if(wf->ui->tableWidget->item(10,3)!=0)
+        {
+            b15=wf->ui->tableWidget->item(10,3)->text().toDouble();
+        }
+
+        //Считывание коэффициента смещения момента на валу
+
+        if(wf->ui->tableWidget->item(11,3)!=0)
+        {
+            b16=wf->ui->tableWidget->item(11,3)->text().toDouble();
+        }
+
+        //Считывание коэффициента смещения момента Mc
+
+        if(wf->ui->tableWidget->item(12,3)!=0)
+        {
+            b18=wf->ui->tableWidget->item(12,3)->text().toDouble();
+        }
+
+
+        if(wf->ui->tableWidget->model()->index(4,2).data(Qt::CheckStateRole)==Qt::Checked)
+        {
+            ui->plot->addPoint(0, key, b4+b1*nabludatel->get_u_dev_a());
+        }
+
+        if(wf->ui->tableWidget->model()->index(5,2).data(Qt::CheckStateRole)==Qt::Checked)
+        {
+            ui->plot->addPoint(1, key, b5+b2*nabludatel->get_u_dev_b());
+        }
+
+        if(wf->ui->tableWidget->model()->index(6,2).data(Qt::CheckStateRole)==Qt::Checked)
+        {
+            ui->plot->addPoint(2, key, b6+b3*nabludatel->get_u_dev_c());
+        }
+
+        if(wf->ui->tableWidget->model()->index(7,2).data(Qt::CheckStateRole)==Qt::Checked)
+        {
+            ui->plot->addPoint(3, key, b10+b7*nabludatel->get_i_dev_a());
+        }
+
+        if(wf->ui->tableWidget->model()->index(8,2).data(Qt::CheckStateRole)==Qt::Checked)
+        {
+            ui->plot->addPoint(4, key, b11+b8*nabludatel->get_i_dev_b());
+        }
+
+        if(wf->ui->tableWidget->model()->index(9,2).data(Qt::CheckStateRole)==Qt::Checked)
+        {
+            ui->plot->addPoint(5, key, b12+b9*nabludatel->get_i_dev_c());
+        }
+
+        if(wf->ui->tableWidget->model()->index(10,2).data(Qt::CheckStateRole)==Qt::Checked)
+        {
+            ui->plot->addPoint(6, key, nabludatel->get_w_sr());
+        }
+
+        if(wf->ui->tableWidget->model()->index(11,2).data(Qt::CheckStateRole)==Qt::Checked)
+        {
+            ui->plot->addPoint(7, key, nabludatel->get_M_sr());
+        }
+
+        //Занесение итоговых данных в таблицу
+        if (wf->ui->tableWidget_2->item(0, 1) != 0)
+        {
+            wf->ui->tableWidget_2->item(0, 1)->setText(QString("%1").arg(nabludatel->get_i_dev_a()));
+        }
+
+        if (wf->ui->tableWidget_2->item(1, 1) != 0)
+        {
+            wf->ui->tableWidget_2->item(1, 1)->setText(QString("%1").arg(nabludatel->get_u_dev_a()));
+        }
+
+        if (wf->ui->tableWidget_2->item(2, 1) != 0)
+        {
+            wf->ui->tableWidget_2->item(2, 1)->setText(QString("%1").arg(nabludatel->get_p_akt_a()));
+        }
+
+        if (wf->ui->tableWidget_2->item(3, 1) != 0)
+        {
+            wf->ui->tableWidget_2->item(3, 1)->setText(QString("%1").arg(nabludatel->get_p_reakt_a()));
+        }
+
+        if (wf->ui->tableWidget_2->item(4, 1) != 0)
+        {
+            wf->ui->tableWidget_2->item(4, 1)->setText(QString("%1").arg(nabludatel->get_p_poln_a()));
+        }
+
+        if (wf->ui->tableWidget_2->item(5, 1) != 0)
+        {
+            wf->ui->tableWidget_2->item(5, 1)->setText(QString("%1").arg(nabludatel->get_cos_f_a()));
+        }
+
+        if (wf->ui->tableWidget_2->item(6, 1) != 0)
+        {
+            wf->ui->tableWidget_2->item(6, 1)->setText(QString("%1").arg(nabludatel->get_i_dev_b()));
+        }
+
+        if (wf->ui->tableWidget_2->item(7, 1) != 0)
+        {
+            wf->ui->tableWidget_2->item(7, 1)->setText(QString("%1").arg(nabludatel->get_u_dev_b()));
+        }
+
+        if (wf->ui->tableWidget_2->item(8, 1) != 0)
+        {
+            wf->ui->tableWidget_2->item(8, 1)->setText(QString("%1").arg(nabludatel->get_p_akt_b()));
+        }
+
+        if (wf->ui->tableWidget_2->item(9, 1) != 0)
+        {
+            wf->ui->tableWidget_2->item(9, 1)->setText(QString("%1").arg(nabludatel->get_p_reakt_b()));
+        }
+
+        if (wf->ui->tableWidget_2->item(10, 1) != 0)
+        {
+            wf->ui->tableWidget_2->item(10, 1)->setText(QString("%1").arg(nabludatel->get_p_poln_b()));
+        }
+
+        if (wf->ui->tableWidget_2->item(11, 1) != 0)
+        {
+            wf->ui->tableWidget_2->item(11, 1)->setText(QString("%1").arg(nabludatel->get_cos_f_b()));
+        }
+
+        if (wf->ui->tableWidget_2->item(12, 1) != 0)
+        {
+            wf->ui->tableWidget_2->item(12, 1)->setText(QString("%1").arg(nabludatel->get_i_dev_c()));
+        }
+
+        if (wf->ui->tableWidget_2->item(13, 1) != 0)
+        {
+            wf->ui->tableWidget_2->item(13, 1)->setText(QString("%1").arg(nabludatel->get_u_dev_c()));
+        }
+
+        if (wf->ui->tableWidget_2->item(14, 1) != 0)
+        {
+            wf->ui->tableWidget_2->item(14, 1)->setText(QString("%1").arg(nabludatel->get_p_akt_c()));
+        }
+
+        if (wf->ui->tableWidget_2->item(15, 1) != 0)
+        {
+            wf->ui->tableWidget_2->item(15, 1)->setText(QString("%1").arg(nabludatel->get_p_reakt_c()));
+        }
+
+        if (wf->ui->tableWidget_2->item(16, 1) != 0)
+        {
+            wf->ui->tableWidget_2->item(16, 1)->setText(QString("%1").arg(nabludatel->get_p_poln_c()));
+        }
+
+        if (wf->ui->tableWidget_2->item(17, 1) != 0)
+        {
+            wf->ui->tableWidget_2->item(17, 1)->setText(QString("%1").arg(nabludatel->get_cos_f_c()));
+        }
+
+        if (wf->ui->tableWidget_2->item(18, 1) != 0)
+        {
+            wf->ui->tableWidget_2->item(18, 1)->setText(QString("%1").arg(nabludatel->get_p_akt()));
+        }
+
+        if (wf->ui->tableWidget_2->item(19, 1) != 0)
+        {
+            wf->ui->tableWidget_2->item(19, 1)->setText(QString("%1").arg(nabludatel->get_p_reakt()));
+        }
+        if (wf->ui->tableWidget_2->item(20, 1) != 0)
+        {
+            wf->ui->tableWidget_2->item(20, 1)->setText(QString("%1").arg(nabludatel->get_p_poln()));
+        }
+        if (wf->ui->tableWidget_2->item(21, 1) != 0)
+        {
+            wf->ui->tableWidget_2->item(21, 1)->setText(QString("%1").arg(nabludatel->get_cos_f()));
+        }
+        if (wf->ui->tableWidget_2->item(22, 1) != 0)
+        {
+            wf->ui->tableWidget_2->item(22, 1)->setText(QString("%1").arg(nabludatel->get_w_sr()));
+        }
+        if (wf->ui->tableWidget_2->item(23, 1) != 0)
+        {
+            wf->ui->tableWidget_2->item(23, 1)->setText(QString("%1").arg(nabludatel->get_M_sr()));
+        }
+
+        if (wf->ui->tableWidget_4->item(0, 1) != 0)
+        {
+            wf->ui->tableWidget_4->item(0, 1)->setText(QString::number(nabludatel->get_P1(),'f',3));
+        }
+
+        if (wf->ui->tableWidget_4->item(1, 1) != 0)
+        {
+            wf->ui->tableWidget_4->item(1, 1)->setText(QString::number(nabludatel->get_dPel1(),'f',3));
+        }
+
+        if (wf->ui->tableWidget_4->item(2, 1) != 0)
+        {
+            wf->ui->tableWidget_4->item(2, 1)->setText(QString::number(nabludatel->get_dPct(),'f',3));
+        }
+
+        if (wf->ui->tableWidget_4->item(3, 1) != 0)
+        {
+            wf->ui->tableWidget_4->item(3, 1)->setText(QString::number(nabludatel->get_dPel2(),'f',3));
+        }
+
+        if (wf->ui->tableWidget_4->item(4, 1) != 0)
+        {
+            wf->ui->tableWidget_4->item(4, 1)->setText(QString::number(nabludatel->get_dPdob(),'f',3));
+        }
+
+        if (wf->ui->tableWidget_4->item(5, 1) != 0)
+        {
+            wf->ui->tableWidget_4->item(5, 1)->setText(QString::number(nabludatel->get_dPmech(),'f',3));
+        }
+
+        if (wf->ui->tableWidget_4->item(6, 1) != 0)
+        {
+            wf->ui->tableWidget_4->item(6, 1)->setText(QString::number(nabludatel->get_P2(),'f',3));
+        }
+
+        if (wf->ui->tableWidget_4->item(7, 1) != 0)
+        {
+            wf->ui->tableWidget_4->item(7, 1)->setText(QString::number(nabludatel->get_kpd(),'f',3));
+        }
+
+        if (wf->ui->tableWidget_4->item(8, 1) != 0)
+        {
+            wf->ui->tableWidget_4->item(8, 1)->setText(QString::number(nabludatel->get_cos_f(),'f',3));
+        }
     }
 }
 
 void electromagn::raschet_el()
 {
-    if(wf->item80->text() == "Осциллограф + наблюдатель скорости (без датчика скорости)")
+    if(wf->item80->text() == "БВАСv1 + наблюдатель скорости (без датчика скорости)")
     {
-        QMessageBox::critical(this, "Ошибка!", "Выбран первый пункт");
-//        //БВАС без датчика скорости + наблюдатель скорости
-//        QSettings settings;
+        //QMessageBox::critical(this, "Ошибка!", "Выбран первый пункт");
+        //БВАС без датчика скорости + наблюдатель скорости
+        QSettings settings;
 
-//        DataSourceBVAS* dataSourceBVAS = new DataSourceBVAS();
+        DataSourceBVAS* dataSourceBVAS = new DataSourceBVAS();
 
-//        dataSourceBVAS->IaZeroLevel = settings.value("calibration/IaZero", 0.0).toDouble();
-//        dataSourceBVAS->IbZeroLevel = settings.value("calibration/IbZero", 0.0).toDouble();
-//        dataSourceBVAS->IcZeroLevel = settings.value("calibration/IcZero", 0.0).toDouble();
+        dataSourceBVAS->setIaZeroLevel(settings.value("calibration/IaZero", 0.0).toDouble());
+        dataSourceBVAS->setIbZeroLevel(settings.value("calibration/IbZero", 0.0).toDouble());
+        dataSourceBVAS->setIcZeroLevel(settings.value("calibration/IcZero", 0.0).toDouble());
 
-//        dataSourceBVAS->UaZeroLevel = settings.value("calibration/UaZero", 0.0).toDouble();
-//        dataSourceBVAS->UbZeroLevel = settings.value("calibration/UbZero", 0.0).toDouble();
-//        dataSourceBVAS->UcZeroLevel = settings.value("calibration/UcZero", 0.0).toDouble();
+        dataSourceBVAS->setUaZeroLevel(settings.value("calibration/UaZero", 0.0).toDouble());
+        dataSourceBVAS->setUbZeroLevel(settings.value("calibration/UbZero", 0.0).toDouble());
+        dataSourceBVAS->setUcZeroLevel(settings.value("calibration/UcZero", 0.0).toDouble());
 
-//        dataSourceBVAS->IaCalibrationCoeff = settings.value("calibration/IaCoeff", 1.0).toDouble();
-//        dataSourceBVAS->IbCalibrationCoeff = settings.value("calibration/IbCoeff", 1.0).toDouble();
-//        dataSourceBVAS->IcCalibrationCoeff = settings.value("calibration/IcCoeff", 1.0).toDouble();
+        dataSourceBVAS->setIaCalibrationCoeff(settings.value("calibration/IaCoeff", 1.0).toDouble());
+        dataSourceBVAS->setIbCalibrationCoeff(settings.value("calibration/IbCoeff", 1.0).toDouble());
+        dataSourceBVAS->setIcCalibrationCoeff(settings.value("calibration/IcCoeff", 1.0).toDouble());
 
-//        dataSourceBVAS->UaCalibrationCoeff = settings.value("calibration/UaCoeff", 1.0).toDouble();
-//        dataSourceBVAS->UbCalibrationCoeff = settings.value("calibration/UbCoeff", 1.0).toDouble();
-//        dataSourceBVAS->UcCalibrationCoeff = settings.value("calibration/UcCoeff", 1.0).toDouble();
+        dataSourceBVAS->setUaCalibrationCoeff(settings.value("calibration/UaCoeff", 1.0).toDouble());
+        dataSourceBVAS->setUbCalibrationCoeff(settings.value("calibration/UbCoeff", 1.0).toDouble());
+        dataSourceBVAS->setUcCalibrationCoeff(settings.value("calibration/UcCoeff", 1.0).toDouble());
 
-//        dataSource = dataSourceBVAS;
-//        nabludatel = &nabludatel_full;
+        dataSource = dataSourceBVAS;
+        nabludatel = &nabludatel_full;
 
-//        dataSource->init();
-//        nabludatel->init(base.R1, base.R2, base.L1, base.L2, base.Lm);
-//        connect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
-//        connect(dataSourceBVAS, &DataSourceBVAS::bvasFailure, this, &electromagn::bvasFailureSlot);
-
+        dataSource->init();
+        nabludatel->init(base.R1, base.R2, base.L1, base.L2, base.Lm);
+        connect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
+        connect(dataSourceBVAS, &DataSourceBVAS::bvasFailure, this, &electromagn::bvasFailureSlot);
     }
 
-    if(wf->item80->text() == "Осциллограф + наблюдатель скорости (с датчиком скорости)")
+    if(wf->item80->text() == "БВАСv1 + наблюдатель скорости (с датчиком скорости)")
     {
-        QMessageBox::critical(this, "Ошибка!", "Выбран второй пункт");
-//        //БВАС с датчиком скорости + наблюдатель частично (момента)
-//        //БВАС без датчика скорости + наблюдатель скорости
-//        QSettings settings;
+        //QMessageBox::critical(this, "Ошибка!", "Выбран второй пункт");
+        //БВАС с датчиком скорости + наблюдатель частично (момента)
+        //БВАС без датчика скорости + наблюдатель скорости
+        QSettings settings;
 
-//        DataSourceBVASw* dataSourceBVAS = new DataSourceBVASw();
+        DataSourceBVASw* dataSourceBVAS = new DataSourceBVASw();
 
-//        dataSourceBVAS->IaZeroLevel = settings.value("calibration/IaZero", 0.0).toDouble();
-//        dataSourceBVAS->IbZeroLevel = settings.value("calibration/IbZero", 0.0).toDouble();
-//        dataSourceBVAS->IcZeroLevel = settings.value("calibration/IcZero", 0.0).toDouble();
+        dataSourceBVAS->setIaZeroLevel(settings.value("calibration/IaZero", 0.0).toDouble());
+        dataSourceBVAS->setIbZeroLevel(settings.value("calibration/IbZero", 0.0).toDouble());
+        dataSourceBVAS->setIcZeroLevel(settings.value("calibration/IcZero", 0.0).toDouble());
 
-//        dataSourceBVAS->UaZeroLevel = settings.value("calibration/UaZero", 0.0).toDouble();
-//        dataSourceBVAS->UbZeroLevel = settings.value("calibration/UbZero", 0.0).toDouble();
-//        dataSourceBVAS->UcZeroLevel = settings.value("calibration/UcZero", 0.0).toDouble();
+        dataSourceBVAS->setUaZeroLevel(settings.value("calibration/UaZero", 0.0).toDouble());
+        dataSourceBVAS->setUbZeroLevel(settings.value("calibration/UbZero", 0.0).toDouble());
+        dataSourceBVAS->setUcZeroLevel(settings.value("calibration/UcZero", 0.0).toDouble());
 
-//        dataSourceBVAS->IaCalibrationCoeff = settings.value("calibration/IaCoeff", 1.0).toDouble();
-//        dataSourceBVAS->IbCalibrationCoeff = settings.value("calibration/IbCoeff", 1.0).toDouble();
-//        dataSourceBVAS->IcCalibrationCoeff = settings.value("calibration/IcCoeff", 1.0).toDouble();
+        dataSourceBVAS->setIaCalibrationCoeff(settings.value("calibration/IaCoeff", 1.0).toDouble());
+        dataSourceBVAS->setIbCalibrationCoeff(settings.value("calibration/IbCoeff", 1.0).toDouble());
+        dataSourceBVAS->setIcCalibrationCoeff(settings.value("calibration/IcCoeff", 1.0).toDouble());
 
-//        dataSourceBVAS->UaCalibrationCoeff = settings.value("calibration/UaCoeff", 1.0).toDouble();
-//        dataSourceBVAS->UbCalibrationCoeff = settings.value("calibration/UbCoeff", 1.0).toDouble();
-//        dataSourceBVAS->UcCalibrationCoeff = settings.value("calibration/UcCoeff", 1.0).toDouble();
+        dataSourceBVAS->setUaCalibrationCoeff(settings.value("calibration/UaCoeff", 1.0).toDouble());
+        dataSourceBVAS->setUbCalibrationCoeff(settings.value("calibration/UbCoeff", 1.0).toDouble());
+        dataSourceBVAS->setUcCalibrationCoeff(settings.value("calibration/UcCoeff", 1.0).toDouble());
 
-//        dataSource = dataSourceBVAS;
-//        nabludatel = &nabludatel_part;
+        dataSource = dataSourceBVAS;
+        nabludatel = &nabludatel_part;
 
-//        dataSource->init();
-//        nabludatel->init(base.R1, base.R2, base.L1, base.L2, base.Lm);
-//        connect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
-//        connect(dataSourceBVAS, &DataSourceBVASw::bvasFailure, this, &electromagn::bvasFailureSlot);
-
+        dataSource->init();
+        nabludatel->init(base.R1, base.R2, base.L1, base.L2, base.Lm);
+        connect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
+        connect(dataSourceBVAS, &DataSourceBVASw::bvasFailure, this, &electromagn::bvasFailureSlot);
     }
 
-//    if(ui->radioButton_3->isChecked())
-//    {
-//        //Модель двигателя
-//        Model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, combo->currentIndex(),
-//                         ui->tableWidget_3->model()->index(3,1).data().toDouble(),
-//                         ui->tableWidget_3->model()->index(2,1).data().toDouble(),
-//                         ui->tableWidget_3->model()->index(4,1).data().toDouble());
-//                         connect(&Model_el, &Model_el::ready, this, &electromagn::realtimeDataSlot);
+    if(wf->item80->text() == "БВАСv2 + наблюдатель скорости (без датчика скорости)")
+    {
+        //QMessageBox::critical(this, "Ошибка!", "Выбран первый пункт");
+        //БВАС без датчика скорости + наблюдатель скорости
+        QSettings settings;
 
-//    }
+        DataSourceDigitOsc* dataSourceDigitOsc = new DataSourceDigitOsc();
+
+        dataSourceDigitOsc->setIaZeroLevel(settings.value("calibration/IaZero", 0.0).toDouble());
+        dataSourceDigitOsc->setIbZeroLevel(settings.value("calibration/IbZero", 0.0).toDouble());
+        dataSourceDigitOsc->setIcZeroLevel(settings.value("calibration/IcZero", 0.0).toDouble());
+
+        dataSourceDigitOsc->setUaZeroLevel(settings.value("calibration/UaZero", 0.0).toDouble());
+        dataSourceDigitOsc->setUbZeroLevel(settings.value("calibration/UbZero", 0.0).toDouble());
+        dataSourceDigitOsc->setUcZeroLevel(settings.value("calibration/UcZero", 0.0).toDouble());
+
+        dataSourceDigitOsc->setIaCalibrationCoeff(settings.value("calibration/IaCoeff", 1.0).toDouble());
+        dataSourceDigitOsc->setIbCalibrationCoeff(settings.value("calibration/IbCoeff", 1.0).toDouble());
+        dataSourceDigitOsc->setIcCalibrationCoeff(settings.value("calibration/IcCoeff", 1.0).toDouble());
+
+        dataSourceDigitOsc->setUaCalibrationCoeff(settings.value("calibration/UaCoeff", 1.0).toDouble());
+        dataSourceDigitOsc->setUbCalibrationCoeff(settings.value("calibration/UbCoeff", 1.0).toDouble());
+        dataSourceDigitOsc->setUcCalibrationCoeff(settings.value("calibration/UcCoeff", 1.0).toDouble());
+
+        dataSource = dataSourceDigitOsc;
+        nabludatel = &nabludatel_full;
+
+        dataSource->init();
+        nabludatel->init(base.R1, base.R2, base.L1, base.L2, base.Lm);
+        connect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
+        connect(dataSourceDigitOsc, &DataSourceDigitOsc::bvasFailure, this, &electromagn::bvasFailureSlot);
+    }
+
+    if(wf->item80->text() == "БВАСv2 + наблюдатель скорости (с датчиком скорости)")
+    {
+        //QMessageBox::critical(this, "Ошибка!", "Выбран второй пункт");
+        //БВАС с датчиком скорости + наблюдатель частично (момента)
+        //БВАС без датчика скорости + наблюдатель скорости
+        QSettings settings;
+
+        DataSourceDigitOsc* dataSourceDigitOsc = new DataSourceDigitOsc();
+
+        dataSourceDigitOsc->setIaZeroLevel(settings.value("calibration/IaZero", 0.0).toDouble());
+        dataSourceDigitOsc->setIbZeroLevel(settings.value("calibration/IbZero", 0.0).toDouble());
+        dataSourceDigitOsc->setIcZeroLevel(settings.value("calibration/IcZero", 0.0).toDouble());
+
+        dataSourceDigitOsc->setUaZeroLevel(settings.value("calibration/UaZero", 0.0).toDouble());
+        dataSourceDigitOsc->setUbZeroLevel(settings.value("calibration/UbZero", 0.0).toDouble());
+        dataSourceDigitOsc->setUcZeroLevel(settings.value("calibration/UcZero", 0.0).toDouble());
+
+        dataSourceDigitOsc->setIaCalibrationCoeff(settings.value("calibration/IaCoeff", 1.0).toDouble());
+        dataSourceDigitOsc->setIbCalibrationCoeff(settings.value("calibration/IbCoeff", 1.0).toDouble());
+        dataSourceDigitOsc->setIcCalibrationCoeff(settings.value("calibration/IcCoeff", 1.0).toDouble());
+
+        dataSourceDigitOsc->setUaCalibrationCoeff(settings.value("calibration/UaCoeff", 1.0).toDouble());
+        dataSourceDigitOsc->setUbCalibrationCoeff(settings.value("calibration/UbCoeff", 1.0).toDouble());
+        dataSourceDigitOsc->setUcCalibrationCoeff(settings.value("calibration/UcCoeff", 1.0).toDouble());
+
+        dataSource = dataSourceDigitOsc;
+        nabludatel = &nabludatel_part;
+
+        dataSource->init();
+        nabludatel->init(base.R1, base.R2, base.L1, base.L2, base.Lm);
+        connect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
+        connect(dataSourceDigitOsc, &DataSourceDigitOsc::bvasFailure, this, &electromagn::bvasFailureSlot);
+    }
 
     //Внутренний источник данных
     if (wf->item80->text() == "Внутренний источник данных")
@@ -1001,15 +1026,15 @@ void electromagn::on_pushButton_clicked()
 
 void electromagn::addDataLines()
 {
-//    ui->plot->addDataLine(Qt::blue, 0);
-//    ui->plot->addDataLine(Qt::red, 0);
-//    ui->plot->addDataLine(Qt::green, 0);
-//    ui->plot->addDataLine(Qt::cyan, 0);
-//    ui->plot->addDataLine(QColor(47, 15, 163), 0);
-//    ui->plot->addDataLine(QColor(47, 15, 163), 0);
-//    ui->plot->addDataLine(QColor(102, 245, 7), 0);
-//    ui->plot->addDataLine(QColor(102, 245, 7), 0);
-//    ui->plot->addDataLine(QColor(102, 245, 7), 0);
+    //    ui->plot->addDataLine(Qt::blue, 0);
+    //    ui->plot->addDataLine(Qt::red, 0);
+    //    ui->plot->addDataLine(Qt::green, 0);
+    //    ui->plot->addDataLine(Qt::cyan, 0);
+    //    ui->plot->addDataLine(QColor(47, 15, 163), 0);
+    //    ui->plot->addDataLine(QColor(47, 15, 163), 0);
+    //    ui->plot->addDataLine(QColor(102, 245, 7), 0);
+    //    ui->plot->addDataLine(QColor(102, 245, 7), 0);
+    //    ui->plot->addDataLine(QColor(102, 245, 7), 0);
 }
 
 
@@ -1017,10 +1042,10 @@ void electromagn::on_pushButton_2_clicked()
 {
     QSettings settings;
     base.dataSourceFilename = QFileDialog::getOpenFileName(this,
-                                QString::fromUtf8("Открыть файл"),
+                                                           QString::fromUtf8("Открыть файл"),
 
-                                settings.value("dataSource/LastPath", "").toString(),
-                                "txt files (*.txt);;All files (*.*)");
+                                                           settings.value("dataSource/LastPath", "").toString(),
+                                                           "txt files (*.txt);;All files (*.*)");
 }
 
 void electromagn::bvasFailureSlot()

@@ -104,7 +104,7 @@ protected:
 
 private:
     Ui::Kalibr *ui;
-    DataSourceBVAS dataSourceBVAS;
+    DataSource* dataSource;
 
     void initClient();
     void updateState();
