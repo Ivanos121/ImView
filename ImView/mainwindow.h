@@ -144,7 +144,8 @@ public:
     QAction *redoAction;
     QProgressBar *progress;
     QWebEngineView * view;
-    QLabel *statusbar_label, *statusbar_label_2, *statusbar_label_3, *statusbar_label_4;
+    QLabel *statusbar_label, *statusbar_label_2, *statusbar_label_3, *statusbar_label_4,
+         *statusbar_label_5, *statusbar_label_6, *statusbar_label_7, *statusbar_label_8;
 
     QTreeWidgetItem *treeItem, *child3, *child, *child2;
     QTreeWidgetItem *currentItem;

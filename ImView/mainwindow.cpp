@@ -1503,21 +1503,42 @@ MainWindow::MainWindow(QWidget *parent)
 //    MeshInfo->setAlignment(Qt::AlignCenter);
 //    statusBar()->addPermanentWidget(MeshInfo, 1);
 //    statusBar()->setStyleSheet(QString("margin-right: 0px; padding: 6px;"));
+
     statusbar_label = new QLabel;
     statusbar_label->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red.png"));
     statusbar_label->setAlignment(Qt::AlignTop);
     ui->statusbar->addWidget(statusbar_label);
-    statusbar_label_2 = new QLabel("подключения БВАСа нет");
+
+    statusbar_label_2 = new QLabel("Архиватор не подключен");
     statusbar_label_2->setAlignment(Qt::AlignTop);
     ui->statusbar->addWidget(statusbar_label_2);
 
-    QLabel *label3 = new QLabel("");
-    label3->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red.png"));
-    label3->setAlignment(Qt::AlignTop);
-    ui->statusbar->addWidget(label3);
-    QLabel *label4 = new QLabel("подключения БВАСа нет");
-    label4->setAlignment(Qt::AlignTop);
-    ui->statusbar->addWidget(label4);
+    statusbar_label_3 = new QLabel("");
+    statusbar_label_3->setPixmap(QPixmap(":/icons/data/img/icons/archivator_red_16.svg"));
+    statusbar_label_3->setAlignment(Qt::AlignTop);
+    ui->statusbar->addWidget(statusbar_label_3);
+
+    statusbar_label_4 = new QLabel("Осциллограф не подключен");
+    statusbar_label_4->setAlignment(Qt::AlignTop);
+    ui->statusbar->addWidget(statusbar_label_4);
+
+    statusbar_label_5 = new QLabel("");
+    statusbar_label_5->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red.png"));
+    statusbar_label_5->setAlignment(Qt::AlignTop);
+    ui->statusbar->addWidget(statusbar_label_5);
+
+    statusbar_label_6 = new QLabel("ПЛК не подключен");
+    statusbar_label_6->setAlignment(Qt::AlignTop);
+    ui->statusbar->addWidget(statusbar_label_6);
+
+    statusbar_label_7 = new QLabel("");
+    statusbar_label_7->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red.png"));
+    statusbar_label_7->setAlignment(Qt::AlignTop);
+    ui->statusbar->addWidget(statusbar_label_7);
+
+    statusbar_label_8 = new QLabel("Управление моментом не подключено");
+    statusbar_label_8->setAlignment(Qt::AlignTop);
+    ui->statusbar->addWidget(statusbar_label_8);
 
     QObject::connect(ui->treeView, &QAbstractItemView::activated,this, &MainWindow::itemEdit);
 

@@ -41,6 +41,18 @@
         <file>../data/img/icons/IM_24x24.png</file>
         <file>../data/img/icons/IM_48x48.png</file>
         <file>../data/img/icons/IM_96x96.png</file>
+        <file>../data/img/icons/moment_blue_16.svg</file>
+        <file>../data/img/icons/moment_red_16.svg</file>
+        <file>../data/img/icons/moment_white_16.svg</file>
+        <file>../data/img/icons/osc_blue_16.svg</file>
+        <file>../data/img/icons/osc_red_16.svg</file>
+        <file>../data/img/icons/osc_white_16.svg</file>
+        <file>../data/img/icons/plk_blue_16.svg</file>
+        <file>../data/img/icons/plk_red_16.svg</file>
+        <file>../data/img/icons/plk_white_16.svg</file>
+        <file>../data/img/icons/archivator_blue_16.svg</file>
+        <file>../data/img/icons/archivator_red_16.svg</file>
+        <file>../data/img/icons/archivator_white_16.svg</file>
     </qresource>
     <qresource prefix="/image">
         <file>../data/img/images/IM_LOGO.png</file>

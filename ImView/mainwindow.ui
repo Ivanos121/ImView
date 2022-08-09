@@ -163,7 +163,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QGridLayout" name="gridLayout_6">
@@ -1415,6 +1415,11 @@
    <addaction name="action_25"/>
    <addaction name="action_23"/>
    <addaction name="action_24"/>
+   <addaction name="separator"/>
+   <addaction name="action_27"/>
+   <addaction name="action_28"/>
+   <addaction name="action_29"/>
+   <addaction name="action_30"/>
   </widget>
   <action name="actionExit">
    <property name="icon">
@@ -1734,6 +1739,54 @@
   <action name="action_26">
    <property name="text">
     <string>Создать</string>
+   </property>
+  </action>
+  <action name="action_27">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/icons/data/img/icons/archivator_white_16.svg</normaloff>:/icons/data/img/icons/archivator_white_16.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Подключение архиватора</string>
+   </property>
+  </action>
+  <action name="action_28">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/icons/data/img/icons/osc_white_16.svg</normaloff>:/icons/data/img/icons/osc_white_16.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Подключение осциллографа</string>
+   </property>
+  </action>
+  <action name="action_29">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/icons/data/img/icons/plk_white_16.svg</normaloff>:/icons/data/img/icons/plk_white_16.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Подключение ПЛК</string>
+   </property>
+  </action>
+  <action name="action_30">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/icons/data/img/icons/moment_white_16.svg</normaloff>:/icons/data/img/icons/moment_white_16.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Подключение управления моментом</string>
    </property>
   </action>
  </widget>

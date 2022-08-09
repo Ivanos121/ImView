@@ -34,11 +34,65 @@ Kalibr::Kalibr(QWidget *parent) :
     wf = (MainWindow*)parent;
     ui->setupUi(this);
     open_sdb();
-    ui->label_14->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
-    ui->label_15->setText("  Связи нет");
-    ui->label_39->setText("Загрузите файл");
+    //ui->label_39->setText("Загрузите файл");
     QString currentTabText = ui->tabWidget->tabText(0);
     setWindowTitle(currentTabText + "@" + QString("base") + QString(" - IM View"));
+
+    QString myText = "Настройки соединения архиватора МСД200";
+    QFont newFont("DroidSans", 12, QFont::Bold,false);
+    QString templateString = "<p style=\"line-height:%1%\">%2<p>";
+    int myPercentage = 80;
+    QString targetText = templateString.arg(myPercentage).arg(myText);
+    ui->label_7->setWordWrap(true);
+    ui->label_7->setFont(newFont);
+    ui->label_7->setAlignment(Qt::AlignCenter);
+    ui->label_7->setText(targetText);
+    ui->label_38->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
+    //ui->label_55->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
+
+    QString myText2 = "Настройки соединения осциллографа osc";
+    QFont newFont2("DroidSans", 12, QFont::Bold,false);
+    QString templateString2 = "<p style=\"line-height:%1%\">%2<p>";
+    int myPercentage2 = 80;
+    QString targetText2 = templateString2.arg(myPercentage2).arg(myText2);
+    ui->label_40->setWordWrap(true);
+    ui->label_40->setFont(newFont2);
+    ui->label_40->setAlignment(Qt::AlignCenter);
+    ui->label_40->setText(targetText2);
+    ui->label_56->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
+
+    QString myText3 = "Настройки соединения изменения момента";
+    QFont newFont3("DroidSans", 12, QFont::Bold,false);
+    QString templateString3 = "<p style=\"line-height:%1%\">%2<p>";
+    int myPercentage3 = 80;
+    QString targetText3 = templateString3.arg(myPercentage3).arg(myText3);
+    ui->label_47->setWordWrap(true);
+    ui->label_47->setFont(newFont3);
+    ui->label_47->setAlignment(Qt::AlignCenter);
+    ui->label_47->setText(targetText3);
+    ui->label_58->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
+
+    QString myText4 = "Настройки соединения ПЛК";
+    QFont newFont4("DroidSans", 12, QFont::Bold,false);
+    QString templateString4 = "<p style=\"line-height:%1%\">%2<p>";
+    int myPercentage4 = 80;
+    QString targetText4 = templateString4.arg(myPercentage4).arg(myText4);
+    ui->label_54->setWordWrap(true);
+    ui->label_54->setFont(newFont4);
+    ui->label_54->setAlignment(Qt::AlignCenter);
+    ui->label_54->setText(targetText4);
+    ui->label_60->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
+
+    QString myText5 = "Настройки каналов архиватора МСД-200";
+    QFont newFont5("DroidSans", 12, QFont::Bold,false);
+    QString templateString5 = "<p style=\"line-height:%1%\">%2<p>";
+    int myPercentage5 = 80;
+    QString targetText5 = templateString5.arg(myPercentage5).arg(myText5);
+    ui->label_16->setWordWrap(true);
+    ui->label_16->setFont(newFont5);
+    ui->label_16->setAlignment(Qt::AlignCenter);
+    ui->label_16->setText(targetText5);
+   // ui->label_55->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
 
     connect(&timer, &QTimer::timeout, this, &Kalibr::timerTimeout);
 
@@ -148,6 +202,7 @@ void Kalibr::open_sdb()
     ui->tableView->setSelectionMode(QAbstractItemView :: SingleSelection); //нет выделения ячеек
     ui->tableView->resizeColumnsToContents(); //Изменяет размер всех столбцов на основе подсказок размера делегата, используемого для визуализации каждого элемента в столбцах
 
+    //Настройки сом-порта архиватора МСД-200
     ui->comboBox_2->addItem(QLatin1String("9600"), QSerialPort::Baud9600);
     ui->comboBox_2->addItem(QLatin1String("19200"), QSerialPort::Baud19200);
     ui->comboBox_2->addItem(QLatin1String("38400"), QSerialPort::Baud38400);
@@ -177,7 +232,7 @@ void Kalibr::open_sdb()
     ui->comboBox_6->addItem(QLatin1String("RTS/CTS"), QSerialPort::HardwareControl);
     ui->comboBox_6->addItem(QLatin1String("XON/XOFF"), QSerialPort::SoftwareControl);
 
-
+    //Настройки сом-порта осциллографа
     ui->comboBox_9->addItem(QLatin1String("9600"), QSerialPort::Baud9600);
     ui->comboBox_9->addItem(QLatin1String("19200"), QSerialPort::Baud19200);
     ui->comboBox_9->addItem(QLatin1String("38400"), QSerialPort::Baud38400);
@@ -206,6 +261,38 @@ void Kalibr::open_sdb()
     ui->comboBox_12->addItem(QLatin1String("None"), QSerialPort::NoFlowControl);
     ui->comboBox_12->addItem(QLatin1String("RTS/CTS"), QSerialPort::HardwareControl);
     ui->comboBox_12->addItem(QLatin1String("XON/XOFF"), QSerialPort::SoftwareControl);
+
+    //Настройки сом-порта регулятора момента
+    ui->comboBox_15->addItem(QLatin1String("9600"), QSerialPort::Baud9600);
+    ui->comboBox_15->addItem(QLatin1String("19200"), QSerialPort::Baud19200);
+    ui->comboBox_15->addItem(QLatin1String("38400"), QSerialPort::Baud38400);
+    ui->comboBox_15->addItem(QLatin1String("115200"), QSerialPort::Baud115200);
+    ui->comboBox_15->addItem(QLatin1String("Custom"));
+    ui->comboBox_15->setCurrentIndex(3);
+   // fill data bits
+    ui->comboBox_17->addItem(QLatin1String("5"), QSerialPort::Data5);
+    ui->comboBox_17->addItem(QLatin1String("6"), QSerialPort::Data6);
+    ui->comboBox_17->addItem(QLatin1String("7"), QSerialPort::Data7);
+    ui->comboBox_17->addItem(QLatin1String("8"), QSerialPort::Data8);
+    ui->comboBox_17->setCurrentIndex(3);
+   // fill parity
+    ui->comboBox_13->addItem(QLatin1String("None"), QSerialPort::NoParity);
+    ui->comboBox_13->addItem(QLatin1String("Even"), QSerialPort::EvenParity);
+    ui->comboBox_13->addItem(QLatin1String("Odd"), QSerialPort::OddParity);
+    ui->comboBox_13->addItem(QLatin1String("Mark"), QSerialPort::MarkParity);
+    ui->comboBox_13->addItem(QLatin1String("Space"), QSerialPort::SpaceParity);
+   // fill stop bits
+    ui->comboBox_14->addItem(QLatin1String("1"), QSerialPort::OneStop);
+    ui->comboBox_14->addItem(QLatin1String("2"), QSerialPort::TwoStop);
+    #ifdef Q_OS_WIN
+        ui->comboBox_5->addItem(QLatin1String("1.5"), QSerialPort::OneAndHalfStop);
+    #endif
+   // fill flow control
+    ui->comboBox_18->addItem(QLatin1String("None"), QSerialPort::NoFlowControl);
+    ui->comboBox_18->addItem(QLatin1String("RTS/CTS"), QSerialPort::HardwareControl);
+    ui->comboBox_18->addItem(QLatin1String("XON/XOFF"), QSerialPort::SoftwareControl);
+
+    ui->comboBox_22->addItem(QLatin1String("631"));
 
     connect(modell, &QSqlTableModel::dataChanged,this, &Kalibr::selectRows);
 
@@ -390,8 +477,8 @@ uint CRC16_2(QByteArray buf, int len)
 void Kalibr::stopGetData()
 {
     timer.stop();
-    ui->label_14->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
-    ui->label_15->setText("  Связи нет");
+//    ui->label_14->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
+//    ui->label_15->setText("  Связи нет");
 }
 
 void Kalibr::timerTimeout()
@@ -648,9 +735,9 @@ void Kalibr::timerTimeout()
 
 
 
-        ui->label_14->clear();
-        ui->label_14->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_blue.png"));
-        ui->label_15->setText("  Связь установлена");
+//        ui->label_14->clear();
+//        ui->label_14->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_blue.png"));
+//        ui->label_15->setText("  Связь установлена");
 
         delete port;
 }
@@ -1010,7 +1097,7 @@ void Kalibr::loadFile(const QString &fileName)
      setCurrentFile(fileName);
      QFileInfo fi(fileName);
      QString base = fi.baseName();
-     ui->label_39->setText(base);
+     //ui->label_39->setText(base);
      int index = ui->tabWidget->currentIndex();
      QString currentTabText = ui->tabWidget->tabText(index);
      setWindowTitle(currentTabText + "@" + QString(base) + QString(" - IM View"));
@@ -1088,7 +1175,7 @@ void Kalibr::on_CreateFile_clicked()
          setCurrentFile(fileName);
          QFileInfo fi2(fileName);
          QString base2 = fi2.baseName();
-         ui->label_39->setText(base);
+         //ui->label_39->setText(base);
          int index2 = ui->tabWidget->currentIndex();
          QString currentTabText2 = ui->tabWidget->tabText(index2);
          setWindowTitle(currentTabText2 + "@" + QString(base2) + QString(" - IM View"));
@@ -1132,7 +1219,7 @@ void Kalibr::on_SaveFile_clicked()
 
 void Kalibr::closeAllBase_Yes()
 {
-    ui->label_39->setText("Загрузите файл конфигурации прибора");
+    //ui->label_39->setText("Загрузите файл конфигурации прибора");
     ui->tabWidget->setCurrentIndex(0);
     QString currentTabText = ui->tabWidget->tabText(0);
     setWindowTitle(currentTabText + "@" + QString("base") + QString(" - IM View"));
@@ -1142,7 +1229,7 @@ void Kalibr::closeAllBase_Yes()
 
 void Kalibr::closeAllBase_No()
 {
-    ui->label_39->setText("Загрузите файл конфигурации прибора");
+    //ui->label_39->setText("Загрузите файл конфигурации прибора");
     ui->tabWidget->setCurrentIndex(0);
     QString currentTabText = ui->tabWidget->tabText(0);
     setWindowTitle(currentTabText + "@" + QString("base") + QString(" - IM View"));
@@ -1211,7 +1298,7 @@ void Kalibr::on_CloseFile_clicked()
             sdb.close();
             QSqlDatabase::removeDatabase(fileName);
             modell->clear();
-            ui->label_39->setText("Загрузите файл конфигурации прибора");
+            //ui->label_39->setText("Загрузите файл конфигурации прибора");
             ui->tabWidget->setCurrentIndex(0);
             QString currentTabText = ui->tabWidget->tabText(0);
             setWindowTitle(currentTabText + "@" + QString("base") + QString(" - IM View"));
@@ -1408,8 +1495,8 @@ void Kalibr::on_EnterPort_clicked()
     else
     {
         timer.stop();
-        ui->label_14->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
-        ui->label_15->setText("  Связи нет");
+//        ui->label_14->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
+//        ui->label_15->setText("  Связи нет");
         wf->statusbar_label->clear();
         wf->statusbar_label->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red.png"));
         wf->statusbar_label_2->setText("  Связи нет");
@@ -2106,5 +2193,109 @@ void Kalibr::on_EnterPort_2_clicked()
     base.digitOscParams.parity = ui->comboBox_7->currentText().toInt();
     base.digitOscParams.stopBits = ui->comboBox_8->currentText().toInt();
     base.digitOscParams.flowControl = ui->comboBox_12->currentText().toInt();
+}
+
+void Kalibr::on_SearchPort_3_clicked()
+{
+    ui->comboBox_10->clear();
+    foreach (const QSerialPortInfo &info, QSerialPortInfo::availablePorts())
+    {
+        ui->comboBox_16->addItem(info.portName());
+        ui->comboBox_16->addItem("ttyMP0");
+        ui->comboBox_16->addItem("ttyMP1");
+        ui->comboBox_16->addItem("ttyDUMMY");
+        ui->comboBox_16->setCurrentIndex(1);
+    }
+}
+
+void Kalibr::on_EnterPort_3_clicked()
+{
+    base.digitMomentParams.portName = ui->comboBox_16->currentText();
+    base.digitMomentParams.speed = ui->comboBox_15->currentText().toInt();
+    base.digitOscParams.data = ui->comboBox_17->currentText().toInt();
+    base.digitMomentParams.parity = ui->comboBox_13->currentText().toInt();
+    base.digitMomentParams.stopBits = ui->comboBox_14->currentText().toInt();
+    base.digitMomentParams.flowControl = ui->comboBox_18->currentText().toInt();
+}
+
+void Kalibr::initClient()
+{
+
+    client = new QTcpSocket(this);
+    connect(ui->EnterPort_4,&QPushButton::clicked,[this]{
+        if(client->state()==QAbstractSocket::ConnectedState){
+            client->abort();
+        }else if(client->state()==QAbstractSocket::UnconnectedState){
+            const QHostAddress address=QHostAddress(ui->lineEdit->text());
+            const unsigned short port=ui->comboBox_22->currentText().toUShort();
+            client->connectToHost(address,port);
+        }else{
+            ui->lineEdit_2->setText("It is not ConnectedState or UnconnectedState");
+        }
+    });
+
+
+    connect(client,&QTcpSocket::connected,[this]{
+        ui->EnterPort_4->setText("Disconnect");
+        ui->lineEdit->setEnabled(false);
+        ui->comboBox_22->setEnabled(false);
+        ui->label_60->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_blue"));
+        updateState();
+    });
+    connect(client,&QTcpSocket::disconnected,[this]{
+        ui->EnterPort_4->setText("Connect");
+        ui->lineEdit->setEnabled(true);
+        ui->comboBox_22->setEnabled(true);
+        ui->label_60->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
+        updateState();
+    });
+
+    connect(ui->EnterPort_4,&QPushButton::clicked,[this]{
+        if(!client->isValid())
+            return;
+        const QByteArray send_data=ui->lineEdit_2->text().toUtf8();
+        if(send_data.isEmpty())
+            return;
+        client->write(send_data);
+    });
+
+    connect(client,&QTcpSocket::readyRead,[this]{
+        if(client->bytesAvailable()<=0)
+            return;
+        const QString recv_text=QString::fromUtf8(client->readAll());
+        ui->lineEdit_2->setText(QString("[%1:%2]")
+                             .arg(client->peerAddress().toString())
+                             .arg(client->peerPort()));
+        ui->lineEdit_2->setText(recv_text);
+    });
+
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
+    connect(client, static_cast<void(QAbstractSocket::*)(QAbstractSocket::SocketError)>(&QAbstractSocket::error),
+            [this](QAbstractSocket::SocketError){
+        ui->textRecv->append("Socket Error:"+client->errorString());
+    });
+#else
+    connect(client,&QAbstractSocket::errorOccurred,[this](QAbstractSocket::SocketError){
+        ui->lineEdit_2->setText("Socket Error:"+client->errorString());
+    });
+#endif
+}
+
+void Kalibr::updateState()
+{
+    if(client->state()==QAbstractSocket::ConnectedState){
+        setWindowTitle(QString("Client[%1:%2]")
+                       .arg(client->localAddress().toString())
+                       .arg(client->localPort()));
+    }else{
+        setWindowTitle("Client");
+    }
+}
+
+
+
+void Kalibr::on_EnterPort_4_clicked()
+{
+    initClient();
 }
 

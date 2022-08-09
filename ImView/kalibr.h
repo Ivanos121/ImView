@@ -2,8 +2,6 @@
 #define KALIBR_H
 
 #include <QDialog>
-#include "QtSql"
-#include "QSqlDatabase"
 #include <QSet>
 #include <QSerialPort>
 #include <QProgressBar>
@@ -15,9 +13,14 @@
 #include <QWebEngineView>
 #include <QStatusBar>
 #include <checkboxheader.h>
+#include <QTcpServer>
+#include <QTcpSocket>
+#include <QHostAddress>
 
 #include "datasourcebvas.h"
 #include "modell.h"
+#include "QtSql"
+#include "QSqlDatabase"
 
 class MainWindow;
 
@@ -89,8 +92,11 @@ private slots:
     void on_WritePribor_clicked();
 
     void on_SearchPort_2_clicked();
-
     void on_EnterPort_2_clicked();
+    void on_SearchPort_3_clicked();
+    void on_EnterPort_3_clicked();
+
+    void on_EnterPort_4_clicked();
 
 protected:
     void showEvent(QShowEvent *event);
@@ -99,6 +105,10 @@ protected:
 private:
     Ui::Kalibr *ui;
     DataSourceBVAS dataSourceBVAS;
+
+    void initClient();
+    void updateState();
+    QTcpSocket *client;
 
     double i_dev_a;
     double i_dev_b;
