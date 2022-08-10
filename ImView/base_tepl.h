@@ -4,37 +4,37 @@
 
 struct Base_tepl
 {
-double n0;
-double pn;
-double h;
-double D_c;
-double l_sv_pr;
-double l_cvv;
-double sig_pr;
-double z_c;
-double h_c;
-double sig_p;
+double Da1;
+double Ha1;
+double lambda_c1;
+double L1;
+double delta_ct;
+double lambda_ct;
+double lambda_i;
+double delta_ai;
+double Kc1;
+double Di1;
 
-double D_vent;
-double D_a;
-double D;
-double l_p;
-double Z_1;
-double k_sh;
-double b1;
-double b2;
-double h_p;
-double k_z;
+double alpha_sigma;
+double Z1;
+double Bz1;
+double lambda_с;
+double Hz1;
+double lambda_ip1;
+double delta_ip1;
+double d1;
+double Kz;
+double delta;
 
-double h_sl1;
-double b_sl1;
-double h_z1;
-double b_z;
-double w_i;
-double a;
-double l_sr;
-double l_lr;
-double k_p;
+double lambda_ekv;
+double Bp;
+double sigma_ipr;
+double teta_m;
+double Kp;
+double Kp2;
+double d12;
+double lambda_l;
+double lambda_em;
 double sig_okr;
 
 double sig_ip;
@@ -68,7 +68,7 @@ double h_z2;
 double b_z2;
 double D_dp;
 double d;
-double d1;
+double d41;
 
 double h_z3;
 double nu_l;

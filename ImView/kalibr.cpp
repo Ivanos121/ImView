@@ -39,16 +39,13 @@ Kalibr::Kalibr(QWidget *parent) :
     QString currentTabText = ui->tabWidget->tabText(0);
     setWindowTitle(currentTabText + "@" + QString("base") + QString(" - IM View"));
 
-    ui->label_38->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
-    //ui->label_55->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
+    ui->label_38->setPixmap(QPixmap(":/icons/data/img/icons/archivator_red_24.svg"));
 
-    ui->label_56->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
+    ui->label_56->setPixmap(QPixmap(":/icons/data/img/icons/osc_red_24.svg"));
 
-    ui->label_58->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
+    ui->label_58->setPixmap(QPixmap(":/icons/data/img/icons/moment_red_24.svg"));
 
-    ui->label_60->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
-
-    // ui->label_55->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
+    ui->label_60->setPixmap(QPixmap(":/icons/data/img/icons/plk_red_24.svg"));
 
     //Настройки выбора осцилолографа для калибровки
     ui->comboBox_19->addItem(QStringLiteral("БВАСv1"));

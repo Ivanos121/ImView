@@ -1496,16 +1496,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_5->ui->tabWidget_2->setCurrentIndex(0);
     ui->widget_6->ui->tabWidget->setCurrentIndex(0);
 
-//    GeneralInfo = new QLabel("[General Info]");
-//    GeneralInfo->setAlignment(Qt::AlignCenter);
-//    statusBar()->addPermanentWidget(GeneralInfo, 1);
-//    MeshInfo = new QLabel("");
-//    MeshInfo->setAlignment(Qt::AlignCenter);
-//    statusBar()->addPermanentWidget(MeshInfo, 1);
-//    statusBar()->setStyleSheet(QString("margin-right: 0px; padding: 6px;"));
-
     statusbar_label = new QLabel;
-    statusbar_label->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red.png"));
+    statusbar_label->setPixmap(QPixmap(":/icons/data/img/icons/archivator_red_24.svg"));
     statusbar_label->setAlignment(Qt::AlignTop);
     ui->statusbar->addWidget(statusbar_label);
 
@@ -1514,7 +1506,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->statusbar->addWidget(statusbar_label_2);
 
     statusbar_label_3 = new QLabel("");
-    statusbar_label_3->setPixmap(QPixmap(":/icons/data/img/icons/archivator_red_16.svg"));
+    statusbar_label_3->setPixmap(QPixmap(":/icons/data/img/icons/osc_red_24.svg"));
     statusbar_label_3->setAlignment(Qt::AlignTop);
     ui->statusbar->addWidget(statusbar_label_3);
 
@@ -1523,7 +1515,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->statusbar->addWidget(statusbar_label_4);
 
     statusbar_label_5 = new QLabel("");
-    statusbar_label_5->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red.png"));
+    statusbar_label_5->setPixmap(QPixmap(":/icons/data/img/icons/plk_red_24.svg"));
     statusbar_label_5->setAlignment(Qt::AlignTop);
     ui->statusbar->addWidget(statusbar_label_5);
 
@@ -1532,7 +1524,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->statusbar->addWidget(statusbar_label_6);
 
     statusbar_label_7 = new QLabel("");
-    statusbar_label_7->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red.png"));
+    statusbar_label_7->setPixmap(QPixmap(":/icons/data/img/icons/moment_red_24.svg"));
     statusbar_label_7->setAlignment(Qt::AlignTop);
     ui->statusbar->addWidget(statusbar_label_7);
 
@@ -4864,37 +4856,37 @@ void MainWindow::on_tepl_result_clicked()
 
             //СЧИТЫВАНИЕ ИСХОДНЫХ ДАННЫХ
 
-            base_tepl.n0      = ui->widget_5->ui->widget_2->ui->tableWidget->item(0,1)->text().toDouble();
-            base_tepl.pn      = ui->widget_5->ui->widget_2->ui->tableWidget->item(1,1)->text().toDouble();
-            base_tepl.h       = ui->widget_5->ui->widget_2->ui->tableWidget->item(2,1)->text().toDouble();
-            base_tepl.D_c     = ui->widget_5->ui->widget_2->ui->tableWidget->item(3,1)->text().toDouble();
-            base_tepl.l_sv_pr = ui->widget_5->ui->widget_2->ui->tableWidget->item(4,1)->text().toDouble();
-            base_tepl.l_cvv   = ui->widget_5->ui->widget_2->ui->tableWidget->item(5,1)->text().toDouble();
-            base_tepl.sig_pr  = ui->widget_5->ui->widget_2->ui->tableWidget->item(6,1)->text().toDouble();
-            base_tepl.z_c     = ui->widget_5->ui->widget_2->ui->tableWidget->item(7,1)->text().toDouble();
-            base_tepl.h_c     = ui->widget_5->ui->widget_2->ui->tableWidget->item(8,1)->text().toDouble();
-            base_tepl.sig_p   = ui->widget_5->ui->widget_2->ui->tableWidget->item(9,1)->text().toDouble();
+            base_tepl.Da1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(0,1)->text().toDouble();
+            base_tepl.Ha1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(1,1)->text().toDouble();
+            base_tepl.lambda_c1       = ui->widget_5->ui->widget_2->ui->tableWidget->item(2,1)->text().toDouble();
+            base_tepl.L1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(3,1)->text().toDouble();
+            base_tepl.delta_ct = ui->widget_5->ui->widget_2->ui->tableWidget->item(4,1)->text().toDouble();
+            base_tepl.lambda_ct   = ui->widget_5->ui->widget_2->ui->tableWidget->item(5,1)->text().toDouble();
+            base_tepl.lambda_i  = ui->widget_5->ui->widget_2->ui->tableWidget->item(6,1)->text().toDouble();
+            base_tepl.delta_ai     = ui->widget_5->ui->widget_2->ui->tableWidget->item(7,1)->text().toDouble();
+            base_tepl.Kc1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(8,1)->text().toDouble();
+            base_tepl.Di1   = ui->widget_5->ui->widget_2->ui->tableWidget->item(9,1)->text().toDouble();
 
-            base_tepl.D_vent  = ui->widget_5->ui->widget_2->ui->tableWidget->item(10,1)->text().toDouble();
-            base_tepl.D_a     = ui->widget_5->ui->widget_2->ui->tableWidget->item(11,1)->text().toDouble();
-            base_tepl.D       = ui->widget_5->ui->widget_2->ui->tableWidget->item(12,1)->text().toDouble();
-            base_tepl.l_p     = ui->widget_5->ui->widget_2->ui->tableWidget->item(13,1)->text().toDouble();
-            base_tepl.Z_1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(14,1)->text().toDouble();
-            base_tepl.k_sh    = ui->widget_5->ui->widget_2->ui->tableWidget->item(15,1)->text().toDouble();
-            base_tepl.b1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(16,1)->text().toDouble();
-            base_tepl.b2      = ui->widget_5->ui->widget_2->ui->tableWidget->item(17,1)->text().toDouble();
-            base_tepl.h_p     = ui->widget_5->ui->widget_2->ui->tableWidget->item(18,1)->text().toDouble();
-            base_tepl.k_z     = ui->widget_5->ui->widget_2->ui->tableWidget->item(19,1)->text().toDouble();
+            base_tepl.alpha_sigma  = ui->widget_5->ui->widget_2->ui->tableWidget->item(10,1)->text().toDouble();
+            base_tepl.Z1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(11,1)->text().toDouble();
+            base_tepl.Bz1       = ui->widget_5->ui->widget_2->ui->tableWidget->item(12,1)->text().toDouble();
+            base_tepl.lambda_с     = ui->widget_5->ui->widget_2->ui->tableWidget->item(13,1)->text().toDouble();
+            base_tepl.Hz1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(14,1)->text().toDouble();
+            base_tepl.lambda_ip1    = ui->widget_5->ui->widget_2->ui->tableWidget->item(15,1)->text().toDouble();
+            base_tepl.delta_ip1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(16,1)->text().toDouble();
+            base_tepl.d1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(17,1)->text().toDouble();
+            base_tepl.Kz     = ui->widget_5->ui->widget_2->ui->tableWidget->item(18,1)->text().toDouble();
+            base_tepl.delta     = ui->widget_5->ui->widget_2->ui->tableWidget->item(19,1)->text().toDouble();
 
-            base_tepl.h_sl1   = ui->widget_5->ui->widget_2->ui->tableWidget->item(20,1)->text().toDouble();
-            base_tepl.b_sl1   = ui->widget_5->ui->widget_2->ui->tableWidget->item(21,1)->text().toDouble();
-            base_tepl.h_z1    = ui->widget_5->ui->widget_2->ui->tableWidget->item(22,1)->text().toDouble();
-            base_tepl.b_z     = ui->widget_5->ui->widget_2->ui->tableWidget->item(23,1)->text().toDouble();
-            base_tepl.w_i     = ui->widget_5->ui->widget_2->ui->tableWidget->item(24,1)->text().toDouble();
-            base_tepl.a       = ui->widget_5->ui->widget_2->ui->tableWidget->item(25,1)->text().toDouble();
-            base_tepl.l_sr    = ui->widget_5->ui->widget_2->ui->tableWidget->item(26,1)->text().toDouble();
-            base_tepl.l_lr    = ui->widget_5->ui->widget_2->ui->tableWidget->item(27,1)->text().toDouble();
-            base_tepl.k_p     = ui->widget_5->ui->widget_2->ui->tableWidget->item(28,1)->text().toDouble();
+            base_tepl.lambda_ekv   = ui->widget_5->ui->widget_2->ui->tableWidget->item(20,1)->text().toDouble();
+            base_tepl.Bp   = ui->widget_5->ui->widget_2->ui->tableWidget->item(21,1)->text().toDouble();
+            base_tepl.sigma_ipr    = ui->widget_5->ui->widget_2->ui->tableWidget->item(22,1)->text().toDouble();
+            base_tepl.teta_m     = ui->widget_5->ui->widget_2->ui->tableWidget->item(23,1)->text().toDouble();
+            base_tepl.Kp     = ui->widget_5->ui->widget_2->ui->tableWidget->item(24,1)->text().toDouble();
+            base_tepl.Kp2       = ui->widget_5->ui->widget_2->ui->tableWidget->item(25,1)->text().toDouble();
+            base_tepl.d12    = ui->widget_5->ui->widget_2->ui->tableWidget->item(26,1)->text().toDouble();
+            base_tepl.lambda_l    = ui->widget_5->ui->widget_2->ui->tableWidget->item(27,1)->text().toDouble();
+            base_tepl.lambda_em     = ui->widget_5->ui->widget_2->ui->tableWidget->item(28,1)->text().toDouble();
             base_tepl.sig_okr = ui->widget_5->ui->widget_2->ui->tableWidget->item(29,1)->text().toDouble();
 
             base_tepl.sig_ip  = ui->widget_5->ui->widget_2->ui->tableWidget->item(30,1)->text().toDouble();
@@ -5189,37 +5181,37 @@ void MainWindow::on_tepl_result_clicked()
             ui->widget_5->ui->tabWidget->show();
             ui->widget_5->ui->tabWidget->setCurrentIndex(1);
             //ввод данных
-            base_tepl.n0      = ui->widget_5->ui->widget_2->ui->tableWidget->item(0,1)->text().toDouble();
-            base_tepl.pn      = ui->widget_5->ui->widget_2->ui->tableWidget->item(1,1)->text().toDouble();
-            base_tepl.h       = ui->widget_5->ui->widget_2->ui->tableWidget->item(2,1)->text().toDouble();
-            base_tepl.D_c     = ui->widget_5->ui->widget_2->ui->tableWidget->item(3,1)->text().toDouble();
-            base_tepl.l_sv_pr = ui->widget_5->ui->widget_2->ui->tableWidget->item(4,1)->text().toDouble();
-            base_tepl.l_cvv   = ui->widget_5->ui->widget_2->ui->tableWidget->item(5,1)->text().toDouble();
-            base_tepl.sig_pr  = ui->widget_5->ui->widget_2->ui->tableWidget->item(6,1)->text().toDouble();
-            base_tepl.z_c     = ui->widget_5->ui->widget_2->ui->tableWidget->item(7,1)->text().toDouble();
-            base_tepl.h_c     = ui->widget_5->ui->widget_2->ui->tableWidget->item(8,1)->text().toDouble();
-            base_tepl.sig_p   = ui->widget_5->ui->widget_2->ui->tableWidget->item(9,1)->text().toDouble();
+            base_tepl.Da1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(0,1)->text().toDouble();
+            base_tepl.Ha1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(1,1)->text().toDouble();
+            base_tepl.lambda_c1       = ui->widget_5->ui->widget_2->ui->tableWidget->item(2,1)->text().toDouble();
+            base_tepl.L1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(3,1)->text().toDouble();
+            base_tepl.delta_ct = ui->widget_5->ui->widget_2->ui->tableWidget->item(4,1)->text().toDouble();
+            base_tepl.lambda_ct   = ui->widget_5->ui->widget_2->ui->tableWidget->item(5,1)->text().toDouble();
+            base_tepl.lambda_i  = ui->widget_5->ui->widget_2->ui->tableWidget->item(6,1)->text().toDouble();
+            base_tepl.delta_ai     = ui->widget_5->ui->widget_2->ui->tableWidget->item(7,1)->text().toDouble();
+            base_tepl.Kc1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(8,1)->text().toDouble();
+            base_tepl.Di1   = ui->widget_5->ui->widget_2->ui->tableWidget->item(9,1)->text().toDouble();
 
-            base_tepl.D_vent  = ui->widget_5->ui->widget_2->ui->tableWidget->item(10,1)->text().toDouble();
-            base_tepl.D_a     = ui->widget_5->ui->widget_2->ui->tableWidget->item(11,1)->text().toDouble();
-            base_tepl.D       = ui->widget_5->ui->widget_2->ui->tableWidget->item(12,1)->text().toDouble();
-            base_tepl.l_p     = ui->widget_5->ui->widget_2->ui->tableWidget->item(13,1)->text().toDouble();
-            base_tepl.Z_1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(14,1)->text().toDouble();
-            base_tepl.k_sh    = ui->widget_5->ui->widget_2->ui->tableWidget->item(15,1)->text().toDouble();
-            base_tepl.b1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(16,1)->text().toDouble();
-            base_tepl.b2      = ui->widget_5->ui->widget_2->ui->tableWidget->item(17,1)->text().toDouble();
-            base_tepl.h_p     = ui->widget_5->ui->widget_2->ui->tableWidget->item(18,1)->text().toDouble();
-            base_tepl.k_z     = ui->widget_5->ui->widget_2->ui->tableWidget->item(19,1)->text().toDouble();
+            base_tepl.alpha_sigma  = ui->widget_5->ui->widget_2->ui->tableWidget->item(10,1)->text().toDouble();
+            base_tepl.Z1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(11,1)->text().toDouble();
+            base_tepl.Bz1       = ui->widget_5->ui->widget_2->ui->tableWidget->item(12,1)->text().toDouble();
+            base_tepl.lambda_с     = ui->widget_5->ui->widget_2->ui->tableWidget->item(13,1)->text().toDouble();
+            base_tepl.Hz1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(14,1)->text().toDouble();
+            base_tepl.lambda_ip1    = ui->widget_5->ui->widget_2->ui->tableWidget->item(15,1)->text().toDouble();
+            base_tepl.delta_ip1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(16,1)->text().toDouble();
+            base_tepl.d1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(17,1)->text().toDouble();
+            base_tepl.Kz     = ui->widget_5->ui->widget_2->ui->tableWidget->item(18,1)->text().toDouble();
+            base_tepl.delta     = ui->widget_5->ui->widget_2->ui->tableWidget->item(19,1)->text().toDouble();
 
-            base_tepl.h_sl1   = ui->widget_5->ui->widget_2->ui->tableWidget->item(20,1)->text().toDouble();
-            base_tepl.b_sl1   = ui->widget_5->ui->widget_2->ui->tableWidget->item(21,1)->text().toDouble();
-            base_tepl.h_z1    = ui->widget_5->ui->widget_2->ui->tableWidget->item(22,1)->text().toDouble();
-            base_tepl.b_z     = ui->widget_5->ui->widget_2->ui->tableWidget->item(23,1)->text().toDouble();
-            base_tepl.w_i     = ui->widget_5->ui->widget_2->ui->tableWidget->item(24,1)->text().toDouble();
-            base_tepl.a       = ui->widget_5->ui->widget_2->ui->tableWidget->item(25,1)->text().toDouble();
-            base_tepl.l_sr    = ui->widget_5->ui->widget_2->ui->tableWidget->item(26,1)->text().toDouble();
-            base_tepl.l_lr    = ui->widget_5->ui->widget_2->ui->tableWidget->item(27,1)->text().toDouble();
-            base_tepl.k_p     = ui->widget_5->ui->widget_2->ui->tableWidget->item(28,1)->text().toDouble();
+            base_tepl.lambda_ekv   = ui->widget_5->ui->widget_2->ui->tableWidget->item(20,1)->text().toDouble();
+            base_tepl.Bp   = ui->widget_5->ui->widget_2->ui->tableWidget->item(21,1)->text().toDouble();
+            base_tepl.sigma_ipr    = ui->widget_5->ui->widget_2->ui->tableWidget->item(22,1)->text().toDouble();
+            base_tepl.teta_m     = ui->widget_5->ui->widget_2->ui->tableWidget->item(23,1)->text().toDouble();
+            base_tepl.Kp     = ui->widget_5->ui->widget_2->ui->tableWidget->item(24,1)->text().toDouble();
+            base_tepl.Kp2       = ui->widget_5->ui->widget_2->ui->tableWidget->item(25,1)->text().toDouble();
+            base_tepl.d12    = ui->widget_5->ui->widget_2->ui->tableWidget->item(26,1)->text().toDouble();
+            base_tepl.lambda_l    = ui->widget_5->ui->widget_2->ui->tableWidget->item(27,1)->text().toDouble();
+            base_tepl.lambda_em     = ui->widget_5->ui->widget_2->ui->tableWidget->item(28,1)->text().toDouble();
             base_tepl.sig_okr = ui->widget_5->ui->widget_2->ui->tableWidget->item(29,1)->text().toDouble();
 
             base_tepl.sig_ip  = ui->widget_5->ui->widget_2->ui->tableWidget->item(30,1)->text().toDouble();
@@ -5275,9 +5267,189 @@ void MainWindow::on_tepl_result_clicked()
 
 
             //Расчет тепловых проводимостей
-            //общая тепловая проводимость между сердечником статора и станиной
-            //    L_a1 = M_PI*l_1*
-            //    L_d1 = 1/(1/((L_a1)+(1/L_da1)+(1/L_st)));
+
+
+
+//            +Da1 – внешний диаметр сердечника статора, м;
+//            +ha1 – высота оси вращения, м;
+//            +lambda_c1 – коэффициент теплопроводности стали сердечника;
+//            +L1 – длина сердечника статора, м;
+//            +k(c1) – коэффициент заполнения сердечника сталью;
+//            +lambda(i) – коэффициент теплопроводности воздуха;
+//            +delta(ai) – контактный зазор между сердечником статора и станиной, м;
+//            +delta(ст) – толщина станины, м;
+//            +lambda(ст) – коэффициент проводимости материала станины;
+//            +Di1- внутренний диаметр сердечника статора, м;
+//            +alpha(sigma) – коэффициент теплоотдачи в воздушном зазоре;
+//            +z1 – число зубцов статора;
+//            +bz1 – ширина паза статора, м;
+//            +lambda(с) – ddd
+//            +Hz1 – высота зубца статора, м;
+//            +lambda(ип1) – коэффициент теплопроводности пазовой изоляции;
+//            +delta(ип1) – толщина пазовой изоляции;
+//            +d’ – диаметр провода, м;
+//            +sigma(ипр) – толщина изоляции провода, м;
+//            +lambda(экв) – эквивалентный	 коэффициент теплопроводности обмотки;
+//            +Кз – коэффициент заполнения паза;
+//            +delta - fff
+            //+Bp - fff
+            //+teta(м) – допускаемая температура обмотки статора для данного класса нагревостойкости пазовой изоляции;
+//            +Kп -коэффициент пропитки;
+            //+Kp2 - fff;
+            //+d12 - fff;
+//            +lambda(л) – коэффициент теплопроводности пропиточного лака;
+//            +lambda(эм) - коэффициент теплопроводности изоляции обмоточного провода;
+//            sigma(i)
+//            lambda(i) – коэффициент теплопроводности воздуха;
+//            Bz1- средняя ширина зубца статора;
+//            Bп1 – средняя ширина паза, м;
+//            q(mi) – суммарное сечение проводников в пазу статора;
+//            lambda(mi) – коэффициент теплопроводности материала обмотки статора;
+//            lambda(ил1) – коэффициент теплопроводности лобовых частей;
+//            delta(ил1) – толщина изоляции лобовых частей;
+//            Kл1 – коэффициент обдува лобовых частей;
+//            alpha(л1) – средний коэффициент теплоотдачи с лобовых частей;
+//            qc – сечение стержня клетки ротора;
+//            lambda(м2) – коэффициент теплопроводности материала обмотки;
+//            Br – ширина короткозамыкающего кольца;
+//            alpha(а2) – коэффициент теплоотдачи с поверхности лобовых частей обмотки ротора;
+//            S(л2) – поверхность двух лобовых частей обмотки ротора;
+//            alpha(ащ) – средний коэффициент теплоотдачи с внутренней поверхности подшипникового щита;
+//             alpha(аст) – средний коэффициент теплоотдачи с внутренней поверхности станины;
+//            S(iщ) – площадь внутренней поверхности двух подшипниковых щитов;
+//            S(iст) – площадь внутренней поверхности станины;
+//            Dст – наружный диаметр станины;
+//            Kpп – коэффициент оребрения станины с учетом внутреннего теплового сопротивления ребер;
+//            alpha(ст) – коэффициент конвективной теплоотдачи станины;
+//            alpha(r) – коэффициент теплоотдачи излучением;
+//            alpha(стсумм) – суммарный коэффициент теплоотдачи станины;
+//            Bp – средняя толщина ребра;
+//            deltaKp – коэффициент, определяющий долю неоребренных участков от всей теплоотражающей поверхности;
+
+
+
+            double Lambda_ct,Lambda_adelta1,Lambda_a1,Lambda_delta1,Lambda_sigma,Lambda_1z1,Lambda_12,Lambda_1ip1,
+                    delta,Lambda_epz,Lambda_ekv;
+            //Тепловая проводимость станины
+            Lambda_ct = (3.14*(base_tepl.Da1 + base_tepl.delta_ct) * base_tepl.L1 * base_tepl.lambda_ct) / base_tepl.delta_ct;
+
+            //Тепловая проводимость зазора между сердечником статора и станиной
+            Lambda_adelta1 = (3.14 * base_tepl.Da1 * base_tepl.L1 * base_tepl.lambda_i)/base_tepl.delta_ai;
+
+            //Тепловая проводимость спинки статора
+            Lambda_a1 = 3.14 * base_tepl.L1 * base_tepl.lambda_c1 * base_tepl.Kc1 * (2 * base_tepl.Da1 - base_tepl.Ha1) / base_tepl.Ha1;
+
+            //Общая тепловая проводимость между сердечником статора и станиной
+            Lambda_delta1 =1/((1/ Lambda_a1)+(1/ Lambda_adelta1)+(1/ Lambda_ct));
+
+            //Тепловая проводимость воздушного зазора:
+            Lambda_sigma=3.14 / (2 * base_tepl.Da1 * base_tepl.L1 * base_tepl.alpha_sigma);
+
+            //Тепловая проводимость зубцов статора:
+            Lambda_1z1 = (2 * base_tepl.Z1 * base_tepl.Bz1 * base_tepl.L1 * base_tepl.Kc1 * base_tepl.lambda_с) / base_tepl.Hz1;
+
+            //Общая тепловая проводимость между статором и ротором
+            Lambda_12 = Lambda_sigma * Lambda_1z1/( Lambda_sigma + Lambda_1z1);
+
+            //Тепловая проводимость пазовой изоляции
+            Lambda_1ip1 = (2 * base_tepl.Hz1 * base_tepl.Z1 * base_tepl.L1 * base_tepl.lambda_ip1)/base_tepl.delta_ip1;
+
+            //Воздушный зазор между проводами в пазе статора
+            delta = base_tepl.d1 * (0.022 + 0.5 * (1 / sqrt(base_tepl.Kz) - 1));
+
+            //Эквивалентная тепловая проводимость обмотки к зубцам:
+            Lambda_epz = ((base_tepl.d1 + base_tepl.delta) * base_tepl.lambda_ekv * 2 * base_tepl.Hz1 * base_tepl.Z1 * base_tepl.L1)/
+            ((base_tepl.Bp - 2 * base_tepl.delta_ip1) * (base_tepl.sigma_ipr + base_tepl.delta));
+
+            //Эквивалентный коэффициент теплопроводности обмотки:
+            Lambda_ekv = 0,00165*(1 + 0,0007 * base_tepl.teta_m)*(1 - 3.2 * base_tepl.d1 * (1 - 9.2 * base_tepl.Kp + 5.2 *
+            base_tepl.Kp2) + 81 * base_tepl.d12 )*( 2.11 * base_tepl.Kz * 1.15 - 0.32)*(base_tepl.lambda_l / 0.00162 * 0.33) *
+            (base_tepl.lambda_em/ 0.00143) * 0.25;
+
+//            Тепловая проводимость воздушного зазора между пазовой изоляцией и зубцами статора:
+//            lambda(i1z)= (2*Hz1* L1* z1* lambda(i))/sigma(i)
+
+//            Проводимость зубца статора в направлении теплового потока от пазовой части проводки:
+//            lambda(z)= Bz1/(z1*Hz1*L1* k(c1)* lambda(с))
+
+//            Общая тепловая проводимость между пазовой частью обмотки статора и зубцами:
+//            Lambda(nz)=1/((1/lambda(‘ип1))+(1/lambda(эпz))+(1/lambda(i1z))+(1/lambda(z)));
+
+//            Тепловая проводимость воздушного зазора между пазовой изоляцией и спинкой статора:
+//            lambda(i1a)= (Bп1* L1* z1* lambda(i))/sigma(i)
+
+//            Эквивалентная тепловая проводимость обмотки к спинке:
+//            lambda(экпa)=((d’+delta)*lambda(эк)* Bп1* L1* z1)/((Hz1-2*delta(ип1)*(sigma(ипр)+delta))
+
+//            Тепловая проводимость пазовой изоляции:
+//            lambda(“ип1)= (z1*Bп1*L1* lambda(iп1))/delta(ип1)
+
+//            Проводимость спинки статора в направлении теплового потока от пазовой части обмотки:
+//            lambda(a)=Ha1/((0.5*3.14*(Da1-Ha1)+ z1*Bп1)*L1*Kc1* lambda(c)
+
+//            Общая тепловая проводимость между пазовой частью обмотки и спинкой статора:
+//            Lambda(na)=1/((1/lambda(“ип1))+(1/lambda(экпa))+(1/lambda(i1a))+(1/lambda(a)));
+
+//            Проводимость между зубцом и спинкой статора:
+//            Lambda(za)= L1*Kc1* lambda(c)/(Hz1/( 2*z1*Bz1)+Ha1/(2*3.14*(Da1-Ha1))
+
+//            Тепловая проводимость между пазовой и лобовой частями обмотки статора:
+//            Lambda(пл)=12*lambda(mi)*q(mi)*z(i)/(L1+Lп1)
+
+//            Тепловая проводимость изоляции:
+//            lambda(ил)= (lambda(ил1)*2*(Hz1+Bп1)*L1*z1*Kл1)/delta(ил1)
+
+//            Эквивалентная тепловая проводимость лобовой части:
+//            lambda(эл)=(lambda(экuz)+lambda(экпa))*Lлi/L1
+
+//            Тепловая проводимость лобовых частей:
+//            lambda(aл1)=alpha(л1)*2*(Hz1+Bп1)*Lп1* z1*Kл1
+
+//            Полная тепловая проводимость лобовой части обмотки статора к окружающей среде:
+//            Lambda(л1)=1/((1/ lambda(ил))+(1/ lambda(aл1))+(1/ lambda(эл)))
+
+//            Общая тепловая проводимость между лобовой и пазовой частями клетки статора:
+//            lambda(лп2)=(12* lambda(м2)*qc*z2)/(L2+Bк)
+
+//            пппп:
+//            lambda(а2)=alpha(а2)*S(л2);
+
+//            Общая тепловая проводимость лобовой части обмотки ротора к внутреннему воздуху:
+//            Lambda(л2)= (lambda(лп2)* lambda(а2))/ (lambda(лп2)+lambda(а2))
+
+//            Тепловая проводимость внутреннего воздуха к подшипниковым щитам:
+//            lambda(aщ)= alpha(ащ)*S(iщ)
+
+//            Тепловая проводимость внутреннего воздуха к станине:
+//            lambda(aщ)= alpha(аст)*S(iст)
+
+//            Общая тепловая проводимость внутреннего воздуха к оболочке двигателя:
+//            Delta(ai)=lambda(aщ)+lambda(аст)
+
+//            суммарный коэффициент теплоотдачи станины
+//            alpha(стсумм)= alpha(ст)+ alpha(r)
+
+//            Тепловая проводимость станины к окружающей среде:
+//            lambda(ст)=alpha(стсумм)*3/14*D(ст)*Kp*Kpп
+
+//            Параметр теплоотдачи
+//            ro(t)=sqrt(2*alpha(ст)/(lambda(ст)*Bp))
+
+
+
+//            Коэффициент оребрения станины с учетом внутреннего теплового сопротивления ребер:
+//            Kрп=(1/(ro(t)*Hp))*(th(ro(t)*Hp)*2*Hp/tp*(1-alpha(r)/alpha(c))+ ro(t)*Hp*deltaKp)
+
+//            Тепловая проводимость оболочки двигателя к окружающей среде:
+//            lambda(п)= lambda(ст)+lambda(щ)
+
+
+
+
+
+
+
+
 
             //Решение СЛАУ
 

@@ -53,6 +53,18 @@
         <file>../data/img/icons/archivator_blue_16.svg</file>
         <file>../data/img/icons/archivator_red_16.svg</file>
         <file>../data/img/icons/archivator_white_16.svg</file>
+        <file>../data/img/icons/archivator_blue_24.svg</file>
+        <file>../data/img/icons/archivator_red_24.svg</file>
+        <file>../data/img/icons/archivator_white_24.svg</file>
+        <file>../data/img/icons/moment_blue_24.svg</file>
+        <file>../data/img/icons/moment_red_24.svg</file>
+        <file>../data/img/icons/osc_white_24.svg</file>
+        <file>../data/img/icons/plk_blue_24.svg</file>
+        <file>../data/img/icons/plk_red_24.svg</file>
+        <file>../data/img/icons/plk_white_24.svg</file>
+        <file>../data/img/icons/osc_blue_24.svg</file>
+        <file>../data/img/icons/osc_red_24.svg</file>
+        <file>../data/img/icons/moment_white_24.svg</file>
     </qresource>
     <qresource prefix="/image">
         <file>../data/img/images/IM_LOGO.png</file>

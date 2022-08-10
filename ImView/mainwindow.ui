@@ -1747,7 +1747,7 @@
    </property>
    <property name="icon">
     <iconset resource="Images.qrc">
-     <normaloff>:/icons/data/img/icons/archivator_white_16.svg</normaloff>:/icons/data/img/icons/archivator_white_16.svg</iconset>
+     <normaloff>:/icons/data/img/icons/archivator_white_24.svg</normaloff>:/icons/data/img/icons/archivator_white_24.svg</iconset>
    </property>
    <property name="text">
     <string>Подключение архиватора</string>
@@ -1759,7 +1759,7 @@
    </property>
    <property name="icon">
     <iconset resource="Images.qrc">
-     <normaloff>:/icons/data/img/icons/osc_white_16.svg</normaloff>:/icons/data/img/icons/osc_white_16.svg</iconset>
+     <normaloff>:/icons/data/img/icons/osc_white_24.svg</normaloff>:/icons/data/img/icons/osc_white_24.svg</iconset>
    </property>
    <property name="text">
     <string>Подключение осциллографа</string>
@@ -1771,7 +1771,7 @@
    </property>
    <property name="icon">
     <iconset resource="Images.qrc">
-     <normaloff>:/icons/data/img/icons/plk_white_16.svg</normaloff>:/icons/data/img/icons/plk_white_16.svg</iconset>
+     <normaloff>:/icons/data/img/icons/plk_white_24.svg</normaloff>:/icons/data/img/icons/plk_white_24.svg</iconset>
    </property>
    <property name="text">
     <string>Подключение ПЛК</string>
@@ -1783,7 +1783,7 @@
    </property>
    <property name="icon">
     <iconset resource="Images.qrc">
-     <normaloff>:/icons/data/img/icons/moment_white_16.svg</normaloff>:/icons/data/img/icons/moment_white_16.svg</iconset>
+     <normaloff>:/icons/data/img/icons/moment_white_24.svg</normaloff>:/icons/data/img/icons/moment_white_24.svg</iconset>
    </property>
    <property name="text">
     <string>Подключение управления моментом</string>
