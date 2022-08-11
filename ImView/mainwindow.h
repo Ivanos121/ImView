@@ -130,7 +130,6 @@ private slots:
     void on_save_tepl_graph_file_clicked();
 
 
-
 public:
     Ui::MainWindow *ui;
     AboutDialog *rsc;

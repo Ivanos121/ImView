@@ -8,7 +8,7 @@
    version="1.1"
    id="svg1585"
    inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
-   sodipodi:docname="archivator_white_24.svg"
+   sodipodi:docname="NP_24.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -26,7 +26,7 @@
      showgrid="false"
      inkscape:zoom="33.905254"
      inkscape:cx="13.198544"
-     inkscape:cy="9.2463546"
+     inkscape:cy="10.072185"
      inkscape:window-width="1920"
      inkscape:window-height="1030"
      inkscape:window-x="0"
@@ -49,22 +49,22 @@
      inkscape:groupmode="layer"
      id="layer1">
     <circle
-       style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:0.285;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.285;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-dasharray:none"
        id="path5799"
        cx="3.1864803"
        cy="3.1556754"
        r="2.9241931" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:4.71263px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.441806px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="2.0118682"
-       y="4.3686028"
+       style="font-style:normal;font-weight:normal;font-size:3.52778px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.441806px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="0.87230504"
+       y="4.2089701"
        id="text4319"
        transform="scale(0.94091,1.0628009)"><tspan
          sodipodi:role="line"
          id="tspan4317"
-         x="2.0118682"
-         y="4.3686028"
-         style="font-size:4.71263px;stroke-width:0.441806px">А</tspan></text>
+         x="0.87230504"
+         y="4.2089701"
+         style="font-size:3.52778px;stroke-width:0.441806px">НП</tspan></text>
   </g>
 </svg>

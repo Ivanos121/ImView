@@ -1613,7 +1613,7 @@
   <action name="action_15">
    <property name="icon">
     <iconset resource="Images.qrc">
-     <normaloff>:/system_icons/data/img/system_icons/configure.svg</normaloff>:/system_icons/data/img/system_icons/configure.svg</iconset>
+     <normaloff>:/icons/data/img/icons/NP_24.svg</normaloff>:/icons/data/img/icons/NP_24.svg</iconset>
    </property>
    <property name="text">
     <string>Настройки</string>

@@ -28,6 +28,7 @@
 #include <cmath>
 #include <QUndoCommand>
 #include <QPixmap>
+#include <QSvgRenderer>
 
 #include "base.h"
 #include "model.h"
@@ -1550,6 +1551,18 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->widget_5->ui->tabWidget, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_2);
     connect(ui->widget_5->ui->tabWidget_2, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_3);
     connect(ui->widget_6->ui->tabWidget, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_4);
+}
+
+QImage fromSvg(const QString &path, int size)
+{
+    QSvgRenderer renderer(path);
+
+    QImage image(size, size, QImage::Format_ARGB32);
+    image.fill(0x00ffffff);
+    QPainter painter(&image);
+    renderer.render(&painter);
+
+    return image;
 }
 
 void MainWindow::itemEdit()

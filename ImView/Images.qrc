@@ -65,6 +65,7 @@
         <file>../data/img/icons/osc_blue_24.svg</file>
         <file>../data/img/icons/osc_red_24.svg</file>
         <file>../data/img/icons/moment_white_24.svg</file>
+        <file>../data/img/icons/NP_24.svg</file>
     </qresource>
     <qresource prefix="/image">
         <file>../data/img/images/IM_LOGO.png</file>
