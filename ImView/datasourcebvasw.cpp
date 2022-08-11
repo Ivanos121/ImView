@@ -73,7 +73,7 @@ void DataSourceBVASw::read()
 void DataSourceBVASw::bvasFailureSlot()
 {
     stop();
-    emit bvasFailure();
+    emit failure();
 }
 
 void DataSourceBVASw::stop()

@@ -61,7 +61,7 @@ void DataSourceBVAS::read()
 void DataSourceBVAS::bvasFailureSlot()
 {
     stop();
-    emit bvasFailure();
+    emit failure();
 }
 
 void DataSourceBVAS::stop()

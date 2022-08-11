@@ -93,9 +93,6 @@ private:
 public slots:
     void read();
     void bvasFailureSlot();
-
-signals:
-    void bvasFailure();
 };
 
 #endif // DATASOURCEDIGITOSC_H

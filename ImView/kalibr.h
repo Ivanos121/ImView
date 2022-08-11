@@ -64,7 +64,6 @@ private slots:
     void on_pushButtonValueApplyUb_clicked();
     void on_pushButtonValueApplyUc_clicked();
     void on_pushButtonClose_clicked();
-    void on_pushButtonAccept_clicked();
 
     void onCheckBoxHeaderClick1();
     void onCheckBoxHeaderClick2();
@@ -98,6 +97,11 @@ private slots:
 
     void on_EnterPort_4_clicked();
 
+    void on_kalibrStartButton_clicked();
+    void dataSourceFailure();
+
+    void on_acceptButton_clicked();
+
 protected:
     void showEvent(QShowEvent *event);
     void closeEvent(QCloseEvent *e);
@@ -123,6 +127,8 @@ private:
     double u_zero_a;
     double u_zero_b;
     double u_zero_c;
+
+    bool header_added;
 
     QSqlDatabase sdb;
     QSqlTableModel *modell;

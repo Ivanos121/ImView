@@ -23,14 +23,13 @@
 #include "datasourcedigitosc.h"
 
 
-static bool header_added = false;
-
 Kalibr::Kalibr(QWidget *parent) :
     QDialog(parent)
   , disabledCellBackgroundColor(180, 180, 180)
   , changedColumnBackgroundColor(144,238,144)
   , deleteRowBackgroundColor(255,0,0)
   , ui(new Ui::Kalibr)
+  , header_added(false)
 {
     wf = (MainWindow*)parent;
     ui->setupUi(this);
@@ -53,7 +52,6 @@ Kalibr::Kalibr(QWidget *parent) :
 
 
     connect(&timer, &QTimer::timeout, this, &Kalibr::timerTimeout);
-
 }
 
 Kalibr::~Kalibr()
@@ -776,44 +774,7 @@ QSerialPort* Kalibr::openArchiverPort()
 
 void Kalibr::showEvent(QShowEvent *)
 {
-        QSettings settings;
 
-        if (ui->comboBox_19->currentText() == "БВАСv1")
-        {
-            dataSource = new DataSourceBVAS();
-        }
-
-        if (ui->comboBox_19->currentText() == "БВАСv2")
-        {
-            dataSource = new DataSourceDigitOsc();
-        }
-
-        dataSource->setIaZeroLevel(settings.value("calibration/IaZero", 0.0).toDouble());
-        dataSource->setIbZeroLevel(settings.value("calibration/IbZero", 0.0).toDouble());
-        dataSource->setIcZeroLevel(settings.value("calibration/IcZero", 0.0).toDouble());
-
-        dataSource->setUaZeroLevel(settings.value("calibration/UaZero", 0.0).toDouble());
-        dataSource->setUbZeroLevel(settings.value("calibration/UbZero", 0.0).toDouble());
-        dataSource->setUcZeroLevel(settings.value("calibration/UcZero", 0.0).toDouble());
-
-        dataSource->setIaCalibrationCoeff(settings.value("calibration/IaCoeff", 1.0).toDouble());
-        dataSource->setIbCalibrationCoeff(settings.value("calibration/IbCoeff", 1.0).toDouble());
-        dataSource->setIcCalibrationCoeff(settings.value("calibration/IcCoeff", 1.0).toDouble());
-
-        dataSource->setUaCalibrationCoeff(settings.value("calibration/UaCoeff", 1.0).toDouble());
-        dataSource->setUbCalibrationCoeff(settings.value("calibration/UbCoeff", 1.0).toDouble());
-        dataSource->setUcCalibrationCoeff(settings.value("calibration/UcCoeff", 1.0).toDouble());
-
-        ui->lineEditZeroIa->setText(settings.value("calibration/IaZero", 0.0).toString());
-        ui->lineEditZeroIb->setText(settings.value("calibration/IbZero", 0.0).toString());
-        ui->lineEditZeroIc->setText(settings.value("calibration/IcZero", 0.0).toString());
-
-        ui->lineEditZeroUa->setText(settings.value("calibration/UaZero", 0.0).toString());
-        ui->lineEditZeroUb->setText(settings.value("calibration/UbZero", 0.0).toString());
-        ui->lineEditZeroUc->setText(settings.value("calibration/UcZero", 0.0).toString());
-
-        dataSource->init();
-        connect(dataSource, &DataSource::ready, this, &Kalibr::bvasSlot);
 }
 
 void Kalibr::selectRows()
@@ -1006,8 +967,11 @@ void Kalibr::on_pushButtonClose_clicked()
 
 void Kalibr::closeEvent(QCloseEvent *event)
 {
-    dataSource->stop();
-    delete dataSource;
+    if (ui->kalibrStartButton->isChecked())
+    {
+        ui->kalibrStartButton->setChecked(false);
+        on_kalibrStartButton_clicked();
+    }
     if(isChanged)
     {
         switch (QMessageBox::question(this, "Сохранить документ?", "Сохранить?", QMessageBox::Yes | QMessageBox::No |  QMessageBox::Cancel))
@@ -1029,26 +993,6 @@ void Kalibr::closeEvent(QCloseEvent *event)
     {
         event->accept();
     }
-}
-
-void Kalibr::on_pushButtonAccept_clicked()
-{
-    QSettings settings;
-    settings.setValue("calibration/IaZero", dataSource->getIaZeroLevel());
-    settings.setValue("calibration/IbZero", dataSource->getIbZeroLevel());
-    settings.setValue("calibration/IcZero", dataSource->getIcZeroLevel());
-
-    settings.setValue("calibration/UaZero", dataSource->getUaZeroLevel());
-    settings.setValue("calibration/UbZero", dataSource->getUbZeroLevel());
-    settings.setValue("calibration/UcZero", dataSource->getUcZeroLevel());
-
-    settings.setValue("calibration/IaCoeff", dataSource->getIaCalibrationCoeff());
-    settings.setValue("calibration/IbCoeff", dataSource->getIbCalibrationCoeff());
-    settings.setValue("calibration/IcCoeff", dataSource->getIcCalibrationCoeff());
-
-    settings.setValue("calibration/UaCoeff", dataSource->getUaCalibrationCoeff());
-    settings.setValue("calibration/UbCoeff", dataSource->getUbCalibrationCoeff());
-    settings.setValue("calibration/UcCoeff", dataSource->getUcCalibrationCoeff());
 }
 
 void Kalibr::on_OpenFile_clicked()
@@ -2257,5 +2201,86 @@ void Kalibr::updateState()
 void Kalibr::on_EnterPort_4_clicked()
 {
     initClient();
+}
+
+void Kalibr::on_kalibrStartButton_clicked()
+{
+    if (ui->kalibrStartButton->isChecked())
+    {
+        QSettings settings;
+
+        if (ui->comboBox_19->currentText() == "БВАСv1")
+        {
+            dataSource = new DataSourceBVAS();
+        }
+
+        if (ui->comboBox_19->currentText() == "БВАСv2")
+        {
+            dataSource = new DataSourceDigitOsc();
+        }
+
+        dataSource->setIaZeroLevel(settings.value("calibration/IaZero", 0.0).toDouble());
+        dataSource->setIbZeroLevel(settings.value("calibration/IbZero", 0.0).toDouble());
+        dataSource->setIcZeroLevel(settings.value("calibration/IcZero", 0.0).toDouble());
+
+        dataSource->setUaZeroLevel(settings.value("calibration/UaZero", 0.0).toDouble());
+        dataSource->setUbZeroLevel(settings.value("calibration/UbZero", 0.0).toDouble());
+        dataSource->setUcZeroLevel(settings.value("calibration/UcZero", 0.0).toDouble());
+
+        dataSource->setIaCalibrationCoeff(settings.value("calibration/IaCoeff", 1.0).toDouble());
+        dataSource->setIbCalibrationCoeff(settings.value("calibration/IbCoeff", 1.0).toDouble());
+        dataSource->setIcCalibrationCoeff(settings.value("calibration/IcCoeff", 1.0).toDouble());
+
+        dataSource->setUaCalibrationCoeff(settings.value("calibration/UaCoeff", 1.0).toDouble());
+        dataSource->setUbCalibrationCoeff(settings.value("calibration/UbCoeff", 1.0).toDouble());
+        dataSource->setUcCalibrationCoeff(settings.value("calibration/UcCoeff", 1.0).toDouble());
+
+        ui->lineEditZeroIa->setText(settings.value("calibration/IaZero", 0.0).toString());
+        ui->lineEditZeroIb->setText(settings.value("calibration/IbZero", 0.0).toString());
+        ui->lineEditZeroIc->setText(settings.value("calibration/IcZero", 0.0).toString());
+
+        ui->lineEditZeroUa->setText(settings.value("calibration/UaZero", 0.0).toString());
+        ui->lineEditZeroUb->setText(settings.value("calibration/UbZero", 0.0).toString());
+        ui->lineEditZeroUc->setText(settings.value("calibration/UcZero", 0.0).toString());
+
+        connect(dataSource, &DataSource::ready, this, &Kalibr::bvasSlot);
+        connect(dataSource, &DataSource::failure, this, &Kalibr::dataSourceFailure);
+        dataSource->init();
+
+        ui->label_56->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_blue"));
+    }
+    else
+    {
+        dataSource->stop();
+        ui->label_56->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
+        delete dataSource;
+    }
+}
+
+void Kalibr::dataSourceFailure()
+{
+    ui->kalibrStartButton->setChecked(false);
+    QMessageBox::critical(this, "Ошибка соединения", "Не удалось подключиться");
+    ui->label_56->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
+}
+
+void Kalibr::on_acceptButton_clicked()
+{
+    QSettings settings;
+    settings.setValue("calibration/IaZero", dataSource->getIaZeroLevel());
+    settings.setValue("calibration/IbZero", dataSource->getIbZeroLevel());
+    settings.setValue("calibration/IcZero", dataSource->getIcZeroLevel());
+
+    settings.setValue("calibration/UaZero", dataSource->getUaZeroLevel());
+    settings.setValue("calibration/UbZero", dataSource->getUbZeroLevel());
+    settings.setValue("calibration/UcZero", dataSource->getUcZeroLevel());
+
+    settings.setValue("calibration/IaCoeff", dataSource->getIaCalibrationCoeff());
+    settings.setValue("calibration/IbCoeff", dataSource->getIbCalibrationCoeff());
+    settings.setValue("calibration/IcCoeff", dataSource->getIcCalibrationCoeff());
+
+    settings.setValue("calibration/UaCoeff", dataSource->getUaCalibrationCoeff());
+    settings.setValue("calibration/UbCoeff", dataSource->getUbCalibrationCoeff());
+    settings.setValue("calibration/UcCoeff", dataSource->getUcCalibrationCoeff());
 }
 

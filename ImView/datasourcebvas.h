@@ -88,10 +88,6 @@ private:
 public slots:
     void read();
     void bvasFailureSlot();
-
-signals:
-    void bvasFailure();
-
 };
 
 #endif // DATASOURCEBVAS_H

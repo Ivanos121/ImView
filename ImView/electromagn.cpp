@@ -840,7 +840,7 @@ void electromagn::raschet_el()
         dataSource->init();
         nabludatel->init(base.R1, base.R2, base.L1, base.L2, base.Lm);
         connect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
-        connect(dataSourceBVAS, &DataSourceBVAS::bvasFailure, this, &electromagn::bvasFailureSlot);
+        connect(dataSourceBVAS, &DataSourceBVAS::failure, this, &electromagn::bvasFailureSlot);
     }
 
     if(wf->item80->text() == "БВАСv1 + наблюдатель скорости (с датчиком скорости)")
@@ -874,7 +874,7 @@ void electromagn::raschet_el()
         dataSource->init();
         nabludatel->init(base.R1, base.R2, base.L1, base.L2, base.Lm);
         connect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
-        connect(dataSourceBVAS, &DataSourceBVASw::bvasFailure, this, &electromagn::bvasFailureSlot);
+        connect(dataSourceBVAS, &DataSourceBVASw::failure, this, &electromagn::bvasFailureSlot);
     }
 
     if(wf->item80->text() == "БВАСv2 + наблюдатель скорости (без датчика скорости)")
@@ -907,7 +907,7 @@ void electromagn::raschet_el()
         dataSource->init();
         nabludatel->init(base.R1, base.R2, base.L1, base.L2, base.Lm);
         connect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
-        connect(dataSourceDigitOsc, &DataSourceDigitOsc::bvasFailure, this, &electromagn::bvasFailureSlot);
+        connect(dataSourceDigitOsc, &DataSourceDigitOsc::failure, this, &electromagn::bvasFailureSlot);
     }
 
     if(wf->item80->text() == "БВАСv2 + наблюдатель скорости (с датчиком скорости)")
@@ -941,7 +941,7 @@ void electromagn::raschet_el()
         dataSource->init();
         nabludatel->init(base.R1, base.R2, base.L1, base.L2, base.Lm);
         connect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
-        connect(dataSourceDigitOsc, &DataSourceDigitOsc::bvasFailure, this, &electromagn::bvasFailureSlot);
+        connect(dataSourceDigitOsc, &DataSourceDigitOsc::failure, this, &electromagn::bvasFailureSlot);
     }
 
     //Внутренний источник данных

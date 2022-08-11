@@ -45,13 +45,13 @@ void DataSourceDigitOsc::read()
 {
     for (int i = 0; i < BUF_SIZE; i++)
     {
-        Ua[i] = (deviceDigitOsc->buf[i][0] - UaZeroLevel) * UaCalibrationCoeff;
-        Ub[i] = (deviceDigitOsc->buf[i][1] - UbZeroLevel) * UbCalibrationCoeff;
-        Uc[i] = (deviceDigitOsc->buf[i][2] - UcZeroLevel) * UcCalibrationCoeff;
+        Ua[i] = (deviceDigitOsc->buf[i][3] - UaZeroLevel) * UaCalibrationCoeff;
+        Ub[i] = (deviceDigitOsc->buf[i][4] - UbZeroLevel) * UbCalibrationCoeff;
+        Uc[i] = (deviceDigitOsc->buf[i][5] - UcZeroLevel) * UcCalibrationCoeff;
 
-        Ia[i] = (deviceDigitOsc->buf[i][3] - IaZeroLevel) * IaCalibrationCoeff;
-        Ib[i] = (deviceDigitOsc->buf[i][4] - IbZeroLevel) * IbCalibrationCoeff;
-        Ic[i] = (deviceDigitOsc->buf[i][5] - IcZeroLevel) * IcCalibrationCoeff;
+        Ia[i] = (deviceDigitOsc->buf[i][0] - IaZeroLevel) * IaCalibrationCoeff;
+        Ib[i] = (deviceDigitOsc->buf[i][1] - IbZeroLevel) * IbCalibrationCoeff;
+        Ic[i] = (deviceDigitOsc->buf[i][2] - IcZeroLevel) * IcCalibrationCoeff;
 
         w[i] = deviceDigitOsc->buf[i][6] / 12800.0 * 157.0;
     }
@@ -62,7 +62,7 @@ void DataSourceDigitOsc::read()
 void DataSourceDigitOsc::bvasFailureSlot()
 {
     stop();
-    emit bvasFailure();
+    emit failure();
 }
 
 void DataSourceDigitOsc::stop()

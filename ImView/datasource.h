@@ -55,6 +55,7 @@ public:
 
 signals:
     void ready();
+    void failure();
 };
 
 #endif // DATASOURCE_H

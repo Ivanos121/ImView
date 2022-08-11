@@ -9,6 +9,9 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
+    QCoreApplication::setOrganizationName("ImView");
+    QCoreApplication::setApplicationName("ImView");
+
     MainWindow w;
     QDir dir("/tmp/imview");
     if (dir.exists())
