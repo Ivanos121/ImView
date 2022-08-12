@@ -2104,6 +2104,14 @@ void Kalibr::on_EnterPort_2_clicked()
     base.digitOscParams.parity = ui->comboBox_7->currentText().toInt();
     base.digitOscParams.stopBits = ui->comboBox_8->currentText().toInt();
     base.digitOscParams.flowControl = ui->comboBox_12->currentText().toInt();
+
+    QSettings settings;
+    settings.setValue("BVASv2port/portName", base.digitOscParams.portName);
+    settings.setValue("BVASv2port/speed", base.digitOscParams.speed);
+    settings.setValue("BVASv2port/data", base.digitOscParams.data);
+    settings.setValue("BVASv2port/parity", base.digitOscParams.parity);
+    settings.setValue("BVASv2port/stopBits", base.digitOscParams.stopBits);
+    settings.setValue("BVASv2port/flowControl", base.digitOscParams.flowControl);
 }
 
 void Kalibr::on_SearchPort_3_clicked()
@@ -2127,6 +2135,14 @@ void Kalibr::on_EnterPort_3_clicked()
     base.digitMomentParams.parity = ui->comboBox_13->currentText().toInt();
     base.digitMomentParams.stopBits = ui->comboBox_14->currentText().toInt();
     base.digitMomentParams.flowControl = ui->comboBox_18->currentText().toInt();
+
+    QSettings settings;
+    settings.setValue("MomentPort/portName", base.digitMomentParams.portName);
+    settings.setValue("MomentPort/speed", base.digitMomentParams.speed);
+    settings.setValue("MomentPort/data", base.digitMomentParams.data);
+    settings.setValue("MomentPort/parity", base.digitMomentParams.parity);
+    settings.setValue("MomentPort/stopBits", base.digitMomentParams.stopBits);
+    settings.setValue("MomentPort/flowControl", base.digitMomentParams.flowControl);
 }
 
 void Kalibr::initClient()
@@ -2207,6 +2223,7 @@ void Kalibr::on_kalibrStartButton_clicked()
 {
     if (ui->kalibrStartButton->isChecked())
     {
+        ui->kalibrStartButton->setText("Остановить");
         QSettings settings;
 
         if (ui->comboBox_19->currentText() == "БВАСv1")
@@ -2248,9 +2265,13 @@ void Kalibr::on_kalibrStartButton_clicked()
         dataSource->init();
 
         ui->label_56->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_blue"));
+
+        ui->acceptButton->setEnabled(true);
     }
     else
     {
+        ui->kalibrStartButton->setText("Запустить");
+        ui->acceptButton->setEnabled(false);
         dataSource->stop();
         ui->label_56->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
         delete dataSource;

@@ -63,7 +63,7 @@ void NabludatelPart::init(double _R1, double _R2, double _L1, double _L2, double
     Ts=0.000032;
     Kint1=1;
 
-    w = 0;
+    wizm = 0;
     ia = 0;
     ib = 0;
     psi1a=0;
@@ -72,7 +72,7 @@ void NabludatelPart::init(double _R1, double _R2, double _L1, double _L2, double
     psi2b = 0;
     M=0;
     t = 0;
-    w_prev = 0.0;
+
     ia_prev=0.0;
     ib_prev=0.0;
     iaizm_prev=0.0;
@@ -161,10 +161,12 @@ void NabludatelPart::rasch(DataSource *dataSource)
     ubizm=(1/sqrt(2.0)) * (Ub - Uc);
     ubizm = ubCorrector.apply(ubizm,Kint,1.0,2.0,8.0,Ts);
 
-    a3=-pn*beta*w_prev;
-    a6=pn*w_prev;
-    g2=(k-1)*pn*w_prev;
-    g4=-cc*(k-1)*pn*w_prev;
+    wizm = dataSource->getW()[i];
+
+    a3=-pn*beta*wizm;
+    a6=pn*wizm;
+    g2=(k-1)*pn*wizm;
+    g4=-cc*(k-1)*pn*wizm;
 
     ma11 = -0.5*Kint*Ts*g1+0.5*Kint*Ts*a1-1;
     ma12 = 0.5*Kint*Ts*g2;
@@ -198,16 +200,16 @@ void NabludatelPart::rasch(DataSource *dataSource)
     psi2a = (((ba1*ma21-ba2*ma11)*ma32+(ba2*ma12-ba1*ma22)*ma31+ba3*ma11*ma22-ba3*ma12*ma21)*ma44+((ba2*ma11-ba1*ma21)*ma34+(ba1*ma24-ba2*ma14)*ma31-ba3*ma11*ma24+ba3*ma14*ma21)*ma42+((ba1*ma22-ba2*ma12)*ma34+(ba2*ma14-ba1*ma24)*ma32+ba3*ma12*ma24-ba3*ma14*ma22)*ma41+(ba4*ma12*ma21-ba4*ma11*ma22)*ma34+(ba4*ma11*ma24-ba4*ma14*ma21)*ma32+(ba4*ma14*ma22-ba4*ma12*ma24)*ma31)/(((ma11*ma22-ma12*ma21)*ma33+(ma13*ma21-ma11*ma23)*ma32+(ma12*ma23-ma13*ma22)*ma31)*ma44+((ma12*ma21-ma11*ma22)*ma34+(ma11*ma24-ma14*ma21)*ma32+(ma14*ma22-ma12*ma24)*ma31)*ma43+((ma11*ma23-ma13*ma21)*ma34+(ma14*ma21-ma11*ma24)*ma33+(ma13*ma24-ma14*ma23)*ma31)*ma42+((ma13*ma22-ma12*ma23)*ma34+(ma12*ma24-ma14*ma22)*ma33+(ma14*ma23-ma13*ma24)*ma32)*ma41);
     psi2b = -(((ba1*ma21-ba2*ma11)*ma32+(ba2*ma12-ba1*ma22)*ma31+ba3*ma11*ma22-ba3*ma12*ma21)*ma43+((ba2*ma11-ba1*ma21)*ma33+(ba1*ma23-ba2*ma13)*ma31-ba3*ma11*ma23+ba3*ma13*ma21)*ma42+((ba1*ma22-ba2*ma12)*ma33+(ba2*ma13-ba1*ma23)*ma32+ba3*ma12*ma23-ba3*ma13*ma22)*ma41+(ba4*ma12*ma21-ba4*ma11*ma22)*ma33+(ba4*ma11*ma23-ba4*ma13*ma21)*ma32+(ba4*ma13*ma22-ba4*ma12*ma23)*ma31)/(((ma11*ma22-ma12*ma21)*ma33+(ma13*ma21-ma11*ma23)*ma32+(ma12*ma23-ma13*ma22)*ma31)*ma44+((ma12*ma21-ma11*ma22)*ma34+(ma11*ma24-ma14*ma21)*ma32+(ma14*ma22-ma12*ma24)*ma31)*ma43+((ma11*ma23-ma13*ma21)*ma34+(ma14*ma21-ma11*ma24)*ma33+(ma13*ma24-ma14*ma23)*ma31)*ma42+((ma13*ma22-ma12*ma23)*ma34+(ma12*ma24-ma14*ma22)*ma33+(ma14*ma23-ma13*ma24)*ma32)*ma41);
 
-    w=w_prev-kp*ia*psi2b+kp*iaizm*psi2b+kp*ib*psi2a-kp*ibizm*psi2a+kp*ia_prev*psi2b_prev-kp*iaizm*psi2b_prev-kp*ib_prev*psi2a_prev+kp*ibizm_prev*psi2a_prev-.5000000000*Kint*Ts*ki*ia*psi2b+.5000000000*Kint*Ts*ki*iaizm*psi2b+.5000000000*Kint*Ts*ki*ib*psi2a-.5000000000*Kint*Ts*ki*ibizm*psi2a-0.5000000000*Kint*Ts*ki*ia_prev*psi2b_prev+.5000000000*Kint*Ts*ki*iaizm*psi2b_prev+.5000000000*Kint*Ts*ki*ib_prev*psi2a_prev-.5000000000*Kint*Ts*ki*ibizm_prev*psi2a_prev;
+    R2 = R2_prev-kp*ia*psi2b+kp*iaizm*psi2b+kp*ib*psi2a-kp*ibizm*psi2a+kp*ia_prev*psi2b_prev-kp*iaizm*psi2b_prev-kp*ib_prev*psi2a_prev+kp*ibizm_prev*psi2a_prev-.5000000000*Kint*Ts*ki*ia*psi2b+.5000000000*Kint*Ts*ki*iaizm*psi2b+.5000000000*Kint*Ts*ki*ib*psi2a-.5000000000*Kint*Ts*ki*ibizm*psi2a-0.5000000000*Kint*Ts*ki*ia_prev*psi2b_prev+.5000000000*Kint*Ts*ki*iaizm*psi2b_prev+.5000000000*Kint*Ts*ki*ib_prev*psi2a_prev-.5000000000*Kint*Ts*ki*ibizm_prev*psi2a_prev;
 
     psi1a=(Kint1*Ts*uaizm-Kint1*R1*Ts*iaizm+Kint1*Ts*uaizm_prev+2*psi1a_prev-Kint1*R1*Ts*iaizm_prev)/2;
     psi1b=(Kint1*Ts*ubizm-Kint1*R1*Ts*ibizm+Kint1*Ts*ubizm_prev+2*psi1b_prev-Kint1*R1*Ts*ibizm_prev)/2;
     M = (psi1b*iaizm-psi1a*ibizm)*(-3/2*pn);
     M_sr += M;
     //M_sr += ia*ia;
-    w_sr += w;
+    w_sr += wizm;
 
-    w_prev = w;
+    R2_prev = R2;
     ia_prev=ia;
     ib_prev=ib;
     iaizm_prev=iaizm;
@@ -240,17 +242,17 @@ void NabludatelPart::rasch(DataSource *dataSource)
 
     if (s > 1)
     {
-        R2 = R2p;
+        //R2 = R2p;
         L2 = Lkp + Lm - (L1 - Lm);
     }
     else if (s < snom)
     {
-        R2 = R20;
+        //R2 = R20;
         L2 = Lk0 + Lm - (L1 - Lm);
     }
     else
     {
-        R2 = R20 + deltaR2*(s - snom);
+        //R2 = R20 + deltaR2*(s - snom);
 
         double d = Lk0 / Lkp;
         double k = (d-1.0)/(1.0 - snom);

@@ -45,7 +45,10 @@ private:
     QComboBox* combo = new QComboBox();
     QComboBox* combo2 = new QComboBox();
 
+    QSerialPort *momentPort;
+
     void addDataLines();
+    int connectMomentPort();
 
 };
 

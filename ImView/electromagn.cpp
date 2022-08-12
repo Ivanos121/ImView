@@ -475,6 +475,57 @@ void electromagn::realtimeDataSlot()
     }
     else
     {
+        //Считывание значения времени цикла Тц
+        double Tc = wf->item22->text().toDouble();
+
+        //Считывание значения времени работы tp
+        double tp = wf->item24->text().toDouble();
+
+        //Считывание значения времени работы Mc
+        double Mc_n = wf->item90->text().toDouble();
+
+        QString S = wf->item20->text();
+
+        double Mc;
+        double tt = key;
+
+        if(S == "Режим S1")
+        {
+            Mc = Mc_n;
+        }
+
+        if(S == "Режим S2")
+        {
+            if(tt<=tp)
+            {
+                Mc=Mc_n;
+            }
+            if(tt>tp)
+            {
+                Mc=0;
+            }
+        }
+
+        if(S == "Режим S3")
+        {
+            while(tt>Tc)
+            {
+                tt-=Tc;
+            }
+            if(tt<tp)
+            {
+                Mc=Mc_n;
+            }
+            if(tt>tp)
+            {
+                Mc=0;
+            }
+        }
+
+        char value = (1.0 - Mc / Mc_n) * 144.0;
+        momentPort->write(&value, 1);
+        momentPort->flush();
+
         nabludatel->rasch(dataSource);
 
         //Считывание коэффициента изменения амплитуды напряжения фазы А
@@ -808,12 +859,62 @@ void electromagn::realtimeDataSlot()
     }
 }
 
+int electromagn::connectMomentPort()
+{
+    momentPort = new QSerialPort();
+    momentPort->setPortName(base.digitMomentParams.portName);
+
+    if (!momentPort->open(QIODevice::ReadWrite))
+    {
+        return 1;
+    }
+
+    momentPort->setBaudRate(base.digitMomentParams.speed);
+
+    switch (base.digitMomentParams.data)
+    {
+    case QSerialPort::Data8:
+        momentPort->setDataBits(QSerialPort::Data8);
+        break;
+    }
+
+    switch (base.digitMomentParams.parity)
+    {
+    case QSerialPort::NoParity:
+        momentPort->setParity(QSerialPort::NoParity);
+        break;
+    }
+
+    switch (base.digitMomentParams.stopBits)
+    {
+    case QSerialPort::OneStop:
+        momentPort->setStopBits(QSerialPort::OneStop);
+        break;
+    }
+
+    switch (base.digitMomentParams.flowControl)
+    {
+    case QSerialPort::NoFlowControl:
+        momentPort->setFlowControl(QSerialPort::NoFlowControl);
+        break;
+    }
+
+    return 0;
+}
+
 void electromagn::raschet_el()
 {
     if(wf->item80->text() == "БВАСv1 + наблюдатель скорости (без датчика скорости)")
     {
         //QMessageBox::critical(this, "Ошибка!", "Выбран первый пункт");
         //БВАС без датчика скорости + наблюдатель скорости
+        if (connectMomentPort() == 1)
+        {
+            QMessageBox::critical(this, "Ошибка!", "Порт регулятора");
+            stop();
+            return;
+        }
+
         QSettings settings;
 
         DataSourceBVAS* dataSourceBVAS = new DataSourceBVAS();
@@ -845,6 +946,12 @@ void electromagn::raschet_el()
 
     if(wf->item80->text() == "БВАСv1 + наблюдатель скорости (с датчиком скорости)")
     {
+        if (connectMomentPort() == 1)
+        {
+            QMessageBox::critical(this, "Ошибка!", "Порт регулятора");
+            stop();
+            return;
+        }
         //QMessageBox::critical(this, "Ошибка!", "Выбран второй пункт");
         //БВАС с датчиком скорости + наблюдатель частично (момента)
         //БВАС без датчика скорости + наблюдатель скорости
@@ -879,11 +986,24 @@ void electromagn::raschet_el()
 
     if(wf->item80->text() == "БВАСv2 + наблюдатель скорости (без датчика скорости)")
     {
+        if (connectMomentPort() == 1)
+        {
+            QMessageBox::critical(this, "Ошибка!", "Порт регулятора");
+            stop();
+            return;
+        }
         //QMessageBox::critical(this, "Ошибка!", "Выбран первый пункт");
         //БВАС без датчика скорости + наблюдатель скорости
         QSettings settings;
 
         DataSourceDigitOsc* dataSourceDigitOsc = new DataSourceDigitOsc();
+
+        base.digitOscParams.portName = settings.value("BVASv2port/portName", "/dev/ttyACM0").toString();
+        base.digitOscParams.speed = settings.value("BVASv2port/portName", 115200).toInt();
+        base.digitOscParams.data = settings.value("BVASv2port/data", 8).toInt();
+        base.digitOscParams.parity = settings.value("BVASv2port/parity", 1).toInt();
+        base.digitOscParams.stopBits = settings.value("BVASv2port/stopBits", 1).toInt();
+        base.digitOscParams.flowControl = settings.value("BVASv2port/flowControl", 1).toInt();
 
         dataSourceDigitOsc->setIaZeroLevel(settings.value("calibration/IaZero", 0.0).toDouble());
         dataSourceDigitOsc->setIbZeroLevel(settings.value("calibration/IbZero", 0.0).toDouble());
@@ -908,16 +1028,31 @@ void electromagn::raschet_el()
         nabludatel->init(base.R1, base.R2, base.L1, base.L2, base.Lm);
         connect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
         connect(dataSourceDigitOsc, &DataSourceDigitOsc::failure, this, &electromagn::bvasFailureSlot);
+
+        wf->statusbar_label_3->setPixmap(QPixmap(":/icons/data/img/icons/osc_blue_24.svg"));
     }
 
     if(wf->item80->text() == "БВАСv2 + наблюдатель скорости (с датчиком скорости)")
     {
+        if (connectMomentPort() == 1)
+        {
+            QMessageBox::critical(this, "Ошибка!", "Порт регулятора");
+            stop();
+            return;
+        }
         //QMessageBox::critical(this, "Ошибка!", "Выбран второй пункт");
         //БВАС с датчиком скорости + наблюдатель частично (момента)
         //БВАС без датчика скорости + наблюдатель скорости
         QSettings settings;
 
         DataSourceDigitOsc* dataSourceDigitOsc = new DataSourceDigitOsc();
+
+        base.digitOscParams.portName = settings.value("BVASv2port/portName", "/dev/ttyACM0").toString();
+        base.digitOscParams.speed = settings.value("BVASv2port/portName", 115200).toInt();
+        base.digitOscParams.data = settings.value("BVASv2port/data", 8).toInt();
+        base.digitOscParams.parity = settings.value("BVASv2port/parity", 1).toInt();
+        base.digitOscParams.stopBits = settings.value("BVASv2port/stopBits", 1).toInt();
+        base.digitOscParams.flowControl = settings.value("BVASv2port/flowControl", 1).toInt();
 
         dataSourceDigitOsc->setIaZeroLevel(settings.value("calibration/IaZero", 0.0).toDouble());
         dataSourceDigitOsc->setIbZeroLevel(settings.value("calibration/IbZero", 0.0).toDouble());
@@ -978,13 +1113,17 @@ void electromagn::raschet_el()
 
 void electromagn::stop()
 {
-    if (wf->item88->text() == "Внутренний источник данных")
+    if (wf->item80->text() == "Внутренний источник данных")
     {
         Model_el.stop();
         disconnect(&Model_el, &Model_el::ready, this, &electromagn::realtimeDataSlot);
     }
     else
     {
+        momentPort->close();
+        delete momentPort;
+        wf->statusbar_label_3->setPixmap(QPixmap(":/icons/data/img/icons/osc_red_24.svg"));
+
         if (dataSource != nullptr )
         {
             dataSource->stop();
