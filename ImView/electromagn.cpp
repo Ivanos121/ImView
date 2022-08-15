@@ -1120,12 +1120,12 @@ void electromagn::stop()
     }
     else
     {
-        momentPort->close();
-        delete momentPort;
         wf->statusbar_label_3->setPixmap(QPixmap(":/icons/data/img/icons/osc_red_24.svg"));
 
         if (dataSource != nullptr )
         {
+            momentPort->close();
+            delete momentPort;
             dataSource->stop();
             disconnect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
             delete dataSource;
