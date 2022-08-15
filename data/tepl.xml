@@ -2,15 +2,15 @@
 <resources>
     <tepl_dannie>
         <general_settings>
-            <sinxr_scorost value="1"/>
-            <kol-vo_par_polusov value="2"/>
-            <visota_osi_rotora value="3"/>
-            <diametr_staniny_v_osnovanii_reber value="4"/>
-            <dlina_staniny_so_storony_privoda value="5"/>
-            <dlina_staniny_so_storony_ventilatora value="6"/>
-            <zazor_megdu_diffuzorom_i_schitom value="7"/>
-            <kolichestvo_reber_staniny value="8"/>
-            <visota_rebra_staniny value="9"/>
+            <sinxr_scorost value="169"/>
+            <kol-vo_par_polusov value="16.3"/>
+            <visota_osi_rotora value="55.6"/>
+            <diametr_staniny_v_osnovanii_reber value="107.5"/>
+            <dlina_staniny_so_storony_privoda value="4"/>
+            <dlina_staniny_so_storony_ventilatora value="50.4"/>
+            <zazor_megdu_diffuzorom_i_schitom value="0.0349"/>
+            <kolichestvo_reber_staniny value="0.25"/>
+            <visota_rebra_staniny value="0.91"/>
             <tolschina_rebra_staniny value="10"/>
             <vneshny_diametr_ventilatora value="11"/>
             <vneshny_diametr_serdechnika_statora value="12"/>

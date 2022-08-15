@@ -5357,7 +5357,7 @@ void MainWindow::on_tepl_result_clicked()
                     Lambda_2ip1,Lambda_a,Lambda_na,Lambda_za,Lambda_pl,Lambda_il,Lambda_el,Lambda_al1,Lambda_l1,
                     Lambda_lp2,Lambda_a2,Lambda_l2,Lambda_asch,Lambda_ast,Lambda_ai,alpha_stsumm,Lambda_ct1,ro_t,Krp1,Lambda_p;
             //Тепловая проводимость станины
-            Lambda_ct = (3.14*(base_tepl.Da1 + base_tepl.delta_ct) * base_tepl.L1 * base_tepl.lambda_ct) / base_tepl.delta_ct;
+            Lambda_ct = (3.14*(base_tepl.Da1 + base_tepl.delta_ct) * base_tepl.L1 * base_tepl.lambda_ct) / (base_tepl.delta_ct*1000);
 
             //Тепловая проводимость зазора между сердечником статора и станиной
             Lambda_adelta1 = (3.14 * base_tepl.Da1 * base_tepl.L1 * base_tepl.lambda_i)/base_tepl.delta_ai;
@@ -5618,7 +5618,8 @@ void MainWindow::on_tepl_result_clicked()
             ui->widget_5->ui->tableWidget->item(9,5)->setText(QString::number(P_v,'f',3));
 
             //вывод тепловых проводимостей в таблицу
-            lambda_10=0.034;
+            //lambda_10=0.034;
+            lambda_10=Lambda_ct;
             lambda_30=0.034;
             lambda_k0=0.34;
             lambda_50=0.93;
