@@ -2,20 +2,20 @@
 <resources>
     <tepl_dannie>
         <general_settings>
-            <sinxr_scorost value="169"/>
-            <kol-vo_par_polusov value="16.3"/>
+            <sinxr_scorost value="0.169"/>
+            <kol-vo_par_polusov value="0.0163"/>
             <visota_osi_rotora value="55.6"/>
-            <diametr_staniny_v_osnovanii_reber value="107.5"/>
-            <dlina_staniny_so_storony_privoda value="4"/>
+            <diametr_staniny_v_osnovanii_reber value="0.1075"/>
+            <dlina_staniny_so_storony_privoda value="0.004"/>
             <dlina_staniny_so_storony_ventilatora value="50.4"/>
             <zazor_megdu_diffuzorom_i_schitom value="0.0349"/>
-            <kolichestvo_reber_staniny value="0.25"/>
+            <kolichestvo_reber_staniny value="0.00025"/>
             <visota_rebra_staniny value="0.91"/>
-            <tolschina_rebra_staniny value="10"/>
-            <vneshny_diametr_ventilatora value="11"/>
-            <vneshny_diametr_serdechnika_statora value="12"/>
-            <vnutrenny_diametr_serdechnika_statora value="13"/>
-            <dlina_paza value="14"/>
+            <tolschina_rebra_staniny value="0.1045"/>
+            <vneshny_diametr_ventilatora value="36"/>
+            <vneshny_diametr_serdechnika_statora value="0.0051"/>
+            <vnutrenny_diametr_serdechnika_statora value="0.016"/>
+            <dlina_paza value="55.6"/>
             <chislo_pazov_statora value="15"/>
             <koef-t_shtrichovki value="16"/>
             <bolshaya_shirina_paza value="17"/>

@@ -4881,64 +4881,63 @@ void MainWindow::on_tepl_result_clicked()
             base_tepl.Kc1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(8,1)->text().toDouble();
             base_tepl.Di1   = ui->widget_5->ui->widget_2->ui->tableWidget->item(9,1)->text().toDouble();
 
-            base_tepl.alpha_sigma  = ui->widget_5->ui->widget_2->ui->tableWidget->item(10,1)->text().toDouble();
-            base_tepl.Z1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(11,1)->text().toDouble();
-            base_tepl.Bz1       = ui->widget_5->ui->widget_2->ui->tableWidget->item(12,1)->text().toDouble();
-            base_tepl.lambda_с     = ui->widget_5->ui->widget_2->ui->tableWidget->item(13,1)->text().toDouble();
-            base_tepl.Hz1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(14,1)->text().toDouble();
-            base_tepl.lambda_ip1    = ui->widget_5->ui->widget_2->ui->tableWidget->item(15,1)->text().toDouble();
-            base_tepl.delta_ip1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(16,1)->text().toDouble();
-            base_tepl.d1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(17,1)->text().toDouble();
-            base_tepl.Kz     = ui->widget_5->ui->widget_2->ui->tableWidget->item(18,1)->text().toDouble();
-            base_tepl.delta     = ui->widget_5->ui->widget_2->ui->tableWidget->item(19,1)->text().toDouble();
+            base_tepl.Z1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(10,1)->text().toDouble();
+            base_tepl.Bz1       = ui->widget_5->ui->widget_2->ui->tableWidget->item(11,1)->text().toDouble();
+            base_tepl.lambda_с     = ui->widget_5->ui->widget_2->ui->tableWidget->item(12,1)->text().toDouble();
+            base_tepl.Hz1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(13,1)->text().toDouble();
+            base_tepl.lambda_ip1    = ui->widget_5->ui->widget_2->ui->tableWidget->item(14,1)->text().toDouble();
+            base_tepl.delta_ip1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(15,1)->text().toDouble();
+            base_tepl.d1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(16,1)->text().toDouble();
+            base_tepl.Kz     = ui->widget_5->ui->widget_2->ui->tableWidget->item(17,1)->text().toDouble();
+            base_tepl.delta     = ui->widget_5->ui->widget_2->ui->tableWidget->item(18,1)->text().toDouble();
+            base_tepl.lambda_ekv   = ui->widget_5->ui->widget_2->ui->tableWidget->item(19,1)->text().toDouble();
 
-            base_tepl.lambda_ekv   = ui->widget_5->ui->widget_2->ui->tableWidget->item(20,1)->text().toDouble();
-            base_tepl.Bp   = ui->widget_5->ui->widget_2->ui->tableWidget->item(21,1)->text().toDouble();
-            base_tepl.sigma_ipr    = ui->widget_5->ui->widget_2->ui->tableWidget->item(22,1)->text().toDouble();
-            base_tepl.teta_m     = ui->widget_5->ui->widget_2->ui->tableWidget->item(23,1)->text().toDouble();
-            base_tepl.Kp     = ui->widget_5->ui->widget_2->ui->tableWidget->item(24,1)->text().toDouble();
-            base_tepl.Kp2       = ui->widget_5->ui->widget_2->ui->tableWidget->item(25,1)->text().toDouble();
-            base_tepl.d12    = ui->widget_5->ui->widget_2->ui->tableWidget->item(26,1)->text().toDouble();
-            base_tepl.lambda_l    = ui->widget_5->ui->widget_2->ui->tableWidget->item(27,1)->text().toDouble();
-            base_tepl.lambda_em     = ui->widget_5->ui->widget_2->ui->tableWidget->item(28,1)->text().toDouble();
-            base_tepl.sigma_i = ui->widget_5->ui->widget_2->ui->tableWidget->item(29,1)->text().toDouble();
+            base_tepl.Bp   = ui->widget_5->ui->widget_2->ui->tableWidget->item(20,1)->text().toDouble();
+            base_tepl.sigma_ipr    = ui->widget_5->ui->widget_2->ui->tableWidget->item(21,1)->text().toDouble();
+            base_tepl.teta_m     = ui->widget_5->ui->widget_2->ui->tableWidget->item(22,1)->text().toDouble();
+            base_tepl.Kp     = ui->widget_5->ui->widget_2->ui->tableWidget->item(23,1)->text().toDouble();
+            base_tepl.Kp2       = ui->widget_5->ui->widget_2->ui->tableWidget->item(24,1)->text().toDouble();
+            base_tepl.d12    = ui->widget_5->ui->widget_2->ui->tableWidget->item(25,1)->text().toDouble();
+            base_tepl.lambda_l    = ui->widget_5->ui->widget_2->ui->tableWidget->item(26,1)->text().toDouble();
+            base_tepl.lambda_em     = ui->widget_5->ui->widget_2->ui->tableWidget->item(27,1)->text().toDouble();
+            base_tepl.sigma_i = ui->widget_5->ui->widget_2->ui->tableWidget->item(28,1)->text().toDouble();
+            base_tepl.lambda_ek  = ui->widget_5->ui->widget_2->ui->tableWidget->item(29,1)->text().toDouble();
 
-            base_tepl.lambda_ek  = ui->widget_5->ui->widget_2->ui->tableWidget->item(30,1)->text().toDouble();
-            base_tepl.lambda_c   = ui->widget_5->ui->widget_2->ui->tableWidget->item(31,1)->text().toDouble();
-            base_tepl.lambda_mi     = ui->widget_5->ui->widget_2->ui->tableWidget->item(32,1)->text().toDouble();
-            base_tepl.q_mi     = ui->widget_5->ui->widget_2->ui->tableWidget->item(33,1)->text().toDouble();
-            base_tepl.z_i     = ui->widget_5->ui->widget_2->ui->tableWidget->item(34,1)->text().toDouble();
-            base_tepl.Lp1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(35,1)->text().toDouble();
-            base_tepl.lambda_il     = ui->widget_5->ui->widget_2->ui->tableWidget->item(36,1)->text().toDouble();
-            base_tepl.K_l1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(37,1)->text().toDouble();
-            base_tepl.delta_il1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(38,1)->text().toDouble();
-            base_tepl.lambda_ekuz     = ui->widget_5->ui->widget_2->ui->tableWidget->item(39,1)->text().toDouble();
+            base_tepl.lambda_c   = ui->widget_5->ui->widget_2->ui->tableWidget->item(30,1)->text().toDouble();
+            base_tepl.lambda_mi     = ui->widget_5->ui->widget_2->ui->tableWidget->item(31,1)->text().toDouble();
+            base_tepl.q_mi     = ui->widget_5->ui->widget_2->ui->tableWidget->item(32,1)->text().toDouble();
+            base_tepl.z_i     = ui->widget_5->ui->widget_2->ui->tableWidget->item(33,1)->text().toDouble();
+            base_tepl.Lp1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(34,1)->text().toDouble();
+            base_tepl.lambda_il     = ui->widget_5->ui->widget_2->ui->tableWidget->item(35,1)->text().toDouble();
+            base_tepl.K_l1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(36,1)->text().toDouble();
+            base_tepl.delta_il1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(37,1)->text().toDouble();
+            base_tepl.lambda_ekuz     = ui->widget_5->ui->widget_2->ui->tableWidget->item(38,1)->text().toDouble();
+            base_tepl.lambda_ekpa      = ui->widget_5->ui->widget_2->ui->tableWidget->item(39,1)->text().toDouble();
 
-            base_tepl.lambda_ekpa      = ui->widget_5->ui->widget_2->ui->tableWidget->item(40,1)->text().toDouble();
-            base_tepl.L_li    = ui->widget_5->ui->widget_2->ui->tableWidget->item(41,1)->text().toDouble();
-            base_tepl.alpha_l1    = ui->widget_5->ui->widget_2->ui->tableWidget->item(42,1)->text().toDouble();
-            base_tepl.lambda_m2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(43,1)->text().toDouble();
-            base_tepl.qc    = ui->widget_5->ui->widget_2->ui->tableWidget->item(44,1)->text().toDouble();
-            base_tepl.Z2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(45,1)->text().toDouble();
-            base_tepl.L2  = ui->widget_5->ui->widget_2->ui->tableWidget->item(46,1)->text().toDouble();
-            base_tepl.Bk    = ui->widget_5->ui->widget_2->ui->tableWidget->item(47,1)->text().toDouble();
-            base_tepl.alpha_а2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(48,1)->text().toDouble();
-            base_tepl.S_l2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(49,1)->text().toDouble();
+            base_tepl.L_li    = ui->widget_5->ui->widget_2->ui->tableWidget->item(40,1)->text().toDouble();
+            base_tepl.alpha_l1    = ui->widget_5->ui->widget_2->ui->tableWidget->item(41,1)->text().toDouble();
+            base_tepl.lambda_m2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(42,1)->text().toDouble();
+            base_tepl.qc    = ui->widget_5->ui->widget_2->ui->tableWidget->item(43,1)->text().toDouble();
+            base_tepl.Z2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(44,1)->text().toDouble();
+            base_tepl.L2  = ui->widget_5->ui->widget_2->ui->tableWidget->item(45,1)->text().toDouble();
+            base_tepl.Bk    = ui->widget_5->ui->widget_2->ui->tableWidget->item(46,1)->text().toDouble();
+            base_tepl.alpha_а2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(47,1)->text().toDouble();
+            base_tepl.S_l2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(48,1)->text().toDouble();
+            base_tepl.alpha_asch      = ui->widget_5->ui->widget_2->ui->tableWidget->item(49,1)->text().toDouble();
 
-            base_tepl.alpha_asch      = ui->widget_5->ui->widget_2->ui->tableWidget->item(50,1)->text().toDouble();
-            base_tepl.S_isch    = ui->widget_5->ui->widget_2->ui->tableWidget->item(51,1)->text().toDouble();
-            base_tepl.alpha_ast    = ui->widget_5->ui->widget_2->ui->tableWidget->item(52,1)->text().toDouble();
-            base_tepl.S_ist    = ui->widget_5->ui->widget_2->ui->tableWidget->item(53,1)->text().toDouble();
-            base_tepl.alpha_st    = ui->widget_5->ui->widget_2->ui->tableWidget->item(54,1)->text().toDouble();
-            base_tepl.alpha_r    = ui->widget_5->ui->widget_2->ui->tableWidget->item(55,1)->text().toDouble();
-            base_tepl.D_ct  = ui->widget_5->ui->widget_2->ui->tableWidget->item(56,1)->text().toDouble();
-            base_tepl.Krp    = ui->widget_5->ui->widget_2->ui->tableWidget->item(57,1)->text().toDouble();
-            base_tepl.Hp    = ui->widget_5->ui->widget_2->ui->tableWidget->item(58,1)->text().toDouble();
-            base_tepl.tp    = ui->widget_5->ui->widget_2->ui->tableWidget->item(59,1)->text().toDouble();
+            base_tepl.S_isch    = ui->widget_5->ui->widget_2->ui->tableWidget->item(50,1)->text().toDouble();
+            base_tepl.alpha_ast    = ui->widget_5->ui->widget_2->ui->tableWidget->item(51,1)->text().toDouble();
+            base_tepl.S_ist    = ui->widget_5->ui->widget_2->ui->tableWidget->item(52,1)->text().toDouble();
+            base_tepl.alpha_st    = ui->widget_5->ui->widget_2->ui->tableWidget->item(53,1)->text().toDouble();
+            base_tepl.alpha_r    = ui->widget_5->ui->widget_2->ui->tableWidget->item(54,1)->text().toDouble();
+            base_tepl.D_ct  = ui->widget_5->ui->widget_2->ui->tableWidget->item(55,1)->text().toDouble();
+            base_tepl.Krp    = ui->widget_5->ui->widget_2->ui->tableWidget->item(56,1)->text().toDouble();
+            base_tepl.Hp    = ui->widget_5->ui->widget_2->ui->tableWidget->item(57,1)->text().toDouble();
+            base_tepl.tp    = ui->widget_5->ui->widget_2->ui->tableWidget->item(58,1)->text().toDouble();
+            base_tepl.alpha_c   = ui->widget_5->ui->widget_2->ui->tableWidget->item(59,1)->text().toDouble();
 
-            base_tepl.alpha_c   = ui->widget_5->ui->widget_2->ui->tableWidget->item(60,1)->text().toDouble();
-            base_tepl.delta_Kp  = ui->widget_5->ui->widget_2->ui->tableWidget->item(61,1)->text().toDouble();
-           // base_tepl.lb_okr  = ui->widget_5->ui->widget_2->ui->tableWidget->item(62,1)->text().toDouble();
+            base_tepl.delta_Kp  = ui->widget_5->ui->widget_2->ui->tableWidget->item(60,1)->text().toDouble();
+            base_tepl.Dp1  = ui->widget_5->ui->widget_2->ui->tableWidget->item(61,1)->text().toDouble();
            // base_tepl.lb_ip   = ui->widget_5->ui->widget_2->ui->tableWidget->item(63,1)->text().toDouble();
            // base_tepl.sig_vp  = ui->widget_5->ui->widget_2->ui->tableWidget->item(64,1)->text().toDouble();
            // base_tepl.h_z2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(65,1)->text().toDouble();
@@ -4949,10 +4948,10 @@ void MainWindow::on_tepl_result_clicked()
 
            // base_tepl.P2      = ui->widget_5->ui->widget_2->ui->tableWidget->item(70,1)->text().toDouble();
            // base_tepl.U1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(71,1)->text().toDouble();
-            base_tepl.n_u     = ui->widget_5->ui->widget_2->ui->tableWidget->item(72,1)->text().toDouble();
-            base_tepl.cos_f   = ui->widget_5->ui->widget_2->ui->tableWidget->item(73,1)->text().toDouble();
-            base_tepl.ro_al   = ui->widget_5->ui->widget_2->ui->tableWidget->item(74,1)->text().toDouble();
-            base_tepl.D_kzk   = ui->widget_5->ui->widget_2->ui->tableWidget->item(75,1)->text().toDouble();
+           // base_tepl.n_u     = ui->widget_5->ui->widget_2->ui->tableWidget->item(72,1)->text().toDouble();
+           // base_tepl.cos_f   = ui->widget_5->ui->widget_2->ui->tableWidget->item(73,1)->text().toDouble();
+           // base_tepl.ro_al   = ui->widget_5->ui->widget_2->ui->tableWidget->item(74,1)->text().toDouble();
+           // base_tepl.D_kzk   = ui->widget_5->ui->widget_2->ui->tableWidget->item(75,1)->text().toDouble();
 
             //ui->widget_5->ui->tableWidget->clearContents();
 
@@ -5206,64 +5205,63 @@ void MainWindow::on_tepl_result_clicked()
             base_tepl.Kc1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(8,1)->text().toDouble();
             base_tepl.Di1   = ui->widget_5->ui->widget_2->ui->tableWidget->item(9,1)->text().toDouble();
 
-            base_tepl.alpha_sigma  = ui->widget_5->ui->widget_2->ui->tableWidget->item(10,1)->text().toDouble();
-            base_tepl.Z1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(11,1)->text().toDouble();
-            base_tepl.Bz1       = ui->widget_5->ui->widget_2->ui->tableWidget->item(12,1)->text().toDouble();
-            base_tepl.lambda_с     = ui->widget_5->ui->widget_2->ui->tableWidget->item(13,1)->text().toDouble();
-            base_tepl.Hz1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(14,1)->text().toDouble();
-            base_tepl.lambda_ip1    = ui->widget_5->ui->widget_2->ui->tableWidget->item(15,1)->text().toDouble();
-            base_tepl.delta_ip1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(16,1)->text().toDouble();
-            base_tepl.d1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(17,1)->text().toDouble();
-            base_tepl.Kz     = ui->widget_5->ui->widget_2->ui->tableWidget->item(18,1)->text().toDouble();
-            base_tepl.delta     = ui->widget_5->ui->widget_2->ui->tableWidget->item(19,1)->text().toDouble();
+            base_tepl.Z1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(10,1)->text().toDouble();
+            base_tepl.Bz1       = ui->widget_5->ui->widget_2->ui->tableWidget->item(11,1)->text().toDouble();
+            base_tepl.lambda_с     = ui->widget_5->ui->widget_2->ui->tableWidget->item(12,1)->text().toDouble();
+            base_tepl.Hz1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(13,1)->text().toDouble();
+            base_tepl.lambda_ip1    = ui->widget_5->ui->widget_2->ui->tableWidget->item(14,1)->text().toDouble();
+            base_tepl.delta_ip1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(15,1)->text().toDouble();
+            base_tepl.d1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(16,1)->text().toDouble();
+            base_tepl.Kz     = ui->widget_5->ui->widget_2->ui->tableWidget->item(17,1)->text().toDouble();
+            base_tepl.delta     = ui->widget_5->ui->widget_2->ui->tableWidget->item(18,1)->text().toDouble();
+            base_tepl.lambda_ekv   = ui->widget_5->ui->widget_2->ui->tableWidget->item(19,1)->text().toDouble();
 
-            base_tepl.lambda_ekv   = ui->widget_5->ui->widget_2->ui->tableWidget->item(20,1)->text().toDouble();
-            base_tepl.Bp   = ui->widget_5->ui->widget_2->ui->tableWidget->item(21,1)->text().toDouble();
-            base_tepl.sigma_ipr    = ui->widget_5->ui->widget_2->ui->tableWidget->item(22,1)->text().toDouble();
-            base_tepl.teta_m     = ui->widget_5->ui->widget_2->ui->tableWidget->item(23,1)->text().toDouble();
-            base_tepl.Kp     = ui->widget_5->ui->widget_2->ui->tableWidget->item(24,1)->text().toDouble();
-            base_tepl.Kp2       = ui->widget_5->ui->widget_2->ui->tableWidget->item(25,1)->text().toDouble();
-            base_tepl.d12    = ui->widget_5->ui->widget_2->ui->tableWidget->item(26,1)->text().toDouble();
-            base_tepl.lambda_l    = ui->widget_5->ui->widget_2->ui->tableWidget->item(27,1)->text().toDouble();
-            base_tepl.lambda_em     = ui->widget_5->ui->widget_2->ui->tableWidget->item(28,1)->text().toDouble();
-            base_tepl.sigma_i = ui->widget_5->ui->widget_2->ui->tableWidget->item(29,1)->text().toDouble();
+            base_tepl.Bp   = ui->widget_5->ui->widget_2->ui->tableWidget->item(20,1)->text().toDouble();
+            base_tepl.sigma_ipr    = ui->widget_5->ui->widget_2->ui->tableWidget->item(21,1)->text().toDouble();
+            base_tepl.teta_m     = ui->widget_5->ui->widget_2->ui->tableWidget->item(22,1)->text().toDouble();
+            base_tepl.Kp     = ui->widget_5->ui->widget_2->ui->tableWidget->item(23,1)->text().toDouble();
+            base_tepl.Kp2       = ui->widget_5->ui->widget_2->ui->tableWidget->item(24,1)->text().toDouble();
+            base_tepl.d12    = ui->widget_5->ui->widget_2->ui->tableWidget->item(25,1)->text().toDouble();
+            base_tepl.lambda_l    = ui->widget_5->ui->widget_2->ui->tableWidget->item(26,1)->text().toDouble();
+            base_tepl.lambda_em     = ui->widget_5->ui->widget_2->ui->tableWidget->item(27,1)->text().toDouble();
+            base_tepl.sigma_i = ui->widget_5->ui->widget_2->ui->tableWidget->item(28,1)->text().toDouble();
+            base_tepl.lambda_ek  = ui->widget_5->ui->widget_2->ui->tableWidget->item(29,1)->text().toDouble();
 
-            base_tepl.lambda_ek  = ui->widget_5->ui->widget_2->ui->tableWidget->item(30,1)->text().toDouble();
-            base_tepl.lambda_c   = ui->widget_5->ui->widget_2->ui->tableWidget->item(31,1)->text().toDouble();
-            base_tepl.lambda_mi     = ui->widget_5->ui->widget_2->ui->tableWidget->item(32,1)->text().toDouble();
-            base_tepl.q_mi     = ui->widget_5->ui->widget_2->ui->tableWidget->item(33,1)->text().toDouble();
-            base_tepl.z_i     = ui->widget_5->ui->widget_2->ui->tableWidget->item(34,1)->text().toDouble();
-            base_tepl.Lp1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(35,1)->text().toDouble();
-            base_tepl.lambda_il     = ui->widget_5->ui->widget_2->ui->tableWidget->item(36,1)->text().toDouble();
-            base_tepl.K_l1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(37,1)->text().toDouble();
-            base_tepl.delta_il1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(38,1)->text().toDouble();
-            base_tepl.lambda_ekuz     = ui->widget_5->ui->widget_2->ui->tableWidget->item(39,1)->text().toDouble();
+            base_tepl.lambda_c   = ui->widget_5->ui->widget_2->ui->tableWidget->item(30,1)->text().toDouble();
+            base_tepl.lambda_mi     = ui->widget_5->ui->widget_2->ui->tableWidget->item(31,1)->text().toDouble();
+            base_tepl.q_mi     = ui->widget_5->ui->widget_2->ui->tableWidget->item(32,1)->text().toDouble();
+            base_tepl.z_i     = ui->widget_5->ui->widget_2->ui->tableWidget->item(33,1)->text().toDouble();
+            base_tepl.Lp1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(34,1)->text().toDouble();
+            base_tepl.lambda_il     = ui->widget_5->ui->widget_2->ui->tableWidget->item(35,1)->text().toDouble();
+            base_tepl.K_l1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(36,1)->text().toDouble();
+            base_tepl.delta_il1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(37,1)->text().toDouble();
+            base_tepl.lambda_ekuz     = ui->widget_5->ui->widget_2->ui->tableWidget->item(38,1)->text().toDouble();
+            base_tepl.lambda_ekpa      = ui->widget_5->ui->widget_2->ui->tableWidget->item(39,1)->text().toDouble();
 
-            base_tepl.lambda_ekpa      = ui->widget_5->ui->widget_2->ui->tableWidget->item(40,1)->text().toDouble();
-            base_tepl.L_li    = ui->widget_5->ui->widget_2->ui->tableWidget->item(41,1)->text().toDouble();
-            base_tepl.alpha_l1    = ui->widget_5->ui->widget_2->ui->tableWidget->item(42,1)->text().toDouble();
-            base_tepl.lambda_m2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(43,1)->text().toDouble();
-            base_tepl.qc    = ui->widget_5->ui->widget_2->ui->tableWidget->item(44,1)->text().toDouble();
-            base_tepl.Z2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(45,1)->text().toDouble();
-            base_tepl.L2  = ui->widget_5->ui->widget_2->ui->tableWidget->item(46,1)->text().toDouble();
-            base_tepl.Bk    = ui->widget_5->ui->widget_2->ui->tableWidget->item(47,1)->text().toDouble();
-            base_tepl.alpha_а2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(48,1)->text().toDouble();
-            base_tepl.S_l2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(49,1)->text().toDouble();
+            base_tepl.L_li    = ui->widget_5->ui->widget_2->ui->tableWidget->item(40,1)->text().toDouble();
+            base_tepl.alpha_l1    = ui->widget_5->ui->widget_2->ui->tableWidget->item(41,1)->text().toDouble();
+            base_tepl.lambda_m2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(42,1)->text().toDouble();
+            base_tepl.qc    = ui->widget_5->ui->widget_2->ui->tableWidget->item(43,1)->text().toDouble();
+            base_tepl.Z2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(44,1)->text().toDouble();
+            base_tepl.L2  = ui->widget_5->ui->widget_2->ui->tableWidget->item(45,1)->text().toDouble();
+            base_tepl.Bk    = ui->widget_5->ui->widget_2->ui->tableWidget->item(46,1)->text().toDouble();
+            base_tepl.alpha_а2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(47,1)->text().toDouble();
+            base_tepl.S_l2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(48,1)->text().toDouble();
 
-            base_tepl.alpha_asch      = ui->widget_5->ui->widget_2->ui->tableWidget->item(50,1)->text().toDouble();
-            base_tepl.S_isch    = ui->widget_5->ui->widget_2->ui->tableWidget->item(51,1)->text().toDouble();
-            base_tepl.alpha_ast    = ui->widget_5->ui->widget_2->ui->tableWidget->item(52,1)->text().toDouble();
-            base_tepl.S_ist    = ui->widget_5->ui->widget_2->ui->tableWidget->item(53,1)->text().toDouble();
-            base_tepl.alpha_st    = ui->widget_5->ui->widget_2->ui->tableWidget->item(54,1)->text().toDouble();
-            base_tepl.alpha_r    = ui->widget_5->ui->widget_2->ui->tableWidget->item(55,1)->text().toDouble();
-            base_tepl.D_ct  = ui->widget_5->ui->widget_2->ui->tableWidget->item(56,1)->text().toDouble();
-            base_tepl.Krp    = ui->widget_5->ui->widget_2->ui->tableWidget->item(57,1)->text().toDouble();
-            base_tepl.Hp    = ui->widget_5->ui->widget_2->ui->tableWidget->item(58,1)->text().toDouble();
-            base_tepl.tp    = ui->widget_5->ui->widget_2->ui->tableWidget->item(59,1)->text().toDouble();
+            base_tepl.alpha_asch      = ui->widget_5->ui->widget_2->ui->tableWidget->item(49,1)->text().toDouble();
+            base_tepl.S_isch    = ui->widget_5->ui->widget_2->ui->tableWidget->item(50,1)->text().toDouble();
+            base_tepl.alpha_ast    = ui->widget_5->ui->widget_2->ui->tableWidget->item(51,1)->text().toDouble();
+            base_tepl.S_ist    = ui->widget_5->ui->widget_2->ui->tableWidget->item(52,1)->text().toDouble();
+            base_tepl.alpha_st    = ui->widget_5->ui->widget_2->ui->tableWidget->item(53,1)->text().toDouble();
+            base_tepl.alpha_r    = ui->widget_5->ui->widget_2->ui->tableWidget->item(54,1)->text().toDouble();
+            base_tepl.D_ct  = ui->widget_5->ui->widget_2->ui->tableWidget->item(55,1)->text().toDouble();
+            base_tepl.Krp    = ui->widget_5->ui->widget_2->ui->tableWidget->item(56,1)->text().toDouble();
+            base_tepl.Hp    = ui->widget_5->ui->widget_2->ui->tableWidget->item(57,1)->text().toDouble();
+            base_tepl.tp    = ui->widget_5->ui->widget_2->ui->tableWidget->item(58,1)->text().toDouble();
 
-            base_tepl.alpha_c   = ui->widget_5->ui->widget_2->ui->tableWidget->item(60,1)->text().toDouble();
-            base_tepl.delta_Kp  = ui->widget_5->ui->widget_2->ui->tableWidget->item(61,1)->text().toDouble();
-           // base_tepl.lb_okr  = ui->widget_5->ui->widget_2->ui->tableWidget->item(62,1)->text().toDouble();
+            base_tepl.alpha_c   = ui->widget_5->ui->widget_2->ui->tableWidget->item(59,1)->text().toDouble();
+            base_tepl.delta_Kp  = ui->widget_5->ui->widget_2->ui->tableWidget->item(60,1)->text().toDouble();
+            base_tepl.Dp1  = ui->widget_5->ui->widget_2->ui->tableWidget->item(61,1)->text().toDouble();
            // base_tepl.lb_ip   = ui->widget_5->ui->widget_2->ui->tableWidget->item(63,1)->text().toDouble();
            // base_tepl.sig_vp  = ui->widget_5->ui->widget_2->ui->tableWidget->item(64,1)->text().toDouble();
            // base_tepl.h_z2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(65,1)->text().toDouble();
@@ -5274,10 +5272,10 @@ void MainWindow::on_tepl_result_clicked()
 
            // base_tepl.P2      = ui->widget_5->ui->widget_2->ui->tableWidget->item(70,1)->text().toDouble();
            // base_tepl.U1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(71,1)->text().toDouble();
-            base_tepl.n_u     = ui->widget_5->ui->widget_2->ui->tableWidget->item(72,1)->text().toDouble();
-            base_tepl.cos_f   = ui->widget_5->ui->widget_2->ui->tableWidget->item(73,1)->text().toDouble();
-            base_tepl.ro_al   = ui->widget_5->ui->widget_2->ui->tableWidget->item(74,1)->text().toDouble();
-            base_tepl.D_kzk   = ui->widget_5->ui->widget_2->ui->tableWidget->item(75,1)->text().toDouble();
+           // base_tepl.n_u     = ui->widget_5->ui->widget_2->ui->tableWidget->item(72,1)->text().toDouble();
+           // base_tepl.cos_f   = ui->widget_5->ui->widget_2->ui->tableWidget->item(73,1)->text().toDouble();
+           // base_tepl.ro_al   = ui->widget_5->ui->widget_2->ui->tableWidget->item(74,1)->text().toDouble();
+           // base_tepl.D_kzk   = ui->widget_5->ui->widget_2->ui->tableWidget->item(75,1)->text().toDouble();
 
 
             //Расчет тепловых проводимостей
@@ -5355,27 +5353,36 @@ void MainWindow::on_tepl_result_clicked()
             double Lambda_ct,Lambda_adelta1,Lambda_a1,Lambda_delta1,Lambda_sigma,Lambda_1z1,Lambda_12,Lambda_1ip1,
                     delta,Lambda_epz,Lambda_ekv,Lambda_i1z,Lambda_z,Lambda_nz,Lambda_i1a,Lambda_ekpa,
                     Lambda_2ip1,Lambda_a,Lambda_na,Lambda_za,Lambda_pl,Lambda_il,Lambda_el,Lambda_al1,Lambda_l1,
-                    Lambda_lp2,Lambda_a2,Lambda_l2,Lambda_asch,Lambda_ast,Lambda_ai,alpha_stsumm,Lambda_ct1,ro_t,Krp1,Lambda_p;
-            //Тепловая проводимость станины
-            Lambda_ct = (M_PI*(base_tepl.Da1 + base_tepl.delta_ct) * base_tepl.L1 * base_tepl.lambda_ct) / (base_tepl.delta_ct*1000);
+                    Lambda_lp2,Lambda_a2,Lambda_l2,Lambda_asch,Lambda_ast,Lambda_ai,alpha_stsumm,Lambda_ct1,ro_t,Krp1,Lambda_p,
+                    alpha_sigma;
 
-            //Тепловая проводимость зазора между сердечником статора и станиной
-            Lambda_adelta1 = (3.14 * base_tepl.Da1 * base_tepl.L1 * base_tepl.lambda_i)/base_tepl.delta_ai;
 
-            //Тепловая проводимость спинки статора
-            Lambda_a1 = 3.14 * base_tepl.L1 * base_tepl.lambda_c1 * base_tepl.Kc1 * (2 * base_tepl.Da1 - base_tepl.Ha1) / base_tepl.Ha1;
 
-            //Общая тепловая проводимость между сердечником статора и станиной
-            Lambda_delta1 =1/((1/ Lambda_a1)+(1/ Lambda_adelta1)+(1/ Lambda_ct));
 
-            //Тепловая проводимость воздушного зазора:
-            Lambda_sigma=3.14 / (2 * base_tepl.Da1 * base_tepl.L1 * base_tepl.alpha_sigma);
+            //+Тепловая проводимость станины
+            Lambda_ct = (M_PI*(base_tepl.Da1 + base_tepl.delta_ct) * base_tepl.L1 * base_tepl.lambda_ct) / (base_tepl.delta_ct);
 
-            //Тепловая проводимость зубцов статора:
-            Lambda_1z1 = (2 * base_tepl.Z1 * base_tepl.Bz1 * base_tepl.L1 * base_tepl.Kc1 * base_tepl.lambda_с) / base_tepl.Hz1;
+            //+Тепловая проводимость зазора между сердечником статора и станиной
+            Lambda_adelta1 = (M_PI * base_tepl.Da1 * base_tepl.L1 * base_tepl.lambda_i)/base_tepl.delta_ai;
+
+            //+Тепловая проводимость спинки статора
+            Lambda_a1 = M_PI * base_tepl.L1 * base_tepl.lambda_c1 * base_tepl.Kc1 * (2 * base_tepl.Da1 - base_tepl.Ha1) / base_tepl.Ha1;
+
+            //+Общая тепловая проводимость между сердечником статора и станиной
+            Lambda_delta1 = 1/((1/ Lambda_a1)+(1/ Lambda_adelta1)+(1/ Lambda_ct));
+
+            //+Коэффициент теплоотдачи от ротора к внутреннему воздуху
+            alpha_sigma = (((2*base_tepl.delta_ai)/(base_tepl.Dp1/2))*(base_tepl.lambda_v/base_tepl.delta_ai))/
+            log(1+(base_tepl.delta_ai/(base_tepl.Dp1/2)));
+
+            //+Тепловая проводимость воздушного зазора:
+            Lambda_sigma = (M_PI / 2) * (base_tepl.Di1 * base_tepl.L1 * alpha_sigma);
+
+            //+Тепловая проводимость зубцов статора:
+            Lambda_1z1 = (2 * base_tepl.Z1 * base_tepl.Bz1 * base_tepl.L1 * base_tepl.Kc1 * base_tepl.lambda_c1) / base_tepl.Hz1;
 
             //Общая тепловая проводимость между статором и ротором
-            Lambda_12 = Lambda_sigma * Lambda_1z1/( Lambda_sigma + Lambda_1z1);
+            Lambda_12 = (Lambda_sigma * Lambda_1z1)/( Lambda_sigma + Lambda_1z1);
 
             //Тепловая проводимость пазовой изоляции
             Lambda_1ip1 = (2 * base_tepl.Hz1 * base_tepl.Z1 * base_tepl.L1 * base_tepl.lambda_ip1)/base_tepl.delta_ip1;
@@ -5620,7 +5627,8 @@ void MainWindow::on_tepl_result_clicked()
             //вывод тепловых проводимостей в таблицу
             //lambda_10=0.034;
             lambda_10=Lambda_ct;
-            lambda_30=0.034;
+            //lambda_30=0.034;
+            lambda_30=Lambda_sigma;
             lambda_k0=0.34;
             lambda_50=0.93;
             lambda_3k=0.67;
