@@ -86,14 +86,14 @@ Tepl_dannie::Tepl_dannie(QWidget *parent) :
     ui->tableWidget->item(54,0)->setText("Kpп – коэффициент оребрения станины с учетом внутреннего теплового сопротивления ребер");
     ui->tableWidget->item(55,0)->setText("Dp1 - радиус ротора, м");
     ui->tableWidget->item(56,0)->setText("lambda_v - коэффициент теплопроводности воздуха");
-    ui->tableWidget->item(57,0)->setText("Коэффициент качества лопатки ротора, рассматриваемой как ребро");
+    ui->tableWidget->item(57,0)->setText("lambda_v – наружный диаметр станины");
     ui->tableWidget->item(58,0)->setText("Шаг ребер станины, м");
     ui->tableWidget->item(59,0)->setText("Число фаз обмотки статора");
 
     ui->tableWidget->item(60,0)->setText("Количество элементарных проводников");
     ui->tableWidget->item(61,0)->setText("Плотность меди");
     ui->tableWidget->item(62,0)->setText("Удельная теплоемкость меди обмотки статора");
-    ui->tableWidget->item(63,0)->setText("Плотность стали");
+    ui->tableWidget->item(63,0)->setText("lambda_v – наружный диаметр станины");
     ui->tableWidget->item(64,0)->setText("Удельная теплоемкость стали");
     ui->tableWidget->item(65,0)->setText("Удельное сопротивление меди");
     ui->tableWidget->item(66,0)->setText("Полезная мощность, Вт");

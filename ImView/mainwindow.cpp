@@ -5262,7 +5262,7 @@ void MainWindow::on_tepl_result_clicked()
             base_tepl.alpha_c   = ui->widget_5->ui->widget_2->ui->tableWidget->item(59,1)->text().toDouble();
             base_tepl.delta_Kp  = ui->widget_5->ui->widget_2->ui->tableWidget->item(60,1)->text().toDouble();
             base_tepl.Dp1  = ui->widget_5->ui->widget_2->ui->tableWidget->item(61,1)->text().toDouble();
-           // base_tepl.lb_ip   = ui->widget_5->ui->widget_2->ui->tableWidget->item(63,1)->text().toDouble();
+            base_tepl.lambda_v   = ui->widget_5->ui->widget_2->ui->tableWidget->item(63,1)->text().toDouble();
            // base_tepl.sig_vp  = ui->widget_5->ui->widget_2->ui->tableWidget->item(64,1)->text().toDouble();
            // base_tepl.h_z2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(65,1)->text().toDouble();
            // base_tepl.b_z2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(66,1)->text().toDouble();
@@ -5372,11 +5372,16 @@ void MainWindow::on_tepl_result_clicked()
             Lambda_delta1 = 1/((1/ Lambda_a1)+(1/ Lambda_adelta1)+(1/ Lambda_ct));
 
             //+Коэффициент теплоотдачи от ротора к внутреннему воздуху
-            alpha_sigma = (((2*base_tepl.delta_ai)/(base_tepl.Dp1/2))*(base_tepl.lambda_v/base_tepl.delta_ai))/
-            log(1+(base_tepl.delta_ai/(base_tepl.Dp1/2)));
+//            alpha_sigma = (((2*base_tepl.delta_ai)/(base_tepl.Dp1/2))*(base_tepl.lambda_v/base_tepl.delta_ai))/
+//            log(1+(base_tepl.delta_ai/(base_tepl.Dp1/2)));
+
+            alpha_sigma = (((2*base_tepl.delta_ai)/(base_tepl.Dp1/2))*(base_tepl.lambda_v/(2*base_tepl.delta_ai)))/
+                        log(1+(base_tepl.delta_ai/(base_tepl.Dp1/2)));
 
             //+Тепловая проводимость воздушного зазора:
             Lambda_sigma = (M_PI / 2) * (base_tepl.Di1 * base_tepl.L1 * alpha_sigma);
+
+            ui->label_26->setText(QString::number(alpha_sigma,'f',6));
 
             //+Тепловая проводимость зубцов статора:
             Lambda_1z1 = (2 * base_tepl.Z1 * base_tepl.Bz1 * base_tepl.L1 * base_tepl.Kc1 * base_tepl.lambda_c1) / base_tepl.Hz1;

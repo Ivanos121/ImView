@@ -482,7 +482,8 @@ void electromagn::realtimeDataSlot()
         double tp = wf->item24->text().toDouble();
 
         //Считывание значения времени работы Mc
-        double Mc_n = wf->item90->text().toDouble();
+        //double Mc_n = wf->item90->text().toDouble();
+        double Mc_n = wf->ui->horizontalSlider->value() / 99.0 * wf->item90->text().toDouble();
 
         QString S = wf->item20->text();
 
@@ -522,7 +523,7 @@ void electromagn::realtimeDataSlot()
             }
         }
 
-        char value = (1.0 - Mc / Mc_n) * 144.0;
+        char value = (1.0 - Mc / wf->item90->text().toDouble()) * 144.0;
         momentPort->write(&value, 1);
         momentPort->flush();
 
@@ -904,6 +905,15 @@ int electromagn::connectMomentPort()
 
 void electromagn::raschet_el()
 {
+    QSettings settings;
+
+    base.digitMomentParams.portName = settings.value("MomentPort/portName", "ttyMP1").toString();
+    base.digitMomentParams.speed = settings.value("MomentPort/portName", 115200).toInt();
+    base.digitMomentParams.data = settings.value("MomentPort/data", 8).toInt();
+    base.digitMomentParams.parity = settings.value("MomentPort/parity", 1).toInt();
+    base.digitMomentParams.stopBits = settings.value("MomentPort/stopBits", 1).toInt();
+    base.digitMomentParams.flowControl = settings.value("MomentPort/flowControl", 1).toInt();
+
     if(wf->item80->text() == "БВАСv1 + наблюдатель скорости (без датчика скорости)")
     {
         //QMessageBox::critical(this, "Ошибка!", "Выбран первый пункт");
@@ -998,7 +1008,7 @@ void electromagn::raschet_el()
 
         DataSourceDigitOsc* dataSourceDigitOsc = new DataSourceDigitOsc();
 
-        base.digitOscParams.portName = settings.value("BVASv2port/portName", "/dev/ttyACM0").toString();
+        base.digitOscParams.portName = settings.value("BVASv2port/portName", "ttyACM0").toString();
         base.digitOscParams.speed = settings.value("BVASv2port/portName", 115200).toInt();
         base.digitOscParams.data = settings.value("BVASv2port/data", 8).toInt();
         base.digitOscParams.parity = settings.value("BVASv2port/parity", 1).toInt();
@@ -1047,7 +1057,7 @@ void electromagn::raschet_el()
 
         DataSourceDigitOsc* dataSourceDigitOsc = new DataSourceDigitOsc();
 
-        base.digitOscParams.portName = settings.value("BVASv2port/portName", "/dev/ttyACM0").toString();
+        base.digitOscParams.portName = settings.value("BVASv2port/portName", "ttyACM0").toString();
         base.digitOscParams.speed = settings.value("BVASv2port/portName", 115200).toInt();
         base.digitOscParams.data = settings.value("BVASv2port/data", 8).toInt();
         base.digitOscParams.parity = settings.value("BVASv2port/parity", 1).toInt();
