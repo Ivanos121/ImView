@@ -63,8 +63,8 @@
             <visota_paza_2 value="59"/>
             <koef-t_kachestva_lopatki_rotora value="60"/>
             <shag_reber_staniny value="61"/>
-            <chislo_faz_statora value="62"/>
-            <kol-vo_elementarnych_provodnikov value="63"/>
+            <chislo_faz_statora value="0.022"/>
+            <kol-vo_elementarnych_provodnikov value="0.022"/>
             <plotnost_medi value="64"/>
             <udelnaja_teploemkost_medi_obmotki_statora value="65"/>
             <plotnost_stali value="66"/>

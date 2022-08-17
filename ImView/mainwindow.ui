@@ -163,7 +163,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>9</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QGridLayout" name="gridLayout_6">
@@ -1162,64 +1162,45 @@
        </layout>
       </widget>
       <widget class="QWidget" name="page_9">
-       <widget class="QPushButton" name="load_tepl_dannie">
-        <property name="geometry">
-         <rect>
-          <x>60</x>
-          <y>70</y>
-          <width>80</width>
-          <height>26</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Загрузить</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="save_tepl_dannie">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="geometry">
-         <rect>
-          <x>60</x>
-          <y>110</y>
-          <width>80</width>
-          <height>26</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Сохранить</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="tepl_result">
-        <property name="geometry">
-         <rect>
-          <x>60</x>
-          <y>150</y>
-          <width>80</width>
-          <height>26</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Расчет</string>
-        </property>
-        <property name="checkable">
-         <bool>false</bool>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_26">
-        <property name="geometry">
-         <rect>
-          <x>60</x>
-          <y>210</y>
-          <width>241</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>TextLabel</string>
-        </property>
-       </widget>
+       <layout class="QGridLayout" name="gridLayout_15">
+        <item row="0" column="0">
+         <widget class="QPushButton" name="load_tepl_dannie">
+          <property name="text">
+           <string>Загрузить</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="save_tepl_dannie">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>Сохранить</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="tepl_result">
+          <property name="text">
+           <string>Расчет</string>
+          </property>
+          <property name="checkable">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_26">
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QTableWidget" name="tableWidget_9"/>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="page_11">
        <widget class="QWidget" name="layoutWidget_2">

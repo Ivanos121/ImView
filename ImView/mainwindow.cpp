@@ -1493,6 +1493,54 @@ MainWindow::MainWindow(QWidget *parent)
     ui->lineEdit_17->setAlignment(Qt::AlignCenter);
     ui->lineEdit_18->setAlignment(Qt::AlignCenter);
 
+
+    ui->tableWidget_9->setRowCount(8);
+    ui->tableWidget_9->setColumnCount(3);
+    QStringList name_9;
+    name_9 << " № " << "Сигнал" << "Величина";
+    ui->tableWidget_9->setHorizontalHeaderLabels(name_9);
+    ui->tableWidget_9->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->tableWidget_9->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_9->verticalHeader()->setVisible(false);
+    ui->tableWidget_9->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget_9->setSelectionBehavior(QAbstractItemView :: SelectRows);
+    ui->tableWidget_9->setSelectionMode(QAbstractItemView :: SingleSelection);
+    ui->tableWidget_9->setColumnWidth(0, 100);
+    ui->tableWidget_9->setColumnWidth(1, 400);
+
+    for(int row = 0; row<ui->tableWidget_9->rowCount(); row++)
+    {
+        for(int column = 0; column<ui->tableWidget_9->columnCount(); column++)
+        {
+            ui->tableWidget_9->setItem(row, column, new QTableWidgetItem());
+
+        }
+    }
+
+    for (int i=0; i<8; i++)
+    {
+        if (ui->tableWidget_9->item(i, 0) != 0)
+        {
+            ui->tableWidget_9->item(i, 0)->setText(QString("%1").arg(i+1));
+            ui->tableWidget_9->item(i, 0)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+    ui->tableWidget_9->setItem(0, 1, new QTableWidgetItem("Ротор слева, °C"));
+    ui->tableWidget_9->setItem(1, 1, new QTableWidgetItem("Ротор справа, °C"));
+    ui->tableWidget_9->setItem(2, 1, new QTableWidgetItem("Станина слева, °C"));
+    ui->tableWidget_9->setItem(3, 1, new QTableWidgetItem("Станина справа, °C"));
+    ui->tableWidget_9->setItem(4, 1, new QTableWidgetItem("Вал, °C"));
+    ui->tableWidget_9->setItem(5, 1, new QTableWidgetItem("Клеммная коробка, °C"));
+    ui->tableWidget_9->setItem(6, 1, new QTableWidgetItem("Магнитопровод статора слева, °C"));
+    ui->tableWidget_9->setItem(7, 1, new QTableWidgetItem("Магнитопровод статора справа, °C"));
+
+    QPalette p9=ui->tableWidget_9->palette();
+    p9.setColor(QPalette::Base, QColor(225, 255, 255));
+    p9.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
+    ui->tableWidget_9->setPalette(p9);
+
+
     ui->tabWidget->setCurrentIndex(0);
     ui->widget_5->ui->tabWidget->setCurrentIndex(0);
     ui->widget_5->ui->tabWidget_2->setCurrentIndex(0);
@@ -5376,7 +5424,7 @@ void MainWindow::on_tepl_result_clicked()
 //            log(1+(base_tepl.delta_ai/(base_tepl.Dp1/2)));
 
             alpha_sigma = (((2*base_tepl.delta_ai)/(base_tepl.Dp1/2))*(base_tepl.lambda_v/(2*base_tepl.delta_ai)))/
-                        log(1+(base_tepl.delta_ai/(base_tepl.Dp1/2)));
+            log(1+(base_tepl.delta_ai/(base_tepl.Dp1/2)));
 
             //+Тепловая проводимость воздушного зазора:
             Lambda_sigma = (M_PI / 2) * (base_tepl.Di1 * base_tepl.L1 * alpha_sigma);
@@ -5484,6 +5532,45 @@ void MainWindow::on_tepl_result_clicked()
             //Тепловая проводимость оболочки двигателя к окружающей среде
             Lambda_p = Lambda_ct1 + Lambda_asch;
 
+            if (ui->tableWidget_9->item(0, 2) != 0)
+            {
+                ui->tableWidget_9->item(0, 2)->setText(QString::number(Lambda_ct,'f',3));
+            }
+
+            if (ui->tableWidget_9->item(1, 2) != 0)
+            {
+                ui->tableWidget_9->item(1, 2)->setText(QString::number(Lambda_adelta1,'f',3));
+            }
+
+            if (ui->tableWidget_9->item(2, 2) != 0)
+            {
+                ui->tableWidget_9->item(2, 2)->setText(QString::number(Lambda_a1,'f',3));
+            }
+
+            if (ui->tableWidget_9->item(3, 2) != 0)
+            {
+                ui->tableWidget_9->item(3, 2)->setText(QString::number(Lambda_delta1,'f',3));
+            }
+
+            if (ui->tableWidget_9->item(4, 2) != 0)
+            {
+                ui->tableWidget_9->item(4, 2)->setText(QString::number(alpha_sigma,'f',3));
+            }
+
+            if (ui->tableWidget_9->item(5, 2) != 0)
+            {
+                ui->tableWidget_9->item(5, 2)->setText(QString::number(Lambda_sigma,'f',3));
+            }
+
+            if (ui->tableWidget_9->item(6, 2) != 0)
+            {
+                ui->tableWidget_9->item(6, 2)->setText(QString::number(Lambda_1z1,'f',3));
+            }
+
+            if (ui->tableWidget_9->item(7, 2) != 0)
+            {
+                ui->tableWidget_9->item(7, 2)->setText(QString::number(Lambda_12,'f',3));
+            }
 
             //Решение СЛАУ
 
