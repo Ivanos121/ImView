@@ -37,20 +37,20 @@ Tepl_dannie::Tepl_dannie(QWidget *parent) :
 
     ui->tableWidget->item(10,0)->setText("z1 – число зубцов статора");
     ui->tableWidget->item(11,0)->setText("bz1 – ширина паза статора, м");
-    ui->tableWidget->item(12,0)->setText("Hz1 – высота зубца статора, м");
-    ui->tableWidget->item(13,0)->setText("lambda(ип1) – коэффициент теплопроводности пазовой изоляции");
-    ui->tableWidget->item(14,0)->setText("delta(ип1) – толщина пазовой изоляции");
-    ui->tableWidget->item(15,0)->setText("d’ – диаметр провода, м");
+    ui->tableWidget->item(12,0)->setText("lambda_с – высота зубца статора, м");
+    ui->tableWidget->item(13,0)->setText("Hz1 – высота зубца статора, м");
+    ui->tableWidget->item(14,0)->setText("lambda_ip1 – коэффициент теплопроводности пазовой изоляции");
+    ui->tableWidget->item(15,0)->setText("delta_ip1 – толщина пазовой изоляции");
     ui->tableWidget->item(16,0)->setText("Кз – коэффициент заполнения паза");
-    ui->tableWidget->item(17,0)->setText("delta - ff");
-    ui->tableWidget->item(18,0)->setText("lambda(экв) – эквивалентный	 коэффициент теплопроводности обмотки");
-    ui->tableWidget->item(19,0)->setText("Bp - fff");
+    ui->tableWidget->item(17,0)->setText("d1 - толщина пазовой изоляции");
+    ui->tableWidget->item(18,0)->setText("teta_m – допускаемая температура обмотки статора для данного класса нагревостойкости пазовой изоляции");
+    ui->tableWidget->item(19,0)->setText("Kp - оэффициент пропитки");
 
-    ui->tableWidget->item(20,0)->setText("sigma(ипр) – толщина изоляции провода, м");
-    ui->tableWidget->item(21,0)->setText("teta(м) – допускаемая температура обмотки статора для данного класса нагревостойкости пазовой изоляции");
-    ui->tableWidget->item(22,0)->setText("Kп -коэффициент пропитки");
-    ui->tableWidget->item(23,0)->setText("Kп2 - fff");
-    ui->tableWidget->item(24,0)->setText("d12 - fff");
+    ui->tableWidget->item(20,0)->setText("lambda_l – коэффициент теплопроводности пропиточного лака , м");
+    ui->tableWidget->item(21,0)->setText("lambda(эм) – коэффициент теплопроводности изоляции обмоточного провода");
+    ui->tableWidget->item(22,0)->setText("Bp -Ширина паза статора");
+    ui->tableWidget->item(23,0)->setText("sigma_ipr - Толщина изоляции провода");
+    ui->tableWidget->item(24,0)->setText("sigma_i - fff");
     ui->tableWidget->item(25,0)->setText("lambda(л) – коэффициент теплопроводности пропиточного лака");
     ui->tableWidget->item(26,0)->setText("lambda(эм) - коэффициент теплопроводности изоляции обмоточного провода");
     ui->tableWidget->item(27,0)->setText("sigma(i) - ddd");
@@ -91,8 +91,8 @@ Tepl_dannie::Tepl_dannie(QWidget *parent) :
     ui->tableWidget->item(59,0)->setText("Число фаз обмотки статора");
 
     ui->tableWidget->item(60,0)->setText("Количество элементарных проводников");
-    ui->tableWidget->item(61,0)->setText("Плотность меди");
-    ui->tableWidget->item(62,0)->setText("Удельная теплоемкость меди обмотки статора");
+    ui->tableWidget->item(61,0)->setText("Dp1 - радиус ротора");
+    ui->tableWidget->item(62,0)->setText("lambda_v - коэффициент теплопроводности воздуха");
     ui->tableWidget->item(63,0)->setText("lambda_v – наружный диаметр станины");
     ui->tableWidget->item(64,0)->setText("Удельная теплоемкость стали");
     ui->tableWidget->item(65,0)->setText("Удельное сопротивление меди");

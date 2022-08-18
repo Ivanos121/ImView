@@ -1494,7 +1494,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->lineEdit_18->setAlignment(Qt::AlignCenter);
 
 
-    ui->tableWidget_9->setRowCount(8);
+    ui->tableWidget_9->setRowCount(20);
     ui->tableWidget_9->setColumnCount(3);
     QStringList name_9;
     name_9 << " № " << "Сигнал" << "Величина";
@@ -1517,7 +1517,7 @@ MainWindow::MainWindow(QWidget *parent)
         }
     }
 
-    for (int i=0; i<8; i++)
+    for (int i=0; i<ui->tableWidget_9->rowCount(); i++)
     {
         if (ui->tableWidget_9->item(i, 0) != 0)
         {
@@ -1526,14 +1526,22 @@ MainWindow::MainWindow(QWidget *parent)
         }
     }
 
-    ui->tableWidget_9->setItem(0, 1, new QTableWidgetItem("Ротор слева, °C"));
-    ui->tableWidget_9->setItem(1, 1, new QTableWidgetItem("Ротор справа, °C"));
-    ui->tableWidget_9->setItem(2, 1, new QTableWidgetItem("Станина слева, °C"));
-    ui->tableWidget_9->setItem(3, 1, new QTableWidgetItem("Станина справа, °C"));
-    ui->tableWidget_9->setItem(4, 1, new QTableWidgetItem("Вал, °C"));
-    ui->tableWidget_9->setItem(5, 1, new QTableWidgetItem("Клеммная коробка, °C"));
-    ui->tableWidget_9->setItem(6, 1, new QTableWidgetItem("Магнитопровод статора слева, °C"));
-    ui->tableWidget_9->setItem(7, 1, new QTableWidgetItem("Магнитопровод статора справа, °C"));
+    ui->tableWidget_9->setItem(0, 1, new QTableWidgetItem("Lambda_ct"));
+    ui->tableWidget_9->setItem(1, 1, new QTableWidgetItem("Lambda_adelta1"));
+    ui->tableWidget_9->setItem(2, 1, new QTableWidgetItem("Lambda_a1"));
+    ui->tableWidget_9->setItem(3, 1, new QTableWidgetItem("Lambda_delta1"));
+    ui->tableWidget_9->setItem(4, 1, new QTableWidgetItem("Lambda_sigma"));
+    ui->tableWidget_9->setItem(5, 1, new QTableWidgetItem("Lambda_1z1"));
+    ui->tableWidget_9->setItem(6, 1, new QTableWidgetItem("Lambda_12"));
+    ui->tableWidget_9->setItem(7, 1, new QTableWidgetItem("Lambda_1ip1"));
+    ui->tableWidget_9->setItem(8, 1, new QTableWidgetItem("delta"));
+    ui->tableWidget_9->setItem(9, 1, new QTableWidgetItem("Lambda_ekv"));
+    ui->tableWidget_9->setItem(10, 1, new QTableWidgetItem("Lambda_epz"));
+    ui->tableWidget_9->setItem(11, 1, new QTableWidgetItem("Lambda_i1z"));
+    ui->tableWidget_9->setItem(12, 1, new QTableWidgetItem("Lambda_z"));
+    ui->tableWidget_9->setItem(13, 1, new QTableWidgetItem("Lambda_nz"));
+    ui->tableWidget_9->setItem(14, 1, new QTableWidgetItem("Lambda_i1a"));
+    ui->tableWidget_9->setItem(15, 1, new QTableWidgetItem("Lambda_ekpa"));
 
     QPalette p9=ui->tableWidget_9->palette();
     p9.setColor(QPalette::Base, QColor(225, 255, 255));
@@ -4937,7 +4945,7 @@ void MainWindow::on_tepl_result_clicked()
             base_tepl.delta_ip1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(15,1)->text().toDouble();
             base_tepl.d1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(16,1)->text().toDouble();
             base_tepl.Kz     = ui->widget_5->ui->widget_2->ui->tableWidget->item(17,1)->text().toDouble();
-            base_tepl.delta     = ui->widget_5->ui->widget_2->ui->tableWidget->item(18,1)->text().toDouble();
+            //base_tepl.delta     = ui->widget_5->ui->widget_2->ui->tableWidget->item(18,1)->text().toDouble();
             base_tepl.lambda_ekv   = ui->widget_5->ui->widget_2->ui->tableWidget->item(19,1)->text().toDouble();
 
             base_tepl.Bp   = ui->widget_5->ui->widget_2->ui->tableWidget->item(20,1)->text().toDouble();
@@ -5259,20 +5267,20 @@ void MainWindow::on_tepl_result_clicked()
             base_tepl.Hz1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(13,1)->text().toDouble();
             base_tepl.lambda_ip1    = ui->widget_5->ui->widget_2->ui->tableWidget->item(14,1)->text().toDouble();
             base_tepl.delta_ip1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(15,1)->text().toDouble();
-            base_tepl.d1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(16,1)->text().toDouble();
-            base_tepl.Kz     = ui->widget_5->ui->widget_2->ui->tableWidget->item(17,1)->text().toDouble();
-            base_tepl.delta     = ui->widget_5->ui->widget_2->ui->tableWidget->item(18,1)->text().toDouble();
-            base_tepl.lambda_ekv   = ui->widget_5->ui->widget_2->ui->tableWidget->item(19,1)->text().toDouble();
+            base_tepl.Kz      = ui->widget_5->ui->widget_2->ui->tableWidget->item(16,1)->text().toDouble();
+            base_tepl.d1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(17,1)->text().toDouble();
+            base_tepl.teta_m     = ui->widget_5->ui->widget_2->ui->tableWidget->item(18,1)->text().toDouble();
+            base_tepl.Kp   = ui->widget_5->ui->widget_2->ui->tableWidget->item(19,1)->text().toDouble();
 
-            base_tepl.Bp   = ui->widget_5->ui->widget_2->ui->tableWidget->item(20,1)->text().toDouble();
-            base_tepl.sigma_ipr    = ui->widget_5->ui->widget_2->ui->tableWidget->item(21,1)->text().toDouble();
-            base_tepl.teta_m     = ui->widget_5->ui->widget_2->ui->tableWidget->item(22,1)->text().toDouble();
-            base_tepl.Kp     = ui->widget_5->ui->widget_2->ui->tableWidget->item(23,1)->text().toDouble();
-            base_tepl.Kp2       = ui->widget_5->ui->widget_2->ui->tableWidget->item(24,1)->text().toDouble();
+            base_tepl.lambda_l   = ui->widget_5->ui->widget_2->ui->tableWidget->item(20,1)->text().toDouble();
+            base_tepl.lambda_em    = ui->widget_5->ui->widget_2->ui->tableWidget->item(21,1)->text().toDouble();
+            base_tepl.Bp     = ui->widget_5->ui->widget_2->ui->tableWidget->item(22,1)->text().toDouble();
+            base_tepl.sigma_ipr     = ui->widget_5->ui->widget_2->ui->tableWidget->item(23,1)->text().toDouble();
+            base_tepl.sigma_i       = ui->widget_5->ui->widget_2->ui->tableWidget->item(24,1)->text().toDouble();
             base_tepl.d12    = ui->widget_5->ui->widget_2->ui->tableWidget->item(25,1)->text().toDouble();
-            base_tepl.lambda_l    = ui->widget_5->ui->widget_2->ui->tableWidget->item(26,1)->text().toDouble();
-            base_tepl.lambda_em     = ui->widget_5->ui->widget_2->ui->tableWidget->item(27,1)->text().toDouble();
-            base_tepl.sigma_i = ui->widget_5->ui->widget_2->ui->tableWidget->item(28,1)->text().toDouble();
+            //base_tepl.sigma_i    = ui->widget_5->ui->widget_2->ui->tableWidget->item(26,1)->text().toDouble();
+            //base_tepl.lambda_em     = ui->widget_5->ui->widget_2->ui->tableWidget->item(27,1)->text().toDouble();
+           // base_tepl.sigma_i = ui->widget_5->ui->widget_2->ui->tableWidget->item(28,1)->text().toDouble();
             base_tepl.lambda_ek  = ui->widget_5->ui->widget_2->ui->tableWidget->item(29,1)->text().toDouble();
 
             base_tepl.lambda_c   = ui->widget_5->ui->widget_2->ui->tableWidget->item(30,1)->text().toDouble();
@@ -5310,7 +5318,7 @@ void MainWindow::on_tepl_result_clicked()
             base_tepl.alpha_c   = ui->widget_5->ui->widget_2->ui->tableWidget->item(59,1)->text().toDouble();
             base_tepl.delta_Kp  = ui->widget_5->ui->widget_2->ui->tableWidget->item(60,1)->text().toDouble();
             base_tepl.Dp1  = ui->widget_5->ui->widget_2->ui->tableWidget->item(61,1)->text().toDouble();
-            base_tepl.lambda_v   = ui->widget_5->ui->widget_2->ui->tableWidget->item(63,1)->text().toDouble();
+            base_tepl.lambda_v   = ui->widget_5->ui->widget_2->ui->tableWidget->item(62,1)->text().toDouble();
            // base_tepl.sig_vp  = ui->widget_5->ui->widget_2->ui->tableWidget->item(64,1)->text().toDouble();
            // base_tepl.h_z2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(65,1)->text().toDouble();
            // base_tepl.b_z2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(66,1)->text().toDouble();
@@ -5420,53 +5428,48 @@ void MainWindow::on_tepl_result_clicked()
             Lambda_delta1 = 1/((1/ Lambda_a1)+(1/ Lambda_adelta1)+(1/ Lambda_ct));
 
             //+Коэффициент теплоотдачи от ротора к внутреннему воздуху
-//            alpha_sigma = (((2*base_tepl.delta_ai)/(base_tepl.Dp1/2))*(base_tepl.lambda_v/base_tepl.delta_ai))/
-//            log(1+(base_tepl.delta_ai/(base_tepl.Dp1/2)));
-
             alpha_sigma = (((2*base_tepl.delta_ai)/(base_tepl.Dp1/2))*(base_tepl.lambda_v/(2*base_tepl.delta_ai)))/
             log(1+(base_tepl.delta_ai/(base_tepl.Dp1/2)));
 
             //+Тепловая проводимость воздушного зазора:
             Lambda_sigma = (M_PI / 2) * (base_tepl.Di1 * base_tepl.L1 * alpha_sigma);
 
-            ui->label_26->setText(QString::number(alpha_sigma,'f',6));
-
             //+Тепловая проводимость зубцов статора:
             Lambda_1z1 = (2 * base_tepl.Z1 * base_tepl.Bz1 * base_tepl.L1 * base_tepl.Kc1 * base_tepl.lambda_c1) / base_tepl.Hz1;
 
-            //Общая тепловая проводимость между статором и ротором
+            //+Общая тепловая проводимость между статором и ротором
             Lambda_12 = (Lambda_sigma * Lambda_1z1)/( Lambda_sigma + Lambda_1z1);
 
-            //Тепловая проводимость пазовой изоляции
+            //+Тепловая проводимость пазовой изоляции
             Lambda_1ip1 = (2 * base_tepl.Hz1 * base_tepl.Z1 * base_tepl.L1 * base_tepl.lambda_ip1)/base_tepl.delta_ip1;
 
-            //Воздушный зазор между проводами в пазе статора
+            //+Воздушный зазор между проводами в пазе статора
             delta = base_tepl.d1 * (0.022 + 0.5 * (1 / sqrt(base_tepl.Kz) - 1));
 
-            //Эквивалентная тепловая проводимость обмотки к зубцам
-            Lambda_epz = ((base_tepl.d1 + base_tepl.delta) * base_tepl.lambda_ekv * 2 * base_tepl.Hz1 * base_tepl.Z1 * base_tepl.L1)/
-            ((base_tepl.Bp - 2 * base_tepl.delta_ip1) * (base_tepl.sigma_ipr + base_tepl.delta));
-
-            //Эквивалентный коэффициент теплопроводности обмотки
+            //+Эквивалентный коэффициент теплопроводности обмотки
             Lambda_ekv = 0.00165*(1 + 0.0007 * base_tepl.teta_m)*(1 - 3.2 * base_tepl.d1 * (1 - 9.2 * base_tepl.Kp + 5.2 *
-            base_tepl.Kp2) + 81 * base_tepl.d12 )*( 2.11 * base_tepl.Kz * 1.15 - 0.32)*(base_tepl.lambda_l / 0.00162 * 0.33) *
-            (base_tepl.lambda_em/ 0.00143) * 0.25;
+            pow(base_tepl.Kp,2)) + 81 * pow(base_tepl.d1,2))*( 2.11 * pow(base_tepl.Kz,1.5) * 1.15 - 0.32)*pow((base_tepl.lambda_l / 0.00162 ),0.33) *
+            pow((base_tepl.lambda_em/ 0.00143),0.25);
 
-            //Тепловая проводимость воздушного зазора между пазовой изоляцией и зубцами статора
+            //+Эквивалентная тепловая проводимость обмотки к зубцам
+            Lambda_epz = ((base_tepl.d1 + delta) * Lambda_ekv * 2 * base_tepl.Hz1 * base_tepl.Z1 * base_tepl.L1)/
+            ((base_tepl.Bp - 2 * base_tepl.delta_ip1) * (base_tepl.sigma_ipr + delta));
+
+            //+Тепловая проводимость воздушного зазора между пазовой изоляцией и зубцами статора
             Lambda_i1z = (2 * base_tepl.Hz1 * base_tepl.L1 * base_tepl.Z1 * base_tepl.lambda_i)/base_tepl.sigma_i;
 
-            //Проводимость зубца статора в направлении теплового потока от пазовой части проводки
+            //+Проводимость зубца статора в направлении теплового потока от пазовой части проводки
             Lambda_z = base_tepl.Bz1 / (base_tepl.Z1 * base_tepl.Hz1 * base_tepl.L1 * base_tepl.Kc1 * base_tepl.lambda_с);
 
-            //Общая тепловая проводимость между пазовой частью обмотки статора и зубцами
+            //+Общая тепловая проводимость между пазовой частью обмотки статора и зубцами
             Lambda_nz = 1/((1/Lambda_1ip1)+(1/Lambda_epz)+(1/Lambda_i1z)+(1/Lambda_z));
 
-            //Тепловая проводимость воздушного зазора между пазовой изоляцией и спинкой статора
+            //+Тепловая проводимость воздушного зазора между пазовой изоляцией и спинкой статора
             Lambda_i1a = (base_tepl.Bp * base_tepl.L1 * base_tepl.Z1 * base_tepl.lambda_i)/base_tepl.sigma_i;
 
             //Эквивалентная тепловая проводимость обмотки к спинке
-            Lambda_ekpa = ((base_tepl.d1 + base_tepl.delta) * base_tepl.lambda_ek * base_tepl.Bp * base_tepl.L1 * base_tepl.Z1) /
-            ((base_tepl.Hz1 - 2 * base_tepl.delta_ip1) * (base_tepl.sigma_ipr + base_tepl.delta));
+            Lambda_ekpa = ((base_tepl.d1 + delta) * base_tepl.lambda_ek * base_tepl.Bp * base_tepl.L1 * base_tepl.Z1) /
+            ((base_tepl.Hz1 - 2 * base_tepl.delta_ip1) * (base_tepl.sigma_ipr + delta));
 
             //Тепловая проводимость пазовой изоляции
             Lambda_2ip1 = (base_tepl.Z1 * base_tepl.Bp * base_tepl.L1 * base_tepl.lambda_ip1)/base_tepl.delta_ip1;
@@ -5554,23 +5557,64 @@ void MainWindow::on_tepl_result_clicked()
 
             if (ui->tableWidget_9->item(4, 2) != 0)
             {
-                ui->tableWidget_9->item(4, 2)->setText(QString::number(alpha_sigma,'f',3));
+                ui->tableWidget_9->item(4, 2)->setText(QString::number(Lambda_sigma,'f',3));
             }
 
             if (ui->tableWidget_9->item(5, 2) != 0)
             {
-                ui->tableWidget_9->item(5, 2)->setText(QString::number(Lambda_sigma,'f',3));
+                ui->tableWidget_9->item(5, 2)->setText(QString::number(Lambda_1z1,'f',3));
             }
 
             if (ui->tableWidget_9->item(6, 2) != 0)
             {
-                ui->tableWidget_9->item(6, 2)->setText(QString::number(Lambda_1z1,'f',3));
+                ui->tableWidget_9->item(6, 2)->setText(QString::number(Lambda_12,'f',3));
             }
 
             if (ui->tableWidget_9->item(7, 2) != 0)
             {
-                ui->tableWidget_9->item(7, 2)->setText(QString::number(Lambda_12,'f',3));
+                ui->tableWidget_9->item(7, 2)->setText(QString::number(Lambda_1ip1,'f',3));
             }
+
+            if (ui->tableWidget_9->item(8, 2) != 0)
+            {
+                ui->tableWidget_9->item(8, 2)->setText(QString::number(delta,'f',6));
+            }
+
+            if (ui->tableWidget_9->item(9, 2) != 0)
+            {
+                ui->tableWidget_9->item(9, 2)->setText(QString::number(Lambda_ekv,'f',6));
+            }
+
+            if (ui->tableWidget_9->item(10, 2) != 0)
+            {
+                ui->tableWidget_9->item(10, 2)->setText(QString::number(Lambda_epz,'f',6));
+            }
+
+            if (ui->tableWidget_9->item(11, 2) != 0)
+            {
+                ui->tableWidget_9->item(11, 2)->setText(QString::number(Lambda_i1z,'f',6));
+            }
+
+            if (ui->tableWidget_9->item(12, 2) != 0)
+            {
+                ui->tableWidget_9->item(12, 2)->setText(QString::number(Lambda_z,'f',6));
+            }
+
+            if (ui->tableWidget_9->item(13, 2) != 0)
+            {
+                ui->tableWidget_9->item(13, 2)->setText(QString::number(Lambda_nz,'f',6));
+            }
+
+            if (ui->tableWidget_9->item(14, 2) != 0)
+            {
+                ui->tableWidget_9->item(14, 2)->setText(QString::number(Lambda_i1a,'f',6));
+            }
+
+            if (ui->tableWidget_9->item(15, 2) != 0)
+            {
+                ui->tableWidget_9->item(15, 2)->setText(QString::number(Lambda_ekpa,'f',6));
+            }
+
 
             //Решение СЛАУ
 
@@ -5718,7 +5762,7 @@ void MainWindow::on_tepl_result_clicked()
 
             //вывод тепловых проводимостей в таблицу
             //lambda_10=0.034;
-            lambda_10=Lambda_ct;
+            lambda_10=Lambda_1z1;
             //lambda_30=0.034;
             lambda_30=Lambda_sigma;
             lambda_k0=0.34;

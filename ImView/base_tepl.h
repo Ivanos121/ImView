@@ -23,7 +23,7 @@ double lambda_ip1;
 double delta_ip1;
 double d1;
 double Kz;
-double delta;
+//double delta;
 double lambda_ekv;
 
 double Bp;
