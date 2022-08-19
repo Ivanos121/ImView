@@ -51,20 +51,20 @@ Tepl_dannie::Tepl_dannie(QWidget *parent) :
     ui->tableWidget->item(22,0)->setText("Bp -Ширина паза статора");
     ui->tableWidget->item(23,0)->setText("sigma_ipr - Толщина изоляции провода");
     ui->tableWidget->item(24,0)->setText("sigma_i - fff");
-    ui->tableWidget->item(25,0)->setText("lambda(л) – коэффициент теплопроводности пропиточного лака");
-    ui->tableWidget->item(26,0)->setText("lambda(эм) - коэффициент теплопроводности изоляции обмоточного провода");
-    ui->tableWidget->item(27,0)->setText("sigma(i) - ddd");
-    ui->tableWidget->item(28,0)->setText("lambda_ek - fdff");
-    ui->tableWidget->item(29,0)->setText("lambda_c - dd;");
+    ui->tableWidget->item(25,0)->setText("lambda_ek – коэффициент теплопроводности пропиточного лака");
+    ui->tableWidget->item(26,0)->setText("lambda_mi - коэффициент теплопроводности материала обмотки статора");
+    ui->tableWidget->item(27,0)->setText("q_mi - суммарное сечение проводников в пазу статора");
+    ui->tableWidget->item(28,0)->setText("Lp1 - длина вылета лобовой части");
+    ui->tableWidget->item(29,0)->setText("lambda(mi) - dd;");
 
-    ui->tableWidget->item(30,0)->setText("lambda(mi) – коэффициент теплопроводности материала обмотки статора");
-    ui->tableWidget->item(31,0)->setText("q(mi) – суммарное сечение проводников в пазу статора");
-    ui->tableWidget->item(32,0)->setText("z_i - ddd;");
-    ui->tableWidget->item(33,0)->setText("Lp1 - fff;");
-    ui->tableWidget->item(34,0)->setText("lambda(ил1) – коэффициент теплопроводности лобовых частей");
+    ui->tableWidget->item(30,0)->setText("lambda_ekuz – fff");
+    ui->tableWidget->item(31,0)->setText("lambda_ekpa – fff");
+    ui->tableWidget->item(32,0)->setText("n - ddd;");
+    ui->tableWidget->item(33,0)->setText("Dv1 - fff;");
+    ui->tableWidget->item(34,0)->setText("nu – коэффициент теплопроводности лобовых частей");
     ui->tableWidget->item(35,0)->setText("Kл1 – коэффициент обдува лобовых частей");
-    ui->tableWidget->item(36,0)->setText("delta(ил1) – толщина изоляции лобовых частей");
-    ui->tableWidget->item(37,0)->setText("lambda_ekuz - fff");
+    ui->tableWidget->item(36,0)->setText("lambda_il – толщина изоляции лобовых частей");
+    ui->tableWidget->item(37,0)->setText("delta_il1 - fff");
     ui->tableWidget->item(38,0)->setText("lambda_ekpa - fff;");
     ui->tableWidget->item(39,0)->setText("L_li - fff;");
 

@@ -23,30 +23,30 @@ double lambda_ip1;
 double delta_ip1;
 double d1;
 double Kz;
-//double delta;
-double lambda_ekv;
-
-double Bp;
-double sigma_ipr;
 double teta_m;
 double Kp;
-double Kp2;
-double d12;
+
 double lambda_l;
 double lambda_em;
+double Bp;
+double sigma_ipr;
 double sigma_i;
 double lambda_ek;
-
-double lambda_c;
 double lambda_mi;
 double q_mi;
-double z_i;
 double Lp1;
+double Lambda_el;
+
+double lambda_ekuz;
+double lambda_ekpa;
+double n;
+double Dv1;
+double nu;
 double lambda_il;
 double K_l1;
 double delta_il1;
-double lambda_ekuz;
-double lambda_ekpa;
+//double lambda_ekuz;
+//double lambda_ekpa;
 
 double L_li;
 double alpha_l1;

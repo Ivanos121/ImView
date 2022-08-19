@@ -1494,7 +1494,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->lineEdit_18->setAlignment(Qt::AlignCenter);
 
 
-    ui->tableWidget_9->setRowCount(20);
+    ui->tableWidget_9->setRowCount(30);
     ui->tableWidget_9->setColumnCount(3);
     QStringList name_9;
     name_9 << " № " << "Сигнал" << "Величина";
@@ -1542,6 +1542,17 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget_9->setItem(13, 1, new QTableWidgetItem("Lambda_nz"));
     ui->tableWidget_9->setItem(14, 1, new QTableWidgetItem("Lambda_i1a"));
     ui->tableWidget_9->setItem(15, 1, new QTableWidgetItem("Lambda_ekpa"));
+    ui->tableWidget_9->setItem(16, 1, new QTableWidgetItem("Lambda_2ip1"));
+    ui->tableWidget_9->setItem(17, 1, new QTableWidgetItem("Lambda_a"));
+    ui->tableWidget_9->setItem(18, 1, new QTableWidgetItem("Lambda_na"));
+    ui->tableWidget_9->setItem(19, 1, new QTableWidgetItem("Lambda_za"));
+    ui->tableWidget_9->setItem(20, 1, new QTableWidgetItem("Lambda_pl"));
+    ui->tableWidget_9->setItem(21, 1, new QTableWidgetItem("Lambda_il"));
+    ui->tableWidget_9->setItem(22, 1, new QTableWidgetItem("Lambda_el"));
+    ui->tableWidget_9->setItem(23, 1, new QTableWidgetItem("Lambda_al1"));
+    ui->tableWidget_9->setItem(24, 1, new QTableWidgetItem("Lambda_l1"));
+
+
 
     QPalette p9=ui->tableWidget_9->palette();
     p9.setColor(QPalette::Base, QColor(225, 255, 255));
@@ -4946,23 +4957,23 @@ void MainWindow::on_tepl_result_clicked()
             base_tepl.d1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(16,1)->text().toDouble();
             base_tepl.Kz     = ui->widget_5->ui->widget_2->ui->tableWidget->item(17,1)->text().toDouble();
             //base_tepl.delta     = ui->widget_5->ui->widget_2->ui->tableWidget->item(18,1)->text().toDouble();
-            base_tepl.lambda_ekv   = ui->widget_5->ui->widget_2->ui->tableWidget->item(19,1)->text().toDouble();
+            //base_tepl.lambda_ekv   = ui->widget_5->ui->widget_2->ui->tableWidget->item(19,1)->text().toDouble();
 
             base_tepl.Bp   = ui->widget_5->ui->widget_2->ui->tableWidget->item(20,1)->text().toDouble();
             base_tepl.sigma_ipr    = ui->widget_5->ui->widget_2->ui->tableWidget->item(21,1)->text().toDouble();
             base_tepl.teta_m     = ui->widget_5->ui->widget_2->ui->tableWidget->item(22,1)->text().toDouble();
             base_tepl.Kp     = ui->widget_5->ui->widget_2->ui->tableWidget->item(23,1)->text().toDouble();
-            base_tepl.Kp2       = ui->widget_5->ui->widget_2->ui->tableWidget->item(24,1)->text().toDouble();
-            base_tepl.d12    = ui->widget_5->ui->widget_2->ui->tableWidget->item(25,1)->text().toDouble();
+            //base_tepl.Kp2       = ui->widget_5->ui->widget_2->ui->tableWidget->item(24,1)->text().toDouble();
+            //base_tepl.d12    = ui->widget_5->ui->widget_2->ui->tableWidget->item(25,1)->text().toDouble();
             base_tepl.lambda_l    = ui->widget_5->ui->widget_2->ui->tableWidget->item(26,1)->text().toDouble();
             base_tepl.lambda_em     = ui->widget_5->ui->widget_2->ui->tableWidget->item(27,1)->text().toDouble();
             base_tepl.sigma_i = ui->widget_5->ui->widget_2->ui->tableWidget->item(28,1)->text().toDouble();
             base_tepl.lambda_ek  = ui->widget_5->ui->widget_2->ui->tableWidget->item(29,1)->text().toDouble();
 
-            base_tepl.lambda_c   = ui->widget_5->ui->widget_2->ui->tableWidget->item(30,1)->text().toDouble();
+            //base_tepl.lambda_c   = ui->widget_5->ui->widget_2->ui->tableWidget->item(30,1)->text().toDouble();
             base_tepl.lambda_mi     = ui->widget_5->ui->widget_2->ui->tableWidget->item(31,1)->text().toDouble();
             base_tepl.q_mi     = ui->widget_5->ui->widget_2->ui->tableWidget->item(32,1)->text().toDouble();
-            base_tepl.z_i     = ui->widget_5->ui->widget_2->ui->tableWidget->item(33,1)->text().toDouble();
+           // base_tepl.z_i     = ui->widget_5->ui->widget_2->ui->tableWidget->item(33,1)->text().toDouble();
             base_tepl.Lp1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(34,1)->text().toDouble();
             base_tepl.lambda_il     = ui->widget_5->ui->widget_2->ui->tableWidget->item(35,1)->text().toDouble();
             base_tepl.K_l1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(36,1)->text().toDouble();
@@ -5277,22 +5288,22 @@ void MainWindow::on_tepl_result_clicked()
             base_tepl.Bp     = ui->widget_5->ui->widget_2->ui->tableWidget->item(22,1)->text().toDouble();
             base_tepl.sigma_ipr     = ui->widget_5->ui->widget_2->ui->tableWidget->item(23,1)->text().toDouble();
             base_tepl.sigma_i       = ui->widget_5->ui->widget_2->ui->tableWidget->item(24,1)->text().toDouble();
-            base_tepl.d12    = ui->widget_5->ui->widget_2->ui->tableWidget->item(25,1)->text().toDouble();
-            //base_tepl.sigma_i    = ui->widget_5->ui->widget_2->ui->tableWidget->item(26,1)->text().toDouble();
-            //base_tepl.lambda_em     = ui->widget_5->ui->widget_2->ui->tableWidget->item(27,1)->text().toDouble();
-           // base_tepl.sigma_i = ui->widget_5->ui->widget_2->ui->tableWidget->item(28,1)->text().toDouble();
-            base_tepl.lambda_ek  = ui->widget_5->ui->widget_2->ui->tableWidget->item(29,1)->text().toDouble();
+            base_tepl.lambda_ek    = ui->widget_5->ui->widget_2->ui->tableWidget->item(25,1)->text().toDouble();
+            base_tepl.lambda_mi    = ui->widget_5->ui->widget_2->ui->tableWidget->item(26,1)->text().toDouble();
+            base_tepl.q_mi     = ui->widget_5->ui->widget_2->ui->tableWidget->item(27,1)->text().toDouble();
+            base_tepl.Lp1 = ui->widget_5->ui->widget_2->ui->tableWidget->item(28,1)->text().toDouble();
+            base_tepl.Lambda_el  = ui->widget_5->ui->widget_2->ui->tableWidget->item(29,1)->text().toDouble();
 
-            base_tepl.lambda_c   = ui->widget_5->ui->widget_2->ui->tableWidget->item(30,1)->text().toDouble();
-            base_tepl.lambda_mi     = ui->widget_5->ui->widget_2->ui->tableWidget->item(31,1)->text().toDouble();
-            base_tepl.q_mi     = ui->widget_5->ui->widget_2->ui->tableWidget->item(32,1)->text().toDouble();
-            base_tepl.z_i     = ui->widget_5->ui->widget_2->ui->tableWidget->item(33,1)->text().toDouble();
-            base_tepl.Lp1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(34,1)->text().toDouble();
-            base_tepl.lambda_il     = ui->widget_5->ui->widget_2->ui->tableWidget->item(35,1)->text().toDouble();
-            base_tepl.K_l1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(36,1)->text().toDouble();
+            base_tepl.lambda_ekuz   = ui->widget_5->ui->widget_2->ui->tableWidget->item(30,1)->text().toDouble();
+            base_tepl.lambda_ekpa     = ui->widget_5->ui->widget_2->ui->tableWidget->item(31,1)->text().toDouble();
+            base_tepl.n     = ui->widget_5->ui->widget_2->ui->tableWidget->item(32,1)->text().toDouble();
+            base_tepl.Dv1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(33,1)->text().toDouble();
+            base_tepl.nu     = ui->widget_5->ui->widget_2->ui->tableWidget->item(34,1)->text().toDouble();
+            base_tepl.K_l1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(35,1)->text().toDouble();
+            base_tepl.lambda_il     = ui->widget_5->ui->widget_2->ui->tableWidget->item(36,1)->text().toDouble();
             base_tepl.delta_il1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(37,1)->text().toDouble();
-            base_tepl.lambda_ekuz     = ui->widget_5->ui->widget_2->ui->tableWidget->item(38,1)->text().toDouble();
-            base_tepl.lambda_ekpa      = ui->widget_5->ui->widget_2->ui->tableWidget->item(39,1)->text().toDouble();
+            //base_tepl.lambda_ekuz     = ui->widget_5->ui->widget_2->ui->tableWidget->item(38,1)->text().toDouble();
+           // base_tepl.lambda_ekpa      = ui->widget_5->ui->widget_2->ui->tableWidget->item(39,1)->text().toDouble();
 
             base_tepl.L_li    = ui->widget_5->ui->widget_2->ui->tableWidget->item(40,1)->text().toDouble();
             base_tepl.alpha_l1    = ui->widget_5->ui->widget_2->ui->tableWidget->item(41,1)->text().toDouble();
@@ -5411,7 +5422,7 @@ void MainWindow::on_tepl_result_clicked()
                     Lambda_2ip1,Lambda_a,Lambda_na,Lambda_za,Lambda_pl,Lambda_il,Lambda_el,Lambda_al1,Lambda_l1,
                     Lambda_lp2,Lambda_a2,Lambda_l2,Lambda_asch,Lambda_ast,Lambda_ai,alpha_stsumm,Lambda_ct1,ro_t,Krp1,Lambda_p,
                     alpha_sigma;
-
+            double Re1,wl,dek,nu, Nu1,alpha_l1;
 
 
 
@@ -5467,38 +5478,43 @@ void MainWindow::on_tepl_result_clicked()
             //+Тепловая проводимость воздушного зазора между пазовой изоляцией и спинкой статора
             Lambda_i1a = (base_tepl.Bp * base_tepl.L1 * base_tepl.Z1 * base_tepl.lambda_i)/base_tepl.sigma_i;
 
-            //Эквивалентная тепловая проводимость обмотки к спинке
+            //+Эквивалентная тепловая проводимость обмотки к спинке
             Lambda_ekpa = ((base_tepl.d1 + delta) * base_tepl.lambda_ek * base_tepl.Bp * base_tepl.L1 * base_tepl.Z1) /
             ((base_tepl.Hz1 - 2 * base_tepl.delta_ip1) * (base_tepl.sigma_ipr + delta));
 
-            //Тепловая проводимость пазовой изоляции
+            //+Тепловая проводимость пазовой изоляции
             Lambda_2ip1 = (base_tepl.Z1 * base_tepl.Bp * base_tepl.L1 * base_tepl.lambda_ip1)/base_tepl.delta_ip1;
 
-            //Проводимость спинки статора в направлении теплового потока от пазовой части обмотки
+            //+Проводимость спинки статора в направлении теплового потока от пазовой части обмотки
             Lambda_a = base_tepl.Ha1/((0.5 * 3.14 * (base_tepl.Da1 - base_tepl.Ha1) + base_tepl.Z1 * base_tepl.Bp) *
-            base_tepl.L1 * base_tepl.Kc1 * base_tepl.lambda_c);
+            base_tepl.L1 * base_tepl.Kc1 * base_tepl.lambda_c1);
 
-            //Общая тепловая проводимость между пазовой частью обмотки и спинкой статора
+            //+Общая тепловая проводимость между пазовой частью обмотки и спинкой статора
             Lambda_na = 1/((1/Lambda_2ip1) + (1/Lambda_ekpa)+(1/Lambda_i1a)+(1/Lambda_a));
 
-            //Проводимость между зубцом и спинкой статора
-            Lambda_za = base_tepl.L1 * base_tepl.Kc1 * base_tepl.lambda_c/(base_tepl.Hz1/( 2 * base_tepl.Z1 * base_tepl.Bz1) +
+            //+Проводимость между зубцом и спинкой статора
+            Lambda_za = base_tepl.L1 * base_tepl.Kc1 * base_tepl.lambda_c1/(base_tepl.Hz1/( 2 * base_tepl.Z1 * base_tepl.Bz1) +
             base_tepl.Ha1 / (2 * 3.14 * (base_tepl.Da1 - base_tepl.Ha1)));
 
-            //Тепловая проводимость между пазовой и лобовой частями обмотки статора
-            Lambda_pl = 12 * base_tepl.lambda_mi * base_tepl.q_mi * base_tepl.z_i / (base_tepl.L1 + base_tepl.Lp1);
+            //+hТепловая проводимость между пазовой и лобовой частями обмотки статора
+            Lambda_pl = 12 * base_tepl.lambda_mi * base_tepl.q_mi * base_tepl.Z1 / (base_tepl.L1 + base_tepl.Lp1);
 
-            //Тепловая проводимость изоляции
+            //+Тепловая проводимость изоляции
             Lambda_il= (base_tepl.lambda_il * 2 * (base_tepl.Hz1 + base_tepl.Bp) * base_tepl.L1 * base_tepl.Z1 *
             base_tepl.K_l1) / base_tepl.delta_il1;
 
-            //Эквивалентная тепловая проводимость лобовой части
-            Lambda_el = (base_tepl.lambda_ekuz + base_tepl.lambda_ekpa) * base_tepl.L_li / base_tepl.L1;
+            //+Эквивалентная тепловая проводимость лобовой части
+            Lambda_el = (base_tepl.lambda_ekuz + base_tepl.lambda_ekpa) * base_tepl.Lp1 / base_tepl.L1;
 
-            //Тепловая проводимость лобовых частей
-            Lambda_al1 = base_tepl.alpha_l1 * 2 * (base_tepl.Hz1 + base_tepl.Bp) * base_tepl.Lp1 * base_tepl.Z1 * base_tepl.K_l1;
+            //+Тепловая проводимость лобовых частей
+            wl = 0.022 *base_tepl.n * base_tepl.Dv1;
+            dek = 4 * base_tepl.Bp * base_tepl.Hz1 /(2 * base_tepl.Bp + base_tepl.Hz1);
+            Re1 = (wl * dek) / base_tepl.nu;
+            Nu1 = 0.103 * pow(Re1,0.66);
+            alpha_l1 = (Nu1 * base_tepl.lambda_v)/ base_tepl.Da1;
+            Lambda_al1 = alpha_l1 * 2 * (base_tepl.Hz1 + base_tepl.Bp) * base_tepl.Lp1 * base_tepl.Z1 * base_tepl.K_l1;
 
-            //Полная тепловая проводимость лобовой части обмотки статора к окружающей среде
+            //+Полная тепловая проводимость лобовой части обмотки статора к окружающей среде
             Lambda_l1 = 1 / ((1 / Lambda_il) + (1 / Lambda_al1) + (1 / Lambda_el));
 
             //Общая тепловая проводимость между лобовой и пазовой частями клетки статора
@@ -5615,6 +5631,49 @@ void MainWindow::on_tepl_result_clicked()
                 ui->tableWidget_9->item(15, 2)->setText(QString::number(Lambda_ekpa,'f',6));
             }
 
+            if (ui->tableWidget_9->item(16, 2) != 0)
+            {
+                ui->tableWidget_9->item(16, 2)->setText(QString::number(Lambda_2ip1,'f',6));
+            }
+
+            if (ui->tableWidget_9->item(17, 2) != 0)
+            {
+                ui->tableWidget_9->item(17, 2)->setText(QString::number(Lambda_a,'f',6));
+            }
+
+            if (ui->tableWidget_9->item(18, 2) != 0)
+            {
+                ui->tableWidget_9->item(18, 2)->setText(QString::number(Lambda_na,'f',6));
+            }
+
+            if (ui->tableWidget_9->item(19, 2) != 0)
+            {
+                ui->tableWidget_9->item(19, 2)->setText(QString::number(Lambda_za,'f',6));
+            }
+
+            if (ui->tableWidget_9->item(20, 2) != 0)
+            {
+                ui->tableWidget_9->item(20, 2)->setText(QString::number(Lambda_pl,'f',6));
+            }
+
+            if (ui->tableWidget_9->item(21, 2) != 0)
+            {
+                ui->tableWidget_9->item(21, 2)->setText(QString::number(Lambda_il,'f',6));
+            }
+
+            if (ui->tableWidget_9->item(22, 2) != 0)
+            {
+                ui->tableWidget_9->item(22, 2)->setText(QString::number(Lambda_el,'f',6));
+            }
+            if (ui->tableWidget_9->item(23, 2) != 0)
+            {
+                ui->tableWidget_9->item(23, 2)->setText(QString::number(Lambda_al1,'f',6));
+            }
+
+            if (ui->tableWidget_9->item(24, 2) != 0)
+            {
+                ui->tableWidget_9->item(24, 2)->setText(QString::number(Lambda_l1,'f',6));
+            }
 
             //Решение СЛАУ
 
