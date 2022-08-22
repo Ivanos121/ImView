@@ -6613,3 +6613,9 @@ void MainWindow::on_save_tepl_graph_file_clicked()
 }
 
 
+
+void MainWindow::on_horizontalSlider_valueChanged(int value)
+{
+    ui->lineEdit->setText(QString("%1").arg(value / 99.0 * 30));
+}
+

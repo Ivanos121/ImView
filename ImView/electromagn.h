@@ -46,9 +46,11 @@ private:
     QComboBox* combo2 = new QComboBox();
 
     QSerialPort *momentPort;
+    QTcpSocket plcSocket;
 
     void addDataLines();
     int connectMomentPort();
+    void connectTcpPort();
 
 };
 

@@ -133,6 +133,7 @@ private slots:
 
     void on_save_tepl_graph_file_clicked();
 
+    void on_horizontalSlider_valueChanged(int value);
 
 public:
     Ui::MainWindow *ui;

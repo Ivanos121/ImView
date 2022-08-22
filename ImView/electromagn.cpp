@@ -23,6 +23,32 @@ Model_el Model_el;
 QPoint p1,p2;
 QCursor curs;
 
+struct MomentInterpPoint
+{
+    double pos;
+    double M;
+};
+
+MomentInterpPoint momentInterpArray[9] = {{0.0, 1.14}, {10.0, 1.47}, {20.0, 3.26}, {30.0, 7.0},
+                                          {40.0, 13.3}, {50.0, 19.5}, {60.0, 25.2}, {70.0, 28.8},
+                                          {80.0, 31.1}};
+
+static double getPosValue(double M)
+{
+    double pos_interpolated;
+
+    for (int i = 0; i < 8; i++)
+    {
+        if (momentInterpArray[i].M <= M)
+        {
+            pos_interpolated = (momentInterpArray[i+1].pos - momentInterpArray[i].pos) /
+                    (momentInterpArray[i+1].M - momentInterpArray[i].M) *
+                    (M - momentInterpArray[i].M) + momentInterpArray[i].pos;
+        }
+    }
+    return pos_interpolated;
+}
+
 electromagn::electromagn(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::electromagn),
@@ -483,16 +509,18 @@ void electromagn::realtimeDataSlot()
 
         //Считывание значения времени работы Mc
         //double Mc_n = wf->item90->text().toDouble();
-        double Mc_n = wf->ui->horizontalSlider->value() / 99.0 * wf->item90->text().toDouble();
+        double Mc_n = wf->ui->horizontalSlider->value() / 99.0 * 30.0;
 
         QString S = wf->item20->text();
 
         double Mc;
         double tt = key;
+        bool motorOn = false;
 
         if(S == "Режим S1")
         {
             Mc = Mc_n;
+            motorOn = true;
         }
 
         if(S == "Режим S2")
@@ -500,10 +528,12 @@ void electromagn::realtimeDataSlot()
             if(tt<=tp)
             {
                 Mc=Mc_n;
+                motorOn = true;
             }
             if(tt>tp)
             {
                 Mc=0;
+                motorOn = false;
             }
         }
 
@@ -516,16 +546,53 @@ void electromagn::realtimeDataSlot()
             if(tt<tp)
             {
                 Mc=Mc_n;
+                motorOn = true;
             }
             if(tt>tp)
             {
                 Mc=0;
+                motorOn = false;
             }
         }
 
-        char value = (1.0 - Mc / wf->item90->text().toDouble()) * 144.0;
+        double pos = getPosValue(Mc);
+
+        char value = (1.0 - pos / 99.0) * 144.0;
         momentPort->write(&value, 1);
         momentPort->flush();
+
+        QByteArray buf;
+        buf.resize(12);
+        buf.fill(0);
+        buf[0] = 0x00; // Transaction identifier
+        buf[1] = 0x01; // Transaction identifier
+
+        buf[2] = 0x00; // Protocol identifier
+        buf[3] = 0x00; // Protocol identifier
+
+        buf[4] = 0x00; // Packet length
+        buf[5] = 0x06; // Packet length
+
+        buf[6] = 0x01; // Slave id
+
+        buf[7] = 0x06; // Code - write register
+
+        buf[8] = 0x00; // Register Address
+        buf[9] = 0x00; // Register Address
+
+        if (motorOn)
+        {
+            buf[10] = 0x00; // Value
+            buf[11] = 0x01; // Value
+        }
+        else
+        {
+            buf[10] = 0x00; // Value
+            buf[11] = 0x02; // Value
+        }
+
+        plcSocket.write(buf, buf.length());
+        plcSocket.waitForBytesWritten();
 
         nabludatel->rasch(dataSource);
 
@@ -903,6 +970,11 @@ int electromagn::connectMomentPort()
     return 0;
 }
 
+void electromagn::connectTcpPort()
+{
+    plcSocket.connectToHost("10.0.6.10", 502);
+}
+
 void electromagn::raschet_el()
 {
     QSettings settings;
@@ -918,6 +990,7 @@ void electromagn::raschet_el()
     {
         //QMessageBox::critical(this, "Ошибка!", "Выбран первый пункт");
         //БВАС без датчика скорости + наблюдатель скорости
+        connectTcpPort();
         if (connectMomentPort() == 1)
         {
             QMessageBox::critical(this, "Ошибка!", "Порт регулятора");
@@ -956,6 +1029,7 @@ void electromagn::raschet_el()
 
     if(wf->item80->text() == "БВАСv1 + наблюдатель скорости (с датчиком скорости)")
     {
+        connectTcpPort();
         if (connectMomentPort() == 1)
         {
             QMessageBox::critical(this, "Ошибка!", "Порт регулятора");
@@ -996,6 +1070,7 @@ void electromagn::raschet_el()
 
     if(wf->item80->text() == "БВАСv2 + наблюдатель скорости (без датчика скорости)")
     {
+        connectTcpPort();
         if (connectMomentPort() == 1)
         {
             QMessageBox::critical(this, "Ошибка!", "Порт регулятора");
@@ -1044,6 +1119,7 @@ void electromagn::raschet_el()
 
     if(wf->item80->text() == "БВАСv2 + наблюдатель скорости (с датчиком скорости)")
     {
+        connectTcpPort();
         if (connectMomentPort() == 1)
         {
             QMessageBox::critical(this, "Ошибка!", "Порт регулятора");
@@ -1134,6 +1210,32 @@ void electromagn::stop()
 
         if (dataSource != nullptr )
         {
+            QByteArray buf;
+            buf.resize(12);
+            buf.fill(0);
+            buf[0] = 0x00; // Transaction identifier
+            buf[1] = 0x01; // Transaction identifier
+
+            buf[2] = 0x00; // Protocol identifier
+            buf[3] = 0x00; // Protocol identifier
+
+            buf[4] = 0x00; // Packet length
+            buf[5] = 0x06; // Packet length
+
+            buf[6] = 0x01; // Slave id
+
+            buf[7] = 0x06; // Code - write register
+
+            buf[8] = 0x00; // Register Address
+            buf[9] = 0x00; // Register Address
+
+            buf[10] = 0x00; // Value
+            buf[11] = 0x02; // Value
+
+            plcSocket.write(buf, buf.length());
+            plcSocket.waitForBytesWritten();
+            plcSocket.disconnectFromHost();
+
             momentPort->close();
             delete momentPort;
             dataSource->stop();

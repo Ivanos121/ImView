@@ -11,7 +11,7 @@
             <Obchaja_ploschad_setki_kogucha value="7"/>
             <Ploschad_sechenia_v_meste_povorota_k_rabochemu_kolesu value="8"/>
             <Ugol_povorota_potoka_k_vchodnim_kromkam_lopatok_rabochego_kolesa value="9"/>
-            <Ploschad_sechenia_v_meste_povorota_pered_vchodom_v megrebernye_kanaly value="10"/>
+            <Ploschad_sechenia_v_meste_povorota_pered_vchodom_v_megrebernye_kanaly value="10"/>
             <Ugol_povorota_potoka_pered_vhodom_v_megrebernye_kanaly value="11"/>
             <Ploschad_sechenia_pered_vhodom_v_megrebernye_kanaly value="12"/>
             <Ploschad_sechenia_megrebernyh_kanalov_ot_staniny_do_koguha_ventilatora value="13"/>

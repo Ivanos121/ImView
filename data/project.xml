@@ -5,7 +5,7 @@
             <project_name value="Имя сеанса"/>
             <combobox_1 value="Внутренний источник данных"/>
             <project_path value="Указать каталог"/>
-            <combobox_2 value="БВАСv2 + наблюдатель скорости (без датчика скорости)"/>
+            <combobox_2 value="БВАСv2 + наблюдатель скорости (с датчиком скорости)"/>
             <project_path_2 value="Указать каталог"/>
             <checkbox_1 boolean="false"/>
             <checkbox_2 boolean="false"/>
@@ -20,7 +20,7 @@
             <coeff_4 value="0"/>
             <coeff_5 value="0"/>
             <coeff_6 value="0"/>
-            <combobox_4 value="Режим S3"/>
+            <combobox_4 value="Режим S1"/>
             <time_cikle value="10"/>
             <time_raboty value="5"/>
             <moment value="20"/>

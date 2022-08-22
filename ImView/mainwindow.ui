@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1116</width>
-    <height>746</height>
+    <height>748</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -163,7 +163,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>5</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QGridLayout" name="gridLayout_6">
@@ -876,7 +876,7 @@
            <item>
             <widget class="QSlider" name="horizontalSlider">
              <property name="value">
-              <number>20</number>
+              <number>0</number>
              </property>
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
