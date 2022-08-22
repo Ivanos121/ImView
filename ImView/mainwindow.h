@@ -107,9 +107,13 @@ private slots:
     void on_pushButton_5_clicked(bool checked);
     void on_LoadProgect_clicked();
     void on_save_tepl_dannie_clicked();
+    void on_save_Vent_dannie_clicked();
     void on_load_tepl_dannie_clicked();
+    void on_load_Vent_dannie_clicked();
     void LoadTeplDannie(QString str);
+    void LoadVentDannie(QString str);
     void on_tepl_result_clicked();
+    void on_vent_result_clicked();
     void createUndoStackAndActions();
 
     void on_radioButton_toggled(bool checked);

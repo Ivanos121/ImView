@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1116</width>
-    <height>768</height>
+    <height>746</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -28,7 +28,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>6</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -163,7 +163,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>9</number>
+       <number>5</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QGridLayout" name="gridLayout_6">
@@ -1020,8 +1020,19 @@
       </widget>
       <widget class="QWidget" name="page_10">
        <layout class="QGridLayout" name="gridLayout_11">
+        <item row="2" column="0">
+         <widget class="QPushButton" name="save_Vent_dannie">
+          <property name="text">
+           <string>Сохранить</string>
+          </property>
+         </widget>
+        </item>
         <item row="1" column="0">
-         <widget class="QTableWidget" name="tableWidget_7"/>
+         <widget class="QPushButton" name="load_Vent_dannie">
+          <property name="text">
+           <string>Загрузить</string>
+          </property>
+         </widget>
         </item>
         <item row="0" column="0">
          <widget class="QLabel" name="label_8">
@@ -1030,17 +1041,17 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
-         <widget class="QPushButton" name="pushButton_3">
+        <item row="3" column="0">
+         <widget class="QPushButton" name="vent_result">
           <property name="text">
-           <string>Загрузить</string>
+           <string>Расчет</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="0">
-         <widget class="QPushButton" name="pushButton_6">
-          <property name="text">
-           <string>Сохранить</string>
+        <item row="4" column="0">
+         <widget class="QTableWidget" name="tableWidget_7">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
           </property>
          </widget>
         </item>

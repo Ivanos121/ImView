@@ -45,26 +45,26 @@ double nu;
 double lambda_il;
 double K_l1;
 double delta_il1;
-//double lambda_ekuz;
-//double lambda_ekpa;
-
-double L_li;
-double alpha_l1;
 double lambda_m2;
 double qc;
-double Z2;
+
 double L2;
 double Bk;
-double alpha_а2;
+double Z2;
+double u_rot;
+double Dl;
 double S_l2;
-double alpha_asch;
-
 double S_isch;
-double alpha_ast;
 double S_ist;
-double alpha_st;
 double alpha_r;
+double alpha_st;
+
+double h_p;
+double t_p;
+double n_p;
+double a_p;
 double D_ct;
+double u2;
 double Krp;
 double Hp;
 double tp;
@@ -74,20 +74,35 @@ double nu_l;
 double delta_Kp;
 double Dp1;
 double lambda_v;
-double gm_m;
-double c_m;
-double gm_c;
-double c_ct;
-double ro_m;
+double n2;
+double D2p;
+double D1p;
+double epsilon1;
+double epsilon2;
 
-double P2;
-double U1;
-double n_u;
-double cos_f;
-double ro_al;
-double D_kzk;
-double k_obm;
-double k_sk;
+double epsilon3;
+double epsilon4;
+double epsilon5;
+double epsilon6;
+double ro;
+double b;
+double Sotv;
+double S0;
+
+double S1;
+double S2;
+double S3;
+double S4;
+double fi;
+double fi2;
+double cosf;
+double K;
+double nu2;
+
+double alpha1;
+double alpha2;
+
+
 };
 
 extern Base_tepl base_tepl;
