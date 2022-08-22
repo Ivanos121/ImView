@@ -135,6 +135,12 @@ private slots:
 
     void on_horizontalSlider_valueChanged(int value);
 
+    void on_radioButton_11_toggled(bool checked);
+
+    void on_radioButton_12_toggled(bool checked);
+
+    void on_radioButton_13_toggled(bool checked);
+
 public:
     Ui::MainWindow *ui;
     AboutDialog *rsc;

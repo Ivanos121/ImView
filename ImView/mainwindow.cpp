@@ -70,6 +70,7 @@ double dP_zp,dP_zc,dP_c3,dP_pс,dP_pz,dP_l22,dP_l14,dP_pl1,dP_pl2;
 double d_teta_zp,d_teta_zc,d_teta_c3,d_teta_pc,d_teta_pz,d_teta_l22,d_teta_l14,d_teta_pl1,d_teta_pl2,
 d_teta_10,d_teta_30,d_teta_k0,d_teta_50,d_teta_3k,d_teta_21,d_teta_c2,d_teta_c4,d_teta_45,
 d_teta_pb,d_teta_b5,d_teta_p5,d_teta_p2;
+double H0, Qmax, Z0, Z1, Z2, Z3, Z4, Z5, Z6, Qp, Hp, Vcp, Pvent;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -5208,7 +5209,7 @@ void MainWindow::LoadVentDannie(QString str)
                     }
                 }
 
-                else if(xmlReader.name() == "Ploschad_sechenia_v_meste_povorota_pered_vchodom_v megrebernye_kanaly")
+                else if(xmlReader.name() == "Ploschad_sechenia_v_meste_povorota_pered_vchodom_v_megrebernye_kanaly")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -6423,7 +6424,7 @@ void MainWindow::on_tepl_result_clicked()
 
 void MainWindow::on_vent_result_clicked()
 {
-    double H0, Qmax, Z0, Z1, Z2, Z3, Z4, Z5, Z6, Qp, Hp, Vcp, Pvent;
+
     if (item34->text() == "Выберите режим")
     {
         QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
@@ -6468,6 +6469,7 @@ void MainWindow::on_vent_result_clicked()
 
             //Сопротивление косого входа в межреберные каналы
             base_tepl.epsilon4 = 0.5;
+            base_tepl.cosf = 0.7;
             Z4 = base_tepl.epsilon4 * (base_tepl.ro / (2 * pow( base_tepl.S4,2) * pow(base_tepl.cosf,2)));
 
             //Сопротивление поворота потока в межреберных каналах под кожухом
@@ -6619,3 +6621,92 @@ void MainWindow::on_horizontalSlider_valueChanged(int value)
     ui->lineEdit->setText(QString("%1").arg(value / 99.0 * 30));
 }
 
+
+void MainWindow::on_radioButton_11_toggled(bool checked)
+{
+    if (item34->text() == "Выберите режим")
+    {
+        QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
+    }
+    else
+    {
+        if (item34->text() == "Статика")
+        {
+            if (checked)
+            {
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text909').html('Z<tspan style=\"font-size: 15px;\" dy=\"3\">1</tspan>');"));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text913').html('Z<tspan style=\"font-size: 15px;\" dy=\"3\">2</tspan>');"));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text917').html('Z<tspan style=\"font-size: 15px;\" dy=\"3\">3</tspan>');"));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text921').html('Z<tspan style=\"font-size: 15px;\" dy=\"3\">4</tspan>');"));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text925').html('Z<tspan style=\"font-size: 15px;\" dy=\"3\">5</tspan>');"));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text929').html('Z<tspan style=\"font-size: 15px;\" dy=\"3\">6</tspan>');"));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text953').html('Q<tspan style=\"font-size: 15px;\" dy=\"3\">p</tspan>');"));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text941').html('H<tspan style=\"font-size: 15px;\" dy=\"3\">p</tspan>');"));
+
+            }
+        }
+    }
+}
+
+
+void MainWindow::on_radioButton_12_toggled(bool checked)
+{
+    if (item34->text() == "Выберите режим")
+    {
+        QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
+    }
+    else
+    {
+        if (item34->text() == "Статика")
+        {
+            if (checked)
+            {
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text909').text('%1 °C');").arg(Z1,0,'f',3));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text913' ).text('%1 °C');").arg(Z2, 0, 'f', 2));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text917').text('%1 °C');").arg(Z3, 0, 'f', 2));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text921').text('%1 °C');").arg(Z4, 0, 'f', 2));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text925').text('%1 °C');").arg(Z5, 0, 'f', 2));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text929').text('%1 °C');").arg(Z6, 0, 'f', 2));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text953' ).text('%1 °C');").arg(Qp, 0, 'f', 2));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text941').text('%1 °C');").arg(Hp, 0, 'f', 2));                           }
+        }
+    }
+}
+
+
+void MainWindow::on_radioButton_13_toggled(bool checked)
+{
+    if (item34->text() == "Выберите режим")
+    {
+        QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
+    }
+    else
+    {
+        if (item34->text() == "Статика")
+        {
+            if (checked)
+            {
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text909').hide();"));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text913').hide();"));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text917').hide();"));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text921').hide();"));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text925').hide();"));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text929').hide();"));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text953').hide();"));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text941').hide();"));
+            }
+            else
+            {
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text909').show();"));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text913').show();"));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text917').show();"));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text921').show();"));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text925').show();"));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text929').show();"));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text1011').show();"));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text953').show();"));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text941').show();"));
+            }
+        }
+    }
+}
