@@ -77,11 +77,7 @@ vent_model::vent_model(QWidget *parent) :
 
     for (int i=0; i<ui->tableWidget->rowCount(); i++)
     {
-//        if (ui->tableWidget->item(i, 0) != 0)
-//        {
-//            ui->tableWidget->item(i, 0)->setText(QString("%1").arg(i+1));
-//            ui->tableWidget->item(i, 0)->setTextAlignment(Qt::AlignCenter);
-//        }
+
         if (ui->tableWidget->item(i, 1) != 0)
         {
             ui->tableWidget->item(i, 1)->setTextAlignment(Qt::AlignCenter);
