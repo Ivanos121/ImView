@@ -102,6 +102,8 @@ private slots:
 
     void on_acceptButton_clicked();
 
+    void on_testPribor_clicked();
+
 protected:
     void showEvent(QShowEvent *event);
     void closeEvent(QCloseEvent *e);
@@ -135,14 +137,12 @@ private:
     QString fileName;
     CheckBoxHeader* headerr;
     QTimer timer;
-    QProgressBar *progress;
     QString curFile;
     enum { MaxRecentFiles = 5 };
     QAction *recentFileActs[MaxRecentFiles];
     QAction *separatorAct;
     bool isChanged = false;
     QWebEngineView * view;
-    QStatusBar *statusbar;
 
     qint64 startTime;
 

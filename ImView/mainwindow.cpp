@@ -1735,6 +1735,115 @@ MainWindow::MainWindow(QWidget *parent)
     p_10.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
     ui->tableWidget_10->setPalette(p_10);
 
+    ui->tableWidget_11->setRowCount(10);
+    ui->tableWidget_11->setColumnCount(4);
+    QStringList name_11;
+    name_11 << "Величина" << "Обозначение" << "Значение" << "Размерность";
+    ui->tableWidget_11->setHorizontalHeaderLabels(name_11);
+    ui->tableWidget_11->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableWidget_11->setSelectionBehavior(QAbstractItemView :: SelectRows);
+    ui->tableWidget_11->setSelectionMode(QAbstractItemView :: SingleSelection);
+    ui->tableWidget_11->verticalHeader()->setVisible(true);
+    ui->tableWidget_11->resizeColumnsToContents();
+
+    for(int row = 0; row<ui->tableWidget_11->rowCount(); row++)
+    {
+        for(int column = 0; column<ui->tableWidget_11->columnCount(); column++)
+        {
+            ui->tableWidget_11->setItem(row, column, new QTableWidgetItem());
+
+        }
+    }
+
+    ui->tableWidget_11->setItem(0, 0, new QTableWidgetItem("Внутренний расчетный диаметр вентилятора"));
+    ui->tableWidget_11->setItem(1, 0, new QTableWidgetItem("Внешний расчетный диаметр вентилятора"));
+    ui->tableWidget_11->setItem(2, 0, new QTableWidgetItem("Ширина лопатки вентилятора"));
+    ui->tableWidget_11->setItem(3, 0, new QTableWidgetItem("Частота вращения вентилятора"));
+    ui->tableWidget_11->setItem(4, 0, new QTableWidgetItem("Плотность воздуха"));
+    ui->tableWidget_11->setItem(5, 0, new QTableWidgetItem("Суммарная площадь отверстий в сетке кожуха"));
+    ui->tableWidget_11->setItem(6, 0, new QTableWidgetItem("Общая площадь сетки кожуха"));
+    ui->tableWidget_11->setItem(7, 0, new QTableWidgetItem("Площадь сечения в месте поворота к рабочему колесу"));
+    ui->tableWidget_11->setItem(8, 0, new QTableWidgetItem("Угол поворота потока к входным кромкам лопаток рабочего колеса"));
+    ui->tableWidget_11->setItem(9, 0, new QTableWidgetItem("Площадь сечения в месте поворота перед входом в межреберные каналы"));
+    ui->tableWidget_11->setItem(10, 0, new QTableWidgetItem("Угол поворота потока перед входом в межреберные каналы"));
+    ui->tableWidget_11->setItem(11, 0, new QTableWidgetItem("Площадь сечения перед входом в межреберные каналы"));
+    ui->tableWidget_11->setItem(12, 0, new QTableWidgetItem("Площадь сечения межреберных каналов от станины до кожуха вентилятора"));
+    ui->tableWidget_11->setItem(13, 0, new QTableWidgetItem("Угол натекания потока на ребра станины"));
+    ui->tableWidget_11->setItem(14, 0, new QTableWidgetItem("Угол поворота потока в межреберных каналах"));
+
+    ui->tableWidget_11->setItem(0, 1, new QTableWidgetItem("D1р"));
+    ui->tableWidget_11->setItem(1, 1, new QTableWidgetItem("D2р"));
+    ui->tableWidget_11->setItem(2, 1, new QTableWidgetItem("b"));
+    ui->tableWidget_11->setItem(3, 1, new QTableWidgetItem("n"));
+    ui->tableWidget_11->setItem(4, 1, new QTableWidgetItem("ro"));
+    ui->tableWidget_11->setItem(5, 1, new QTableWidgetItem("Sotv"));
+    ui->tableWidget_11->setItem(6, 1, new QTableWidgetItem("S0"));
+    ui->tableWidget_11->setItem(7, 1, new QTableWidgetItem("S1"));
+    ui->tableWidget_11->setItem(8, 1, new QTableWidgetItem("alpha1"));
+    ui->tableWidget_11->setItem(9, 1, new QTableWidgetItem("S2"));
+    ui->tableWidget_11->setItem(10, 1, new QTableWidgetItem("alpha2"));
+    ui->tableWidget_11->setItem(11, 1, new QTableWidgetItem("S3"));
+    ui->tableWidget_11->setItem(12, 1, new QTableWidgetItem("S4"));
+    ui->tableWidget_11->setItem(13, 1, new QTableWidgetItem("fi"));
+    ui->tableWidget_11->setItem(14, 1, new QTableWidgetItem("fi2"));
+
+    ui->tableWidget_11->setItem(0, 3, new QTableWidgetItem("м"));
+    ui->tableWidget_11->setItem(1, 3, new QTableWidgetItem("м"));
+    ui->tableWidget_11->setItem(2, 3, new QTableWidgetItem("м"));
+    ui->tableWidget_11->setItem(3, 3, new QTableWidgetItem("об/мин"));
+    ui->tableWidget_11->setItem(4, 3, new QTableWidgetItem("кг/м3"));
+    ui->tableWidget_11->setItem(5, 3, new QTableWidgetItem("м2"));
+    ui->tableWidget_11->setItem(6, 3, new QTableWidgetItem("м2"));
+    ui->tableWidget_11->setItem(7, 3, new QTableWidgetItem("м2"));
+    ui->tableWidget_11->setItem(8, 3, new QTableWidgetItem("град."));
+    ui->tableWidget_11->setItem(9, 3, new QTableWidgetItem("град."));
+    ui->tableWidget_11->setItem(10, 3, new QTableWidgetItem("alpha2"));
+    ui->tableWidget_11->setItem(11, 3, new QTableWidgetItem("м2"));
+    ui->tableWidget_11->setItem(12, 3, new QTableWidgetItem("м2"));
+    ui->tableWidget_11->setItem(13, 3, new QTableWidgetItem("град."));
+    ui->tableWidget_11->setItem(14, 3, new QTableWidgetItem("град."));
+
+    for (int i=0; i<ui->tableWidget_11->rowCount(); i++)
+    {
+
+        if (ui->tableWidget_11->item(i, 1) != 0)
+        {
+            ui->tableWidget_11->item(i, 1)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget_11->item(i, 3) != 0)
+        {
+            ui->tableWidget_11->item(i, 3)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+    //запрет редактирования первого столбца
+    for(int row = 0; row<ui->tableWidget_11->rowCount(); row++)
+    {
+        if (ui->tableWidget_11->item(row,0) != 0)
+        {
+            ui->tableWidget_11->item(row,0)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+        if (ui->tableWidget_11->item(row,1) != 0)
+        {
+            ui->tableWidget_11->item(row,1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+        if (ui->tableWidget_11->item(row,2) != 0)
+        {
+            ui->tableWidget_11->item(row,2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled|Qt::ItemIsEditable);
+            ui->tableWidget_11->item(row,2)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget_11->item(row,3) != 0)
+        {
+            ui->tableWidget_11->item(row,3)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+    }
+
+    QPalette p_11=ui->tableWidget_11->palette();
+    p_11.setColor(QPalette::Base, QColor(255, 255, 191));
+    p_11.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
+    ui->tableWidget_10->setPalette(p_11);
+
+
     ui->tabWidget->setCurrentIndex(0);
     ui->widget_5->ui->tabWidget->setCurrentIndex(0);
     ui->widget_5->ui->tabWidget_2->setCurrentIndex(0);
@@ -3095,7 +3204,17 @@ void MainWindow::tabClicked_4()
     if(ui->widget_6->ui->tabWidget->currentIndex() == 3)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(12);
+        ui->stackedWidget->setCurrentIndex(13);
+    }
+    if(ui->widget_6->ui->tabWidget->currentIndex() == 4)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(14);
+    }
+    if(ui->widget_6->ui->tabWidget->currentIndex() == 5)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(13);
     }
 }
 

@@ -50,6 +50,8 @@ Kalibr::Kalibr(QWidget *parent) :
     ui->comboBox_19->addItem(QStringLiteral("БВАСv1"));
     ui->comboBox_19->addItem(QStringLiteral("БВАСv2"));
 
+    ui->progress->setVisible(false);
+
 
     connect(&timer, &QTimer::timeout, this, &Kalibr::timerTimeout);
 }
@@ -251,11 +253,6 @@ void Kalibr::open_sdb()
     connect(modell, &QSqlTableModel::dataChanged,this, &Kalibr::selectRows);
 
     setDisabledCells();
-    QStatusBar *bar = new QStatusBar(this);
-    progress = new QProgressBar(bar);
-    progress->setVisible(false);
-    bar->addWidget(progress,1);
-    progress->setTextVisible(false);
     setStyleSheet("QProgressBar {border: 2px solid grey;height: 15px} QProgressBar::chunk {background-color: #55FF55;width: 20px}");
 
     //настройка таблицы вывода данных
@@ -582,17 +579,11 @@ void Kalibr::timerTimeout()
                 else if(value == "WORD16(Little-endian)")
                 {}
                 else if(value == "LONGINT32(Little-endian)")
-                {
-                    ui->tableWidget->item(i, 2)->setText(QString("%1").arg(QString::number((double)rawBEValue / pow(10,k), 'f', k)));
-                }
+                {}
                 else if(value == "DWORD32(Little-endian)")
                 {}
                 else if(value == "FLOAT32(Little-endian)")
-                {
-                    RawAndFloat convertedValue;
-                    convertedValue.rawValue = rawBEValue;
-                    ui->tableWidget->item(i, 2)->setText(QString("%1").arg(QString::number(convertedValue.floatValue, 'f', k)));
-                }
+                {}
                 else if(value == "INT16(Big-endian)")
                 {}
                 else if(value == "WORD16(Big-endian)")
@@ -604,11 +595,17 @@ void Kalibr::timerTimeout()
                 else if(value == "FLOAT32(Big-endian)")
                 {}
                 else if(value == "LONGINT32(Middle-endian)")
-                {}
+                {
+                    ui->tableWidget->item(i, 2)->setText(QString("%1").arg(QString::number((double)rawBEValue / pow(10,k), 'f', k)));
+                }
                 else if(value == "DWORD32(Middle-endian)")
                 {}
                 else if(value == "FLOAT32(Middle-endian)")
-                {}
+                {
+                    RawAndFloat convertedValue;
+                    convertedValue.rawValue = rawBEValue;
+                    ui->tableWidget->item(i, 2)->setText(QString("%1").arg(QString::number(convertedValue.floatValue, 'f', k)));
+                }
 
                 ui->tableWidget->item(i, 2)->setTextAlignment(Qt::AlignCenter);
             }
@@ -641,17 +638,11 @@ void Kalibr::timerTimeout()
                 else if(value2 == "WORD16(Little-endian)")
                 {}
                 else if(value2 == "LONGINT32(Little-endian)")
-                {
-                    ui->tableWidget->item(i-32, 5)->setText(QString("%1").arg(QString::number((double)rawBEValue2 / pow(10,k2), 'f', k2)));
-                }
+                {}
                 else if(value2 == "DWORD32(Little-endian)")
                 {}
                 else if(value2 == "FLOAT32(Little-endian)")
-                {
-                    RawAndFloat convertedValue;
-                    convertedValue.rawValue = rawBEValue2;
-                    ui->tableWidget->item(i-32, 5)->setText(QString("%1").arg(QString::number(convertedValue.floatValue, 'f', k2)));
-                }
+                {}
                 else if(value2 == "INT16(Big-endian)")
                 {}
                 else if(value2 == "WORD16(Big-endian)")
@@ -663,11 +654,17 @@ void Kalibr::timerTimeout()
                 else if(value2 == "FLOAT32(Big-endian)")
                 {}
                 else if(value2 == "LONGINT32(Middle-endian)")
-                {}
+                {
+                    ui->tableWidget->item(i-32, 5)->setText(QString("%1").arg(QString::number((double)rawBEValue2 / pow(10,k2), 'f', k2)));
+                }
                 else if(value2 == "DWORD32(Middle-endian)")
                 {}
                 else if(value2 == "FLOAT32(Middle-endian)")
-                {}
+                {
+                    RawAndFloat convertedValue;
+                    convertedValue.rawValue = rawBEValue2;
+                    ui->tableWidget->item(i-32, 5)->setText(QString("%1").arg(QString::number(convertedValue.floatValue, 'f', k2)));
+                }
                 ui->tableWidget->item(i-32, 5)->setTextAlignment(Qt::AlignCenter);
             }
 
@@ -1365,53 +1362,7 @@ void Kalibr::on_SearchPort_clicked()
 
 void Kalibr::on_EnterPort_clicked()
 {
-    if (ui->EnterPort->isChecked())
-    {
-        wf->statusbar_label->clear();
-        wf->statusbar_label->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_blue.png"));
-        wf->statusbar_label_2->setText("  Связь установлена");
-        copyChannelNamesToTableWidget();
-        timer.start(1000);
-        std::ofstream fout;
-        fout.open("result.csv",std::ios::out | std::ios::app);
-        QDateTime currentDateTime = QDateTime::currentDateTime();
-        startTime = currentDateTime.currentMSecsSinceEpoch();
-        QDate currentDate = currentDateTime.date();
-        fout << std::endl << "Начало измерений " << currentDate.toString("dd.MM.yyyy").toUtf8().data() << std::endl;
 
-        for (int i=0; i<64; i++)
-        {
-            if(ui->tableView->model()->index(i,1).data(Qt::CheckStateRole)==Qt::Checked)
-            {
-                fout << QString("Канал №%1").arg(i+1).toUtf8().data() << " - " << ui->tableView->model()->index(i,3).data().toString().toUtf8().data() << std::endl;
-            }
-        }
-
-        fout << std::endl;
-
-        fout << "Время;";
-
-        for (int i=0; i<64; i++)
-        {
-            if(ui->tableView->model()->index(i,1).data(Qt::CheckStateRole)==Qt::Checked)
-            {
-                fout << QString("Канал №%1").arg(i+1).toUtf8().data() << ";";
-            }
-        }
-
-        fout << std::endl;
-
-        fout.close();
-    }
-    else
-    {
-        timer.stop();
-        //        ui->label_14->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
-        //        ui->label_15->setText("  Связи нет");
-        wf->statusbar_label->clear();
-        wf->statusbar_label->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red.png"));
-        wf->statusbar_label_2->setText("  Связи нет");
-    }
 }
 
 
@@ -1426,9 +1377,9 @@ void Kalibr::on_ReadPribor_clicked()
 
     port->flush();
 
-    progress->setVisible(true);
-    progress->setRange(0, 64 - 1);
-    progress->reset();
+    ui->progress->setVisible(true);
+    ui->progress->setRange(0, 64 - 1);
+    ui->progress->reset();
 
     // Чтение данных токовых каналов
     QByteArray buf;
@@ -1499,7 +1450,7 @@ void Kalibr::on_ReadPribor_clicked()
 
     for (int i = 0; i < 64; i++)
     {
-        progress->setValue(i);
+        ui->progress->setValue(i);
 
         QByteArray buf;
         buf.resize(9);
@@ -1741,7 +1692,7 @@ void Kalibr::on_ReadPribor_clicked()
     delete port;
 
     QMessageBox::information(this, "Завершено", "Чтение данных завершено!");
-    progress->setVisible(false);
+    ui->progress->setVisible(false);
 
 }
 
@@ -1757,9 +1708,9 @@ void Kalibr::on_WritePribor_clicked()
 
     port->flush();
 
-    progress->setVisible(true);
-    progress->setRange(0, 64 - 1);
-    progress->reset();
+    ui->progress->setVisible(true);
+    ui->progress->setRange(0, 64 - 1);
+    ui->progress->reset();
 
     CurrentChannelParams currentChannelParams[4];
     for (int i = 0; i < 4; i++)
@@ -1772,7 +1723,7 @@ void Kalibr::on_WritePribor_clicked()
 
     for (int i = 0; i < 64; i++)
     {
-        progress->setValue(i);
+        ui->progress->setValue(i);
 
         QByteArray buf;
         buf.resize(31 * 2 + 7 + 2);
@@ -2077,7 +2028,7 @@ void Kalibr::on_WritePribor_clicked()
     delete port;
 
     QMessageBox::information(this, "Завершено", "Запись данных завершена!");
-    progress->setVisible(false);
+    ui->progress->setVisible(false);
 }
 
 
@@ -2145,78 +2096,14 @@ void Kalibr::on_EnterPort_3_clicked()
     settings.setValue("MomentPort/flowControl", base.digitMomentParams.flowControl);
 }
 
-void Kalibr::initClient()
-{
-
-    client = new QTcpSocket(this);
-    connect(ui->EnterPort_4,&QPushButton::clicked,[this]{
-        if(client->state()==QAbstractSocket::ConnectedState){
-            client->abort();
-        }else if(client->state()==QAbstractSocket::UnconnectedState){
-            const QHostAddress address=QHostAddress(ui->lineEdit->text());
-            const unsigned short port=ui->lineEdit_3->text().toUShort();
-            client->connectToHost(address,port);
-        }else{
-            ui->lineEdit_2->setText("It is not ConnectedState or UnconnectedState");
-        }
-    });
-
-
-    connect(client,&QTcpSocket::connected,[this]{
-        ui->EnterPort_4->setText("Disconnect");
-        ui->lineEdit->setEnabled(false);
-        ui->lineEdit_3->setEnabled(false);
-        ui->label_60->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_blue"));
-        updateState();
-    });
-    connect(client,&QTcpSocket::disconnected,[this]{
-        ui->EnterPort_4->setText("Connect");
-        ui->lineEdit->setEnabled(true);
-        ui->lineEdit_3->setEnabled(true);
-        ui->label_60->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
-        updateState();
-    });
-
-    connect(ui->EnterPort_4,&QPushButton::clicked,[this]{
-        if(!client->isValid())
-            return;
-        const QByteArray send_data=ui->lineEdit_2->text().toUtf8();
-        if(send_data.isEmpty())
-            return;
-        client->write(send_data);
-    });
-
-    connect(client,&QTcpSocket::readyRead,[this]{
-        if(client->bytesAvailable()<=0)
-            return;
-        const QString recv_text=QString::fromUtf8(client->readAll());
-        ui->lineEdit_2->setText(QString("[%1:%2]")
-                                .arg(client->peerAddress().toString())
-                                .arg(client->peerPort()));
-        ui->lineEdit_2->setText(recv_text);
-    });
-
-    /*connect(client,&QAbstractSocket::errorOccurred,[this](QAbstractSocket::SocketError){
-        ui->label_14->setText("Socket Error:"+client->errorString());
-    });*/
-}
-
-void Kalibr::updateState()
-{
-    /*if(client->state()==QAbstractSocket::ConnectedState){
-        ui->label_14->setText(QString("Client[%1:%2]")
-                       .arg(client->localAddress().toString())
-                       .arg(client->localPort()));
-    }else{
-        ui->label_14->setText("Client");
-    }*/
-}
-
-
-
 void Kalibr::on_EnterPort_4_clicked()
 {
-    initClient();
+    base.plcParams.ipAddr = ui->lineEdit_3->text();
+    base.plcParams.port = ui->lineEdit->text().toInt();
+
+    QSettings settings;
+    settings.setValue("plcPort/ipAddr", base.plcParams.ipAddr);
+    settings.setValue("plcPort/port", base.plcParams.port);
 }
 
 void Kalibr::on_kalibrStartButton_clicked()
@@ -2303,5 +2190,57 @@ void Kalibr::on_acceptButton_clicked()
     settings.setValue("calibration/UaCoeff", dataSource->getUaCalibrationCoeff());
     settings.setValue("calibration/UbCoeff", dataSource->getUbCalibrationCoeff());
     settings.setValue("calibration/UcCoeff", dataSource->getUcCalibrationCoeff());
+}
+
+
+void Kalibr::on_testPribor_clicked()
+{
+    if (ui->testPribor->isChecked())
+    {
+        wf->statusbar_label->clear();
+        wf->statusbar_label->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_blue.png"));
+        wf->statusbar_label_2->setText("  Связь установлена");
+        copyChannelNamesToTableWidget();
+        timer.start(1000);
+        std::ofstream fout;
+        fout.open("result.csv",std::ios::out | std::ios::app);
+        QDateTime currentDateTime = QDateTime::currentDateTime();
+        startTime = currentDateTime.currentMSecsSinceEpoch();
+        QDate currentDate = currentDateTime.date();
+        fout << std::endl << "Начало измерений " << currentDate.toString("dd.MM.yyyy").toUtf8().data() << std::endl;
+
+        for (int i=0; i<64; i++)
+        {
+            if(ui->tableView->model()->index(i,1).data(Qt::CheckStateRole)==Qt::Checked)
+            {
+                fout << QString("Канал №%1").arg(i+1).toUtf8().data() << " - " << ui->tableView->model()->index(i,3).data().toString().toUtf8().data() << std::endl;
+            }
+        }
+
+        fout << std::endl;
+
+        fout << "Время;";
+
+        for (int i=0; i<64; i++)
+        {
+            if(ui->tableView->model()->index(i,1).data(Qt::CheckStateRole)==Qt::Checked)
+            {
+                fout << QString("Канал №%1").arg(i+1).toUtf8().data() << ";";
+            }
+        }
+
+        fout << std::endl;
+
+        fout.close();
+    }
+    else
+    {
+        timer.stop();
+        //        ui->label_14->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
+        //        ui->label_15->setText("  Связи нет");
+        wf->statusbar_label->clear();
+        wf->statusbar_label->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red.png"));
+        wf->statusbar_label_2->setText("  Связи нет");
+    }
 }
 

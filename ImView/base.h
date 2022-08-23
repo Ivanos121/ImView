@@ -23,6 +23,12 @@ struct DigitMomentParams
     int flowControl;
 };
 
+struct PlcParams
+{
+    QString ipAddr;
+    int port;
+};
+
 struct Base
 {
     double P_nom;
@@ -66,7 +72,7 @@ struct Base
     double cosf;
     DigitOscParams digitOscParams;
     DigitMomentParams digitMomentParams;
-
+    PlcParams plcParams;
 };
 
 extern Base base;

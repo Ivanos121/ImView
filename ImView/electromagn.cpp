@@ -972,7 +972,7 @@ int electromagn::connectMomentPort()
 
 void electromagn::connectTcpPort()
 {
-    plcSocket.connectToHost("10.0.6.10", 502);
+    plcSocket.connectToHost(base.plcParams.ipAddr, base.plcParams.port);
 }
 
 void electromagn::raschet_el()
@@ -985,6 +985,9 @@ void electromagn::raschet_el()
     base.digitMomentParams.parity = settings.value("MomentPort/parity", 1).toInt();
     base.digitMomentParams.stopBits = settings.value("MomentPort/stopBits", 1).toInt();
     base.digitMomentParams.flowControl = settings.value("MomentPort/flowControl", 1).toInt();
+
+    base.plcParams.ipAddr = settings.value("plcPort/ipAddr", "10.0.6.10").toString();
+    base.plcParams.port = settings.value("plcPort/port", 502).toInt();
 
     if(wf->item80->text() == "БВАСv1 + наблюдатель скорости (без датчика скорости)")
     {
