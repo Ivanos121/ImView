@@ -91,6 +91,7 @@ private slots:
     void tabClicked_2();
     void tabClicked_3();
     void tabClicked_4();
+    void tabClicked_5();
     void itemEdit();
 
     void modelItemChangedSlot(QStandardItem *item);

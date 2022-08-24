@@ -61,31 +61,7 @@ electromagn::electromagn(QWidget *parent) :
     ui->plot->margin_left = 100;
     ui->plot->reset();
     time=new QElapsedTimer();
-    //ui->widget->setMaximumSize(ui->widget->maximumWidth(), ui->widget->maximumHeight());
-
     this->showMaximized();
-
-    /*dataLineColors.append(Qt::red);
-    dataLineColors.append(Qt::green);
-    dataLineColors.append(Qt::cyan);
-    dataLineColors.append(Qt::yellow);
-    dataLineColors.append(Qt::red);
-    dataLineColors.append(Qt::green);
-    dataLineColors.append(Qt::cyan);
-    dataLineColors.append(Qt::yellow);
-    dataLineColors.append(Qt::yellow);
-
-    for (int i = 5; i < dataLineColors.size(); i++)
-    {
-        ui->plot->addDataLine(dataLineColors[i], 0);
-    }
-
-
-    for (int i = 5; i < dataLineColors.size(); i++)
-    {
-        wf->ui->tableWidget->item(i, 1)->setBackground(dataLineColors[i]);
-    }
-    connect(wf->ui->tableWidget, &QTableWidget::cellClicked,this, &electromagn::setcolorincell);*/
 }
 
 
@@ -312,176 +288,184 @@ void electromagn::realtimeDataSlot()
         }
 
         //Занесение итоговых данных в таблицу
-        if (wf->ui->tableWidget_2->item(0, 1) != 0)
+        if (wf->ui->tableWidget_2->item(0, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(0, 1)->setText(QString::number(Model_el.i_dev_a,'f',3));
+            wf->ui->tableWidget_2->item(0, 2)->setText(QString::number(Model_el.i_dev_a,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(1, 1) != 0)
+        if (wf->ui->tableWidget_2->item(1, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(1, 1)->setText(QString::number(Model_el.u_dev_a,'f',3));
+            wf->ui->tableWidget_2->item(1, 2)->setText(QString::number(Model_el.u_dev_a,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(2, 1) != 0)
+        if (wf->ui->tableWidget_2->item(2, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(2, 1)->setText(QString::number(Model_el.p_akt_a,'f',3));
+            wf->ui->tableWidget_2->item(2, 2)->setText(QString::number(Model_el.p_akt_a,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(3, 1) != 0)
+        if (wf->ui->tableWidget_2->item(3, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(3, 1)->setText(QString::number(Model_el.p_reakt_a,'f',3));
+            wf->ui->tableWidget_2->item(3, 2)->setText(QString::number(Model_el.p_reakt_a,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(4, 1) != 0)
+        if (wf->ui->tableWidget_2->item(4, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(4, 1)->setText(QString::number(Model_el.p_poln_a,'f',3));
+            wf->ui->tableWidget_2->item(4, 2)->setText(QString::number(Model_el.p_poln_a,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(5, 1) != 0)
+        if (wf->ui->tableWidget_2->item(5, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(5, 1)->setText(QString::number(Model_el.cos_f_a,'f',3));
+            wf->ui->tableWidget_2->item(5, 2)->setText(QString::number(Model_el.cos_f_a,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(6, 1) != 0)
+        if (wf->ui->tableWidget_2->item(6, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(6, 1)->setText(QString::number(Model_el.i_dev_b,'f',3));
+            wf->ui->tableWidget_2->item(6, 2)->setText(QString::number(Model_el.i_dev_b,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(7, 1) != 0)
+        if (wf->ui->tableWidget_2->item(7, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(7, 1)->setText(QString::number(Model_el.u_dev_b,'f',3));
+            wf->ui->tableWidget_2->item(7, 2)->setText(QString::number(Model_el.u_dev_b,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(8, 1) != 0)
+        if (wf->ui->tableWidget_2->item(8, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(8, 1)->setText(QString::number(Model_el.p_akt_b,'f',3));
+            wf->ui->tableWidget_2->item(8, 2)->setText(QString::number(Model_el.p_akt_b,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(9, 1) != 0)
+        if (wf->ui->tableWidget_2->item(9, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(9, 1)->setText(QString::number(Model_el.p_reakt_b,'f',3));
+            wf->ui->tableWidget_2->item(9, 2)->setText(QString::number(Model_el.p_reakt_b,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(10, 1) != 0)
+        if (wf->ui->tableWidget_2->item(10, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(10, 1)->setText(QString::number(Model_el.p_poln_b,'f',3));
+            wf->ui->tableWidget_2->item(10, 2)->setText(QString::number(Model_el.p_poln_b,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(11, 1) != 0)
+        if (wf->ui->tableWidget_2->item(11, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(11, 1)->setText(QString::number(Model_el.cos_f_b,'f',3));
+            wf->ui->tableWidget_2->item(11, 2)->setText(QString::number(Model_el.cos_f_b,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(12, 1) != 0)
+        if (wf->ui->tableWidget_2->item(12, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(12, 1)->setText(QString::number(Model_el.i_dev_c,'f',3));
+            wf->ui->tableWidget_2->item(12, 2)->setText(QString::number(Model_el.i_dev_c,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(13, 1) != 0)
+        if (wf->ui->tableWidget_2->item(13, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(13, 1)->setText(QString::number(Model_el.u_dev_c,'f',3));
+            wf->ui->tableWidget_2->item(13, 2)->setText(QString::number(Model_el.u_dev_c,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(14, 1) != 0)
+        if (wf->ui->tableWidget_2->item(14, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(14, 1)->setText(QString::number(Model_el.p_akt_c,'f',3));
+            wf->ui->tableWidget_2->item(14, 2)->setText(QString::number(Model_el.p_akt_c,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(15, 1) != 0)
+        if (wf->ui->tableWidget_2->item(15, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(15, 1)->setText(QString::number(Model_el.p_reakt_c,'f',3));
+            wf->ui->tableWidget_2->item(15, 2)->setText(QString::number(Model_el.p_reakt_c,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(16, 1) != 0)
+        if (wf->ui->tableWidget_2->item(16, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(16, 1)->setText(QString::number(Model_el.p_poln_c,'f',3));
+            wf->ui->tableWidget_2->item(16, 2)->setText(QString::number(Model_el.p_poln_c,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(17, 1) != 0)
+        if (wf->ui->tableWidget_2->item(17, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(17, 1)->setText(QString::number(Model_el.cos_f_c,'f',3));
+            wf->ui->tableWidget_2->item(17, 2)->setText(QString::number(Model_el.cos_f_c,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(18, 1) != 0)
+        if (wf->ui->tableWidget_2->item(18, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(18, 1)->setText(QString::number(Model_el.p_akt,'f',3));
+            wf->ui->tableWidget_2->item(18, 2)->setText(QString::number(Model_el.p_akt,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(19, 1) != 0)
+        if (wf->ui->tableWidget_2->item(19, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(19, 1)->setText(QString::number(Model_el.p_reakt,'f',3));
+            wf->ui->tableWidget_2->item(19, 2)->setText(QString::number(Model_el.p_reakt,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(20, 1) != 0)
+        if (wf->ui->tableWidget_2->item(20, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(20, 1)->setText(QString::number(Model_el.p_poln,'f',3));
+            wf->ui->tableWidget_2->item(20, 2)->setText(QString::number(Model_el.p_poln,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(21, 1) != 0)
+        if (wf->ui->tableWidget_2->item(21, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(21, 1)->setText(QString::number(Model_el.cos_f,'f',3));
+            wf->ui->tableWidget_2->item(21, 2)->setText(QString::number(Model_el.cos_f,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(22, 1) != 0)
+        if (wf->ui->tableWidget_2->item(22, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(22, 1)->setText(QString::number(Model_el.omega,'f',3));
+            wf->ui->tableWidget_2->item(22, 2)->setText(QString::number(Model_el.omega,'f',3));
         }
-        if (wf->ui->tableWidget_2->item(23, 1) != 0)
+        if (wf->ui->tableWidget_2->item(23, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(23, 1)->setText(QString::number(Model_el.M,'f',3));
+            wf->ui->tableWidget_2->item(23, 2)->setText(QString::number(Model_el.M,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(24, 1) != 0)
+        if (wf->ui->tableWidget_2->item(24, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(24, 1)->setText(QString::number(Model_el.Mc,'f',3));
+            wf->ui->tableWidget_2->item(24, 2)->setText(QString::number(Model_el.Mc,'f',3));
         }
 
         //Запись в таблицу энергетических показателей
 
-        if (wf->ui->tableWidget_4->item(0, 1) != 0)
+        if (wf->ui->tableWidget_4->item(0, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(0, 1)->setText(QString::number(Model_el.P1,'f',3));
+            wf->ui->tableWidget_4->item(0, 2)->setText(QString::number(Model_el.P1,'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(1, 1) != 0)
+        if (wf->ui->tableWidget_4->item(1, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(1, 1)->setText(QString::number(Model_el.dPel1,'f',3));
+            wf->ui->tableWidget_4->item(1, 2)->setText(QString::number(Model_el.dPel1,'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(2, 1) != 0)
+        if (wf->ui->tableWidget_4->item(2, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(2, 1)->setText(QString::number(Model_el.dPct,'f',3));
+            wf->ui->tableWidget_4->item(2, 2)->setText(QString::number(Model_el.dPct,'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(3, 1) != 0)
+        if (wf->ui->tableWidget_4->item(3, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(3, 1)->setText(QString::number(Model_el.dPel2,'f',3));
+            wf->ui->tableWidget_4->item(3, 2)->setText(QString::number(Model_el.dPel2,'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(4, 1) != 0)
+        if (wf->ui->tableWidget_4->item(4, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(4, 1)->setText(QString::number(Model_el.dPdob,'f',3));
+            wf->ui->tableWidget_4->item(4, 2)->setText(QString::number(Model_el.dPdob,'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(5, 1) != 0)
+        if (wf->ui->tableWidget_4->item(5, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(5, 1)->setText(QString::number(Model_el.dPmech,'f',3));
+            wf->ui->tableWidget_4->item(5, 2)->setText(QString::number(Model_el.dPmech,'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(6, 1) != 0)
+        if (wf->ui->tableWidget_4->item(6, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(6, 1)->setText(QString::number(Model_el.P2,'f',3));
+            wf->ui->tableWidget_4->item(6, 2)->setText(QString::number(Model_el.P2,'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(7, 1) != 0)
+        if (wf->ui->tableWidget_4->item(7, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(7, 1)->setText(QString::number(Model_el.kpd,'f',3));
+            wf->ui->tableWidget_4->item(7, 2)->setText(QString::number(Model_el.kpd,'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(8, 1) != 0)
+        if (wf->ui->tableWidget_4->item(8, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(8, 1)->setText(QString::number(Model_el.cos_f,'f',3));
+            wf->ui->tableWidget_4->item(8, 2)->setText(QString::number(Model_el.cos_f,'f',3));
         }
+
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text139\").text('Р1 = %1 Вт');").arg(Model_el.P1, 0, 'f', 1));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text113\").text('dPel1 = %1 Вт');").arg(Model_el.dPel1, 0, 'f', 1));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text91\").text('dPct = %1 Вт');").arg(Model_el.dPct, 0, 'f', 1));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text33\").text('dPel2 = %1 Вт');").arg(Model_el.dPel2, 0, 'f', 1));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text53\").text('dPdob = %1 Вт');").arg(Model_el.dPdob, 0, 'f', 1));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text259\").text('dPmech = %1 Вт');").arg(Model_el.dPmech, 0, 'f', 1));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text75\").text('P2 = %1 Вт');").arg(Model_el.P2, 0, 'f', 1));
 
         std::ofstream fout;
         fout.open(QString(base.electromagnFilename).toStdString(),std::ios::out | std::ios::app);
@@ -880,49 +864,49 @@ void electromagn::realtimeDataSlot()
             wf->ui->tableWidget_2->item(23, 1)->setText(QString("%1").arg(nabludatel->get_M_sr()));
         }
 
-        if (wf->ui->tableWidget_4->item(0, 1) != 0)
+        if (wf->ui->tableWidget_4->item(0, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(0, 1)->setText(QString::number(nabludatel->get_P1(),'f',3));
+            wf->ui->tableWidget_4->item(0, 2)->setText(QString::number(nabludatel->get_P1(),'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(1, 1) != 0)
+        if (wf->ui->tableWidget_4->item(1, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(1, 1)->setText(QString::number(nabludatel->get_dPel1(),'f',3));
+            wf->ui->tableWidget_4->item(1, 2)->setText(QString::number(nabludatel->get_dPel1(),'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(2, 1) != 0)
+        if (wf->ui->tableWidget_4->item(2, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(2, 1)->setText(QString::number(nabludatel->get_dPct(),'f',3));
+            wf->ui->tableWidget_4->item(2, 2)->setText(QString::number(nabludatel->get_dPct(),'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(3, 1) != 0)
+        if (wf->ui->tableWidget_4->item(3, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(3, 1)->setText(QString::number(nabludatel->get_dPel2(),'f',3));
+            wf->ui->tableWidget_4->item(3, 2)->setText(QString::number(nabludatel->get_dPel2(),'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(4, 1) != 0)
+        if (wf->ui->tableWidget_4->item(4, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(4, 1)->setText(QString::number(nabludatel->get_dPdob(),'f',3));
+            wf->ui->tableWidget_4->item(4, 2)->setText(QString::number(nabludatel->get_dPdob(),'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(5, 1) != 0)
+        if (wf->ui->tableWidget_4->item(5, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(5, 1)->setText(QString::number(nabludatel->get_dPmech(),'f',3));
+            wf->ui->tableWidget_4->item(5, 2)->setText(QString::number(nabludatel->get_dPmech(),'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(6, 1) != 0)
+        if (wf->ui->tableWidget_4->item(6, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(6, 1)->setText(QString::number(nabludatel->get_P2(),'f',3));
+            wf->ui->tableWidget_4->item(6, 2)->setText(QString::number(nabludatel->get_P2(),'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(7, 1) != 0)
+        if (wf->ui->tableWidget_4->item(7, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(7, 1)->setText(QString::number(nabludatel->get_kpd(),'f',3));
+            wf->ui->tableWidget_4->item(7, 2)->setText(QString::number(nabludatel->get_kpd(),'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(8, 1) != 0)
+        if (wf->ui->tableWidget_4->item(8, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(8, 1)->setText(QString::number(nabludatel->get_cos_f(),'f',3));
+            wf->ui->tableWidget_4->item(8, 2)->setText(QString::number(nabludatel->get_cos_f(),'f',3));
         }
     }
 }

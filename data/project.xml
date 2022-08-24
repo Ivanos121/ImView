@@ -3,9 +3,9 @@
     <project>
         <general_settings>
             <project_name value="Имя сеанса"/>
-            <combobox_1 value="Внутренний источник данных"/>
+            <combobox_1 value="Выбрать тип эксперимента"/>
             <project_path value="Указать каталог"/>
-            <combobox_2 value="БВАСv2 + наблюдатель скорости (с датчиком скорости)"/>
+            <combobox_2 value="Выбрать тип эксперимента"/>
             <project_path_2 value="Указать каталог"/>
             <checkbox_1 boolean="false"/>
             <checkbox_2 boolean="false"/>
@@ -20,10 +20,10 @@
             <coeff_4 value="0"/>
             <coeff_5 value="0"/>
             <coeff_6 value="0"/>
-            <combobox_4 value="Режим S1"/>
-            <time_cikle value="10"/>
-            <time_raboty value="5"/>
-            <moment value="20"/>
+            <combobox_4 value="Выбрать режим"/>
+            <time_cikle value="0"/>
+            <time_raboty value="0"/>
+            <moment value="0"/>
             <combobox_5 value="Выбрать режим"/>
             <start_temp value="Введите значение"/>
             <combobox_6 value="Выберите режим"/>

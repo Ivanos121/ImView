@@ -1027,15 +1027,23 @@ MainWindow::MainWindow(QWidget *parent)
 
     //Заполнение таблицы результатов
     ui->tableWidget_2->setRowCount(25);
-    ui->tableWidget_2->setColumnCount(2);
+    ui->tableWidget_2->setColumnCount(4);
     QStringList name_2;
-    name_2 << "Сигнал" << "Величина";
+    name_2 << "Величина" << "Обозначение" << "Значение" << "Размерность";
     ui->tableWidget_2->setHorizontalHeaderLabels(name_2);
     ui->tableWidget_2->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableWidget_2->verticalHeader()->setVisible(true);
     ui->tableWidget_2->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableWidget_2->setSelectionBehavior(QAbstractItemView :: SelectRows);
     ui->tableWidget_2->setSelectionMode(QAbstractItemView :: SingleSelection);
+
+    for(int row = 0; row<ui->tableWidget_2->rowCount(); row++)
+    {
+        for(int column = 0; column<ui->tableWidget_2->columnCount(); column++)
+        {
+            ui->tableWidget_2->setItem(row, column, new QTableWidgetItem());
+        }
+    }
 
     ui->tableWidget_2->setItem(0, 0, new QTableWidgetItem("Ток фазы А, А"));
     ui->tableWidget_2->setItem(1, 0, new QTableWidgetItem("Напряжение фазы А, В"));
@@ -1061,36 +1069,80 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget_2->setItem(21, 0, new QTableWidgetItem("Коэффициент мощности"));
     ui->tableWidget_2->setItem(22, 0, new QTableWidgetItem("Скорость вращения ротора, рад/с"));
     ui->tableWidget_2->setItem(23, 0, new QTableWidgetItem("Момент, Н*м"));
-    ui->tableWidget_2->setItem(0, 1, new QTableWidgetItem());
-    ui->tableWidget_2->setItem(1, 1, new QTableWidgetItem());
-    ui->tableWidget_2->setItem(2, 1, new QTableWidgetItem());
-    ui->tableWidget_2->setItem(3, 1, new QTableWidgetItem());
-    ui->tableWidget_2->setItem(4, 1, new QTableWidgetItem());
-    ui->tableWidget_2->setItem(5, 1, new QTableWidgetItem());
-    ui->tableWidget_2->setItem(6, 1, new QTableWidgetItem());
-    ui->tableWidget_2->setItem(7, 1, new QTableWidgetItem());
-    ui->tableWidget_2->setItem(8, 1, new QTableWidgetItem());
-    ui->tableWidget_2->setItem(9, 1, new QTableWidgetItem());
-    ui->tableWidget_2->setItem(10, 1, new QTableWidgetItem());
-    ui->tableWidget_2->setItem(11, 1, new QTableWidgetItem());
-    ui->tableWidget_2->setItem(12, 1, new QTableWidgetItem());
-    ui->tableWidget_2->setItem(13, 1, new QTableWidgetItem());
-    ui->tableWidget_2->setItem(14, 1, new QTableWidgetItem());
-    ui->tableWidget_2->setItem(15, 1, new QTableWidgetItem());
-    ui->tableWidget_2->setItem(16, 1, new QTableWidgetItem());
-    ui->tableWidget_2->setItem(17, 1, new QTableWidgetItem());
-    ui->tableWidget_2->setItem(18, 1, new QTableWidgetItem());
-    ui->tableWidget_2->setItem(19, 1, new QTableWidgetItem());
-    ui->tableWidget_2->setItem(20, 1, new QTableWidgetItem());
-    ui->tableWidget_2->setItem(21, 1, new QTableWidgetItem());
-    ui->tableWidget_2->setItem(22, 1, new QTableWidgetItem());
-    ui->tableWidget_2->setItem(23, 1, new QTableWidgetItem());
-    ui->tableWidget_2->setItem(24, 1, new QTableWidgetItem());
+    ui->tableWidget_2->setItem(24, 0, new QTableWidgetItem("Момент сопротивления, Н*м"));
 
-    QPalette p100=ui->tableWidget->palette();
-    p100.setColor(QPalette::Base, QColor(225, 255, 255));
-    p100.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
-    ui->tableWidget_2->setPalette(p100);
+    ui->tableWidget_2->setItem(0, 1, new QTableWidgetItem("i_dev_a"));
+    ui->tableWidget_2->setItem(1, 1, new QTableWidgetItem("u_dev_a"));
+    ui->tableWidget_2->setItem(2, 1, new QTableWidgetItem("p_akt_a"));
+    ui->tableWidget_2->setItem(3, 1, new QTableWidgetItem("p_reakt_a"));
+    ui->tableWidget_2->setItem(4, 1, new QTableWidgetItem("p_poln_a"));
+    ui->tableWidget_2->setItem(5, 1, new QTableWidgetItem("cos_f_a"));
+    ui->tableWidget_2->setItem(6, 1, new QTableWidgetItem("i_dev_b"));
+    ui->tableWidget_2->setItem(7, 1, new QTableWidgetItem("u_dev_b"));
+    ui->tableWidget_2->setItem(8, 1, new QTableWidgetItem("p_akt_b"));
+    ui->tableWidget_2->setItem(9, 1, new QTableWidgetItem("p_reakt_b"));
+    ui->tableWidget_2->setItem(10, 1, new QTableWidgetItem("p_poln_b"));
+    ui->tableWidget_2->setItem(11, 1, new QTableWidgetItem("cos_f_b"));
+    ui->tableWidget_2->setItem(12, 1, new QTableWidgetItem("i_dev_c"));
+    ui->tableWidget_2->setItem(13, 1, new QTableWidgetItem("u_dev_c"));
+    ui->tableWidget_2->setItem(14, 1, new QTableWidgetItem("p_akt_c"));
+    ui->tableWidget_2->setItem(15, 1, new QTableWidgetItem("p_reakt_c"));
+    ui->tableWidget_2->setItem(16, 1, new QTableWidgetItem("p_poln_c"));
+    ui->tableWidget_2->setItem(17, 1, new QTableWidgetItem("cos_f_c"));
+    ui->tableWidget_2->setItem(18, 1, new QTableWidgetItem("p_akt"));
+    ui->tableWidget_2->setItem(19, 1, new QTableWidgetItem("p_reakt"));
+    ui->tableWidget_2->setItem(20, 1, new QTableWidgetItem("p_poln"));
+    ui->tableWidget_2->setItem(21, 1, new QTableWidgetItem("cos_f"));
+    ui->tableWidget_2->setItem(22, 1, new QTableWidgetItem("omega"));
+    ui->tableWidget_2->setItem(23, 1, new QTableWidgetItem("M"));
+    ui->tableWidget_2->setItem(24, 1, new QTableWidgetItem("Mc"));
+
+    ui->tableWidget_2->setItem(0, 3, new QTableWidgetItem("А"));
+    ui->tableWidget_2->setItem(1, 3, new QTableWidgetItem("В"));
+    ui->tableWidget_2->setItem(2, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_2->setItem(3, 3, new QTableWidgetItem("ВА"));
+    ui->tableWidget_2->setItem(4, 3, new QTableWidgetItem("ВАР"));
+    ui->tableWidget_2->setItem(5, 3, new QTableWidgetItem(" - "));
+    ui->tableWidget_2->setItem(6, 3, new QTableWidgetItem("А"));
+    ui->tableWidget_2->setItem(7, 3, new QTableWidgetItem("В"));
+    ui->tableWidget_2->setItem(8, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_2->setItem(9, 3, new QTableWidgetItem("ВА"));
+    ui->tableWidget_2->setItem(10, 3, new QTableWidgetItem("ВАР"));
+    ui->tableWidget_2->setItem(11, 3, new QTableWidgetItem(" - "));
+    ui->tableWidget_2->setItem(12, 3, new QTableWidgetItem("А"));
+    ui->tableWidget_2->setItem(13, 3, new QTableWidgetItem("В"));
+    ui->tableWidget_2->setItem(14, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_2->setItem(15, 3, new QTableWidgetItem("ВА"));
+    ui->tableWidget_2->setItem(16, 3, new QTableWidgetItem("ВАР"));
+    ui->tableWidget_2->setItem(17, 3, new QTableWidgetItem(" - "));
+    ui->tableWidget_2->setItem(18, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_2->setItem(19, 3, new QTableWidgetItem("ВА"));
+    ui->tableWidget_2->setItem(20, 3, new QTableWidgetItem("ВАР"));
+    ui->tableWidget_2->setItem(21, 3, new QTableWidgetItem(" - "));
+    ui->tableWidget_2->setItem(22, 3, new QTableWidgetItem("рад/с"));
+    ui->tableWidget_2->setItem(23, 3, new QTableWidgetItem("Н*м"));
+    ui->tableWidget_2->setItem(24, 3, new QTableWidgetItem("Н*м"));
+
+    for (int i=0; i<ui->tableWidget_2->rowCount(); i++)
+    {
+        if (ui->tableWidget_2->item(i, 1) != 0)
+        {
+            ui->tableWidget_2->item(i, 1)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget_2->item(i, 2) != 0)
+        {
+            ui->tableWidget_2->item(i, 2)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget_2->item(i, 3) != 0)
+        {
+            ui->tableWidget_2->item(i, 3)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+    QPalette p2=ui->tableWidget_2->palette();
+    p2.setColor(QPalette::Base, QColor(255, 255, 191));
+    p2.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
+    ui->tableWidget_2->setPalette(p2);
 
     //вставка таблицы тепловые характеристики
     ui->tableWidget_3->setRowCount(17);
@@ -1149,39 +1201,89 @@ MainWindow::MainWindow(QWidget *parent)
 
     //вставка таблицы Энергетические характеристики таблицы tableWidget_4
     ui->tableWidget_4->setRowCount(30);
-    ui->tableWidget_4->setColumnCount(2);
-    QStringList name_3;
-    name_3 << "Свойство" << "Значение";
-    ui->tableWidget_4->setHorizontalHeaderLabels(name_3);
+    ui->tableWidget_4->setColumnCount(4);
+    QStringList name_4;
+    name_4 << "Величина" << "Обозначение" << "Значение" << "Размерность";
+    ui->tableWidget_4->setHorizontalHeaderLabels(name_4);
+    ui->tableWidget_4->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableWidget_4->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableWidget_4->setSelectionBehavior(QAbstractItemView :: SelectRows);
     ui->tableWidget_4->setSelectionMode(QAbstractItemView :: SingleSelection);
     ui->tableWidget_4->verticalHeader()->setVisible(true);
+    ui->tableWidget_4->resizeColumnsToContents();
+
+    for(int row = 0; row<ui->tableWidget_4->rowCount(); row++)
+    {
+        for(int column = 0; column<ui->tableWidget_4->columnCount(); column++)
+        {
+            ui->tableWidget_4->setItem(row, column, new QTableWidgetItem());
+
+        }
+//        if (ui->tableWidget_9->item(row, 1) != 0)
+//        {
+//            ui->tableWidget_9->item(row, 1)->setTextAlignment(Qt::AlignCenter);
+//        }
+//        if (ui->tableWidget_9->item(row, 2) != 0)
+//        {
+//            ui->tableWidget_9->item(row, 2)->setTextAlignment(Qt::AlignCenter);
+//        }
+//        if (ui->tableWidget_9->item(row, 3) != 0)
+//        {
+//            ui->tableWidget_9->item(row, 3)->setTextAlignment(Qt::AlignCenter);
+//        }
+    }
 
     //Заполнение полей левой части таблицы для пояснения чекбоксов таблицы tableWidget_3
-    ui->tableWidget_4->setItem(0, 0, new QTableWidgetItem("Потребляемая двигателем мощность P1, Вт"));
-    ui->tableWidget_4->setItem(1, 0, new QTableWidgetItem("Потери в обмотке статора dPel1, Вт"));
-    ui->tableWidget_4->setItem(2, 0, new QTableWidgetItem("Потери в стали dPct, Вт"));
-    ui->tableWidget_4->setItem(3, 0, new QTableWidgetItem("Потери в обмотке ротора dPel2, Вт"));
-    ui->tableWidget_4->setItem(4, 0, new QTableWidgetItem("Добавочные потери dPdob, Вт"));
-    ui->tableWidget_4->setItem(5, 0, new QTableWidgetItem("Механические потери dPmech, Вт"));
-    ui->tableWidget_4->setItem(6, 0, new QTableWidgetItem("Механическая мощность на валу двигателя P2, Вт"));
+    ui->tableWidget_4->setItem(0, 0, new QTableWidgetItem("Потребляемая двигателем мощность, Вт"));
+    ui->tableWidget_4->setItem(1, 0, new QTableWidgetItem("Потери в обмотке статора Вт"));
+    ui->tableWidget_4->setItem(2, 0, new QTableWidgetItem("Потери в стали, Вт"));
+    ui->tableWidget_4->setItem(3, 0, new QTableWidgetItem("Потери в обмотке ротора, Вт"));
+    ui->tableWidget_4->setItem(4, 0, new QTableWidgetItem("Добавочные потери, Вт"));
+    ui->tableWidget_4->setItem(5, 0, new QTableWidgetItem("Механические потери, Вт"));
+    ui->tableWidget_4->setItem(6, 0, new QTableWidgetItem("Механическая мощность на валу двигателя, Вт"));
     ui->tableWidget_4->setItem(7, 0, new QTableWidgetItem("Коэффициент полезного действия"));
     ui->tableWidget_4->setItem(8, 0, new QTableWidgetItem("Коэффициент мощности"));
-    ui->tableWidget_4->setItem(0, 1, new QTableWidgetItem());
-    ui->tableWidget_4->setItem(1, 1, new QTableWidgetItem());
-    ui->tableWidget_4->setItem(2, 1, new QTableWidgetItem());
-    ui->tableWidget_4->setItem(3, 1, new QTableWidgetItem());
-    ui->tableWidget_4->setItem(4, 1, new QTableWidgetItem());
-    ui->tableWidget_4->setItem(5, 1, new QTableWidgetItem());
-    ui->tableWidget_4->setItem(6, 1, new QTableWidgetItem());
-    ui->tableWidget_4->setItem(7, 1, new QTableWidgetItem());
-    ui->tableWidget_4->setItem(8, 1, new QTableWidgetItem());
 
-    QPalette p3=ui->tableWidget_4->palette();
-    p3.setColor(QPalette::Base, QColor(255, 255, 191));
-    p3.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
-    ui->tableWidget_4->setPalette(p3);
+    ui->tableWidget_4->setItem(0, 1, new QTableWidgetItem("P1"));
+    ui->tableWidget_4->setItem(1, 1, new QTableWidgetItem("dPel1"));
+    ui->tableWidget_4->setItem(2, 1, new QTableWidgetItem("dPct"));
+    ui->tableWidget_4->setItem(3, 1, new QTableWidgetItem("dPel2"));
+    ui->tableWidget_4->setItem(4, 1, new QTableWidgetItem("dPdob"));
+    ui->tableWidget_4->setItem(5, 1, new QTableWidgetItem("dPmech"));
+    ui->tableWidget_4->setItem(6, 1, new QTableWidgetItem("P2"));
+    ui->tableWidget_4->setItem(7, 1, new QTableWidgetItem("KPD"));
+    ui->tableWidget_4->setItem(8, 1, new QTableWidgetItem("cosf"));
+
+    ui->tableWidget_4->setItem(0, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_4->setItem(1, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_4->setItem(2, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_4->setItem(3, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_4->setItem(4, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_4->setItem(5, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_4->setItem(6, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_4->setItem(7, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_4->setItem(8, 3, new QTableWidgetItem("Вт"));
+
+    for (int i=0; i<ui->tableWidget_4->rowCount(); i++)
+    {
+        if (ui->tableWidget_4->item(i, 1) != 0)
+        {
+            ui->tableWidget_4->item(i, 1)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget_4->item(i, 2) != 0)
+        {
+            ui->tableWidget_4->item(i, 2)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget_4->item(i, 3) != 0)
+        {
+            ui->tableWidget_4->item(i, 3)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+    QPalette p4=ui->tableWidget_4->palette();
+    p4.setColor(QPalette::Base, QColor(225, 255, 255));
+    p4.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
+    ui->tableWidget_4->setPalette(p4);
 
     ui->tableWidget_5->setRowCount(17);
     ui->tableWidget_5->setColumnCount(3);
@@ -1532,6 +1634,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_5->ui->tableWidget->setItemDelegateForColumn(6, customHelpDelegate);
     ui->widget_5->ui->tableWidget->setItemDelegateForColumn(8, customHelpDelegate);
     ui->widget_5->ui->tableWidget->setItemDelegateForColumn(10, customHelpDelegate);
+    ui->tableWidget_2->setItemDelegateForColumn(0, customHelpDelegate);
+    ui->tableWidget_4->setItemDelegateForColumn(0, customHelpDelegate);
     ui->tableWidget_7->setItemDelegateForColumn(0, customHelpDelegate);
     ui->tableWidget_10->setItemDelegateForColumn(0, customHelpDelegate);
 
@@ -1848,6 +1952,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_5->ui->tabWidget->setCurrentIndex(0);
     ui->widget_5->ui->tabWidget_2->setCurrentIndex(0);
     ui->widget_6->ui->tabWidget->setCurrentIndex(0);
+    ui->tabWidget_3->setCurrentIndex(0);
 
     statusbar_label = new QLabel;
     statusbar_label->setPixmap(QPixmap(":/icons/data/img/icons/archivator_red_24.svg"));
@@ -1902,6 +2007,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->widget_5->ui->tabWidget, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_2);
     connect(ui->widget_5->ui->tabWidget_2, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_3);
     connect(ui->widget_6->ui->tabWidget, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_4);
+    connect(ui->tabWidget_3, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_5);
+
 }
 
 QImage fromSvg(const QString &path, int size)
@@ -3117,12 +3224,12 @@ void MainWindow::tabClicked()
     if(ui->tabWidget->currentIndex()==3)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(12);
+        ui->stackedWidget->setCurrentIndex(9);
     }
     if(ui->tabWidget->currentIndex()==4)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(9);
+        ui->stackedWidget->setCurrentIndex(5);
     }
     if(ui->tabWidget->currentIndex()==5)
     {
@@ -3215,6 +3322,20 @@ void MainWindow::tabClicked_4()
     {
         ui->stackedWidget->show();
         ui->stackedWidget->setCurrentIndex(13);
+    }
+}
+
+void MainWindow::tabClicked_5()
+{
+    if(ui->tabWidget_3->currentIndex() == 0)
+    {
+        ui->tabWidget_2->show();
+        ui->tabWidget_2->setCurrentIndex(0);
+    }
+    if(ui->tabWidget_3->currentIndex() == 1)
+    {
+        ui->tabWidget_2->show();
+        ui->tabWidget_2->setCurrentIndex(1);
     }
 }
 
