@@ -13,6 +13,16 @@ struct DigitOscParams
     int flowControl;
 };
 
+struct ArchieverParams
+{
+    QString portName;
+    int speed;
+    int data;
+    int parity;
+    int stopBits;
+    int flowControl;
+};
+
 struct DigitMomentParams
 {
     QString portName;
@@ -73,6 +83,7 @@ struct Base
     DigitOscParams digitOscParams;
     DigitMomentParams digitMomentParams;
     PlcParams plcParams;
+    ArchieverParams archieverParams;
 };
 
 extern Base base;

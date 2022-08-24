@@ -1362,7 +1362,20 @@ void Kalibr::on_SearchPort_clicked()
 
 void Kalibr::on_EnterPort_clicked()
 {
+    base.archieverParams.portName = ui->comboBox->currentText();
+    base.archieverParams.speed = ui->comboBox_2->currentText().toInt();
+    base.archieverParams.data = ui->comboBox_3->currentText().toInt();
+    base.archieverParams.parity = ui->comboBox_4->currentText().toInt();
+    base.archieverParams.stopBits = ui->comboBox_5->currentText().toInt();
+    base.archieverParams.flowControl = ui->comboBox_6->currentText().toInt();
 
+    QSettings settings;
+    settings.setValue("ArchieverPort/portName", base.archieverParams.portName);
+    settings.setValue("ArchieverPort/speed", base.archieverParams.speed);
+    settings.setValue("ArchieverPort/data", base.archieverParams.data);
+    settings.setValue("ArchieverPort/parity", base.archieverParams.parity);
+    settings.setValue("ArchieverPort/stopBits", base.archieverParams.stopBits);
+    settings.setValue("ArchieverPort/flowControl", base.archieverParams.flowControl);
 }
 
 
@@ -1742,7 +1755,7 @@ void Kalibr::on_WritePribor_clicked()
         buf[6] = 62;
 
         buf[7] = 0;
-        buf[8] = ui->tableView->model()->data(ui->tableView->model()->index(i, 2)).toInt() + ((ui->tableView->model()->data(ui->tableView->model()->index(i, 2)).toInt() << 1));
+        buf[8] = ui->tableView->model()->data(ui->tableView->model()->index(i, 2)).toInt() + ((ui->tableView->model()->data(ui->tableView->model()->index(i, 1)).toInt() << 1));
 
         QString channelName = ui->tableView->model()->data(ui->tableView->model()->index(i, 3) ).toString();
         channelName.truncate(31);
