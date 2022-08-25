@@ -15,6 +15,7 @@
 #include "ui_settings.h"
 #include "pushbuttondelegate.h"
 #include "ui_graph_Settings.h"
+#include "ui_settinsKanals.h"
 
 #include "base_tepl.h"
 #include <QProgressBar>
@@ -53,19 +54,19 @@ private:
     Ui::settings *ui;
 };
 
-//class SettinsKanals : public QDialog
-//{
-//    Q_OBJECT
+class SettinsKanals : public QDialog
+{
+    Q_OBJECT
 
-//public:
-//    explicit SettinsKanals(QWidget *parent = nullptr);
+public:
+    explicit SettinsKanals(QWidget *parent = nullptr);
 
-//private slots:
-//    void on_pushButton_clicked();
+private slots:
+    //void on_pushButton_clicked();
 
-//private:
-//    Ui::settinsKanals *ui;
-//};
+private:
+    Ui::settinsKanals *ui;
+};
 
 class MainWindow : public QMainWindow
 {

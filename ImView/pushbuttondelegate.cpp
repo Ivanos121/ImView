@@ -13,6 +13,7 @@
 #include "qabstractitemview.h"
 #include "qcombobox.h"
 #include "qscreen.h"
+#include "mainwindow.h"
 
 ButtonColumnDelegate::ButtonColumnDelegate(QObject *parent) :QStyledItemDelegate(parent)
 {
@@ -688,7 +689,8 @@ void ButtonColumnDelegate::btn_clicked_6()
 
 void ButtonColumnDelegate::btn_clicked_7()
 {
-    QString signal = "yes";
+    SettinsKanals *settinsKanals = new SettinsKanals();
+    settinsKanals->show();
 }
 
 bool ButtonColumnDelegate::helpEvent( QHelpEvent* e, QAbstractItemView* view,

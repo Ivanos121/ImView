@@ -7076,9 +7076,9 @@ void MainWindow::on_radioButton_13_toggled(bool checked)
     }
 }
 
-//SettinsKanals::SettinsKanals(QWidget *parent) :
-//    QDialog(parent),
-//    ui(new Ui::settinsKanals)
-//{
-//    ui->setupUi(this);
-//}
+SettinsKanals::SettinsKanals(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::settinsKanals)
+{
+    ui->setupUi(this);
+}
