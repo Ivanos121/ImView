@@ -12,6 +12,7 @@
 #include <QToolTip>
 #include "qabstractitemview.h"
 #include "qcombobox.h"
+#include "qscreen.h"
 
 ButtonColumnDelegate::ButtonColumnDelegate(QObject *parent) :QStyledItemDelegate(parent)
 {
@@ -61,6 +62,17 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         btn->setFixedSize(BUTTON_SIZE);
         btn->setText("...");
         connect(btn,SIGNAL(clicked()), this, SLOT(btn_clicked_6()));
+        return btn;
+    }
+    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 1) && (index.row() == 4))
+    {
+        //загрузка или сохранение и отображение пути файла
+        QPushButton * btn = new QPushButton(parent);
+        const QSize BUTTON_SIZE = QSize(22, 22);
+        btn->setMinimumSize(BUTTON_SIZE);
+        btn->setFixedSize(BUTTON_SIZE);
+        btn->setText("...");
+        connect(btn,SIGNAL(clicked()), this, SLOT(btn_clicked_7()));
         return btn;
     }
     else if ((index.parent().row() == 1) && (index.row() == 0))
@@ -248,6 +260,11 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
         QPushButton * btn = qobject_cast<QPushButton *>(editor);
         btn->setProperty("data_value", index.data());
     }
+    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 1) && (index.row() == 4))
+    {
+        QPushButton * btn = qobject_cast<QPushButton *>(editor);
+        btn->setProperty("data_value", index.data());
+    }
     else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 1))
     {
         QString value = index.model()->data(index, Qt::DisplayRole).toString();
@@ -343,12 +360,12 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
         QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
         spinBox->setValue(value);
     }
-    else if ((index.parent().row() == 1) && (index.row() == 4))
-    {
-        double value = index.model()->data(index, Qt::EditRole).toDouble();
-        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
-        spinBox->setValue(value);
-    }
+//    else if ((index.parent().row() == 1) && (index.row() == 4))
+//    {
+//        double value = index.model()->data(index, Qt::EditRole).toDouble();
+//        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
+//        spinBox->setValue(value);
+//    }
     else if ((index.parent().row() == 1) && (index.row() == 5))
     {
         double value = index.model()->data(index, Qt::EditRole).toDouble();
@@ -480,6 +497,11 @@ void ButtonColumnDelegate::setModelData(QWidget *editor, QAbstractItemModel *mod
         model->setData(index, value);
     }
     else if ((index.parent().parent().row() == 0) && (index.parent().row() == 1) && (index.row() == 3))
+    {
+        QPushButton *btn = qobject_cast<QPushButton *>(editor);
+        model->setData(index, btn->property("data_value"));
+    }
+    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 1) && (index.row() == 4))
     {
         QPushButton *btn = qobject_cast<QPushButton *>(editor);
         model->setData(index, btn->property("data_value"));
@@ -662,6 +684,11 @@ void ButtonColumnDelegate::btn_clicked_6()
     {
         emit projectFileSelected_6(projectFile_6);
     }
+}
+
+void ButtonColumnDelegate::btn_clicked_7()
+{
+    QString signal = "yes";
 }
 
 bool ButtonColumnDelegate::helpEvent( QHelpEvent* e, QAbstractItemView* view,

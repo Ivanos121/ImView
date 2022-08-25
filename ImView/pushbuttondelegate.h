@@ -2,6 +2,7 @@
 #define PUSHBUTTONDELEGATE_H
 
 
+#include "qdialog.h"
 #include <QStyledItemDelegate>
 #include <QWidget>
 #include <QPushButton>
@@ -30,6 +31,7 @@ private slots:
     void btn_clicked_4();
     void btn_clicked_5();
     void btn_clicked_6();
+    void btn_clicked_7();
 
 
 private:

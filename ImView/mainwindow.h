@@ -53,6 +53,20 @@ private:
     Ui::settings *ui;
 };
 
+//class SettinsKanals : public QDialog
+//{
+//    Q_OBJECT
+
+//public:
+//    explicit SettinsKanals(QWidget *parent = nullptr);
+
+//private slots:
+//    void on_pushButton_clicked();
+
+//private:
+//    Ui::settinsKanals *ui;
+//};
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -147,6 +161,7 @@ public:
     AboutDialog *rsc;
     Kalibr *kalibr;
     Settings *rsc2;
+    //SettinsKanals *rsc3;
     QString dataSourceFilename;
     QString dirName;
 

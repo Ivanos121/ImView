@@ -136,6 +136,7 @@ FORMS += \
     kalibr.ui \
     mainwindow.ui \
     settings.ui \
+    settinsKanals.ui \
     tepl_dannie.ui \
     teplovent.ui \
     teplschem.ui \

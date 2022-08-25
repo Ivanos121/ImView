@@ -193,7 +193,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>9</number>
+       <number>5</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QGridLayout" name="gridLayout_6">
@@ -1073,20 +1073,6 @@
       </widget>
       <widget class="QWidget" name="page_10">
        <layout class="QGridLayout" name="gridLayout_11">
-        <item row="2" column="0">
-         <widget class="QPushButton" name="save_Vent_dannie">
-          <property name="text">
-           <string>Сохранить</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QPushButton" name="load_Vent_dannie">
-          <property name="text">
-           <string>Загрузить</string>
-          </property>
-         </widget>
-        </item>
         <item row="0" column="0">
          <widget class="QLabel" name="label_8">
           <property name="text">
@@ -1094,17 +1080,31 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="0">
-         <widget class="QPushButton" name="vent_result">
-          <property name="text">
-           <string>Расчет</string>
-          </property>
-         </widget>
-        </item>
         <item row="4" column="0">
          <widget class="QTableWidget" name="tableWidget_7">
           <property name="alternatingRowColors">
            <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QPushButton" name="load_Vent_dannie">
+          <property name="text">
+           <string>Загрузить</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QPushButton" name="save_Vent_dannie">
+          <property name="text">
+           <string>Сохранить</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0">
+         <widget class="QPushButton" name="vent_result">
+          <property name="text">
+           <string>Расчет</string>
           </property>
          </widget>
         </item>
@@ -1227,27 +1227,21 @@
       </widget>
       <widget class="QWidget" name="page_9">
        <layout class="QGridLayout" name="gridLayout_15">
-        <item row="4" column="0">
-         <widget class="QTableWidget" name="tableWidget_9"/>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_26">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Исходные данные для теплового расчета&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
         </item>
-        <item row="1" column="0">
+        <item row="5" column="0">
          <widget class="QPushButton" name="load_tepl_dannie">
           <property name="text">
            <string>Загрузить</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="0">
-         <widget class="QPushButton" name="tepl_result">
-          <property name="text">
-           <string>Расчет</string>
-          </property>
-          <property name="checkable">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
+        <item row="6" column="0">
          <widget class="QPushButton" name="save_tepl_dannie">
           <property name="enabled">
            <bool>true</bool>
@@ -1257,10 +1251,16 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_26">
+        <item row="4" column="0">
+         <widget class="QTableWidget" name="tableWidget_9"/>
+        </item>
+        <item row="7" column="0">
+         <widget class="QPushButton" name="tepl_result">
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Исходные данные для теплового расчета&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>Расчет</string>
+          </property>
+          <property name="checkable">
+           <bool>false</bool>
           </property>
          </widget>
         </item>

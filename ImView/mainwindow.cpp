@@ -269,6 +269,18 @@ MainWindow::MainWindow(QWidget *parent)
     item7->appendRow(items2);
     items2.clear();
 
+    item116 = new QStandardItem(QStringLiteral ("Настройка каналов"));
+    item116->setEditable(false);
+    //QString w336=item116->text();
+    //item116->setToolTip(w336);
+    item117 = new QStandardItem(QStringLiteral ("Выбрать каналы"));
+    QString w447=item117->text();
+    item117->setToolTip(w447);
+    items2.append(item116);
+    items2.append(item117);
+    item7->appendRow(items2);
+    items2.clear();
+
 
     item65 = new QStandardItem(QStringLiteral ("Сохранение данных"));
     item65->setEditable(false);
@@ -7063,3 +7075,10 @@ void MainWindow::on_radioButton_13_toggled(bool checked)
         }
     }
 }
+
+//SettinsKanals::SettinsKanals(QWidget *parent) :
+//    QDialog(parent),
+//    ui(new Ui::settinsKanals)
+//{
+//    ui->setupUi(this);
+//}
