@@ -14,6 +14,7 @@
 #include "qcombobox.h"
 #include "qscreen.h"
 #include "mainwindow.h"
+#include "settingscanals.h"
 
 ButtonColumnDelegate::ButtonColumnDelegate(QObject *parent) :QStyledItemDelegate(parent)
 {
@@ -689,8 +690,10 @@ void ButtonColumnDelegate::btn_clicked_6()
 
 void ButtonColumnDelegate::btn_clicked_7()
 {
-    SettinsKanals *settinsKanals = new SettinsKanals();
-    settinsKanals->show();
+//    SettinsKanals *settinsKanals = new SettinsKanals();
+//    settinsKanals->show();
+    SettingsCanals *settinпsСanals = new SettingsCanals();
+    settinпsСanals->show();
 }
 
 bool ButtonColumnDelegate::helpEvent( QHelpEvent* e, QAbstractItemView* view,

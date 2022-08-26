@@ -59,6 +59,7 @@ SOURCES += \
     plot.cpp \
     pushbuttondelegate.cpp \
     settings.cpp \
+    settingscanals.cpp \
     tepl_dannie.cpp \
     teplovent.cpp \
     teplschem.cpp \
@@ -114,6 +115,7 @@ HEADERS += \
     plot.h \
     pushbuttondelegate.h \
     settings.h \
+    settingscanals.h \
     tepl_dannie.h \
     teplovent.h \
     teplschem.h \
@@ -136,6 +138,7 @@ FORMS += \
     kalibr.ui \
     mainwindow.ui \
     settings.ui \
+    settingscanals.ui \
     settinsKanals.ui \
     tepl_dannie.ui \
     teplovent.ui \
