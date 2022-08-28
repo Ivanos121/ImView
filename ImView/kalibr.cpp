@@ -66,7 +66,6 @@ void Kalibr::open_sdb()
     //инициализация базы данных sqlite3
     sdb = QSqlDatabase::addDatabase("QSQLITE"); //объявление базы данных sqlite3
     sdb.setDatabaseName(QFileInfo("../data/base_db/netdb.db").absoluteFilePath()); //подключение к базе данных
-    //sdb.setDatabaseName("/home/elf/progeqts_QT/u21/build-untitled-Desktop-Debug/netdb.db");
 
     modell = new Modell;
     modell->setTable("Net settings"); //Установка для таблицы базы данных, с которой работает модель, tableName

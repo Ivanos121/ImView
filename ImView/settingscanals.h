@@ -4,6 +4,9 @@
 #include "mainwindow.h"
 #include <QDialog>
 
+#include "QtSql"
+#include "QSqlDatabase"
+
 namespace Ui {
 class SettingsCanals;
 }
@@ -23,8 +26,11 @@ private slots:
 
     void on_pushButton_4_clicked();
 
+    void on_pushButton_2_clicked();
+
 private:
     Ui::SettingsCanals *ui;
+    QSqlDatabase sdb;
 };
 
 #endif // SETTINGSCANALS_H

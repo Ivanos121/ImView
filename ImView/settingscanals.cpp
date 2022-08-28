@@ -33,40 +33,40 @@ SettingsCanals::SettingsCanals(QWidget *parent) :
         }
     }
 
-    for (int i=0; i<ui->tableWidget->rowCount(); i++)
-    {
-        if (ui->tableWidget->item(i, 0) != 0)
-        {
-            ui->tableWidget->item(i, 0)->setText(QString("%1").arg(i+1));
-            ui->tableWidget->item(i, 0)->setTextAlignment(Qt::AlignCenter);
-        }
-    }
+//    for (int i=0; i<ui->tableWidget->rowCount(); i++)
+//    {
+//        if (ui->tableWidget->item(i, 0) != 0)
+//        {
+//            ui->tableWidget->item(i, 0)->setText(QString("%1").arg(i+1));
+//            ui->tableWidget->item(i, 0)->setTextAlignment(Qt::AlignCenter);
+//        }
+//    }
 
-    ui->tableWidget->setItem(0, 1, new QTableWidgetItem("Ток фазы А, А"));
-    ui->tableWidget->setItem(1, 1, new QTableWidgetItem("Напряжение фазы А, В"));
-    ui->tableWidget->setItem(2, 1, new QTableWidgetItem("Активная мошность фазы А, Вт"));
-    ui->tableWidget->setItem(3, 1, new QTableWidgetItem("Реактивная мошность фазы А, ВА"));
-    ui->tableWidget->setItem(4, 1, new QTableWidgetItem("Полная мошность фазы А, ВАР"));
-    ui->tableWidget->setItem(5, 1, new QTableWidgetItem("Коэффициент мощности фазы А"));
-    ui->tableWidget->setItem(6, 1, new QTableWidgetItem("Ток фазы В, А"));
-    ui->tableWidget->setItem(7, 1, new QTableWidgetItem("Напряжение фазы В, В"));
-    ui->tableWidget->setItem(8, 1, new QTableWidgetItem("Активная мошность фазы В, Вт"));
-    ui->tableWidget->setItem(9, 1, new QTableWidgetItem("Реактивная мошность фазы В, ВА"));
-    ui->tableWidget->setItem(10, 1, new QTableWidgetItem("Полная мошность фазы В, ВАР"));
-    ui->tableWidget->setItem(11, 1, new QTableWidgetItem("Коэффициент мощности фазы В"));
-    ui->tableWidget->setItem(12, 1, new QTableWidgetItem("Ток фазы С, А"));
-    ui->tableWidget->setItem(13, 1, new QTableWidgetItem("Напряжение фазы С, В"));
-    ui->tableWidget->setItem(14, 1, new QTableWidgetItem("Активная мошность фазы С, Вт"));
-    ui->tableWidget->setItem(15, 1, new QTableWidgetItem("Реактивная мошность фазы С, ВА"));
-    ui->tableWidget->setItem(16, 1, new QTableWidgetItem("Полная мошность фазы С, ВАР"));
-    ui->tableWidget->setItem(17, 1, new QTableWidgetItem("Коэффициент мощности фазы С"));
-    ui->tableWidget->setItem(18, 1, new QTableWidgetItem("трехфазная активная мошность, Вт"));
-    ui->tableWidget->setItem(19, 1, new QTableWidgetItem("Трехфазная реактивная мошность, ВА"));
-    ui->tableWidget->setItem(20, 1, new QTableWidgetItem("Трехфазная полная мошность, ВАР"));
-    ui->tableWidget->setItem(21, 1, new QTableWidgetItem("Коэффициент мощности"));
-    ui->tableWidget->setItem(22, 1, new QTableWidgetItem("Скорость вращения ротора, рад/с"));
-    ui->tableWidget->setItem(23, 1, new QTableWidgetItem("Момент, Н*м"));
-    ui->tableWidget->setItem(24, 1, new QTableWidgetItem("Момент сопротивления, Н*м"));
+//    ui->tableWidget->setItem(0, 1, new QTableWidgetItem("Ток фазы А, А"));
+//    ui->tableWidget->setItem(1, 1, new QTableWidgetItem("Напряжение фазы А, В"));
+//    ui->tableWidget->setItem(2, 1, new QTableWidgetItem("Активная мошность фазы А, Вт"));
+//    ui->tableWidget->setItem(3, 1, new QTableWidgetItem("Реактивная мошность фазы А, ВА"));
+//    ui->tableWidget->setItem(4, 1, new QTableWidgetItem("Полная мошность фазы А, ВАР"));
+//    ui->tableWidget->setItem(5, 1, new QTableWidgetItem("Коэффициент мощности фазы А"));
+//    ui->tableWidget->setItem(6, 1, new QTableWidgetItem("Ток фазы В, А"));
+//    ui->tableWidget->setItem(7, 1, new QTableWidgetItem("Напряжение фазы В, В"));
+//    ui->tableWidget->setItem(8, 1, new QTableWidgetItem("Активная мошность фазы В, Вт"));
+//    ui->tableWidget->setItem(9, 1, new QTableWidgetItem("Реактивная мошность фазы В, ВА"));
+//    ui->tableWidget->setItem(10, 1, new QTableWidgetItem("Полная мошность фазы В, ВАР"));
+//    ui->tableWidget->setItem(11, 1, new QTableWidgetItem("Коэффициент мощности фазы В"));
+//    ui->tableWidget->setItem(12, 1, new QTableWidgetItem("Ток фазы С, А"));
+//    ui->tableWidget->setItem(13, 1, new QTableWidgetItem("Напряжение фазы С, В"));
+//    ui->tableWidget->setItem(14, 1, new QTableWidgetItem("Активная мошность фазы С, Вт"));
+//    ui->tableWidget->setItem(15, 1, new QTableWidgetItem("Реактивная мошность фазы С, ВА"));
+//    ui->tableWidget->setItem(16, 1, new QTableWidgetItem("Полная мошность фазы С, ВАР"));
+//    ui->tableWidget->setItem(17, 1, new QTableWidgetItem("Коэффициент мощности фазы С"));
+//    ui->tableWidget->setItem(18, 1, new QTableWidgetItem("трехфазная активная мошность, Вт"));
+//    ui->tableWidget->setItem(19, 1, new QTableWidgetItem("Трехфазная реактивная мошность, ВА"));
+//    ui->tableWidget->setItem(20, 1, new QTableWidgetItem("Трехфазная полная мошность, ВАР"));
+//    ui->tableWidget->setItem(21, 1, new QTableWidgetItem("Коэффициент мощности"));
+//    ui->tableWidget->setItem(22, 1, new QTableWidgetItem("Скорость вращения ротора, рад/с"));
+//    ui->tableWidget->setItem(23, 1, new QTableWidgetItem("Момент, Н*м"));
+//    ui->tableWidget->setItem(24, 1, new QTableWidgetItem("Момент сопротивления, Н*м"));
 
     QPalette p1=ui->tableWidget->palette();
     p1.setColor(QPalette::Base, QColor(225, 255, 255));
@@ -131,7 +131,56 @@ SettingsCanals::SettingsCanals(QWidget *parent) :
     {
        // ui->tableWidget_2->setItem(i,1, ui->tableWiew->item(i, 2)->clone());
     }
+
+
+    sdb = QSqlDatabase::addDatabase("QSQLITE","Net_settings"); //объявление базы данных sqlite3
+//    if(QSqlDatabase::contains("Net_settings"))
+//    {
+//        sdb = QSqlDatabase::database("Net_settings");
+//    }
+//    else
+//    {
+//        sdb = QSqlDatabase::addDatabase("QSQLITE", "Net_settings");
+//    }
+
+    sdb.setDatabaseName(QFileInfo("../data/base_db/netdb2.db").absoluteFilePath()); //подключение к базе данных
+    sdb.open();
+
+    if(sdb.open())
+    {
+        qDebug() << "sdb opened OK...";
+    }else{
+        qDebug() << " sdb opening failed...";
+    }
+    QSqlQuery query=QSqlQuery(sdb);
+
+    if (query.exec("SELECT Id, Имя FROM Net_settings"))
+    {
+        for(int i = 0; query.next(); i++)
+        {
+           // ui->tableWidget->setItem(i,0, new QTableWidgetItem(query.value(0).toString()));
+            ui->tableWidget->setItem(i,1, new QTableWidgetItem(query.value(3).toString()));
+        }
+
+    }
+    query.exec("SELECT Id, Имя FROM Net_settings");
+    while (query.next())
+    {
+        int salary = query.value(0).toInt();
+        QString name = query.value(3).toString();
+
+        qDebug() << salary << name ;
+    }
+
+    if(query.exec("SELECT Id, Имя FROM Net_settings")){
+        qDebug() << "query.exec opened OK...";
+    }else{
+        qDebug() << " query.exec opening failed...";
+    }
+    ui->tableWidget->resizeColumnsToContents();
+    sdb.close();
 }
+
 
 SettingsCanals::~SettingsCanals()
 {
@@ -155,6 +204,12 @@ void SettingsCanals::on_pushButton_4_clicked()
     int g = ui->tableWidget_2->currentRow();
     ui->tableWidget_2->setItem(g,1,new QTableWidgetItem("  "));
     j=j-1;
+
+}
+
+
+void SettingsCanals::on_pushButton_2_clicked()
+{
 
 }
 

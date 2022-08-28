@@ -90,7 +90,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_6->ui->widget_2->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_tract/vent_tract.html").absoluteFilePath()));
     ui->widget_5->ui->widget_3->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/tepl_schen_zam/tepl_tract.html").absoluteFilePath()));
     ui->widget_5->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/tepl_schen_zam/tepl_tract_stator.html").absoluteFilePath()));
-    ui->widget_6->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_tract/vent_tract.html").absoluteFilePath()));
+    ui->widget_6->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_flow/vent_flow.html").absoluteFilePath()));
     ui->widget_6->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/ventilator/ventilator.html").absoluteFilePath()));
     ui->widget_6->ui->webEngineView_3->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_schem_zam/vent_schem_zam.html").absoluteFilePath()));
     ui->widget_6->ui->webEngineView_4->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_energo_scheme/vent_energo_scheme.html").absoluteFilePath()));
@@ -1650,6 +1650,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget_4->setItemDelegateForColumn(0, customHelpDelegate);
     ui->tableWidget_7->setItemDelegateForColumn(0, customHelpDelegate);
     ui->tableWidget_10->setItemDelegateForColumn(0, customHelpDelegate);
+    ui->tableWidget_11->setItemDelegateForColumn(0, customHelpDelegate);
+    ui->tableWidget_12->setItemDelegateForColumn(0, customHelpDelegate);
 
     ui->lineEdit_8->setReadOnly(true);
     ui->lineEdit_9->setReadOnly(true);
@@ -1871,53 +1873,53 @@ MainWindow::MainWindow(QWidget *parent)
         }
     }
 
-    ui->tableWidget_11->setItem(0, 0, new QTableWidgetItem("Внутренний расчетный диаметр вентилятора"));
-    ui->tableWidget_11->setItem(1, 0, new QTableWidgetItem("Внешний расчетный диаметр вентилятора"));
-    ui->tableWidget_11->setItem(2, 0, new QTableWidgetItem("Ширина лопатки вентилятора"));
-    ui->tableWidget_11->setItem(3, 0, new QTableWidgetItem("Частота вращения вентилятора"));
-    ui->tableWidget_11->setItem(4, 0, new QTableWidgetItem("Плотность воздуха"));
-    ui->tableWidget_11->setItem(5, 0, new QTableWidgetItem("Суммарная площадь отверстий в сетке кожуха"));
-    ui->tableWidget_11->setItem(6, 0, new QTableWidgetItem("Общая площадь сетки кожуха"));
-    ui->tableWidget_11->setItem(7, 0, new QTableWidgetItem("Площадь сечения в месте поворота к рабочему колесу"));
-    ui->tableWidget_11->setItem(8, 0, new QTableWidgetItem("Угол поворота потока к входным кромкам лопаток рабочего колеса"));
-    ui->tableWidget_11->setItem(9, 0, new QTableWidgetItem("Площадь сечения в месте поворота перед входом в межреберные каналы"));
-    ui->tableWidget_11->setItem(10, 0, new QTableWidgetItem("Угол поворота потока перед входом в межреберные каналы"));
-    ui->tableWidget_11->setItem(11, 0, new QTableWidgetItem("Площадь сечения перед входом в межреберные каналы"));
-    ui->tableWidget_11->setItem(12, 0, new QTableWidgetItem("Площадь сечения межреберных каналов от станины до кожуха вентилятора"));
-    ui->tableWidget_11->setItem(13, 0, new QTableWidgetItem("Угол натекания потока на ребра станины"));
-    ui->tableWidget_11->setItem(14, 0, new QTableWidgetItem("Угол поворота потока в межреберных каналах"));
+    ui->tableWidget_11->setItem(0, 0, new QTableWidgetItem("Потери на местных сопротивлениях и на трение"));
+    ui->tableWidget_11->setItem(1, 0, new QTableWidgetItem("Потери на входе в рабочее колесо"));
+    ui->tableWidget_11->setItem(2, 0, new QTableWidgetItem("Потери на вихреобразование пр протекании по тока по лопаткам колеса"));
+    ui->tableWidget_11->setItem(3, 0, new QTableWidgetItem("Потери на создание и перемещение неупорядоченных потоков в вентиляторе"));
+    ui->tableWidget_11->setItem(4, 0, new QTableWidgetItem("Потери при преобразовании кинетической энергии на выходе колеса в статическое давление"));
+    ui->tableWidget_11->setItem(5, 0, new QTableWidgetItem("Мощность, потребляемая вентилятором"));
+    ui->tableWidget_11->setItem(6, 0, new QTableWidgetItem("Полезная мощность вентилятора"));
+//    ui->tableWidget_11->setItem(7, 0, new QTableWidgetItem("Площадь сечения в месте поворота к рабочему колесу"));
+//    ui->tableWidget_11->setItem(8, 0, new QTableWidgetItem("Угол поворота потока к входным кромкам лопаток рабочего колеса"));
+//    ui->tableWidget_11->setItem(9, 0, new QTableWidgetItem("Площадь сечения в месте поворота перед входом в межреберные каналы"));
+//    ui->tableWidget_11->setItem(10, 0, new QTableWidgetItem("Угол поворота потока перед входом в межреберные каналы"));
+//    ui->tableWidget_11->setItem(11, 0, new QTableWidgetItem("Площадь сечения перед входом в межреберные каналы"));
+//    ui->tableWidget_11->setItem(12, 0, new QTableWidgetItem("Площадь сечения межреберных каналов от станины до кожуха вентилятора"));
+//    ui->tableWidget_11->setItem(13, 0, new QTableWidgetItem("Угол натекания потока на ребра станины"));
+//    ui->tableWidget_11->setItem(14, 0, new QTableWidgetItem("Угол поворота потока в межреберных каналах"));
 
-    ui->tableWidget_11->setItem(0, 1, new QTableWidgetItem("D1р"));
-    ui->tableWidget_11->setItem(1, 1, new QTableWidgetItem("D2р"));
-    ui->tableWidget_11->setItem(2, 1, new QTableWidgetItem("b"));
-    ui->tableWidget_11->setItem(3, 1, new QTableWidgetItem("n"));
-    ui->tableWidget_11->setItem(4, 1, new QTableWidgetItem("ro"));
-    ui->tableWidget_11->setItem(5, 1, new QTableWidgetItem("Sotv"));
-    ui->tableWidget_11->setItem(6, 1, new QTableWidgetItem("S0"));
-    ui->tableWidget_11->setItem(7, 1, new QTableWidgetItem("S1"));
-    ui->tableWidget_11->setItem(8, 1, new QTableWidgetItem("alpha1"));
-    ui->tableWidget_11->setItem(9, 1, new QTableWidgetItem("S2"));
-    ui->tableWidget_11->setItem(10, 1, new QTableWidgetItem("alpha2"));
-    ui->tableWidget_11->setItem(11, 1, new QTableWidgetItem("S3"));
-    ui->tableWidget_11->setItem(12, 1, new QTableWidgetItem("S4"));
-    ui->tableWidget_11->setItem(13, 1, new QTableWidgetItem("fi"));
-    ui->tableWidget_11->setItem(14, 1, new QTableWidgetItem("fi2"));
+    ui->tableWidget_11->setItem(0, 1, new QTableWidgetItem("ΔPптк"));
+    ui->tableWidget_11->setItem(1, 1, new QTableWidgetItem("ΔPврк"));
+    ui->tableWidget_11->setItem(2, 1, new QTableWidgetItem("ΔPвк"));
+    ui->tableWidget_11->setItem(3, 1, new QTableWidgetItem("ΔPсвп"));
+    ui->tableWidget_11->setItem(4, 1, new QTableWidgetItem("ΔPкд"));
+    ui->tableWidget_11->setItem(5, 1, new QTableWidgetItem("Nsv"));
+    ui->tableWidget_11->setItem(6, 1, new QTableWidgetItem("N"));
+//    ui->tableWidget_11->setItem(7, 1, new QTableWidgetItem("S1"));
+//    ui->tableWidget_11->setItem(8, 1, new QTableWidgetItem("alpha1"));
+//    ui->tableWidget_11->setItem(9, 1, new QTableWidgetItem("S2"));
+//    ui->tableWidget_11->setItem(10, 1, new QTableWidgetItem("alpha2"));
+//    ui->tableWidget_11->setItem(11, 1, new QTableWidgetItem("S3"));
+//    ui->tableWidget_11->setItem(12, 1, new QTableWidgetItem("S4"));
+//    ui->tableWidget_11->setItem(13, 1, new QTableWidgetItem("fi"));
+//    ui->tableWidget_11->setItem(14, 1, new QTableWidgetItem("fi2"));
 
-    ui->tableWidget_11->setItem(0, 3, new QTableWidgetItem("м"));
-    ui->tableWidget_11->setItem(1, 3, new QTableWidgetItem("м"));
-    ui->tableWidget_11->setItem(2, 3, new QTableWidgetItem("м"));
-    ui->tableWidget_11->setItem(3, 3, new QTableWidgetItem("об/мин"));
-    ui->tableWidget_11->setItem(4, 3, new QTableWidgetItem("кг/м3"));
-    ui->tableWidget_11->setItem(5, 3, new QTableWidgetItem("м2"));
-    ui->tableWidget_11->setItem(6, 3, new QTableWidgetItem("м2"));
-    ui->tableWidget_11->setItem(7, 3, new QTableWidgetItem("м2"));
-    ui->tableWidget_11->setItem(8, 3, new QTableWidgetItem("град."));
-    ui->tableWidget_11->setItem(9, 3, new QTableWidgetItem("град."));
-    ui->tableWidget_11->setItem(10, 3, new QTableWidgetItem("alpha2"));
-    ui->tableWidget_11->setItem(11, 3, new QTableWidgetItem("м2"));
-    ui->tableWidget_11->setItem(12, 3, new QTableWidgetItem("м2"));
-    ui->tableWidget_11->setItem(13, 3, new QTableWidgetItem("град."));
-    ui->tableWidget_11->setItem(14, 3, new QTableWidgetItem("град."));
+    ui->tableWidget_11->setItem(0, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_11->setItem(1, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_11->setItem(2, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_11->setItem(3, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_11->setItem(4, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_11->setItem(5, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_11->setItem(6, 3, new QTableWidgetItem("Вт"));
+//    ui->tableWidget_11->setItem(7, 3, new QTableWidgetItem("м2"));
+//    ui->tableWidget_11->setItem(8, 3, new QTableWidgetItem("град."));
+//    ui->tableWidget_11->setItem(9, 3, new QTableWidgetItem("град."));
+//    ui->tableWidget_11->setItem(10, 3, new QTableWidgetItem("alpha2"));
+//    ui->tableWidget_11->setItem(11, 3, new QTableWidgetItem("м2"));
+//    ui->tableWidget_11->setItem(12, 3, new QTableWidgetItem("м2"));
+//    ui->tableWidget_11->setItem(13, 3, new QTableWidgetItem("град."));
+//    ui->tableWidget_11->setItem(14, 3, new QTableWidgetItem("град."));
 
     for (int i=0; i<ui->tableWidget_11->rowCount(); i++)
     {
@@ -1954,11 +1956,120 @@ MainWindow::MainWindow(QWidget *parent)
         }
     }
 
-    QPalette p_11=ui->tableWidget_11->palette();
-    p_11.setColor(QPalette::Base, QColor(255, 255, 191));
-    p_11.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
-    ui->tableWidget_10->setPalette(p_11);
+    QPalette p11=ui->tableWidget_11->palette();
+    p11.setColor(QPalette::Base, QColor(225, 255, 255));
+    p11.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
+    ui->tableWidget_11->setPalette(p11);
 
+
+
+    ui->tableWidget_12->setRowCount(10);
+    ui->tableWidget_12->setColumnCount(4);
+    QStringList name_121;
+    name_121 << "Величина" << "Обозначение" << "Значение" << "Размерность";
+    ui->tableWidget_12->setHorizontalHeaderLabels(name_121);
+    ui->tableWidget_12->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableWidget_12->setSelectionBehavior(QAbstractItemView :: SelectRows);
+    ui->tableWidget_12->setSelectionMode(QAbstractItemView :: SingleSelection);
+    ui->tableWidget_12->verticalHeader()->setVisible(true);
+    ui->tableWidget_12->resizeColumnsToContents();
+
+    for(int row = 0; row<ui->tableWidget_12->rowCount(); row++)
+    {
+        for(int column = 0; column<ui->tableWidget_12->columnCount(); column++)
+        {
+            ui->tableWidget_12->setItem(row, column, new QTableWidgetItem());
+
+        }
+    }
+
+    ui->tableWidget_12->setItem(0, 0, new QTableWidgetItem("Производительность"));
+    ui->tableWidget_12->setItem(1, 0, new QTableWidgetItem("Полное давление вентилятора"));
+    ui->tableWidget_12->setItem(2, 0, new QTableWidgetItem("Динамическое давление вентилятора"));
+    ui->tableWidget_12->setItem(3, 0, new QTableWidgetItem("Статическое давление вентилятора"));
+    ui->tableWidget_12->setItem(4, 0, new QTableWidgetItem("Полезная мощность вентилятора"));
+    ui->tableWidget_12->setItem(5, 0, new QTableWidgetItem("Потребляемая мощность вентилятора"));
+    ui->tableWidget_12->setItem(6, 0, new QTableWidgetItem("Полный к.п.д. вентилятора"));
+    ui->tableWidget_12->setItem(7, 0, new QTableWidgetItem("Аэродинамический к.п.д"));
+    ui->tableWidget_12->setItem(8, 0, new QTableWidgetItem("Объемный к.п.д."));
+    ui->tableWidget_12->setItem(9, 0, new QTableWidgetItem("Механический к.п.д."));
+//    ui->tableWidget_12->setItem(10, 0, new QTableWidgetItem("Угол поворота потока перед входом в межреберные каналы"));
+//    ui->tableWidget_12->setItem(11, 0, new QTableWidgetItem("Площадь сечения перед входом в межреберные каналы"));
+//    ui->tableWidget_12->setItem(12, 0, new QTableWidgetItem("Площадь сечения межреберных каналов от станины до кожуха вентилятора"));
+//    ui->tableWidget_12->setItem(13, 0, new QTableWidgetItem("Угол натекания потока на ребра станины"));
+//    ui->tableWidget_12->setItem(14, 0, new QTableWidgetItem("Угол поворота потока в межреберных каналах"));
+
+    ui->tableWidget_12->setItem(0, 1, new QTableWidgetItem("Q"));
+    ui->tableWidget_12->setItem(1, 1, new QTableWidgetItem("Pv"));
+    ui->tableWidget_12->setItem(2, 1, new QTableWidgetItem("Pdv"));
+    ui->tableWidget_12->setItem(3, 1, new QTableWidgetItem("Psv"));
+    ui->tableWidget_12->setItem(4, 1, new QTableWidgetItem("Nsv"));
+    ui->tableWidget_12->setItem(5, 1, new QTableWidgetItem("N"));
+    ui->tableWidget_12->setItem(6, 1, new QTableWidgetItem("nu"));
+    ui->tableWidget_12->setItem(7, 1, new QTableWidgetItem("nu_p"));
+    ui->tableWidget_12->setItem(8, 1, new QTableWidgetItem("nu_z"));
+    ui->tableWidget_12->setItem(9, 1, new QTableWidgetItem("nu_mp"));
+//    ui->tableWidget_12->setItem(10, 1, new QTableWidgetItem("alpha2"));
+//    ui->tableWidget_12->setItem(11, 1, new QTableWidgetItem("S3"));
+//    ui->tableWidget_12->setItem(12, 1, new QTableWidgetItem("S4"));
+//    ui->tableWidget_12->setItem(13, 1, new QTableWidgetItem("fi"));
+//    ui->tableWidget_12->setItem(14, 1, new QTableWidgetItem("fi2"));
+
+    ui->tableWidget_12->setItem(0, 3, new QTableWidgetItem("м3/с"));
+    ui->tableWidget_12->setItem(1, 3, new QTableWidgetItem("Па"));
+    ui->tableWidget_12->setItem(2, 3, new QTableWidgetItem("Па"));
+    ui->tableWidget_12->setItem(3, 3, new QTableWidgetItem("Па"));
+    ui->tableWidget_12->setItem(4, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_12->setItem(5, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_12->setItem(6, 3, new QTableWidgetItem("-"));
+    ui->tableWidget_12->setItem(7, 3, new QTableWidgetItem("-"));
+    ui->tableWidget_12->setItem(8, 3, new QTableWidgetItem("-"));
+    ui->tableWidget_12->setItem(9, 3, new QTableWidgetItem("-"));
+//    ui->tableWidget_12->setItem(10, 3, new QTableWidgetItem("alpha2"));
+//    ui->tableWidget_12->setItem(11, 3, new QTableWidgetItem("м2"));
+//    ui->tableWidget_12->setItem(12, 3, new QTableWidgetItem("м2"));
+//    ui->tableWidget_12->setItem(13, 3, new QTableWidgetItem("град."));
+//    ui->tableWidget_12->setItem(14, 3, new QTableWidgetItem("град."));
+
+    for (int i=0; i<ui->tableWidget_12->rowCount(); i++)
+    {
+
+        if (ui->tableWidget_12->item(i, 1) != 0)
+        {
+            ui->tableWidget_12->item(i, 1)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget_12->item(i, 3) != 0)
+        {
+            ui->tableWidget_12->item(i, 3)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+    //запрет редактирования первого столбца
+    for(int row = 0; row<ui->tableWidget_12->rowCount(); row++)
+    {
+        if (ui->tableWidget_12->item(row,0) != 0)
+        {
+            ui->tableWidget_12->item(row,0)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+        if (ui->tableWidget_12->item(row,1) != 0)
+        {
+            ui->tableWidget_12->item(row,1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+        if (ui->tableWidget_12->item(row,2) != 0)
+        {
+            ui->tableWidget_12->item(row,2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled|Qt::ItemIsEditable);
+            ui->tableWidget_11->item(row,2)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget_12->item(row,3) != 0)
+        {
+            ui->tableWidget_12->item(row,3)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+    }
+
+    QPalette p12=ui->tableWidget_12->palette();
+    p12.setColor(QPalette::Base, QColor(225, 255, 255));
+    p12.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
+    ui->tableWidget_12->setPalette(p12);
 
     ui->tabWidget->setCurrentIndex(0);
     ui->widget_5->ui->tabWidget->setCurrentIndex(0);
@@ -4533,7 +4644,7 @@ void MainWindow::on_save_Vent_dannie_clicked()
     xmlWriter.writeAttribute("value", (ui->widget_6->ui->tableWidget->item(8,2)->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("Ploschad_sechenia_v_meste_povorota_pered_vchodom_v megrebernye_kanaly");
+    xmlWriter.writeStartElement("Ploschad_sechenia_v_meste_povorota_pered_vchodom_v_megrebernye_kanaly");
     xmlWriter.writeAttribute("value", (ui->widget_6->ui->tableWidget->item(9,2)->text()));
     xmlWriter.writeEndElement();
 
@@ -6861,6 +6972,8 @@ void MainWindow::on_vent_result_clicked()
             //Потребляемая вентилятором мощность
             base_tepl.nu2 = 0.7;
             Pvent = 9.81 * (Qp * Hp / base_tepl.nu2);
+
+
 
             if (ui->tableWidget_7->item(0, 2) != 0)
             {
