@@ -73,7 +73,7 @@ SettingsCanals::SettingsCanals(QWidget *parent) :
     p1.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
     ui->tableWidget->setPalette(p1);
 
-    ui->tableWidget_2->setRowCount(64);
+    ui->tableWidget_2->setRowCount(12);
     ui->tableWidget_2->setColumnCount(3);
     QStringList name_2;
     name_2 << "Номер \n переменной" << "Номер \n выбранного канала" << "Величина";

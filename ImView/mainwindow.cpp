@@ -71,6 +71,7 @@ double d_teta_zp,d_teta_zc,d_teta_c3,d_teta_pc,d_teta_pz,d_teta_l22,d_teta_l14,d
 d_teta_10,d_teta_30,d_teta_k0,d_teta_50,d_teta_3k,d_teta_21,d_teta_c2,d_teta_c4,d_teta_45,
 d_teta_pb,d_teta_b5,d_teta_p5,d_teta_p2;
 double H0, Qmax, Z0, Z1, Z2, Z3, Z4, Z5, Z6, Qp, Hp, Vcp, Pvent;
+double Nsv,N, dNptk, dNvpk, dNvk,dNsvp, dNkd;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -7038,6 +7039,29 @@ void MainWindow::on_vent_result_clicked()
             {
                 ui->tableWidget_7->item(12, 2)->setText(QString::number(Pvent,'f',6));
             }
+        }
+    }
+    if (item34->text() == "Выберите режим")
+    {
+        QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
+    }
+    else
+    {
+        if (item34->text() == "Динамика (расчет)")
+        {
+
+            QMessageBox::critical(this, "Привет!", "сеанс2");
+        }
+    }
+    if (item34->text() == "Выберите режим")
+    {
+        QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
+    }
+    else
+    {
+        if (item34->text() == "Динамика (эксперимент)")
+        {
+            QMessageBox::critical(this, "Привет!", "сеанс3");
         }
     }
 }
