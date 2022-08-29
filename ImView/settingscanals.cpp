@@ -14,7 +14,7 @@ SettingsCanals::SettingsCanals(QWidget *parent) :
     ui->tableWidget->setRowCount(64);
     ui->tableWidget->setColumnCount(2);
     QStringList name;
-    name << "Номер канала" << "Величина";
+    name << "Номер \n канала" << "Величина";
     ui->tableWidget->setHorizontalHeaderLabels(name);
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
@@ -74,9 +74,9 @@ SettingsCanals::SettingsCanals(QWidget *parent) :
     ui->tableWidget->setPalette(p1);
 
     ui->tableWidget_2->setRowCount(64);
-    ui->tableWidget_2->setColumnCount(2);
+    ui->tableWidget_2->setColumnCount(3);
     QStringList name_2;
-    name_2 << "Номер канала" << "Величина";
+    name_2 << "Номер \n переменной" << "Номер \n выбранного канала" << "Величина";
     ui->tableWidget_2->setHorizontalHeaderLabels(name_2);
     ui->tableWidget_2->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tableWidget_2->horizontalHeader()->setStretchLastSection(true);
@@ -158,8 +158,9 @@ SettingsCanals::SettingsCanals(QWidget *parent) :
     {
         for(int i = 0; query.next(); i++)
         {
-           // ui->tableWidget->setItem(i,0, new QTableWidgetItem(query.value(0).toString()));
-            ui->tableWidget->setItem(i,1, new QTableWidgetItem(query.value(3).toString()));
+            ui->tableWidget->setItem(i,0, new QTableWidgetItem(query.value(0).toString()));
+            ui->tableWidget->item(i,0)->setTextAlignment(Qt::AlignCenter);
+            ui->tableWidget->setItem(i,1, new QTableWidgetItem(query.value(1).toString()));
         }
 
     }
@@ -167,7 +168,7 @@ SettingsCanals::SettingsCanals(QWidget *parent) :
     while (query.next())
     {
         int salary = query.value(0).toInt();
-        QString name = query.value(3).toString();
+        QString name = query.value(1).toString();
 
         qDebug() << salary << name ;
     }
@@ -195,16 +196,20 @@ void SettingsCanals::on_pushButton_clicked()
 void SettingsCanals::on_pushButton_3_clicked()
 {
     int i = ui->tableWidget->currentRow();
-    ui->tableWidget_2->setItem(j,1, ui->tableWidget->item(i, 1)->clone());
-    j=j+1;
+    ui->tableWidget_2->setItem(j,1, ui->tableWidget->item(i, 0)->clone());
+    ui->tableWidget_2->setItem(j,2, ui->tableWidget->item(i, 1)->clone());
+    j++;
 }
 
 void SettingsCanals::on_pushButton_4_clicked()
 {
     int g = ui->tableWidget_2->currentRow();
-    ui->tableWidget_2->setItem(g,1,new QTableWidgetItem("  "));
-    j=j-1;
-
+    for (int i = g; i < ui->tableWidget_2->rowCount() - 1; i++)
+    {
+        ui->tableWidget_2->item(i, 1)->setText(ui->tableWidget_2->item(i+1, 1)->text());
+        ui->tableWidget_2->item(i, 2)->setText(ui->tableWidget_2->item(i+1, 2)->text());
+    }
+    j--;
 }
 
 
