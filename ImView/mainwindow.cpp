@@ -7163,14 +7163,14 @@ void MainWindow::on_radioButton_12_toggled(bool checked)
         {
             if (checked)
             {
-                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text909').text('%1 °C');").arg(Z1,0,'f',3));
-                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text913' ).text('%1 °C');").arg(Z2, 0, 'f', 2));
-                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text917').text('%1 °C');").arg(Z3, 0, 'f', 2));
-                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text921').text('%1 °C');").arg(Z4, 0, 'f', 2));
-                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text925').text('%1 °C');").arg(Z5, 0, 'f', 2));
-                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text929').text('%1 °C');").arg(Z6, 0, 'f', 2));
-                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text953' ).text('%1 °C');").arg(Qp, 0, 'f', 2));
-                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text941').text('%1 °C');").arg(Hp, 0, 'f', 2));                           }
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text909').text('%1 кг·с²/м⁸');").arg(Z1,0,'f',3));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text913' ).text('%1 кг·с²/м⁸');").arg(Z2, 0, 'f', 2));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text917').text('%1 кг·с²/м⁸');").arg(Z3, 0, 'f', 2));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text921').text('%1 кг·с²/м⁸');").arg(Z4, 0, 'f', 2));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text925').text('%1 кг·с²/м⁸');").arg(Z5, 0, 'f', 2));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text929').text('%1 кг·с²/м⁸');").arg(Z6, 0, 'f', 2));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text953' ).text('%1 м³/с');").arg(Qp, 0, 'f', 2));
+                ui->widget_6->ui->webEngineView_3->page()->runJavaScript(QString("$('#text941').text('%1 Па');").arg(Hp, 0, 'f', 2));                           }
         }
     }
 }

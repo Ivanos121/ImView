@@ -73,7 +73,7 @@ SettingsCanals::SettingsCanals(QWidget *parent) :
     p1.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
     ui->tableWidget->setPalette(p1);
 
-    ui->tableWidget_2->setRowCount(12);
+    ui->tableWidget_2->setRowCount(11);
     ui->tableWidget_2->setColumnCount(3);
     QStringList name_2;
     name_2 << "Номер \n переменной" << "Номер \n выбранного канала" << "Величина";
@@ -215,6 +215,10 @@ void SettingsCanals::on_pushButton_4_clicked()
 
 void SettingsCanals::on_pushButton_2_clicked()
 {
-
+    QSettings settings;
+    for (int i = 0; i < 11; i++)
+    {
+        settings.setValue(QString("ArchieverChannels/y")+ QString("%1").arg(i), ui->tableWidget_2->item(i, 1)->text());
+    }
 }
 
