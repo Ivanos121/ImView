@@ -101,9 +101,6 @@ double nu2;
 
 double alpha1;
 double alpha2;
-
-
-
 };
 
 extern Base_tepl base_tepl;

@@ -459,13 +459,13 @@ void electromagn::realtimeDataSlot()
             wf->ui->tableWidget_4->item(8, 2)->setText(QString::number(Model_el.cos_f,'f',3));
         }
 
-        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text139\").text('Р1 = %1 Вт');").arg(Model_el.P1, 0, 'f', 1));
-        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text113\").text('dPel1 = %1 Вт');").arg(Model_el.dPel1, 0, 'f', 1));
-        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text91\").text('dPct = %1 Вт');").arg(Model_el.dPct, 0, 'f', 1));
-        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text33\").text('dPel2 = %1 Вт');").arg(Model_el.dPel2, 0, 'f', 1));
-        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text53\").text('dPdob = %1 Вт');").arg(Model_el.dPdob, 0, 'f', 1));
-        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text259\").text('dPmech = %1 Вт');").arg(Model_el.dPmech, 0, 'f', 1));
-        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text75\").text('P2 = %1 Вт');").arg(Model_el.P2, 0, 'f', 1));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text139\").text('Р1 = %1 Вт');").arg(Model_el.P1, 0, 'f', 3));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text91-3\").text('ΔPel1 = %1 Вт');").arg(Model_el.dPel1, 0, 'f', 3));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text91\").text('ΔPct = %1 Вт');").arg(Model_el.dPct, 0, 'f', 3));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text33\").text('ΔPel2 = %1 Вт');").arg(Model_el.dPel2, 0, 'f', 3));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text53\").text('ΔPdob = %1 Вт');").arg(Model_el.dPdob, 0, 'f', 3));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text259\").text('ΔPmech = %1 Вт');").arg(Model_el.dPmech, 0, 'f', 3));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text75\").text('P2 = %1 Вт');").arg(Model_el.P2, 0, 'f', 3));
 
         std::ofstream fout;
         fout.open(QString(base.electromagnFilename).toStdString(),std::ios::out | std::ios::app);

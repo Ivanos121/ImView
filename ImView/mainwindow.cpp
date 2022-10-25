@@ -55,6 +55,7 @@
 #include "ui_vent_tract.h"
 #include "customhelpdelegate.h"
 #include "math.h"
+#include "plot.h"
 
 Base base;
 Base_tepl base_tepl;
@@ -1258,11 +1259,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget_4->setItem(8, 0, new QTableWidgetItem("Коэффициент мощности"));
 
     ui->tableWidget_4->setItem(0, 1, new QTableWidgetItem("P1"));
-    ui->tableWidget_4->setItem(1, 1, new QTableWidgetItem("dPel1"));
-    ui->tableWidget_4->setItem(2, 1, new QTableWidgetItem("dPct"));
-    ui->tableWidget_4->setItem(3, 1, new QTableWidgetItem("dPel2"));
-    ui->tableWidget_4->setItem(4, 1, new QTableWidgetItem("dPdob"));
-    ui->tableWidget_4->setItem(5, 1, new QTableWidgetItem("dPmech"));
+    ui->tableWidget_4->setItem(1, 1, new QTableWidgetItem("ΔPel1"));
+    ui->tableWidget_4->setItem(2, 1, new QTableWidgetItem("ΔPct"));
+    ui->tableWidget_4->setItem(3, 1, new QTableWidgetItem("ΔPel2"));
+    ui->tableWidget_4->setItem(4, 1, new QTableWidgetItem("ΔPdob"));
+    ui->tableWidget_4->setItem(5, 1, new QTableWidgetItem("ΔPmech"));
     ui->tableWidget_4->setItem(6, 1, new QTableWidgetItem("P2"));
     ui->tableWidget_4->setItem(7, 1, new QTableWidgetItem("KPD"));
     ui->tableWidget_4->setItem(8, 1, new QTableWidgetItem("cosf"));
@@ -1274,8 +1275,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget_4->setItem(4, 3, new QTableWidgetItem("Вт"));
     ui->tableWidget_4->setItem(5, 3, new QTableWidgetItem("Вт"));
     ui->tableWidget_4->setItem(6, 3, new QTableWidgetItem("Вт"));
-    ui->tableWidget_4->setItem(7, 3, new QTableWidgetItem("Вт"));
-    ui->tableWidget_4->setItem(8, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_4->setItem(7, 3, new QTableWidgetItem("--"));
+    ui->tableWidget_4->setItem(8, 3, new QTableWidgetItem("--"));
 
     for (int i=0; i<ui->tableWidget_4->rowCount(); i++)
     {
@@ -7063,6 +7064,17 @@ void MainWindow::on_vent_result_clicked()
         {
             QMessageBox::critical(this, "Привет!", "сеанс3");
         }
+    }
+    double Q =0;
+    double H1 = 0;
+    double H2 = 0;
+    for (int i=0;i<100; i++)
+    {
+        Q+=0.01;
+        H1 = Z0 * pow(Q,2);
+        H2 = H0 *(1 - pow((Q/Qmax),2));
+        ui->widget_6->ui->plot->addPoint(0, Q, H1);
+        ui->widget_6->ui->plot->addPoint(1, Q, H2);
     }
 }
 
