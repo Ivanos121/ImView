@@ -7042,32 +7042,35 @@ void MainWindow::on_vent_result_clicked()
             }
         }
     }
-    if (item34->text() == "Выберите режим")
-    {
-        QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
-    }
-    else
-    {
-        if (item34->text() == "Динамика (расчет)")
-        {
+//    if (item34->text() == "Выберите режим")
+//    {
+//        QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
+//    }
+//    else
+//    {
+//        if (item34->text() == "Динамика (расчет)")
+//        {
 
-            QMessageBox::critical(this, "Привет!", "сеанс2");
-        }
-    }
-    if (item34->text() == "Выберите режим")
-    {
-        QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
-    }
-    else
-    {
-        if (item34->text() == "Динамика (эксперимент)")
-        {
-            QMessageBox::critical(this, "Привет!", "сеанс3");
-        }
-    }
+//            QMessageBox::critical(this, "Привет!", "сеанс2");
+//        }
+//    }
+//    if (item34->text() == "Выберите режим")
+//    {
+//        QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
+//    }
+//    else
+//    {
+//        if (item34->text() == "Динамика (эксперимент)")
+//        {
+//            QMessageBox::critical(this, "Привет!", "сеанс3");
+//        }
+//    }
     double Q =0;
     double H1 = 0;
     double H2 = 0;
+    ui->widget_6->ui->plot->clear();
+    ui->widget_6->ui->plot->addDataLine(QColor(Qt::red), 0);
+    ui->widget_6->ui->plot->addDataLine(QColor(Qt::green), 0);
     for (int i=0;i<100; i++)
     {
         Q+=0.01;
@@ -7075,6 +7078,7 @@ void MainWindow::on_vent_result_clicked()
         H2 = H0 *(1 - pow((Q/Qmax),2));
         ui->widget_6->ui->plot->addPoint(0, Q, H1);
         ui->widget_6->ui->plot->addPoint(1, Q, H2);
+        qDebug() << H1 << H2 << Qt::endl;
     }
 }
 
