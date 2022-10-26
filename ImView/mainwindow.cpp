@@ -6928,7 +6928,7 @@ void MainWindow::on_vent_result_clicked()
             base_tepl.fi2   = ui->widget_6->ui->tableWidget->item(14,2)->text().toDouble();
 
             //Начальное давление вентилятора:
-            H0=0.00695 * pow(base_tepl.n2,2)*(pow(base_tepl.D2p,2) - pow(base_tepl.D1p,2));
+            H0=0.00695 * pow(base_tepl.n2,2) * (pow(base_tepl.D2p,2) - pow(base_tepl.D1p,2));
 
             //Максимальный расход воздуха:
             Qmax = 0.006 * pow(base_tepl.D2p,2) * base_tepl.b * base_tepl.n2;
@@ -7068,18 +7068,67 @@ void MainWindow::on_vent_result_clicked()
     double Q =0;
     double H1 = 0;
     double H2 = 0;
+    double ne;
+    double Pv;
     ui->widget_6->ui->plot->clear();
     ui->widget_6->ui->plot->addDataLine(QColor(Qt::red), 0);
     ui->widget_6->ui->plot->addDataLine(QColor(Qt::green), 0);
     for (int i=0;i<100; i++)
     {
-        Q+=0.01;
+        Q+=0.0001;
         H1 = Z0 * pow(Q,2);
         H2 = H0 *(1 - pow((Q/Qmax),2));
         ui->widget_6->ui->plot->addPoint(0, Q, H1);
         ui->widget_6->ui->plot->addPoint(1, Q, H2);
         qDebug() << H1 << H2 << Qt::endl;
     }
+    ne=0.19*sin(M_PI)*(Qp/Qmax);
+
+    Pv=(Qp*Hp);
+    double dPptk=0.07;
+    double dPvpk=0.2;
+    double dPvk=0.01;
+    double dPsvp=0.001;
+    double dPkd=0.6;
+
+    qDebug() << Pv;
+
+    if (ui->tableWidget_11->item(5, 2) != 0)
+    {
+        ui->tableWidget_11->item(5, 2)->setText(QString::number(Pvent,'f',3));
+    }
+    if (ui->tableWidget_11->item(6, 2) != 0)
+    {
+        ui->tableWidget_11->item(6, 2)->setText(QString::number(Pv,'f',3));
+    }
+    if (ui->tableWidget_11->item(0, 2) != 0)
+    {
+        ui->tableWidget_11->item(0, 2)->setText(QString::number(dPptk,'f',3));
+    }
+    if (ui->tableWidget_11->item(1, 2) != 0)
+    {
+        ui->tableWidget_11->item(1, 2)->setText(QString::number(dPvpk,'f',3));
+    }
+    if (ui->tableWidget_11->item(2, 2) != 0)
+    {
+        ui->tableWidget_11->item(2, 2)->setText(QString::number(dPvk,'f',3));
+    }
+    if (ui->tableWidget_11->item(3, 2) != 0)
+    {
+        ui->tableWidget_11->item(3, 2)->setText(QString::number(dPsvp,'f',3));
+    }
+    if (ui->tableWidget_11->item(4, 2) != 0)
+    {
+        ui->tableWidget_11->item(4, 2)->setText(QString::number(dPkd,'f',3));
+    }
+
+    ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text139\").text('Nsv = %1 Вт');").arg(Pvent, 0, 'f', 3));
+    ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text75\").text('N = %1 Вт');").arg(Pv, 0, 'f', 3));
+    ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text113\").text('ΔPptk = %1 Вт');").arg(dPptk, 0, 'f', 3));
+    ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text91\").text('ΔPvpk = %1 Вт');").arg(dPvpk, 0, 'f', 3));
+    ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text33\").text('ΔPvk = %1 Вт');").arg(dPvk, 0, 'f', 3));
+    ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text53\").text('ΔPsvp = %1 Вт');").arg(dPsvp, 0, 'f', 3));
+    ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text185\").text('ΔPkd = %1 Вт');").arg(dPkd, 0, 'f', 3));
 }
 
 void MainWindow::on_save_electromagn_graph_file_clicked()
