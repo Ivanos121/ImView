@@ -7085,12 +7085,15 @@ void MainWindow::on_vent_result_clicked()
     ne=0.19*sin(M_PI)*(Qp/Qmax);
 
     Pv=(Qp*Hp);
-    double dPptk=0.07;
-    double dPvpk=0.2;
+//    double dPptk=0.07;
+//    double dPvpk=0.2;
     double dPvk=0.01;
     double dPsvp=0.001;
     double dPkd=0.6;
 
+    double eps = 0.07;
+    double dPptk = eps * base_tepl.ro * pow((Qp/base_tepl.S1),2);
+    double dPvpk = eps * base_tepl.ro * pow((Qp/base_tepl.S1),2);
     qDebug() << Pv;
 
     if (ui->tableWidget_11->item(5, 2) != 0)
@@ -7124,11 +7127,11 @@ void MainWindow::on_vent_result_clicked()
 
     ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text139\").text('Nsv = %1 Вт');").arg(Pvent, 0, 'f', 3));
     ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text75\").text('N = %1 Вт');").arg(Pv, 0, 'f', 3));
-    ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text113\").text('ΔPptk = %1 Вт');").arg(dPptk, 0, 'f', 3));
-    ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text91\").text('ΔPvpk = %1 Вт');").arg(dPvpk, 0, 'f', 3));
-    ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text33\").text('ΔPvk = %1 Вт');").arg(dPvk, 0, 'f', 3));
-    ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text53\").text('ΔPsvp = %1 Вт');").arg(dPsvp, 0, 'f', 3));
-    ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text185\").text('ΔPkd = %1 Вт');").arg(dPkd, 0, 'f', 3));
+    ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text113\").text('ΔNptk = %1 Вт');").arg(dPptk, 0, 'f', 3));
+    ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text91\").text('ΔNvpk = %1 Вт');").arg(dPvpk, 0, 'f', 3));
+    ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text33\").text('ΔNvk = %1 Вт');").arg(dPvk, 0, 'f', 3));
+    ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text53\").text('ΔNsvp = %1 Вт');").arg(dPsvp, 0, 'f', 3));
+    ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text185\").text('ΔNkd = %1 Вт');").arg(dPkd, 0, 'f', 3));
 }
 
 void MainWindow::on_save_electromagn_graph_file_clicked()
