@@ -87,6 +87,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_5->ui->widget_4->wf=this;
     ui->widget->wf=this;
 
+    ui->widget_6->ui->plot->t_max = 0.01;
+    ui->widget_6->ui->plot->U_max = 500.0;
+    ui->widget_6->ui->plot->margin_bottom = 40;
+    ui->widget_6->ui->plot->margin_left = 100;
+    ui->widget_6->ui->plot->reset();
+
     ui->widget_5->ui->widget->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/ax_var/ax_var_2.html").absoluteFilePath()));
     ui->widget_5->ui->widget_5->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/rad_var/rad_var.html").absoluteFilePath()));
     ui->widget_6->ui->widget_2->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_tract/vent_tract.html").absoluteFilePath()));

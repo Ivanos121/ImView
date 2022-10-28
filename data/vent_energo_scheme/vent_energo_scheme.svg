@@ -8,7 +8,7 @@
    height="722.52002"
    viewBox="0 0 961.70098 722.52001"
    sodipodi:docname="vent_energo_scheme.svg"
-   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14, custom)"
+   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -25,11 +25,11 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
-     inkscape:zoom="0.57764395"
-     inkscape:cx="369.60484"
-     inkscape:cy="395.57239"
+     inkscape:zoom="1.6338238"
+     inkscape:cx="241.4581"
+     inkscape:cy="262.26818"
      inkscape:window-width="1920"
-     inkscape:window-height="1030"
+     inkscape:window-height="1024"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -73,13 +73,13 @@
     <text
        xml:space="preserve"
        transform="matrix(1,0,0,-1,163.59569,620.62127)"
-       style="font-variant:normal;font-weight:normal;font-size:26.76px;font-family:'Times New Roman';-inkscape-font-specification:TimesNewRoman;text-align:end;writing-mode:lr-tb;text-anchor:end;white-space:pre;inline-size:65.1277;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       style="font-variant:normal;font-weight:normal;font-size:26.76px;font-family:'Times New Roman';-inkscape-font-specification:TimesNewRoman;text-align:end;writing-mode:lr-tb;text-anchor:end;white-space:pre;inline-size:97.932;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="text33"
        x="56.917267"
        y="0"><tspan
          x="56.917267"
          y="0"
-         id="tspan1736">ΔNвк</tspan></text>
+         id="tspan1106">ΔNвк</tspan></text>
     <g
        id="g39"
        transform="matrix(0.12,0,0,-0.12,110.81475,1000.488)">
@@ -107,13 +107,13 @@
     <text
        xml:space="preserve"
        transform="matrix(1,0,0,-1,161.87904,537.52669)"
-       style="font-variant:normal;font-weight:normal;font-size:26.76px;font-family:'Times New Roman';-inkscape-font-specification:TimesNewRoman;text-align:end;writing-mode:lr-tb;text-anchor:end;white-space:pre;inline-size:75.5741;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       style="font-variant:normal;font-weight:normal;font-size:26.76px;font-family:'Times New Roman';-inkscape-font-specification:TimesNewRoman;text-align:end;writing-mode:lr-tb;text-anchor:end;white-space:pre;inline-size:110.415;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="text53"
        x="69.670082"
        y="0"><tspan
          x="69.670082"
          y="0"
-         id="tspan1738">ΔNсвп</tspan></text>
+         id="tspan1108">ΔNсвп</tspan></text>
     <g
        id="g59"
        transform="matrix(0.12,0,0,-0.12,110.81475,1000.488)">
@@ -172,13 +172,13 @@
     <text
        xml:space="preserve"
        transform="matrix(1,0,0,-1,140.70096,675.04853)"
-       style="font-variant:normal;font-weight:normal;font-size:26.76px;font-family:'Times New Roman';-inkscape-font-specification:TimesNewRoman;text-align:end;writing-mode:lr-tb;text-anchor:end;white-space:pre;inline-size:78.3931;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       style="font-variant:normal;font-weight:normal;font-size:26.76px;font-family:'Times New Roman';-inkscape-font-specification:TimesNewRoman;text-align:end;writing-mode:lr-tb;text-anchor:end;white-space:pre;inline-size:116.043;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="text91"
        x="70.297264"
        y="0"><tspan
          x="70.297264"
          y="0"
-         id="tspan1740">ΔNврк</tspan></text>
+         id="tspan1110">ΔNврк</tspan></text>
     <g
        id="g97"
        transform="matrix(0.12,0,0,-0.12,110.81475,1000.488)">
@@ -209,20 +209,14 @@
     </g>
     <text
        xml:space="preserve"
-       transform="matrix(1,0,0,-1,-32.15545,159.93097)"
-       style="font-variant:normal;font-weight:normal;font-size:26.76px;font-family:'Times New Roman';-inkscape-font-specification:TimesNewRoman;writing-mode:lr-tb;white-space:pre;inline-size:140.127;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       transform="matrix(1,0,0,-1,35.576897,159.75881)"
+       style="font-variant:normal;font-weight:normal;font-size:26.76px;font-family:'Times New Roman';-inkscape-font-specification:TimesNewRoman;text-align:end;writing-mode:lr-tb;text-anchor:end;white-space:pre;inline-size:111.855;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="text113"
-       x="89.286659"
+       x="164.0265"
        y="-578.41193"><tspan
-         x="89.286659"
+         x="164.0265"
          y="-578.41193"
-         id="tspan1748"><tspan
-           style="text-align:end;text-anchor:end"
-           id="tspan1742">Δ</tspan><tspan
-           style="text-align:end;text-anchor:end"
-           id="tspan1744">N</tspan><tspan
-           style="text-align:end;text-anchor:end"
-           id="tspan1746">птк</tspan></tspan></text>
+         id="tspan1112">ΔNптк</tspan></text>
     <g
        id="g123"
        transform="matrix(0.12,0,0,-0.12,110.81475,1000.488)">
@@ -343,13 +337,13 @@
     <text
        xml:space="preserve"
        transform="matrix(1,0,0,-1,184.13715,466.84643)"
-       style="font-variant:normal;font-weight:normal;font-size:26.76px;font-family:'Times New Roman';-inkscape-font-specification:TimesNewRoman;text-align:end;writing-mode:lr-tb;text-anchor:end;white-space:pre;inline-size:67.119;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       style="font-variant:normal;font-weight:normal;font-size:26.76px;font-family:'Times New Roman';-inkscape-font-specification:TimesNewRoman;text-align:end;writing-mode:lr-tb;text-anchor:end;white-space:pre;inline-size:104.098;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="text185"
        x="57.466057"
        y="0"><tspan
          x="57.466057"
          y="0"
-         id="tspan1750">ΔNкд</tspan></text>
+         id="tspan1114">ΔNкд</tspan></text>
     <g
        id="g191"
        transform="matrix(0.12,0,0,-0.12,110.81475,1000.488)">
