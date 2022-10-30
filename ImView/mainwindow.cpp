@@ -56,6 +56,8 @@
 #include "customhelpdelegate.h"
 #include "math.h"
 #include "plot.h"
+#include "tepl_nabludatel.h"
+#include "ui_tepl_nabludatel.h"
 
 Base base;
 Base_tepl base_tepl;
@@ -103,11 +105,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_6->ui->webEngineView_3->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_schem_zam/vent_schem_zam.html").absoluteFilePath()));
     ui->widget_6->ui->webEngineView_4->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_energo_scheme/vent_energo_scheme.html").absoluteFilePath()));
     ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/energo_scheme/energo_scheme.html").absoluteFilePath()));
-
-
     ui->widget_5->ui->widget->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
     ui->widget_5->ui->widget_5->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
-    ui->widget_6->ui->widget->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
+//    ui->widget_6->ui->widget->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
 
 
     showMaximized();
@@ -640,9 +640,9 @@ MainWindow::MainWindow(QWidget *parent)
     items10.append(item34);
     item31->appendRow(items10);
     items10.clear();
-    item35 = new QStandardItem(QStringLiteral ("Условие 11"));
+    item35 = new QStandardItem(QStringLiteral ("Конструкция вентиляционной системы электродвигателя"));
     item35->setEditable(false);
-    item36 = new QStandardItem(QString ("Значение 11"));
+    item36 = new QStandardItem(QString ("Выберите конструкцию"));
     items10.append(item35);
     items10.append(item36);
     item31->appendRow(items10);
@@ -655,119 +655,119 @@ MainWindow::MainWindow(QWidget *parent)
     item31->appendRow(items10);
     items10.clear();
 
-//    QList<QStandardItem*> items11;
-//    item39 = new QStandardItem(QStringLiteral ("Прогнозирование температур"));
-//    item40 = new QStandardItem();
-//    items11.append(item39);
-//    items11.append(item40);
-//    model->appendRow(items11);
-//    items11.clear();
-//    //item39->setForeground(QBrush(Qt::white));
-//    item39->setSelectable(false);
-//    item39->setEditable(false);
-//    item40->setSelectable(false);
-//    item40->setEditable(false);
-//    QFont newFont6("SansSerif", 10, QFont::Bold,false);
-//    item39->setFont(newFont6);
+    QList<QStandardItem*> items11;
+    item39 = new QStandardItem(QStringLiteral ("Прогнозирование температур"));
+    item40 = new QStandardItem();
+    items11.append(item39);
+    items11.append(item40);
+    model->appendRow(items11);
+    items11.clear();
+    //item39->setForeground(QBrush(Qt::white));
+    item39->setSelectable(false);
+    item39->setEditable(false);
+    item40->setSelectable(false);
+    item40->setEditable(false);
+    QFont newFont6("SansSerif", 10, QFont::Bold,false);
+    item39->setFont(newFont6);
 
-//    QList<QStandardItem*> items12;
-//    item41 = new QStandardItem(QStringLiteral ("Условие 13"));
-//    item41->setEditable(false);
-//    item42 = new QStandardItem(QStringLiteral ("Значение 13"));
-//    items12.append(item41);
-//    items12.append(item42);
-//    item39->appendRow(items12);
-//    items12.clear();
-//    item43 = new QStandardItem(QStringLiteral ("Условие 14"));
-//    item43->setEditable(false);
-//    item44 = new QStandardItem(QString ("Значение 14"));
-//    items12.append(item43);
-//    items12.append(item44);
-//    item39->appendRow(items12);
-//    items12.clear();
-//    item45 = new QStandardItem(QStringLiteral ("Условие 15"));
-//    item45->setEditable(false);
-//    item46 = new QStandardItem(QStringLiteral ("Значение 15"));
-//    items12.append(item45);
-//    items12.append(item46);
-//    item39->appendRow(items12);
-//    items12.clear();
+    QList<QStandardItem*> items12;
+    item41 = new QStandardItem(QStringLiteral ("Условие 13"));
+    item41->setEditable(false);
+    item42 = new QStandardItem(QStringLiteral ("Значение 13"));
+    items12.append(item41);
+    items12.append(item42);
+    item39->appendRow(items12);
+    items12.clear();
+    item43 = new QStandardItem(QStringLiteral ("Условие 14"));
+    item43->setEditable(false);
+    item44 = new QStandardItem(QString ("Значение 14"));
+    items12.append(item43);
+    items12.append(item44);
+    item39->appendRow(items12);
+    items12.clear();
+    item45 = new QStandardItem(QStringLiteral ("Условие 15"));
+    item45->setEditable(false);
+    item46 = new QStandardItem(QStringLiteral ("Значение 15"));
+    items12.append(item45);
+    items12.append(item46);
+    item39->appendRow(items12);
+    items12.clear();
 
-//    QList<QStandardItem*> items13;
-//    item47 = new QStandardItem(QStringLiteral ("Оценка остаточного теплового ресурса"));
-//    item48 = new QStandardItem();
-//    items13.append(item47);
-//    items13.append(item48);
-//    model->appendRow(items13);
-//    items13.clear();
-//    //item47->setForeground(QBrush(Qt::white));
-//    item47->setSelectable(false);
-//    item47->setEditable(false);
-//    item48->setSelectable(false);
-//    item48->setEditable(false);
-//    QFont newFont7("SansSerif", 10, QFont::Bold,false);
-//    item47->setFont(newFont7);
+    QList<QStandardItem*> items13;
+    item47 = new QStandardItem(QStringLiteral ("Оценка остаточного теплового ресурса"));
+    item48 = new QStandardItem();
+    items13.append(item47);
+    items13.append(item48);
+    model->appendRow(items13);
+    items13.clear();
+    //item47->setForeground(QBrush(Qt::white));
+    item47->setSelectable(false);
+    item47->setEditable(false);
+    item48->setSelectable(false);
+    item48->setEditable(false);
+    QFont newFont7("SansSerif", 10, QFont::Bold,false);
+    item47->setFont(newFont7);
 
-//    QList<QStandardItem*> items14;
-//    item49 = new QStandardItem(QStringLiteral ("Условие 16"));
-//    item49->setEditable(false);
-//    item50 = new QStandardItem(QStringLiteral ("Значение 16"));
-//    items14.append(item49);
-//    items14.append(item50);
-//    item47->appendRow(items14);
-//    items14.clear();
-//    item51 = new QStandardItem(QStringLiteral ("Условие 17"));
-//    item51->setEditable(false);
-//    item52 = new QStandardItem(QString ("Значение 17"));
-//    items14.append(item51);
-//    items14.append(item52);
-//    item47->appendRow(items14);
-//    items14.clear();
-//    item53 = new QStandardItem(QStringLiteral ("Условие 18"));
-//    item53->setEditable(false);
-//    item54 = new QStandardItem(QStringLiteral ("Значение 18"));
-//    items14.append(item53);
-//    items14.append(item54);
-//    item47->appendRow(items14);
-//    items14.clear();
+    QList<QStandardItem*> items14;
+    item49 = new QStandardItem(QStringLiteral ("Условие 16"));
+    item49->setEditable(false);
+    item50 = new QStandardItem(QStringLiteral ("Значение 16"));
+    items14.append(item49);
+    items14.append(item50);
+    item47->appendRow(items14);
+    items14.clear();
+    item51 = new QStandardItem(QStringLiteral ("Условие 17"));
+    item51->setEditable(false);
+    item52 = new QStandardItem(QString ("Значение 17"));
+    items14.append(item51);
+    items14.append(item52);
+    item47->appendRow(items14);
+    items14.clear();
+    item53 = new QStandardItem(QStringLiteral ("Условие 18"));
+    item53->setEditable(false);
+    item54 = new QStandardItem(QStringLiteral ("Значение 18"));
+    items14.append(item53);
+    items14.append(item54);
+    item47->appendRow(items14);
+    items14.clear();
 
-//    QList<QStandardItem*> items15;
-//    item55 = new QStandardItem(QStringLiteral ("Выходные данные"));
-//    item56 = new QStandardItem();
-//    items15.append(item55);
-//    items15.append(item56);
-//    model->appendRow(items15);
-//    items15.clear();
-//    //item55->setForeground(QBrush(Qt::white));
-//    item55->setSelectable(false);
-//    item55->setEditable(false);
-//    item56->setSelectable(false);
-//    item56->setEditable(false);
-//    QFont newFont8("SansSerif", 10, QFont::Bold,false);
-//    item55->setFont(newFont8);
+    QList<QStandardItem*> items15;
+    item55 = new QStandardItem(QStringLiteral ("Выходные данные"));
+    item56 = new QStandardItem();
+    items15.append(item55);
+    items15.append(item56);
+    model->appendRow(items15);
+    items15.clear();
+    //item55->setForeground(QBrush(Qt::white));
+    item55->setSelectable(false);
+    item55->setEditable(false);
+    item56->setSelectable(false);
+    item56->setEditable(false);
+    QFont newFont8("SansSerif", 10, QFont::Bold,false);
+    item55->setFont(newFont8);
 
-//    QList<QStandardItem*> items16;
-//    item57 = new QStandardItem(QStringLiteral ("Условие 19"));
-//    item57->setEditable(false);
-//    item58 = new QStandardItem(QStringLiteral ("Значение 19"));
-//    items16.append(item57);
-//    items16.append(item58);
-//    item55->appendRow(items16);
-//    items16.clear();
-//    item59 = new QStandardItem(QStringLiteral ("Условие 20"));
-//    item59->setEditable(false);
-//    item60 = new QStandardItem(QString ("Значение 20"));
-//    items16.append(item59);
-//    items16.append(item60);
-//    item55->appendRow(items16);
-//    items16.clear();
-//    item61 = new QStandardItem(QStringLiteral ("Условие 21"));
-//    item61->setEditable(false);
-//    item62 = new QStandardItem(QStringLiteral ("Значение 21"));
-//    items16.append(item61);
-//    items16.append(item62);
-//    item55->appendRow(items16);
-//    items16.clear();
+    QList<QStandardItem*> items16;
+    item57 = new QStandardItem(QStringLiteral ("Условие 19"));
+    item57->setEditable(false);
+    item58 = new QStandardItem(QStringLiteral ("Значение 19"));
+    items16.append(item57);
+    items16.append(item58);
+    item55->appendRow(items16);
+    items16.clear();
+    item59 = new QStandardItem(QStringLiteral ("Условие 20"));
+    item59->setEditable(false);
+    item60 = new QStandardItem(QString ("Значение 20"));
+    items16.append(item59);
+    items16.append(item60);
+    item55->appendRow(items16);
+    items16.clear();
+    item61 = new QStandardItem(QStringLiteral ("Условие 21"));
+    item61->setEditable(false);
+    item62 = new QStandardItem(QStringLiteral ("Значение 21"));
+    items16.append(item61);
+    items16.append(item62);
+    item55->appendRow(items16);
+    items16.clear();
 
     ui->treeView->setModel(model);
 
@@ -788,6 +788,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tabWidget->setCurrentIndex(0);
     QString currentTabText = ui->tabWidget->tabText(0);
     setWindowTitle(currentTabText + "@" + QString("base") + QString(" - ImView"));
+
+//    ui->tabWidget->setCurrentWidget();
+//            >CurrentIndex(0);
+//    QString currentTabText = ui->tabWidget->tabText(0);
+//    setWindowTitle(currentTabText + "@" + QString("base") + QString(" - ImView"));
 
     ui->tableWidget->setRowCount(30); //задание количества строк таблицы
     ui->tableWidget->setColumnCount(5); //задание количества столбцов
@@ -1406,119 +1411,134 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget_6->setPalette(p106);
 
 
-    ui->tableWidget_7->setRowCount(20);
-    ui->tableWidget_7->setColumnCount(4);
+    ui->tableWidget_13->setRowCount(20);
+    ui->tableWidget_13->setColumnCount(4);
     QStringList name_7;
     name_7 << "Сигнал" << "Величина" << "Значение" << "Размерность";
-    ui->tableWidget_7->setHorizontalHeaderLabels(name_7);
-    ui->tableWidget_7->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    ui->tableWidget_7->setSelectionBehavior(QAbstractItemView :: SelectRows);
-    ui->tableWidget_7->setSelectionMode(QAbstractItemView :: SingleSelection);
-    ui->tableWidget_7->verticalHeader()->setVisible(true);
-    ui->tableWidget_7->resizeColumnsToContents();
+    ui->tableWidget_13->setHorizontalHeaderLabels(name_7);
+    ui->tableWidget_13->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableWidget_13->setSelectionBehavior(QAbstractItemView :: SelectRows);
+    ui->tableWidget_13->setSelectionMode(QAbstractItemView :: SingleSelection);
+    ui->tableWidget_13->verticalHeader()->setVisible(true);
+    ui->tableWidget_13->resizeColumnsToContents();
 
-    for(int row = 0; row<ui->tableWidget_7->rowCount(); row++)
+    for(int row = 0; row<ui->tableWidget_13->rowCount(); row++)
     {
-        for(int column = 0; column<ui->tableWidget_7->columnCount(); column++)
+        for(int column = 0; column<ui->tableWidget_13->columnCount(); column++)
         {
-            ui->tableWidget_7->setItem(row, column, new QTableWidgetItem());
+            ui->tableWidget_13->setItem(row, column, new QTableWidgetItem());
         }
     }
 
-    ui->tableWidget_7->setItem(0, 0, new QTableWidgetItem("Начальное давление вентилятора"));
-    ui->tableWidget_7->setItem(1, 0, new QTableWidgetItem("Максимальный расход воздуха"));
-    ui->tableWidget_7->setItem(2, 0, new QTableWidgetItem("Сопротивление входа в кожух через решетку с острыми кромками"));
-    ui->tableWidget_7->setItem(3, 0, new QTableWidgetItem("Сопротивление поворота потока за входной решеткой перед входом в вентилятор"));
-    ui->tableWidget_7->setItem(4, 0, new QTableWidgetItem("Сопротивление потока за входным вентилятором перед входом в межреберные каналы"));
-    ui->tableWidget_7->setItem(5, 0, new QTableWidgetItem("Сопротивление косого входа в межреберные каналы"));
-    ui->tableWidget_7->setItem(6, 0, new QTableWidgetItem("Сопротивление поворота потока в межреберных каналах под кожухом"));
-    ui->tableWidget_7->setItem(7, 0, new QTableWidgetItem("Сопротивление выхода воздуха из межреберных каналов в воздушное пространство"));
-    ui->tableWidget_7->setItem(8, 0, new QTableWidgetItem("Суммарное сопротивление вентиляционной сети"));
-    ui->tableWidget_7->setItem(9, 0, new QTableWidgetItem("Рабочий расход воздуха"));
-    ui->tableWidget_7->setItem(10, 0, new QTableWidgetItem("Рабочий набор вентилятора"));
-    ui->tableWidget_7->setItem(11, 0, new QTableWidgetItem("Средняя скорость воздуха в межреберных каналах"));
-    ui->tableWidget_7->setItem(12, 0, new QTableWidgetItem("Потребляемая вентилятором мощность"));
+    ui->tableWidget_13->setItem(0, 0, new QTableWidgetItem("Начальное давление вентилятора"));
+    ui->tableWidget_13->setItem(1, 0, new QTableWidgetItem("Максимальный расход воздуха"));
+    ui->tableWidget_13->setItem(2, 0, new QTableWidgetItem("Сопротивление входа в кожух через решетку с острыми кромками"));
+    ui->tableWidget_13->setItem(3, 0, new QTableWidgetItem("Сопротивление поворота потока за входной решеткой перед входом в вентилятор"));
+    ui->tableWidget_13->setItem(4, 0, new QTableWidgetItem("Сопротивление потока за входным вентилятором перед входом в межреберные каналы"));
+    ui->tableWidget_13->setItem(5, 0, new QTableWidgetItem("Сопротивление косого входа в межреберные каналы"));
+    ui->tableWidget_13->setItem(6, 0, new QTableWidgetItem("Сопротивление поворота потока в межреберных каналах под кожухом"));
+    ui->tableWidget_13->setItem(7, 0, new QTableWidgetItem("Сопротивление выхода воздуха из межреберных каналов в воздушное пространство"));
+    ui->tableWidget_13->setItem(8, 0, new QTableWidgetItem("Суммарное сопротивление вентиляционной сети"));
+    ui->tableWidget_13->setItem(9, 0, new QTableWidgetItem("Рабочий расход воздуха"));
+    ui->tableWidget_13->setItem(10, 0, new QTableWidgetItem("Рабочий набор вентилятора"));
+    ui->tableWidget_13->setItem(11, 0, new QTableWidgetItem("Средняя скорость воздуха в межреберных каналах"));
+    ui->tableWidget_13->setItem(12, 0, new QTableWidgetItem("Потребляемая вентилятором мощность"));
 
-    ui->tableWidget_7->setItem(0, 1, new QTableWidgetItem("H0"));
-    ui->tableWidget_7->setItem(1, 1, new QTableWidgetItem("Qmax"));
-    ui->tableWidget_7->setItem(2, 1, new QTableWidgetItem("Z1"));
-    ui->tableWidget_7->setItem(3, 1, new QTableWidgetItem("Z2"));
-    ui->tableWidget_7->setItem(4, 1, new QTableWidgetItem("Z3"));
-    ui->tableWidget_7->setItem(5, 1, new QTableWidgetItem("Z4"));
-    ui->tableWidget_7->setItem(6, 1, new QTableWidgetItem("Z5"));
-    ui->tableWidget_7->setItem(7, 1, new QTableWidgetItem("Z6"));
-    ui->tableWidget_7->setItem(8, 1, new QTableWidgetItem("Z0"));
-    ui->tableWidget_7->setItem(9, 1, new QTableWidgetItem("Qp"));
-    ui->tableWidget_7->setItem(10, 1, new QTableWidgetItem("Hp"));
-    ui->tableWidget_7->setItem(11, 1, new QTableWidgetItem("Vsr"));
-    ui->tableWidget_7->setItem(12, 1, new QTableWidgetItem("Pvent"));
+    ui->tableWidget_13->setItem(0, 1, new QTableWidgetItem("H0"));
+    ui->tableWidget_13->setItem(1, 1, new QTableWidgetItem("Qmax"));
+    ui->tableWidget_13->setItem(2, 1, new QTableWidgetItem("Z1"));
+    ui->tableWidget_13->setItem(3, 1, new QTableWidgetItem("Z2"));
+    ui->tableWidget_13->setItem(4, 1, new QTableWidgetItem("Z3"));
+    ui->tableWidget_13->setItem(5, 1, new QTableWidgetItem("Z4"));
+    ui->tableWidget_13->setItem(6, 1, new QTableWidgetItem("Z5"));
+    ui->tableWidget_13->setItem(7, 1, new QTableWidgetItem("Z6"));
+    ui->tableWidget_13->setItem(8, 1, new QTableWidgetItem("Z0"));
+    ui->tableWidget_13->setItem(9, 1, new QTableWidgetItem("Qp"));
+    ui->tableWidget_13->setItem(10, 1, new QTableWidgetItem("Hp"));
+    ui->tableWidget_13->setItem(11, 1, new QTableWidgetItem("Vsr"));
+    ui->tableWidget_13->setItem(12, 1, new QTableWidgetItem("Pvent"));
 
-    ui->tableWidget_7->setItem(0, 3, new QTableWidgetItem("Па"));
-    ui->tableWidget_7->setItem(1, 3, new QTableWidgetItem("м3/с"));
-    ui->tableWidget_7->setItem(2, 3, new QTableWidgetItem("м2"));
-    ui->tableWidget_7->setItem(3, 3, new QTableWidgetItem("м2"));
-    ui->tableWidget_7->setItem(4, 3, new QTableWidgetItem("м2"));
-    ui->tableWidget_7->setItem(5, 3, new QTableWidgetItem("м2"));
-    ui->tableWidget_7->setItem(6, 3, new QTableWidgetItem("м2"));
-    ui->tableWidget_7->setItem(7, 3, new QTableWidgetItem("м2"));
-    ui->tableWidget_7->setItem(8, 3, new QTableWidgetItem("м2"));
-    ui->tableWidget_7->setItem(9, 3, new QTableWidgetItem("м3/с"));
-    ui->tableWidget_7->setItem(10, 3, new QTableWidgetItem("Па"));
-    ui->tableWidget_7->setItem(11, 3, new QTableWidgetItem("м/c"));
-    ui->tableWidget_7->setItem(12, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_13->setItem(0, 3, new QTableWidgetItem("Па"));
+    ui->tableWidget_13->setItem(1, 3, new QTableWidgetItem("м3/с"));
+    ui->tableWidget_13->setItem(2, 3, new QTableWidgetItem("м2"));
+    ui->tableWidget_13->setItem(3, 3, new QTableWidgetItem("м2"));
+    ui->tableWidget_13->setItem(4, 3, new QTableWidgetItem("м2"));
+    ui->tableWidget_13->setItem(5, 3, new QTableWidgetItem("м2"));
+    ui->tableWidget_13->setItem(6, 3, new QTableWidgetItem("м2"));
+    ui->tableWidget_13->setItem(7, 3, new QTableWidgetItem("м2"));
+    ui->tableWidget_13->setItem(8, 3, new QTableWidgetItem("м2"));
+    ui->tableWidget_13->setItem(9, 3, new QTableWidgetItem("м3/с"));
+    ui->tableWidget_13->setItem(10, 3, new QTableWidgetItem("Па"));
+    ui->tableWidget_13->setItem(11, 3, new QTableWidgetItem("м/c"));
+    ui->tableWidget_13->setItem(12, 3, new QTableWidgetItem("Вт"));
 
-    for (int i=0; i<ui->tableWidget_7->rowCount(); i++)
+    for (int i=0; i<ui->tableWidget_13->rowCount(); i++)
     {
-        if (ui->tableWidget_7->item(i, 1) != 0)
+        if (ui->tableWidget_13->item(i, 1) != 0)
         {
-            ui->tableWidget_7->item(i, 1)->setTextAlignment(Qt::AlignCenter);
+            ui->tableWidget_13->item(i, 1)->setTextAlignment(Qt::AlignCenter);
         }
-        if (ui->tableWidget_7->item(i, 3) != 0)
+        if (ui->tableWidget_13->item(i, 3) != 0)
         {
-            ui->tableWidget_7->item(i, 3)->setTextAlignment(Qt::AlignCenter);
+            ui->tableWidget_13->item(i, 3)->setTextAlignment(Qt::AlignCenter);
         }
     }
 
     //запрет редактирования первого столбца
     for(int row = 0; row<ui->tableWidget->rowCount(); row++)
     {
-        if (ui->tableWidget_7->item(row,0) != 0)
+        if (ui->tableWidget_13->item(row,0) != 0)
         {
-            ui->tableWidget_7->item(row,0)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+            ui->tableWidget_13->item(row,0)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
         }
-        if (ui->tableWidget_7->item(row,1) != 0)
+        if (ui->tableWidget_13->item(row,1) != 0)
         {
-            ui->tableWidget_7->item(row,1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+            ui->tableWidget_13->item(row,1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
         }
-        if (ui->tableWidget_7->item(row,2) != 0)
+        if (ui->tableWidget_13->item(row,2) != 0)
         {
-            ui->tableWidget_7->item(row,2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+            ui->tableWidget_13->item(row,2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
         }
-        if (ui->tableWidget_7->item(row,3) != 0)
+        if (ui->tableWidget_13->item(row,3) != 0)
         {
-            ui->tableWidget_7->item(row,3)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+            ui->tableWidget_13->item(row,3)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
         }
     }
 
 
-    QPalette p107=ui->tableWidget_7->palette();
+    QPalette p107=ui->tableWidget_13->palette();
     p107.setColor(QPalette::Base, QColor(225, 255, 255));
     p107.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
-    ui->tableWidget_7->setPalette(p106);
+    ui->tableWidget_13->setPalette(p106);
 
-    ui->tableWidget_8->setRowCount(8);
-    ui->tableWidget_8->setColumnCount(3);
+    CustomHelpDelegate* customHelpDelegate13 = new CustomHelpDelegate(this); //создание делегата для создания комбобоксов
+    ui->tableWidget_13->setItemDelegateForColumn(0, customHelpDelegate13);
+
+//    ui->tableWidget_8->setRowCount(8);
+//    ui->tableWidget_8->setColumnCount(3);
+//    QStringList name_8;
+//    name_8 << " № " << "Сигнал" << "Величина";
+//    ui->tableWidget_8->setHorizontalHeaderLabels(name_8);
+//    ui->tableWidget_8->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+//    ui->tableWidget_8->horizontalHeader()->setStretchLastSection(true);
+//    ui->tableWidget_8->verticalHeader()->setVisible(false);
+//    ui->tableWidget_8->setEditTriggers(QAbstractItemView::NoEditTriggers);
+//    ui->tableWidget_8->setSelectionBehavior(QAbstractItemView :: SelectRows);
+//    ui->tableWidget_8->setSelectionMode(QAbstractItemView :: SingleSelection);
+//    ui->tableWidget_8->setColumnWidth(0, 100);
+//    ui->tableWidget_8->setColumnWidth(1, 400);
+
+    ui->tableWidget_8->setRowCount(30);
+    ui->tableWidget_8->setColumnCount(4);
     QStringList name_8;
-    name_8 << " № " << "Сигнал" << "Величина";
+    name_8 << "Величина" << "Обозначение" << "Значение" << "Размерность";
     ui->tableWidget_8->setHorizontalHeaderLabels(name_8);
-    ui->tableWidget_8->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    ui->tableWidget_8->horizontalHeader()->setStretchLastSection(true);
-    ui->tableWidget_8->verticalHeader()->setVisible(false);
-    ui->tableWidget_8->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget_8->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableWidget_8->setSelectionBehavior(QAbstractItemView :: SelectRows);
     ui->tableWidget_8->setSelectionMode(QAbstractItemView :: SingleSelection);
-    ui->tableWidget_8->setColumnWidth(0, 100);
-    ui->tableWidget_8->setColumnWidth(1, 400);
+    ui->tableWidget_8->verticalHeader()->setVisible(true);
+    ui->tableWidget_8->resizeColumnsToContents();
+
 
     for(int row = 0; row<ui->tableWidget_8->rowCount(); row++)
     {
@@ -1529,28 +1549,31 @@ MainWindow::MainWindow(QWidget *parent)
         }
     }
 
-    for (int i=0; i<8; i++)
-    {
-        if (ui->tableWidget_8->item(i, 0) != 0)
-        {
-            ui->tableWidget_8->item(i, 0)->setText(QString("%1").arg(i+1));
-            ui->tableWidget_8->item(i, 0)->setTextAlignment(Qt::AlignCenter);
-        }
-    }
+//    for (int i=0; i<8; i++)
+//    {
+//        if (ui->tableWidget_8->item(i, 0) != 0)
+//        {
+//            ui->tableWidget_8->item(i, 0)->setText(QString("%1").arg(i+1));
+//            ui->tableWidget_8->item(i, 0)->setTextAlignment(Qt::AlignCenter);
+//        }
+//    }
 
-    ui->tableWidget_8->setItem(0, 1, new QTableWidgetItem("Ротор слева, °C"));
-    ui->tableWidget_8->setItem(1, 1, new QTableWidgetItem("Ротор справа, °C"));
-    ui->tableWidget_8->setItem(2, 1, new QTableWidgetItem("Станина слева, °C"));
-    ui->tableWidget_8->setItem(3, 1, new QTableWidgetItem("Станина справа, °C"));
-    ui->tableWidget_8->setItem(4, 1, new QTableWidgetItem("Вал, °C"));
-    ui->tableWidget_8->setItem(5, 1, new QTableWidgetItem("Клеммная коробка, °C"));
-    ui->tableWidget_8->setItem(6, 1, new QTableWidgetItem("Магнитопровод статора слева, °C"));
-    ui->tableWidget_8->setItem(7, 1, new QTableWidgetItem("Магнитопровод статора справа, °C"));
+    ui->tableWidget_8->setItem(0, 0, new QTableWidgetItem("Статическое давление, Па"));
+    ui->tableWidget_8->setItem(1, 0, new QTableWidgetItem("Динамическое давление, Па"));
+    ui->tableWidget_8->setItem(2, 0, new QTableWidgetItem("Полное давление, Па"));
+    ui->tableWidget_8->setItem(3, 0, new QTableWidgetItem("Производительность, "));
+    ui->tableWidget_8->setItem(4, 0, new QTableWidgetItem("Вал, °C"));
+    ui->tableWidget_8->setItem(5, 0, new QTableWidgetItem("Клеммная коробка, °C"));
+    ui->tableWidget_8->setItem(6, 0, new QTableWidgetItem("Магнитопровод статора слева, °C"));
+    ui->tableWidget_8->setItem(7, 0, new QTableWidgetItem("Магнитопровод статора справа, °C"));
 
     QPalette p108=ui->tableWidget_8->palette();
     p108.setColor(QPalette::Base, QColor(225, 255, 255));
     p108.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
     ui->tableWidget_8->setPalette(p108);
+
+    CustomHelpDelegate* customHelpDelegate8 = new CustomHelpDelegate(this); //создание делегата для создания комбобоксов
+    ui->tableWidget_8->setItemDelegateForColumn(0, customHelpDelegate8);
 
 
     dataLineColors.append(Qt::red);
@@ -2079,12 +2102,274 @@ MainWindow::MainWindow(QWidget *parent)
     p12.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
     ui->tableWidget_12->setPalette(p12);
 
+
+    ui->tableWidget_7->setRowCount(30);
+    ui->tableWidget_7->setColumnCount(4);
+    QStringList name_77;
+    name_77 << "Величина" << "Обозначение" << "Значение" << "Размерность";
+    ui->tableWidget_7->setHorizontalHeaderLabels(name_77);
+    ui->tableWidget_7->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableWidget_7->setSelectionBehavior(QAbstractItemView :: SelectRows);
+    ui->tableWidget_7->setSelectionMode(QAbstractItemView :: SingleSelection);
+    ui->tableWidget_7->verticalHeader()->setVisible(true);
+    ui->tableWidget_7->resizeColumnsToContents();
+
+    for(int row = 0; row<ui->tableWidget_7->rowCount(); row++)
+    {
+        for(int column = 0; column<ui->tableWidget_7->columnCount(); column++)
+        {
+            ui->tableWidget_7->setItem(row, column, new QTableWidgetItem());
+
+        }
+    }
+
+    ui->tableWidget_7->setItem(0, 0, new QTableWidgetItem("Внутренний расчетный диаметр вентилятора"));
+    ui->tableWidget_7->setItem(1, 0, new QTableWidgetItem("Внешний расчетный диаметр вентилятора"));
+    ui->tableWidget_7->setItem(2, 0, new QTableWidgetItem("Ширина лопатки вентилятора"));
+    ui->tableWidget_7->setItem(3, 0, new QTableWidgetItem("Частота вращения вентилятора"));
+    ui->tableWidget_7->setItem(4, 0, new QTableWidgetItem("Плотность воздуха"));
+    ui->tableWidget_7->setItem(5, 0, new QTableWidgetItem("Суммарная площадь отверстий в сетке кожуха"));
+    ui->tableWidget_7->setItem(6, 0, new QTableWidgetItem("Общая площадь сетки кожуха"));
+    ui->tableWidget_7->setItem(7, 0, new QTableWidgetItem("Площадь сечения в месте поворота к рабочему колесу"));
+    ui->tableWidget_7->setItem(8, 0, new QTableWidgetItem("Угол поворота потока к входным кромкам лопаток рабочего колеса"));
+    ui->tableWidget_7->setItem(9, 0, new QTableWidgetItem("Площадь сечения в месте поворота перед входом в межреберные каналы"));
+    ui->tableWidget_7->setItem(10, 0, new QTableWidgetItem("Угол поворота потока перед входом в межреберные каналы"));
+    ui->tableWidget_7->setItem(11, 0, new QTableWidgetItem("Площадь сечения перед входом в межреберные каналы"));
+    ui->tableWidget_7->setItem(12, 0, new QTableWidgetItem("Площадь сечения межреберных каналов от станины до кожуха вентилятора"));
+    ui->tableWidget_7->setItem(13, 0, new QTableWidgetItem("Угол натекания потока на ребра станины"));
+    ui->tableWidget_7->setItem(14, 0, new QTableWidgetItem("Угол поворота потока в межреберных каналах"));
+
+    ui->tableWidget_7->setItem(0, 1, new QTableWidgetItem("D1р"));
+    ui->tableWidget_7->setItem(1, 1, new QTableWidgetItem("D2р"));
+    ui->tableWidget_7->setItem(2, 1, new QTableWidgetItem("b"));
+    ui->tableWidget_7->setItem(3, 1, new QTableWidgetItem("n"));
+    ui->tableWidget_7->setItem(4, 1, new QTableWidgetItem("ro"));
+    ui->tableWidget_7->setItem(5, 1, new QTableWidgetItem("Sotv"));
+    ui->tableWidget_7->setItem(6, 1, new QTableWidgetItem("S0"));
+    ui->tableWidget_7->setItem(7, 1, new QTableWidgetItem("S1"));
+    ui->tableWidget_7->setItem(8, 1, new QTableWidgetItem("α1"));
+    ui->tableWidget_7->setItem(9, 1, new QTableWidgetItem("S2"));
+    ui->tableWidget_7->setItem(10, 1, new QTableWidgetItem("α2"));
+    ui->tableWidget_7->setItem(11, 1, new QTableWidgetItem("S3"));
+    ui->tableWidget_7->setItem(12, 1, new QTableWidgetItem("S4"));
+    ui->tableWidget_7->setItem(13, 1, new QTableWidgetItem("φ"));
+    ui->tableWidget_7->setItem(14, 1, new QTableWidgetItem("φ2"));
+
+    ui->tableWidget_7->setItem(0, 3, new QTableWidgetItem("м"));
+    ui->tableWidget_7->setItem(1, 3, new QTableWidgetItem("м"));
+    ui->tableWidget_7->setItem(2, 3, new QTableWidgetItem("м"));
+    ui->tableWidget_7->setItem(3, 3, new QTableWidgetItem("об/мин"));
+    ui->tableWidget_7->setItem(4, 3, new QTableWidgetItem("кг/м3"));
+    ui->tableWidget_7->setItem(5, 3, new QTableWidgetItem("м2"));
+    ui->tableWidget_7->setItem(6, 3, new QTableWidgetItem("м2"));
+    ui->tableWidget_7->setItem(7, 3, new QTableWidgetItem("м2"));
+    ui->tableWidget_7->setItem(8, 3, new QTableWidgetItem("град."));
+    ui->tableWidget_7->setItem(9, 3, new QTableWidgetItem("град."));
+    ui->tableWidget_7->setItem(10, 3, new QTableWidgetItem("alpha2"));
+    ui->tableWidget_7->setItem(11, 3, new QTableWidgetItem("м2"));
+    ui->tableWidget_7->setItem(12, 3, new QTableWidgetItem("м2"));
+    ui->tableWidget_7->setItem(13, 3, new QTableWidgetItem("град."));
+    ui->tableWidget_7->setItem(14, 3, new QTableWidgetItem("град."));
+
+    for (int i=0; i<ui->tableWidget_7->rowCount(); i++)
+    {
+
+        if (ui->tableWidget_7->item(i, 1) != 0)
+        {
+            ui->tableWidget_7->item(i, 1)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget_7->item(i, 3) != 0)
+        {
+            ui->tableWidget_7->item(i, 3)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+    //запрет редактирования первого столбца
+    for(int row = 0; row<ui->tableWidget_7->rowCount(); row++)
+    {
+        if (ui->tableWidget_7->item(row,0) != 0)
+        {
+            ui->tableWidget_7->item(row,0)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+        if (ui->tableWidget_7->item(row,1) != 0)
+        {
+            ui->tableWidget_7->item(row,1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+        if (ui->tableWidget_7->item(row,2) != 0)
+        {
+            ui->tableWidget_7->item(row,2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled|Qt::ItemIsEditable);
+            ui->tableWidget_7->item(row,2)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget_7->item(row,3) != 0)
+        {
+            ui->tableWidget_7->item(row,3)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+    }
+
+    QPalette p_13=ui->tableWidget_7->palette();
+    p_13.setColor(QPalette::Base, QColor(255, 255, 191));
+    p_13.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
+    ui->tableWidget_7->setPalette(p_13);
+
+    CustomHelpDelegate* customHelpDelegate2 = new CustomHelpDelegate(this); //создание делегата для создания комбобоксов
+    ui->tableWidget_7->setItemDelegateForColumn(0, customHelpDelegate2);
+
+
+
+    ui->tableWidget_14->setRowCount(30);
+    ui->tableWidget_14->setColumnCount(4);
+    QStringList name_14;
+    name_14 << "Величина" << "Обозначение" << "Значение" << "Размерность";
+    ui->tableWidget_14->setHorizontalHeaderLabels(name_14);
+    ui->tableWidget_14->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableWidget_14->setSelectionBehavior(QAbstractItemView :: SelectRows);
+    ui->tableWidget_14->setSelectionMode(QAbstractItemView :: SingleSelection);
+    ui->tableWidget_14->verticalHeader()->setVisible(true);
+    ui->tableWidget_14->resizeColumnsToContents();
+
+    for(int row = 0; row<ui->tableWidget_14->rowCount(); row++)
+    {
+        for(int column = 0; column<ui->tableWidget_14->columnCount(); column++)
+        {
+            ui->tableWidget_14->setItem(row, column, new QTableWidgetItem());
+
+        }
+    }
+    for (int i=0; i<ui->tableWidget_14->rowCount(); i++)
+    {
+
+        if (ui->tableWidget_14->item(i, 1) != 0)
+        {
+            ui->tableWidget_14->item(i, 1)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget_14->item(i, 3) != 0)
+        {
+            ui->tableWidget_14->item(i, 3)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+    //запрет редактирования первого столбца
+    for(int row = 0; row<ui->tableWidget_14->rowCount(); row++)
+    {
+        if (ui->tableWidget_14->item(row,0) != 0)
+        {
+            ui->tableWidget_14->item(row,0)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+        if (ui->tableWidget_14->item(row,1) != 0)
+        {
+            ui->tableWidget_14->item(row,1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+        if (ui->tableWidget_14->item(row,2) != 0)
+        {
+            ui->tableWidget_14->item(row,2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled|Qt::ItemIsEditable);
+            ui->tableWidget_14->item(row,2)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget_14->item(row,3) != 0)
+        {
+            ui->tableWidget_14->item(row,3)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+    }
+
+    QPalette p_14=ui->tableWidget_14->palette();
+    p_14.setColor(QPalette::Base, QColor(255, 255, 191));
+    p_14.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
+    ui->tableWidget_14->setPalette(p_14);
+
+    CustomHelpDelegate* customHelpDelegate4 = new CustomHelpDelegate(this); //создание делегата для создания комбобоксов
+    ui->tableWidget_14->setItemDelegateForColumn(0, customHelpDelegate4);
+
+
+
+
+    ui->tableWidget_15->setRowCount(30);
+    ui->tableWidget_15->setColumnCount(4);
+    QStringList name_15;
+    name_15 << "Величина" << "Обозначение" << "Значение" << "Размерность";
+    ui->tableWidget_15->setHorizontalHeaderLabels(name_15);
+    ui->tableWidget_15->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableWidget_15->setSelectionBehavior(QAbstractItemView :: SelectRows);
+    ui->tableWidget_15->setSelectionMode(QAbstractItemView :: SingleSelection);
+    ui->tableWidget_15->verticalHeader()->setVisible(true);
+    ui->tableWidget_15->resizeColumnsToContents();
+
+    for(int row = 0; row<ui->tableWidget_15->rowCount(); row++)
+    {
+        for(int column = 0; column<ui->tableWidget_15->columnCount(); column++)
+        {
+            ui->tableWidget_15->setItem(row, column, new QTableWidgetItem());
+
+        }
+    }
+
+    ui->tableWidget_15->setItem(0, 0, new QTableWidgetItem("Внутренний расчетный диаметр вентилятора"));
+    ui->tableWidget_15->setItem(1, 0, new QTableWidgetItem("Внешний расчетный диаметр вентилятора"));
+    ui->tableWidget_15->setItem(2, 0, new QTableWidgetItem("Ширина лопатки вентилятора"));
+    ui->tableWidget_15->setItem(3, 0, new QTableWidgetItem("Частота вращения вентилятора"));
+    ui->tableWidget_15->setItem(4, 0, new QTableWidgetItem("Плотность воздуха"));
+    ui->tableWidget_15->setItem(5, 0, new QTableWidgetItem("Суммарная площадь отверстий в сетке кожуха"));
+    ui->tableWidget_15->setItem(6, 0, new QTableWidgetItem("Общая площадь сетки кожуха"));
+    ui->tableWidget_15->setItem(7, 0, new QTableWidgetItem("Площадь сечения в месте поворота к рабочему колесу"));
+    ui->tableWidget_15->setItem(8, 0, new QTableWidgetItem("Угол поворота потока к входным кромкам лопаток рабочего колеса"));
+    ui->tableWidget_15->setItem(9, 0, new QTableWidgetItem("Площадь сечения в месте поворота перед входом в межреберные каналы"));
+    ui->tableWidget_15->setItem(10, 0, new QTableWidgetItem("Угол поворота потока перед входом в межреберные каналы"));
+    ui->tableWidget_15->setItem(11, 0, new QTableWidgetItem("Площадь сечения перед входом в межреберные каналы"));
+    ui->tableWidget_15->setItem(12, 0, new QTableWidgetItem("Площадь сечения межреберных каналов от станины до кожуха вентилятора"));
+    ui->tableWidget_15->setItem(13, 0, new QTableWidgetItem("Угол натекания потока на ребра станины"));
+    ui->tableWidget_15->setItem(14, 0, new QTableWidgetItem("Угол поворота потока в межреберных каналах"));
+
+    for (int i=0; i<ui->tableWidget_15->rowCount(); i++)
+    {
+
+        if (ui->tableWidget_15->item(i, 1) != 0)
+        {
+            ui->tableWidget_15->item(i, 1)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget_15->item(i, 3) != 0)
+        {
+            ui->tableWidget_15->item(i, 3)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+
+    //запрет редактирования первого столбца
+    for(int row = 0; row<ui->tableWidget_15->rowCount(); row++)
+    {
+        if (ui->tableWidget_15->item(row,0) != 0)
+        {
+            ui->tableWidget_15->item(row,0)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+        if (ui->tableWidget_15->item(row,1) != 0)
+        {
+            ui->tableWidget_15->item(row,1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+        if (ui->tableWidget_15->item(row,2) != 0)
+        {
+            ui->tableWidget_15->item(row,2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled|Qt::ItemIsEditable);
+            ui->tableWidget_15->item(row,2)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget_15->item(row,3) != 0)
+        {
+            ui->tableWidget_15->item(row,3)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+    }
+
+    QPalette p_15=ui->tableWidget_15->palette();
+    p_15.setColor(QPalette::Base, QColor(255, 255, 191));
+    p_15.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
+    ui->tableWidget_15->setPalette(p_15);
+
+    CustomHelpDelegate* customHelpDelegate15 = new CustomHelpDelegate(this); //создание делегата для создания комбобоксов
+    ui->tableWidget_15->setItemDelegateForColumn(0, customHelpDelegate15);
+
+
     ui->tabWidget->setCurrentIndex(0);
     ui->widget_5->ui->tabWidget->setCurrentIndex(0);
     ui->widget_5->ui->tabWidget_2->setCurrentIndex(0);
     ui->widget_6->ui->tabWidget->setCurrentIndex(0);
+    ui->widget_7->ui->tabWidget->setCurrentIndex(0);
     ui->tabWidget_3->setCurrentIndex(0);
 
+    //Настройка статусбара
     statusbar_label = new QLabel;
     statusbar_label->setPixmap(QPixmap(":/icons/data/img/icons/archivator_red_24.svg"));
     statusbar_label->setAlignment(Qt::AlignTop);
@@ -2139,6 +2424,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->widget_5->ui->tabWidget_2, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_3);
     connect(ui->widget_6->ui->tabWidget, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_4);
     connect(ui->tabWidget_3, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_5);
+    connect(ui->widget_7->ui->tabWidget, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_6);
 
 }
 
@@ -2464,11 +2750,25 @@ void MainWindow::on_action_21_triggered()
     ui->widget_3->stop();
 }
 
-void MainWindow::on_tabWidget_currentChanged(int)
+void MainWindow::on_tabWidget_currentChanged(int index)
 {
-
+    QString currentTabText = ui->tabWidget->tabText(index);
+    setWindowTitle(currentTabText + "@" + QString("base") + QString(" - ImView"));
 }
 
+//void MainWindow::on_tabWidget_currentChanged(int index)
+//{
+//    QString currentTabText = ui->tabWidget->tabText(index);
+//    setWindowTitle(currentTabText + "@" + QString("base") + QString(" - Konfiguretor"));
+//    if(sdb.isOpen())
+//    {
+//        QFileInfo fi5(fileName);
+//        QString base5 = fi5.baseName();
+//        ui->label_2->setText(base5);
+//        QString currentTabText = ui->tabWidget->tabText(index);
+//        setWindowTitle(currentTabText + "@" + QString(base5) + QString(" - Konfiguretor"));
+//    }
+//}
 void MainWindow::on_action_22_triggered()
 {
     QScreen *screen = QGuiApplication::primaryScreen();
@@ -3314,17 +3614,8 @@ void MainWindow::onButtonClicked2()
     ui->stackedWidget->setCurrentIndex( 1 );
 }
 
-//void MainWindow::on_item_itemSelectionChanged()
-//{
-//    QString w11=item88->text();
-//    item88->setToolTip(w11);
-//}
-
 void MainWindow::on_action_24_triggered()
 {
-//    QPixmap pixmap(":/system_icons/data/img/system_icons/go-next.svg");
-//    QIcon ButtonIcon_2(pixmap);
-//    ui->pushButton_5->setIcon(ButtonIcon_2);
     ui->stackedWidget->show();
     ui->stackedWidget->setCurrentIndex( 3 );
 }
@@ -3355,7 +3646,7 @@ void MainWindow::tabClicked()
     if(ui->tabWidget->currentIndex()==3)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(9);
+        ui->stackedWidget->setCurrentIndex(11);
     }
     if(ui->tabWidget->currentIndex()==4)
     {
@@ -3367,6 +3658,11 @@ void MainWindow::tabClicked()
         ui->stackedWidget->show();
         ui->stackedWidget->setCurrentIndex(5);
     }
+    if(ui->tabWidget->currentIndex()==7)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(7);
+    }
 }
 
 void MainWindow::tabClicked_2()
@@ -3374,12 +3670,12 @@ void MainWindow::tabClicked_2()
     if(ui->widget_5->ui->tabWidget->currentIndex() == 0)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(9);
+        ui->stackedWidget->setCurrentIndex(11);
     }
     if(ui->widget_5->ui->tabWidget->currentIndex() == 1)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(9);
+        ui->stackedWidget->setCurrentIndex(6);
     }
     if(ui->widget_5->ui->tabWidget->currentIndex() == 2)
     {
@@ -3394,12 +3690,12 @@ void MainWindow::tabClicked_2()
     if(ui->widget_5->ui->tabWidget->currentIndex() == 4)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(8);
+        ui->stackedWidget->setCurrentIndex(9);
     }
     if(ui->widget_5->ui->tabWidget->currentIndex() == 5)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(7);
+        ui->stackedWidget->setCurrentIndex(10);
     }
 }
 
@@ -3432,12 +3728,12 @@ void MainWindow::tabClicked_4()
     if(ui->widget_6->ui->tabWidget->currentIndex() == 1)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(10);
+        ui->stackedWidget->setCurrentIndex(12);
     }
     if(ui->widget_6->ui->tabWidget->currentIndex() == 2)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(11);
+        ui->stackedWidget->setCurrentIndex(13);
     }
     if(ui->widget_6->ui->tabWidget->currentIndex() == 3)
     {
@@ -3447,12 +3743,12 @@ void MainWindow::tabClicked_4()
     if(ui->widget_6->ui->tabWidget->currentIndex() == 4)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(14);
+        ui->stackedWidget->setCurrentIndex(16);
     }
     if(ui->widget_6->ui->tabWidget->currentIndex() == 5)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(13);
+        ui->stackedWidget->setCurrentIndex(15);
     }
 }
 
@@ -3467,6 +3763,20 @@ void MainWindow::tabClicked_5()
     {
         ui->tabWidget_2->show();
         ui->tabWidget_2->setCurrentIndex(1);
+    }
+}
+
+void MainWindow::tabClicked_6()
+{
+    if(ui->widget_7->ui->tabWidget->currentIndex() == 0)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(7);
+    }
+    if(ui->widget_7->ui->tabWidget->currentIndex() == 1)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(8);
     }
 }
 
@@ -4617,63 +4927,63 @@ void MainWindow::on_save_Vent_dannie_clicked()
     xmlWriter.writeStartElement("general_settings");
 
     xmlWriter.writeStartElement("intenal_diameter_ventilator");
-    xmlWriter.writeAttribute("value", (ui->widget_6->ui->tableWidget->item(0,2)->text()));
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(0,2)->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("extenal_diameter_ventilator");
-    xmlWriter.writeAttribute("value", (ui->widget_6->ui->tableWidget->item(1,2)->text()));
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(1,2)->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("shirina_lopatki_ventilatora");
-    xmlWriter.writeAttribute("value", (ui->widget_6->ui->tableWidget->item(2,2)->text()));
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(2,2)->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("chastota_vrasachenia_ventilatora");
-    xmlWriter.writeAttribute("value", (ui->widget_6->ui->tableWidget->item(3,2)->text()));
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(3,2)->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("plotnost_vozducha");
-    xmlWriter.writeAttribute("value", (ui->widget_6->ui->tableWidget->item(4,2)->text()));
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(4,2)->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("summarnaja_ploschad_otverstiy_v_setke_kogucha");
-    xmlWriter.writeAttribute("value", (ui->widget_6->ui->tableWidget->item(5,2)->text()));
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(5,2)->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("Obchaja_ploschad_setki_kogucha");
-    xmlWriter.writeAttribute("value", (ui->widget_6->ui->tableWidget->item(6,2)->text()));
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(6,2)->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("Ploschad_sechenia_v_meste_povorota_k_rabochemu_kolesu");
-    xmlWriter.writeAttribute("value", (ui->widget_6->ui->tableWidget->item(7,2)->text()));
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(7,2)->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("Ugol_povorota_potoka_k_vchodnim_kromkam_lopatok_rabochego_kolesa");
-    xmlWriter.writeAttribute("value", (ui->widget_6->ui->tableWidget->item(8,2)->text()));
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(8,2)->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("Ploschad_sechenia_v_meste_povorota_pered_vchodom_v_megrebernye_kanaly");
-    xmlWriter.writeAttribute("value", (ui->widget_6->ui->tableWidget->item(9,2)->text()));
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(9,2)->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("Ugol_povorota_potoka_pered_vhodom_v_megrebernye_kanaly");
-    xmlWriter.writeAttribute("value", (ui->widget_6->ui->tableWidget->item(10,2)->text()));
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(10,2)->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("Ploschad_sechenia_pered_vhodom_v_megrebernye_kanaly");
-    xmlWriter.writeAttribute("value", (ui->widget_6->ui->tableWidget->item(11,2)->text()));
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(11,2)->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("Ploschad_sechenia_megrebernyh_kanalov_ot_staniny_do_koguha_ventilatora");
-    xmlWriter.writeAttribute("value", (ui->widget_6->ui->tableWidget->item(12,2)->text()));
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(12,2)->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("Ugol_natekania_potoka_na_rebra_staniny");
-    xmlWriter.writeAttribute("value", (ui->widget_6->ui->tableWidget->item(13,2)->text()));
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(13,2)->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("Ugol_povorota_potoka_v_megrebernych_kanalah");
-    xmlWriter.writeAttribute("value", (ui->widget_6->ui->tableWidget->item(14,2)->text()));
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(14,2)->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeEndElement();
@@ -5597,7 +5907,7 @@ void MainWindow::LoadVentDannie(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            ui->widget_6->ui->tableWidget->item(0,2)->setText(attribute_value);
+                            ui->tableWidget_7->item(0,2)->setText(attribute_value);
                         }
                     }
                 }
@@ -5608,7 +5918,7 @@ void MainWindow::LoadVentDannie(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            ui->widget_6->ui->tableWidget->item(1,2)->setText(attribute_value);
+                            ui->tableWidget_7->item(1,2)->setText(attribute_value);
                         }
                     }
                 }
@@ -5619,7 +5929,7 @@ void MainWindow::LoadVentDannie(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            ui->widget_6->ui->tableWidget->item(2,2)->setText(attribute_value);
+                            ui->tableWidget_7->item(2,2)->setText(attribute_value);
                         }
                     }
                 }
@@ -5630,7 +5940,7 @@ void MainWindow::LoadVentDannie(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            ui->widget_6->ui->tableWidget->item(3,2)->setText(attribute_value);
+                            ui->tableWidget_7->item(3,2)->setText(attribute_value);
                         }
                     }
                 }
@@ -5641,7 +5951,7 @@ void MainWindow::LoadVentDannie(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            ui->widget_6->ui->tableWidget->item(4,2)->setText(attribute_value);
+                            ui->tableWidget_7->item(4,2)->setText(attribute_value);
                         }
                     }
                 }
@@ -5652,7 +5962,7 @@ void MainWindow::LoadVentDannie(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            ui->widget_6->ui->tableWidget->item(5,2)->setText(attribute_value);
+                            ui->tableWidget_7->item(5,2)->setText(attribute_value);
                         }
                     }
                 }
@@ -5664,7 +5974,7 @@ void MainWindow::LoadVentDannie(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            ui->widget_6->ui->tableWidget->item(6,2)->setText(attribute_value);
+                            ui->tableWidget_7->item(6,2)->setText(attribute_value);
                         }
                     }
                 }
@@ -5676,7 +5986,7 @@ void MainWindow::LoadVentDannie(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            ui->widget_6->ui->tableWidget->item(7,2)->setText(attribute_value);
+                            ui->tableWidget_7->item(7,2)->setText(attribute_value);
                         }
                     }
                 }
@@ -5688,7 +5998,7 @@ void MainWindow::LoadVentDannie(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            ui->widget_6->ui->tableWidget->item(8,2)->setText(attribute_value);
+                            ui->tableWidget_7->item(8,2)->setText(attribute_value);
                         }
                     }
                 }
@@ -5700,7 +6010,7 @@ void MainWindow::LoadVentDannie(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            ui->widget_6->ui->tableWidget->item(9,2)->setText(attribute_value);
+                            ui->tableWidget_7->item(9,2)->setText(attribute_value);
                         }
                     }
                 }
@@ -5712,7 +6022,7 @@ void MainWindow::LoadVentDannie(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            ui->widget_6->ui->tableWidget->item(10,2)->setText(attribute_value);
+                            ui->tableWidget_7->item(10,2)->setText(attribute_value);
                         }
                     }
                 }
@@ -5724,7 +6034,7 @@ void MainWindow::LoadVentDannie(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            ui->widget_6->ui->tableWidget->item(11,2)->setText(attribute_value);
+                            ui->tableWidget_7->item(11,2)->setText(attribute_value);
                         }
                     }
                 }
@@ -5735,7 +6045,7 @@ void MainWindow::LoadVentDannie(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            ui->widget_6->ui->tableWidget->item(12,2)->setText(attribute_value);
+                            ui->tableWidget_7->item(12,2)->setText(attribute_value);
                         }
                     }
                 }
@@ -5746,7 +6056,7 @@ void MainWindow::LoadVentDannie(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            ui->widget_6->ui->tableWidget->item(13,2)->setText(attribute_value);
+                            ui->tableWidget_7->item(13,2)->setText(attribute_value);
                         }
                     }
                 }
@@ -5757,7 +6067,7 @@ void MainWindow::LoadVentDannie(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            ui->widget_6->ui->tableWidget->item(14,2)->setText(attribute_value);
+                            ui->tableWidget_7->item(14,2)->setText(attribute_value);
                         }
                     }
                 }
@@ -6917,21 +7227,21 @@ void MainWindow::on_vent_result_clicked()
     {
         if (item34->text() == "Статика")
         {
-            base_tepl.D1p      = ui->widget_6->ui->tableWidget->item(0,2)->text().toDouble();
-            base_tepl.D2p      = ui->widget_6->ui->tableWidget->item(1,2)->text().toDouble();
-            base_tepl.b       = ui->widget_6->ui->tableWidget->item(2,2)->text().toDouble();
-            base_tepl.n2     = ui->widget_6->ui->tableWidget->item(3,2)->text().toDouble();
-            base_tepl.ro = ui->widget_6->ui->tableWidget->item(4,2)->text().toDouble();
-            base_tepl.Sotv   = ui->widget_6->ui->tableWidget->item(5,2)->text().toDouble();
-            base_tepl.S0  = ui->widget_6->ui->tableWidget->item(6,2)->text().toDouble();
-            base_tepl.S1     = ui->widget_6->ui->tableWidget->item(7,2)->text().toDouble();
-            base_tepl.alpha1     = ui->widget_6->ui->tableWidget->item(8,2)->text().toDouble();
-            base_tepl.S2   = ui->widget_6->ui->tableWidget->item(9,2)->text().toDouble();
-            base_tepl.alpha2     = ui->widget_6->ui->tableWidget->item(10,2)->text().toDouble();
-            base_tepl.S3   = ui->widget_6->ui->tableWidget->item(11,2)->text().toDouble();
-            base_tepl.S4   = ui->widget_6->ui->tableWidget->item(12,2)->text().toDouble();
-            base_tepl.fi     = ui->widget_6->ui->tableWidget->item(13,2)->text().toDouble();
-            base_tepl.fi2   = ui->widget_6->ui->tableWidget->item(14,2)->text().toDouble();
+            base_tepl.D1p      = ui->tableWidget_7->item(0,2)->text().toDouble();
+            base_tepl.D2p      = ui->tableWidget_7->item(1,2)->text().toDouble();
+            base_tepl.b       = ui->tableWidget_7->item(2,2)->text().toDouble();
+            base_tepl.n2     = ui->tableWidget_7->item(3,2)->text().toDouble();
+            base_tepl.ro = ui->tableWidget_7->item(4,2)->text().toDouble();
+            base_tepl.Sotv   = ui->tableWidget_7->item(5,2)->text().toDouble();
+            base_tepl.S0  = ui->tableWidget_7->item(6,2)->text().toDouble();
+            base_tepl.S1     = ui->tableWidget_7->item(7,2)->text().toDouble();
+            base_tepl.alpha1     = ui->tableWidget_7->item(8,2)->text().toDouble();
+            base_tepl.S2   = ui->tableWidget_7->item(9,2)->text().toDouble();
+            base_tepl.alpha2     = ui->tableWidget_7->item(10,2)->text().toDouble();
+            base_tepl.S3   = ui->tableWidget_7->item(11,2)->text().toDouble();
+            base_tepl.S4   = ui->tableWidget_7->item(12,2)->text().toDouble();
+            base_tepl.fi     = ui->tableWidget_7->item(13,2)->text().toDouble();
+            base_tepl.fi2   = ui->tableWidget_7->item(14,2)->text().toDouble();
 
             //Начальное давление вентилятора:
             H0=0.00695 * pow(base_tepl.n2,2) * (pow(base_tepl.D2p,2) - pow(base_tepl.D1p,2));
@@ -6983,94 +7293,72 @@ void MainWindow::on_vent_result_clicked()
 
 
 
-            if (ui->tableWidget_7->item(0, 2) != 0)
+            if (ui->tableWidget_13->item(0, 2) != 0)
             {
-                ui->tableWidget_7->item(0, 2)->setText(QString::number(H0,'f',3));
+                ui->tableWidget_13->item(0, 2)->setText(QString::number(H0,'f',3));
             }
 
-            if (ui->tableWidget_7->item(1, 2) != 0)
+            if (ui->tableWidget_13->item(1, 2) != 0)
             {
-                ui->tableWidget_7->item(1, 2)->setText(QString::number(Qmax,'f',3));
+                ui->tableWidget_13->item(1, 2)->setText(QString::number(Qmax,'f',3));
             }
 
-            if (ui->tableWidget_7->item(2, 2) != 0)
+            if (ui->tableWidget_13->item(2, 2) != 0)
             {
-                ui->tableWidget_7->item(2, 2)->setText(QString::number(Z1,'f',3));
+                ui->tableWidget_13->item(2, 2)->setText(QString::number(Z1,'f',3));
             }
 
-            if (ui->tableWidget_7->item(3, 2) != 0)
+            if (ui->tableWidget_13->item(3, 2) != 0)
             {
-                ui->tableWidget_7->item(3, 2)->setText(QString::number(Z2,'f',3));
+                ui->tableWidget_13->item(3, 2)->setText(QString::number(Z2,'f',3));
             }
-            if (ui->tableWidget_7->item(4, 2) != 0)
+            if (ui->tableWidget_13->item(4, 2) != 0)
             {
-                ui->tableWidget_7->item(4, 2)->setText(QString::number(Z3,'f',3));
-            }
-
-            if (ui->tableWidget_7->item(5, 2) != 0)
-            {
-                ui->tableWidget_7->item(5, 2)->setText(QString::number(Z4,'f',3));
+                ui->tableWidget_13->item(4, 2)->setText(QString::number(Z3,'f',3));
             }
 
-            if (ui->tableWidget_7->item(6, 2) != 0)
+            if (ui->tableWidget_13->item(5, 2) != 0)
             {
-                ui->tableWidget_7->item(6, 2)->setText(QString::number(Z5,'f',3));
+                ui->tableWidget_13->item(5, 2)->setText(QString::number(Z4,'f',3));
             }
 
-            if (ui->tableWidget_7->item(7, 2) != 0)
+            if (ui->tableWidget_13->item(6, 2) != 0)
             {
-                ui->tableWidget_7->item(7, 2)->setText(QString::number(Z6,'f',3));
+                ui->tableWidget_13->item(6, 2)->setText(QString::number(Z5,'f',3));
             }
 
-            if (ui->tableWidget_7->item(8, 2) != 0)
+            if (ui->tableWidget_13->item(7, 2) != 0)
             {
-                ui->tableWidget_7->item(8, 2)->setText(QString::number(Z0,'f',6));
+                ui->tableWidget_13->item(7, 2)->setText(QString::number(Z6,'f',3));
             }
 
-            if (ui->tableWidget_7->item(9, 2) != 0)
+            if (ui->tableWidget_13->item(8, 2) != 0)
             {
-                ui->tableWidget_7->item(9, 2)->setText(QString::number(Qp,'f',6));
+                ui->tableWidget_13->item(8, 2)->setText(QString::number(Z0,'f',6));
             }
 
-            if (ui->tableWidget_7->item(10, 2) != 0)
+            if (ui->tableWidget_13->item(9, 2) != 0)
             {
-                ui->tableWidget_7->item(10, 2)->setText(QString::number(Hp,'f',6));
+                ui->tableWidget_13->item(9, 2)->setText(QString::number(Qp,'f',6));
             }
 
-            if (ui->tableWidget_7->item(11, 2) != 0)
+            if (ui->tableWidget_13->item(10, 2) != 0)
             {
-                ui->tableWidget_7->item(11, 2)->setText(QString::number(Vcp,'f',6));
+                ui->tableWidget_13->item(10, 2)->setText(QString::number(Hp,'f',6));
             }
 
-            if (ui->tableWidget_7->item(12, 2) != 0)
+            if (ui->tableWidget_13->item(11, 2) != 0)
             {
-                ui->tableWidget_7->item(12, 2)->setText(QString::number(Pvent,'f',6));
+                ui->tableWidget_13->item(11, 2)->setText(QString::number(Vcp,'f',6));
+            }
+
+            if (ui->tableWidget_13->item(12, 2) != 0)
+            {
+                ui->tableWidget_13->item(12, 2)->setText(QString::number(Pvent,'f',6));
             }
         }
     }
-//    if (item34->text() == "Выберите режим")
-//    {
-//        QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
-//    }
-//    else
-//    {
-//        if (item34->text() == "Динамика (расчет)")
-//        {
 
-//            QMessageBox::critical(this, "Привет!", "сеанс2");
-//        }
-//    }
-//    if (item34->text() == "Выберите режим")
-//    {
-//        QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
-//    }
-//    else
-//    {
-//        if (item34->text() == "Динамика (эксперимент)")
-//        {
-//            QMessageBox::critical(this, "Привет!", "сеанс3");
-//        }
-//    }
     double Q =0;
     double H1 = 0;
     double H2 = 0;
@@ -7091,8 +7379,6 @@ void MainWindow::on_vent_result_clicked()
     ne=0.19*sin(M_PI)*(Qp/Qmax);
 
     Pv=(Qp*Hp);
-//    double dPptk=0.07;
-//    double dPvpk=0.2;
     double dPvk=0.01;
     double dPsvp=0.001;
     double dPkd=0.6;
@@ -7138,7 +7424,31 @@ void MainWindow::on_vent_result_clicked()
     ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text33\").text('ΔNvk = %1 Вт');").arg(dPvk, 0, 'f', 3));
     ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text53\").text('ΔNsvp = %1 Вт');").arg(dPsvp, 0, 'f', 3));
     ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text185\").text('ΔNkd = %1 Вт');").arg(dPkd, 0, 'f', 3));
-}
+
+//    if (item34->text() == "Выберите режим")
+//    {
+//        QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
+//    }
+//    else
+//    {
+//        if (item34->text() == "Динамика (расчет)")
+//        {
+
+//            QMessageBox::critical(this, "Привет!", "сеанс2");
+//        }
+//    }
+//    if (item34->text() == "Выберите режим")
+//    {
+//        QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
+//    }
+//    else
+//    {
+//        if (item34->text() == "Динамика (эксперимент)")
+//        {
+//            QMessageBox::critical(this, "Привет!", "сеанс3");
+//        }
+//    }
+    }
 
 void MainWindow::on_save_electromagn_graph_file_clicked()
 {
@@ -7293,3 +7603,4 @@ SettinsKanals::SettinsKanals(QWidget *parent) :
 {
     ui->setupUi(this);
 }
+

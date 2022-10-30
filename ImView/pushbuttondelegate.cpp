@@ -209,6 +209,13 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         editor->insertItem(2, "Динамика (эксперимент)");
         return editor;
     }
+    else if ((index.parent().row() == 4) && (index.row() == 1))
+    {
+        QComboBox *editor = new QComboBox(parent);
+        editor->insertItem(0, "Один вентилятор");
+        editor->insertItem(1, "Независимая вентиляция");
+        return editor;
+    }
     else
     {
         return QStyledItemDelegate::createEditor(parent, option, index);
@@ -473,6 +480,17 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
         int width=comboBox->minimumSizeHint().width();
         comboBox->view()->setMinimumWidth(width);
     }
+    else if ((index.parent().row() == 4) && (index.row() == 1))
+    {
+        QString value = index.model()->data(index, Qt::DisplayRole).toString();
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);
+        if(value == "Один вентилятор")
+            comboBox->setCurrentIndex(0);
+        else if(value == "Независимая вентиляция")
+            comboBox->setCurrentIndex(1);
+        int width=comboBox->minimumSizeHint().width();
+        comboBox->view()->setMinimumWidth(width);
+    }
         else
     {
         QStyledItemDelegate::setEditorData(editor, index);
@@ -646,6 +664,12 @@ void ButtonColumnDelegate::setModelData(QWidget *editor, QAbstractItemModel *mod
         model->setData(index, value, Qt::EditRole);
     }
     else if ((index.parent().row() == 4) && (index.row() == 0))
+    {
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);
+        QString value = comboBox->currentText();
+        model->setData(index, value);
+    }
+    else if ((index.parent().row() == 4) && (index.row() == 1))
     {
         QComboBox *comboBox = static_cast<QComboBox*>(editor);
         QString value = comboBox->currentText();

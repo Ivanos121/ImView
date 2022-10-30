@@ -94,7 +94,7 @@ private slots:
     void on_action_9_triggered();
     void on_action_20_triggered();
     void on_action_21_triggered();
-    void on_tabWidget_currentChanged(int);
+    void on_tabWidget_currentChanged(int index);
     void on_action_22_triggered();
     void on_action_23_triggered();
     void on_action_15_triggered();
@@ -107,6 +107,7 @@ private slots:
     void tabClicked_3();
     void tabClicked_4();
     void tabClicked_5();
+    void tabClicked_6();
     void itemEdit();
 
     void modelItemChangedSlot(QStandardItem *item);

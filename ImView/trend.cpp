@@ -116,8 +116,8 @@ void Trend::startTeplo()
 
     timer.start(1000);
 
-    wf->ui->widget_6->ui->widget->ui->verticalSlider->setValue(50);
-    wf->ui->widget_6->ui->widget->ui->verticalSlider_2->setValue(20);
+//    wf->ui->widget_6->ui->widget->ui->verticalSlider->setValue(50);
+//    wf->ui->widget_6->ui->widget->ui->verticalSlider_2->setValue(20);
 }
 
 
@@ -831,39 +831,39 @@ void Trend::on_timerTimeout()
 
 
     //отрисовка vent_tract
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1285\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_8));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1289\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_4));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1277\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_11));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1291\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_11));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1159\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_15));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1161\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_15));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1163\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_15));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1165\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_15));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1243\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_10));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1269\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_10));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1271\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_10));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1273\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_10));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1275\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_10));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1241\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_10));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1261\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_10));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1263\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_10));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1265\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_10));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1267\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_10));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1287\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_8));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1295\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_7));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1279\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_12));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1297\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_12));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1167\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_13));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1293\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_11));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1299\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_12));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1169\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_13));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1285\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_8));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1289\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_4));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1277\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_11));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1291\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_11));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1159\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_15));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1161\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_15));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1163\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_15));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1165\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_15));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1243\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_10));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1269\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_10));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1271\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_10));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1273\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_10));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1275\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_10));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1241\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_10));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1261\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_10));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1263\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_10));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1265\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_10));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1267\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_10));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1287\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_8));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1295\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_7));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1279\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_12));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1297\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_12));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1167\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_13));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1293\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_11));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1299\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_12));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#path1169\").attr(\"style\", \"fill: hsl(%1, 100%, 50%);stroke-dasharray:0, 8.26299195;stroke-width:.75118;stroke:#000\");").arg(color_13));
 
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#tspan1010\").text('%1 °C');").arg(y_8, 0, 'f', 1));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#tspan1010-8\").text('%1 °C');").arg(y_4, 0, 'f', 1));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#tspan1010-0\").text('%1 °C');").arg(y_11, 0, 'f', 1));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#tspan1010-0-1\").text('%1 °C');").arg(y_8, 0, 'f', 1));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#tspan1010-8-5\").text('%1 °C');").arg(y_7, 0, 'f', 1));
-    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#tspan1010-9\").text('%1 °C');").arg(y_12, 0, 'f', 1));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#tspan1010\").text('%1 °C');").arg(y_8, 0, 'f', 1));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#tspan1010-8\").text('%1 °C');").arg(y_4, 0, 'f', 1));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#tspan1010-0\").text('%1 °C');").arg(y_11, 0, 'f', 1));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#tspan1010-0-1\").text('%1 °C');").arg(y_8, 0, 'f', 1));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#tspan1010-8-5\").text('%1 °C');").arg(y_7, 0, 'f', 1));
+//    wf->ui->widget_6->ui->widget->ui->webEngineView->page()->runJavaScript(QString("$(\"#tspan1010-9\").text('%1 °C');").arg(y_12, 0, 'f', 1));
 
     wf->ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text255').text('%1 °C');").arg(y_8, 0, 'f', 1));
 
@@ -1032,18 +1032,18 @@ void Trend::on_timerTimeout()
 
             //Отображение градиентного столбца на форме vent_tract после окончания расчетов
 
-            wf->ui->widget_6->ui->widget->ui->webEngineView_2->show();           
+//            wf->ui->widget_6->ui->widget->ui->webEngineView_2->show();
 
-            wf->ui->widget_6->ui->widget->ui->webEngineView_2->page()->runJavaScript(QString("$(\"#tspan901\").text('%1');").arg(max, 0, 'f', 1));
-            wf->ui->widget_6->ui->widget->ui->webEngineView_2->page()->runJavaScript(QString("$(\"#tspan865\").text('%1');").arg(miny, 0, 'f', 1));
-            wf->ui->widget_6->ui->widget->ui->webEngineView_2->page()->runJavaScript(QString("$(\"#tspan869\").text('%1');").arg(shag1, 0, 'f', 1));
-            wf->ui->widget_6->ui->widget->ui->webEngineView_2->page()->runJavaScript(QString("$(\"#tspan873\").text('%1');").arg(shag2, 0, 'f', 1));
-            wf->ui->widget_6->ui->widget->ui->webEngineView_2->page()->runJavaScript(QString("$(\"#tspan877\").text('%1');").arg(shag3, 0, 'f', 1));
-            wf->ui->widget_6->ui->widget->ui->webEngineView_2->page()->runJavaScript(QString("$(\"#tspan881\").text('%1');").arg(shag4, 0, 'f', 1));
-            wf->ui->widget_6->ui->widget->ui->webEngineView_2->page()->runJavaScript(QString("$(\"#tspan885\").text('%1');").arg(shag5, 0, 'f', 1));
-            wf->ui->widget_6->ui->widget->ui->webEngineView_2->page()->runJavaScript(QString("$(\"#tspan889\").text('%1');").arg(shag6, 0, 'f', 1));
-            wf->ui->widget_6->ui->widget->ui->webEngineView_2->page()->runJavaScript(QString("$(\"#tspan893\").text('%1');").arg(shag7, 0, 'f', 1));
-            wf->ui->widget_6->ui->widget->ui->webEngineView_2->page()->runJavaScript(QString("$(\"#tspan897\").text('%1');").arg(shag8, 0, 'f', 1));
+//            wf->ui->widget_6->ui->widget->ui->webEngineView_2->page()->runJavaScript(QString("$(\"#tspan901\").text('%1');").arg(max, 0, 'f', 1));
+//            wf->ui->widget_6->ui->widget->ui->webEngineView_2->page()->runJavaScript(QString("$(\"#tspan865\").text('%1');").arg(miny, 0, 'f', 1));
+//            wf->ui->widget_6->ui->widget->ui->webEngineView_2->page()->runJavaScript(QString("$(\"#tspan869\").text('%1');").arg(shag1, 0, 'f', 1));
+//            wf->ui->widget_6->ui->widget->ui->webEngineView_2->page()->runJavaScript(QString("$(\"#tspan873\").text('%1');").arg(shag2, 0, 'f', 1));
+//            wf->ui->widget_6->ui->widget->ui->webEngineView_2->page()->runJavaScript(QString("$(\"#tspan877\").text('%1');").arg(shag3, 0, 'f', 1));
+//            wf->ui->widget_6->ui->widget->ui->webEngineView_2->page()->runJavaScript(QString("$(\"#tspan881\").text('%1');").arg(shag4, 0, 'f', 1));
+//            wf->ui->widget_6->ui->widget->ui->webEngineView_2->page()->runJavaScript(QString("$(\"#tspan885\").text('%1');").arg(shag5, 0, 'f', 1));
+//            wf->ui->widget_6->ui->widget->ui->webEngineView_2->page()->runJavaScript(QString("$(\"#tspan889\").text('%1');").arg(shag6, 0, 'f', 1));
+//            wf->ui->widget_6->ui->widget->ui->webEngineView_2->page()->runJavaScript(QString("$(\"#tspan893\").text('%1');").arg(shag7, 0, 'f', 1));
+//            wf->ui->widget_6->ui->widget->ui->webEngineView_2->page()->runJavaScript(QString("$(\"#tspan897\").text('%1');").arg(shag8, 0, 'f', 1));
 
             //Вывод сообщзения об окончании расчетов
 
