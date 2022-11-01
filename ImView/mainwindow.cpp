@@ -7379,15 +7379,16 @@ void MainWindow::on_vent_result_clicked()
     double ne;
     double Pv;
     ui->widget_6->ui->plot_2->clear();
-    ui->widget_6->ui->plot_2->addDataLine(QColor(Qt::red), 0);
+    //ui->widget_6->ui->plot_2->addDataLine(QColor(Qt::red), 0);
     ui->widget_6->ui->plot_2->addDataLine(QColor(Qt::green), 0);
-    for (int i=0;i<100; i++)
+    //for (int i=0;i<100; i++)
+    while (Q < Qp)
     {
         Q+=0.0001;
         H1 = Z0 * pow(Q,2);
         H2 = H0 *(1 - pow((Q/Qmax),2));
-        ui->widget_6->ui->plot_2->addPoint(0, Q, H1);
-        ui->widget_6->ui->plot_2->addPoint(1, Q, H2);
+        //ui->widget_6->ui->plot_2->addPoint(0, Q, H1);
+        ui->widget_6->ui->plot_2->addPoint(0, Q, H2);
         qDebug() << H1 << H2 << Qt::endl;
     }
     ne=0.19*sin(M_PI)*(Qp/Qmax);
