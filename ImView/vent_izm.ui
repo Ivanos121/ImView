@@ -15,21 +15,16 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QWebEngineView" name="webEngineView">
-     <property name="url">
-      <url>
-       <string>about:blank</string>
-      </url>
-     </property>
-    </widget>
+    <widget class="Plot" name="widget" native="true"/>
    </item>
   </layout>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QWebEngineView</class>
+   <class>Plot</class>
    <extends>QWidget</extends>
-   <header location="global">QtWebEngineWidgets/QWebEngineView</header>
+   <header>plot.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

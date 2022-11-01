@@ -17,7 +17,7 @@
    <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>3</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab_5">
       <attribute name="title">
@@ -83,17 +83,17 @@
      </widget>
      <widget class="QWidget" name="tab_2">
       <attribute name="title">
-       <string>Распределение воздушного потока</string>
+       <string>Расчетные параметры вентиляционной сети</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_3">
        <item row="0" column="0">
-        <widget class="vent_izm" name="widget_2" native="true"/>
+        <widget class="Plot" name="plot_2" native="true"/>
        </item>
       </layout>
      </widget>
      <widget class="QWidget" name="tab_6">
       <attribute name="title">
-       <string>Тренды параметров ветнтиляционной сети</string>
+       <string>Тренды параметров вентиляционной сети</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_9">
        <item row="0" column="0">
@@ -131,12 +131,6 @@
    <class>Plot</class>
    <extends>QWidget</extends>
    <header>plot.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>vent_izm</class>
-   <extends>QWidget</extends>
-   <header>vent_izm.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

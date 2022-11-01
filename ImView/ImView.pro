@@ -65,7 +65,6 @@ SOURCES += \
     teplovent.cpp \
     teplschem.cpp \
     trend.cpp \
-    vent_izm.cpp \
     vent_model.cpp \
     vent_tract.cpp \
     zerocorrector.cpp
@@ -122,7 +121,6 @@ HEADERS += \
     teplovent.h \
     teplschem.h \
     trend.h \
-    vent_izm.h \
     vent_model.h \
     vent_tract.h \
     zerocorrector.h
@@ -147,7 +145,6 @@ FORMS += \
     teplovent.ui \
     teplschem.ui \
     trend.ui \
-    vent_izm.ui \
     vent_model.ui \
     vent_tract.ui
 

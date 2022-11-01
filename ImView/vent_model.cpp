@@ -1,6 +1,7 @@
 #include "vent_model.h"
 #include "ui_vent_model.h"
 #include "customhelpdelegate.h"
+#include "plot.h"
 
 vent_model::vent_model(QWidget *parent) :
     QWidget(parent),
@@ -8,11 +9,11 @@ vent_model::vent_model(QWidget *parent) :
 {
     ui->setupUi(this);
 
-//    ui->plot->t_max = 10.0;
-//    ui->plot->U_max = 500.0;
-//    ui->plot->margin_bottom = 40;
-//    ui->plot->margin_left = 100;
-//    ui->plot->reset();
+    ui->plot_2->t_max = 0.01;
+    ui->plot_2->U_max = 400.0;
+    ui->plot_2->margin_bottom = 40;
+    ui->plot_2->margin_left = 100;
+    ui->plot_2->reset();
 
 //    ui->tableWidget->setRowCount(30);
 //    ui->tableWidget->setColumnCount(4);

@@ -97,7 +97,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->widget_5->ui->widget->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/ax_var/ax_var_2.html").absoluteFilePath()));
     ui->widget_5->ui->widget_5->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/rad_var/rad_var.html").absoluteFilePath()));
-    ui->widget_6->ui->widget_2->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_tract/vent_tract.html").absoluteFilePath()));
+    //ui->widget_6->ui->widget_2->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_tract/vent_tract.html").absoluteFilePath()));
     ui->widget_5->ui->widget_3->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/tepl_schen_zam/tepl_tract.html").absoluteFilePath()));
     ui->widget_5->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/tepl_schen_zam/tepl_tract_stator.html").absoluteFilePath()));
     ui->widget_6->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_flow/vent_flow.html").absoluteFilePath()));
@@ -2014,6 +2014,14 @@ MainWindow::MainWindow(QWidget *parent)
         }
     }
 
+//    ui->tableWidget_12->setItem(0, 0, new QTableWidgetItem("Производительность"));
+//    ui->tableWidget_12->setItem(1, 0, new QTableWidgetItem("Полное давление вентилятора"));
+//    ui->tableWidget_12->setItem(2, 0, new QTableWidgetItem("Динамическое давление вентилятора"));
+//    ui->tableWidget_12->setItem(3, 0, new QTableWidgetItem("Статическое давление вентилятора"));
+//    ui->tableWidget_12->setItem(4, 0, new QTableWidgetItem("Полезная мощность вентилятора"));
+//    ui->tableWidget_12->setItem(5, 0, new QTableWidgetItem("Потребляемая мощность вентилятора"));
+//    ui->tableWidget_12->setItem(6, 0, new QTableWidgetItem("Полный к.п.д. вентилятора"));
+
     ui->tableWidget_12->setItem(0, 0, new QTableWidgetItem("Производительность"));
     ui->tableWidget_12->setItem(1, 0, new QTableWidgetItem("Полное давление вентилятора"));
     ui->tableWidget_12->setItem(2, 0, new QTableWidgetItem("Динамическое давление вентилятора"));
@@ -2021,14 +2029,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget_12->setItem(4, 0, new QTableWidgetItem("Полезная мощность вентилятора"));
     ui->tableWidget_12->setItem(5, 0, new QTableWidgetItem("Потребляемая мощность вентилятора"));
     ui->tableWidget_12->setItem(6, 0, new QTableWidgetItem("Полный к.п.д. вентилятора"));
-    ui->tableWidget_12->setItem(7, 0, new QTableWidgetItem("Аэродинамический к.п.д"));
-    ui->tableWidget_12->setItem(8, 0, new QTableWidgetItem("Объемный к.п.д."));
-    ui->tableWidget_12->setItem(9, 0, new QTableWidgetItem("Механический к.п.д."));
-//    ui->tableWidget_12->setItem(10, 0, new QTableWidgetItem("Угол поворота потока перед входом в межреберные каналы"));
-//    ui->tableWidget_12->setItem(11, 0, new QTableWidgetItem("Площадь сечения перед входом в межреберные каналы"));
-//    ui->tableWidget_12->setItem(12, 0, new QTableWidgetItem("Площадь сечения межреберных каналов от станины до кожуха вентилятора"));
-//    ui->tableWidget_12->setItem(13, 0, new QTableWidgetItem("Угол натекания потока на ребра станины"));
-//    ui->tableWidget_12->setItem(14, 0, new QTableWidgetItem("Угол поворота потока в межреберных каналах"));
 
     ui->tableWidget_12->setItem(0, 1, new QTableWidgetItem("Q"));
     ui->tableWidget_12->setItem(1, 1, new QTableWidgetItem("Pv"));
@@ -2037,14 +2037,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget_12->setItem(4, 1, new QTableWidgetItem("Nsv"));
     ui->tableWidget_12->setItem(5, 1, new QTableWidgetItem("N"));
     ui->tableWidget_12->setItem(6, 1, new QTableWidgetItem("nu"));
-    ui->tableWidget_12->setItem(7, 1, new QTableWidgetItem("nu_p"));
-    ui->tableWidget_12->setItem(8, 1, new QTableWidgetItem("nu_z"));
-    ui->tableWidget_12->setItem(9, 1, new QTableWidgetItem("nu_mp"));
-//    ui->tableWidget_12->setItem(10, 1, new QTableWidgetItem("alpha2"));
-//    ui->tableWidget_12->setItem(11, 1, new QTableWidgetItem("S3"));
-//    ui->tableWidget_12->setItem(12, 1, new QTableWidgetItem("S4"));
-//    ui->tableWidget_12->setItem(13, 1, new QTableWidgetItem("fi"));
-//    ui->tableWidget_12->setItem(14, 1, new QTableWidgetItem("fi2"));
 
     ui->tableWidget_12->setItem(0, 3, new QTableWidgetItem("м3/с"));
     ui->tableWidget_12->setItem(1, 3, new QTableWidgetItem("Па"));
@@ -2053,14 +2045,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget_12->setItem(4, 3, new QTableWidgetItem("Вт"));
     ui->tableWidget_12->setItem(5, 3, new QTableWidgetItem("Вт"));
     ui->tableWidget_12->setItem(6, 3, new QTableWidgetItem("-"));
-    ui->tableWidget_12->setItem(7, 3, new QTableWidgetItem("-"));
-    ui->tableWidget_12->setItem(8, 3, new QTableWidgetItem("-"));
-    ui->tableWidget_12->setItem(9, 3, new QTableWidgetItem("-"));
-//    ui->tableWidget_12->setItem(10, 3, new QTableWidgetItem("alpha2"));
-//    ui->tableWidget_12->setItem(11, 3, new QTableWidgetItem("м2"));
-//    ui->tableWidget_12->setItem(12, 3, new QTableWidgetItem("м2"));
-//    ui->tableWidget_12->setItem(13, 3, new QTableWidgetItem("град."));
-//    ui->tableWidget_12->setItem(14, 3, new QTableWidgetItem("град."));
 
     for (int i=0; i<ui->tableWidget_12->rowCount(); i++)
     {
@@ -3238,6 +3222,14 @@ void MainWindow::on_SaveProgectToFile_clicked()
     xmlWriter.writeAttribute("value", (item107->text()));
     xmlWriter.writeEndElement();
 
+    xmlWriter.writeStartElement("combobox_7");
+    xmlWriter.writeAttribute("value", (item34->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_8");
+    xmlWriter.writeAttribute("value", (item36->text()));
+    xmlWriter.writeEndElement();
+
     xmlWriter.writeEndElement();
     xmlWriter.writeEndElement();
     xmlWriter.writeEndElement();
@@ -3581,6 +3573,28 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
+                if(xmlReader.name() == "combobox_7")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item34->setText(attribute_value);
+                        }
+                    }
+                }
+                if(xmlReader.name() == "combobox_8")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item36->setText(attribute_value);
+                        }
+                    }
+                }
             }
             xmlReader.readNext(); // Переходим к следующему элементу файла
         }
@@ -3733,7 +3747,7 @@ void MainWindow::tabClicked_4()
     if(ui->widget_6->ui->tabWidget->currentIndex() == 2)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(13);
+        ui->stackedWidget->setCurrentIndex(16);
     }
     if(ui->widget_6->ui->tabWidget->currentIndex() == 3)
     {
@@ -3743,13 +3757,13 @@ void MainWindow::tabClicked_4()
     if(ui->widget_6->ui->tabWidget->currentIndex() == 4)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(16);
-    }
-    if(ui->widget_6->ui->tabWidget->currentIndex() == 5)
-    {
-        ui->stackedWidget->show();
         ui->stackedWidget->setCurrentIndex(15);
     }
+//    if(ui->widget_6->ui->tabWidget->currentIndex() == 5)
+//    {
+//        ui->stackedWidget->show();
+//        ui->stackedWidget->setCurrentIndex(15);
+//    }
 }
 
 void MainWindow::tabClicked_5()
@@ -7364,16 +7378,16 @@ void MainWindow::on_vent_result_clicked()
     double H2 = 0;
     double ne;
     double Pv;
-    ui->widget_6->ui->plot->clear();
-    ui->widget_6->ui->plot->addDataLine(QColor(Qt::red), 0);
-    ui->widget_6->ui->plot->addDataLine(QColor(Qt::green), 0);
+    ui->widget_6->ui->plot_2->clear();
+    ui->widget_6->ui->plot_2->addDataLine(QColor(Qt::red), 0);
+    ui->widget_6->ui->plot_2->addDataLine(QColor(Qt::green), 0);
     for (int i=0;i<100; i++)
     {
         Q+=0.0001;
         H1 = Z0 * pow(Q,2);
         H2 = H0 *(1 - pow((Q/Qmax),2));
-        ui->widget_6->ui->plot->addPoint(0, Q, H1);
-        ui->widget_6->ui->plot->addPoint(1, Q, H2);
+        ui->widget_6->ui->plot_2->addPoint(0, Q, H1);
+        ui->widget_6->ui->plot_2->addPoint(1, Q, H2);
         qDebug() << H1 << H2 << Qt::endl;
     }
     ne=0.19*sin(M_PI)*(Qp/Qmax);
@@ -7387,6 +7401,8 @@ void MainWindow::on_vent_result_clicked()
     double dPptk = eps * base_tepl.ro * pow((Qp/base_tepl.S1),2);
     double dPvpk = eps * base_tepl.ro * pow((Qp/base_tepl.S1),2);
     qDebug() << Pv;
+
+    //Расчет составляющих энергетической диаграммы вентилятора
 
     if (ui->tableWidget_11->item(5, 2) != 0)
     {
