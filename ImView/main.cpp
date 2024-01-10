@@ -3,7 +3,7 @@
 #include <QApplication>
 #include <QFileDialog>
 #include <QFileInfo>
-#include <QuaZip-Qt5-1.3/quazip/JlCompress.h>
+#include <QuaZip-Qt5-1.4/quazip/JlCompress.h>
 
 int main(int argc, char *argv[])
 {

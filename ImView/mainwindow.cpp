@@ -9,7 +9,7 @@
 #include <QSpinBox>
 #include <QSplitter>
 #include <QMessageBox>
-#include <QuaZip-Qt5-1.3/quazip/JlCompress.h>
+#include <QuaZip-Qt5-1.4/quazip/JlCompress.h>
 #include <QXmlStreamWriter>
 #include <QXmlStreamReader>
 #include <QXmlStreamAttribute>
@@ -29,6 +29,7 @@
 #include <QUndoCommand>
 #include <QPixmap>
 #include <QSvgRenderer>
+#include <iostream>
 
 #include "base.h"
 #include "model.h"
@@ -75,6 +76,7 @@ d_teta_10,d_teta_30,d_teta_k0,d_teta_50,d_teta_3k,d_teta_21,d_teta_c2,d_teta_c4,
 d_teta_pb,d_teta_b5,d_teta_p5,d_teta_p2;
 double H0, Qmax, Z0, Z1, Z2, Z3, Z4, Z5, Z6, Qp, Hp, Vcp, Pvent;
 double Nsv,N, dNptk, dNvpk, dNvk,dNsvp, dNkd;
+bool control = true;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -2450,11 +2452,29 @@ void MainWindow::createUndoStackAndActions()
     redoAction =  ui->action_8;
 }
 
-void MainWindow::closeEvent (QCloseEvent *)
+void MainWindow::closeEvent (QCloseEvent *event)
 {
     ui->widget_3->stop();
     QDir dir("/tmp/imview");
     dir.removeRecursively();
+
+    ui->action_20->setCheckable(true);
+
+    if (ui->action_20->isChecked())
+    {        
+        //ui->action_20->setChecked(true);
+        qDebug() << "The action 1 is now checked";
+        QMessageBox::information(this, "Тест","information");
+        control = true;
+
+    if(control == true)
+    {
+    QMessageBox::StandardButton resBtn = QMessageBox::question( this, "Программа еще работает", "Закрыть программу?", QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes);
+    if (resBtn != QMessageBox::Yes) {
+        event->ignore();
+    } else {
+        event->accept();
+    }}}
 }
 
 MainWindow::~MainWindow()
@@ -7620,4 +7640,3 @@ SettinsKanals::SettinsKanals(QWidget *parent) :
 {
     ui->setupUi(this);
 }
-

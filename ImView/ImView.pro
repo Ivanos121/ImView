@@ -1,4 +1,4 @@
-QT       += core gui sql webkitwidgets webenginewidgets serialport printsupport svg xml network
+QT       += core gui sql webenginewidgets serialport printsupport svg xml network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 

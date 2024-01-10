@@ -1896,6 +1896,12 @@
    </property>
   </action>
   <action name="action_20">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="Images.qrc">
      <normaloff>:/system_icons/data/img/system_icons/media-playback-start.svg</normaloff>:/system_icons/data/img/system_icons/media-playback-start.svg</iconset>

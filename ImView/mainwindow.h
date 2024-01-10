@@ -158,6 +158,7 @@ private slots:
 
     void on_radioButton_13_toggled(bool checked);
 
+
 public:
     Ui::MainWindow *ui;
     AboutDialog *rsc;
@@ -166,6 +167,7 @@ public:
     //SettinsKanals *rsc3;
     QString dataSourceFilename;
     QString dirName;
+    bool isChanged = false;
 
     QUndoStack *undoStack;
     QAction *undoAction;
