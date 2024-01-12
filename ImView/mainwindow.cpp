@@ -63,16 +63,16 @@
 Base base;
 Base_tepl base_tepl;
 Model modelss;
-double teta_0,teta_1,teta_2,teta_3,teta_4,teta_5,teta_k,teta_c,teta_p, teta_v, teta_z, teta_l_1, teta_l_2, teta_pp;
+double teta_0,teta_1,teta_2,teta_3,teta_4,teta_5,teta_k,teta_c,teta_p, teta_v, teta_z, teta_l_1, teta_l_2, teta_pp,teta0_0,teta0_1,teta0_2;
 double lambda_10, lambda_21, lambda_c2,lambda_p2,lambda_30,lambda_c3,lambda_p3,lambda_3k,lambda_c4,lambda_pb,lambda_p5,
 lambda_k0,lambda_45,lambda_50,lambda_b5,lambda_pz, lambda_zc, lambda_pc, lambda_ppz, lambda_lc, lambda_l4, lambda_pl, lambda_lp,
-lambda_zp,lambda_pс,lambda_л2с,lambda_л14,lambda_пл1,lambda_рл2,lambda_l22,lambda_l14,lambda_pl1,lambda_pl2;
-double C_0,C_1,C_2,C_3,C_4,C_5,C_k,C_c,C_p,C_v,C_z,C_pp,C_l_1,C_l_2;
+lambda_zp,lambda_pс,lambda_л2с,lambda_л14,lambda_пл1,lambda_рл2,lambda_l22,lambda_l14,lambda_pl1,lambda_pl2,lambda0_10,lambda0_12,lambda0_20;
+double C_0,C_1,C_2,C_3,C_4,C_5,C_k,C_c,C_p,C_v,C_z,C_pp,C_l_1,C_l_2,C0_0,C0_1,C0_2,C0_3;
 double P_0,P_1,P_2,P_3,P_4,P_5,P_c,P_k,P_p,P_z,P_pp,P_l_1,P_l_2,P_v,P_10,P_30,P_k0,P_50,P_3k,P_21,P_c2,P_c3,P_c4,P_45,P_pc,
 P_pb,P_b5,P_p5,P_p2;
 double dP_zp,dP_zc,dP_c3,dP_pс,dP_pz,dP_l22,dP_l14,dP_pl1,dP_pl2;
 double d_teta_zp,d_teta_zc,d_teta_c3,d_teta_pc,d_teta_pz,d_teta_l22,d_teta_l14,d_teta_pl1,d_teta_pl2,
-d_teta_10,d_teta_30,d_teta_k0,d_teta_50,d_teta_3k,d_teta_21,d_teta_c2,d_teta_c4,d_teta_45,
+d_teta_10,d_teta_30,d_teta_k0,d_teta_50,d_teta_3k,d_teta_21,d_teta_c2,d_teta_c4,d_teta_45,d_teta0_10,d_teta0_12,d_teta0_20,
 d_teta_pb,d_teta_b5,d_teta_p5,d_teta_p2;
 double H0, Qmax, Z0, Z1, Z2, Z3, Z4, Z5, Z6, Qp, Hp, Vcp, Pvent;
 double Nsv,N, dNptk, dNvpk, dNvk,dNsvp, dNkd;
@@ -101,6 +101,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_5->ui->widget_5->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/rad_var/rad_var.html").absoluteFilePath()));
     //ui->widget_6->ui->widget_2->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_tract/vent_tract.html").absoluteFilePath()));
     ui->widget_5->ui->widget_3->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/tepl_schen_zam/tepl_tract.html").absoluteFilePath()));
+    ui->widget_5->ui->webEngineView_3->setUrl(QUrl::fromLocalFile(QFileInfo("../data/tepl_schen_zam/two_wase_tepl_model.html").absoluteFilePath()));
+
     ui->widget_5->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/tepl_schen_zam/tepl_tract_stator.html").absoluteFilePath()));
     ui->widget_6->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_flow/vent_flow.html").absoluteFilePath()));
     ui->widget_6->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/ventilator/ventilator.html").absoluteFilePath()));
@@ -3872,17 +3874,6 @@ void MainWindow::on_radioButton_toggled(bool checked)
         {
             if (checked)
             {
-//                teta_0=20;
-//                teta_1=50;
-//                teta_2=80;
-//                teta_3=120;
-//                teta_k=70;
-//                teta_c=90;
-//                teta_4=90;
-//                teta_5=130;
-//                teta_v=60;
-//                teta_p=140;
-
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1231').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">0</tspan>');"));
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text827').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">0</tspan>');"));
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1037').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">0</tspan>');"));
@@ -3904,6 +3895,17 @@ void MainWindow::on_radioButton_toggled(bool checked)
             {
                 QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
             }
+        }
+
+        else if (item30->text() == "Двухмассовая модель (расчет)")
+        {
+            if (checked)
+            {
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text947-1').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">0</tspan>');"));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text863-6').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">1</tspan>');"));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text863').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">2</tspan>');"));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text947').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">0</tspan>');"));
+           }
         }
     }
 }
@@ -3978,6 +3980,19 @@ void MainWindow::on_radioButton_2_toggled(bool checked)
                 QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
             }
         }
+        else if (item30->text() == "Двухмассовая модель (расчет)")
+        {
+            if (checked)
+            {
+                teta0_0=20;
+                teta0_1=70;
+                teta0_2=80;
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text947-1').text('%1 °C');").arg(teta0_0,0,'f',3));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text863-6').text('%1 °C');").arg(teta0_1,0,'f',3));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text863').text('%1 °C');").arg(teta0_2,0,'f',3));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text947').text('%1 °C');").arg(teta0_0,0,'f',3));
+           }
+        }
     }
 }
 
@@ -4051,6 +4066,20 @@ void MainWindow::on_radioButton_3_toggled(bool checked)
                 QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
             }
         }
+        else if (item30->text() == "Двухмассовая модель (расчет)")
+        {
+            if (checked)
+            {
+                C0_0=0.034;
+                C0_1=0.35;
+                C0_2=0.034;
+                C0_3=0.35;
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text947-1').text('%1 Дж/К');").arg(C0_0,0,'f',3));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text863-6').text('%1 Дж/К');").arg(C0_1,0,'f',3));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text863').text('%1 Дж/К');").arg(C0_2,0,'f',3));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text947').text('%1 Дж/К');").arg(C0_3,0,'f',3));
+           }
+        }
     }
 }
 
@@ -4114,6 +4143,16 @@ void MainWindow::on_radioButton_4_toggled(bool checked)
             {
                 QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
             }
+        }
+        else if (item30->text() == "Двухмассовая модель (расчет)")
+        {
+            if (checked)
+            {
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text947-1').text('%1 Вт');").arg(P_0,0,'f',3));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text863-6').text('%1 Вт');").arg(P_1,0,'f',3));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text863').text('%1 Вт');").arg(P_2,0,'f',3));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text947').text('%1 Вт');").arg(P_0,0,'f',3));
+           }
         }
     }
 }
@@ -4195,6 +4234,15 @@ void MainWindow::on_radioButton_5_toggled(bool checked)
                 QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
             }
         }
+        else if (item30->text() == "Двухмассовая модель (расчет)")
+        {
+            if (checked)
+            {
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text1065-6').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">10</tspan>');"));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text1053').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">12</tspan>');"));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text1065').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">20</tspan>');"));
+            }
+        }
     }
 }
 
@@ -4273,6 +4321,15 @@ void MainWindow::on_radioButton_6_toggled(bool checked)
             if (checked)
             {
                 QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
+            }
+        }
+        else if (item30->text() == "Двухмассовая модель (расчет)")
+        {
+            if (checked)
+            {
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text1065-6').text('%1 Вт/°C');").arg(lambda0_10, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text1053').text('%1 Вт/°C');").arg(lambda0_12, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text1065').text('%1 Вт/°C');").arg(lambda0_20, 0, 'f', 2));
             }
         }
     }
@@ -4356,6 +4413,15 @@ void MainWindow::on_radioButton_7_toggled(bool checked)
                 QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
             }
         }
+        else if (item30->text() == "Двухмассовая модель (расчет)")
+        {
+            if (checked)
+            {
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text1065-6').text('%1 Вт');").arg(lambda0_10, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text1053').text('%1 Вт');").arg(lambda0_12, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text1065').text('%1 Вт');").arg(lambda0_20, 0, 'f', 2));
+            }
+        }
     }
 }
 
@@ -4435,6 +4501,18 @@ void MainWindow::on_radioButton_8_toggled(bool checked)
             if (checked)
             {
                 QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
+            }
+        }
+        else if (item30->text() == "Двухмассовая модель (расчет)")
+        {
+            if (checked)
+            {
+                d_teta0_10=100;
+                d_teta0_12=220;
+                d_teta0_20=230;
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text1065-6').text('%1 Вт');").arg(d_teta0_10, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text1053').text('%1 Вт');").arg(d_teta0_12, 0, 'f', 2));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text1065').text('%1 Вт');").arg(d_teta0_20, 0, 'f', 2));
             }
         }
     }
@@ -4522,6 +4600,23 @@ void MainWindow::on_radioButton_9_toggled(bool checked)
                 QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
             }
         }
+        else if (item30->text() == "Двухмассовая модель (расчет)")
+        {
+            if (checked)
+            {
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text947-1').hide();"));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text863-6').hide();"));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text863').hide();"));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text947').hide();"));
+           }
+            else
+            {
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text947-1').show();"));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text863-6').show();"));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text863').show();"));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text947').show();"));
+            }
+        }
     }
 }
 
@@ -4606,6 +4701,21 @@ void MainWindow::on_radioButton_10_toggled(bool checked)
             if (checked)
             {
                 QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
+            }
+        }
+        else if (item30->text() == "Двухмассовая модель (расчет)")
+        {
+            if (checked)
+            {
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text1065-6').hide();"));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text1053').hide();"));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text1065').hide();"));
+            }
+            else
+            {
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text1065-6').show();"));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text1053').show();"));
+                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text1065').show();"));
             }
         }
     }

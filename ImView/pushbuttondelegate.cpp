@@ -191,6 +191,8 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         editor->insertItem(2, "Статика (полный вариант)");
         editor->insertItem(3, "Динамика (расчет)");
         editor->insertItem(4, "Динамика (эксперимент)");
+        editor->insertItem(5, "Двухмассовая модель (расчет)");
+        editor->insertItem(6, "Двухмассовая модель (эксперимент)");
         return editor;
     }
     else if ((index.parent().row() == 3) && (index.row() == 2))
@@ -458,6 +460,10 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
             comboBox->setCurrentIndex(3);
         else if(value == "Динамика (эксперимент)")
             comboBox->setCurrentIndex(4);
+        else if(value == "Двухмассовая модель (расчет)")
+            comboBox->setCurrentIndex(5);
+        else if(value == "Двухмассовая модель (эксперимент)")
+            comboBox->setCurrentIndex(6);
         int width=comboBox->minimumSizeHint().width();
         comboBox->view()->setMinimumWidth(width);
     }
