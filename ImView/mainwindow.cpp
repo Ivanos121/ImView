@@ -59,11 +59,13 @@
 #include "plot.h"
 #include "tepl_nabludatel.h"
 #include "ui_tepl_nabludatel.h"
+#include "model_el.h"
 
 Base base;
 Base_tepl base_tepl;
 Model modelss;
-double teta_0,teta_1,teta_2,teta_3,teta_4,teta_5,teta_k,teta_c,teta_p, teta_v, teta_z, teta_l_1, teta_l_2, teta_pp,teta0_0,teta0_1,teta0_2;
+Model_el Model_ell;
+double teta_0,teta_1,teta_2,teta_3,teta_4,teta_5,teta_k,teta_c,teta_p, teta_v, teta_z, teta_l_1, teta_l_2, teta_pp,teta0_0,teta0_1,teta0_2, teta0_1n,teta0_2n;
 double lambda_10, lambda_21, lambda_c2,lambda_p2,lambda_30,lambda_c3,lambda_p3,lambda_3k,lambda_c4,lambda_pb,lambda_p5,
 lambda_k0,lambda_45,lambda_50,lambda_b5,lambda_pz, lambda_zc, lambda_pc, lambda_ppz, lambda_lc, lambda_l4, lambda_pl, lambda_lp,
 lambda_zp,lambda_pс,lambda_л2с,lambda_л14,lambda_пл1,lambda_рл2,lambda_l22,lambda_l14,lambda_pl1,lambda_pl2,lambda0_10,lambda0_12,lambda0_20;
@@ -3984,9 +3986,8 @@ void MainWindow::on_radioButton_2_toggled(bool checked)
         {
             if (checked)
             {
-                teta0_0=20;
-                teta0_1=70;
-                teta0_2=80;
+
+
                 ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text947-1').text('%1 °C');").arg(teta0_0,0,'f',3));
                 ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text863-6').text('%1 °C');").arg(teta0_1,0,'f',3));
                 ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text863').text('%1 °C');").arg(teta0_2,0,'f',3));
@@ -4070,14 +4071,9 @@ void MainWindow::on_radioButton_3_toggled(bool checked)
         {
             if (checked)
             {
-                C0_0=0.034;
-                C0_1=0.35;
-                C0_2=0.034;
-                C0_3=0.35;
+
                 ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text947-1').text('%1 Дж/К');").arg(C0_0,0,'f',3));
                 ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text863-6').text('%1 Дж/К');").arg(C0_1,0,'f',3));
-                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text863').text('%1 Дж/К');").arg(C0_2,0,'f',3));
-                ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text947').text('%1 Дж/К');").arg(C0_3,0,'f',3));
            }
         }
     }
@@ -6306,29 +6302,6 @@ void MainWindow::on_tepl_result_clicked()
 
             base_tepl.delta_Kp  = ui->widget_5->ui->widget_2->ui->tableWidget->item(60,1)->text().toDouble();
             base_tepl.Dp1  = ui->widget_5->ui->widget_2->ui->tableWidget->item(61,1)->text().toDouble();
-           // base_tepl.lb_ip   = ui->widget_5->ui->widget_2->ui->tableWidget->item(63,1)->text().toDouble();
-           // base_tepl.sig_vp  = ui->widget_5->ui->widget_2->ui->tableWidget->item(64,1)->text().toDouble();
-           // base_tepl.h_z2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(65,1)->text().toDouble();
-           // base_tepl.b_z2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(66,1)->text().toDouble();
-           // base_tepl.D_dp    = ui->widget_5->ui->widget_2->ui->tableWidget->item(67,1)->text().toDouble();
-           // base_tepl.d       = ui->widget_5->ui->widget_2->ui->tableWidget->item(68,1)->text().toDouble();
-           // base_tepl.d1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(69,1)->text().toDouble();
-
-           // base_tepl.P2      = ui->widget_5->ui->widget_2->ui->tableWidget->item(70,1)->text().toDouble();
-           // base_tepl.U1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(71,1)->text().toDouble();
-           // base_tepl.n_u     = ui->widget_5->ui->widget_2->ui->tableWidget->item(72,1)->text().toDouble();
-           // base_tepl.cos_f   = ui->widget_5->ui->widget_2->ui->tableWidget->item(73,1)->text().toDouble();
-           // base_tepl.ro_al   = ui->widget_5->ui->widget_2->ui->tableWidget->item(74,1)->text().toDouble();
-           // base_tepl.D_kzk   = ui->widget_5->ui->widget_2->ui->tableWidget->item(75,1)->text().toDouble();
-
-            //ui->widget_5->ui->tableWidget->clearContents();
-
-            //РАСЧЕТ ДАННЫХ
-
-            //Расчет тепловых проводимостей
-            //общая тепловая проводимость между сердечником статора и станиной
-            //    L_a1 = M_PI*l_1*
-            //    L_d1 = 1/(1/((L_a1)+(1/L_da1)+(1/L_st)));
 
             //Решение СЛАУ
 
@@ -6623,99 +6596,10 @@ void MainWindow::on_tepl_result_clicked()
             base_tepl.a_p    = ui->widget_5->ui->widget_2->ui->tableWidget->item(53,1)->text().toDouble();
             base_tepl.D_ct    = ui->widget_5->ui->widget_2->ui->tableWidget->item(54,1)->text().toDouble();
             base_tepl.u2  = ui->widget_5->ui->widget_2->ui->tableWidget->item(55,1)->text().toDouble();
-            //base_tepl.Krp    = ui->widget_5->ui->widget_2->ui->tableWidget->item(56,1)->text().toDouble();
-            //base_tepl.Hp    = ui->widget_5->ui->widget_2->ui->tableWidget->item(57,1)->text().toDouble();
-           // base_tepl.tp    = ui->widget_5->ui->widget_2->ui->tableWidget->item(58,1)->text().toDouble();
-
             base_tepl.alpha_c   = ui->widget_5->ui->widget_2->ui->tableWidget->item(59,1)->text().toDouble();
             base_tepl.delta_Kp  = ui->widget_5->ui->widget_2->ui->tableWidget->item(60,1)->text().toDouble();
             base_tepl.Dp1  = ui->widget_5->ui->widget_2->ui->tableWidget->item(61,1)->text().toDouble();
             base_tepl.lambda_v   = ui->widget_5->ui->widget_2->ui->tableWidget->item(62,1)->text().toDouble();
-           // base_tepl.sig_vp  = ui->widget_5->ui->widget_2->ui->tableWidget->item(64,1)->text().toDouble();
-           // base_tepl.h_z2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(65,1)->text().toDouble();
-           // base_tepl.b_z2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(66,1)->text().toDouble();
-           // base_tepl.D_dp    = ui->widget_5->ui->widget_2->ui->tableWidget->item(67,1)->text().toDouble();
-           // base_tepl.d       = ui->widget_5->ui->widget_2->ui->tableWidget->item(68,1)->text().toDouble();
-           // base_tepl.d1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(69,1)->text().toDouble();
-
-           // base_tepl.P2      = ui->widget_5->ui->widget_2->ui->tableWidget->item(70,1)->text().toDouble();
-           // base_tepl.U1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(71,1)->text().toDouble();
-           // base_tepl.n_u     = ui->widget_5->ui->widget_2->ui->tableWidget->item(72,1)->text().toDouble();
-           // base_tepl.cos_f   = ui->widget_5->ui->widget_2->ui->tableWidget->item(73,1)->text().toDouble();
-           // base_tepl.ro_al   = ui->widget_5->ui->widget_2->ui->tableWidget->item(74,1)->text().toDouble();
-           // base_tepl.D_kzk   = ui->widget_5->ui->widget_2->ui->tableWidget->item(75,1)->text().toDouble();
-
-
-            //Расчет тепловых проводимостей
-
-
-
-//            1+Da1 – внешний диаметр сердечника статора, м;
-//            2+ha1 – высота оси вращения, м;
-//            3+lambda_c1 – коэффициент теплопроводности стали сердечника;
-//            4+L1 – длина сердечника статора, м;
-//            5+k(c1) – коэффициент заполнения сердечника сталью;
-            //6            +lambda(i) – коэффициент теплопроводности воздуха;
-//            7+delta(ai) – контактный зазор между сердечником статора и станиной, м;
-//            8+delta(ст) – толщина станины, м;
-//            9+lambda(ст) – коэффициент проводимости материала станины;
-//            10+Di1- внутренний диаметр сердечника статора, м;
-//            11+alpha(sigma) – коэффициент теплоотдачи в воздушном зазоре;
-//            12+z1 – число зубцов статора;
-//            13+bz1 – ширина паза статора, м;
-//            14+lambda(с) – ddd
-//            15+Hz1 – высота зубца статора, м;
-//            16+lambda(ип1) – коэффициент теплопроводности пазовой изоляции;
-//            17+delta(ип1) – толщина пазовой изоляции;
-//            18+d’ – диаметр провода, м;
-//            19+sigma(ипр) – толщина изоляции провода, м;
-//            20+lambda(экв) – эквивалентный	 коэффициент теплопроводности обмотки;
-//            21+Кз – коэффициент заполнения паза;
-//            22+delta - fff
-            //23+Bp - fff
-            //24+teta(м) – допускаемая температура обмотки статора для данного класса нагревостойкости пазовой изоляции;
-//            25+Kп -коэффициент пропитки;
-            //26+Kp2 - fff;
-            //27+d12 - fff;
-//            28+lambda(л) – коэффициент теплопроводности пропиточного лака;
-//            29+lambda(эм) - коэффициент теплопроводности изоляции обмоточного провода;
-//            30+sigma(i) - ddd;
-//            31+lambda(i) – коэффициент теплопроводности воздуха;
-//            32+Bz1- средняя ширина зубца статора;
-//            33+Bп1 – средняя ширина паза, м;
-            //34+lambda_ek - fdff;
-            //35+lambda_c - dd;
-//            36+q(mi) – суммарное сечение проводников в пазу статора;
-//            37+lambda(mi) – коэффициент теплопроводности материала обмотки статора;
-            //38+z_i - ddd;
-            //39+Lp1 - fff;
-//            40+lambda(ил1) – коэффициент теплопроводности лобовых частей;
-//            41+delta(ил1) – толщина изоляции лобовых частей;
-//            42+Kл1 – коэффициент обдува лобовых частей;
-            //43+lambda_ekuz - fff;
-            //44+lambda_ekpa - fff;
-            //45+L_li - fff;
-//            46+alpha(л1) – средний коэффициент теплоотдачи с лобовых частей;
-//            47+qc – сечение стержня клетки ротора;
-            //48+Z2 - dcdd;
-            //49+L2 - fff;
-//            50+lambda(м2) – коэффициент теплопроводности материала обмотки;
-            //51+Bk - fff;
-//            52Br – ширина короткозамыкающего кольца;
-//            53+alpha(а2) – коэффициент теплоотдачи с поверхности лобовых частей обмотки ротора;
-//            54+S(л2) – поверхность двух лобовых частей обмотки ротора;
-//            55+alpha(ащ) – средний коэффициент теплоотдачи с внутренней поверхности подшипникового щита;
-//            56+alpha(аст) – средний коэффициент теплоотдачи с внутренней поверхности станины;
-//            57+S(iщ) – площадь внутренней поверхности двух подшипниковых щитов;
-//            58+S(iст) – площадь внутренней поверхности станины;
-//            59+Dст – наружный диаметр станины;
-//            60Kpп – коэффициент оребрения станины с учетом внутреннего теплового сопротивления ребер;
-//            61+alpha(ст) – коэффициент конвективной теплоотдачи станины;
-//            62+alpha(r) – коэффициент теплоотдачи излучением;
-//            63alpha(стсумм) – суммарный коэффициент теплоотдачи станины;
-//            64Bp – средняя толщина ребра;
-//            65deltaKp – коэффициент, определяющий долю неоребренных участков от всей теплоотражающей поверхности;
-
 
 
             double Lambda_ct,Lambda_adelta1,Lambda_a1,Lambda_delta1,Lambda_sigma,Lambda_1z1,Lambda_12,Lambda_1ip1,
@@ -7356,6 +7240,178 @@ void MainWindow::on_tepl_result_clicked()
         if (item30->text() == "Динамика (эксперимент)")
         {
             QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
+        }
+        if (item30->text() == "Двухмассовая модель (расчет)")
+        {
+            ui->widget_5->ui->tabWidget->show();
+            ui->widget_5->ui->tabWidget->setCurrentIndex(1);
+            //ввод данных
+            base_tepl.Da1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(0,1)->text().toDouble();
+            base_tepl.Ha1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(1,1)->text().toDouble();
+            base_tepl.lambda_c1       = ui->widget_5->ui->widget_2->ui->tableWidget->item(2,1)->text().toDouble();
+            base_tepl.L1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(3,1)->text().toDouble();
+            base_tepl.delta_ct = ui->widget_5->ui->widget_2->ui->tableWidget->item(4,1)->text().toDouble();
+            base_tepl.lambda_ct   = ui->widget_5->ui->widget_2->ui->tableWidget->item(5,1)->text().toDouble();
+            base_tepl.lambda_i  = ui->widget_5->ui->widget_2->ui->tableWidget->item(6,1)->text().toDouble();
+            base_tepl.delta_ai     = ui->widget_5->ui->widget_2->ui->tableWidget->item(7,1)->text().toDouble();
+            base_tepl.Kc1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(8,1)->text().toDouble();
+            base_tepl.Di1   = ui->widget_5->ui->widget_2->ui->tableWidget->item(9,1)->text().toDouble();
+
+            base_tepl.Z1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(10,1)->text().toDouble();
+            base_tepl.Bz1       = ui->widget_5->ui->widget_2->ui->tableWidget->item(11,1)->text().toDouble();
+            base_tepl.lambda_с     = ui->widget_5->ui->widget_2->ui->tableWidget->item(12,1)->text().toDouble();
+            base_tepl.Hz1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(13,1)->text().toDouble();
+            base_tepl.lambda_ip1    = ui->widget_5->ui->widget_2->ui->tableWidget->item(14,1)->text().toDouble();
+            base_tepl.delta_ip1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(15,1)->text().toDouble();
+            base_tepl.Kz      = ui->widget_5->ui->widget_2->ui->tableWidget->item(16,1)->text().toDouble();
+            base_tepl.d1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(17,1)->text().toDouble();
+            base_tepl.teta_m     = ui->widget_5->ui->widget_2->ui->tableWidget->item(18,1)->text().toDouble();
+            base_tepl.Kp   = ui->widget_5->ui->widget_2->ui->tableWidget->item(19,1)->text().toDouble();
+
+            base_tepl.lambda_l   = ui->widget_5->ui->widget_2->ui->tableWidget->item(20,1)->text().toDouble();
+            base_tepl.lambda_em    = ui->widget_5->ui->widget_2->ui->tableWidget->item(21,1)->text().toDouble();
+            base_tepl.Bp     = ui->widget_5->ui->widget_2->ui->tableWidget->item(22,1)->text().toDouble();
+            base_tepl.sigma_ipr     = ui->widget_5->ui->widget_2->ui->tableWidget->item(23,1)->text().toDouble();
+            base_tepl.sigma_i       = ui->widget_5->ui->widget_2->ui->tableWidget->item(24,1)->text().toDouble();
+            base_tepl.lambda_ek    = ui->widget_5->ui->widget_2->ui->tableWidget->item(25,1)->text().toDouble();
+            base_tepl.lambda_mi    = ui->widget_5->ui->widget_2->ui->tableWidget->item(26,1)->text().toDouble();
+            base_tepl.q_mi     = ui->widget_5->ui->widget_2->ui->tableWidget->item(27,1)->text().toDouble();
+            base_tepl.Lp1 = ui->widget_5->ui->widget_2->ui->tableWidget->item(28,1)->text().toDouble();
+            base_tepl.Lambda_el  = ui->widget_5->ui->widget_2->ui->tableWidget->item(29,1)->text().toDouble();
+
+            base_tepl.lambda_ekuz   = ui->widget_5->ui->widget_2->ui->tableWidget->item(30,1)->text().toDouble();
+            base_tepl.lambda_ekpa     = ui->widget_5->ui->widget_2->ui->tableWidget->item(31,1)->text().toDouble();
+            base_tepl.n     = ui->widget_5->ui->widget_2->ui->tableWidget->item(32,1)->text().toDouble();
+            base_tepl.Dv1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(33,1)->text().toDouble();
+            base_tepl.nu     = ui->widget_5->ui->widget_2->ui->tableWidget->item(34,1)->text().toDouble();
+            base_tepl.K_l1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(35,1)->text().toDouble();
+            base_tepl.lambda_il     = ui->widget_5->ui->widget_2->ui->tableWidget->item(36,1)->text().toDouble();
+            base_tepl.delta_il1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(37,1)->text().toDouble();
+            base_tepl.lambda_m2     = ui->widget_5->ui->widget_2->ui->tableWidget->item(38,1)->text().toDouble();
+            base_tepl.qc      = ui->widget_5->ui->widget_2->ui->tableWidget->item(39,1)->text().toDouble();
+
+            base_tepl.L2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(40,1)->text().toDouble();
+            base_tepl.Bk    = ui->widget_5->ui->widget_2->ui->tableWidget->item(41,1)->text().toDouble();
+            base_tepl.Z2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(42,1)->text().toDouble();
+            base_tepl.u_rot    = ui->widget_5->ui->widget_2->ui->tableWidget->item(43,1)->text().toDouble();
+            base_tepl.Dl    = ui->widget_5->ui->widget_2->ui->tableWidget->item(44,1)->text().toDouble();
+            base_tepl.S_l2  = ui->widget_5->ui->widget_2->ui->tableWidget->item(45,1)->text().toDouble();
+            base_tepl.S_isch    = ui->widget_5->ui->widget_2->ui->tableWidget->item(46,1)->text().toDouble();
+            base_tepl.S_ist    = ui->widget_5->ui->widget_2->ui->tableWidget->item(47,1)->text().toDouble();
+            base_tepl.alpha_r    = ui->widget_5->ui->widget_2->ui->tableWidget->item(48,1)->text().toDouble();
+
+            base_tepl.alpha_st      = ui->widget_5->ui->widget_2->ui->tableWidget->item(49,1)->text().toDouble();
+            base_tepl.h_p    = ui->widget_5->ui->widget_2->ui->tableWidget->item(50,1)->text().toDouble();
+            base_tepl.t_p    = ui->widget_5->ui->widget_2->ui->tableWidget->item(51,1)->text().toDouble();
+            base_tepl.n_p    = ui->widget_5->ui->widget_2->ui->tableWidget->item(52,1)->text().toDouble();
+            base_tepl.a_p    = ui->widget_5->ui->widget_2->ui->tableWidget->item(53,1)->text().toDouble();
+            base_tepl.D_ct    = ui->widget_5->ui->widget_2->ui->tableWidget->item(54,1)->text().toDouble();
+            base_tepl.u2  = ui->widget_5->ui->widget_2->ui->tableWidget->item(55,1)->text().toDouble();
+            base_tepl.alpha_c   = ui->widget_5->ui->widget_2->ui->tableWidget->item(59,1)->text().toDouble();
+            base_tepl.delta_Kp  = ui->widget_5->ui->widget_2->ui->tableWidget->item(60,1)->text().toDouble();
+            base_tepl.Dp1  = ui->widget_5->ui->widget_2->ui->tableWidget->item(61,1)->text().toDouble();
+            base_tepl.lambda_v   = ui->widget_5->ui->widget_2->ui->tableWidget->item(62,1)->text().toDouble();
+
+            //Расчет переменных состояния
+
+            double dPel1=0,
+                    dPct=0,
+                    dPel2=0;
+
+            teta0_0=item28->text().toDouble();
+
+            teta0_1n=80;
+            teta0_2n=70;
+
+            C_0=0;
+            C_1=0;
+
+            d_teta_10=10;
+            d_teta_30=22;
+
+            if(ui->tableWidget_4->item(1,2)!=0)
+            {
+                dPel1=ui->tableWidget_4->item(1,2)->text().toDouble();
+            }
+
+            if(ui->tableWidget_4->item(2,2)!=0)
+            {
+                dPct=ui->tableWidget_4->item(2,2)->text().toDouble();
+            }
+
+            if(ui->tableWidget_4->item(3,2)!=0)
+            {
+                dPel2=ui->tableWidget_4->item(3,2)->text().toDouble();
+            }
+
+            /*lambda0_10 = (Model_ell.dPel1+Model_ell.dPct)/teta0_1n;
+            lambda0_20 = (Model_ell.dPel1+Model_ell.dPct)/teta0_2n;
+            lambda0_12 = (Model_ell.dPel1+Model_ell.dPel2+Model_ell.dPct)/(teta0_2n-teta0_2n);*/
+
+            lambda0_10 = (dPel1+dPct)/teta0_1n;
+            lambda0_20 = (dPel1+dPct)/teta0_2n;
+            lambda0_12 = (dPel1+dPel2+dPct)/(teta0_2n-teta0_1n);
+
+            //Решение СЛАУ
+
+            double a_data[] = { lambda0_10+lambda0_12, -lambda0_12,
+                                -lambda0_12, lambda0_10+lambda0_12 };
+
+            double b_data[] = { dPel1+dPct+lambda0_10*teta0_0, dPel2+lambda0_10*teta0_0 };
+
+            gsl_matrix_view m = gsl_matrix_view_array (a_data, 2, 2);
+
+            gsl_vector_view b = gsl_vector_view_array (b_data, 2);
+
+            gsl_vector *x = gsl_vector_alloc (2);
+
+            int s;
+
+            gsl_permutation * p = gsl_permutation_alloc (2);
+
+            gsl_linalg_LU_decomp (&m.matrix, p, &s);
+
+            gsl_linalg_LU_solve (&m.matrix, p, &b.vector, x);
+
+            //ВЫВОД ДАННЫХ В ТАБЛИЦЫ
+
+            //вывод температур в таблицу
+            teta0_1=gsl_vector_get(x, 0);
+            teta0_2=gsl_vector_get(x, 1);
+
+            gsl_permutation_free (p);
+            gsl_vector_free (x);
+
+            //Вывод температур в таблицу
+            ui->widget_5->ui->tableWidget->item(0,0)->setText("Температура_1, °C");
+            ui->widget_5->ui->tableWidget->item(1,0)->setText("Температура_2, °C");
+
+            ui->widget_5->ui->tableWidget->item(0,1)->setText(QString::number(teta0_1,'f',3));
+            ui->widget_5->ui->tableWidget->item(1,1)->setText(QString::number(teta0_2,'f',3));
+
+            ui->widget_5->ui->tableWidget->item(0,2)->setText("Теплоемкость_1, Дж/К");
+            ui->widget_5->ui->tableWidget->item(1,2)->setText("Теплоемкость_2, Дж/К");
+
+            ui->widget_5->ui->tableWidget->item(0,3)->setText(QString::number(C_0,'f',3));
+            ui->widget_5->ui->tableWidget->item(1,3)->setText(QString::number(C_1,'f',3));
+
+            ui->widget_5->ui->tableWidget->item(0,4)->setText("Мощность_рассеяния_1, Вт");
+            ui->widget_5->ui->tableWidget->item(1,4)->setText("Мощность_рассеяния_2, Вт");
+
+            ui->widget_5->ui->tableWidget->item(0,5)->setText(QString::number(dPel1+dPct+lambda0_10*teta0_0,'f',3));
+            ui->widget_5->ui->tableWidget->item(1,5)->setText(QString::number(dPel2+lambda0_10*teta0_0,'f',3));
+
+            ui->widget_5->ui->tableWidget->item(0,6)->setText("Теплопроводность_1, Вт/°C");
+            ui->widget_5->ui->tableWidget->item(1,6)->setText("Теплопроводность_2, Вт/°C");
+
+            ui->widget_5->ui->tableWidget->item(0,7)->setText(QString::number(lambda_10,'f',3));
+            ui->widget_5->ui->tableWidget->item(1,7)->setText(QString::number(lambda_30,'f',3));
+
+            ui->widget_5->ui->tableWidget->item(0,8)->setText("Падение_температуры_1, °C");
+            ui->widget_5->ui->tableWidget->item(1,8)->setText("Падение_температуры_2, °C");
+
+            ui->widget_5->ui->tableWidget->item(0,9)->setText(QString::number(d_teta_10,'f',3));
+            ui->widget_5->ui->tableWidget->item(1,9)->setText(QString::number(d_teta_30,'f',3));
         }
     }
 }
