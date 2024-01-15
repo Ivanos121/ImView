@@ -152,6 +152,8 @@ private slots:
 
     void on_horizontalSlider_valueChanged(int value);
 
+    void on_horizontalSlider_2_valueChanged(int value);
+
     void on_radioButton_11_toggled(bool checked);
 
     void on_radioButton_12_toggled(bool checked);

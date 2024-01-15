@@ -80,6 +80,8 @@ struct Base
     double p_react;
     double p_poln;
     double cosf;
+    double Mc_n;
+    double Um;
     DigitOscParams digitOscParams;
     DigitMomentParams digitMomentParams;
     PlcParams plcParams;

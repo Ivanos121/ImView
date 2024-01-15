@@ -81,6 +81,8 @@ void electromagn::realtimeDataSlot()
 
     if(wf->item80->text() == "Внутренний источник данных")
     {
+        base.Mc_n = wf->ui->horizontalSlider->value() / 99.0 * 30.0;
+        base.Um = wf->ui->horizontalSlider_2->value() / 99.0 * 311.0;
 
         for (int i = 0; i < 1000; i++)
         {

@@ -49,7 +49,7 @@
 #include "ui_teplschem.h"
 #include "ui_vent_model.h"
 #include "ui_trend.h"
-#include "ui_vent_izm.h"
+//#include "ui_vent_izm.h"
 #include "ui_datas.h"
 #include "vent_model.h"
 #include "ui_vent_model.h"
@@ -78,7 +78,7 @@ d_teta_10,d_teta_30,d_teta_k0,d_teta_50,d_teta_3k,d_teta_21,d_teta_c2,d_teta_c4,
 d_teta_pb,d_teta_b5,d_teta_p5,d_teta_p2;
 double H0, Qmax, Z0, Z1, Z2, Z3, Z4, Z5, Z6, Qp, Hp, Vcp, Pvent;
 double Nsv,N, dNptk, dNvpk, dNvk,dNsvp, dNkd;
-bool control = true;
+bool isNablLaunched = false;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -2458,27 +2458,26 @@ void MainWindow::createUndoStackAndActions()
 
 void MainWindow::closeEvent (QCloseEvent *event)
 {
-    ui->widget_3->stop();
-    QDir dir("/tmp/imview");
-    dir.removeRecursively();
-
-    ui->action_20->setCheckable(true);
-
-    if (ui->action_20->isChecked())
-    {        
-        //ui->action_20->setChecked(true);
-        qDebug() << "The action 1 is now checked";
-        QMessageBox::information(this, "Тест","information");
-        control = true;
-
-    if(control == true)
+    if(isNablLaunched == true)
     {
-    QMessageBox::StandardButton resBtn = QMessageBox::question( this, "Программа еще работает", "Закрыть программу?", QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes);
-    if (resBtn != QMessageBox::Yes) {
-        event->ignore();
-    } else {
-        event->accept();
-    }}}
+        QMessageBox::StandardButton resBtn = QMessageBox::question( this, "Программа еще работает", "Закрыть программу?", QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes);
+        QDir dir("/tmp/imview");
+        switch (resBtn)
+        {
+        case QMessageBox::Yes:
+            ui->widget_3->stop();
+            dir.removeRecursively();
+            event->accept();
+        break;
+        case QMessageBox::No:
+            ui->widget_3->stop();
+            dir.removeRecursively();
+            event->accept();
+        break;
+        case QMessageBox::Cancel:
+            event->ignore();
+        }
+    }
 }
 
 MainWindow::~MainWindow()
@@ -2631,6 +2630,7 @@ void MainWindow::on_action_9_triggered()
 
 void MainWindow::on_action_20_triggered()
 {
+    isNablLaunched = true;
     ui->tabWidget->show();
     ui->tabWidget->setCurrentIndex(2);
     ui->stackedWidget->show();
@@ -2752,6 +2752,7 @@ void MainWindow::on_action_20_triggered()
 
 void MainWindow::on_action_21_triggered()
 {
+    isNablLaunched = false;
     ui->action_20->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start.svg"));
     ui->action_21->setEnabled(false);
     ui->widget_5->ui->widget_4->stopTeplo();
@@ -7660,7 +7661,7 @@ void MainWindow::on_vent_result_clicked()
         H1 = Z0 * pow(Q,2);
         H2 = H0 *(1 - pow((Q/Qmax),2));
         ui->widget_6->ui->plot_2->addPoint(0, Q, H1);
-        ui->widget_6->ui->plot_2->addPoint(0, Q, H2);
+        ui->widget_6->ui->plot_2->addPoint(1, Q, H2);
         qDebug() << H1 << H2 << Qt::endl;
     }
     ne=0.19*sin(M_PI)*(Qp/Qmax);
@@ -7771,6 +7772,12 @@ void MainWindow::on_horizontalSlider_valueChanged(int value)
 {
     ui->lineEdit->setText(QString("%1").arg(value / 99.0 * 30));
 }
+
+void MainWindow::on_horizontalSlider_2_valueChanged(int value)
+{
+    ui->lineEdit_2->setText(QString("%1").arg(value / 99.0 * 311.0));
+}
+
 
 
 void MainWindow::on_radioButton_11_toggled(bool checked)
