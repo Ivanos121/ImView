@@ -101,19 +101,18 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->widget_5->ui->widget->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/ax_var/ax_var_2.html").absoluteFilePath()));
     ui->widget_5->ui->widget_5->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/rad_var/rad_var.html").absoluteFilePath()));
-    //ui->widget_6->ui->widget_2->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_tract/vent_tract.html").absoluteFilePath()));
     ui->widget_5->ui->widget_3->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/tepl_schen_zam/tepl_tract.html").absoluteFilePath()));
     ui->widget_5->ui->webEngineView_3->setUrl(QUrl::fromLocalFile(QFileInfo("../data/tepl_schen_zam/two_wase_tepl_model.html").absoluteFilePath()));
-
     ui->widget_5->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/tepl_schen_zam/tepl_tract_stator.html").absoluteFilePath()));
     ui->widget_6->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_flow/vent_flow.html").absoluteFilePath()));
     ui->widget_6->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/ventilator/ventilator.html").absoluteFilePath()));
     ui->widget_6->ui->webEngineView_3->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_schem_zam/vent_schem_zam.html").absoluteFilePath()));
     ui->widget_6->ui->webEngineView_4->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_energo_scheme/vent_energo_scheme.html").absoluteFilePath()));
+    ui->widget_6->ui->webEngineView_5->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_energo_scheme/vent_energo_scheme.html").absoluteFilePath()));
+
     ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/energo_scheme/energo_scheme.html").absoluteFilePath()));
     ui->widget_5->ui->widget->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
     ui->widget_5->ui->widget_5->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
-//    ui->widget_6->ui->widget->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
 
 
     showMaximized();
@@ -7517,6 +7516,12 @@ void MainWindow::on_tepl_result_clicked()
 
 void MainWindow::on_vent_result_clicked()
 {
+    ui->tabWidget->show();
+    ui->tabWidget->setCurrentIndex(4);
+    ui->widget_6->ui->tabWidget->show();
+    ui->widget_6->ui->tabWidget->setCurrentIndex(1);
+    ui->stackedWidget->show();
+    ui->stackedWidget->setCurrentIndex(12);
 
     if (item34->text() == "Выберите режим")
     {
@@ -7524,8 +7529,12 @@ void MainWindow::on_vent_result_clicked()
     }
     else
     {
-        if (item34->text() == "Статика")
+        if ((item34->text() == "Статика")&&(item36->text() == "Один вентилятор"))
         {
+            ui->widget_6->ui->tabWidget_3->show();
+            ui->widget_6->ui->tabWidget_3->setCurrentIndex(0);
+            ui->stackedWidget->show();
+
             base_tepl.D1p      = ui->tableWidget_7->item(0,2)->text().toDouble();
             base_tepl.D2p      = ui->tableWidget_7->item(1,2)->text().toDouble();
             base_tepl.b       = ui->tableWidget_7->item(2,2)->text().toDouble();
@@ -7655,77 +7664,289 @@ void MainWindow::on_vent_result_clicked()
             {
                 ui->tableWidget_13->item(12, 2)->setText(QString::number(Pvent,'f',6));
             }
+
+
+            double Q =0;
+            double H1 = 0;
+            double H2 = 0;
+            double ne = 0;
+            double Pv;
+            ui->widget_6->ui->plot_2->clear();
+            ui->widget_6->ui->plot_2->addDataLine(QColor(Qt::red), 0);
+            ui->widget_6->ui->plot_2->addDataLine(QColor(Qt::green), 0);
+            //for (int i=0;i<100; i++)
+            while (Q < Qp)
+            {
+                Q+=0.00001;
+                H1 = Z0 * pow(Q,2);
+                H2 = H0 *(1 - pow((Q/Qmax),2));
+                ui->widget_6->ui->plot_2->addPoint(0, Q, H1);
+                ui->widget_6->ui->plot_2->addPoint(1, Q, H2);
+                qDebug() << H1 << H2 << Qt::endl;
+            }
+
+            ne=0.19*sin(M_PI)*(Qp/Qmax);
+            Pv=(Qp*Hp);
+            double dPvk=0.01;
+            double dPsvp=0.001;
+            double dPkd=0.6;
+
+            double eps = 0.07;
+            double dPptk = eps * base_tepl.ro * pow((Qp/base_tepl.S1),2);
+            double dPvpk = eps * base_tepl.ro * pow((Qp/base_tepl.S1),2);
+            qDebug() << Pv;
+
+            //Расчет составляющих энергетической диаграммы вентилятора
+
+            if (ui->tableWidget_11->item(5, 2) != 0)
+            {
+                ui->tableWidget_11->item(5, 2)->setText(QString::number(Pvent,'f',3));
+            }
+            if (ui->tableWidget_11->item(6, 2) != 0)
+            {
+                ui->tableWidget_11->item(6, 2)->setText(QString::number(Pv,'f',3));
+            }
+            if (ui->tableWidget_11->item(0, 2) != 0)
+            {
+                ui->tableWidget_11->item(0, 2)->setText(QString::number(dPptk,'f',3));
+            }
+            if (ui->tableWidget_11->item(1, 2) != 0)
+            {
+                ui->tableWidget_11->item(1, 2)->setText(QString::number(dPvpk,'f',3));
+            }
+            if (ui->tableWidget_11->item(2, 2) != 0)
+            {
+                ui->tableWidget_11->item(2, 2)->setText(QString::number(dPvk,'f',3));
+            }
+            if (ui->tableWidget_11->item(3, 2) != 0)
+            {
+                ui->tableWidget_11->item(3, 2)->setText(QString::number(dPsvp,'f',3));
+            }
+            if (ui->tableWidget_11->item(4, 2) != 0)
+            {
+                ui->tableWidget_11->item(4, 2)->setText(QString::number(dPkd,'f',3));
+            }
+
+            ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text139\").text('Nsv = %1 Вт');").arg(Pvent, 0, 'f', 3));
+            ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text75\").text('N = %1 Вт');").arg(Pv, 0, 'f', 3));
+            ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text113\").text('ΔNptk = %1 Вт');").arg(dPptk, 0, 'f', 3));
+            ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text91\").text('ΔNvpk = %1 Вт');").arg(dPvpk, 0, 'f', 3));
+            ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text33\").text('ΔNvk = %1 Вт');").arg(dPvk, 0, 'f', 3));
+            ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text53\").text('ΔNsvp = %1 Вт');").arg(dPsvp, 0, 'f', 3));
+            ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text185\").text('ΔNkd = %1 Вт');").arg(dPkd, 0, 'f', 3));
+        }
+        if ((item34->text() == "Статика")&&(item36->text() == "Независимая вентиляция"))
+        {
+            ui->widget_6->ui->tabWidget_3->show();
+            ui->widget_6->ui->tabWidget_3->setCurrentIndex(1);
+            ui->stackedWidget->show();
+
+            base_tepl.D1p      = ui->tableWidget_7->item(0,2)->text().toDouble();
+            base_tepl.D2p      = ui->tableWidget_7->item(1,2)->text().toDouble();
+            base_tepl.b       = ui->tableWidget_7->item(2,2)->text().toDouble();
+            base_tepl.n2     = ui->tableWidget_7->item(3,2)->text().toDouble();
+            base_tepl.ro = ui->tableWidget_7->item(4,2)->text().toDouble();
+            base_tepl.Sotv   = ui->tableWidget_7->item(5,2)->text().toDouble();
+            base_tepl.S0  = ui->tableWidget_7->item(6,2)->text().toDouble();
+            base_tepl.S1     = ui->tableWidget_7->item(7,2)->text().toDouble();
+            base_tepl.alpha1     = ui->tableWidget_7->item(8,2)->text().toDouble();
+            base_tepl.S2   = ui->tableWidget_7->item(9,2)->text().toDouble();
+            base_tepl.alpha2     = ui->tableWidget_7->item(10,2)->text().toDouble();
+            base_tepl.S3   = ui->tableWidget_7->item(11,2)->text().toDouble();
+            base_tepl.S4   = ui->tableWidget_7->item(12,2)->text().toDouble();
+            base_tepl.fi     = ui->tableWidget_7->item(13,2)->text().toDouble();
+            base_tepl.fi2   = ui->tableWidget_7->item(14,2)->text().toDouble();
+
+            //Начальное давление вентилятора:
+            H0=0.00695 * pow(base_tepl.n2,2) * (pow(base_tepl.D2p,2) - pow(base_tepl.D1p,2));
+
+            //Максимальный расход воздуха:
+            Qmax = 0.006 * pow(base_tepl.D2p,2) * base_tepl.b * base_tepl.n2;
+
+            //Сопротивление входа в кожух через решетку с острыми кромками
+            base_tepl.epsilon1 = 0.5;
+            Z1 = base_tepl.epsilon1 * (base_tepl.ro / (2 * pow(base_tepl.Sotv,2)));
+
+            //Сопротивление поворота потока за входной решеткой перед входом в вентилятор
+            base_tepl.epsilon2 = 0.5;
+            Z2 = base_tepl.epsilon2 * (base_tepl.ro / (2 * pow(base_tepl.S1,2)));
+
+            //Сопротивление потока за входным вентилятором перед входом в межреберные каналы
+            base_tepl.epsilon3 = 0.5;
+            Z3 = base_tepl.epsilon3 * (base_tepl.ro / (2 * pow(base_tepl.S2,2)));
+
+            //Сопротивление косого входа в межреберные каналы
+            base_tepl.epsilon4 = 0.5;
+            base_tepl.cosf = 0.7;
+            Z4 = base_tepl.epsilon4 * (base_tepl.ro / (2 * pow( base_tepl.S4,2) * pow(base_tepl.cosf,2)));
+
+            //Сопротивление поворота потока в межреберных каналах под кожухом
+            base_tepl.epsilon5 = 0.5;
+            Z5 = base_tepl.epsilon5 * (base_tepl.ro / (2 * pow(base_tepl.S4,2)));
+
+            //Сопротивление выхода воздуха из межреберных каналов в воздушное пространство
+            base_tepl.epsilon6 = 0.5;
+            Z6 = base_tepl.epsilon6 * (base_tepl.ro / (2 * pow(base_tepl.S4,2)));
+
+            //Суммарное сопротивление вентиляционной сети
+            Z0=1.2 *(Z1 + Z2 + Z3 + Z4 + Z5 + Z6);
+
+            //Рабочий расход воздуха
+            Qp = Qmax * sqrt(H0 /(H0 + Z0 * pow(Qmax,2)));
+
+            //Рабочий набор вентилятора
+            Hp = Z0 * pow(Qp,2);
+
+            //Средняя скорость воздуха в межреберных каналах
+            base_tepl.K = 1;
+            Vcp = base_tepl.K *Qp /base_tepl.S4;
+
+            //Потребляемая вентилятором мощность
+            base_tepl.nu2 = 0.7;
+            Pvent = 9.81 * (Qp * Hp / base_tepl.nu2);
+
+
+
+            if (ui->tableWidget_13->item(0, 2) != 0)
+            {
+                ui->tableWidget_13->item(0, 2)->setText(QString::number(H0,'f',3));
+            }
+
+            if (ui->tableWidget_13->item(1, 2) != 0)
+            {
+                ui->tableWidget_13->item(1, 2)->setText(QString::number(Qmax,'f',3));
+            }
+
+            if (ui->tableWidget_13->item(2, 2) != 0)
+            {
+                ui->tableWidget_13->item(2, 2)->setText(QString::number(Z1,'f',3));
+            }
+
+            if (ui->tableWidget_13->item(3, 2) != 0)
+            {
+                ui->tableWidget_13->item(3, 2)->setText(QString::number(Z2,'f',3));
+            }
+            if (ui->tableWidget_13->item(4, 2) != 0)
+            {
+                ui->tableWidget_13->item(4, 2)->setText(QString::number(Z3,'f',3));
+            }
+
+            if (ui->tableWidget_13->item(5, 2) != 0)
+            {
+                ui->tableWidget_13->item(5, 2)->setText(QString::number(Z4,'f',3));
+            }
+
+            if (ui->tableWidget_13->item(6, 2) != 0)
+            {
+                ui->tableWidget_13->item(6, 2)->setText(QString::number(Z5,'f',3));
+            }
+
+            if (ui->tableWidget_13->item(7, 2) != 0)
+            {
+                ui->tableWidget_13->item(7, 2)->setText(QString::number(Z6,'f',3));
+            }
+
+            if (ui->tableWidget_13->item(8, 2) != 0)
+            {
+                ui->tableWidget_13->item(8, 2)->setText(QString::number(Z0,'f',6));
+            }
+
+            if (ui->tableWidget_13->item(9, 2) != 0)
+            {
+                ui->tableWidget_13->item(9, 2)->setText(QString::number(Qp,'f',6));
+            }
+
+            if (ui->tableWidget_13->item(10, 2) != 0)
+            {
+                ui->tableWidget_13->item(10, 2)->setText(QString::number(Hp,'f',6));
+            }
+
+            if (ui->tableWidget_13->item(11, 2) != 0)
+            {
+                ui->tableWidget_13->item(11, 2)->setText(QString::number(Vcp,'f',6));
+            }
+
+            if (ui->tableWidget_13->item(12, 2) != 0)
+            {
+                ui->tableWidget_13->item(12, 2)->setText(QString::number(Pvent,'f',6));
+            }
+
+
+            double Q =0;
+            double H1 = 0;
+            double H2 = 0;
+            double ne = 0;
+            double Pv;
+            ui->widget_6->ui->plot_2->clear();
+            ui->widget_6->ui->plot_2->addDataLine(QColor(Qt::red), 0);
+            ui->widget_6->ui->plot_2->addDataLine(QColor(Qt::green), 0);
+            //for (int i=0;i<100; i++)
+            while (Q < Qp)
+            {
+                Q+=0.00001;
+                H1 = Z0 * pow(Q,2);
+                H2 = H0 *(1 - pow((Q/Qmax),2));
+                ui->widget_6->ui->plot_2->addPoint(0, Q, H1);
+                ui->widget_6->ui->plot_2->addPoint(1, Q, H2);
+                qDebug() << H1 << H2 << Qt::endl;
+            }
+
+            ne=0.19*sin(M_PI)*(Qp/Qmax);
+            Pv=(Qp*Hp);
+            double dPvk=0.01;
+            double dPsvp=0.001;
+            double dPkd=0.6;
+
+            double eps = 0.07;
+            double dPptk = eps * base_tepl.ro * pow((Qp/base_tepl.S1),2);
+            double dPvpk = eps * base_tepl.ro * pow((Qp/base_tepl.S1),2);
+            qDebug() << Pv;
+
+            //Расчет составляющих энергетической диаграммы вентилятора
+
+            if (ui->tableWidget_11->item(5, 2) != 0)
+            {
+                ui->tableWidget_11->item(5, 2)->setText(QString::number(Pvent,'f',3));
+            }
+            if (ui->tableWidget_11->item(6, 2) != 0)
+            {
+                ui->tableWidget_11->item(6, 2)->setText(QString::number(Pv,'f',3));
+            }
+            if (ui->tableWidget_11->item(0, 2) != 0)
+            {
+                ui->tableWidget_11->item(0, 2)->setText(QString::number(dPptk,'f',3));
+            }
+            if (ui->tableWidget_11->item(1, 2) != 0)
+            {
+                ui->tableWidget_11->item(1, 2)->setText(QString::number(dPvpk,'f',3));
+            }
+            if (ui->tableWidget_11->item(2, 2) != 0)
+            {
+                ui->tableWidget_11->item(2, 2)->setText(QString::number(dPvk,'f',3));
+            }
+            if (ui->tableWidget_11->item(3, 2) != 0)
+            {
+                ui->tableWidget_11->item(3, 2)->setText(QString::number(dPsvp,'f',3));
+            }
+            if (ui->tableWidget_11->item(4, 2) != 0)
+            {
+                ui->tableWidget_11->item(4, 2)->setText(QString::number(dPkd,'f',3));
+            }
+
+            ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text139\").text('Nsv = %1 Вт');").arg(Pvent, 0, 'f', 3));
+            ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text75\").text('N = %1 Вт');").arg(Pv, 0, 'f', 3));
+            ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text113\").text('ΔNptk = %1 Вт');").arg(dPptk, 0, 'f', 3));
+            ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text91\").text('ΔNvpk = %1 Вт');").arg(dPvpk, 0, 'f', 3));
+            ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text33\").text('ΔNvk = %1 Вт');").arg(dPvk, 0, 'f', 3));
+            ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text53\").text('ΔNsvp = %1 Вт');").arg(dPsvp, 0, 'f', 3));
+            ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text185\").text('ΔNkd = %1 Вт');").arg(dPkd, 0, 'f', 3));
+            //QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
+        }
+        if ((item34->text() == "Статика")&&(item36->text() == "Один вентилятор"))
+        {
+            QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
         }
     }
-
-    double Q =0;
-    double H1 = 0;
-    double H2 = 0;
-    double ne = 0;
-    double Pv;
-    ui->widget_6->ui->plot_2->clear();
-    ui->widget_6->ui->plot_2->addDataLine(QColor(Qt::red), 0);
-    ui->widget_6->ui->plot_2->addDataLine(QColor(Qt::green), 0);
-    //for (int i=0;i<100; i++)
-    while (Q < Qp)
-    {
-        Q+=0.00001;
-        H1 = Z0 * pow(Q,2);
-        H2 = H0 *(1 - pow((Q/Qmax),2));
-        ui->widget_6->ui->plot_2->addPoint(0, Q, H1);
-        ui->widget_6->ui->plot_2->addPoint(1, Q, H2);
-        qDebug() << H1 << H2 << Qt::endl;
-    }
-    ne=0.19*sin(M_PI)*(Qp/Qmax);
-
-    Pv=(Qp*Hp);
-    double dPvk=0.01;
-    double dPsvp=0.001;
-    double dPkd=0.6;
-
-    double eps = 0.07;
-    double dPptk = eps * base_tepl.ro * pow((Qp/base_tepl.S1),2);
-    double dPvpk = eps * base_tepl.ro * pow((Qp/base_tepl.S1),2);
-    qDebug() << Pv;
-
-    //Расчет составляющих энергетической диаграммы вентилятора
-
-    if (ui->tableWidget_11->item(5, 2) != 0)
-    {
-        ui->tableWidget_11->item(5, 2)->setText(QString::number(Pvent,'f',3));
-    }
-    if (ui->tableWidget_11->item(6, 2) != 0)
-    {
-        ui->tableWidget_11->item(6, 2)->setText(QString::number(Pv,'f',3));
-    }
-    if (ui->tableWidget_11->item(0, 2) != 0)
-    {
-        ui->tableWidget_11->item(0, 2)->setText(QString::number(dPptk,'f',3));
-    }
-    if (ui->tableWidget_11->item(1, 2) != 0)
-    {
-        ui->tableWidget_11->item(1, 2)->setText(QString::number(dPvpk,'f',3));
-    }
-    if (ui->tableWidget_11->item(2, 2) != 0)
-    {
-        ui->tableWidget_11->item(2, 2)->setText(QString::number(dPvk,'f',3));
-    }
-    if (ui->tableWidget_11->item(3, 2) != 0)
-    {
-        ui->tableWidget_11->item(3, 2)->setText(QString::number(dPsvp,'f',3));
-    }
-    if (ui->tableWidget_11->item(4, 2) != 0)
-    {
-        ui->tableWidget_11->item(4, 2)->setText(QString::number(dPkd,'f',3));
-    }
-
-    ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text139\").text('Nsv = %1 Вт');").arg(Pvent, 0, 'f', 3));
-    ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text75\").text('N = %1 Вт');").arg(Pv, 0, 'f', 3));
-    ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text113\").text('ΔNptk = %1 Вт');").arg(dPptk, 0, 'f', 3));
-    ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text91\").text('ΔNvpk = %1 Вт');").arg(dPvpk, 0, 'f', 3));
-    ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text33\").text('ΔNvk = %1 Вт');").arg(dPvk, 0, 'f', 3));
-    ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text53\").text('ΔNsvp = %1 Вт');").arg(dPsvp, 0, 'f', 3));
-    ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text185\").text('ΔNkd = %1 Вт');").arg(dPkd, 0, 'f', 3));
 }
 
 void MainWindow::on_save_electromagn_graph_file_clicked()
