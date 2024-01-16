@@ -149,10 +149,6 @@ void Model_el::rasch()
     psi2b_prev = psi2b;
     Ia_prev = Ialpha;
     Ib_prev = Ibeta;
-
-
-   // dPel1=pow(i_dev_a,2)*model2.R1+pow(i_dev_b,2)*model2.R1+pow(i_dev_c,2)*model2.R1;
-
 }
 
 void Model_el::timerTimeout()

@@ -6447,7 +6447,7 @@ void MainWindow::on_tepl_result_clicked()
             ui->widget_5->ui->tableWidget->item(7,5)->setText(QString::number(P_2,'f',3));
             ui->widget_5->ui->tableWidget->item(8,5)->setText(QString::number(P_4,'f',3));
 
-            //Расчет топлоемкостей
+            //Расчет теплоемкостей
             C_p=0.034;
             C_z=0.35;
             C_3=0.23;
@@ -6458,7 +6458,7 @@ void MainWindow::on_tepl_result_clicked()
             C_2=0.56;
             C_4=0.059;
 
-            //Вывод тоеплоемкостей в таблицу
+            //Вывод теплоемкостей в таблицу
             ui->widget_5->ui->tableWidget->item(0,6)->setText("Теплоемкость_1, Дж/К");
             ui->widget_5->ui->tableWidget->item(1,6)->setText("Теплоемкость_2, Дж/К");
             ui->widget_5->ui->tableWidget->item(2,6)->setText("Теплоемкость_3, Дж/К");
@@ -7331,6 +7331,7 @@ void MainWindow::on_tepl_result_clicked()
                     dPct=0,
                     dPel2=0;
 
+
             teta0_0=item28->text().toDouble();
 
             teta0_1n=80;
@@ -7357,9 +7358,9 @@ void MainWindow::on_tepl_result_clicked()
                 dPel2=ui->tableWidget_4->item(3,2)->text().toDouble();
             }
 
-            /*lambda0_10 = (Model_ell.dPel1+Model_ell.dPct)/teta0_1n;
-            lambda0_20 = (Model_ell.dPel1+Model_ell.dPct)/teta0_2n;
-            lambda0_12 = (Model_ell.dPel1+Model_ell.dPel2+Model_ell.dPct)/(teta0_2n-teta0_2n);*/
+           // lambda0_10 = (Model_ell.dPel1+Model_ell.dPct)/teta0_1n;
+           // lambda0_20 = (Model_ell.dPel1+Model_ell.dPct)/teta0_2n;
+           // lambda0_12 = (Model_ell.dPel1+Model_ell.dPel2+Model_ell.dPct)/(teta0_2n-teta0_2n);
 
             lambda0_10 = (dPel1+dPct)/teta0_1n;
             lambda0_20 = (dPel1+dPct)/teta0_2n;
@@ -7367,10 +7368,17 @@ void MainWindow::on_tepl_result_clicked()
 
             //Решение СЛАУ
 
+            double n = 0;
+            double n_k = 10000;
+            while(n<n_k)
+            {
+                n+=0.1;
             double a_data[] = { lambda0_10+lambda0_12, -lambda0_12,
                                 -lambda0_12, lambda0_10+lambda0_12 };
 
             double b_data[] = { dPel1+dPct+lambda0_10*teta0_0, dPel2+lambda0_10*teta0_0 };
+
+           //double b_data[] = { Model_ell.dPel1+Model_ell.dPct+lambda0_10*teta0_0, Model_ell.dPel2+lambda0_10*teta0_0 };
 
             gsl_matrix_view m = gsl_matrix_view_array (a_data, 2, 2);
 
@@ -7411,8 +7419,12 @@ void MainWindow::on_tepl_result_clicked()
             ui->widget_5->ui->tableWidget->item(0,4)->setText("Мощность_рассеяния_1, Вт");
             ui->widget_5->ui->tableWidget->item(1,4)->setText("Мощность_рассеяния_2, Вт");
 
+           // ui->widget_5->ui->tableWidget->item(0,5)->setText(QString::number(Model_ell.dPel1+Model_ell.dPct+lambda0_10*teta0_0,'f',3));
+           // ui->widget_5->ui->tableWidget->item(1,5)->setText(QString::number(Model_ell.dPel2+lambda0_10*teta0_0,'f',3));
+
             ui->widget_5->ui->tableWidget->item(0,5)->setText(QString::number(dPel1+dPct+lambda0_10*teta0_0,'f',3));
             ui->widget_5->ui->tableWidget->item(1,5)->setText(QString::number(dPel2+lambda0_10*teta0_0,'f',3));
+
 
             ui->widget_5->ui->tableWidget->item(0,6)->setText("Теплопроводность_1, Вт/°C");
             ui->widget_5->ui->tableWidget->item(1,6)->setText("Теплопроводность_2, Вт/°C");
@@ -7425,7 +7437,7 @@ void MainWindow::on_tepl_result_clicked()
 
             ui->widget_5->ui->tableWidget->item(0,9)->setText(QString::number(d_teta_10,'f',3));
             ui->widget_5->ui->tableWidget->item(1,9)->setText(QString::number(d_teta_30,'f',3));
-        }
+        }}
         if (item30->text() == "Двухмассовая модель (эксперимент)")
         {
             ui->widget_5->ui->tabWidget->show();
