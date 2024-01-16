@@ -137,25 +137,7 @@ void Itogs::on_pushButton_clicked()
     table->cellAt(6, 1).firstCursorPosition().insertText(QString::number((double)base.muk));
     table->cellAt(7, 1).firstCursorPosition().insertText(QString::number((double)base.n_0));
 
-    /*if(base.r1=true)
-    {
-        ui->textEdit->append("Алгоритм проведения испытаний: осциллограф");
-    }
-    if(base.r1=false)
-    {
-    ui->textEdit->append("Алгоритм проведения испытаний: внутренний источник данных");
-    }*/
 
-//    MainWindow *mainWin = getMainWindow();
-//    if (mainWin->ui->widget->ui->oscNoSpeed->isChecked())
-//    {
-//       ui->textEdit->append("Алгоритм проведения испытаний: осциллограф");
-//    }
-
-//    if (mainWin->ui->widget->ui->oscWithSpeed->isChecked())
-//    {
-//       ui->textEdit->append("Алгоритм проведения испытаний: внутренний источник данных");
-//    }
 
     cursor = ui->textEdit->textCursor();
     textBlockFormat = cursor.blockFormat();
