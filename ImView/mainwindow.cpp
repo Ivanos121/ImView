@@ -64,7 +64,7 @@
 Base base;
 Base_tepl base_tepl;
 Model modelss;
-Model_el Model_ell;
+extern Model_el Model_el;
 double teta_0,teta_1,teta_2,teta_3,teta_4,teta_5,teta_k,teta_c,teta_p, teta_v, teta_z, teta_l_1, teta_l_2, teta_pp,teta0_0,teta0_1,teta0_2, teta0_1n,teta0_2n;
 double lambda_10, lambda_21, lambda_c2,lambda_p2,lambda_30,lambda_c3,lambda_p3,lambda_3k,lambda_c4,lambda_pb,lambda_p5,
 lambda_k0,lambda_45,lambda_50,lambda_b5,lambda_pz, lambda_zc, lambda_pc, lambda_ppz, lambda_lc, lambda_l4, lambda_pl, lambda_lp,
@@ -7357,13 +7357,13 @@ void MainWindow::on_tepl_result_clicked()
                 dPel2=ui->tableWidget_4->item(3,2)->text().toDouble();
             }
 
-           // lambda0_10 = (Model_ell.dPel1+Model_ell.dPct)/teta0_1n;
-           // lambda0_20 = (Model_ell.dPel1+Model_ell.dPct)/teta0_2n;
-           // lambda0_12 = (Model_ell.dPel1+Model_ell.dPel2+Model_ell.dPct)/(teta0_2n-teta0_2n);
+           lambda0_10 = (Model_el.dPel1+Model_el.dPct)/teta0_1n;
+           lambda0_20 = (Model_el.dPel1+Model_el.dPct)/teta0_2n;
+           lambda0_12 = (Model_el.dPel1+Model_el.dPel2+Model_el.dPct)/(teta0_2n-teta0_2n);
 
-            lambda0_10 = (dPel1+dPct)/teta0_1n;
-            lambda0_20 = (dPel1+dPct)/teta0_2n;
-            lambda0_12 = (dPel1+dPel2+dPct)/(teta0_2n-teta0_1n);
+            //lambda0_10 = (dPel1+dPct)/teta0_1n;
+            //lambda0_20 = (dPel1+dPct)/teta0_2n;
+            //lambda0_12 = (dPel1+dPel2+dPct)/(teta0_2n-teta0_1n);
 
             //Решение СЛАУ
 
@@ -7375,9 +7375,9 @@ void MainWindow::on_tepl_result_clicked()
             double a_data[] = { lambda0_10+lambda0_12, -lambda0_12,
                                 -lambda0_12, lambda0_10+lambda0_12 };
 
-            double b_data[] = { dPel1+dPct+lambda0_10*teta0_0, dPel2+lambda0_10*teta0_0 };
+            //double b_data[] = { dPel1+dPct+lambda0_10*teta0_0, dPel2+lambda0_10*teta0_0 };
 
-           //double b_data[] = { Model_ell.dPel1+Model_ell.dPct+lambda0_10*teta0_0, Model_ell.dPel2+lambda0_10*teta0_0 };
+            double b_data[] = { Model_el.dPel1+Model_el.dPct+lambda0_10*teta0_0, Model_el.dPel2+lambda0_10*teta0_0 };
 
             gsl_matrix_view m = gsl_matrix_view_array (a_data, 2, 2);
 
@@ -7418,11 +7418,11 @@ void MainWindow::on_tepl_result_clicked()
             ui->widget_5->ui->tableWidget->item(0,4)->setText("Мощность_рассеяния_1, Вт");
             ui->widget_5->ui->tableWidget->item(1,4)->setText("Мощность_рассеяния_2, Вт");
 
-           // ui->widget_5->ui->tableWidget->item(0,5)->setText(QString::number(Model_ell.dPel1+Model_ell.dPct+lambda0_10*teta0_0,'f',3));
-           // ui->widget_5->ui->tableWidget->item(1,5)->setText(QString::number(Model_ell.dPel2+lambda0_10*teta0_0,'f',3));
+            ui->widget_5->ui->tableWidget->item(0,5)->setText(QString::number(Model_el.dPel1+Model_el.dPct+lambda0_10*teta0_0,'f',3));
+            ui->widget_5->ui->tableWidget->item(1,5)->setText(QString::number(Model_el.dPel2+lambda0_10*teta0_0,'f',3));
 
-            ui->widget_5->ui->tableWidget->item(0,5)->setText(QString::number(dPel1+dPct+lambda0_10*teta0_0,'f',3));
-            ui->widget_5->ui->tableWidget->item(1,5)->setText(QString::number(dPel2+lambda0_10*teta0_0,'f',3));
+            //ui->widget_5->ui->tableWidget->item(0,5)->setText(QString::number(dPel1+dPct+lambda0_10*teta0_0,'f',3));
+            //ui->widget_5->ui->tableWidget->item(1,5)->setText(QString::number(dPel2+lambda0_10*teta0_0,'f',3));
 
 
             ui->widget_5->ui->tableWidget->item(0,6)->setText("Теплопроводность_1, Вт/°C");
