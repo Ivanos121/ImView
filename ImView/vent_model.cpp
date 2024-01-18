@@ -9,11 +9,11 @@ vent_model::vent_model(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->plot_2->t_max = 0.01;
-    ui->plot_2->U_max = 400.0;
-    ui->plot_2->margin_bottom = 40;
-    ui->plot_2->margin_left = 100;
-    ui->plot_2->reset();
+    //ui->plot_2->t_max = 0.01;
+    //ui->plot_2->U_max = 400.0;
+    //ui->plot_2->margin_bottom = 40;
+    //ui->plot_2->margin_left = 100;
+    //ui->plot_2->reset();
 
 //    ui->tableWidget->setRowCount(30);
 //    ui->tableWidget->setColumnCount(4);

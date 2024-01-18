@@ -132,6 +132,14 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         editor->setMaximum(100);
         return editor;
     }
+    else if ((index.parent().row() == 1) && (index.row() == 7))
+    {
+        QDoubleSpinBox *editor = new QDoubleSpinBox(parent);
+        editor->setFrame(false);
+        editor->setMinimum(0);
+        editor->setMaximum(100);
+        return editor;
+    }
     else if ((index.parent().row() == 2) && (index.row() == 0))
     {
         QComboBox *editor = new QComboBox(parent);
@@ -216,6 +224,13 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         QComboBox *editor = new QComboBox(parent);
         editor->insertItem(0, "Один вентилятор");
         editor->insertItem(1, "Независимая вентиляция");
+        return editor;
+    }
+    else if ((index.parent().row() == 8) && (index.row() == 0))
+    {
+        QComboBox *editor = new QComboBox(parent);
+        editor->insertItem(0, "Одномассовая модель");
+        editor->insertItem(1, "Двухмассовая модель");
         return editor;
     }
     else
@@ -497,6 +512,17 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
         int width=comboBox->minimumSizeHint().width();
         comboBox->view()->setMinimumWidth(width);
     }
+    else if ((index.parent().row() == 8) && (index.row() == 0))
+    {
+        QString value = index.model()->data(index, Qt::DisplayRole).toString();
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);
+        if(value == "Одномассовая модель")
+            comboBox->setCurrentIndex(0);
+        else if(value == "Двухмассовая модель")
+            comboBox->setCurrentIndex(1);
+        int width=comboBox->minimumSizeHint().width();
+        comboBox->view()->setMinimumWidth(width);
+    }
         else
     {
         QStyledItemDelegate::setEditorData(editor, index);
@@ -676,6 +702,12 @@ void ButtonColumnDelegate::setModelData(QWidget *editor, QAbstractItemModel *mod
         model->setData(index, value);
     }
     else if ((index.parent().row() == 4) && (index.row() == 1))
+    {
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);
+        QString value = comboBox->currentText();
+        model->setData(index, value);
+    }
+    else if ((index.parent().row() == 8) && (index.row() == 0))
     {
         QComboBox *comboBox = static_cast<QComboBox*>(editor);
         QString value = comboBox->currentText();

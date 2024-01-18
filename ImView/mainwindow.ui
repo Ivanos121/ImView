@@ -28,7 +28,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -47,7 +47,7 @@
         </font>
        </property>
        <attribute name="title">
-        <string>Идентификация параметров</string>
+        <string>Предварительная идентификация параметров схемы замещения</string>
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
@@ -59,6 +59,16 @@
            </size>
           </property>
          </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_14">
+       <attribute name="title">
+        <string>Предварительная идентификация параметров тепловой модели</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_10">
+        <item row="0" column="0">
+         <widget class="QWidget" name="widget_10" native="true"/>
         </item>
        </layout>
       </widget>
@@ -205,7 +215,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>11</number>
+       <number>9</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QGridLayout" name="gridLayout_6">
@@ -277,6 +287,51 @@
          </widget>
         </item>
        </layout>
+      </widget>
+      <widget class="QWidget" name="page_19">
+       <widget class="QLabel" name="label_35">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>130</y>
+          <width>161</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Прогноз температур</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_20">
+       <widget class="QLabel" name="label_36">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>30</y>
+          <width>211</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Остаточный тепловой ресурс</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_21">
+       <widget class="QLabel" name="label_37">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>150</y>
+          <width>131</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Выходные данные</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="page_2">
        <layout class="QGridLayout" name="gridLayout_7">
@@ -834,7 +889,7 @@
            </size>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tab_10">
            <attribute name="title">
@@ -1042,6 +1097,21 @@ li.checked::marker { content: &quot;\2612&quot;; }
          </widget>
         </item>
        </layout>
+      </widget>
+      <widget class="QWidget" name="page_18">
+       <widget class="QLabel" name="label_34">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>70</y>
+          <width>261</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Параметры тепловой идентификации</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="page_8">
        <widget class="QWidget" name="layoutWidget">
@@ -1690,6 +1760,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <addaction name="action_5"/>
    <addaction name="action_9"/>
    <addaction name="separator"/>
+   <addaction name="action_31"/>
+   <addaction name="action_32"/>
+   <addaction name="separator"/>
    <addaction name="action_20"/>
    <addaction name="action_21"/>
    <addaction name="action_22"/>
@@ -1703,6 +1776,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <addaction name="action_28"/>
    <addaction name="action_29"/>
    <addaction name="action_30"/>
+   <addaction name="separator"/>
   </widget>
   <action name="actionExit">
    <property name="icon">
@@ -1873,6 +1947,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
    </property>
    <property name="text">
     <string>Пуск</string>
+   </property>
+   <property name="toolTip">
+    <string>Запуск предварительной идентификации параметров схемы замещения</string>
    </property>
   </action>
   <action name="action_9">
@@ -2076,6 +2153,33 @@ li.checked::marker { content: &quot;\2612&quot;; }
    </property>
    <property name="text">
     <string>Подключение управления моментом</string>
+   </property>
+  </action>
+  <action name="action_31">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/media-playback-start_3.svg</normaloff>:/system_icons/data/img/system_icons/media-playback-start_3.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Пуск2</string>
+   </property>
+   <property name="toolTip">
+    <string>Запуск идентификации параметров тепловой модели</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="action_32">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/media-playback-stop_3.svg</normaloff>:/system_icons/data/img/system_icons/media-playback-stop_3.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Стоп2</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
    </property>
   </action>
  </widget>

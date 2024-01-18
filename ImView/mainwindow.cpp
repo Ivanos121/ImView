@@ -154,8 +154,6 @@ MainWindow::MainWindow(QWidget *parent)
     model->setHorizontalHeaderLabels (QStringList () << QStringLiteral ("Наименование") << QStringLiteral ("Свойство")); // Установить заголовок столбца
     ui->treeView->header()->setDefaultAlignment(Qt::AlignCenter);
     ui->treeView->setAlternatingRowColors(true);
-//    ui->treeView->setAlternatingRowColors(true);
-//    ui->treeView->setStyleSheet("QTreeView{alternate-background-color: rgb(255, 255, 152);background: rgb(255, 255, 222);}");
     ui->treeView->setStyleSheet(
                             "*{"
                             "background: rgb(255, 255, 222);"
@@ -743,7 +741,6 @@ MainWindow::MainWindow(QWidget *parent)
     items15.append(item56);
     model->appendRow(items15);
     items15.clear();
-    //item55->setForeground(QBrush(Qt::white));
     item55->setSelectable(false);
     item55->setEditable(false);
     item56->setSelectable(false);
@@ -774,6 +771,43 @@ MainWindow::MainWindow(QWidget *parent)
     item55->appendRow(items16);
     items16.clear();
 
+    QList<QStandardItem*> items17;
+    item121 = new QStandardItem(QStringLiteral ("Идентификация параметров тепловой модели"));
+    item122 = new QStandardItem();
+    items17.append(item121);
+    items17.append(item122);
+    model->appendRow(items17);
+    items17.clear();
+    item121->setSelectable(false);
+    item121->setEditable(false);
+    item122->setSelectable(false);
+    item122->setEditable(false);
+    QFont newFont9("SansSerif", 10, QFont::Bold,false);
+    item121->setFont(newFont8);
+
+    QList<QStandardItem*> items18;
+    item123 = new QStandardItem(QStringLiteral ("Выбор типа тепловой модели"));
+    item123->setEditable(false);
+    item124 = new QStandardItem(QStringLiteral ("Выберите тип"));
+    items18.append(item123);
+    items18.append(item124);
+    item121->appendRow(items18);
+    items18.clear();
+    item125 = new QStandardItem(QStringLiteral ("Условие 23"));
+    item125->setEditable(false);
+    item126 = new QStandardItem(QString ("Значение 24"));
+    items18.append(item125);
+    items18.append(item126);
+    item121->appendRow(items18);
+    items18.clear();
+    item127 = new QStandardItem(QStringLiteral ("Условие 24"));
+    item127->setEditable(false);
+    item128 = new QStandardItem(QStringLiteral ("Значение 25"));
+    items18.append(item127);
+    items18.append(item128);
+    item121->appendRow(items18);
+    items18.clear();
+
     ui->treeView->setModel(model);
 
     ui->treeView->header()->resizeSection(0,270);
@@ -783,7 +817,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     ButtonColumnDelegate* buttonColumnDelegate = new ButtonColumnDelegate(this); //создание делегата для создания комбобоксов
     ui->treeView->setItemDelegateForColumn(1, buttonColumnDelegate);
-    //    ui->treeView->setItemDelegate( new ButtonColumnDelegate( ui->treeView ) );
 
     QPalette p99=ui->treeView->palette();
     p99.setColor(QPalette::Base, QColor(255, 255, 222));
@@ -2631,7 +2664,7 @@ void MainWindow::on_action_20_triggered()
 {
     isNablLaunched = true;
     ui->tabWidget->show();
-    ui->tabWidget->setCurrentIndex(2);
+    ui->tabWidget->setCurrentIndex(3);
     ui->stackedWidget->show();
     ui->stackedWidget->setCurrentIndex(3);
     QPixmap pixmap(":/system_icons/data/img/system_icons/go-previous.svg");
@@ -3674,32 +3707,47 @@ void MainWindow::tabClicked()
     if(ui->tabWidget->currentIndex()==1)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(2);
+        ui->stackedWidget->setCurrentIndex(5);
     }
     if(ui->tabWidget->currentIndex()==2)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(3);
+        ui->stackedWidget->setCurrentIndex(7);
     }
     if(ui->tabWidget->currentIndex()==3)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(11);
+        ui->stackedWidget->setCurrentIndex(6);
     }
     if(ui->tabWidget->currentIndex()==4)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(5);
+        ui->stackedWidget->setCurrentIndex(15);
     }
     if(ui->tabWidget->currentIndex()==5)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(5);
+        ui->stackedWidget->setCurrentIndex(9);
+    }
+    if(ui->tabWidget->currentIndex()==6)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(7);
     }
     if(ui->tabWidget->currentIndex()==7)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(7);
+        ui->stackedWidget->setCurrentIndex(1);
+    }
+    if(ui->tabWidget->currentIndex()==8)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(11);
+    }
+    if(ui->tabWidget->currentIndex()==9)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(3);
     }
 }
 
@@ -3708,32 +3756,32 @@ void MainWindow::tabClicked_2()
     if(ui->widget_5->ui->tabWidget->currentIndex() == 0)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(11);
+        ui->stackedWidget->setCurrentIndex(12);
     }
     if(ui->widget_5->ui->tabWidget->currentIndex() == 1)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(6);
+        ui->stackedWidget->setCurrentIndex(7);
     }
     if(ui->widget_5->ui->tabWidget->currentIndex() == 2)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(4);
+        ui->stackedWidget->setCurrentIndex(5);
     }
     if(ui->widget_5->ui->tabWidget->currentIndex() == 3)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(6);
+        ui->stackedWidget->setCurrentIndex(7);
     }
     if(ui->widget_5->ui->tabWidget->currentIndex() == 4)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(9);
+        ui->stackedWidget->setCurrentIndex(10);
     }
     if(ui->widget_5->ui->tabWidget->currentIndex() == 5)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(10);
+        ui->stackedWidget->setCurrentIndex(11);
     }
 }
 
@@ -3742,17 +3790,22 @@ void MainWindow::tabClicked_3()
     if(ui->widget_5->ui->tabWidget_2->currentIndex() == 0)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(4);
+        ui->stackedWidget->setCurrentIndex(5);
     }
     if(ui->widget_5->ui->tabWidget_2->currentIndex() == 1)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(4);
+        ui->stackedWidget->setCurrentIndex(5);
     }
     if(ui->widget_5->ui->tabWidget_2->currentIndex() == 2)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(4);
+        ui->stackedWidget->setCurrentIndex(5);
+    }
+    if(ui->widget_5->ui->tabWidget_2->currentIndex() == 3)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(5);
     }
 }
 
@@ -3761,33 +3814,28 @@ void MainWindow::tabClicked_4()
     if(ui->widget_6->ui->tabWidget->currentIndex() == 0)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(5);
+        ui->stackedWidget->setCurrentIndex(6);
     }
     if(ui->widget_6->ui->tabWidget->currentIndex() == 1)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(12);
+        ui->stackedWidget->setCurrentIndex(13);
     }
     if(ui->widget_6->ui->tabWidget->currentIndex() == 2)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(16);
+        ui->stackedWidget->setCurrentIndex(17);
     }
     if(ui->widget_6->ui->tabWidget->currentIndex() == 3)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(13);
+        ui->stackedWidget->setCurrentIndex(14);
     }
     if(ui->widget_6->ui->tabWidget->currentIndex() == 4)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(15);
+        ui->stackedWidget->setCurrentIndex(16);
     }
-//    if(ui->widget_6->ui->tabWidget->currentIndex() == 5)
-//    {
-//        ui->stackedWidget->show();
-//        ui->stackedWidget->setCurrentIndex(15);
-//    }
 }
 
 void MainWindow::tabClicked_5()
@@ -3809,12 +3857,12 @@ void MainWindow::tabClicked_6()
     if(ui->widget_7->ui->tabWidget->currentIndex() == 0)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(7);
+        ui->stackedWidget->setCurrentIndex(8);
     }
     if(ui->widget_7->ui->tabWidget->currentIndex() == 1)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(8);
+        ui->stackedWidget->setCurrentIndex(9);
     }
 }
 
@@ -7671,17 +7719,17 @@ void MainWindow::on_vent_result_clicked()
             double H2 = 0;
             double ne = 0;
             double Pv;
-            ui->widget_6->ui->plot_2->clear();
-            ui->widget_6->ui->plot_2->addDataLine(QColor(Qt::red), 0);
-            ui->widget_6->ui->plot_2->addDataLine(QColor(Qt::green), 0);
+            //ui->widget_6->ui->plot_2->clear();
+           // ui->widget_6->ui->plot_2->addDataLine(QColor(Qt::red), 0);
+           // ui->widget_6->ui->plot_2->addDataLine(QColor(Qt::green), 0);
             //for (int i=0;i<100; i++)
             while (Q < Qp)
             {
                 Q+=0.00001;
                 H1 = Z0 * pow(Q,2);
                 H2 = H0 *(1 - pow((Q/Qmax),2));
-                ui->widget_6->ui->plot_2->addPoint(0, Q, H1);
-                ui->widget_6->ui->plot_2->addPoint(1, Q, H2);
+               // ui->widget_6->ui->plot_2->addPoint(0, Q, H1);
+               // ui->widget_6->ui->plot_2->addPoint(1, Q, H2);
                 qDebug() << H1 << H2 << Qt::endl;
             }
 
@@ -7877,17 +7925,17 @@ void MainWindow::on_vent_result_clicked()
             double H2 = 0;
             double ne = 0;
             double Pv;
-            ui->widget_6->ui->plot_2->clear();
-            ui->widget_6->ui->plot_2->addDataLine(QColor(Qt::red), 0);
-            ui->widget_6->ui->plot_2->addDataLine(QColor(Qt::green), 0);
+           // ui->widget_6->ui->plot_2->clear();
+           // ui->widget_6->ui->plot_2->addDataLine(QColor(Qt::red), 0);
+          //  ui->widget_6->ui->plot_2->addDataLine(QColor(Qt::green), 0);
             //for (int i=0;i<100; i++)
             while (Q < Qp)
             {
                 Q+=0.00001;
                 H1 = Z0 * pow(Q,2);
                 H2 = H0 *(1 - pow((Q/Qmax),2));
-                ui->widget_6->ui->plot_2->addPoint(0, Q, H1);
-                ui->widget_6->ui->plot_2->addPoint(1, Q, H2);
+               // ui->widget_6->ui->plot_2->addPoint(0, Q, H1);
+               // ui->widget_6->ui->plot_2->addPoint(1, Q, H2);
                 qDebug() << H1 << H2 << Qt::endl;
             }
 

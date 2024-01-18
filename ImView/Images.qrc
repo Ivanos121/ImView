@@ -33,6 +33,8 @@
         <file>../data/img/system_icons/view-refresh.svg</file>
         <file>../data/img/system_icons/go-next.svg</file>
         <file>../data/img/system_icons/go-previous.svg</file>
+        <file>../data/img/system_icons/media-playback-start_3.svg</file>
+        <file>../data/img/system_icons/media-playback-stop_3.svg</file>
     </qresource>
     <qresource prefix="/icons">
         <file>../data/img/icons/IM_16x16.png</file>
