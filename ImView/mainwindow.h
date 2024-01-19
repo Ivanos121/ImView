@@ -196,9 +196,10 @@ public:
     QStandardItem *item81, *item82, *item83, *item84, *item85, *item86, *item87, *item88;
     QStandardItem *item89, *item90, *item91, *item92, *item93, *item94, *item95, *item96;
     QStandardItem *item97, *item98, *item99, *item100, *item101, *item102, *item103, *item104;
-    QStandardItem *item105, *item106, *item107, *item108, *item109, *item110, *item111, *item112;
-    QStandardItem *item113, *item114, *item115, *item116, *item117, *item118, *item119, *item120;
-    QStandardItem  *item121,*item122,*item123,*item124,*item125,*item126,*item127,*item128;
+    QStandardItem *item105,*item106, *item107, *item108, *item109, *item110, *item111, *item112;
+    QStandardItem *item113,*item114, *item115, *item116, *item117, *item118, *item119, *item120;
+    QStandardItem *item121,*item122,*item123,*item124,*item125,*item126,*item127,*item128;
+    QStandardItem *item129,*item130,*item131,*item132,*item133,*item134,*item135,*item136;
 };
 
 #endif // MAINWINDOW_H

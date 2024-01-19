@@ -1,4 +1,5 @@
 #include <cstdint>
+#include <sys/types.h>
 
 #if (_tCRC_MRTU == 0)
 __inline u_int16_t MRTU_CRC(u_int8_t* data, ushort len)

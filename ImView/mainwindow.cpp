@@ -53,13 +53,13 @@
 #include "ui_datas.h"
 #include "vent_model.h"
 #include "ui_vent_model.h"
-#include "ui_vent_tract.h"
 #include "customhelpdelegate.h"
 #include "math.h"
 #include "plot.h"
 #include "tepl_nabludatel.h"
 #include "ui_tepl_nabludatel.h"
 #include "model_el.h"
+#include "tepl_struct.h"
 
 Base base;
 Base_tepl base_tepl;
@@ -783,7 +783,7 @@ MainWindow::MainWindow(QWidget *parent)
     item122->setSelectable(false);
     item122->setEditable(false);
     QFont newFont9("SansSerif", 10, QFont::Bold,false);
-    item121->setFont(newFont8);
+    item121->setFont(newFont9);
 
     QList<QStandardItem*> items18;
     item123 = new QStandardItem(QStringLiteral ("Выбор типа тепловой модели"));
@@ -2494,6 +2494,8 @@ void MainWindow::closeEvent (QCloseEvent *event)
     {
         QMessageBox::StandardButton resBtn = QMessageBox::question( this, "Программа еще работает", "Закрыть программу?", QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes);
         QDir dir("/tmp/imview");
+        #pragma clang diagnostic push
+        #pragma clang diagnostic ignored "-Wswitch"
         switch (resBtn)
         {
         case QMessageBox::Yes:
@@ -2578,7 +2580,7 @@ void MainWindow::on_action_5_triggered()
     else
     {
         ui->tabWidget->show();
-        ui->tabWidget->setCurrentIndex( 1 );
+        ui->tabWidget->setCurrentIndex(1);
         QPixmap pixmap(":/system_icons/data/img/system_icons/go-previous.svg");
         QIcon ButtonIcon_1(pixmap);
         ui->pushButton_5->setIcon(ButtonIcon_1);
@@ -2666,7 +2668,7 @@ void MainWindow::on_action_20_triggered()
     ui->tabWidget->show();
     ui->tabWidget->setCurrentIndex(3);
     ui->stackedWidget->show();
-    ui->stackedWidget->setCurrentIndex(3);
+    ui->stackedWidget->setCurrentIndex(7);
     QPixmap pixmap(":/system_icons/data/img/system_icons/go-previous.svg");
     QIcon ButtonIcon_1(pixmap);
     ui->pushButton_5->setIcon(ButtonIcon_1);
@@ -2829,7 +2831,7 @@ void MainWindow::on_action_23_triggered()
     QIcon ButtonIcon_2(pixmap);
     ui->pushButton_5->setIcon(ButtonIcon_2);
     ui->stackedWidget->show();
-    ui->stackedWidget->setCurrentIndex( 2 );
+    ui->stackedWidget->setCurrentIndex(6);
 }
 
 AboutDialog::AboutDialog(QWidget *parent) :
@@ -2895,7 +2897,7 @@ void MainWindow::on_action_15_triggered()
     QIcon ButtonIcon_2(pixmap);
     ui->pushButton_5->setIcon(ButtonIcon_2);
     ui->stackedWidget->show();
-    ui->stackedWidget->setCurrentIndex( 0 );
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
 void MainWindow::modelItemChangedSlot(QStandardItem *item)
@@ -3699,6 +3701,8 @@ void MainWindow::on_action_25_triggered()
 
 void MainWindow::tabClicked()
 {
+
+
     if(ui->tabWidget->currentIndex()==0)
     {
         ui->stackedWidget->show();
@@ -3707,47 +3711,47 @@ void MainWindow::tabClicked()
     if(ui->tabWidget->currentIndex()==1)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(5);
-    }
+        ui->stackedWidget->setCurrentIndex(1);
+            }
     if(ui->tabWidget->currentIndex()==2)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(7);
+        ui->stackedWidget->setCurrentIndex(8);
     }
     if(ui->tabWidget->currentIndex()==3)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(6);
+        ui->stackedWidget->setCurrentIndex(7);
     }
     if(ui->tabWidget->currentIndex()==4)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(15);
+        ui->stackedWidget->setCurrentIndex(16);
     }
     if(ui->tabWidget->currentIndex()==5)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(9);
+        ui->stackedWidget->setCurrentIndex(10);
     }
     if(ui->tabWidget->currentIndex()==6)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(7);
+        ui->stackedWidget->setCurrentIndex(2);
     }
     if(ui->tabWidget->currentIndex()==7)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(1);
+        ui->stackedWidget->setCurrentIndex(3);
     }
     if(ui->tabWidget->currentIndex()==8)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(11);
+        ui->stackedWidget->setCurrentIndex(12);
     }
     if(ui->tabWidget->currentIndex()==9)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(3);
+        ui->stackedWidget->setCurrentIndex(4);
     }
 }
 
@@ -3756,32 +3760,32 @@ void MainWindow::tabClicked_2()
     if(ui->widget_5->ui->tabWidget->currentIndex() == 0)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(12);
+        ui->stackedWidget->setCurrentIndex(15);
     }
     if(ui->widget_5->ui->tabWidget->currentIndex() == 1)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(7);
+        ui->stackedWidget->setCurrentIndex(11);
     }
     if(ui->widget_5->ui->tabWidget->currentIndex() == 2)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(5);
+        ui->stackedWidget->setCurrentIndex(9);
     }
     if(ui->widget_5->ui->tabWidget->currentIndex() == 3)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(7);
+        ui->stackedWidget->setCurrentIndex(11);
     }
     if(ui->widget_5->ui->tabWidget->currentIndex() == 4)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(10);
+        ui->stackedWidget->setCurrentIndex(14);
     }
     if(ui->widget_5->ui->tabWidget->currentIndex() == 5)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(11);
+        ui->stackedWidget->setCurrentIndex(15);
     }
 }
 
@@ -3790,22 +3794,22 @@ void MainWindow::tabClicked_3()
     if(ui->widget_5->ui->tabWidget_2->currentIndex() == 0)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(5);
+        ui->stackedWidget->setCurrentIndex(8);
     }
     if(ui->widget_5->ui->tabWidget_2->currentIndex() == 1)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(5);
+        ui->stackedWidget->setCurrentIndex(8);
     }
     if(ui->widget_5->ui->tabWidget_2->currentIndex() == 2)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(5);
+        ui->stackedWidget->setCurrentIndex(8);
     }
     if(ui->widget_5->ui->tabWidget_2->currentIndex() == 3)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(5);
+        ui->stackedWidget->setCurrentIndex(8);
     }
 }
 
@@ -3819,7 +3823,7 @@ void MainWindow::tabClicked_4()
     if(ui->widget_6->ui->tabWidget->currentIndex() == 1)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(13);
+        ui->stackedWidget->setCurrentIndex(16);
     }
     if(ui->widget_6->ui->tabWidget->currentIndex() == 2)
     {
@@ -3829,12 +3833,7 @@ void MainWindow::tabClicked_4()
     if(ui->widget_6->ui->tabWidget->currentIndex() == 3)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(14);
-    }
-    if(ui->widget_6->ui->tabWidget->currentIndex() == 4)
-    {
-        ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(16);
+        ui->stackedWidget->setCurrentIndex(18);
     }
 }
 
@@ -3857,12 +3856,12 @@ void MainWindow::tabClicked_6()
     if(ui->widget_7->ui->tabWidget->currentIndex() == 0)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(8);
+        ui->stackedWidget->setCurrentIndex(12);
     }
     if(ui->widget_7->ui->tabWidget->currentIndex() == 1)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(9);
+        ui->stackedWidget->setCurrentIndex(4);
     }
 }
 
@@ -6290,7 +6289,7 @@ void MainWindow::on_tepl_result_clicked()
         if (item30->text() == "Статика (статор)")
         {
             ui->widget_5->ui->tabWidget->show();
-            ui->widget_5->ui->tabWidget->setCurrentIndex(1);
+            ui->widget_5->ui->tabWidget->setCurrentIndex(11);
 
             //СЧИТЫВАНИЕ ИСХОДНЫХ ДАННЫХ
 
@@ -6593,7 +6592,7 @@ void MainWindow::on_tepl_result_clicked()
         if (item30->text() == "Статика (упрощенный вариант)")
         {
             ui->widget_5->ui->tabWidget->show();
-            ui->widget_5->ui->tabWidget->setCurrentIndex(1);
+            ui->widget_5->ui->tabWidget->setCurrentIndex(11);
             //ввод данных
             base_tepl.Da1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(0,1)->text().toDouble();
             base_tepl.Ha1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(1,1)->text().toDouble();
@@ -7282,8 +7281,6 @@ void MainWindow::on_tepl_result_clicked()
         }
         if (item30->text() == "Динамика (расчет)")
         {
-//            ui->widget_5->ui->tabWidget->show();
-//            ui->widget_5->ui->tabWidget->setCurrentIndex(3);
             ui->tepl_result->setCheckable(true);
             if(ui->tepl_result->isChecked())
             {
@@ -7304,7 +7301,7 @@ void MainWindow::on_tepl_result_clicked()
         if (item30->text() == "Двухмассовая модель (расчет)")
         {
             ui->widget_5->ui->tabWidget->show();
-            ui->widget_5->ui->tabWidget->setCurrentIndex(1);
+            ui->widget_5->ui->tabWidget->setCurrentIndex(11);
             //ввод данных
             base_tepl.Da1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(0,1)->text().toDouble();
             base_tepl.Ha1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(1,1)->text().toDouble();
@@ -7374,9 +7371,9 @@ void MainWindow::on_tepl_result_clicked()
 
             //Расчет переменных состояния
 
-            double dPel1=0,
-                    dPct=0,
-                    dPel2=0;
+          //  double dPel1=0,
+           //         dPct=0,
+           //         dPel2=0;
 
 
             teta0_0=item28->text().toDouble();
@@ -7392,22 +7389,22 @@ void MainWindow::on_tepl_result_clicked()
 
             if(ui->tableWidget_4->item(1,2)!=0)
             {
-                dPel1=ui->tableWidget_4->item(1,2)->text().toDouble();
+                tepl_struct.dPel1=ui->tableWidget_4->item(1,2)->text().toDouble();
             }
 
             if(ui->tableWidget_4->item(2,2)!=0)
             {
-                dPct=ui->tableWidget_4->item(2,2)->text().toDouble();
+                tepl_struct.dPct=ui->tableWidget_4->item(2,2)->text().toDouble();
             }
 
             if(ui->tableWidget_4->item(3,2)!=0)
             {
-                dPel2=ui->tableWidget_4->item(3,2)->text().toDouble();
+                tepl_struct.dPel2=ui->tableWidget_4->item(3,2)->text().toDouble();
             }
 
-           lambda0_10 = (Model_el.dPel1+Model_el.dPct)/teta0_1n;
-           lambda0_20 = (Model_el.dPel1+Model_el.dPct)/teta0_2n;
-           lambda0_12 = (Model_el.dPel1+Model_el.dPel2+Model_el.dPct)/(teta0_2n-teta0_2n);
+           lambda0_10 = (tepl_struct.dPel1+tepl_struct.dPct)/teta0_1n;
+           lambda0_20 = (tepl_struct.dPel1+tepl_struct.dPct)/teta0_2n;
+           lambda0_12 = (tepl_struct.dPel1+tepl_struct.dPel2+tepl_struct.dPct)/(teta0_2n-teta0_2n);
 
             //lambda0_10 = (dPel1+dPct)/teta0_1n;
             //lambda0_20 = (dPel1+dPct)/teta0_2n;
@@ -7425,7 +7422,7 @@ void MainWindow::on_tepl_result_clicked()
 
             //double b_data[] = { dPel1+dPct+lambda0_10*teta0_0, dPel2+lambda0_10*teta0_0 };
 
-            double b_data[] = { Model_el.dPel1+Model_el.dPct+lambda0_10*teta0_0, Model_el.dPel2+lambda0_10*teta0_0 };
+            double b_data[] = { tepl_struct.dPel1+tepl_struct.dPct+lambda0_10*teta0_0, tepl_struct.dPel2+lambda0_10*teta0_0 };
 
             gsl_matrix_view m = gsl_matrix_view_array (a_data, 2, 2);
 
@@ -7466,8 +7463,8 @@ void MainWindow::on_tepl_result_clicked()
             ui->widget_5->ui->tableWidget->item(0,4)->setText("Мощность_рассеяния_1, Вт");
             ui->widget_5->ui->tableWidget->item(1,4)->setText("Мощность_рассеяния_2, Вт");
 
-            ui->widget_5->ui->tableWidget->item(0,5)->setText(QString::number(Model_el.dPel1+Model_el.dPct+lambda0_10*teta0_0,'f',3));
-            ui->widget_5->ui->tableWidget->item(1,5)->setText(QString::number(Model_el.dPel2+lambda0_10*teta0_0,'f',3));
+            ui->widget_5->ui->tableWidget->item(0,5)->setText(QString::number(tepl_struct.dPel1+tepl_struct.dPct+lambda0_10*teta0_0,'f',3));
+            ui->widget_5->ui->tableWidget->item(1,5)->setText(QString::number(tepl_struct.dPel2+lambda0_10*teta0_0,'f',3));
 
             //ui->widget_5->ui->tableWidget->item(0,5)->setText(QString::number(dPel1+dPct+lambda0_10*teta0_0,'f',3));
             //ui->widget_5->ui->tableWidget->item(1,5)->setText(QString::number(dPel2+lambda0_10*teta0_0,'f',3));
@@ -7488,7 +7485,7 @@ void MainWindow::on_tepl_result_clicked()
         if (item30->text() == "Двухмассовая модель (эксперимент)")
         {
             ui->widget_5->ui->tabWidget->show();
-            ui->widget_5->ui->tabWidget->setCurrentIndex(1);
+            ui->widget_5->ui->tabWidget->setCurrentIndex(11);
             //ввод данных
             base_tepl.Da1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(0,1)->text().toDouble();
             base_tepl.Ha1      = ui->widget_5->ui->widget_2->ui->tableWidget->item(1,1)->text().toDouble();
@@ -7565,11 +7562,11 @@ void MainWindow::on_tepl_result_clicked()
 void MainWindow::on_vent_result_clicked()
 {
     ui->tabWidget->show();
-    ui->tabWidget->setCurrentIndex(4);
+    ui->tabWidget->setCurrentIndex(5);
     ui->widget_6->ui->tabWidget->show();
     ui->widget_6->ui->tabWidget->setCurrentIndex(1);
     ui->stackedWidget->show();
-    ui->stackedWidget->setCurrentIndex(12);
+    ui->stackedWidget->setCurrentIndex(2);
 
     if (item34->text() == "Выберите режим")
     {

@@ -8,6 +8,7 @@
 #include "datasource_file.h"
 #include "datasourcedigitosc.h"
 #include "ui_mainwindow.h"
+#include "tepl_struct.h"
 
 #include <iostream>
 #include <fstream>
@@ -22,6 +23,7 @@ DataSource_file dataSource_file;
 Model_el Model_el;
 QPoint p1,p2;
 QCursor curs;
+Tepl_struct tepl_struct;
 
 struct MomentInterpPoint
 {
@@ -72,8 +74,8 @@ electromagn::~electromagn()
 
 void electromagn::realtimeDataSlot()
 {
-    double a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18;
-    double b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16,b17,b18;
+    //double a1=0,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18;
+    double b1=0,b2=0,b3=0,b4=0,b5=0,b6=0,b7=0,b8=0,b9=0,b10=0,b11=0,b12=0,b13=0,b14=0,b15=0,b16=0,b17=0,b18=0;
 
     key = time->elapsed()/1000.0;
 
@@ -418,42 +420,42 @@ void electromagn::realtimeDataSlot()
 
         if (wf->ui->tableWidget_4->item(0, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(0, 2)->setText(QString::number(Model_el.P1,'f',3));
+            wf->ui->tableWidget_4->item(0, 2)->setText(QString::number(tepl_struct.P1,'f',3));
         }
 
         if (wf->ui->tableWidget_4->item(1, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(1, 2)->setText(QString::number(Model_el.dPel1,'f',3));
+            wf->ui->tableWidget_4->item(1, 2)->setText(QString::number(tepl_struct.dPel1,'f',3));
         }
 
         if (wf->ui->tableWidget_4->item(2, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(2, 2)->setText(QString::number(Model_el.dPct,'f',3));
+            wf->ui->tableWidget_4->item(2, 2)->setText(QString::number(tepl_struct.dPct,'f',3));
         }
 
         if (wf->ui->tableWidget_4->item(3, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(3, 2)->setText(QString::number(Model_el.dPel2,'f',3));
+            wf->ui->tableWidget_4->item(3, 2)->setText(QString::number(tepl_struct.dPel2,'f',3));
         }
 
         if (wf->ui->tableWidget_4->item(4, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(4, 2)->setText(QString::number(Model_el.dPdob,'f',3));
+            wf->ui->tableWidget_4->item(4, 2)->setText(QString::number(tepl_struct.dPdob,'f',3));
         }
 
         if (wf->ui->tableWidget_4->item(5, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(5, 2)->setText(QString::number(Model_el.dPmech,'f',3));
+            wf->ui->tableWidget_4->item(5, 2)->setText(QString::number(tepl_struct.dPmech,'f',3));
         }
 
         if (wf->ui->tableWidget_4->item(6, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(6, 2)->setText(QString::number(Model_el.P2,'f',3));
+            wf->ui->tableWidget_4->item(6, 2)->setText(QString::number(tepl_struct.P2,'f',3));
         }
 
         if (wf->ui->tableWidget_4->item(7, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(7, 2)->setText(QString::number(Model_el.kpd,'f',3));
+            wf->ui->tableWidget_4->item(7, 2)->setText(QString::number(tepl_struct.kpd,'f',3));
         }
 
         if (wf->ui->tableWidget_4->item(8, 2) != 0)
@@ -461,13 +463,13 @@ void electromagn::realtimeDataSlot()
             wf->ui->tableWidget_4->item(8, 2)->setText(QString::number(Model_el.cos_f,'f',3));
         }
 
-        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text139\").text('Р1 = %1 Вт');").arg(Model_el.P1, 0, 'f', 3));
-        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text91-3\").text('ΔPel1 = %1 Вт');").arg(Model_el.dPel1, 0, 'f', 3));
-        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text91\").text('ΔPct = %1 Вт');").arg(Model_el.dPct, 0, 'f', 3));
-        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text33\").text('ΔPel2 = %1 Вт');").arg(Model_el.dPel2, 0, 'f', 3));
-        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text53\").text('ΔPdob = %1 Вт');").arg(Model_el.dPdob, 0, 'f', 3));
-        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text259\").text('ΔPmech = %1 Вт');").arg(Model_el.dPmech, 0, 'f', 3));
-        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text75\").text('P2 = %1 Вт');").arg(Model_el.P2, 0, 'f', 3));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text139\").text('Р1 = %1 Вт');").arg(tepl_struct.P1, 0, 'f', 3));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text91-3\").text('ΔPel1 = %1 Вт');").arg(tepl_struct.dPel1, 0, 'f', 3));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text91\").text('ΔPct = %1 Вт');").arg(tepl_struct.dPct, 0, 'f', 3));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text33\").text('ΔPel2 = %1 Вт');").arg(tepl_struct.dPel2, 0, 'f', 3));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text53\").text('ΔPdob = %1 Вт');").arg(tepl_struct.dPdob, 0, 'f', 3));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text259\").text('ΔPmech = %1 Вт');").arg(tepl_struct.dPmech, 0, 'f', 3));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text75\").text('P2 = %1 Вт');").arg(tepl_struct.P2, 0, 'f', 3));
 
         std::ofstream fout;
         fout.open(QString(base.electromagnFilename).toStdString(),std::ios::out | std::ios::app);
@@ -1266,15 +1268,7 @@ void electromagn::on_pushButton_clicked()
 
 void electromagn::addDataLines()
 {
-    //    ui->plot->addDataLine(Qt::blue, 0);
-    //    ui->plot->addDataLine(Qt::red, 0);
-    //    ui->plot->addDataLine(Qt::green, 0);
-    //    ui->plot->addDataLine(Qt::cyan, 0);
-    //    ui->plot->addDataLine(QColor(47, 15, 163), 0);
-    //    ui->plot->addDataLine(QColor(47, 15, 163), 0);
-    //    ui->plot->addDataLine(QColor(102, 245, 7), 0);
-    //    ui->plot->addDataLine(QColor(102, 245, 7), 0);
-    //    ui->plot->addDataLine(QColor(102, 245, 7), 0);
+
 }
 
 

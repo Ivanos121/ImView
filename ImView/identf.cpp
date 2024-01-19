@@ -1,5 +1,4 @@
 #include "ui_mainwindow.h"
-#include "ui_datas.h"
 #include "identf.h"
 #include "ui_identf.h"
 #include "model.h"
@@ -73,7 +72,7 @@ void identf::realtimeDataSlot()
             wf->ui->action_5->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start_2.svg"));
             QMessageBox::information(this, tr("Сообщение"), tr("Расчет окончен!"));
             wf->ui->stackedWidget->show();
-            wf->ui->stackedWidget->setCurrentIndex(2);
+            wf->ui->stackedWidget->setCurrentIndex(1);
        }
        minR2 = DBL_MAX;
        maxR2 = -DBL_MAX;

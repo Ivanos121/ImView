@@ -1,8 +1,8 @@
 #include "model_el.h"
-#include "model.h"
 #include "base.h"
 #include <fstream>
 #include <cmath>
+#include "tepl_struct.h"
 
 Model_el::Model_el()
 {
@@ -125,22 +125,22 @@ void Model_el::rasch()
     cos_f_c=p_akt_c/p_poln_c;
     cos_f=p_akt/p_poln;
 
-    P1=p_poln_a*cos_f_a+p_poln_b*cos_f_b+p_poln_c*cos_f_c;
-    dPdob=0.005*P1;
+    tepl_struct.P1=p_poln_a*cos_f_a+p_poln_b*cos_f_b+p_poln_c*cos_f_c;
+    tepl_struct.dPdob=0.005*tepl_struct.P1;
     double Mel = 1.5*Lm*pn*(-psi2b*Ialpha+Ibeta*psi2a)/L2;
     M = Mel - 0.216 * omega*omega / 21780.0;
 
     omega=omega_prev+0.5*kk*Ts*(M-Mc)/J+0.5*kk*Ts*(M-Mc)/J;
 
-    P2=omega*M;
-    dPel1=pow(i_dev_a,2)*R1 + pow(i_dev_b,2)*R1 + pow(i_dev_c,2)*R1;
+    tepl_struct.P2=omega*M;
+    tepl_struct.dPel1=pow(i_dev_a,2)*R1 + pow(i_dev_b,2)*R1 + pow(i_dev_c,2)*R1;
 
-    kpd=P2/P1;
-    w_0=2*3.14*base.n_0/60;
-    Pelm=w_0*Mel;
-    dPct=P1-Pelm-dPel1-dPdob;
-    dPel2=((w_0-omega)/w_0)*Pelm;
-    dPmech=Pelm-dPel2-P2;
+    tepl_struct.kpd=tepl_struct.P2/tepl_struct.P1;
+    tepl_struct.w_0=2*3.14*base.n_0/60;
+    tepl_struct.Pelm=tepl_struct.w_0*Mel;
+    tepl_struct.dPct=tepl_struct.P1-tepl_struct.Pelm-tepl_struct.dPel1-tepl_struct.dPdob;
+    tepl_struct.dPel2=((tepl_struct.w_0-omega)/tepl_struct.w_0)*tepl_struct.Pelm;
+    tepl_struct.dPmech=tepl_struct.Pelm-tepl_struct.dPel2-tepl_struct.P2;
 
     Ua_prev = Ualpha;
     Ub_prev = Ubeta;

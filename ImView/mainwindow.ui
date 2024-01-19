@@ -28,7 +28,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -215,7 +215,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>9</number>
+       <number>16</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QGridLayout" name="gridLayout_6">
@@ -283,127 +283,6 @@
           </property>
           <property name="text">
            <string>Загрузить</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="page_19">
-       <widget class="QLabel" name="label_35">
-        <property name="geometry">
-         <rect>
-          <x>120</x>
-          <y>130</y>
-          <width>161</width>
-          <height>18</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Прогноз температур</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="page_20">
-       <widget class="QLabel" name="label_36">
-        <property name="geometry">
-         <rect>
-          <x>150</x>
-          <y>30</y>
-          <width>211</width>
-          <height>18</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Остаточный тепловой ресурс</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="page_21">
-       <widget class="QLabel" name="label_37">
-        <property name="geometry">
-         <rect>
-          <x>130</x>
-          <y>150</y>
-          <width>131</width>
-          <height>18</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Выходные данные</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="page_2">
-       <layout class="QGridLayout" name="gridLayout_7">
-        <item row="0" column="0">
-         <widget class="QGroupBox" name="groupBox_4">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>500</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="autoFillBackground">
-           <bool>false</bool>
-          </property>
-          <property name="title">
-           <string/>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_2">
-           <item>
-            <widget class="QLabel" name="label_2">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Настройки графиков&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QTableWidget" name="tableWidget">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>16777215</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="1" column="0" alignment="Qt::AlignHCenter">
-         <widget class="QPushButton" name="pushButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Применить</string>
           </property>
          </widget>
         </item>
@@ -848,6 +727,142 @@
          <widget class="QPushButton" name="save_electromagn_graph_file">
           <property name="text">
            <string>Сохранить график в файл</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_19">
+       <widget class="QLabel" name="label_35">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>130</y>
+          <width>161</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Прогноз температур</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_20">
+       <widget class="QLabel" name="label_36">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>30</y>
+          <width>211</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Остаточный тепловой ресурс</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_21">
+       <widget class="QLabel" name="label_37">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>150</y>
+          <width>131</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Выходные данные</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_22">
+       <widget class="QLabel" name="label_38">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>100</y>
+          <width>251</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Результаты теплового наблюдателя</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_2">
+       <layout class="QGridLayout" name="gridLayout_7">
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="groupBox_4">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>500</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_2">
+           <item>
+            <widget class="QLabel" name="label_2">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Настройки графиков&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTableWidget" name="tableWidget">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0" alignment="Qt::AlignHCenter">
+         <widget class="QPushButton" name="pushButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Применить</string>
           </property>
          </widget>
         </item>

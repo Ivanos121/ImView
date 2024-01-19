@@ -118,6 +118,7 @@ HEADERS += \
     settingscanals.h \
     tepl_dannie.h \
     tepl_nabludatel.h \
+    tepl_struct.h \
     teplovent.h \
     teplschem.h \
     trend.h \
