@@ -8,16 +8,16 @@
 #include <QWebEngineView>
 #include <QTreeWidgetItem>
 #include <QStandardItem>
-#include "itogs.h"
+#include "plot.h"
 
 #include "qundostack.h"
 #include "ui_about_dialog.h"
 #include "ui_settings.h"
 #include "pushbuttondelegate.h"
-#include "ui_graph_Settings.h"
+//#include "ui_graph_Settings.h"
 #include "ui_settinsKanals.h"
 
-#include "base_tepl.h"
+//#include "base_tepl.h"
 #include <QProgressBar>
 
 QT_BEGIN_NAMESPACE
@@ -85,23 +85,25 @@ private slots:
     void on_actionabout_triggered();
     void on_actionExit_triggered();
     void on_actionhelp_triggered();
-    void titleChanged(const QString &title);
-    void on_action_16_triggered();
-    void on_action_12_triggered();
-    void on_action_17_triggered();
-    void on_action_19_triggered();
-    void on_action_5_triggered();
-    void on_action_9_triggered();
-    void on_action_20_triggered();
-    void on_action_21_triggered();
-    void on_tabWidget_currentChanged(int index);
-    void on_action_22_triggered();
-    void on_action_23_triggered();
-    void on_action_15_triggered();
     void onButtonClicked();
     void onButtonClicked2();
+    void titleChanged(const QString &title);
+    void on_tabWidget_currentChanged(int index);
+    void on_action_5_triggered();
+    void on_action_9_triggered();
+    void on_action_12_triggered();
+    void on_action_15_triggered();
+    void on_action_16_triggered();
+    void on_action_17_triggered();
+    void on_action_19_triggered();
+    void on_action_20_triggered();
+    void on_action_21_triggered();
+    void on_action_22_triggered();
+    void on_action_23_triggered();
     void on_action_24_triggered();
     void on_action_25_triggered();
+    void on_action_31_triggered();
+    void on_action_32_triggered();
     void tabClicked();
     void tabClicked_2();
     void tabClicked_3();
@@ -170,6 +172,7 @@ public:
     QString dataSourceFilename;
     QString dirName;
     bool isChanged = false;
+    QTimer timer;
 
     QUndoStack *undoStack;
     QAction *undoAction;

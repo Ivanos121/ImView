@@ -28,7 +28,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -68,7 +68,7 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_10">
         <item row="0" column="0">
-         <widget class="QWidget" name="widget_10" native="true"/>
+         <widget class="Tepl_identf" name="widget_10" native="true"/>
         </item>
        </layout>
       </widget>
@@ -215,7 +215,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>16</number>
+       <number>8</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QGridLayout" name="gridLayout_6">
@@ -1005,7 +1005,7 @@
            <item>
             <widget class="QSlider" name="horizontalSlider_2">
              <property name="maximum">
-              <number>99</number>
+              <number>400</number>
              </property>
              <property name="singleStep">
               <number>1</number>
@@ -1114,19 +1114,36 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </layout>
       </widget>
       <widget class="QWidget" name="page_18">
-       <widget class="QLabel" name="label_34">
-        <property name="geometry">
-         <rect>
-          <x>50</x>
-          <y>70</y>
-          <width>261</width>
-          <height>18</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Параметры тепловой идентификации</string>
-        </property>
-       </widget>
+       <layout class="QGridLayout" name="gridLayout_16">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_39">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Параметры тепловой идентификации&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QTableWidget" name="tableWidget_16">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="load_Vent_dannie_2">
+          <property name="text">
+           <string>Загрузить</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QPushButton" name="save_Vent_dannie_2">
+          <property name="text">
+           <string>Сохранить</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="page_8">
        <widget class="QWidget" name="layoutWidget">
@@ -2244,6 +2261,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <class>tepl_nabludatel</class>
    <extends>QWidget</extends>
    <header>tepl_nabludatel.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Tepl_identf</class>
+   <extends>QWidget</extends>
+   <header>tepl_identf.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

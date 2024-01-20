@@ -115,9 +115,6 @@ void Trend::startTeplo()
     ui->plot->addPoint(16, t, y_10);
 
     timer.start(1000);
-
-//    wf->ui->widget_6->ui->widget->ui->verticalSlider->setValue(50);
-//    wf->ui->widget_6->ui->widget->ui->verticalSlider_2->setValue(20);
 }
 
 
@@ -386,24 +383,6 @@ void Trend::on_timerTimeout()
     b14=wf->ui->tableWidget->item(14,3)->text().toDouble();
     b15=wf->ui->tableWidget->item(15,3)->text().toDouble();
     b16=wf->ui->tableWidget->item(16,3)->text().toDouble();
-
-//    b0=ui->tableWidget_2->item(0,5)->text().toDouble();
-//    b1=ui->tableWidget_2->item(1,5)->text().toDouble();
-//    b2=ui->tableWidget_2->item(2,5)->text().toDouble();
-//    b3=ui->tableWidget_2->item(3,5)->text().toDouble();
-//    b4=ui->tableWidget_2->item(4,5)->text().toDouble();
-//    b5=ui->tableWidget_2->item(5,5)->text().toDouble();
-//    b6=ui->tableWidget_2->item(6,5)->text().toDouble();
-//    b7=ui->tableWidget_2->item(7,5)->text().toDouble();
-//    b8=ui->tableWidget_2->item(8,5)->text().toDouble();
-//    b9=ui->tableWidget_2->item(9,5)->text().toDouble();
-//    b10=ui->tableWidget_2->item(10,5)->text().toDouble();
-//    b11=ui->tableWidget_2->item(11,5)->text().toDouble();
-//    b12=ui->tableWidget_2->item(12,5)->text().toDouble();
-//    b13=ui->tableWidget_2->item(9,5)->text().toDouble();
-//    b14=ui->tableWidget_2->item(10,5)->text().toDouble();
-//    b15=ui->tableWidget_2->item(11,5)->text().toDouble();
-//    b16=ui->tableWidget_2->item(12,5)->text().toDouble();
 
     if(wf->ui->tableWidget->model()->index(0,2).data(Qt::CheckStateRole)==Qt::Checked)
     {

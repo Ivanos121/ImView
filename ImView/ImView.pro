@@ -61,6 +61,7 @@ SOURCES += \
     settings.cpp \
     settingscanals.cpp \
     tepl_dannie.cpp \
+    tepl_identf.cpp \
     tepl_nabludatel.cpp \
     teplovent.cpp \
     teplschem.cpp \
@@ -117,6 +118,7 @@ HEADERS += \
     settings.h \
     settingscanals.h \
     tepl_dannie.h \
+    tepl_identf.h \
     tepl_nabludatel.h \
     tepl_struct.h \
     teplovent.h \
@@ -142,6 +144,7 @@ FORMS += \
     settingscanals.ui \
     settinsKanals.ui \
     tepl_dannie.ui \
+    tepl_identf.ui \
     tepl_nabludatel.ui \
     teplovent.ui \
     teplschem.ui \

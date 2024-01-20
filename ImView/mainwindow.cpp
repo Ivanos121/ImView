@@ -25,7 +25,7 @@
 #include <gsl/gsl_vector_double.h>
 #include <iostream>
 #include <fstream>
-//#include <cmath>
+#include <cmath>
 #include <QUndoCommand>
 #include <QPixmap>
 #include <QSvgRenderer>
@@ -49,7 +49,7 @@
 #include "ui_teplschem.h"
 #include "ui_vent_model.h"
 #include "ui_trend.h"
-//#include "ui_vent_izm.h"
+#include "ui_vent_izm.h"
 #include "ui_datas.h"
 #include "vent_model.h"
 #include "ui_vent_model.h"
@@ -60,6 +60,7 @@
 #include "ui_tepl_nabludatel.h"
 #include "model_el.h"
 #include "tepl_struct.h"
+#include "tepl_identf.h"
 
 Base base;
 Base_tepl base_tepl;
@@ -118,6 +119,7 @@ MainWindow::MainWindow(QWidget *parent)
     showMaximized();
     ui->action_9->setEnabled(false);
     ui->action_21->setEnabled(false);
+    ui->action_32->setEnabled(false);
 
     ui->pushButton_5->setCheckable(true);
     ui->pushButton_5->setChecked(true);
@@ -579,6 +581,30 @@ MainWindow::MainWindow(QWidget *parent)
     item92->setToolTip(w59);
     items6.append(item91);
     items6.append(item92);
+    item17->appendRow(items6);
+    items6.clear();
+
+    item129 = new QStandardItem(QStringLiteral ("Ввод напряжения питания двигателя"));
+    item129->setEditable(false);
+    QString w60=item129->text();
+    item129->setToolTip(w60);
+    item130 = new QStandardItem(QStringLiteral ("Ввести напряжения питания"));
+    QString w61=item130->text();
+    item130->setToolTip(w61);
+    items6.append(item129);
+    items6.append(item130);
+    item17->appendRow(items6);
+    items6.clear();
+
+    item131 = new QStandardItem(QStringLiteral ("Ввод значение момента нагрузки"));
+    item131->setEditable(false);
+    QString w62=item131->text();
+    item131->setToolTip(w62);
+    item132 = new QStandardItem(QStringLiteral ("Ввести значение момента нагрузки"));
+    QString w63=item132->text();
+    item132->setToolTip(w63);
+    items6.append(item131);
+    items6.append(item132);
     item17->appendRow(items6);
     items6.clear();
 
@@ -2300,9 +2326,6 @@ MainWindow::MainWindow(QWidget *parent)
     CustomHelpDelegate* customHelpDelegate4 = new CustomHelpDelegate(this); //создание делегата для создания комбобоксов
     ui->tableWidget_14->setItemDelegateForColumn(0, customHelpDelegate4);
 
-
-
-
     ui->tableWidget_15->setRowCount(30);
     ui->tableWidget_15->setColumnCount(4);
     QStringList name_15;
@@ -2382,6 +2405,79 @@ MainWindow::MainWindow(QWidget *parent)
 
     CustomHelpDelegate* customHelpDelegate15 = new CustomHelpDelegate(this); //создание делегата для создания комбобоксов
     ui->tableWidget_15->setItemDelegateForColumn(0, customHelpDelegate15);
+
+    ui->tableWidget_16->setRowCount(30);
+    ui->tableWidget_16->setColumnCount(4);
+    QStringList name_16;
+    name_16 << "Величина" << "Обозначение" << "Значение" << "Размерность";
+
+    ui->tableWidget_16->setHorizontalHeaderLabels(name_16);
+    ui->tableWidget_16->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableWidget_16->setSelectionBehavior(QAbstractItemView :: SelectRows);
+    ui->tableWidget_16->setSelectionMode(QAbstractItemView :: SingleSelection);
+    ui->tableWidget_16->verticalHeader()->setVisible(true);
+    ui->tableWidget_16->resizeColumnsToContents();
+
+    for(int row = 0; row<ui->tableWidget_16->rowCount(); row++)
+    {
+        for(int column = 0; column<ui->tableWidget_16->columnCount(); column++)
+        {
+            ui->tableWidget_16->setItem(row, column, new QTableWidgetItem());
+
+        }
+    }
+
+    ui->tableWidget_16->setItem(0, 0, new QTableWidgetItem("Внутренний расчетный диаметр вентилятора"));
+    ui->tableWidget_16->setItem(1, 0, new QTableWidgetItem("Внешний расчетный диаметр вентилятора"));
+    ui->tableWidget_16->setItem(2, 0, new QTableWidgetItem("Ширина лопатки вентилятора"));
+    ui->tableWidget_16->setItem(3, 0, new QTableWidgetItem("Частота вращения вентилятора"));
+    ui->tableWidget_16->setItem(4, 0, new QTableWidgetItem("Плотность воздуха"));
+    ui->tableWidget_16->setItem(5, 0, new QTableWidgetItem("Суммарная площадь отверстий в сетке кожуха"));
+    ui->tableWidget_16->setItem(6, 0, new QTableWidgetItem("Общая площадь сетки кожуха"));
+
+    for (int i=0; i<ui->tableWidget_16->rowCount(); i++)
+    {
+
+        if (ui->tableWidget_16->item(i, 1) != 0)
+        {
+            ui->tableWidget_16->item(i, 1)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget_16->item(i, 3) != 0)
+        {
+            ui->tableWidget_16->item(i, 3)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+
+    //запрет редактирования первого столбца
+    for(int row = 0; row<ui->tableWidget_16->rowCount(); row++)
+    {
+        if (ui->tableWidget_16->item(row,0) != 0)
+        {
+            ui->tableWidget_16->item(row,0)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+        if (ui->tableWidget_16->item(row,1) != 0)
+        {
+            ui->tableWidget_16->item(row,1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+        if (ui->tableWidget_16->item(row,2) != 0)
+        {
+            ui->tableWidget_16->item(row,2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled|Qt::ItemIsEditable);
+            ui->tableWidget_16->item(row,2)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget_16->item(row,3) != 0)
+        {
+            ui->tableWidget_16->item(row,3)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+    }
+
+    QPalette p_16=ui->tableWidget_16->palette();
+    p_16.setColor(QPalette::Base, QColor(255, 255, 191));
+    p_16.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
+    ui->tableWidget_16->setPalette(p_16);
+
+    CustomHelpDelegate* customHelpDelegate16 = new CustomHelpDelegate(this); //создание делегата для создания комбобоксов
+    ui->tableWidget_16->setItemDelegateForColumn(0, customHelpDelegate16);
 
 
     ui->tabWidget->setCurrentIndex(0);
@@ -3269,6 +3365,14 @@ void MainWindow::on_SaveProgectToFile_clicked()
     xmlWriter.writeAttribute("value", (item92->text()));
     xmlWriter.writeEndElement();
 
+    xmlWriter.writeStartElement("moment2");
+    xmlWriter.writeAttribute("value", (item130->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("napragenie");
+    xmlWriter.writeAttribute("value", (item132->text()));
+    xmlWriter.writeEndElement();
+
     xmlWriter.writeStartElement("start_temp");
     xmlWriter.writeAttribute("value", (item28->text()));
     xmlWriter.writeEndElement();
@@ -3596,6 +3700,28 @@ void MainWindow::LoadProject(QString str)
                         {
                             QString attribute_value = attr.value().toString();
                             item92->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "moment2")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item130->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "napragenie")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item132->setText(attribute_value);
                         }
                     }
                 }
@@ -8048,12 +8174,14 @@ void MainWindow::on_save_tepl_graph_file_clicked()
 
 void MainWindow::on_horizontalSlider_valueChanged(int value)
 {
-    ui->lineEdit->setText(QString("%1").arg(value / 99.0 * 30));
+    //ui->lineEdit->setText(QString("%1").arg(value / 99.0 * 30));
+    ui->lineEdit->setText(QString("%1").arg(value));
 }
 
 void MainWindow::on_horizontalSlider_2_valueChanged(int value)
 {
-    ui->lineEdit_2->setText(QString("%1").arg(value / 99.0 * 311.0));
+    //ui->lineEdit_2->setText(QString("%1").arg(value / 99.0 * 311.0));
+    ui->lineEdit_2->setText(QString("%1").arg(value));
 }
 
 
@@ -8153,3 +8281,29 @@ SettinsKanals::SettinsKanals(QWidget *parent) :
 {
     ui->setupUi(this);
 }
+
+void MainWindow::on_action_31_triggered()
+{
+    isNablLaunched = true;
+    ui->tabWidget->show();
+    ui->tabWidget->setCurrentIndex(2);
+    ui->stackedWidget->show();
+    ui->stackedWidget->setCurrentIndex(8);
+    QPixmap pixmap(":/system_icons/data/img/system_icons/go-previous.svg");
+    QIcon ButtonIcon_1(pixmap);
+    ui->pushButton_5->setIcon(ButtonIcon_1);
+    ui->action_31->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
+    ui->action_32->setEnabled(true);
+    timer.start(1000);
+    teta0_0=item28->text().toDouble();
+}
+
+void MainWindow::on_action_32_triggered()
+{
+    isNablLaunched = false;
+    ui->action_31->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start_3.svg"));
+    ui->action_32->setEnabled(false);
+    timer.stop();
+}
+
+

@@ -21,6 +21,7 @@
 #include "modell.h"
 #include "QtSql"
 #include "QSqlDatabase"
+#include "base.h"
 
 class MainWindow;
 
