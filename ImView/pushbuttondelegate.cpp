@@ -166,15 +166,8 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         editor->setMaximum(100);
         return editor;
     }
+
     else if ((index.parent().row() == 2) && (index.row() == 3))
-    {
-        QDoubleSpinBox *editor = new QDoubleSpinBox(parent);
-        editor->setFrame(false);
-        editor->setMinimum(0);
-        editor->setMaximum(100);
-        return editor;
-    }
-    else if ((index.parent().row() == 2) && (index.row() == 4))
     {
         QComboBox *editor = new QComboBox(parent);
         editor->insertItem(0, "Прямой пуск");
@@ -183,7 +176,7 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         editor->insertItem(3, "Система ПЧ-АД");
         return editor;
     }
-    else if ((index.parent().row() == 2) && (index.row() == 5))
+    else if ((index.parent().row() == 2) && (index.row() == 4))
     {
         QDoubleSpinBox *editor = new QDoubleSpinBox(parent);
         editor->setFrame(false);
@@ -191,7 +184,7 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         editor->setMaximum(600);
         return editor;
     }
-    else if ((index.parent().row() == 2) && (index.row() == 6))
+    else if ((index.parent().row() == 2) && (index.row() == 5))
     {
         QDoubleSpinBox *editor = new QDoubleSpinBox(parent);
         editor->setFrame(false);
@@ -443,13 +436,8 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
         QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
         spinBox->setValue(value);
     }
+
     else if ((index.parent().row() == 2) && (index.row() == 3))
-    {
-        double value = index.model()->data(index, Qt::EditRole).toDouble();
-        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
-        spinBox->setValue(value);
-    }
-    else if ((index.parent().row() == 2) && (index.row() == 4))
     {
         QString value = index.model()->data(index, Qt::DisplayRole).toString();
         QComboBox *comboBox = static_cast<QComboBox*>(editor);
@@ -465,13 +453,13 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
         int width=comboBox->minimumSizeHint().width();
         comboBox->view()->setMinimumWidth(width);
     }
-    else if ((index.parent().row() == 2) && (index.row() == 5))
+    else if ((index.parent().row() == 2) && (index.row() == 4))
     {
         double value = index.model()->data(index, Qt::EditRole).toDouble();
         QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
         spinBox->setValue(value);
     }
-    else if ((index.parent().row() == 2) && (index.row() == 6))
+    else if ((index.parent().row() == 2) && (index.row() == 5))
     {
         double value = index.model()->data(index, Qt::EditRole).toDouble();
         QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
@@ -638,25 +626,18 @@ void ButtonColumnDelegate::setModelData(QWidget *editor, QAbstractItemModel *mod
     }
     else if ((index.parent().row() == 2) && (index.row() == 3))
     {
-        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
-        spinBox->interpretText();
-        double value = spinBox->value();
-        model->setData(index, value, Qt::EditRole);
-    }
-    else if ((index.parent().row() == 2) && (index.row() == 4))
-    {
         QComboBox *comboBox = static_cast<QComboBox*>(editor);
         QString value = comboBox->currentText();
         model->setData(index, value);
     }
-    else if ((index.parent().row() == 2) && (index.row() == 5))
+    else if ((index.parent().row() == 2) && (index.row() == 4))
     {
         QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
         spinBox->interpretText();
         double value = spinBox->value();
         model->setData(index, value, Qt::EditRole);
     }
-    else if ((index.parent().row() == 2) && (index.row() == 6))
+    else if ((index.parent().row() == 2) && (index.row() == 5))
     {
         QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
         spinBox->interpretText();

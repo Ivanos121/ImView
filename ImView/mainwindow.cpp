@@ -560,7 +560,7 @@ MainWindow::MainWindow(QWidget *parent)
     item17->appendRow(items6);
     items6.clear();
 
-    item89 = new QStandardItem(QStringLiteral ("Значение момента нагрузки, Нм:"));
+   /* item89 = new QStandardItem(QStringLiteral ("Значение момента нагрузки, Нм:"));
     item89->setEditable(false);
     QString w56=item89->text();
     item89->setToolTip(w56);
@@ -570,7 +570,7 @@ MainWindow::MainWindow(QWidget *parent)
     items6.append(item89);
     items6.append(item90);
     item17->appendRow(items6);
-    items6.clear();
+    items6.clear();*/
 
     item91 = new QStandardItem(QStringLiteral ("Выбор системы электропривода"));
     item91->setEditable(false);
@@ -3259,7 +3259,7 @@ void MainWindow::on_SaveProgectToFile_clicked()
 {
     QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
     //QString filter = "Файл конфигурации проекта (*.xml);;Все файлы (*.*)";
-    QString str = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", "/home/elf/ImView/data", filter);
+    QString str = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", "/home/elf/ImView/Output", filter);
 
     QFile file(QString("/home/elf/ImView/data/project.xml"));
     file.open(QIODevice::WriteOnly);
@@ -3405,7 +3405,7 @@ void MainWindow::on_SaveProgectToFile_clicked()
 void MainWindow::on_LoadProgect_clicked()
 {
     QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
-    QString str = QFileDialog::getOpenFileName(this, "Выбрать имя, под которым сохранить данные", "/home/elf/ImView/data", filter);
+    QString str = QFileDialog::getOpenFileName(this, "Выбрать имя, под которым сохранить данные", "/home/elf/ImView/Output", filter);
     LoadProject(str);
 }
 
