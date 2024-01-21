@@ -15,9 +15,10 @@ class Tepl_identf : public QWidget
 public:
     explicit Tepl_identf(QWidget *parent = nullptr);
     ~Tepl_identf();
+    Ui::Tepl_identf *ui;
 
 private:
-    Ui::Tepl_identf *ui;
+
     QElapsedTimer *time;
 };
 

@@ -42,6 +42,7 @@
 #include "teplovent.h"
 #include "tepl_dannie.h"
 #include "ui_tepl_dannie.h"
+#include "ui_tepl_identf.h"
 #include "ui_teplovent.h"
 #include "ui_electromagn.h"
 #include "ui_draw_line.h"
@@ -588,7 +589,7 @@ MainWindow::MainWindow(QWidget *parent)
     item129->setEditable(false);
     QString w60=item129->text();
     item129->setToolTip(w60);
-    item130 = new QStandardItem(QStringLiteral ("Ввести напряжения питания"));
+    item130 = new QStandardItem(QStringLiteral ("0"));
     QString w61=item130->text();
     item130->setToolTip(w61);
     items6.append(item129);
@@ -600,7 +601,7 @@ MainWindow::MainWindow(QWidget *parent)
     item131->setEditable(false);
     QString w62=item131->text();
     item131->setToolTip(w62);
-    item132 = new QStandardItem(QStringLiteral ("Ввести значение момента нагрузки"));
+    item132 = new QStandardItem(QStringLiteral ("0"));
     QString w63=item132->text();
     item132->setToolTip(w63);
     items6.append(item131);
@@ -8294,8 +8295,26 @@ void MainWindow::on_action_31_triggered()
     ui->pushButton_5->setIcon(ButtonIcon_1);
     ui->action_31->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
     ui->action_32->setEnabled(true);
-    timer.start(1000);
+
+    base.R1 = ui->lineEdit_12->text().toDouble();
+    base.R2 = ui->lineEdit_11->text().toDouble();
+    base.L1 = ui->lineEdit_10->text().toDouble();
+    base.L2 = ui->lineEdit_9->text().toDouble();
+    base.Lm = ui->lineEdit_8->text().toDouble();
     teta0_0=item28->text().toDouble();
+
+    ui->widget_10->ui->plot->clear();
+
+    for (int i = 0; i < dataLineColors.size(); i++)
+    {
+        ui->widget_10->ui->plot->addDataLine(dataLineColors[i], 0);
+    }
+
+    //ui->widget_10->raschet_el();
+    //ui->widget_5->ui->widget_4->startTeplo();
+
+    timer.start(1000);
+
 }
 
 void MainWindow::on_action_32_triggered()
