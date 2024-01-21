@@ -2,10 +2,10 @@
 <resources>
     <project>
         <general_settings>
-            <project_name value="Имя сеанса"/>
-            <combobox_1 value="Выбрать тип эксперимента"/>
+            <project_name value="demo"/>
+            <combobox_1 value="Внутренний источник данных"/>
             <project_path value="Указать каталог"/>
-            <combobox_2 value="Выбрать тип эксперимента"/>
+            <combobox_2 value="Внутренний источник данных"/>
             <project_path_2 value="Указать каталог"/>
             <checkbox_1 boolean="false"/>
             <checkbox_2 boolean="false"/>
@@ -13,25 +13,24 @@
             <checkbox_4 boolean="false"/>
             <checkbox_5 boolean="false"/>
             <checkbox_6 boolean="false"/>
-            <combobox_3 value="Выберите режим"/>
+            <combobox_3 value="Автоматический"/>
             <coeff_1 value="0"/>
             <coeff_2 value="0"/>
             <coeff_3 value="0"/>
             <coeff_4 value="0"/>
             <coeff_5 value="0"/>
             <coeff_6 value="0"/>
-            <combobox_4 value="Выбрать режим"/>
+            <combobox_4 value="Режим S1"/>
             <time_cikle value="0"/>
             <time_raboty value="0"/>
-            <moment value="0"/>
-            <combobox_5 value="Выбрать режим"/>
-            <moment2 value="Ввести напряжения питания"/>
-            <napragenie value="Ввести значение момента нагрузки"/>
-            <start_temp value="Введите значение"/>
-            <combobox_6 value="Выберите режим"/>
-            <time_step value="Введите значение"/>
-            <combobox_7 value="Выберите режим"/>
-            <combobox_8 value="Выберите конструкцию"/>
+            <combobox_5 value="Прямой пуск"/>
+            <moment2 value="311"/>
+            <napragenie value="20"/>
+            <start_temp value="20"/>
+            <combobox_6 value="Двухмассовая модель (расчет)"/>
+            <time_step value="3"/>
+            <combobox_7 value="Статика"/>
+            <combobox_8 value="Один вентилятор"/>
         </general_settings>
     </project>
 </resources>

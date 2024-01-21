@@ -81,6 +81,7 @@ d_teta_pb,d_teta_b5,d_teta_p5,d_teta_p2;
 double H0, Qmax, Z0, Z1, Z2, Z3, Z4, Z5, Z6, Qp, Hp, Vcp, Pvent;
 double Nsv,N, dNptk, dNvpk, dNvk,dNsvp, dNkd;
 bool isNablLaunched = false;
+QString currentTabText;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -118,6 +119,10 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     showMaximized();
+
+    timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, this, &MainWindow::TimeOut);
+
     ui->action_9->setEnabled(false);
     ui->action_21->setEnabled(false);
     ui->action_32->setEnabled(false);
@@ -851,13 +856,14 @@ MainWindow::MainWindow(QWidget *parent)
     ui->treeView->setPalette(p99);
 
     ui->tabWidget->setCurrentIndex(0);
-    QString currentTabText = ui->tabWidget->tabText(0);
-    setWindowTitle(currentTabText + "@" + QString("base") + QString(" - ImView"));
+    currentTabText = ui->tabWidget->tabText(0);
 
-//    ui->tabWidget->setCurrentWidget();
-//            >CurrentIndex(0);
-//    QString currentTabText = ui->tabWidget->tabText(0);
-//    setWindowTitle(currentTabText + "@" + QString("base") + QString(" - ImView"));
+    setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView"));
+    if(ui->LoadProgect->isChecked() && ui->SaveProgectToFile->isChecked())
+    {
+        setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView"));
+    }
+   // setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView"));
 
     ui->tableWidget->setRowCount(30); //задание количества строк таблицы
     ui->tableWidget->setColumnCount(5); //задание количества столбцов
@@ -2428,13 +2434,50 @@ MainWindow::MainWindow(QWidget *parent)
         }
     }
 
-    ui->tableWidget_16->setItem(0, 0, new QTableWidgetItem("Внутренний расчетный диаметр вентилятора"));
-    ui->tableWidget_16->setItem(1, 0, new QTableWidgetItem("Внешний расчетный диаметр вентилятора"));
-    ui->tableWidget_16->setItem(2, 0, new QTableWidgetItem("Ширина лопатки вентилятора"));
-    ui->tableWidget_16->setItem(3, 0, new QTableWidgetItem("Частота вращения вентилятора"));
-    ui->tableWidget_16->setItem(4, 0, new QTableWidgetItem("Плотность воздуха"));
-    ui->tableWidget_16->setItem(5, 0, new QTableWidgetItem("Суммарная площадь отверстий в сетке кожуха"));
-    ui->tableWidget_16->setItem(6, 0, new QTableWidgetItem("Общая площадь сетки кожуха"));
+    ui->tableWidget_16->setItem(0, 0, new QTableWidgetItem("Установившаяся температура статора"));
+    ui->tableWidget_16->setItem(1, 0, new QTableWidgetItem("Установившаяся температура ротора"));
+    ui->tableWidget_16->setItem(2, 0, new QTableWidgetItem("Постоянная времени статора"));
+    ui->tableWidget_16->setItem(3, 0, new QTableWidgetItem("Постоянная времени ротора"));
+    ui->tableWidget_16->setItem(4, 0, new QTableWidgetItem("Теплоемкость статора"));
+    ui->tableWidget_16->setItem(5, 0, new QTableWidgetItem("Теплоемкость ротора"));
+    ui->tableWidget_16->setItem(6, 0, new QTableWidgetItem("Тепловая проводимость статора"));
+    ui->tableWidget_16->setItem(7, 0, new QTableWidgetItem("Тепловая проводимость между статором и ротором"));
+    ui->tableWidget_16->setItem(8, 0, new QTableWidgetItem("Тепловая проводимость ротора"));
+    ui->tableWidget_16->setItem(9, 0, new QTableWidgetItem("Суммарные потери в статоре"));
+    ui->tableWidget_16->setItem(10, 0, new QTableWidgetItem("Суммарные потери в роторе"));
+    ui->tableWidget_16->setItem(11, 0, new QTableWidgetItem("Потери в стали"));
+    ui->tableWidget_16->setItem(12, 0, new QTableWidgetItem("Скорость вращения"));
+    ui->tableWidget_16->setItem(13, 0, new QTableWidgetItem("Момент"));
+
+    ui->tableWidget_16->setItem(0, 1, new QTableWidgetItem("τ_1"));
+    ui->tableWidget_16->setItem(1, 1, new QTableWidgetItem("τ_2"));
+    ui->tableWidget_16->setItem(2, 1, new QTableWidgetItem("T_1"));
+    ui->tableWidget_16->setItem(3, 1, new QTableWidgetItem("T_2"));
+    ui->tableWidget_16->setItem(4, 1, new QTableWidgetItem("C_1"));
+    ui->tableWidget_16->setItem(5, 1, new QTableWidgetItem("C_2"));
+    ui->tableWidget_16->setItem(6, 1, new QTableWidgetItem("λ10"));
+    ui->tableWidget_16->setItem(7, 1, new QTableWidgetItem("λ12"));
+    ui->tableWidget_16->setItem(8, 1, new QTableWidgetItem("λ20"));
+    ui->tableWidget_16->setItem(9, 1, new QTableWidgetItem("dPel1"));
+    ui->tableWidget_16->setItem(10, 1, new QTableWidgetItem("dPel2"));
+    ui->tableWidget_16->setItem(11, 1, new QTableWidgetItem("dPct"));
+    ui->tableWidget_16->setItem(12, 1, new QTableWidgetItem("omega"));
+    ui->tableWidget_16->setItem(13, 1, new QTableWidgetItem("M"));
+
+    ui->tableWidget_16->setItem(0, 3, new QTableWidgetItem("˚C"));
+    ui->tableWidget_16->setItem(1, 3, new QTableWidgetItem("˚C"));
+    ui->tableWidget_16->setItem(2, 3, new QTableWidgetItem("c"));
+    ui->tableWidget_16->setItem(3, 3, new QTableWidgetItem("c"));
+    ui->tableWidget_16->setItem(4, 3, new QTableWidgetItem("Дж/˚C"));
+    ui->tableWidget_16->setItem(5, 3, new QTableWidgetItem("Дж/˚C"));
+    ui->tableWidget_16->setItem(6, 3, new QTableWidgetItem("Вт/(˚C*м)"));
+    ui->tableWidget_16->setItem(7, 3, new QTableWidgetItem("Вт/(˚C*м)"));
+    ui->tableWidget_16->setItem(8, 3, new QTableWidgetItem("Вт/(˚C*м)"));
+    ui->tableWidget_16->setItem(9, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_16->setItem(10, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_16->setItem(11, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_16->setItem(12, 3, new QTableWidgetItem("рад/с"));
+    ui->tableWidget_16->setItem(13, 3, new QTableWidgetItem("Н*м"));
 
     for (int i=0; i<ui->tableWidget_16->rowCount(); i++)
     {
@@ -2591,8 +2634,6 @@ void MainWindow::closeEvent (QCloseEvent *event)
     {
         QMessageBox::StandardButton resBtn = QMessageBox::question( this, "Программа еще работает", "Закрыть программу?", QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes);
         QDir dir("/tmp/imview");
-        #pragma clang diagnostic push
-        #pragma clang diagnostic ignored "-Wswitch"
         switch (resBtn)
         {
         case QMessageBox::Yes:
@@ -2605,6 +2646,7 @@ void MainWindow::closeEvent (QCloseEvent *event)
             dir.removeRecursively();
             event->accept();
         break;
+        default:
         case QMessageBox::Cancel:
             event->ignore();
         }
@@ -2878,7 +2920,7 @@ void MainWindow::on_action_20_triggered()
     }
 
     ui->widget_3->raschet_el();
-    ui->widget_5->ui->widget_4->startTeplo();
+    //ui->widget_5->ui->widget_4->startTeplo();
 }
 
 void MainWindow::on_action_21_triggered()
@@ -2893,7 +2935,7 @@ void MainWindow::on_action_21_triggered()
 void MainWindow::on_tabWidget_currentChanged(int index)
 {
     QString currentTabText = ui->tabWidget->tabText(index);
-    setWindowTitle(currentTabText + "@" + QString("base") + QString(" - ImView"));
+    setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView"));
 }
 
 //void MainWindow::on_tabWidget_currentChanged(int index)
@@ -3358,10 +3400,6 @@ void MainWindow::on_SaveProgectToFile_clicked()
     xmlWriter.writeAttribute("value", (item24->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("moment");
-    xmlWriter.writeAttribute("value", (item90->text()));
-    xmlWriter.writeEndElement();
-
     xmlWriter.writeStartElement("combobox_5");
     xmlWriter.writeAttribute("value", (item92->text()));
     xmlWriter.writeEndElement();
@@ -3682,17 +3720,6 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                else if(xmlReader.name() == "moment")
-                {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                    {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            item90->setText(attribute_value);
-                        }
-                    }
-                }
                 else if(xmlReader.name() == "combobox_5")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
@@ -3786,6 +3813,7 @@ void MainWindow::LoadProject(QString str)
         }
         file.close(); // Закрываем файл
     }
+    setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView"));
 }
 
 void MainWindow::on_pushButton_5_clicked(bool checked)
@@ -7498,10 +7526,6 @@ void MainWindow::on_tepl_result_clicked()
 
             //Расчет переменных состояния
 
-          //  double dPel1=0,
-           //         dPct=0,
-           //         dPel2=0;
-
 
             teta0_0=item28->text().toDouble();
 
@@ -8288,8 +8312,9 @@ void MainWindow::on_action_31_triggered()
     isNablLaunched = true;
     ui->tabWidget->show();
     ui->tabWidget->setCurrentIndex(2);
-    ui->stackedWidget->show();
-    ui->stackedWidget->setCurrentIndex(8);
+    ui->stackedWidget->hide();
+   // ui->stackedWidget->show();
+   // ui->stackedWidget->setCurrentIndex(8);
     QPixmap pixmap(":/system_icons/data/img/system_icons/go-previous.svg");
     QIcon ButtonIcon_1(pixmap);
     ui->pushButton_5->setIcon(ButtonIcon_1);
@@ -8313,8 +8338,26 @@ void MainWindow::on_action_31_triggered()
     //ui->widget_10->raschet_el();
     //ui->widget_5->ui->widget_4->startTeplo();
 
-    timer.start(1000);
+   // connect(timer, &QTimer::timeout, this, &MainWindow::TimeOut);
+    timer->start(5000);
 
+    double teta_1=0, teta_2=0, T_1=0, T_2=0, C_1=0, C_2=0, lambda10=0, lambda12=0,
+            lambda20=0, dPel1=0, dPel2=0, omega=0, M=0, dPct=0;
+
+    ui->tableWidget_16->item(0,2)->setText(QString::number(teta_1,'f',3));
+    ui->tableWidget_16->item(1,2)->setText(QString::number(teta_2,'f',3));
+    ui->tableWidget_16->item(2,2)->setText(QString::number(T_1,'f',3));
+    ui->tableWidget_16->item(3,2)->setText(QString::number(T_2,'f',3));
+    ui->tableWidget_16->item(4,2)->setText(QString::number(C_1,'f',3));
+    ui->tableWidget_16->item(5,2)->setText(QString::number(C_2,'f',3));
+    ui->tableWidget_16->item(6,2)->setText(QString::number(lambda10,'f',3));
+    ui->tableWidget_16->item(7,2)->setText(QString::number(lambda12,'f',3));
+    ui->tableWidget_16->item(8,2)->setText(QString::number(lambda20,'f',3));
+    ui->tableWidget_16->item(9,2)->setText(QString::number(dPel1,'f',3));
+    ui->tableWidget_16->item(10,2)->setText(QString::number(dPel2,'f',3));
+    ui->tableWidget_16->item(11,2)->setText(QString::number(dPct,'f',3));
+    ui->tableWidget_16->item(12,2)->setText(QString::number(omega,'f',3));
+    ui->tableWidget_16->item(13,2)->setText(QString::number(M,'f',3));
 }
 
 void MainWindow::on_action_32_triggered()
@@ -8322,7 +8365,15 @@ void MainWindow::on_action_32_triggered()
     isNablLaunched = false;
     ui->action_31->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start_3.svg"));
     ui->action_32->setEnabled(false);
-    timer.stop();
+    timer->stop();
+}
+
+void MainWindow::TimeOut()
+{
+    timer->stop();
+    QMessageBox::information(this, tr("Сообщение"), tr("Расчет окончен!"));
+    ui->stackedWidget->show();
+    ui->stackedWidget->setCurrentIndex(8);
 }
 
 

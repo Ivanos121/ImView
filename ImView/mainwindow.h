@@ -31,6 +31,9 @@ class AboutDialog : public QDialog
 public:
     explicit AboutDialog(QWidget *parent = nullptr);
 
+Q_SIGNALS:
+    void timeout(QPrivateSignal);
+
 private slots:
     void on_pushButton_clicked();
 
@@ -111,6 +114,7 @@ private slots:
     void tabClicked_5();
     void tabClicked_6();
     void itemEdit();
+    void TimeOut();
 
     void modelItemChangedSlot(QStandardItem *item);
     void modelItemChangedSlot_2(QStandardItem *item);
@@ -172,8 +176,8 @@ public:
     QString dataSourceFilename;
     QString dirName;
     bool isChanged = false;
-    QTimer timer;
 
+    QTimer *timer;
     QUndoStack *undoStack;
     QAction *undoAction;
     QAction *redoAction;

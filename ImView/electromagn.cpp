@@ -87,8 +87,6 @@ void electromagn::realtimeDataSlot()
         base.Um = wf->item130->text().toDouble();
         wf->ui->horizontalSlider->setValue(base.Mc_n);
         wf->ui->horizontalSlider_2->setValue(base.Um) ;
-        //base.Mc_n = wf->ui->horizontalSlider->value() / 99.0 * 30.0;
-        //base.Um = wf->ui->horizontalSlider_2->value() / 99.0 * 311.0;
 
         for (int i = 0; i < 1000; i++)
         {
