@@ -9,7 +9,7 @@ Model_el::Model_el()
     connect(&timer, &QTimer::timeout, this, &Model_el::timerTimeout);
 }
 
-void Model_el::init_el(double _R1, double _R2, double _L1, double _L2, double _Lm, QString _S, double _tp, double _Tc, double _Mc)
+void Model_el::init_el(double _R1, double _R2, double _L1, double _L2, double _Lm, QString _S, double _tp, double _Tc)
 {
 
     double L1 = _L1;
@@ -21,7 +21,6 @@ void Model_el::init_el(double _R1, double _R2, double _L1, double _L2, double _L
     S = _S;
     tp = _tp;
     Tc = _Tc;
-    base.Mc_n = _Mc;
 
     sigma=L1-((Lm*Lm)/(L2));
     alpha=R2/L2;

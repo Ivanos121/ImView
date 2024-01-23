@@ -17,7 +17,7 @@ public:
     cos_f_b, cos_f_c, cos_f;
     double tp, Tc, Mc_n;
     QString S;
-    void init_el(double _R1,double _R2, double _L1, double _L2, double _Lm, QString _S, double _tp, double _Tc, double _Mc);
+    void init_el(double _R1,double _R2, double _L1, double _L2, double _Lm, QString _S, double _tp, double _Tc);
     void rasch();
 
     void stop();
