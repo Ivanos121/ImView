@@ -682,9 +682,9 @@ MainWindow::MainWindow(QWidget *parent)
     items10.append(item36);
     item31->appendRow(items10);
     items10.clear();
-    item37 = new QStandardItem(QStringLiteral ("Условие 12"));
+    item37 = new QStandardItem(QStringLiteral ("Барометрическое давление, Па"));
     item37->setEditable(false);
-    item38 = new QStandardItem(QStringLiteral ("Значение 12"));
+    item38 = new QStandardItem(QStringLiteral ("0"));
     items10.append(item37);
     items10.append(item38);
     item31->appendRow(items10);
@@ -1585,20 +1585,6 @@ MainWindow::MainWindow(QWidget *parent)
     CustomHelpDelegate* customHelpDelegate13 = new CustomHelpDelegate(this); //создание делегата для создания комбобоксов
     ui->tableWidget_13->setItemDelegateForColumn(0, customHelpDelegate13);
 
-//    ui->tableWidget_8->setRowCount(8);
-//    ui->tableWidget_8->setColumnCount(3);
-//    QStringList name_8;
-//    name_8 << " № " << "Сигнал" << "Величина";
-//    ui->tableWidget_8->setHorizontalHeaderLabels(name_8);
-//    ui->tableWidget_8->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-//    ui->tableWidget_8->horizontalHeader()->setStretchLastSection(true);
-//    ui->tableWidget_8->verticalHeader()->setVisible(false);
-//    ui->tableWidget_8->setEditTriggers(QAbstractItemView::NoEditTriggers);
-//    ui->tableWidget_8->setSelectionBehavior(QAbstractItemView :: SelectRows);
-//    ui->tableWidget_8->setSelectionMode(QAbstractItemView :: SingleSelection);
-//    ui->tableWidget_8->setColumnWidth(0, 100);
-//    ui->tableWidget_8->setColumnWidth(1, 400);
-
     ui->tableWidget_8->setRowCount(30);
     ui->tableWidget_8->setColumnCount(4);
     QStringList name_8;
@@ -1610,33 +1596,81 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget_8->verticalHeader()->setVisible(true);
     ui->tableWidget_8->resizeColumnsToContents();
 
-
     for(int row = 0; row<ui->tableWidget_8->rowCount(); row++)
     {
         for(int column = 0; column<ui->tableWidget_8->columnCount(); column++)
         {
             ui->tableWidget_8->setItem(row, column, new QTableWidgetItem());
-
         }
     }
 
-//    for (int i=0; i<8; i++)
-//    {
-//        if (ui->tableWidget_8->item(i, 0) != 0)
-//        {
-//            ui->tableWidget_8->item(i, 0)->setText(QString("%1").arg(i+1));
-//            ui->tableWidget_8->item(i, 0)->setTextAlignment(Qt::AlignCenter);
-//        }
-//    }
+    ui->tableWidget_8->setItem(0, 0, new QTableWidgetItem("Статическое давление"));
+    ui->tableWidget_8->setItem(1, 0, new QTableWidgetItem("Динамическое давление"));
+    ui->tableWidget_8->setItem(2, 0, new QTableWidgetItem("Полное давление"));
+    ui->tableWidget_8->setItem(3, 0, new QTableWidgetItem("Объемная производительность вентилятора"));
+    ui->tableWidget_8->setItem(4, 0, new QTableWidgetItem("Мощность, потребляемая вентилятором"));
+    ui->tableWidget_8->setItem(5, 0, new QTableWidgetItem("Полный КПД"));
+    ui->tableWidget_8->setItem(6, 0, new QTableWidgetItem("Статический КПД"));
+    ui->tableWidget_8->setItem(7, 0, new QTableWidgetItem("Момент двигателя"));
+    ui->tableWidget_8->setItem(8, 0, new QTableWidgetItem("Частота вращения двигателя"));
 
-    ui->tableWidget_8->setItem(0, 0, new QTableWidgetItem("Статическое давление, Па"));
-    ui->tableWidget_8->setItem(1, 0, new QTableWidgetItem("Динамическое давление, Па"));
-    ui->tableWidget_8->setItem(2, 0, new QTableWidgetItem("Полное давление, Па"));
-    ui->tableWidget_8->setItem(3, 0, new QTableWidgetItem("Производительность, "));
-    ui->tableWidget_8->setItem(4, 0, new QTableWidgetItem("Вал, °C"));
-    ui->tableWidget_8->setItem(5, 0, new QTableWidgetItem("Клеммная коробка, °C"));
-    ui->tableWidget_8->setItem(6, 0, new QTableWidgetItem("Магнитопровод статора слева, °C"));
-    ui->tableWidget_8->setItem(7, 0, new QTableWidgetItem("Магнитопровод статора справа, °C"));
+    ui->tableWidget_8->setItem(0, 1, new QTableWidgetItem("P_ct"));
+    ui->tableWidget_8->setItem(1, 1, new QTableWidgetItem("P_din"));
+    ui->tableWidget_8->setItem(2, 1, new QTableWidgetItem("P_full"));
+    ui->tableWidget_8->setItem(3, 1, new QTableWidgetItem("Q"));
+    ui->tableWidget_8->setItem(4, 1, new QTableWidgetItem("N"));
+    ui->tableWidget_8->setItem(5, 1, new QTableWidgetItem("Nu"));
+    ui->tableWidget_8->setItem(6, 1, new QTableWidgetItem("Nu_ct"));
+    ui->tableWidget_8->setItem(7, 1, new QTableWidgetItem("M"));
+    ui->tableWidget_8->setItem(8, 1, new QTableWidgetItem("omega"));
+
+    ui->tableWidget_8->setItem(0, 3, new QTableWidgetItem("Па"));
+    ui->tableWidget_8->setItem(1, 3, new QTableWidgetItem("Па"));
+    ui->tableWidget_8->setItem(2, 3, new QTableWidgetItem("Па"));
+    ui->tableWidget_8->setItem(3, 3, new QTableWidgetItem("м3/с"));
+    ui->tableWidget_8->setItem(4, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_8->setItem(5, 3, new QTableWidgetItem("--"));
+    ui->tableWidget_8->setItem(6, 3, new QTableWidgetItem("--"));
+    ui->tableWidget_8->setItem(7, 3, new QTableWidgetItem("Н*м"));
+    ui->tableWidget_8->setItem(8, 3, new QTableWidgetItem("рад/с"));
+
+    for (int i=0; i<ui->tableWidget_8->rowCount(); i++)
+    {
+        if (ui->tableWidget_8->item(i, 1) != 0)
+        {
+            ui->tableWidget_8->item(i, 1)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget_8->item(i, 2) != 0)
+        {
+            ui->tableWidget_8->item(i, 2)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget_8->item(i, 3) != 0)
+        {
+            ui->tableWidget_8->item(i, 3)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+    //запрет редактирования первого столбца
+    for(int row = 0; row<ui->tableWidget_8->rowCount(); row++)
+    {
+        if (ui->tableWidget_8->item(row,0) != 0)
+        {
+            ui->tableWidget_8->item(row,0)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+        if (ui->tableWidget_8->item(row,1) != 0)
+        {
+            ui->tableWidget_8->item(row,1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+        if (ui->tableWidget_8->item(row,2) != 0)
+        {
+            ui->tableWidget_8->item(row,2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled|Qt::ItemIsEditable);
+            ui->tableWidget_8->item(row,2)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget_8->item(row,3) != 0)
+        {
+            ui->tableWidget_8->item(row,3)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+    }
 
     QPalette p108=ui->tableWidget_8->palette();
     p108.setColor(QPalette::Base, QColor(225, 255, 255));
@@ -1645,7 +1679,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     CustomHelpDelegate* customHelpDelegate8 = new CustomHelpDelegate(this); //создание делегата для создания комбобоксов
     ui->tableWidget_8->setItemDelegateForColumn(0, customHelpDelegate8);
-
 
     dataLineColors.append(Qt::red);
     dataLineColors.append(Qt::green);
@@ -1982,14 +2015,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget_11->setItem(4, 0, new QTableWidgetItem("Потери при преобразовании кинетической энергии на выходе колеса в статическое давление"));
     ui->tableWidget_11->setItem(5, 0, new QTableWidgetItem("Мощность, потребляемая вентилятором"));
     ui->tableWidget_11->setItem(6, 0, new QTableWidgetItem("Полезная мощность вентилятора"));
-//    ui->tableWidget_11->setItem(7, 0, new QTableWidgetItem("Площадь сечения в месте поворота к рабочему колесу"));
-//    ui->tableWidget_11->setItem(8, 0, new QTableWidgetItem("Угол поворота потока к входным кромкам лопаток рабочего колеса"));
-//    ui->tableWidget_11->setItem(9, 0, new QTableWidgetItem("Площадь сечения в месте поворота перед входом в межреберные каналы"));
-//    ui->tableWidget_11->setItem(10, 0, new QTableWidgetItem("Угол поворота потока перед входом в межреберные каналы"));
-//    ui->tableWidget_11->setItem(11, 0, new QTableWidgetItem("Площадь сечения перед входом в межреберные каналы"));
-//    ui->tableWidget_11->setItem(12, 0, new QTableWidgetItem("Площадь сечения межреберных каналов от станины до кожуха вентилятора"));
-//    ui->tableWidget_11->setItem(13, 0, new QTableWidgetItem("Угол натекания потока на ребра станины"));
-//    ui->tableWidget_11->setItem(14, 0, new QTableWidgetItem("Угол поворота потока в межреберных каналах"));
 
     ui->tableWidget_11->setItem(0, 1, new QTableWidgetItem("ΔPптк"));
     ui->tableWidget_11->setItem(1, 1, new QTableWidgetItem("ΔPврк"));
@@ -1998,14 +2023,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget_11->setItem(4, 1, new QTableWidgetItem("ΔPкд"));
     ui->tableWidget_11->setItem(5, 1, new QTableWidgetItem("Nsv"));
     ui->tableWidget_11->setItem(6, 1, new QTableWidgetItem("N"));
-//    ui->tableWidget_11->setItem(7, 1, new QTableWidgetItem("S1"));
-//    ui->tableWidget_11->setItem(8, 1, new QTableWidgetItem("alpha1"));
-//    ui->tableWidget_11->setItem(9, 1, new QTableWidgetItem("S2"));
-//    ui->tableWidget_11->setItem(10, 1, new QTableWidgetItem("alpha2"));
-//    ui->tableWidget_11->setItem(11, 1, new QTableWidgetItem("S3"));
-//    ui->tableWidget_11->setItem(12, 1, new QTableWidgetItem("S4"));
-//    ui->tableWidget_11->setItem(13, 1, new QTableWidgetItem("fi"));
-//    ui->tableWidget_11->setItem(14, 1, new QTableWidgetItem("fi2"));
 
     ui->tableWidget_11->setItem(0, 3, new QTableWidgetItem("Вт"));
     ui->tableWidget_11->setItem(1, 3, new QTableWidgetItem("Вт"));
@@ -2014,14 +2031,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget_11->setItem(4, 3, new QTableWidgetItem("Вт"));
     ui->tableWidget_11->setItem(5, 3, new QTableWidgetItem("Вт"));
     ui->tableWidget_11->setItem(6, 3, new QTableWidgetItem("Вт"));
-//    ui->tableWidget_11->setItem(7, 3, new QTableWidgetItem("м2"));
-//    ui->tableWidget_11->setItem(8, 3, new QTableWidgetItem("град."));
-//    ui->tableWidget_11->setItem(9, 3, new QTableWidgetItem("град."));
-//    ui->tableWidget_11->setItem(10, 3, new QTableWidgetItem("alpha2"));
-//    ui->tableWidget_11->setItem(11, 3, new QTableWidgetItem("м2"));
-//    ui->tableWidget_11->setItem(12, 3, new QTableWidgetItem("м2"));
-//    ui->tableWidget_11->setItem(13, 3, new QTableWidgetItem("град."));
-//    ui->tableWidget_11->setItem(14, 3, new QTableWidgetItem("град."));
 
     for (int i=0; i<ui->tableWidget_11->rowCount(); i++)
     {
@@ -2084,14 +2093,6 @@ MainWindow::MainWindow(QWidget *parent)
 
         }
     }
-
-//    ui->tableWidget_12->setItem(0, 0, new QTableWidgetItem("Производительность"));
-//    ui->tableWidget_12->setItem(1, 0, new QTableWidgetItem("Полное давление вентилятора"));
-//    ui->tableWidget_12->setItem(2, 0, new QTableWidgetItem("Динамическое давление вентилятора"));
-//    ui->tableWidget_12->setItem(3, 0, new QTableWidgetItem("Статическое давление вентилятора"));
-//    ui->tableWidget_12->setItem(4, 0, new QTableWidgetItem("Полезная мощность вентилятора"));
-//    ui->tableWidget_12->setItem(5, 0, new QTableWidgetItem("Потребляемая мощность вентилятора"));
-//    ui->tableWidget_12->setItem(6, 0, new QTableWidgetItem("Полный к.п.д. вентилятора"));
 
     ui->tableWidget_12->setItem(0, 0, new QTableWidgetItem("Производительность"));
     ui->tableWidget_12->setItem(1, 0, new QTableWidgetItem("Полное давление вентилятора"));
@@ -2516,8 +2517,8 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
     QPalette p_16=ui->tableWidget_16->palette();
-    p_16.setColor(QPalette::Base, QColor(255, 255, 191));
-    p_16.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
+    p_16.setColor(QPalette::Base, QColor(255, 244, 173));
+    p_16.setColor(QPalette::AlternateBase, QColor(265, 230, 0));
     ui->tableWidget_16->setPalette(p_16);
 
     CustomHelpDelegate* customHelpDelegate16 = new CustomHelpDelegate(this); //создание делегата для создания комбобоксов
@@ -3973,22 +3974,22 @@ void MainWindow::tabClicked_4()
     if(ui->widget_6->ui->tabWidget->currentIndex() == 0)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(6);
+        ui->stackedWidget->setCurrentIndex(10);
     }
     if(ui->widget_6->ui->tabWidget->currentIndex() == 1)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(16);
+        ui->stackedWidget->setCurrentIndex(17);
     }
     if(ui->widget_6->ui->tabWidget->currentIndex() == 2)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(17);
+        ui->stackedWidget->setCurrentIndex(18);
     }
     if(ui->widget_6->ui->tabWidget->currentIndex() == 3)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(18);
+        ui->stackedWidget->setCurrentIndex(20);
     }
 }
 
@@ -7557,10 +7558,6 @@ void MainWindow::on_tepl_result_clicked()
            lambda0_20 = (tepl_struct.dPel1+tepl_struct.dPct)/teta0_2n;
            lambda0_12 = (tepl_struct.dPel1+tepl_struct.dPel2+tepl_struct.dPct)/(teta0_2n-teta0_2n);
 
-            //lambda0_10 = (dPel1+dPct)/teta0_1n;
-            //lambda0_20 = (dPel1+dPct)/teta0_2n;
-            //lambda0_12 = (dPel1+dPel2+dPct)/(teta0_2n-teta0_1n);
-
             //Решение СЛАУ
 
             double n = 0;
@@ -7717,7 +7714,7 @@ void MainWindow::on_vent_result_clicked()
     ui->widget_6->ui->tabWidget->show();
     ui->widget_6->ui->tabWidget->setCurrentIndex(1);
     ui->stackedWidget->show();
-    ui->stackedWidget->setCurrentIndex(2);
+    ui->stackedWidget->setCurrentIndex(17);
 
     if (item34->text() == "Выберите режим")
     {
@@ -7730,6 +7727,7 @@ void MainWindow::on_vent_result_clicked()
             ui->widget_6->ui->tabWidget_3->show();
             ui->widget_6->ui->tabWidget_3->setCurrentIndex(0);
             ui->stackedWidget->show();
+            ui->stackedWidget->setCurrentIndex(17);
 
             base_tepl.D1p      = ui->tableWidget_7->item(0,2)->text().toDouble();
             base_tepl.D2p      = ui->tableWidget_7->item(1,2)->text().toDouble();
@@ -7865,32 +7863,84 @@ void MainWindow::on_vent_result_clicked()
             double Q =0;
             double H1 = 0;
             double H2 = 0;
-            double ne = 0;
-            double Pv;
-            //ui->widget_6->ui->plot_2->clear();
-           // ui->widget_6->ui->plot_2->addDataLine(QColor(Qt::red), 0);
-           // ui->widget_6->ui->plot_2->addDataLine(QColor(Qt::green), 0);
-            //for (int i=0;i<100; i++)
+            //double ne = 0;
+            double Pv = 0;
+            double P_ct = 0;
+            double P_din = 0;
+            double v = 1.5;
+            double N = 0;
+            double Nu = 0;
+            double Nu_ct = 0;
+            double M = 0;
+            double omega = 0;
+            ui->widget_6->ui->plot->clear();
+            ui->widget_6->ui->plot->addDataLine(QColor(Qt::red), 0);
+            ui->widget_6->ui->plot->addDataLine(QColor(Qt::green), 0);
+            ui->widget_6->ui->plot->addDataLine(QColor(Qt::blue), 0);
+            ui->widget_6->ui->plot->addDataLine(QColor(Qt::green), 0);
+            ui->widget_6->ui->plot->addDataLine(QColor(Qt::blue), 0);
+
             while (Q < Qp)
             {
                 Q+=0.00001;
-                H1 = Z0 * pow(Q,2);
-                H2 = H0 *(1 - pow((Q/Qmax),2));
-               // ui->widget_6->ui->plot_2->addPoint(0, Q, H1);
-               // ui->widget_6->ui->plot_2->addPoint(1, Q, H2);
-                qDebug() << H1 << H2 << Qt::endl;
+                H1 = Z0/100 * pow(Q,2);
+                H2 = H0/100 *(1 - pow((Q/Qmax),2));
+                Pv=Q*H1;
+                P_din=1.2*pow(v,2);
+                P_ct=Pv-P_din;
+                ui->widget_6->ui->plot->addPoint(0, Q, H1);
+                ui->widget_6->ui->plot->addPoint(1, Q, H2);
+                ui->widget_6->ui->plot->addPoint(2, Q, Pv);
+                ui->widget_6->ui->plot->addPoint(3, Q, P_din);
+                ui->widget_6->ui->plot->addPoint(4, Q, P_ct);
             }
 
-            ne=0.19*sin(M_PI)*(Qp/Qmax);
+            if (ui->tableWidget_8->item(0, 2) != 0)
+            {
+                ui->tableWidget_8->item(0, 2)->setText(QString::number(P_ct,'f',3));
+            }
+            if (ui->tableWidget_8->item(1, 2) != 0)
+            {
+                ui->tableWidget_8->item(1, 2)->setText(QString::number(P_din,'f',3));
+            }
+            if (ui->tableWidget_8->item(2, 2) != 0)
+            {
+                ui->tableWidget_8->item(2, 2)->setText(QString::number(Pv,'f',3));
+            }
+            if (ui->tableWidget_8->item(3, 2) != 0)
+            {
+                ui->tableWidget_8->item(3, 2)->setText(QString::number(Q,'f',3));
+            }
+            if (ui->tableWidget_8->item(4, 2) != 0)
+            {
+                ui->tableWidget_8->item(4, 2)->setText(QString::number(N,'f',3));
+            }
+            if (ui->tableWidget_8->item(5, 2) != 0)
+            {
+                ui->tableWidget_8->item(5, 2)->setText(QString::number(Nu,'f',3));
+            }
+            if (ui->tableWidget_8->item(6, 2) != 0)
+            {
+                ui->tableWidget_8->item(6, 2)->setText(QString::number(Nu_ct,'f',3));
+            }
+            if (ui->tableWidget_8->item(7, 2) != 0)
+            {
+                ui->tableWidget_8->item(7, 2)->setText(QString::number(M,'f',3));
+            }
+            if (ui->tableWidget_8->item(8, 2) != 0)
+            {
+                ui->tableWidget_8->item(8, 2)->setText(QString::number(omega,'f',3));
+            }
+
+           // ne=0.19*sin(M_PI)*(Qp/Qmax);
             Pv=(Qp*Hp);
             double dPvk=0.01;
             double dPsvp=0.001;
             double dPkd=0.6;
-
             double eps = 0.07;
             double dPptk = eps * base_tepl.ro * pow((Qp/base_tepl.S1),2);
             double dPvpk = eps * base_tepl.ro * pow((Qp/base_tepl.S1),2);
-            qDebug() << Pv;
+
 
             //Расчет составляющих энергетической диаграммы вентилятора
 
@@ -7936,6 +7986,7 @@ void MainWindow::on_vent_result_clicked()
             ui->widget_6->ui->tabWidget_3->show();
             ui->widget_6->ui->tabWidget_3->setCurrentIndex(1);
             ui->stackedWidget->show();
+            ui->stackedWidget->setCurrentIndex(17);
 
             base_tepl.D1p      = ui->tableWidget_7->item(0,2)->text().toDouble();
             base_tepl.D2p      = ui->tableWidget_7->item(1,2)->text().toDouble();
@@ -8071,23 +8122,22 @@ void MainWindow::on_vent_result_clicked()
             double Q =0;
             double H1 = 0;
             double H2 = 0;
-            double ne = 0;
+            //double ne = 0;
             double Pv;
-           // ui->widget_6->ui->plot_2->clear();
-           // ui->widget_6->ui->plot_2->addDataLine(QColor(Qt::red), 0);
-          //  ui->widget_6->ui->plot_2->addDataLine(QColor(Qt::green), 0);
-            //for (int i=0;i<100; i++)
+            ui->widget_6->ui->plot->clear();
+            ui->widget_6->ui->plot->addDataLine(QColor(Qt::red), 0);
+            ui->widget_6->ui->plot->addDataLine(QColor(Qt::green), 0);
+
             while (Q < Qp)
             {
                 Q+=0.00001;
                 H1 = Z0 * pow(Q,2);
                 H2 = H0 *(1 - pow((Q/Qmax),2));
-               // ui->widget_6->ui->plot_2->addPoint(0, Q, H1);
-               // ui->widget_6->ui->plot_2->addPoint(1, Q, H2);
-                qDebug() << H1 << H2 << Qt::endl;
+                ui->widget_6->ui->plot->addPoint(0, Q, H1);
+                ui->widget_6->ui->plot->addPoint(1, Q, H2);
             }
 
-            ne=0.19*sin(M_PI)*(Qp/Qmax);
+            //ne=0.19*sin(M_PI)*(Qp/Qmax);
             Pv=(Qp*Hp);
             double dPvk=0.01;
             double dPsvp=0.001;
@@ -8096,7 +8146,6 @@ void MainWindow::on_vent_result_clicked()
             double eps = 0.07;
             double dPptk = eps * base_tepl.ro * pow((Qp/base_tepl.S1),2);
             double dPvpk = eps * base_tepl.ro * pow((Qp/base_tepl.S1),2);
-            qDebug() << Pv;
 
             //Расчет составляющих энергетической диаграммы вентилятора
 
@@ -8136,11 +8185,14 @@ void MainWindow::on_vent_result_clicked()
             ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text33\").text('ΔNvk = %1 Вт');").arg(dPvk, 0, 'f', 3));
             ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text53\").text('ΔNsvp = %1 Вт');").arg(dPsvp, 0, 'f', 3));
             ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text185\").text('ΔNkd = %1 Вт');").arg(dPkd, 0, 'f', 3));
-            //QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
         }
-        if ((item34->text() == "Статика")&&(item36->text() == "Один вентилятор"))
+        if ((item34->text() == "Динамика")&&(item36->text() == "Динамика (расчет)"))
         {
-            QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
+            QMessageBox::information(this, "Динамика", "Динамика (расчет)");
+        }
+        if ((item34->text() == "Динамика")&&(item36->text() == "Динамика (эксперимент)"))
+        {
+            QMessageBox::information(this, "Динамика", "Динамика (эксперимент)");
         }
     }
 }
@@ -8313,8 +8365,6 @@ void MainWindow::on_action_31_triggered()
     ui->tabWidget->show();
     ui->tabWidget->setCurrentIndex(2);
     ui->stackedWidget->hide();
-   // ui->stackedWidget->show();
-   // ui->stackedWidget->setCurrentIndex(8);
     QPixmap pixmap(":/system_icons/data/img/system_icons/go-previous.svg");
     QIcon ButtonIcon_1(pixmap);
     ui->pushButton_5->setIcon(ButtonIcon_1);
@@ -8329,17 +8379,22 @@ void MainWindow::on_action_31_triggered()
     teta0_0=item28->text().toDouble();
 
     ui->widget_10->ui->plot->clear();
+    ui->widget_10->ui->plot->addDataLine(QColor(Qt::red), 0);
+    ui->widget_10->ui->plot->addDataLine(QColor(Qt::green), 0);
 
-    for (int i = 0; i < dataLineColors.size(); i++)
+    double t=0;
+    double y_0;
+    while(t<20000)
     {
-        ui->widget_10->ui->plot->addDataLine(dataLineColors[i], 0);
+        t+=0.1;
+        y_0=20*(1-exp(-t/20)) + item28->text().toDouble();
+        ui->widget_10->ui->plot->addPoint(0, t, y_0);
     }
-
     //ui->widget_10->raschet_el();
     //ui->widget_5->ui->widget_4->startTeplo();
 
    // connect(timer, &QTimer::timeout, this, &MainWindow::TimeOut);
-    timer->start(5000);
+    timer->start(1000);
 
     double teta_1=0, teta_2=0, T_1=0, T_2=0, C_1=0, C_2=0, lambda10=0, lambda12=0,
             lambda20=0, dPel1=0, dPel2=0, omega=0, M=0, dPct=0;
